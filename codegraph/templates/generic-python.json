@@ -1,0 +1,24 @@
+{
+  "name": "generic-python",
+  "description": "Standard Python project architecture rules.",
+  "rules": [
+    {
+      "type": "forbidden_call",
+      "source": "tests.*",
+      "target": "tests.*",
+      "reason": "Tests should not call other test modules directly."
+    },
+    {
+      "type": "required_call",
+      "source_layer": 4,
+      "target_layer": 3,
+      "reason": "Layer-4 test functions must call production (layer-3) code."
+    },
+    {
+      "type": "forbidden_call",
+      "source_arch_layer": "presentation",
+      "target_arch_layer": "infrastructure",
+      "reason": "Presentation layer should not access infrastructure directly."
+    }
+  ]
+}

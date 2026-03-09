@@ -1,0 +1,55 @@
+site_name: codegraph
+site_description: A CLI-driven graph system for AI agents
+site_url: https://codegraph.readthedocs.io
+repo_url: https://github.com/codegraph/codegraph
+repo_name: codegraph/codegraph
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - search.suggest
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Concepts: concepts.md
+  - CLI Reference: cli-reference.md
+  - Configuration: configuration.md
+  - Schema Reference: schema-reference.md
+  - Agent Integration: agent-integration.md
+  - Failure Modes: failure-modes.md
+  - Error Codes: error-codes.md
+  - Plugins: plugins.md
+  - Architecture:
+    - ADR 001 — Storage Backend: adr/001-storage-backend.md
+    - ADR 002 — Layer System: adr/002-layer-system.md
+    - ADR 003 — Query Language: adr/003-query-language.md
+  - Contributing: contributing.md
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+
+plugins:
+  - search

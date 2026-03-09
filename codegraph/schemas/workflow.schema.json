@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Workflow",
+  "description": "Behavioural call graph between nodes.",
+  "type": "object",
+  "required": ["format_version", "edges"],
+  "properties": {
+    "format_version": { "type": "integer", "minimum": 1 },
+    "built_at": { "type": "string", "format": "date-time" },
+    "level": { "type": "string", "enum": ["function", "class", "module"] },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "target"],
+        "properties": {
+          "source": { "type": "string" },
+          "target": { "type": "string" },
+          "edge_type": { "type": "string", "enum": ["call", "test", "trace", "dynamic"] },
+          "confidence": { "type": "string", "enum": ["runtime", "test", "static", "ai_inferred"] }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

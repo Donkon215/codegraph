@@ -1,0 +1,103 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codegraph"
+version = "0.1.0"
+description = "A CLI-driven graph system for extracting, annotating, and analyzing codebase structure — designed for AI agents."
+readme = "readme.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "codegraph contributors"}
+]
+keywords = ["codegraph", "ast", "code-analysis", "ai-agents", "graph"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Quality Assurance",
+]
+
+dependencies = [
+    "click>=8.1",
+    "pyyaml>=6.0",
+    "coverage>=7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+    "mypy>=1.5",
+    "pre-commit>=3.0",
+]
+
+[project.scripts]
+codegraph = "codegraph.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["codegraph*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py39"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["codegraph"]
+branch = true
+omit = ["tests/*", "benchmarks/*", "codegraph/__main__.py"]
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "if __name__ == .__main__.",
+    "@overload",
+]
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[tool.mutmut]
+paths_to_mutate = "codegraph/"
+tests_dir = "tests/"
+runner = "python -m pytest -x --tb=no -q"
+
+[project.urls]
+Homepage = "https://github.com/codegraph/codegraph"
+Documentation = "https://codegraph.readthedocs.io"
+Repository = "https://github.com/codegraph/codegraph"
+Changelog = "https://github.com/codegraph/codegraph/blob/main/CHANGELOG.md"
+"Issue Tracker" = "https://github.com/codegraph/codegraph/issues"

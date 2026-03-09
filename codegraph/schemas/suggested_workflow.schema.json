@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Suggested Workflow",
+  "description": "Architecture policy rules.",
+  "type": "object",
+  "required": ["version", "rules"],
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "reason"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string", "enum": ["required_call", "forbidden_call", "semantic_layer_boundary", "semantic_naming_convention", "semantic_cohesion"] },
+          "severity": { "type": "string", "enum": ["error", "warning", "info"] },
+          "updated_at": { "type": "string", "format": "date-time" },
+          "source": { "type": "string" },
+          "target": { "type": "string" },
+          "source_layer": { "type": "integer", "minimum": 0, "maximum": 4 },
+          "target_layer": { "type": "integer", "minimum": 0, "maximum": 4 },
+          "source_arch_layer": { "type": "string" },
+          "target_arch_layer": { "type": "string" },
+          "reason": { "type": "string" },
+          "added_by": { "type": "string" },
+          "added_at": { "type": "string", "format": "date-time" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

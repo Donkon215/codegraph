@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Delta",
+  "description": "Incremental change log between graph versions.",
+  "type": "object",
+  "required": ["previous_graph_version", "current_graph_version"],
+  "properties": {
+    "computed_at": { "type": "string", "format": "date-time" },
+    "previous_graph_version": { "type": "integer", "minimum": 0 },
+    "current_graph_version": { "type": "integer", "minimum": 0 },
+    "files_changed": { "type": "array", "items": { "type": "string" } },
+    "nodes_added": { "type": "array", "items": { "type": "string" } },
+    "nodes_removed": { "type": "array", "items": { "type": "string" } },
+    "nodes_modified": { "type": "array", "items": { "type": "string" } },
+    "workflow_edges_added": { "type": "array", "items": { "type": "array", "items": { "type": "string" }, "minItems": 2, "maxItems": 2 } },
+    "workflow_edges_removed": { "type": "array", "items": { "type": "array", "items": { "type": "string" }, "minItems": 2, "maxItems": 2 } },
+    "stale_intents": { "type": "array", "items": { "type": "string" } },
+    "cas": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "body_changed_nodes": { "type": "integer" },
+        "affected_nodes": { "type": "integer" },
+        "propagation_factor": { "type": "number" },
+        "nodes_skipped": { "type": "integer" },
+        "scc_count": { "type": "integer" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

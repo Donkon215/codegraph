@@ -1,0 +1,2965 @@
+{
+  "cycle": 1,
+  "graph_version": 5,
+  "intents": [],
+  "repairs": [
+    {
+      "node": "codegraph/analyzer.py::AnalysisCache::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/analyzer.py::ConvergenceTracker::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/cas.py::CASCache::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::ASTParseError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::AlreadyConnectedError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::CycleMismatchError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::DanglingRuleError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::DeltaUncommittedError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::FormatVersionError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::GraphDriftError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::IndexInconsistencyError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::InsufficientDeadCodeSignalsError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::IntentConflictError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::LayerViolationError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::ModuleImportError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::NodeIDCollisionError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::ProjectNotFoundError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::RepairConflictError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::StaleBodyHashError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::TraceCrashError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/exceptions.py::VersionMismatchError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/extractor.py::ExtractionCache::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/extractor.py::ScopeTree::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/extractors/python.py::PythonExtractor::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/filters.py::DataclassFilter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/filters.py::DunderFilter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/filters.py::FilterPipeline::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/filters.py::LoggingFilter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/filters.py::RuntimeTraceLayerFilter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/filters.py::StdlibFilter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/formatters.py::OutputFormatter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/index.py::IndexStore::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/logging_config.py::_HumanFormatter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/metrics.py::MetricsCollector::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/models/graph0.py::CollisionResolver::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/models/history.py::ResponseHistoryManager::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/query.py::QueryCache::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/schemas.py::ValidationError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/tasks.py::TaskHistory::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/utils/progress.py::ProgressReporter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "sample_project/services/order_service.py::OrderService::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "sample_project/services/user_service.py::UserService::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "tests/test_cas.py::TestFilterAffectedRules::test_filters_by_scope::FakeRule::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "tests/test_cas.py::TestFilterAffectedRules::test_glob_scope::FakeRule::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "tests/test_formatters.py::TestOutputFormatter::test_key_fn::Obj::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Simple constructor with no outgoing calls"
+    },
+    {
+      "node": "codegraph/analyzer.py::AnalysisCache",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/analyzer.py::AnalysisCache::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/analyzer.py::AnalysisResult::error_count",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/analyzer.py::AnalysisResult::total_findings",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/analyzer.py::AnalysisResult::warning_count",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/analyzer.py::ConvergenceTracker::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/annotator.py::Graph1Diff::format",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/annotator.py::get_nodes_by_tag",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/apply.py::ApplyResult::failed",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/apply.py::ApplyResult::skipped",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/apply.py::ApplyResult::succeeded",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/archi_test.py::CoverageReport::coverage_pct",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/archi_test.py::_generate_test_classmethod",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/archi_test.py::generate_shared_fixtures",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/cas.py::CASCache::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/cas.py::CASCache::stats",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/cas.py::CASTestImpact::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/cas.py::CASVerificationResult::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/cas.py::NodeChanges::has_changes",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/cas.py::NodeChanges::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/cas.py::StaleIntentReport::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/cli.py::cas_group",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/cli.py::index_group",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/cli.py::schema",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/cli.py::semantic_group",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/cli.py::suggest_group",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/config.py::CodegraphConfig::__str__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/config.py::CodegraphConfig::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/delta.py::ChangedFiles::all_changed",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/delta.py::ChangedFiles::is_empty",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/error_codes.py::all_codes",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/error_codes.py::lookup_by_exception",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::ASTParseError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::AlreadyConnectedError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::CycleMismatchError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::DanglingRuleError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::DeltaUncommittedError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::FormatVersionError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::GraphDriftError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::IndexInconsistencyError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::InsufficientDeadCodeSignalsError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::IntentConflictError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::LayerViolationError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::ModuleImportError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::NodeIDCollisionError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::ProjectNotFoundError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::RepairConflictError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::StaleBodyHashError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::TraceCrashError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/exceptions.py::VersionMismatchError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/extractor.py::ExtractionCache::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/extractor.py::ExtractionReport::total_nodes",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/extractor.py::GraphDiff::is_empty",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/extractor.py::ImportInfo::resolved_name",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/extractor.py::ScopeTree",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/extractor.py::ScopeTree::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/extractor.py::ScopeTree::bind",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/extractor.py::_is_method_context",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/extractors/python.py::PythonExtractor",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/extractors/python.py::PythonExtractor::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/extractors/python.py::PythonExtractor::extract_edges",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/extractors/python.py::PythonExtractor::supported_extensions",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/filters.py::DataclassFilter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/filters.py::DunderFilter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/filters.py::EdgeFilter",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/filters.py::FilterPipeline",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/filters.py::FilterPipeline::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/filters.py::FilterPipeline::available_filters",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/filters.py::FilterPipeline::filter_names",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/filters.py::LoggingFilter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/filters.py::RuntimeTraceLayerFilter",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/filters.py::RuntimeTraceLayerFilter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/filters.py::StdlibFilter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/formatters.py::OutputFormatter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/formatters.py::OutputFormatter::success",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/git_utils.py::get_file_at_commit",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/git_utils.py::has_uncommitted_changes",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/git_utils.py::is_git_repo",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/index.py::IndexStore::__enter__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/index.py::IndexStore::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/known_libraries.py::LibraryInfo::__hash__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/layers.py::_reset_caches",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/layers.py::filter_by_layer",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/layers.py::filter_modifiable",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/layers.py::filter_project_source",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/layers.py::filter_test_code",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/layers.py::is_in_virtualenv",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/layers.py::is_stdlib",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/logging_config.py::_HumanFormatter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/logging_config.py::_JsonFormatter::format",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/metrics.py::BuildMetrics",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/metrics.py::HealthMetrics",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/metrics.py::HealthMetrics::health_score",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/metrics.py::HealthMetrics::intent_coverage",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/metrics.py::MetricsCollector",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/metrics.py::MetricsCollector::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/agent_response.py::AgentResponse",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/models/agent_response.py::IntentProposal::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/agent_response.py::RepairAction",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/models/agent_response.py::RepairAction::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/agent_response.py::WorkflowSuggestion",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/models/agent_response.py::WorkflowSuggestion::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/convergence.py::ConvergenceState",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/models/convergence.py::ConvergenceState::should_stop",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/dead_code.py::DeadCodeSignals",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/models/dead_code.py::DeadCodeSignals::all_confirmed",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/delta.py::DeltaResult::is_empty",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/delta.py::DeltaResult::summary",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/diff.py::DiffResult",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/models/explain.py::ExplainResult",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/models/graph0.py::CollisionResolver::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/graph0.py::Graph0::get_nodes_by_file",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/graph0.py::Graph0Node::__eq__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/graph0.py::Graph0Node::__hash__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/graph0.py::Graph0Node::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/graph1.py::Graph1::get_nodes_by_arch_layer",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/graph1.py::Graph1::has_node",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/graph1.py::Graph1::remove_node",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/graph1.py::Graph1Node::__eq__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/graph1.py::Graph1Node::__hash__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/graph1.py::Graph1Node::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/graph2.py::Graph2::remove_node",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/graph2.py::SideEffectType",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/models/history.py::ResponseHistoryManager",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/models/history.py::ResponseHistoryManager::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/status.py::StatusReport",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/models/status.py::StatusReport::to_text",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflow::list_rules",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflowRule::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/tasks.py::SuggestedFix",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/models/tasks.py::TaskBatch::get_tasks_by_priority",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/tasks.py::TaskBatch::get_tasks_by_type",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/tasks.py::TaskID",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/models/tasks.py::TaskID::__le__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/tasks.py::TaskID::__lt__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/tasks.py::TaskID::priority",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/tasks.py::TestChangeType",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/models/validation.py::ValidationResult::ok",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/workflow.py::Confidence",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/models/workflow.py::Confidence::__ge__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/workflow.py::Confidence::__gt__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/workflow.py::Confidence::__le__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/workflow.py::Confidence::__lt__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/workflow.py::Confidence::rank",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/workflow.py::EdgeType",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/models/workflow.py::WorkflowEdge::__eq__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/workflow.py::WorkflowEdge::__hash__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/workflow.py::WorkflowEdge::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/models/workflow.py::WorkflowLevel",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/pytest_plugin.py::pytest_configure",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/pytest_plugin.py::pytest_sessionfinish",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/query.py::QueryCache::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/schemas.py::ValidationError",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/schemas.py::ValidationError::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/storage.py::atomic_read",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/suggest.py::PolicyDiff::dangling",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/suggest.py::PolicyDiff::satisfied",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/suggest.py::PolicyDiff::unverifiable",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/suggest.py::PolicyDiff::violated",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/suggest.py::match_scope_exact",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/suggest.py::match_scope_glob",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/suggest.py::match_scope_module",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/tasks.py::TaskHistory",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/tasks.py::TaskHistory::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/tasks.py::TaskHistory::entries",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/tasks.py::validate_version",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/test_impact.py::TestImpactResult::direct_tests",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/test_impact.py::TestImpactResult::transitive_tests",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/test_impact.py::prioritize_tests",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::Confidence",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::DeltaResult",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::DeltaResult::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::EdgeType",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::Graph0Node",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::Graph0Node::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::Graph1Node",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::Graph1Node::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::GraphStore",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::GraphStore::load_delta",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::GraphStore::load_graph0",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::GraphStore::load_graph1",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::GraphStore::load_suggested_workflow",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::GraphStore::load_workflow",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::GraphStore::save_delta",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::GraphStore::save_graph0",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::GraphStore::save_graph1",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::GraphStore::save_suggested_workflow",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::GraphStore::save_workflow",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::LanguageExtractor",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::LanguageExtractor::extract_edges",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::LanguageExtractor::extract_nodes",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::LanguageExtractor::supported_extensions",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::LayerNumber",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::NodeType",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::PolicyViolation",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::PolicyViolation::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::RepairAction",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::RepairAction::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::RepairActionType",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::StatusReport",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::StatusReport::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::TaskCategory",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::TaskItem",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::TaskItem::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/types.py::WorkflowEdge",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "codegraph/types.py::WorkflowEdge::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/utils/formatting.py::parse_iso",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/utils/progress.py::ProgressReporter::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/workflow.py::ImportGraph::to_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "codegraph/workflow.py::update_workflow_incremental::_in_changed",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "examples/trading/src/data.py::fetch_data",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "examples/trading/src/signal.py::generate_signal",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "examples/trading/tests/test_trade.py::TestExecuteOrder",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "examples/trading/tests/test_trade.py::TestExecuteOrder::test_invalid_order_raises",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "examples/trading/tests/test_trade.py::TestExecuteOrder::test_valid_execution",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "examples/trading/tests/test_trade.py::TestValidateTrade",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "examples/trading/tests/test_trade.py::TestValidateTrade::test_empty_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "examples/trading/tests/test_trade.py::TestValidateTrade::test_missing_symbol",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "examples/trading/tests/test_trade.py::TestValidateTrade::test_valid_order",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "examples/trading/tests/test_trade.py::TestValidateTrade::test_zero_quantity",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "sample_project/services/order_service.py::OrderService",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "sample_project/services/order_service.py::OrderService::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "sample_project/services/order_service.py::OrderService::list_user_orders",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "sample_project/services/user_service.py::UserService",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: entry point or utility"
+    },
+    {
+      "node": "sample_project/services/user_service.py::UserService::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "sample_project/utils/hashing.py::compute_checksum",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "sample_project/utils/hashing.py::hash_token",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "sample_project/utils/validators.py::sanitize_input",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "sample_project/utils/validators.py::validate_email",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "sample_project/utils/validators.py::validate_order_items",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: potential dead code or entry point"
+    },
+    {
+      "node": "tests/conftest.py::assert_has_keys",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/conftest.py::assert_valid_json",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/conftest.py::sample_graph0",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/conftest.py::sample_graph1",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/conftest.py::sample_workflow",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/conftest.py::tmp_project",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_analyzer.py::TestAnalyzerImports",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_analyzer.py::TestAnalyzerImports::test_import_format_analysis_report",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_analyzer.py::TestAnalyzerImports::test_import_run_analyze",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_analyzer.py::TestConvergenceConcepts",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_analyzer.py::TestConvergenceConcepts::test_decreasing_count_not_converged",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_analyzer.py::TestConvergenceConcepts::test_stable_count_converges",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_analyzer.py::TestConvergenceConcepts::test_zero_issues_converges",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_apply.py::TestApplyActionTypes",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_apply.py::TestApplyActionTypes::test_add_import_concept",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_apply.py::TestApplyActionTypes::test_connect_call_concept",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_apply.py::TestApplyActionTypes::test_flag_for_review_concept",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_apply.py::TestApplyImports",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_apply.py::TestApplyImports::test_import_format_apply_result",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_apply.py::TestApplyImports::test_import_run_apply",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestBuildDependencyHashes",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestCASCache",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestComputeDependencyHash",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestComputeSCCHash",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestDetectNodeChanges",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestDetectStaleIntentsCas",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestExplainCas",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestFilterAffectedRules",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestFilterAffectedRules::test_filters_by_scope::FakeRule",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestFilterAffectedRules::test_filters_by_scope::FakeRule::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestFilterAffectedRules::test_glob_scope::FakeRule",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestFilterAffectedRules::test_glob_scope::FakeRule::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestGetCasIndexUpdates",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestHashSnapshots",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestPropagateInvalidation",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestRecomputeAffectedHashes",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestReverseDependencyMap",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestRunCasPipeline",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestTarjanSCC",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestTestImpactCas",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestTopologicalSort",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cas.py::TestVerifyCasIntegrity",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestAnalyzeCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestAnalyzeCommand::test_analyze_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestAnnotateCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestAnnotateCommand::test_annotate_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestApplyCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestApplyCommand::test_apply_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestArchiTestCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestArchiTestCommand::test_archi_test_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestBuildCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestBuildCommand::test_build_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestCASCommands",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestCASCommands::test_cas_build_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestCASCommands::test_cas_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestCASCommands::test_cas_impact_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestCASCommands::test_cas_verify_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestCLIBasics",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestCLIBasics::test_global_quiet",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestCLIBasics::test_global_verbose",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestCLIBasics::test_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestCLIBasics::test_version",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestCLIBasics::test_version_command",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestCompletionCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestCompletionCommand::test_completion_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestDeltaCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestDeltaCommand::test_delta_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestDiffCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestDiffCommand::test_diff_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestIndexCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestIndexCommand::test_index_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestInitCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestInitCommand::test_init_creates_codegraph_dir",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestIntentCommands",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestIntentCommands::test_intent_apply_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestIntentCommands::test_intent_missing_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestPruneCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestPruneCommand::test_prune_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestQueryCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestQueryCommand::test_explain_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestQueryCommand::test_query_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestRepairCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestRepairCommand::test_repair_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestSchemaCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestSchemaCommand::test_schema_all_types",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestSchemaCommand::test_schema_graph0",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestSemanticCommands",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestSemanticCommands::test_semantic_build_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestSemanticCommands::test_semantic_check_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestSemanticCommands::test_semantic_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestSemanticCommands::test_semantic_show_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestSemanticCommands::test_semantic_summary_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestStatusCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestStatusCommand::test_status_no_project",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestSuggestCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestSuggestCommand::test_suggest_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestSuggestCommand::test_suggest_list_no_project",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestTasksCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestTasksCommand::test_tasks_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestTestImpactCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestTestImpactCommand::test_test_impact_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestValidateCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestValidateCommand::test_validate_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestWorkflowCommand",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::TestWorkflowCommand::test_workflow_help",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::built_project",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_cli.py::runner",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_delta.py::TestChangeDetection",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_delta.py::TestDeltaImports",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_delta.py::TestDeltaImports::test_import_format_delta_result",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_delta.py::TestDeltaImports::test_import_run_delta",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_extractor.py::TestASTExtraction",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_extractor.py::TestBodyHash",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_extractor.py::TestCallSiteExtraction",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_failure_modes.py::TestFailureModeExceptions",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_failure_modes.py::TestFailureModeExceptions::test_all_inherit_from_base",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_filters.py::TestFilterConcepts",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_formatters.py::TestOutputFormatter",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_formatters.py::TestOutputFormatter::test_key_fn::Obj",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_formatters.py::TestOutputFormatter::test_key_fn::Obj::__init__",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_fuzz.py::TestJsonLoaderFuzz",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_fuzz.py::TestNodeIdFuzz",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_fuzz.py::TestQueryParserFuzz",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_graph2.py::TestActionType",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_graph2.py::TestActionType::test_all_values",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_graph2.py::TestActionType::test_string_enum",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_graph2.py::TestDataFlow",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_graph2.py::TestGraph2",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_graph2.py::TestGraph2Node",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_graph2.py::TestGuard",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_graph2.py::TestSemanticAction",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_graph2.py::TestSideEffect",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_graph2.py::TestSideEffectType",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_graph2.py::TestSideEffectType::test_all_values",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_graph2.py::TestSideEffectType::test_string_enum",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_index.py::TestIndexConcepts",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_index.py::TestIndexConcepts::test_index_store_context_manager",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_index.py::TestIndexImports",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_index.py::TestIndexImports::test_import_build_all_indexes",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_index.py::TestIndexImports::test_import_check_consistency",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_index.py::TestIndexImports::test_import_index_store",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_index.py::TestIndexImports::test_import_rebuild_index",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_integration.py::TestBuildPipeline",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_integration.py::TestBuildPipeline::test_init_and_build",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_integration.py::TestQuerySystemIntegration",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_integration.py::TestQuerySystemIntegration::test_explain_help_works",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_integration.py::TestQuerySystemIntegration::test_query_help_works",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_integration.py::TestSchemaIntegration",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_integration.py::TestSchemaIntegration::test_all_schemas_valid_json",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_integration.py::runner",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_integration.py::sample_project",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_known_libraries.py::TestEnrichDomainTags",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_known_libraries.py::TestEnrichSideEffects",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_known_libraries.py::TestGetAllKnownNames",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_known_libraries.py::TestGetLibrariesByCategory",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_known_libraries.py::TestGetLibraryInfo",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_known_libraries.py::TestLibraryInfo",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_layers.py::TestLayerEnum",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_layers.py::TestLayerEnum::test_layer_values",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_layers.py::TestLayerEnum::test_ordering",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_models.py::TestCollisionResolver",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_models.py::TestConfidence",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_models.py::TestConfidence::test_ordering",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_models.py::TestEdgeDeduplication",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_models.py::TestGraph0",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_models.py::TestGraph0Node",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_models.py::TestGraph1",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_models.py::TestGraph1Node",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_models.py::TestIntentValidation",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_models.py::TestNodeIdGeneration",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_models.py::TestNodeType",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_models.py::TestPathNormalization",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_models.py::TestVersionStaleness",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_models.py::TestWorkflow",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_models.py::TestWorkflowEdge",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_properties.py::TestGraph0Properties",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_properties.py::TestNodeIdProperties",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_properties.py::TestWorkflowProperties",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_query.py::TestQueryImports",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_query.py::TestQueryImports::test_import_execute_query",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_query.py::TestQueryImports::test_import_format_query_result",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_query.py::TestQueryImports::test_import_run_query",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_query.py::TestQueryParser",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_semantics.py::TestBuildGraph2",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_semantics.py::TestClassifySqlOperations",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_semantics.py::TestClassifyVerb",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_semantics.py::TestDetectBehaviorChanges",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_semantics.py::TestDetectLibraryCalls",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_semantics.py::TestEvaluateSemanticRules",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_semantics.py::TestExtractActions",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_semantics.py::TestExtractDataFlow",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_semantics.py::TestExtractGuards",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_semantics.py::TestExtractSemanticsForFile",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_semantics.py::TestExtractSemanticsForNode",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_semantics.py::TestExtractSideEffects",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_semantics.py::TestInferDomainTags",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_semantics.py::TestSaveLoadGraph2",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_snapshots.py::TestGraph0Snapshot",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_snapshots.py::TestGraph1Snapshot",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_snapshots.py::TestSchemaSnapshot",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_snapshots.py::TestSchemaSnapshot::test_graph0_schema",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_snapshots.py::TestSchemaSnapshot::test_workflow_schema",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_snapshots.py::TestWorkflowSnapshot",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_suggest.py::TestRuleCreation",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_suggest.py::TestRuleTypeViolation",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_tasks.py::TestPolicyViolation",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_tasks.py::TestSuggestedFix",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_tasks.py::TestSuggestedFix::test_values",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_tasks.py::TestTaskIDPriority",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_tasks.py::TestTaskIDPriority::test_all_task_ids_have_priority",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_tasks.py::TestTaskIDPriority::test_ordering",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_tasks.py::TestTaskIDPriority::test_policy_violation_highest",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_tasks.py::TestTestChangeType",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_tasks.py::TestTestChangeType::test_values",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_workflow.py::TestEdgeBuilding",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_workflow.py::TestEdgeConfidenceComparison",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_workflow.py::TestEdgeDeduplication",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    },
+    {
+      "node": "tests/test_workflow.py::TestWorkflowCollection",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Orphan node: test entry point"
+    }
+  ]
+}

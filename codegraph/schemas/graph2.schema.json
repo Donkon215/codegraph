@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Graph_2",
+  "description": "Semantic behavior layer.",
+  "type": "object",
+  "required": ["format_version", "nodes"],
+  "properties": {
+    "format_version": { "type": "integer", "minimum": 1 },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": { "type": "string" },
+          "actions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "verb": { "type": "string" },
+                "object": { "type": "string" },
+                "description": { "type": "string" }
+              }
+            }
+          },
+          "guards": { "type": "array", "items": { "type": "object" } },
+          "side_effects": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": { "type": "string" },
+                "target": { "type": "string" },
+                "description": { "type": "string" }
+              }
+            }
+          },
+          "data_flow": {
+            "type": "object",
+            "properties": {
+              "inputs": { "type": "array", "items": { "type": "string" } },
+              "outputs": { "type": "array", "items": { "type": "string" } },
+              "transforms": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "domain_tags": { "type": "array", "items": { "type": "string" } },
+          "behavior_hash": { "type": "string" },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "generated_at": { "type": "string", "format": "date-time" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

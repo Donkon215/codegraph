@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Graph_0",
+  "description": "Structural AST graph extracted from the codebase.",
+  "type": "object",
+  "required": ["format_version", "graph_version", "nodes"],
+  "properties": {
+    "format_version": { "type": "integer", "minimum": 1 },
+    "graph_version": { "type": "integer", "minimum": 1 },
+    "extracted_at": { "type": "string", "format": "date-time" },
+    "source_files": { "type": "array", "items": { "type": "string" } },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "body_hash", "file", "type", "line"],
+        "properties": {
+          "id": { "type": "string" },
+          "body_hash": { "type": "string", "minLength": 5, "maxLength": 5 },
+          "file": { "type": "string" },
+          "type": { "type": "string", "enum": ["function", "class", "method", "module"] },
+          "line": { "type": "integer", "minimum": 0 },
+          "dependency_hash": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

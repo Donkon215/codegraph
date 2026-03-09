@@ -1,0 +1,2 @@
+[console_scripts]
+codegraph = codegraph.cli:main
