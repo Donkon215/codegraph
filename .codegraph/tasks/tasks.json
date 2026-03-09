@@ -1,6 +1,551 @@
 {
   "cycle": 1,
-  "graph_version": 10,
-  "generated_at": "2026-03-09T13:58:26Z",
-  "tasks": []
+  "graph_version": 13,
+  "generated_at": "2026-03-09T14:41:23Z",
+  "tasks": [
+    {
+      "task_id": "missing_test_coverage",
+      "priority": 5,
+      "nodes": [
+        {
+          "id": "codegraph/arch_diff.py::ArchDiffReport::format",
+          "file": "codegraph/arch_diff.py",
+          "type": "method",
+          "calls": [
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format diff report as human-readable text with changes and recommendations",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_diff.py::ArchDiffReport::to_dict",
+          "file": "codegraph/arch_diff.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert full diff report to dictionary with summary and detailed changes",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_diff.py::EdgeChange::to_dict",
+          "file": "codegraph/arch_diff.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert edge change to dictionary representation for JSON serialization",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_diff.py::MetricDelta::to_dict",
+          "file": "codegraph/arch_diff.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert metric delta to dictionary with regression flag for reporting",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_diff.py::NodeChange::to_dict",
+          "file": "codegraph/arch_diff.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert node change to dictionary representation for JSON serialization",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_diff.py::_build_adj",
+          "file": "codegraph/arch_diff.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/filters.py::FilterPipeline::add"
+          ],
+          "called_by": [
+            "codegraph/arch_diff.py::diff_graphs"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "build adjacency dictionary structure from workflow edges data",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_diff.py::_find_sccs",
+          "file": "codegraph/arch_diff.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/extractor.py::ScopeTree::pop",
+            "codegraph/filters.py::FilterPipeline::add",
+            "codegraph/tasks.py::TaskHistory::append",
+            "codegraph/utils/progress.py::ProgressReporter::update"
+          ],
+          "called_by": [
+            "codegraph/arch_diff.py::diff_graphs"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "find non-trivial strongly connected components using Tarjan algorithm",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_diff.py::_find_sccs::strongconnect",
+          "file": "codegraph/arch_diff.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/extractor.py::ScopeTree::pop",
+            "codegraph/filters.py::FilterPipeline::add",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "iterative Tarjan inner function processing node stack",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_diff.py::_max_fan_in",
+          "file": "codegraph/arch_diff.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get"
+          ],
+          "called_by": [
+            "codegraph/arch_diff.py::diff_graphs"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "compute maximum fan-in from all workflow edges",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_diff.py::_max_fan_out",
+          "file": "codegraph/arch_diff.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get"
+          ],
+          "called_by": [
+            "codegraph/arch_diff.py::diff_graphs"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "compute maximum fan-out from all workflow edges",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_diff.py::diff_from_files",
+          "file": "codegraph/arch_diff.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_diff.py::diff_graphs"
+          ],
+          "called_by": [
+            "codegraph/arch_diff.py::diff_snapshots"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "compute architecture diff from graph and workflow file paths",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_health.py::ArchHealthReport::format",
+          "file": "codegraph/arch_health.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_health.py::ArchHealthReport::_grade",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format health report as human-readable text with smells and recommendations",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_health.py::ArchHealthReport::to_dict",
+          "file": "codegraph/arch_health.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_health.py::ArchHealthReport::_grade"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert health report to dictionary including grade and module details",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_health.py::ModuleHealth::to_dict",
+          "file": "codegraph/arch_health.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_health.py::ArchHealthReport::_grade"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert module health data to dictionary for JSON reporting",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_health.py::append_health_history",
+          "file": "codegraph/arch_health.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_health.py::ArchHealthReport::_grade",
+            "codegraph/arch_health.py::load_health_history",
+            "codegraph/tasks.py::TaskHistory::append",
+            "codegraph/utils/formatting.py::iso_now"
+          ],
+          "called_by": [
+            "codegraph/cli.py::health_cmd"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "append current health snapshot to history file with timestamp and grade",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_health.py::load_health_history",
+          "file": "codegraph/arch_health.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_health.py::append_health_history"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "load previous health reports from history.json for trend analysis",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_health.py::save_health_report",
+          "file": "codegraph/arch_health.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "called_by": [
+            "codegraph/cli.py::health_cmd"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "save health report to .codegraph/health/ directory in JSON format",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::arch_diff_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::format",
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_diff.py::diff_snapshots",
+            "codegraph/arch_diff.py::save_snapshot",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command comparing architecture across graph versions or snapshots",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::context_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/annotator.py::load_graph1",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/context_builder.py::PromptContext::to_prompt",
+            "codegraph/context_builder.py::PromptContext::token_estimate",
+            "codegraph/context_builder.py::build_context",
+            "codegraph/extractor.py::load_graph0",
+            "codegraph/index.py::IndexStore",
+            "codegraph/workflow.py::load_workflow"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command building LLM prompt context for given node IDs",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::health_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_health.py::append_health_history",
+            "codegraph/arch_health.py::compute_health",
+            "codegraph/arch_health.py::save_health_report",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/extractor.py::load_graph0",
+            "codegraph/index.py::IndexStore"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command computing architecture health score and grade",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::simulate_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/extractor.py::ScopeTree::resolve",
+            "codegraph/index.py::IndexStore",
+            "codegraph/simulator.py::simulate_agent_response"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command simulating agent_response.json for regression detection",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::subsystems_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/extractor.py::load_graph0",
+            "codegraph/index.py::IndexStore",
+            "codegraph/subsystem.py::detect_subsystems"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command detecting sub-architecture clusters in dependency graph",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/context_builder.py::NodeContext::to_dict",
+          "file": "codegraph/context_builder.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert node context to dictionary with optional intent and layer info",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/context_builder.py::PromptContext::to_dict",
+          "file": "codegraph/context_builder.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert prompt context to dictionary for JSON serialization",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/context_builder.py::_build_node_context",
+          "file": "codegraph/context_builder.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/context_builder.py::NodeContext",
+            "codegraph/index.py::IndexStore::get_callees",
+            "codegraph/index.py::IndexStore::get_callers"
+          ],
+          "called_by": [
+            "codegraph/context_builder.py::build_context",
+            "codegraph/context_builder.py::build_subsystem_context"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "build context for single node from graph data and index",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/context_builder.py::build_subsystem_context",
+          "file": "codegraph/context_builder.py",
+          "type": "function",
+          "calls": [
+            "codegraph/context_builder.py::PromptContext",
+            "codegraph/context_builder.py::PromptContext::token_estimate",
+            "codegraph/context_builder.py::_build_node_context",
+            "codegraph/filters.py::FilterPipeline::add",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "build context for entire subsystem/module pattern with cross-boundary edges",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/context_builder.py::build_task_context",
+          "file": "codegraph/context_builder.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/context_builder.py::build_context",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "build context for specific task from tasks.json with affected nodes",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/simulator.py::SimViolation::to_dict",
+          "file": "codegraph/simulator.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert violation to dictionary with limited affected nodes list",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/simulator.py::SimulatedChange::to_dict",
+          "file": "codegraph/simulator.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert simulated change to dictionary representation for JSON output",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/simulator.py::SimulationResult::format",
+          "file": "codegraph/simulator.py",
+          "type": "method",
+          "calls": [
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format simulation result as human-readable text with status and violations",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/simulator.py::SimulationResult::to_dict",
+          "file": "codegraph/simulator.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert simulation result to dictionary for JSON reporting",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/simulator.py::_compute_module_coupling",
+          "file": "codegraph/simulator.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/simulator.py::simulate_changes"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "compute average cross-module coupling from adjacency graph structure",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/simulator.py::_find_cycles_in_adj",
+          "file": "codegraph/simulator.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/extractor.py::ScopeTree::pop",
+            "codegraph/filters.py::FilterPipeline::add",
+            "codegraph/tasks.py::TaskHistory::append",
+            "codegraph/utils/progress.py::ProgressReporter::update"
+          ],
+          "called_by": [
+            "codegraph/simulator.py::simulate_changes"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "find all non-trivial SCCs in adjacency graph using iterative Tarjan",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/simulator.py::_find_cycles_in_adj::strongconnect",
+          "file": "codegraph/simulator.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/extractor.py::ScopeTree::pop",
+            "codegraph/filters.py::FilterPipeline::add",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "iterative Tarjan inner function for cycle detection in simulator",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/simulator.py::_original_adj",
+          "file": "codegraph/simulator.py",
+          "type": "function",
+          "calls": [
+            "codegraph/filters.py::FilterPipeline::add"
+          ],
+          "called_by": [
+            "codegraph/simulator.py::simulate_changes"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "get original adjacency graph from index database",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/subsystem.py::Subsystem::to_dict",
+          "file": "codegraph/subsystem.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert subsystem data to dictionary with node and file counts",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/subsystem.py::SubsystemCoupling::to_dict",
+          "file": "codegraph/subsystem.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert coupling data to dictionary with strength metric",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/subsystem.py::SubsystemReport::format",
+          "file": "codegraph/subsystem.py",
+          "type": "method",
+          "calls": [
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format subsystem report as human-readable text with details and coupling",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/subsystem.py::SubsystemReport::to_dict",
+          "file": "codegraph/subsystem.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert subsystem report to dictionary for JSON serialization",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/subsystem.py::_derive_name",
+          "file": "codegraph/subsystem.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/subsystem.py::_derive_subsystem_name",
+            "codegraph/subsystem.py::detect_subsystems"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "derive short subsystem name from module file path",
+          "body_hash_changed": false
+        }
+      ]
+    }
+  ]
 }

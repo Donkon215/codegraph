@@ -16078,5 +16078,305 @@
     "reason": "Flagged for human review",
     "timestamp": "2026-03-09T13:58:06Z",
     "target": ""
+  },
+  {
+    "node": "tests/test_arch_diff.py::TestArchDiffReport",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_diff.py::TestDiffGraphs",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_diff.py::TestDiffSnapshots",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_diff.py::TestEdgeChange",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_diff.py::TestMetricDelta",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_diff.py::TestNodeChange",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_diff.py::TestSaveSnapshot",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_health.py::TestArchHealthReport",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_health.py::TestComputeHealth",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_health.py::TestModuleHealth",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_context_builder.py::TestBuildContext",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_context_builder.py::TestNodeContext",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_context_builder.py::TestPromptContext",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_simulator.py::TestSimViolation",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_simulator.py::TestSimulateAgentResponse",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_simulator.py::TestSimulateChanges",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_simulator.py::TestSimulatedChange",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_simulator.py::TestSimulationResult",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_subsystem.py::TestDeriveSubsystemName",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_subsystem.py::TestDetectSubsystems",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_subsystem.py::TestSubsystem",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_subsystem.py::TestSubsystemCoupling",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_subsystem.py::TestSubsystemReport",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:39Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_diff.py::TestArchDiffReport",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_diff.py::TestDiffGraphs",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_diff.py::TestDiffSnapshots",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_diff.py::TestEdgeChange",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_diff.py::TestMetricDelta",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_diff.py::TestNodeChange",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_diff.py::TestSaveSnapshot",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_health.py::TestArchHealthReport",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_health.py::TestComputeHealth",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_arch_health.py::TestModuleHealth",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_context_builder.py::TestBuildContext",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_context_builder.py::TestNodeContext",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_context_builder.py::TestPromptContext",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_simulator.py::TestSimViolation",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_simulator.py::TestSimulateAgentResponse",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_simulator.py::TestSimulateChanges",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_simulator.py::TestSimulatedChange",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_simulator.py::TestSimulationResult",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_subsystem.py::TestDeriveSubsystemName",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_subsystem.py::TestDetectSubsystems",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_subsystem.py::TestSubsystem",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_subsystem.py::TestSubsystemCoupling",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_subsystem.py::TestSubsystemReport",
+    "reason": "Test class orphan \u2014 entry point for pytest",
+    "timestamp": "2026-03-09T14:36:45Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/arch_diff.py::ArchDiffReport::has_changes",
+    "reason": "Property orphan \u2014 accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-09T14:41:02Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/arch_diff.py::ArchDiffReport::has_regression",
+    "reason": "Property orphan \u2014 accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-09T14:41:03Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/arch_diff.py::ArchDiffReport::has_changes",
+    "reason": "Property orphan \u2014 accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-09T14:41:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/arch_diff.py::ArchDiffReport::has_regression",
+    "reason": "Property orphan \u2014 accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-09T14:41:06Z",
+    "target": ""
   }
 ]

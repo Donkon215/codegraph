@@ -570,12 +570,12 @@
     },
     {
       "id": "codegraph/analyzer.py::analyze",
-      "intent": "run all analyses and return combined results (I-001)",
+      "intent": "run all architecture analyses (orphans, stale intents, coverage gaps, missing intents, policy violations, missing edges) scoped to affected_nodes if provided, and return combined AnalysisResult",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "433aa"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-09T14:41:06Z",
+      "intent_body_hash": "559bd"
     },
     {
       "id": "codegraph/analyzer.py::analyze_parallel",
@@ -1352,6 +1352,300 @@
       "intent_body_hash": "20249"
     },
     {
+      "id": "codegraph/arch_diff",
+      "intent": "architecture diff engine comparing dependency graph snapshots across versions",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "5fc24"
+    },
+    {
+      "id": "codegraph/arch_diff.py::ArchDiffReport",
+      "intent": "complete architecture diff report with nodes, edges, cycles, and regressions",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "ab617"
+    },
+    {
+      "id": "codegraph/arch_diff.py::ArchDiffReport::format",
+      "intent": "format diff report as human-readable text with changes and recommendations",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "fb145"
+    },
+    {
+      "id": "codegraph/arch_diff.py::ArchDiffReport::has_changes",
+      "intent": "property indicating whether the diff contains any structural graph changes (added/removed nodes or edges)",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-09T14:41:06Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "1d668"
+    },
+    {
+      "id": "codegraph/arch_diff.py::ArchDiffReport::has_regression",
+      "intent": "property indicating whether the diff contains any architecture regressions (metric degradations)",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-09T14:41:06Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "c4d9c"
+    },
+    {
+      "id": "codegraph/arch_diff.py::ArchDiffReport::to_dict",
+      "intent": "convert full diff report to dictionary with summary and detailed changes",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "cfa9c"
+    },
+    {
+      "id": "codegraph/arch_diff.py::EdgeChange",
+      "intent": "represents a single added or removed dependency edge between nodes",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "3879a"
+    },
+    {
+      "id": "codegraph/arch_diff.py::EdgeChange::to_dict",
+      "intent": "convert edge change to dictionary representation for JSON serialization",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "27723"
+    },
+    {
+      "id": "codegraph/arch_diff.py::MetricDelta",
+      "intent": "tracks change in an architecture metric with old, new, delta values",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "e99b5"
+    },
+    {
+      "id": "codegraph/arch_diff.py::MetricDelta::to_dict",
+      "intent": "convert metric delta to dictionary with regression flag for reporting",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "30428"
+    },
+    {
+      "id": "codegraph/arch_diff.py::NodeChange",
+      "intent": "represents a single node added or removed from the dependency graph",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "39c97"
+    },
+    {
+      "id": "codegraph/arch_diff.py::NodeChange::to_dict",
+      "intent": "convert node change to dictionary representation for JSON serialization",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "8e7e8"
+    },
+    {
+      "id": "codegraph/arch_diff.py::_build_adj",
+      "intent": "build adjacency dictionary structure from workflow edges data",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "3845e"
+    },
+    {
+      "id": "codegraph/arch_diff.py::_find_sccs",
+      "intent": "find non-trivial strongly connected components using Tarjan algorithm",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "5a7e1"
+    },
+    {
+      "id": "codegraph/arch_diff.py::_find_sccs::strongconnect",
+      "intent": "iterative Tarjan inner function processing node stack",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "79e71"
+    },
+    {
+      "id": "codegraph/arch_diff.py::_max_fan_in",
+      "intent": "compute maximum fan-in from all workflow edges",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "cee59"
+    },
+    {
+      "id": "codegraph/arch_diff.py::_max_fan_out",
+      "intent": "compute maximum fan-out from all workflow edges",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "7742f"
+    },
+    {
+      "id": "codegraph/arch_diff.py::diff_from_files",
+      "intent": "compute architecture diff from graph and workflow file paths",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "40deb"
+    },
+    {
+      "id": "codegraph/arch_diff.py::diff_graphs",
+      "intent": "compute architecture diff between two graph snapshots with cycle detection",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "2a1ca"
+    },
+    {
+      "id": "codegraph/arch_diff.py::diff_snapshots",
+      "intent": "diff two named snapshots or current against named baseline snapshot",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "e8190"
+    },
+    {
+      "id": "codegraph/arch_diff.py::save_snapshot",
+      "intent": "save current graph and workflow as named snapshot for future diffing",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "ea1ee"
+    },
+    {
+      "id": "codegraph/arch_health",
+      "intent": "architecture health scoring engine aggregating risk and cohesion metrics",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "f331d"
+    },
+    {
+      "id": "codegraph/arch_health.py::ArchHealthReport",
+      "intent": "comprehensive architecture health report with overall score and recommendations",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "e8f8e"
+    },
+    {
+      "id": "codegraph/arch_health.py::ArchHealthReport::_grade",
+      "intent": "compute letter grade A-F based on overall health score percentage",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "b0f89"
+    },
+    {
+      "id": "codegraph/arch_health.py::ArchHealthReport::format",
+      "intent": "format health report as human-readable text with smells and recommendations",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "1ba74"
+    },
+    {
+      "id": "codegraph/arch_health.py::ArchHealthReport::to_dict",
+      "intent": "convert health report to dictionary including grade and module details",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "bdb9e"
+    },
+    {
+      "id": "codegraph/arch_health.py::ModuleHealth",
+      "intent": "health assessment for single module with risk, fan-in/out, and issues",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "588e7"
+    },
+    {
+      "id": "codegraph/arch_health.py::ModuleHealth::to_dict",
+      "intent": "convert module health data to dictionary for JSON reporting",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "04244"
+    },
+    {
+      "id": "codegraph/arch_health.py::append_health_history",
+      "intent": "append current health snapshot to history file with timestamp and grade",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "417d1"
+    },
+    {
+      "id": "codegraph/arch_health.py::compute_health",
+      "intent": "compute comprehensive architecture health score with cycle and cohesion analysis",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "d6f69"
+    },
+    {
+      "id": "codegraph/arch_health.py::load_health_history",
+      "intent": "load previous health reports from history.json for trend analysis",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "9e4b6"
+    },
+    {
+      "id": "codegraph/arch_health.py::save_health_report",
+      "intent": "save health report to .codegraph/health/ directory in JSON format",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "0f5ea"
+    },
+    {
       "id": "codegraph/archi_test",
       "intent": "codegraph.archi_test — Architecture test generation and management",
       "layer": 4,
@@ -1956,12 +2250,12 @@
     },
     {
       "id": "codegraph/cli",
-      "intent": "click CLI entry point with commands for build analyze tasks apply delta query status metrics path refactor plan memory visualize",
+      "intent": "click CLI entry point with commands for build, analyze, tasks, apply, delta, query, status, health, subsystems, context, simulate, arch-diff, and more",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 3,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "befd1"
+      "intent_author": "agent",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "dfce3"
     },
     {
       "id": "codegraph/cli.py::analyze_cmd",
@@ -1989,6 +2283,15 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "b661b"
+    },
+    {
+      "id": "codegraph/cli.py::arch_diff_cmd",
+      "intent": "cLI command comparing architecture across graph versions or snapshots",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "d116d"
     },
     {
       "id": "codegraph/cli.py::archi_test_cmd",
@@ -2054,6 +2357,15 @@
       "intent_body_hash": "55368"
     },
     {
+      "id": "codegraph/cli.py::context_cmd",
+      "intent": "cLI command building LLM prompt context for given node IDs",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "7fc35"
+    },
+    {
       "id": "codegraph/cli.py::delta",
       "intent": "compute incremental change log",
       "layer": 3,
@@ -2088,6 +2400,15 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "0cc1c"
+    },
+    {
+      "id": "codegraph/cli.py::health_cmd",
+      "intent": "cLI command computing architecture health score and grade",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "7cd44"
     },
     {
       "id": "codegraph/cli.py::index_check",
@@ -2288,6 +2609,15 @@
       "intent_body_hash": "41c35"
     },
     {
+      "id": "codegraph/cli.py::simulate_cmd",
+      "intent": "cLI command simulating agent_response.json for regression detection",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "a10b8"
+    },
+    {
       "id": "codegraph/cli.py::status",
       "intent": "show current codegraph project status",
       "layer": 3,
@@ -2295,6 +2625,15 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "3bb4b"
+    },
+    {
+      "id": "codegraph/cli.py::subsystems_cmd",
+      "intent": "cLI command detecting sub-architecture clusters in dependency graph",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "c532d"
     },
     {
       "id": "codegraph/cli.py::suggest_add",
@@ -2538,6 +2877,105 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "cc47a"
+    },
+    {
+      "id": "codegraph/context_builder",
+      "intent": "lLM prompt context builder extracting relevant dependency graph portions",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "d8b4d"
+    },
+    {
+      "id": "codegraph/context_builder.py::NodeContext",
+      "intent": "extracted context for single node with file, type, intent, and neighbors",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "927b9"
+    },
+    {
+      "id": "codegraph/context_builder.py::NodeContext::to_dict",
+      "intent": "convert node context to dictionary with optional intent and layer info",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "da245"
+    },
+    {
+      "id": "codegraph/context_builder.py::PromptContext",
+      "intent": "complete context package for LLM prompt with nodes, rules, and problems",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "f1baf"
+    },
+    {
+      "id": "codegraph/context_builder.py::PromptContext::to_dict",
+      "intent": "convert prompt context to dictionary for JSON serialization",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "9b58c"
+    },
+    {
+      "id": "codegraph/context_builder.py::PromptContext::to_prompt",
+      "intent": "format context as structured LLM prompt with sections and node details",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "138af"
+    },
+    {
+      "id": "codegraph/context_builder.py::PromptContext::token_estimate",
+      "intent": "rough estimate of token count for prompt to fit within LLM limits",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "222ab"
+    },
+    {
+      "id": "codegraph/context_builder.py::_build_node_context",
+      "intent": "build context for single node from graph data and index",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "7bc0b"
+    },
+    {
+      "id": "codegraph/context_builder.py::build_context",
+      "intent": "build LLM prompt context centered on focus nodes with BFS expansion",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "a3007"
+    },
+    {
+      "id": "codegraph/context_builder.py::build_subsystem_context",
+      "intent": "build context for entire subsystem/module pattern with cross-boundary edges",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "d6a56"
+    },
+    {
+      "id": "codegraph/context_builder.py::build_task_context",
+      "intent": "build context for specific task from tasks.json with affected nodes",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "9f309"
     },
     {
       "id": "codegraph/delta",
@@ -6807,30 +7245,30 @@
     },
     {
       "id": "codegraph/models/suggested_workflow.py::SuggestedWorkflowRule::__post_init__",
-      "intent": "post init (internal)",
+      "intent": "validate rule after initialization: set added_at timestamp, require source specifiers for dependency_limit rules, require both source and target specifiers for all other rule types",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "57360"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-09T14:41:06Z",
+      "intent_body_hash": "86df5"
     },
     {
       "id": "codegraph/models/suggested_workflow.py::SuggestedWorkflowRule::from_dict",
-      "intent": "from dict",
+      "intent": "deserialize a SuggestedWorkflowRule from a dictionary with safe defaults for optional fields",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "25982"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-09T14:41:06Z",
+      "intent_body_hash": "dc0de"
     },
     {
       "id": "codegraph/models/suggested_workflow.py::SuggestedWorkflowRule::to_dict",
-      "intent": "to dict",
+      "intent": "serialize the rule to a compact dictionary, including required fields always and optional fields only when not None",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "feed7"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-09T14:41:06Z",
+      "intent_body_hash": "91b43"
     },
     {
       "id": "codegraph/models/suggested_workflow.py::expand_arch_layer_scope",
@@ -8606,6 +9044,132 @@
       "intent_body_hash": "2d503"
     },
     {
+      "id": "codegraph/simulator",
+      "intent": "suggestion simulation engine checking proposed changes for violations",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "2d306"
+    },
+    {
+      "id": "codegraph/simulator.py::SimViolation",
+      "intent": "violation detected during simulation with type, severity, and affected nodes",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "6ea33"
+    },
+    {
+      "id": "codegraph/simulator.py::SimViolation::to_dict",
+      "intent": "convert violation to dictionary with limited affected nodes list",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "91fde"
+    },
+    {
+      "id": "codegraph/simulator.py::SimulatedChange",
+      "intent": "a proposed change action on dependency graph with node/edge details",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "892cc"
+    },
+    {
+      "id": "codegraph/simulator.py::SimulatedChange::to_dict",
+      "intent": "convert simulated change to dictionary representation for JSON output",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "3799a"
+    },
+    {
+      "id": "codegraph/simulator.py::SimulationResult",
+      "intent": "result of simulating change set with violations, cycles, and coupling impact",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "ef460"
+    },
+    {
+      "id": "codegraph/simulator.py::SimulationResult::format",
+      "intent": "format simulation result as human-readable text with status and violations",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "07292"
+    },
+    {
+      "id": "codegraph/simulator.py::SimulationResult::to_dict",
+      "intent": "convert simulation result to dictionary for JSON reporting",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "761a0"
+    },
+    {
+      "id": "codegraph/simulator.py::_compute_module_coupling",
+      "intent": "compute average cross-module coupling from adjacency graph structure",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "3e037"
+    },
+    {
+      "id": "codegraph/simulator.py::_find_cycles_in_adj",
+      "intent": "find all non-trivial SCCs in adjacency graph using iterative Tarjan",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "8ae7e"
+    },
+    {
+      "id": "codegraph/simulator.py::_find_cycles_in_adj::strongconnect",
+      "intent": "iterative Tarjan inner function for cycle detection in simulator",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "64602"
+    },
+    {
+      "id": "codegraph/simulator.py::_original_adj",
+      "intent": "get original adjacency graph from index database",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "9208c"
+    },
+    {
+      "id": "codegraph/simulator.py::simulate_agent_response",
+      "intent": "simulate agent_response.json before applying converting repairs to changes",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "3739d"
+    },
+    {
+      "id": "codegraph/simulator.py::simulate_changes",
+      "intent": "simulate proposed changes checking for cycles, forbidden paths, and coupling",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "753d0"
+    },
+    {
       "id": "codegraph/storage",
       "intent": "codegraph.storage — .codegraph/ directory manager, atomic writer, version/cycle tracking",
       "layer": 3,
@@ -8748,6 +9312,105 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "3e28d"
+    },
+    {
+      "id": "codegraph/subsystem",
+      "intent": "automatic sub-architecture detection clustering graph into subsystems",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "e3ddc"
+    },
+    {
+      "id": "codegraph/subsystem.py::Subsystem",
+      "intent": "detected subsystem with nodes, files, cohesion, and internal/external edges",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "e852a"
+    },
+    {
+      "id": "codegraph/subsystem.py::Subsystem::to_dict",
+      "intent": "convert subsystem data to dictionary with node and file counts",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "27e0e"
+    },
+    {
+      "id": "codegraph/subsystem.py::SubsystemCoupling",
+      "intent": "coupling relationship between two subsystems with edge count and strength",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "ce5e0"
+    },
+    {
+      "id": "codegraph/subsystem.py::SubsystemCoupling::to_dict",
+      "intent": "convert coupling data to dictionary with strength metric",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "4a2ba"
+    },
+    {
+      "id": "codegraph/subsystem.py::SubsystemReport",
+      "intent": "complete subsystem detection report with modularity and coupling analysis",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "b916f"
+    },
+    {
+      "id": "codegraph/subsystem.py::SubsystemReport::format",
+      "intent": "format subsystem report as human-readable text with details and coupling",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "3330b"
+    },
+    {
+      "id": "codegraph/subsystem.py::SubsystemReport::to_dict",
+      "intent": "convert subsystem report to dictionary for JSON serialization",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "cf170"
+    },
+    {
+      "id": "codegraph/subsystem.py::_derive_name",
+      "intent": "derive short subsystem name from module file path",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "0a02e"
+    },
+    {
+      "id": "codegraph/subsystem.py::_derive_subsystem_name",
+      "intent": "derive subsystem name from constituent file paths with prefix detection",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "2dd32"
+    },
+    {
+      "id": "codegraph/subsystem.py::detect_subsystems",
+      "intent": "detect subsystems using Louvain-style community detection algorithm",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "aa54a"
     },
     {
       "id": "codegraph/suggest",
@@ -11549,6 +12212,474 @@
       "intent_body_hash": "e9a65"
     },
     {
+      "id": "tests/test_arch_diff",
+      "intent": "test suite for architecture diff engine covering all diff operations",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "953f4"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestArchDiffReport",
+      "intent": "test class for ArchDiffReport dataclass and properties",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "5115b"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestArchDiffReport::test_empty_report",
+      "intent": "test empty report has no changes and no regressions",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "d3d72"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestArchDiffReport::test_format",
+      "intent": "test format produces human-readable text output",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "09c96"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestArchDiffReport::test_has_changes",
+      "intent": "test has_changes property detects added edges",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "dc5c8"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestArchDiffReport::test_to_dict_summary",
+      "intent": "test to_dict includes summary with edge counts and regression flag",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "15d10"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestDiffGraphs",
+      "intent": "test class for diff_graphs function covering all scenarios",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "cc94e"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestDiffGraphs::test_added_edge",
+      "intent": "test added edge is properly detected in diff report",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "5452c"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestDiffGraphs::test_added_node",
+      "intent": "test added node is properly detected in diff report",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "0ee71"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestDiffGraphs::test_empty_graphs",
+      "intent": "test empty graphs produce valid empty diff report",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "6382c"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestDiffGraphs::test_metric_deltas_present",
+      "intent": "test metric deltas include node and edge counts",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "fd610"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestDiffGraphs::test_new_cycle_detected",
+      "intent": "test new dependency cycles are detected and flagged as regressions",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "9a773"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestDiffGraphs::test_no_changes",
+      "intent": "test identical graphs produce empty diff report",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "37759"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestDiffGraphs::test_removed_edge",
+      "intent": "test removed edge is properly detected in diff report",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "4a827"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestDiffGraphs::test_removed_node",
+      "intent": "test removed node is properly detected in diff report",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "8b5f3"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestDiffGraphs::test_resolved_cycle",
+      "intent": "test resolved cycles are detected and flagged as improvements",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "c9db0"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestDiffSnapshots",
+      "intent": "test class for diff_snapshots end-to-end functionality",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "c34a4"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestDiffSnapshots::test_diff_from_snapshot",
+      "intent": "test end-to-end save snapshot change graph and compute diff",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "f5587"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestEdgeChange",
+      "intent": "test class for EdgeChange dataclass functionality",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "cb6bf"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestEdgeChange::test_to_dict",
+      "intent": "test EdgeChange to_dict converts all fields correctly",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "24c6d"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestMetricDelta",
+      "intent": "test class for MetricDelta dataclass with regression flag",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "5ce6c"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestMetricDelta::test_regression_flag",
+      "intent": "test regression flag properly reflects in to_dict output",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "c219c"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestNodeChange",
+      "intent": "test class for NodeChange dataclass functionality",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "2c0a3"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestNodeChange::test_to_dict",
+      "intent": "test NodeChange to_dict converts fields correctly",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "4b7de"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestSaveSnapshot",
+      "intent": "test class for save_snapshot function",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "3dc11"
+    },
+    {
+      "id": "tests/test_arch_diff.py::TestSaveSnapshot::test_save_creates_dir",
+      "intent": "test snapshot creates directory and copies graph and workflow files",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "f6162"
+    },
+    {
+      "id": "tests/test_arch_health",
+      "intent": "test suite for architecture health scoring engine",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "6513d"
+    },
+    {
+      "id": "tests/test_arch_health.py::TestArchHealthReport",
+      "intent": "test class for ArchHealthReport dataclass",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "57276"
+    },
+    {
+      "id": "tests/test_arch_health.py::TestArchHealthReport::test_format",
+      "intent": "test format produces human-readable health report",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "c5013"
+    },
+    {
+      "id": "tests/test_arch_health.py::TestArchHealthReport::test_grade_mapping",
+      "intent": "test letter grades A-F map correctly to score ranges",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "05e45"
+    },
+    {
+      "id": "tests/test_arch_health.py::TestArchHealthReport::test_to_dict",
+      "intent": "test to_dict includes grade and cycle count",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "46bbf"
+    },
+    {
+      "id": "tests/test_arch_health.py::TestComputeHealth",
+      "intent": "test class for compute_health function",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "87838"
+    },
+    {
+      "id": "tests/test_arch_health.py::TestComputeHealth::test_cyclic_graph_penalized",
+      "intent": "test graphs with cycles get lower health scores",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "0e77d"
+    },
+    {
+      "id": "tests/test_arch_health.py::TestComputeHealth::test_empty_graph",
+      "intent": "test empty graph gets perfect score",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "f6734"
+    },
+    {
+      "id": "tests/test_arch_health.py::TestComputeHealth::test_simple_healthy",
+      "intent": "test simple graph without cycles scores well",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "3bd4f"
+    },
+    {
+      "id": "tests/test_arch_health.py::TestModuleHealth",
+      "intent": "test class for ModuleHealth dataclass",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "055fa"
+    },
+    {
+      "id": "tests/test_arch_health.py::TestModuleHealth::test_defaults",
+      "intent": "test ModuleHealth default values on initialization",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "1d089"
+    },
+    {
+      "id": "tests/test_arch_health.py::TestModuleHealth::test_to_dict",
+      "intent": "test ModuleHealth to_dict conversion",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "d9b2b"
+    },
+    {
+      "id": "tests/test_arch_health.py::_make_graph0",
+      "intent": "helper function creating mock graph0 with node objects",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "269e6"
+    },
+    {
+      "id": "tests/test_arch_health.py::_make_index",
+      "intent": "helper function creating mock index with in-memory SQLite tables",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "30577"
+    },
+    {
       "id": "tests/test_cas",
       "intent": "unit tests for the Content Addressed Store (CAS) module",
       "layer": 4,
@@ -12843,6 +13974,189 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "79da8"
+    },
+    {
+      "id": "tests/test_context_builder",
+      "intent": "test suite for LLM prompt context extraction",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "e2e47"
+    },
+    {
+      "id": "tests/test_context_builder.py::TestBuildContext",
+      "intent": "test class for build_context function",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "3f26f"
+    },
+    {
+      "id": "tests/test_context_builder.py::TestBuildContext::test_basic_context",
+      "intent": "test basic context building for single node",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "b50b4"
+    },
+    {
+      "id": "tests/test_context_builder.py::TestBuildContext::test_depth_expansion",
+      "intent": "test context expands to neighbors via BFS",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "ea726"
+    },
+    {
+      "id": "tests/test_context_builder.py::TestBuildContext::test_unknown_node",
+      "intent": "test unknown focus node produces valid context",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "bf30e"
+    },
+    {
+      "id": "tests/test_context_builder.py::TestNodeContext",
+      "intent": "test class for NodeContext dataclass",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "1a867"
+    },
+    {
+      "id": "tests/test_context_builder.py::TestNodeContext::test_to_dict",
+      "intent": "test NodeContext to_dict includes node info and neighbors",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "70639"
+    },
+    {
+      "id": "tests/test_context_builder.py::TestPromptContext",
+      "intent": "test class for PromptContext dataclass",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "6cd0f"
+    },
+    {
+      "id": "tests/test_context_builder.py::TestPromptContext::test_empty_context",
+      "intent": "test empty context produces valid string prompt",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "2a689"
+    },
+    {
+      "id": "tests/test_context_builder.py::TestPromptContext::test_to_dict",
+      "intent": "test to_dict includes all context sections",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "2fe3a"
+    },
+    {
+      "id": "tests/test_context_builder.py::TestPromptContext::test_token_estimate",
+      "intent": "test token_estimate returns positive value",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "3212d"
+    },
+    {
+      "id": "tests/test_context_builder.py::_make_graph0",
+      "intent": "helper creating mock graph0 with node objects",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "0b22f"
+    },
+    {
+      "id": "tests/test_context_builder.py::_make_graph1",
+      "intent": "helper creating mock graph1 with intent lookup",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "c7309"
+    },
+    {
+      "id": "tests/test_context_builder.py::_make_graph1::get_node",
+      "intent": "inner function returning graph1 node by ID from lookup map",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "5ebf5"
+    },
+    {
+      "id": "tests/test_context_builder.py::_make_index",
+      "intent": "helper creating mock index with caller/callee tables",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "342af"
+    },
+    {
+      "id": "tests/test_context_builder.py::_make_node",
+      "intent": "helper creating mock node object with basic properties",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "3ca57"
+    },
+    {
+      "id": "tests/test_context_builder.py::_make_workflow",
+      "intent": "helper creating mock workflow with edges",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "177ae"
     },
     {
       "id": "tests/test_delta",
@@ -16328,6 +17642,228 @@
       "intent_body_hash": "588aa"
     },
     {
+      "id": "tests/test_simulator",
+      "intent": "test suite for change simulation engine",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "8560c"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimViolation",
+      "intent": "test class for SimViolation dataclass",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "5ac31"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimViolation::test_to_dict",
+      "intent": "test SimViolation to_dict includes type and severity",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "e4c37"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimulateAgentResponse",
+      "intent": "test class for simulate_agent_response function",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "75f21"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimulateAgentResponse::test_connect_call_repair",
+      "intent": "test connect_call repair converts to add_edge change",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "e7e36"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimulateAgentResponse::test_empty_response",
+      "intent": "test empty response produces safe result",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "6395b"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimulateAgentResponse::test_no_repairs_key",
+      "intent": "test response without repairs key is safe",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "116cc"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimulateChanges",
+      "intent": "test class for simulate_changes function",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "3d4fa"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimulateChanges::test_add_edge_creates_cycle",
+      "intent": "test cycle detection when adding edges",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "329c3"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimulateChanges::test_add_edge_no_cycle",
+      "intent": "test adding edge without cycle is safe",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "cab1d"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimulateChanges::test_forbidden_pattern",
+      "intent": "test forbidden path patterns are detected",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "535a9"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimulateChanges::test_no_changes",
+      "intent": "test empty changes produce safe result",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "e1ff6"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimulateChanges::test_remove_edge",
+      "intent": "test removing edge is safe",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "6be4a"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimulatedChange",
+      "intent": "test class for SimulatedChange dataclass",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "a9b6a"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimulatedChange::test_to_dict",
+      "intent": "test SimulatedChange to_dict conversion",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "e3588"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimulationResult",
+      "intent": "test class for SimulationResult dataclass",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "a11dd"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimulationResult::test_safe_result",
+      "intent": "test safe result serialization to dictionary",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "be196"
+    },
+    {
+      "id": "tests/test_simulator.py::TestSimulationResult::test_unsafe_result",
+      "intent": "test unsafe result with violations properly marked",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "7ba32"
+    },
+    {
+      "id": "tests/test_simulator.py::_make_index",
+      "intent": "helper creating mock index with tables for callees and nodes",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "daa5a"
+    },
+    {
       "id": "tests/test_snapshots",
       "intent": "snapshot tests for JSON output stability",
       "layer": 4,
@@ -16425,6 +17961,225 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "37093"
+    },
+    {
+      "id": "tests/test_subsystem",
+      "intent": "test suite for subsystem community detection and clustering",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "5bfbd"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestDeriveSubsystemName",
+      "intent": "test class for _derive_subsystem_name function",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "fdc88"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestDeriveSubsystemName::test_common_prefix",
+      "intent": "test name derivation from common path prefix",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "ad88f"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestDeriveSubsystemName::test_empty",
+      "intent": "test empty file list returns unknown",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "93446"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestDeriveSubsystemName::test_single_file",
+      "intent": "test name derivation from single file path",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "e357c"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestDetectSubsystems",
+      "intent": "test class for detect_subsystems function",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "9c21b"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestDetectSubsystems::test_empty_graph",
+      "intent": "test empty graph produces empty subsystem report",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "129a4"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestDetectSubsystems::test_min_size_filter",
+      "intent": "test subsystems smaller than min_size are filtered",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "ec1fa"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestDetectSubsystems::test_trivial_single_file",
+      "intent": "test all nodes in one file creates single subsystem",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "1afa4"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestDetectSubsystems::test_two_clusters",
+      "intent": "test two separate clusters are detected correctly",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "3b941"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestSubsystem",
+      "intent": "test class for Subsystem dataclass",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "c77cd"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestSubsystem::test_to_dict",
+      "intent": "test Subsystem to_dict includes cohesion metric",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "7c6a0"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestSubsystemCoupling",
+      "intent": "test class for SubsystemCoupling dataclass",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "c3600"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestSubsystemCoupling::test_to_dict",
+      "intent": "test SubsystemCoupling to_dict conversion",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "dde7f"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestSubsystemReport",
+      "intent": "test class for SubsystemReport dataclass",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "c8319"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestSubsystemReport::test_empty_report",
+      "intent": "test empty report has zero subsystems",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "b4f20"
+    },
+    {
+      "id": "tests/test_subsystem.py::TestSubsystemReport::test_format",
+      "intent": "test format produces human-readable subsystem report",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "a068e"
+    },
+    {
+      "id": "tests/test_subsystem.py::_make_graph0",
+      "intent": "helper creating mock graph0 with node objects",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "4b6a5"
+    },
+    {
+      "id": "tests/test_subsystem.py::_make_index",
+      "intent": "helper creating mock index with callees table",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T14:36:45Z",
+      "intent_body_hash": "4e592"
     },
     {
       "id": "tests/test_suggest",
