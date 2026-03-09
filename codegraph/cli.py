@@ -1550,3 +1550,246 @@ def semantic_check(ctx: click.Context, json_output: bool) -> None:
         for v in violations:
             sev = v.get("severity", "info")
             click.echo(f"  [{sev}] {v.get('rule', '?')}: {v.get('message', '')}")
+
+
+# ── Path query ─────────────────────────────────────────────────────────
+@main.command("path")
+@click.argument("expression")
+@click.option("--max-depth", type=int, default=20, help="Maximum path depth.")
+@click.option("--max-paths", type=int, default=10, help="Maximum paths to find.")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.option("--forbidden", is_flag=True, help="Check as forbidden path (violation if path exists).")
+@click.pass_context
+def path_cmd(ctx: click.Context, expression: str, max_depth: int,
+             max_paths: int, json_output: bool, forbidden: bool) -> None:
+    """Query paths between node patterns (e.g. 'api/* -> database/*')."""
+    import json as _json
+    from codegraph.path_query import find_pattern_paths, check_forbidden_path
+    from codegraph.index import IndexStore
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        click.echo(str(exc), err=True)
+        sys.exit(EXIT_ERROR)
+
+    if " -> " not in expression:
+        click.echo("Error: Expression must be 'source_pattern -> target_pattern'", err=True)
+        sys.exit(EXIT_ERROR)
+
+    parts = expression.split(" -> ", 1)
+    source_pat = parts[0].strip()
+    target_pat = parts[1].strip()
+
+    with IndexStore(root) as index:
+        if forbidden:
+            result = check_forbidden_path(source_pat, target_pat, index, max_depth=max_depth)
+        else:
+            result = find_pattern_paths(source_pat, target_pat, index,
+                                        max_depth=max_depth, max_paths=max_paths)
+
+    if json_output:
+        click.echo(_json.dumps(result.to_dict(), indent=2))
+    else:
+        click.echo(result.format())
+        if forbidden and result.violation:
+            click.echo(click.style("VIOLATION: Forbidden path exists!", fg="red"))
+            sys.exit(EXIT_VALIDATION_FAIL)
+
+
+# ── Risk metrics ───────────────────────────────────────────────────────
+@main.command("metrics")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.option("--node", default=None, help="Show metrics for a specific node.")
+@click.option("--top", type=int, default=10, help="Show top N riskiest nodes.")
+@click.pass_context
+def metrics_cmd(ctx: click.Context, json_output: bool, node: str | None, top: int) -> None:
+    """Show dependency risk metrics (fan-in, fan-out, centrality, risk scores)."""
+    import json as _json
+    from codegraph.risk_metrics import compute_risk_metrics, get_node_risk
+    from codegraph.index import IndexStore
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        click.echo(str(exc), err=True)
+        sys.exit(EXIT_ERROR)
+
+    with IndexStore(root) as index:
+        if node:
+            m = get_node_risk(node, index)
+            if m is None:
+                click.echo(f"Node not found: {node}", err=True)
+                sys.exit(EXIT_ERROR)
+            if json_output:
+                click.echo(_json.dumps(m.to_dict(), indent=2))
+            else:
+                click.echo(f"Node: {m.node_id}")
+                click.echo(f"  Fan-in:  {m.fan_in}")
+                click.echo(f"  Fan-out: {m.fan_out}")
+                click.echo(f"  Degree:  {m.degree}")
+                click.echo(f"  Betweenness: {m.betweenness:.4f}")
+                click.echo(f"  Coupling: {m.coupling_score:.4f}")
+                click.echo(f"  Risk: {m.risk_level.value} ({m.risk_score:.2f})")
+        else:
+            report = compute_risk_metrics(index)
+            report.node_metrics = report.node_metrics[:top]
+            if json_output:
+                click.echo(_json.dumps(report.to_dict(), indent=2))
+            else:
+                click.echo(report.format())
+
+
+# ── Refactor ───────────────────────────────────────────────────────────
+@main.command("refactor")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.option("--god-threshold", type=int, default=30,
+              help="Node count threshold for god module detection.")
+@click.option("--coupling-threshold", type=int, default=10,
+              help="Edge count threshold for high coupling detection.")
+@click.pass_context
+def refactor_cmd(ctx: click.Context, json_output: bool,
+                 god_threshold: int, coupling_threshold: int) -> None:
+    """Analyze code structure and suggest refactorings."""
+    import json as _json
+    from codegraph.refactor import analyze_refactoring
+    from codegraph.extractor import load_graph0
+    from codegraph.index import IndexStore
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        click.echo(str(exc), err=True)
+        sys.exit(EXIT_ERROR)
+
+    graph0 = load_graph0(root)
+
+    with IndexStore(root) as index:
+        report = analyze_refactoring(
+            index, graph0,
+            god_module_threshold=god_threshold,
+            coupling_threshold=coupling_threshold,
+        )
+
+    if json_output:
+        click.echo(_json.dumps(report.to_dict(), indent=2))
+    else:
+        click.echo(report.format())
+
+
+# ── Plan ───────────────────────────────────────────────────────────────
+@main.command("plan")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.option("--save", is_flag=True, help="Save the plan to .codegraph/plans/.")
+@click.pass_context
+def plan_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
+    """Generate a repair plan from current tasks."""
+    import json as _json
+    from codegraph.planning import generate_plan, validate_plan, save_plan
+    from codegraph.tasks import load_tasks
+    from codegraph.storage import get_graph_version
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        click.echo(str(exc), err=True)
+        sys.exit(EXIT_ERROR)
+
+    tasks_batch = load_tasks(root)
+    gv = get_graph_version(root)
+
+    plan = generate_plan(tasks_batch.to_dict(), gv)
+    issues = validate_plan(plan)
+
+    if issues:
+        for issue in issues:
+            click.echo(f"  Warning: {issue}", err=True)
+
+    if save:
+        path = save_plan(plan, root)
+        click.echo(f"Plan saved to {path}")
+
+    if json_output:
+        click.echo(plan.to_json())
+    else:
+        click.echo(plan.format())
+
+
+# ── Memory ─────────────────────────────────────────────────────────────
+@main.command("memory")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.option("--note", default=None, help="Add a free-form note.")
+@click.pass_context
+def memory_cmd(ctx: click.Context, json_output: bool, note: str | None) -> None:
+    """View or manage the agent memory."""
+    import json as _json
+    from codegraph.agent_memory import load_memory, save_memory
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        click.echo(str(exc), err=True)
+        sys.exit(EXIT_ERROR)
+
+    memory = load_memory(root)
+
+    if note:
+        memory.add_note(note)
+        save_memory(memory, root)
+        click.echo("Note added.")
+        return
+
+    if json_output:
+        click.echo(memory.to_json())
+    else:
+        click.echo(memory.format())
+
+
+# ── Visualize ──────────────────────────────────────────────────────────
+@main.command("visualize")
+@click.option("--format", "fmt", default="html",
+              type=click.Choice(["json", "mermaid", "html"]),
+              help="Output format.")
+@click.option("--output", "-o", default=None, type=click.Path(),
+              help="Output file path.")
+@click.option("--filter", "filter_file", default=None,
+              help="Filter to nodes from matching files (glob).")
+@click.option("--max-nodes", type=int, default=300,
+              help="Maximum number of nodes to include.")
+@click.pass_context
+def visualize_cmd(ctx: click.Context, fmt: str, output: str | None,
+                  filter_file: str | None, max_nodes: int) -> None:
+    """Export the graph for visualization."""
+    from codegraph.visualization import save_visualization, export_mermaid, export_html_report, build_vis_graph
+    from codegraph.extractor import load_graph0
+    from codegraph.annotator import load_graph1
+    from codegraph.workflow import load_workflow
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        click.echo(str(exc), err=True)
+        sys.exit(EXIT_ERROR)
+
+    graph0 = load_graph0(root)
+    graph1 = load_graph1(root)
+    workflow = load_workflow(root)
+
+    if output:
+        out_path = Path(output).resolve()
+        save_visualization(graph0, graph1, workflow, out_path,
+                           fmt=fmt, filter_file=filter_file, max_nodes=max_nodes)
+        click.echo(f"Visualization saved to {out_path}")
+    else:
+        if fmt == "json":
+            vis = build_vis_graph(graph0, graph1, workflow,
+                                  filter_file=filter_file, max_nodes=max_nodes)
+            click.echo(vis.to_json())
+        elif fmt == "mermaid":
+            content = export_mermaid(graph0, graph1, workflow,
+                                    filter_file=filter_file, max_nodes=max_nodes)
+            click.echo(content)
+        elif fmt == "html":
+            content = export_html_report(graph0, graph1, workflow,
+                                         filter_file=filter_file, max_nodes=max_nodes)
+            click.echo(content)

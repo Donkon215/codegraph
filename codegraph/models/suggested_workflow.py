@@ -29,12 +29,18 @@ class RuleType(str, enum.Enum):
 
     REQUIRED_CALL = "required_call"
     FORBIDDEN_CALL = "forbidden_call"
+    FORBIDDEN_PATH = "forbidden_path"
+    LAYER_BOUNDARY = "layer_boundary"
+    DEPENDENCY_LIMIT = "dependency_limit"
 
     def is_violation(self, edge_exists: bool) -> bool:
         """Return *True* when the current state violates the rule."""
         if self == RuleType.REQUIRED_CALL:
             return not edge_exists
-        return edge_exists  # FORBIDDEN_CALL
+        if self == RuleType.FORBIDDEN_CALL:
+            return edge_exists
+        # forbidden_path, layer_boundary, dependency_limit handled by specialized checkers
+        return False
 
 
 # ── B-007  SuggestedWorkflowRule ───────────────────────────────────────
@@ -52,6 +58,9 @@ class SuggestedWorkflowRule:
     target_layer: Optional[int] = None
     source_arch_layer: Optional[str] = None
     target_arch_layer: Optional[str] = None
+    max_fan_in: Optional[int] = None
+    max_fan_out: Optional[int] = None
+    forbidden: Optional[bool] = None
     reason: str = ""
     added_by: str = ""
     added_at: str = ""
@@ -59,6 +68,12 @@ class SuggestedWorkflowRule:
     def __post_init__(self) -> None:
         if not self.added_at:
             self.added_at = iso_now()
+        # dependency_limit only needs source
+        if self.type == "dependency_limit":
+            has_source = any([self.source, self.source_layer is not None, self.source_arch_layer])
+            if not has_source:
+                raise ValueError("dependency_limit rule requires at least one source specifier")
+            return
         # B-007 step 4 — at least one source specifier required
         has_source = any([self.source, self.source_layer is not None, self.source_arch_layer])
         has_target = any([self.target, self.target_layer is not None, self.target_arch_layer])
@@ -81,6 +96,12 @@ class SuggestedWorkflowRule:
             d["source_arch_layer"] = self.source_arch_layer
         if self.target_arch_layer is not None:
             d["target_arch_layer"] = self.target_arch_layer
+        if self.max_fan_in is not None:
+            d["max_fan_in"] = self.max_fan_in
+        if self.max_fan_out is not None:
+            d["max_fan_out"] = self.max_fan_out
+        if self.forbidden is not None:
+            d["forbidden"] = self.forbidden
         d["added_by"] = self.added_by
         d["added_at"] = self.added_at
         return d
@@ -96,6 +117,9 @@ class SuggestedWorkflowRule:
             target_layer=d.get("target_layer"),
             source_arch_layer=d.get("source_arch_layer"),
             target_arch_layer=d.get("target_arch_layer"),
+            max_fan_in=d.get("max_fan_in"),
+            max_fan_out=d.get("max_fan_out"),
+            forbidden=d.get("forbidden"),
             reason=d.get("reason", ""),
             added_by=d.get("added_by", ""),
             added_at=d.get("added_at", ""),

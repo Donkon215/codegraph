@@ -204,6 +204,39 @@ def analyze(
                 details={"rule_id": v.rule_id, "rule_type": v.rule_type, "reason": v.reason},
             ))
 
+        # Forbidden path checking
+        forbidden_path_rules = [r for r in suggested_workflow.rules if r.type == "forbidden_path"]
+        if forbidden_path_rules and index is not None:
+            from codegraph.path_query import check_forbidden_path
+            for rule in forbidden_path_rules:
+                if rule.source and rule.target:
+                    fp_result = check_forbidden_path(rule.source, rule.target, index)
+                    if fp_result.violation:
+                        for path in fp_result.paths_found:
+                            result.findings.append(Finding(
+                                finding_type="policy_violation",
+                                severity="error",
+                                node_id=path[0] if path else "",
+                                message=f"Forbidden path [{rule.id}]: {rule.source} -> {rule.target}",
+                                details={"rule_id": rule.id, "rule_type": "forbidden_path",
+                                         "reason": rule.reason, "path": path},
+                            ))
+
+        # Dependency limit checking
+        dep_limit_rules = [r for r in suggested_workflow.rules if r.type == "dependency_limit"]
+        if dep_limit_rules and index is not None:
+            from codegraph.risk_metrics import check_dependency_limits
+            dep_violations = check_dependency_limits(index, dep_limit_rules)
+            for dv in dep_violations:
+                result.findings.append(Finding(
+                    finding_type="policy_violation",
+                    severity="warning",
+                    node_id=dv["node_id"],
+                    message=f"Dependency limit [{dv['rule_id']}]: {dv['reason']}",
+                    details={"rule_id": dv["rule_id"], "rule_type": "dependency_limit",
+                             "reason": dv["reason"]},
+                ))
+
     # I-026 — Heuristic missing edges
     result.missing_edges = detect_missing_edges(workflow, graph0, affected_nodes)
     for me in result.missing_edges:
