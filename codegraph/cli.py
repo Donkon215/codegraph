@@ -1793,3 +1793,207 @@ def visualize_cmd(ctx: click.Context, fmt: str, output: str | None,
             content = export_html_report(graph0, graph1, workflow,
                                          filter_file=filter_file, max_nodes=max_nodes)
             click.echo(content)
+
+
+# ── Subsystem Detection ───────────────────────────────────────────────
+@main.command("subsystems")
+@click.option("--resolution", type=float, default=1.0,
+              help="Louvain resolution parameter (higher = more clusters).")
+@click.option("--min-size", type=int, default=2,
+              help="Minimum nodes for a subsystem.")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def subsystems_cmd(ctx: click.Context, resolution: float, min_size: int,
+                   json_output: bool) -> None:
+    """Detect sub-architecture clusters in the dependency graph."""
+    import json as _json
+
+    from codegraph.extractor import load_graph0
+    from codegraph.index import IndexStore
+    from codegraph.subsystem import detect_subsystems
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    graph0 = load_graph0(root)
+    with IndexStore(root) as index:
+        report = detect_subsystems(graph0, index, resolution=resolution,
+                                   min_size=min_size)
+
+    if json_output:
+        click.echo(_json.dumps(report.to_dict(), indent=2))
+    else:
+        click.echo(f"Detected {len(report.subsystems)} subsystems "
+                   f"(modularity={report.modularity_score:.3f})")
+        for ss in report.subsystems:
+            click.echo(f"  {ss.name} — {len(ss.nodes)} nodes, "
+                       f"{len(ss.files)} files, cohesion={ss.cohesion:.2f}")
+        if report.couplings:
+            click.echo("\nCross-subsystem coupling:")
+            for c in report.couplings[:10]:
+                click.echo(f"  {c.subsystem_a} <-> {c.subsystem_b}: "
+                           f"{c.edge_count} edges (strength={c.coupling_strength:.3f})")
+
+
+# ── Architecture Health ───────────────────────────────────────────────
+@main.command("health")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.option("--save", "save_history", is_flag=True,
+              help="Append result to health history.")
+@click.pass_context
+def health_cmd(ctx: click.Context, json_output: bool, save_history: bool) -> None:
+    """Compute architecture health score and grade."""
+    import json as _json
+
+    from codegraph.arch_health import compute_health, save_health_report, append_health_history
+    from codegraph.extractor import load_graph0
+    from codegraph.index import IndexStore
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    graph0 = load_graph0(root)
+    with IndexStore(root) as index:
+        report = compute_health(graph0, index)
+
+    if save_history:
+        save_health_report(report, root)
+        append_health_history(report, root)
+
+    if json_output:
+        click.echo(_json.dumps(report.to_dict(), indent=2))
+    else:
+        click.echo(f"Architecture Health: {report.to_dict()['grade']} ({report.overall_score:.1%})")
+        click.echo(f"  Cycles: {report.cycle_count}")
+        click.echo(f"  Critical risk nodes: {report.critical_nodes}")
+        click.echo(f"  High risk nodes: {report.high_risk_nodes}")
+        click.echo(f"  Avg cohesion: {report.avg_cohesion:.2f}")
+        if report.architecture_smells:
+            click.echo("\nArchitecture smells:")
+            for smell in report.architecture_smells[:10]:
+                click.echo(f"  - {smell}")
+        if report.recommendations:
+            click.echo("\nRecommendations:")
+            for rec in report.recommendations[:5]:
+                click.echo(f"  - {rec}")
+
+
+# ── LLM Context Builder ──────────────────────────────────────────────
+@main.command("context")
+@click.argument("node_ids", nargs=-1, required=True)
+@click.option("--depth", type=int, default=2,
+              help="BFS depth for expanding context.")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def context_cmd(ctx: click.Context, node_ids: tuple[str, ...], depth: int,
+                json_output: bool) -> None:
+    """Build LLM prompt context for given node IDs."""
+    import json as _json
+
+    from codegraph.annotator import load_graph1
+    from codegraph.context_builder import build_context
+    from codegraph.extractor import load_graph0
+    from codegraph.index import IndexStore
+    from codegraph.workflow import load_workflow
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    graph0 = load_graph0(root)
+    graph1 = load_graph1(root)
+    workflow = load_workflow(root)
+    with IndexStore(root) as index:
+        prompt_ctx = build_context(list(node_ids), graph0, graph1, workflow,
+                                   index, depth=depth)
+
+    if json_output:
+        click.echo(_json.dumps(prompt_ctx.to_dict(), indent=2))
+    else:
+        click.echo(prompt_ctx.to_prompt())
+        click.echo(f"\n--- ~{prompt_ctx.token_estimate()} tokens ---")
+
+
+# ── Simulate ──────────────────────────────────────────────────────────
+@main.command("simulate")
+@click.argument("response_file", type=click.Path(exists=True))
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def simulate_cmd(ctx: click.Context, response_file: str,
+                 json_output: bool) -> None:
+    """Simulate an agent_response.json to check for regressions."""
+    import json as _json
+
+    from codegraph.index import IndexStore
+    from codegraph.simulator import simulate_agent_response
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    response_path = Path(response_file).resolve()
+    response_data = _json.loads(response_path.read_text(encoding="utf-8"))
+
+    with IndexStore(root) as index:
+        result = simulate_agent_response(response_data, index)
+
+    if json_output:
+        click.echo(_json.dumps(result.to_dict(), indent=2))
+    else:
+        if result.safe:
+            click.echo("Simulation PASSED — no violations detected.")
+        else:
+            click.echo(f"Simulation FAILED — {len(result.violations)} violation(s):")
+            for v in result.violations:
+                click.echo(f"  [{v.severity}] {v.type}: {v.description}")
+        click.echo(f"  New cycles: {result.new_cycle_count}")
+        click.echo(f"  Coupling delta: {result.coupling_delta:+.4f}")
+
+
+# ── Architecture Diff ─────────────────────────────────────────────────
+@main.command("arch-diff")
+@click.option("--snapshot", "old_label", default=None,
+              help="Compare current graph against a named snapshot.")
+@click.option("--save-snapshot", "save_label", default=None,
+              help="Save current graph as a named snapshot.")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def arch_diff_cmd(ctx: click.Context, old_label: str | None,
+                  save_label: str | None, json_output: bool) -> None:
+    """Compare architecture across graph versions."""
+    import json as _json
+
+    from codegraph.arch_diff import diff_snapshots, save_snapshot
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    if save_label:
+        snap_dir = save_snapshot(root, save_label)
+        click.echo(f"Snapshot saved to {snap_dir}")
+        return
+
+    if not old_label:
+        click.echo("Provide --snapshot <label> to diff or --save-snapshot <label> to save.",
+                    err=True)
+        sys.exit(EXIT_ERROR)
+
+    report = diff_snapshots(root, old_label)
+
+    if json_output:
+        click.echo(_json.dumps(report.to_dict(), indent=2))
+    else:
+        click.echo(report.format())
