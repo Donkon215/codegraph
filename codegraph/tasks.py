@@ -207,14 +207,26 @@ def generate_tasks(
     index: Any = None,
     graph_version: int = 1,
     cycle: int = 1,
+    project_root: Optional[Path] = None,
 ) -> TaskBatch:
     """Convert analysis findings into a structured task batch (I-007)."""
     batch = TaskBatch(cycle=cycle, graph_version=graph_version)
 
+    # Load reviewed nodes to exclude from tasks
+    reviewed_nodes: Set[str] = set()
+    if project_root is not None:
+        pending_path = resolve_path(project_root, "reviews") / "pending.json"
+        if pending_path.exists():
+            try:
+                entries = json.loads(pending_path.read_text(encoding="utf-8"))
+                reviewed_nodes = {e["node"] for e in entries if "node" in e}
+            except Exception:
+                pass
+
     # Collect all node IDs for batch context
     all_node_ids: Set[str] = set()
     for finding in analysis.findings:
-        if finding.node_id:
+        if finding.node_id and finding.node_id not in reviewed_nodes:
             all_node_ids.add(finding.node_id)
 
     # I-024 — batch context
@@ -223,6 +235,8 @@ def generate_tasks(
     # Group findings by type for task grouping
     findings_by_type: Dict[str, list] = defaultdict(list)
     for finding in analysis.findings:
+        if finding.node_id and finding.node_id in reviewed_nodes:
+            continue
         findings_by_type[finding.finding_type].append(finding)
 
     # Policy violations → group by rule

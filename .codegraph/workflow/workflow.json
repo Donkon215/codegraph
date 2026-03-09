@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-09T12:56:23Z",
+    "built_at": "2026-03-09T13:02:22Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -9,12 +9,12 @@
       "stdlib",
       "test_harness"
     ],
-    "edge_count": 2225,
+    "edge_count": 2226,
     "node_count": 1139,
-    "build_time_s": 3.47
+    "build_time_s": 3.44
   },
   "format_version": 1,
-  "built_at": "2026-03-09T12:56:23Z",
+  "built_at": "2026-03-09T13:02:22Z",
   "level": "function",
   "edges": [
     {
@@ -8636,6 +8636,12 @@
     {
       "source": "codegraph/tasks.py::generate_tasks",
       "target": "codegraph/models/tasks.py::TaskItem",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/tasks.py::generate_tasks",
+      "target": "codegraph/storage.py::resolve_path",
       "edge_type": "call",
       "confidence": "static"
     },

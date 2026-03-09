@@ -1,2965 +1,3420 @@
 {
-  "cycle": 1,
-  "graph_version": 5,
-  "intents": [],
+  "cycle": 2,
+  "graph_version": 7,
+  "intents": [
+    {
+      "node": "codegraph/cli",
+      "intent": "CLI entry point module for codegraph using Click"
+    },
+    {
+      "node": "codegraph/cli.py::tasks",
+      "intent": "Generate and display task queue from analysis findings"
+    },
+    {
+      "node": "codegraph/tasks",
+      "intent": "Task generation and management module"
+    },
+    {
+      "node": "codegraph/tasks.py::generate_tasks",
+      "intent": "Convert analysis findings into structured task batch, filtering reviewed nodes"
+    }
+  ],
   "repairs": [
     {
-      "node": "codegraph/analyzer.py::AnalysisCache::__init__",
+      "node": "benchmarks/benchmark_build.py::_generate_python_file",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/analyzer.py::ConvergenceTracker::__init__",
+      "node": "benchmarks/benchmark_build.py::_setup_project",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/cas.py::CASCache::__init__",
+      "node": "benchmarks/benchmark_build.py::benchmark_extraction",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::ASTParseError::__init__",
+      "node": "benchmarks/benchmark_build.py::benchmark_graph0_serialisation",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::AlreadyConnectedError::__init__",
+      "node": "benchmarks/benchmark_build.py::main",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::CycleMismatchError::__init__",
+      "node": "benchmarks/benchmark_query.py::_build_index",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::DanglingRuleError::__init__",
+      "node": "benchmarks/benchmark_query.py::bench_callers_join",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::DeltaUncommittedError::__init__",
+      "node": "benchmarks/benchmark_query.py::bench_prefix_search",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::FormatVersionError::__init__",
+      "node": "benchmarks/benchmark_query.py::bench_type_filter",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::GraphDriftError::__init__",
+      "node": "benchmarks/benchmark_query.py::main",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::IndexInconsistencyError::__init__",
+      "node": "benchmarks/index_benchmark.py::_create_synthetic_index",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::InsufficientDeadCodeSignalsError::__init__",
+      "node": "benchmarks/index_benchmark.py::benchmark_callers",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::IntentConflictError::__init__",
+      "node": "benchmarks/index_benchmark.py::benchmark_lookup",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::LayerViolationError::__init__",
+      "node": "benchmarks/index_benchmark.py::main",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::ModuleImportError::__init__",
+      "node": "codegraph/analyzer.py::AnalysisCache::_cache_path",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::NodeIDCollisionError::__init__",
+      "node": "codegraph/analyzer.py::AnalysisCache::put",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::ProjectNotFoundError::__init__",
+      "node": "codegraph/analyzer.py::ConvergenceTracker::is_all_human_review",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::RepairConflictError::__init__",
+      "node": "codegraph/analyzer.py::ConvergenceTracker::is_edge_stabilized",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::StaleBodyHashError::__init__",
+      "node": "codegraph/analyzer.py::ConvergenceTracker::is_max_iterations",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::TraceCrashError::__init__",
+      "node": "codegraph/analyzer.py::ConvergenceTracker::is_orphan_stagnant",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::VersionMismatchError::__init__",
+      "node": "codegraph/analyzer.py::ConvergenceTracker::record",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/extractor.py::ExtractionCache::__init__",
+      "node": "codegraph/analyzer.py::ConvergenceTracker::should_stop",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/extractor.py::ScopeTree::__init__",
+      "node": "codegraph/analyzer.py::analyze",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/extractors/python.py::PythonExtractor::__init__",
+      "node": "codegraph/analyzer.py::analyze_parallel",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::DataclassFilter::__init__",
+      "node": "codegraph/analyzer.py::analyze_with_graph2",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::DunderFilter::__init__",
+      "node": "codegraph/analyzer.py::classify_orphans",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::FilterPipeline::__init__",
+      "node": "codegraph/analyzer.py::detect_cycle_mismatches",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::LoggingFilter::__init__",
+      "node": "codegraph/analyzer.py::detect_missing_edges",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::RuntimeTraceLayerFilter::__init__",
+      "node": "codegraph/analyzer.py::find_coverage_gaps",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::StdlibFilter::__init__",
+      "node": "codegraph/analyzer.py::find_missing_intents",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/formatters.py::OutputFormatter::__init__",
+      "node": "codegraph/analyzer.py::find_stale_intents",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/index.py::IndexStore::__init__",
+      "node": "codegraph/analyzer.py::format_analysis_report",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/logging_config.py::_HumanFormatter::__init__",
+      "node": "codegraph/analyzer.py::repair_loop",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/metrics.py::MetricsCollector::__init__",
+      "node": "codegraph/analyzer.py::run_analyze",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/graph0.py::CollisionResolver::__init__",
+      "node": "codegraph/annotator.py::AnnotationStats::format",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/history.py::ResponseHistoryManager::__init__",
+      "node": "codegraph/annotator.py::_record_history",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/query.py::QueryCache::__init__",
+      "node": "codegraph/annotator.py::add_tags",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/schemas.py::ValidationError::__init__",
+      "node": "codegraph/annotator.py::apply_intent",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/tasks.py::TaskHistory::__init__",
+      "node": "codegraph/annotator.py::apply_intents_batch",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/utils/progress.py::ProgressReporter::__init__",
+      "node": "codegraph/annotator.py::batch_set_arch_layer",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "sample_project/services/order_service.py::OrderService::__init__",
+      "node": "codegraph/annotator.py::check_intent_consistency",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "sample_project/services/user_service.py::UserService::__init__",
+      "node": "codegraph/annotator.py::detect_stale_intents",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestFilterAffectedRules::test_filters_by_scope::FakeRule::__init__",
+      "node": "codegraph/annotator.py::diff_graph1",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestFilterAffectedRules::test_glob_scope::FakeRule::__init__",
+      "node": "codegraph/annotator.py::export_graph1",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_formatters.py::TestOutputFormatter::test_key_fn::Obj::__init__",
+      "node": "codegraph/annotator.py::format_stale_warnings",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Simple constructor with no outgoing calls"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/analyzer.py::AnalysisCache",
+      "node": "codegraph/annotator.py::get_missing_intents",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/analyzer.py::AnalysisCache::__init__",
+      "node": "codegraph/annotator.py::graph1_statistics",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/analyzer.py::AnalysisResult::error_count",
+      "node": "codegraph/annotator.py::import_intents",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/analyzer.py::AnalysisResult::total_findings",
+      "node": "codegraph/annotator.py::initialize_graph1",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/analyzer.py::AnalysisResult::warning_count",
+      "node": "codegraph/annotator.py::load_graph1",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/analyzer.py::ConvergenceTracker::__init__",
+      "node": "codegraph/annotator.py::load_intent_file",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/annotator.py::Graph1Diff::format",
+      "node": "codegraph/annotator.py::merge_graph1",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/annotator.py::get_nodes_by_tag",
+      "node": "codegraph/annotator.py::normalize_intent",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/apply.py::ApplyResult::failed",
+      "node": "codegraph/annotator.py::prune_graph1",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/apply.py::ApplyResult::skipped",
+      "node": "codegraph/annotator.py::remove_tags",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/apply.py::ApplyResult::succeeded",
+      "node": "codegraph/annotator.py::save_graph1",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/archi_test.py::CoverageReport::coverage_pct",
+      "node": "codegraph/annotator.py::set_arch_layer",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/archi_test.py::_generate_test_classmethod",
+      "node": "codegraph/apply.py::_acquire_lock",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/archi_test.py::generate_shared_fixtures",
+      "node": "codegraph/apply.py::_apply_workflow_suggestions",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/cas.py::CASCache::__init__",
+      "node": "codegraph/apply.py::_backup_dir",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/cas.py::CASCache::stats",
+      "node": "codegraph/apply.py::_check_conflicts",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/cas.py::CASTestImpact::to_dict",
+      "node": "codegraph/apply.py::_check_dead_code_signals",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/cas.py::CASVerificationResult::to_dict",
+      "node": "codegraph/apply.py::_cleanup_backups",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/cas.py::NodeChanges::has_changes",
+      "node": "codegraph/apply.py::_cleanup_unused_imports",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/cas.py::NodeChanges::to_dict",
+      "node": "codegraph/apply.py::_create_backups",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/cas.py::StaleIntentReport::to_dict",
+      "node": "codegraph/apply.py::_detect_indentation",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/cli.py::cas_group",
+      "node": "codegraph/apply.py::_find_function_in_ast",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/cli.py::index_group",
+      "node": "codegraph/apply.py::_find_import_block_end",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/cli.py::schema",
+      "node": "codegraph/apply.py::_first_executable_line",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/cli.py::semantic_group",
+      "node": "codegraph/apply.py::_format_file",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/cli.py::suggest_group",
+      "node": "codegraph/apply.py::_get_class_method",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/config.py::CodegraphConfig::__str__",
+      "node": "codegraph/apply.py::_get_function_node",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/config.py::CodegraphConfig::to_dict",
+      "node": "codegraph/apply.py::_has_import",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/delta.py::ChangedFiles::all_changed",
+      "node": "codegraph/apply.py::_insert_line",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/delta.py::ChangedFiles::is_empty",
+      "node": "codegraph/apply.py::_is_already_connected",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/error_codes.py::all_codes",
+      "node": "codegraph/apply.py::_load_baseline_hashes",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/error_codes.py::lookup_by_exception",
+      "node": "codegraph/apply.py::_lock_path",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::ASTParseError::__init__",
+      "node": "codegraph/apply.py::_parse_file_ast",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::AlreadyConnectedError::__init__",
+      "node": "codegraph/apply.py::_release_lock",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::CycleMismatchError::__init__",
+      "node": "codegraph/apply.py::_remove_function_from_file",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::DanglingRuleError::__init__",
+      "node": "codegraph/apply.py::_remove_lines",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::DeltaUncommittedError::__init__",
+      "node": "codegraph/apply.py::_restore_backups",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::FormatVersionError::__init__",
+      "node": "codegraph/apply.py::_save_undo",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::GraphDriftError::__init__",
+      "node": "codegraph/apply.py::_update_graph1_after_apply",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::IndexInconsistencyError::__init__",
+      "node": "codegraph/apply.py::_validate_modified_files",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::InsufficientDeadCodeSignalsError::__init__",
+      "node": "codegraph/apply.py::apply_response",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::IntentConflictError::__init__",
+      "node": "codegraph/apply.py::format_apply_result",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::LayerViolationError::__init__",
+      "node": "codegraph/apply.py::handle_add_import",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::ModuleImportError::__init__",
+      "node": "codegraph/apply.py::handle_connect_call",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::NodeIDCollisionError::__init__",
+      "node": "codegraph/apply.py::handle_flag_for_review",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::ProjectNotFoundError::__init__",
+      "node": "codegraph/apply.py::handle_remove_dead_code",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::RepairConflictError::__init__",
+      "node": "codegraph/apply.py::run_apply",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::StaleBodyHashError::__init__",
+      "node": "codegraph/apply.py::save_baseline_hashes",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::TraceCrashError::__init__",
+      "node": "codegraph/apply.py::undo_last_apply",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/exceptions.py::VersionMismatchError::__init__",
+      "node": "codegraph/cas.py::CASCache::get",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/extractor.py::ExtractionCache::__init__",
+      "node": "codegraph/cas.py::CASCache::invalidate",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/extractor.py::ExtractionReport::total_nodes",
+      "node": "codegraph/cas.py::_build_adjacency",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/extractor.py::GraphDiff::is_empty",
+      "node": "codegraph/cas.py::_scope_matches",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/extractor.py::ImportInfo::resolved_name",
+      "node": "codegraph/cas.py::_tarjan_scc::strongconnect",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/extractor.py::ScopeTree",
+      "node": "codegraph/cas.py::get_cas_task_context",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/extractor.py::ScopeTree::__init__",
+      "node": "codegraph/cli.py::analyze_cmd",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/extractor.py::ScopeTree::bind",
+      "node": "codegraph/cli.py::annotate",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/extractor.py::_is_method_context",
+      "node": "codegraph/cli.py::apply",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/extractors/python.py::PythonExtractor",
+      "node": "codegraph/cli.py::archi_test_cmd",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/extractors/python.py::PythonExtractor::__init__",
+      "node": "codegraph/cli.py::build",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/extractors/python.py::PythonExtractor::extract_edges",
+      "node": "codegraph/cli.py::cas_build",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/extractors/python.py::PythonExtractor::supported_extensions",
+      "node": "codegraph/cli.py::cas_impact",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::DataclassFilter::__init__",
+      "node": "codegraph/cli.py::cas_verify",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::DunderFilter::__init__",
+      "node": "codegraph/cli.py::completion",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::EdgeFilter",
+      "node": "codegraph/cli.py::delta",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::FilterPipeline",
+      "node": "codegraph/cli.py::diff_cmd",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::FilterPipeline::__init__",
+      "node": "codegraph/cli.py::explain_cmd",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::FilterPipeline::available_filters",
+      "node": "codegraph/cli.py::handle_error",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::FilterPipeline::filter_names",
+      "node": "codegraph/cli.py::index_check",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::LoggingFilter::__init__",
+      "node": "codegraph/cli.py::index_dump",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::RuntimeTraceLayerFilter",
+      "node": "codegraph/cli.py::index_rebuild",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::RuntimeTraceLayerFilter::__init__",
+      "node": "codegraph/cli.py::init",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/filters.py::StdlibFilter::__init__",
+      "node": "codegraph/cli.py::intent_apply",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/formatters.py::OutputFormatter::__init__",
+      "node": "codegraph/cli.py::intent_missing",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/formatters.py::OutputFormatter::success",
+      "node": "codegraph/cli.py::main",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/git_utils.py::get_file_at_commit",
+      "node": "codegraph/cli.py::prune",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/git_utils.py::has_uncommitted_changes",
+      "node": "codegraph/cli.py::query",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/git_utils.py::is_git_repo",
+      "node": "codegraph/cli.py::repair_cmd",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/index.py::IndexStore::__enter__",
+      "node": "codegraph/cli.py::semantic_build",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/index.py::IndexStore::__init__",
+      "node": "codegraph/cli.py::semantic_check",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/known_libraries.py::LibraryInfo::__hash__",
+      "node": "codegraph/cli.py::semantic_show",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/layers.py::_reset_caches",
+      "node": "codegraph/cli.py::semantic_summary",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/layers.py::filter_by_layer",
+      "node": "codegraph/cli.py::status",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/layers.py::filter_modifiable",
+      "node": "codegraph/cli.py::suggest_add",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/layers.py::filter_project_source",
+      "node": "codegraph/cli.py::suggest_diff",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/layers.py::filter_test_code",
+      "node": "codegraph/cli.py::suggest_import_template",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/layers.py::is_in_virtualenv",
+      "node": "codegraph/cli.py::suggest_list",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/layers.py::is_stdlib",
+      "node": "codegraph/cli.py::suggest_remove",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/logging_config.py::_HumanFormatter::__init__",
+      "node": "codegraph/cli.py::suggest_stats",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/logging_config.py::_JsonFormatter::format",
+      "node": "codegraph/cli.py::suggest_validate",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/metrics.py::BuildMetrics",
+      "node": "codegraph/cli.py::tasks",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/metrics.py::HealthMetrics",
+      "node": "codegraph/cli.py::test_impact_cmd",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/metrics.py::HealthMetrics::health_score",
+      "node": "codegraph/cli.py::timed_command",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/metrics.py::HealthMetrics::intent_coverage",
+      "node": "codegraph/cli.py::timed_command::wrapper",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/metrics.py::MetricsCollector",
+      "node": "codegraph/cli.py::validate",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/metrics.py::MetricsCollector::__init__",
+      "node": "codegraph/cli.py::version_cmd",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/agent_response.py::AgentResponse",
+      "node": "codegraph/cli.py::workflow",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/agent_response.py::IntentProposal::to_dict",
+      "node": "codegraph/config.py::_validate_config_types",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/agent_response.py::RepairAction",
+      "node": "codegraph/config.py::compute_config_hash",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/agent_response.py::RepairAction::to_dict",
+      "node": "codegraph/config.py::config_changed_since_build",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/agent_response.py::WorkflowSuggestion",
+      "node": "codegraph/config.py::find_project_root",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/agent_response.py::WorkflowSuggestion::to_dict",
+      "node": "codegraph/config.py::load_config",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/convergence.py::ConvergenceState",
+      "node": "codegraph/delta.py::_append_history",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/convergence.py::ConvergenceState::should_stop",
+      "node": "codegraph/delta.py::_check_pending_apply",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/dead_code.py::DeadCodeSignals",
+      "node": "codegraph/delta.py::_delta_dir",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/dead_code.py::DeadCodeSignals::all_confirmed",
+      "node": "codegraph/delta.py::_detect_uncommitted",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/delta.py::DeltaResult::is_empty",
+      "node": "codegraph/delta.py::_get_last_build_commit",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/delta.py::DeltaResult::summary",
+      "node": "codegraph/delta.py::_increment_version",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/diff.py::DiffResult",
+      "node": "codegraph/delta.py::_migrate_renames",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/explain.py::ExplainResult",
+      "node": "codegraph/delta.py::_store_build_commit",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/graph0.py::CollisionResolver::__init__",
+      "node": "codegraph/delta.py::_try_cas_pipeline",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/graph0.py::Graph0::get_nodes_by_file",
+      "node": "codegraph/delta.py::diff_graph0",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/graph0.py::Graph0Node::__eq__",
+      "node": "codegraph/delta.py::flag_stale_intents",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/graph0.py::Graph0Node::__hash__",
+      "node": "codegraph/delta.py::format_delta_history",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/graph0.py::Graph0Node::to_dict",
+      "node": "codegraph/delta.py::format_delta_result",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/graph1.py::Graph1::get_nodes_by_arch_layer",
+      "node": "codegraph/delta.py::get_changed_files",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/graph1.py::Graph1::has_node",
+      "node": "codegraph/delta.py::merge_graph0",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/graph1.py::Graph1::remove_node",
+      "node": "codegraph/delta.py::needs_delta",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/graph1.py::Graph1Node::__eq__",
+      "node": "codegraph/delta.py::recompute_edges",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/graph1.py::Graph1Node::__hash__",
+      "node": "codegraph/delta.py::reextract_changed",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/graph1.py::Graph1Node::to_dict",
+      "node": "codegraph/delta.py::reextract_changed::_extract_one",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/graph2.py::Graph2::remove_node",
+      "node": "codegraph/delta.py::run_delta",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/graph2.py::SideEffectType",
+      "node": "codegraph/delta.py::update_index",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/history.py::ResponseHistoryManager",
+      "node": "codegraph/delta.py::write_delta_result",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/history.py::ResponseHistoryManager::__init__",
+      "node": "codegraph/error_codes.py::_register",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/status.py::StatusReport",
+      "node": "codegraph/error_codes.py::lookup",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/status.py::StatusReport::to_text",
+      "node": "codegraph/extractor.py::ExtractionCache::_load",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflow::list_rules",
+      "node": "codegraph/extractor.py::ExtractionCache::clear",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflowRule::to_dict",
+      "node": "codegraph/extractor.py::ExtractionCache::get",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/tasks.py::SuggestedFix",
+      "node": "codegraph/extractor.py::ExtractionCache::invalidate",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/tasks.py::TaskBatch::get_tasks_by_priority",
+      "node": "codegraph/extractor.py::ExtractionCache::put",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/tasks.py::TaskBatch::get_tasks_by_type",
+      "node": "codegraph/extractor.py::ExtractionCache::save",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/tasks.py::TaskID",
+      "node": "codegraph/extractor.py::ExtractionReport::summary",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/tasks.py::TaskID::__le__",
+      "node": "codegraph/extractor.py::ScopeTree::pop",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/tasks.py::TaskID::__lt__",
+      "node": "codegraph/extractor.py::ScopeTree::push",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/tasks.py::TaskID::priority",
+      "node": "codegraph/extractor.py::_DocstringStripper::_strip",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/tasks.py::TestChangeType",
+      "node": "codegraph/extractor.py::_DocstringStripper::visit_AsyncFunctionDef",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/validation.py::ValidationResult::ok",
+      "node": "codegraph/extractor.py::_DocstringStripper::visit_ClassDef",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/workflow.py::Confidence",
+      "node": "codegraph/extractor.py::_DocstringStripper::visit_FunctionDef",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/workflow.py::Confidence::__ge__",
+      "node": "codegraph/extractor.py::_DocstringStripper::visit_Module",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/workflow.py::Confidence::__gt__",
+      "node": "codegraph/extractor.py::_annotation_to_str",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/workflow.py::Confidence::__le__",
+      "node": "codegraph/extractor.py::_body_hash_node",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/workflow.py::Confidence::__lt__",
+      "node": "codegraph/extractor.py::_body_hash_source",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/workflow.py::Confidence::rank",
+      "node": "codegraph/extractor.py::_extract_bases",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/workflow.py::EdgeType",
+      "node": "codegraph/extractor.py::_extract_decorators",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/workflow.py::WorkflowEdge::__eq__",
+      "node": "codegraph/extractor.py::_extract_file_worker",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/workflow.py::WorkflowEdge::__hash__",
+      "node": "codegraph/extractor.py::_extract_module_node",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/workflow.py::WorkflowEdge::to_dict",
+      "node": "codegraph/extractor.py::_extract_nodes_recursive",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/models/workflow.py::WorkflowLevel",
+      "node": "codegraph/extractor.py::_extract_params",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/pytest_plugin.py::pytest_configure",
+      "node": "codegraph/extractor.py::_extract_return_type",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/pytest_plugin.py::pytest_sessionfinish",
+      "node": "codegraph/extractor.py::_safe_extract_file",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/query.py::QueryCache::__init__",
+      "node": "codegraph/extractor.py::_unparse_safe",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/schemas.py::ValidationError",
+      "node": "codegraph/extractor.py::compare_graphs",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/schemas.py::ValidationError::__init__",
+      "node": "codegraph/extractor.py::detect_dynamic_calls",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/storage.py::atomic_read",
+      "node": "codegraph/extractor.py::extract_files",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/suggest.py::PolicyDiff::dangling",
+      "node": "codegraph/extractor.py::extract_globals",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/suggest.py::PolicyDiff::satisfied",
+      "node": "codegraph/extractor.py::extract_imports",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/suggest.py::PolicyDiff::unverifiable",
+      "node": "codegraph/extractor.py::extract_project",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/suggest.py::PolicyDiff::violated",
+      "node": "codegraph/extractor.py::extract_project::_process_result",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/suggest.py::match_scope_exact",
+      "node": "codegraph/extractor.py::load_graph0",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/suggest.py::match_scope_glob",
+      "node": "codegraph/extractor.py::resolve_call_target",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/suggest.py::match_scope_module",
+      "node": "codegraph/extractor.py::save_graph0",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/tasks.py::TaskHistory",
+      "node": "codegraph/extractors/__init__.py::get_extractor",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/tasks.py::TaskHistory::__init__",
+      "node": "codegraph/extractors/__init__.py::register_extractor",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/tasks.py::TaskHistory::entries",
+      "node": "codegraph/extractors/__init__.py::supported_extensions",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/tasks.py::validate_version",
+      "node": "codegraph/extractors/python.py::PythonExtractor::extract_all",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/test_impact.py::TestImpactResult::direct_tests",
+      "node": "codegraph/extractors/python.py::PythonExtractor::extract_nodes",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/test_impact.py::TestImpactResult::transitive_tests",
+      "node": "codegraph/filters.py::DataclassFilter::should_filter",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/test_impact.py::prioritize_tests",
+      "node": "codegraph/filters.py::DunderFilter::should_filter",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::Confidence",
+      "node": "codegraph/filters.py::EdgeFilter::apply",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::DeltaResult",
+      "node": "codegraph/filters.py::EdgeFilter::should_filter",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::DeltaResult::to_dict",
+      "node": "codegraph/filters.py::FilterPipeline::apply",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::EdgeType",
+      "node": "codegraph/filters.py::FilterPipeline::from_config",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::Graph0Node",
+      "node": "codegraph/filters.py::LoggingFilter::should_filter",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::Graph0Node::to_dict",
+      "node": "codegraph/filters.py::RuntimeTraceLayerFilter::should_filter",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::Graph1Node",
+      "node": "codegraph/filters.py::StdlibFilter::should_filter",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::Graph1Node::to_dict",
+      "node": "codegraph/filters.py::TestHarnessFilter::should_filter",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::GraphStore",
+      "node": "codegraph/formatters.py::OutputFormatter::_format_csv",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::GraphStore::load_delta",
+      "node": "codegraph/formatters.py::OutputFormatter::_format_table",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::GraphStore::load_graph0",
+      "node": "codegraph/formatters.py::OutputFormatter::_format_text_list",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::GraphStore::load_graph1",
+      "node": "codegraph/formatters.py::OutputFormatter::error",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::GraphStore::load_suggested_workflow",
+      "node": "codegraph/formatters.py::OutputFormatter::warning",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::GraphStore::load_workflow",
+      "node": "codegraph/git_utils.py::get_changed_files",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::GraphStore::save_delta",
+      "node": "codegraph/git_utils.py::get_current_commit",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::GraphStore::save_graph0",
+      "node": "codegraph/index.py::IndexStats::format",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::GraphStore::save_graph1",
+      "node": "codegraph/index.py::IndexStore::__exit__",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::GraphStore::save_suggested_workflow",
+      "node": "codegraph/index.py::IndexStore::_get_conn",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::GraphStore::save_workflow",
+      "node": "codegraph/index.py::IndexStore::close",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::LanguageExtractor",
+      "node": "codegraph/index.py::IndexStore::get_all_node_ids",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::LanguageExtractor::extract_edges",
+      "node": "codegraph/index.py::IndexStore::get_dependencies_recursive",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::LanguageExtractor::extract_nodes",
+      "node": "codegraph/index.py::IndexStore::get_dependency_hash",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::LanguageExtractor::supported_extensions",
+      "node": "codegraph/index.py::IndexStore::get_nodes_by_arch_layer",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::LayerNumber",
+      "node": "codegraph/index.py::IndexStore::get_nodes_for_test",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::NodeType",
+      "node": "codegraph/index.py::IndexStore::get_orphans",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::PolicyViolation",
+      "node": "codegraph/index.py::IndexStore::search_nodes",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::PolicyViolation::to_dict",
+      "node": "codegraph/index.py::IndexStore::shortest_path",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::RepairAction",
+      "node": "codegraph/index.py::_check_version",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::RepairAction::to_dict",
+      "node": "codegraph/index.py::_connect",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::RepairActionType",
+      "node": "codegraph/index.py::_create_callees_table",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::StatusReport",
+      "node": "codegraph/index.py::_create_callers_table",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::StatusReport::to_dict",
+      "node": "codegraph/index.py::_create_dependency_hashes_table",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::TaskCategory",
+      "node": "codegraph/index.py::_create_layers_table",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::TaskItem",
+      "node": "codegraph/index.py::_create_nodes_table",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::TaskItem::to_dict",
+      "node": "codegraph/index.py::_create_tests_table",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::WorkflowEdge",
+      "node": "codegraph/index.py::_db_path",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/types.py::WorkflowEdge::to_dict",
+      "node": "codegraph/index.py::_ensure_version_table",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/utils/formatting.py::parse_iso",
+      "node": "codegraph/index.py::_index_dir",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/utils/progress.py::ProgressReporter::__init__",
+      "node": "codegraph/index.py::build_all_indexes",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/workflow.py::ImportGraph::to_dict",
+      "node": "codegraph/index.py::build_callees_index",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "codegraph/workflow.py::update_workflow_incremental::_in_changed",
+      "node": "codegraph/index.py::build_callers_index",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "examples/trading/src/data.py::fetch_data",
+      "node": "codegraph/index.py::build_dependency_hash_index",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "examples/trading/src/signal.py::generate_signal",
+      "node": "codegraph/index.py::build_layers_index",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "examples/trading/tests/test_trade.py::TestExecuteOrder",
+      "node": "codegraph/index.py::build_nodes_index",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "examples/trading/tests/test_trade.py::TestExecuteOrder::test_invalid_order_raises",
+      "node": "codegraph/index.py::build_tests_index",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "examples/trading/tests/test_trade.py::TestExecuteOrder::test_valid_execution",
+      "node": "codegraph/index.py::check_index_consistency",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "examples/trading/tests/test_trade.py::TestValidateTrade",
+      "node": "codegraph/index.py::export_index",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "examples/trading/tests/test_trade.py::TestValidateTrade::test_empty_dict",
+      "node": "codegraph/index.py::index_statistics",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "examples/trading/tests/test_trade.py::TestValidateTrade::test_missing_symbol",
+      "node": "codegraph/index.py::rebuild_index",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "examples/trading/tests/test_trade.py::TestValidateTrade::test_valid_order",
+      "node": "codegraph/index.py::update_index_delta",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "examples/trading/tests/test_trade.py::TestValidateTrade::test_zero_quantity",
+      "node": "codegraph/layers.py::_cached_editable_paths",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "sample_project/services/order_service.py::OrderService",
+      "node": "codegraph/layers.py::_cached_site_packages",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "sample_project/services/order_service.py::OrderService::__init__",
+      "node": "codegraph/layers.py::_discover_editable_install_paths",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "sample_project/services/order_service.py::OrderService::list_user_orders",
+      "node": "codegraph/layers.py::_get_site_packages_dirs",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "sample_project/services/user_service.py::UserService",
+      "node": "codegraph/layers.py::apply_layer_overrides",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: entry point or utility"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "sample_project/services/user_service.py::UserService::__init__",
+      "node": "codegraph/layers.py::assign_layers",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "sample_project/utils/hashing.py::compute_checksum",
+      "node": "codegraph/layers.py::check_layer_constraints",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "sample_project/utils/hashing.py::hash_token",
+      "node": "codegraph/layers.py::check_layer_migration_safety",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "sample_project/utils/validators.py::sanitize_input",
+      "node": "codegraph/layers.py::check_modification_safety",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "sample_project/utils/validators.py::validate_email",
+      "node": "codegraph/layers.py::detect_layer",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "sample_project/utils/validators.py::validate_order_items",
+      "node": "codegraph/layers.py::detect_layer_changes",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: potential dead code or entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/conftest.py::assert_has_keys",
+      "node": "codegraph/layers.py::format_layer_stats",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/conftest.py::assert_valid_json",
+      "node": "codegraph/layers.py::get_site_packages_path",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/conftest.py::sample_graph0",
+      "node": "codegraph/layers.py::is_editable_install",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/conftest.py::sample_graph1",
+      "node": "codegraph/layers.py::is_external",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/conftest.py::sample_workflow",
+      "node": "codegraph/layers.py::is_internal_lib",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/conftest.py::tmp_project",
+      "node": "codegraph/layers.py::is_test",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_analyzer.py::TestAnalyzerImports",
+      "node": "codegraph/layers.py::layer_statistics",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_analyzer.py::TestAnalyzerImports::test_import_format_analysis_report",
+      "node": "codegraph/layers.py::parse_layer_overrides",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_analyzer.py::TestAnalyzerImports::test_import_run_analyze",
+      "node": "codegraph/layers.py::validate_layers",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_analyzer.py::TestConvergenceConcepts",
+      "node": "codegraph/logging_config.py::configure_logging",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_analyzer.py::TestConvergenceConcepts::test_decreasing_count_not_converged",
+      "node": "codegraph/logging_config.py::get_logger",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_analyzer.py::TestConvergenceConcepts::test_stable_count_converges",
+      "node": "codegraph/metrics.py::BuildMetrics::to_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_analyzer.py::TestConvergenceConcepts::test_zero_issues_converges",
+      "node": "codegraph/metrics.py::HealthMetrics::summary",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_apply.py::TestApplyActionTypes",
+      "node": "codegraph/metrics.py::HealthMetrics::to_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_apply.py::TestApplyActionTypes::test_add_import_concept",
+      "node": "codegraph/metrics.py::MetricsCollector::timer",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_apply.py::TestApplyActionTypes::test_connect_call_concept",
+      "node": "codegraph/metrics.py::MetricsCollector::to_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_apply.py::TestApplyActionTypes::test_flag_for_review_concept",
+      "node": "codegraph/metrics.py::Timer::__enter__",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_apply.py::TestApplyImports",
+      "node": "codegraph/metrics.py::Timer::__exit__",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_apply.py::TestApplyImports::test_import_format_apply_result",
+      "node": "codegraph/metrics.py::Timer::start",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_apply.py::TestApplyImports::test_import_run_apply",
+      "node": "codegraph/metrics.py::Timer::stop",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestBuildDependencyHashes",
+      "node": "codegraph/models/__init__.py::_resolve",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestCASCache",
+      "node": "codegraph/models/__init__.py::load_model",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestComputeDependencyHash",
+      "node": "codegraph/models/__init__.py::save_model",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestComputeSCCHash",
+      "node": "codegraph/models/agent_response.py::AgentResponse::validate_cycle",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestDetectNodeChanges",
+      "node": "codegraph/models/agent_response.py::AgentResponse::validate_version",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestDetectStaleIntentsCas",
+      "node": "codegraph/models/agent_response.py::IntentProposal::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestExplainCas",
+      "node": "codegraph/models/agent_response.py::RepairAction::__post_init__",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestFilterAffectedRules",
+      "node": "codegraph/models/agent_response.py::RepairAction::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestFilterAffectedRules::test_filters_by_scope::FakeRule",
+      "node": "codegraph/models/agent_response.py::RepairActionType::modifies_code",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestFilterAffectedRules::test_filters_by_scope::FakeRule::__init__",
+      "node": "codegraph/models/agent_response.py::WorkflowSuggestion::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestFilterAffectedRules::test_glob_scope::FakeRule",
+      "node": "codegraph/models/alignment.py::check_alignment",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestFilterAffectedRules::test_glob_scope::FakeRule::__init__",
+      "node": "codegraph/models/convergence.py::ConvergenceState::record_iteration",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestGetCasIndexUpdates",
+      "node": "codegraph/models/dead_code.py::DeadCodeSignals::missing_signals",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestHashSnapshots",
+      "node": "codegraph/models/delta.py::DeltaResult::__post_init__",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestPropagateInvalidation",
+      "node": "codegraph/models/delta.py::DeltaResult::from_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestRecomputeAffectedHashes",
+      "node": "codegraph/models/delta.py::DeltaResult::to_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestReverseDependencyMap",
+      "node": "codegraph/models/diff.py::DiffResult::_to_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestRunCasPipeline",
+      "node": "codegraph/models/diff.py::DiffResult::to_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestTarjanSCC",
+      "node": "codegraph/models/diff.py::DiffResult::to_text",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestTestImpactCas",
+      "node": "codegraph/models/explain.py::ExplainResult::_to_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestTopologicalSort",
+      "node": "codegraph/models/explain.py::ExplainResult::to_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cas.py::TestVerifyCasIntegrity",
+      "node": "codegraph/models/explain.py::ExplainResult::to_text",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestAnalyzeCommand",
+      "node": "codegraph/models/factories.py::make_graph0_node",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestAnalyzeCommand::test_analyze_help",
+      "node": "codegraph/models/factories.py::make_graph1_node",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestAnnotateCommand",
+      "node": "codegraph/models/factories.py::make_rule",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestAnnotateCommand::test_annotate_help",
+      "node": "codegraph/models/factories.py::make_task",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestApplyCommand",
+      "node": "codegraph/models/factories.py::make_workflow_edge",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestApplyCommand::test_apply_help",
+      "node": "codegraph/models/graph0.py::CollisionResolver::resolve",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestArchiTestCommand",
+      "node": "codegraph/models/graph0.py::Graph0::__post_init__",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestArchiTestCommand::test_archi_test_help",
+      "node": "codegraph/models/graph0.py::Graph0::_rebuild_index",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestBuildCommand",
+      "node": "codegraph/models/graph0.py::Graph0::from_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestBuildCommand::test_build_help",
+      "node": "codegraph/models/graph0.py::Graph0::get_node",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestCASCommands",
+      "node": "codegraph/models/graph0.py::Graph0::to_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestCASCommands::test_cas_build_help",
+      "node": "codegraph/models/graph0.py::Graph0Node::__post_init__",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestCASCommands::test_cas_help",
+      "node": "codegraph/models/graph0.py::Graph0Node::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestCASCommands::test_cas_impact_help",
+      "node": "codegraph/models/graph1.py::Graph1::__post_init__",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestCASCommands::test_cas_verify_help",
+      "node": "codegraph/models/graph1.py::Graph1::_rebuild_index",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestCLIBasics",
+      "node": "codegraph/models/graph1.py::Graph1::from_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestCLIBasics::test_global_quiet",
+      "node": "codegraph/models/graph1.py::Graph1::get_node",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestCLIBasics::test_global_verbose",
+      "node": "codegraph/models/graph1.py::Graph1::set_arch_layer",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestCLIBasics::test_help",
+      "node": "codegraph/models/graph1.py::Graph1::to_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestCLIBasics::test_version",
+      "node": "codegraph/models/graph1.py::Graph1Node::__post_init__",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestCLIBasics::test_version_command",
+      "node": "codegraph/models/graph1.py::Graph1Node::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestCompletionCommand",
+      "node": "codegraph/models/graph1.py::validate_arch_layer_name",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestCompletionCommand::test_completion_help",
+      "node": "codegraph/models/graph2.py::DataFlowItem::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestDeltaCommand",
+      "node": "codegraph/models/graph2.py::DataFlowItem::to_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestDeltaCommand::test_delta_help",
+      "node": "codegraph/models/graph2.py::DataFlowSummary::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestDiffCommand",
+      "node": "codegraph/models/graph2.py::DataFlowSummary::to_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestDiffCommand::test_diff_help",
+      "node": "codegraph/models/graph2.py::Graph2::__post_init__",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestIndexCommand",
+      "node": "codegraph/models/graph2.py::Graph2::_rebuild_index",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestIndexCommand::test_index_help",
+      "node": "codegraph/models/graph2.py::Graph2::from_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestInitCommand",
+      "node": "codegraph/models/graph2.py::Graph2::get_node",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestInitCommand::test_init_creates_codegraph_dir",
+      "node": "codegraph/models/graph2.py::Graph2::to_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestIntentCommands",
+      "node": "codegraph/models/graph2.py::Graph2::upsert_node",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestIntentCommands::test_intent_apply_help",
+      "node": "codegraph/models/graph2.py::Graph2Node::__post_init__",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestIntentCommands::test_intent_missing_help",
+      "node": "codegraph/models/graph2.py::Graph2Node::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestPruneCommand",
+      "node": "codegraph/models/graph2.py::Graph2Node::to_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestPruneCommand::test_prune_help",
+      "node": "codegraph/models/graph2.py::Guard::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestQueryCommand",
+      "node": "codegraph/models/graph2.py::Guard::to_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestQueryCommand::test_explain_help",
+      "node": "codegraph/models/graph2.py::SemanticAction::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestQueryCommand::test_query_help",
+      "node": "codegraph/models/graph2.py::SemanticAction::to_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestRepairCommand",
+      "node": "codegraph/models/graph2.py::SideEffect::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestRepairCommand::test_repair_help",
+      "node": "codegraph/models/graph2.py::SideEffect::to_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestSchemaCommand",
+      "node": "codegraph/models/history.py::ResponseHistoryManager::list_cycles",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestSchemaCommand::test_schema_all_types",
+      "node": "codegraph/models/history.py::ResponseHistoryManager::load_response",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestSchemaCommand::test_schema_graph0",
+      "node": "codegraph/models/history.py::ResponseHistoryManager::load_tasks",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestSemanticCommands",
+      "node": "codegraph/models/history.py::ResponseHistoryManager::save_response",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestSemanticCommands::test_semantic_build_help",
+      "node": "codegraph/models/history.py::ResponseHistoryManager::save_tasks",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestSemanticCommands::test_semantic_check_help",
+      "node": "codegraph/models/status.py::StatusReport::_to_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestSemanticCommands::test_semantic_help",
+      "node": "codegraph/models/status.py::StatusReport::to_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestSemanticCommands::test_semantic_show_help",
+      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflow::__post_init__",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestSemanticCommands::test_semantic_summary_help",
+      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflow::_auto_id",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestStatusCommand",
+      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflow::_rebuild",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestStatusCommand::test_status_no_project",
+      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflow::add_rule",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestSuggestCommand",
+      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflow::from_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestSuggestCommand::test_suggest_help",
+      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflow::get_rule",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestSuggestCommand::test_suggest_list_no_project",
+      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflow::remove_rule",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestTasksCommand",
+      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflow::to_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestTasksCommand::test_tasks_help",
+      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflowRule::__post_init__",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestTestImpactCommand",
+      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflowRule::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestTestImpactCommand::test_test_impact_help",
+      "node": "codegraph/models/suggested_workflow.py::expand_arch_layer_scope",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestValidateCommand",
+      "node": "codegraph/models/suggested_workflow.py::expand_layer_scope",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestValidateCommand::test_validate_help",
+      "node": "codegraph/models/suggested_workflow.py::expand_rule_scope",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestWorkflowCommand",
+      "node": "codegraph/models/tasks.py::PolicyViolation::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::TestWorkflowCommand::test_workflow_help",
+      "node": "codegraph/models/tasks.py::PolicyViolation::to_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::built_project",
+      "node": "codegraph/models/tasks.py::TaskBatch::__post_init__",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_cli.py::runner",
+      "node": "codegraph/models/tasks.py::TaskBatch::from_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_delta.py::TestChangeDetection",
+      "node": "codegraph/models/tasks.py::TaskBatch::to_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_delta.py::TestDeltaImports",
+      "node": "codegraph/models/tasks.py::TaskItem::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_delta.py::TestDeltaImports::test_import_format_delta_result",
+      "node": "codegraph/models/tasks.py::TaskItem::to_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_delta.py::TestDeltaImports::test_import_run_delta",
+      "node": "codegraph/models/tasks.py::TaskNode::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_extractor.py::TestASTExtraction",
+      "node": "codegraph/models/tasks.py::TaskNode::to_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_extractor.py::TestBodyHash",
+      "node": "codegraph/models/validation.py::ValidationResult::add",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_extractor.py::TestCallSiteExtraction",
+      "node": "codegraph/models/validation.py::_validate_agent_response",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_failure_modes.py::TestFailureModeExceptions",
+      "node": "codegraph/models/validation.py::_validate_graph0",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_failure_modes.py::TestFailureModeExceptions::test_all_inherit_from_base",
+      "node": "codegraph/models/validation.py::_validate_graph0_node",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_filters.py::TestFilterConcepts",
+      "node": "codegraph/models/validation.py::_validate_graph1",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_formatters.py::TestOutputFormatter",
+      "node": "codegraph/models/validation.py::_validate_graph1_node",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_formatters.py::TestOutputFormatter::test_key_fn::Obj",
+      "node": "codegraph/models/validation.py::_validate_task_batch",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_formatters.py::TestOutputFormatter::test_key_fn::Obj::__init__",
+      "node": "codegraph/models/validation.py::_validate_workflow",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_fuzz.py::TestJsonLoaderFuzz",
+      "node": "codegraph/models/validation.py::_validate_workflow_edge",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_fuzz.py::TestNodeIdFuzz",
+      "node": "codegraph/models/validation.py::validate",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_fuzz.py::TestQueryParserFuzz",
+      "node": "codegraph/models/workflow.py::Confidence::from_string",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_graph2.py::TestActionType",
+      "node": "codegraph/models/workflow.py::Workflow::__post_init__",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_graph2.py::TestActionType::test_all_values",
+      "node": "codegraph/models/workflow.py::Workflow::_rebuild_indexes",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_graph2.py::TestActionType::test_string_enum",
+      "node": "codegraph/models/workflow.py::Workflow::from_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_graph2.py::TestDataFlow",
+      "node": "codegraph/models/workflow.py::Workflow::to_json",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_graph2.py::TestGraph2",
+      "node": "codegraph/models/workflow.py::WorkflowEdge::from_dict",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_graph2.py::TestGraph2Node",
+      "node": "codegraph/query.py::QueryCache::_key",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_graph2.py::TestGuard",
+      "node": "codegraph/query.py::QueryCache::get",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_graph2.py::TestSemanticAction",
+      "node": "codegraph/query.py::QueryCache::invalidate",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_graph2.py::TestSideEffect",
+      "node": "codegraph/query.py::QueryCache::put",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_graph2.py::TestSideEffectType",
+      "node": "codegraph/query.py::_suggest_nodes",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_graph2.py::TestSideEffectType::test_all_values",
+      "node": "codegraph/query.py::execute_batch",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_graph2.py::TestSideEffectType::test_string_enum",
+      "node": "codegraph/query.py::execute_boolean_query",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_index.py::TestIndexConcepts",
+      "node": "codegraph/query.py::execute_query",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_index.py::TestIndexConcepts::test_index_store_context_manager",
+      "node": "codegraph/query.py::explain_node",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_index.py::TestIndexImports",
+      "node": "codegraph/query.py::format_explain",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_index.py::TestIndexImports::test_import_build_all_indexes",
+      "node": "codegraph/query.py::format_query_result",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_index.py::TestIndexImports::test_import_check_consistency",
+      "node": "codegraph/query.py::parse_boolean_query",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_index.py::TestIndexImports::test_import_index_store",
+      "node": "codegraph/query.py::query_callees",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_index.py::TestIndexImports::test_import_rebuild_index",
+      "node": "codegraph/query.py::query_callers",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_integration.py::TestBuildPipeline",
+      "node": "codegraph/query.py::query_dependencies",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_integration.py::TestBuildPipeline::test_init_and_build",
+      "node": "codegraph/query.py::query_dependents",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_integration.py::TestQuerySystemIntegration",
+      "node": "codegraph/query.py::query_import_dependencies",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_integration.py::TestQuerySystemIntegration::test_explain_help_works",
+      "node": "codegraph/query.py::query_layer",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_integration.py::TestQuerySystemIntegration::test_query_help_works",
+      "node": "codegraph/query.py::query_orphans",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_integration.py::TestSchemaIntegration",
+      "node": "codegraph/query.py::query_path",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_integration.py::TestSchemaIntegration::test_all_schemas_valid_json",
+      "node": "codegraph/query.py::run_query",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_integration.py::runner",
+      "node": "codegraph/recovery.py::attempt_recovery",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_integration.py::sample_project",
+      "node": "codegraph/recovery.py::recover_ast_parse",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_known_libraries.py::TestEnrichDomainTags",
+      "node": "codegraph/recovery.py::recover_delta_uncommitted",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_known_libraries.py::TestEnrichSideEffects",
+      "node": "codegraph/recovery.py::recover_module_import",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_known_libraries.py::TestGetAllKnownNames",
+      "node": "codegraph/recovery.py::recover_trace_crash",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_known_libraries.py::TestGetLibrariesByCategory",
+      "node": "codegraph/recovery.py::recoverable",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_known_libraries.py::TestGetLibraryInfo",
+      "node": "codegraph/recovery.py::recoverable::decorator",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_known_libraries.py::TestLibraryInfo",
+      "node": "codegraph/recovery.py::recoverable::decorator::wrapper",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_layers.py::TestLayerEnum",
+      "node": "codegraph/schemas.py::_require",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_layers.py::TestLayerEnum::test_layer_values",
+      "node": "codegraph/schemas.py::validate_agent_response",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_layers.py::TestLayerEnum::test_ordering",
+      "node": "codegraph/schemas.py::validate_delta",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_models.py::TestCollisionResolver",
+      "node": "codegraph/schemas.py::validate_graph0",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_models.py::TestConfidence",
+      "node": "codegraph/schemas.py::validate_graph0_node",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_models.py::TestConfidence::test_ordering",
+      "node": "codegraph/schemas.py::validate_graph1",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_models.py::TestEdgeDeduplication",
+      "node": "codegraph/schemas.py::validate_graph1_node",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_models.py::TestGraph0",
+      "node": "codegraph/schemas.py::validate_suggested_workflow",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_models.py::TestGraph0Node",
+      "node": "codegraph/schemas.py::validate_tasks",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_models.py::TestGraph1",
+      "node": "codegraph/schemas.py::validate_workflow",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_models.py::TestGraph1Node",
+      "node": "codegraph/schemas.py::validate_workflow_edge",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_models.py::TestIntentValidation",
+      "node": "codegraph/semantics.py::_compute_confidence",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_models.py::TestNodeIdGeneration",
+      "node": "codegraph/semantics.py::_get_attribute_root",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_models.py::TestNodeType",
+      "node": "codegraph/semantics.py::_get_call_name",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_models.py::TestPathNormalization",
+      "node": "codegraph/semantics.py::_get_raise_type",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_models.py::TestVersionStaleness",
+      "node": "codegraph/semantics.py::_split_name",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_models.py::TestWorkflow",
+      "node": "codegraph/semantics.py::_unparse_safe",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_models.py::TestWorkflowEdge",
+      "node": "codegraph/semantics.py::update_graph2_incremental",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_properties.py::TestGraph0Properties",
+      "node": "codegraph/storage.py::_codegraph_root",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_properties.py::TestNodeIdProperties",
+      "node": "codegraph/storage.py::_cycle_path",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_properties.py::TestWorkflowProperties",
+      "node": "codegraph/storage.py::atomic_write",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_query.py::TestQueryImports",
+      "node": "codegraph/storage.py::check_format_version",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_query.py::TestQueryImports::test_import_execute_query",
+      "node": "codegraph/storage.py::generate_gitignore",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_query.py::TestQueryImports::test_import_format_query_result",
+      "node": "codegraph/storage.py::get_current_cycle",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_query.py::TestQueryImports::test_import_run_query",
+      "node": "codegraph/storage.py::get_graph_version",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_query.py::TestQueryParser",
+      "node": "codegraph/storage.py::get_stored_config_hash",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_semantics.py::TestBuildGraph2",
+      "node": "codegraph/storage.py::increment_cycle",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_semantics.py::TestClassifySqlOperations",
+      "node": "codegraph/storage.py::increment_graph_version",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_semantics.py::TestClassifyVerb",
+      "node": "codegraph/storage.py::is_initialized",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_semantics.py::TestDetectBehaviorChanges",
+      "node": "codegraph/storage.py::resolve_path",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_semantics.py::TestDetectLibraryCalls",
+      "node": "codegraph/storage.py::store_config_hash",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_semantics.py::TestEvaluateSemanticRules",
+      "node": "codegraph/suggest.py::PolicyDiff::format",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_semantics.py::TestExtractActions",
+      "node": "codegraph/suggest.py::RuleStats::format",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_semantics.py::TestExtractDataFlow",
+      "node": "codegraph/suggest.py::_edge_exists",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_semantics.py::TestExtractGuards",
+      "node": "codegraph/suggest.py::_expand_scope_cached",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_semantics.py::TestExtractSemanticsForFile",
+      "node": "codegraph/suggest.py::_sw_path",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_semantics.py::TestExtractSemanticsForNode",
+      "node": "codegraph/suggest.py::add_rule",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_semantics.py::TestExtractSideEffects",
+      "node": "codegraph/suggest.py::available_templates",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_semantics.py::TestInferDomainTags",
+      "node": "codegraph/suggest.py::check_rule_dependencies",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_semantics.py::TestSaveLoadGraph2",
+      "node": "codegraph/suggest.py::clear_scope_cache",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_snapshots.py::TestGraph0Snapshot",
+      "node": "codegraph/suggest.py::detect_violations",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_snapshots.py::TestGraph1Snapshot",
+      "node": "codegraph/suggest.py::evaluate_semantic_rules",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_snapshots.py::TestSchemaSnapshot",
+      "node": "codegraph/suggest.py::expand_scope",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_snapshots.py::TestSchemaSnapshot::test_graph0_schema",
+      "node": "codegraph/suggest.py::find_dangling_rules",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_snapshots.py::TestSchemaSnapshot::test_workflow_schema",
+      "node": "codegraph/suggest.py::format_rules_table",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_snapshots.py::TestWorkflowSnapshot",
+      "node": "codegraph/suggest.py::import_rules_template",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_suggest.py::TestRuleCreation",
+      "node": "codegraph/suggest.py::is_semantic_rule",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_suggest.py::TestRuleTypeViolation",
+      "node": "codegraph/suggest.py::list_rules",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_tasks.py::TestPolicyViolation",
+      "node": "codegraph/suggest.py::load_suggested_workflow",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_tasks.py::TestSuggestedFix",
+      "node": "codegraph/suggest.py::match_scope_arch_layer",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_tasks.py::TestSuggestedFix::test_values",
+      "node": "codegraph/suggest.py::match_scope_layer",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_tasks.py::TestTaskIDPriority",
+      "node": "codegraph/suggest.py::policy_diff",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_tasks.py::TestTaskIDPriority::test_all_task_ids_have_priority",
+      "node": "codegraph/suggest.py::promote_suggestion",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_tasks.py::TestTaskIDPriority::test_ordering",
+      "node": "codegraph/suggest.py::remove_rule",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_tasks.py::TestTaskIDPriority::test_policy_violation_highest",
+      "node": "codegraph/suggest.py::rule_statistics",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_tasks.py::TestTestChangeType",
+      "node": "codegraph/suggest.py::save_suggested_workflow",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_tasks.py::TestTestChangeType::test_values",
+      "node": "codegraph/suggest.py::update_rule",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_workflow.py::TestEdgeBuilding",
+      "node": "codegraph/suggest.py::validate_schema",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_workflow.py::TestEdgeConfidenceComparison",
+      "node": "codegraph/suggest.py::validate_suggested_workflow",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_workflow.py::TestEdgeDeduplication",
+      "node": "codegraph/tasks.py::TaskHistory::_load",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
     },
     {
-      "node": "tests/test_workflow.py::TestWorkflowCollection",
+      "node": "codegraph/tasks.py::TaskHistory::format",
       "action": "flag_for_human_review",
       "target": "",
-      "reason": "Orphan node: test entry point"
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::TaskHistory::save",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::TaskStats::format",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::_tasks_path",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::assign_priority",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::deduplicate_tasks",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::fetch_batch_context",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::fetch_task_context",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::filter_tasks",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::generate_suggested_fix",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::generate_tasks",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::get_affected_tests",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::load_tasks",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::mark_tasks_completed",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::parse_agent_response",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::task_statistics",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::validate_response_schema",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::validate_tasks_schema",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/tasks.py::write_tasks",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/types.py::Graph0Node::from_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/types.py::Graph1Node::from_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/types.py::WorkflowEdge::from_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/utils/file_discovery.py::_is_excluded_dir",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/utils/file_discovery.py::discover_source_files",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/utils/formatting.py::format_json",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/utils/formatting.py::iso_now",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/utils/hashing.py::_DocstringStripper::_strip",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/utils/hashing.py::_DocstringStripper::visit_AsyncFunctionDef",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/utils/hashing.py::_DocstringStripper::visit_ClassDef",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/utils/hashing.py::_DocstringStripper::visit_FunctionDef",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/utils/hashing.py::_DocstringStripper::visit_Module",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/utils/hashing.py::hash_file",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/utils/progress.py::ProgressReporter::finish",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/utils/progress.py::ProgressReporter::update",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::EdgeStats::format",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::ImportGraph::from_dict",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::WorkflowDiff::format",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::_collect_call_sites_and_imports",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::_coverage_config",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::_extract_class",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::_extract_module",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::_trace_env",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::build_dynamic_edges",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::build_import_dependencies",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::build_import_edges",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::build_static_edges",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::build_test_edges",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::build_workflow",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::compress_to_class",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::compress_to_module",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::detect_conditional_calls",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::diff_workflows",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::edge_statistics",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::find_orphans",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::load_import_graph",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::load_workflow",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::merge_edges",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::parse_trace_data",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::run_trace",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::save_import_graph",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::update_workflow_incremental",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::validate_level",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::validate_workflow",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::workflow_summary",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "codegraph/workflow.py::write_workflow",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "examples/trading/src/pipeline.py::run_pipeline",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "examples/trading/src/trade.py::execute_order",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "examples/trading/src/trade.py::validate_trade",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "sample_project/main.py::main",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "sample_project/services/order_service.py::OrderService::get_order",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "sample_project/services/order_service.py::OrderService::get_order_summary",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "sample_project/services/user_service.py::UserService::_log_action",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "sample_project/utils/hashing.py::hash_password",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
+    },
+    {
+      "node": "sample_project/utils/hashing.py::verify_password",
+      "action": "flag_for_human_review",
+      "target": "",
+      "reason": "Test coverage gap - informational"
     }
   ]
 }

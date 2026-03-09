@@ -673,6 +673,7 @@ def tasks(ctx: click.Context, as_json: bool, filter_type: str | None, max_priori
     batch = generate_tasks(
         analysis, graph0, graph1, workflow,
         index=index, graph_version=gv,
+        project_root=root,
     )
 
     if index is not None:

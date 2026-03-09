@@ -1803,12 +1803,12 @@
     },
     {
       "id": "codegraph/cli",
-      "intent": "codegraph.cli — Command-line interface for codegraph",
+      "intent": "cLI entry point module for codegraph using Click",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "60f33"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-09T13:03:15Z",
+      "intent_body_hash": "55306"
     },
     {
       "id": "codegraph/cli.py::analyze_cmd",
@@ -2172,12 +2172,12 @@
     },
     {
       "id": "codegraph/cli.py::tasks",
-      "intent": "generate the agent work queue",
+      "intent": "generate and display task queue from analysis findings",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "6526a"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-09T13:03:15Z",
+      "intent_body_hash": "d4fd4"
     },
     {
       "id": "codegraph/cli.py::test_impact_cmd",
@@ -8499,12 +8499,12 @@
     },
     {
       "id": "codegraph/tasks",
-      "intent": "codegraph.tasks — Task generation and management",
+      "intent": "task generation and management module",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "966bd"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-09T13:03:15Z",
+      "intent_body_hash": "03e7e"
     },
     {
       "id": "codegraph/tasks.py::HistoryEntry",
@@ -8661,12 +8661,12 @@
     },
     {
       "id": "codegraph/tasks.py::generate_tasks",
-      "intent": "convert analysis findings into a structured task batch (I-007)",
+      "intent": "convert analysis findings into structured task batch, filtering reviewed nodes",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "e89ac"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-09T13:03:15Z",
+      "intent_body_hash": "ff64e"
     },
     {
       "id": "codegraph/tasks.py::get_affected_tests",
@@ -10386,22 +10386,6 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "ba6fb"
-    },
-    {
-      "id": "test_group_e",
-      "intent": "",
-      "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-08T15:55:42Z"
-    },
-    {
-      "id": "test_group_e.py::check",
-      "intent": "",
-      "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-08T15:55:42Z"
     },
     {
       "id": "tests",

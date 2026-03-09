@@ -1010,11 +1010,11 @@
     ]
   },
   "codegraph/cli.py": {
-    "content_hash": "2c422edcac09",
+    "content_hash": "07063fa479bb",
     "nodes": [
       {
         "id": "codegraph/cli",
-        "body_hash": "60f33",
+        "body_hash": "55306",
         "file": "codegraph/cli.py",
         "type": "module",
         "line": 1
@@ -1161,7 +1161,7 @@
       },
       {
         "id": "codegraph/cli.py::tasks",
-        "body_hash": "6526a",
+        "body_hash": "d4fd4",
         "file": "codegraph/cli.py",
         "type": "function",
         "line": 639
@@ -1171,182 +1171,182 @@
         "body_hash": "b661b",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 711
+        "line": 712
       },
       {
         "id": "codegraph/cli.py::delta",
         "body_hash": "92228",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 736
+        "line": 737
       },
       {
         "id": "codegraph/cli.py::query",
         "body_hash": "88207",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 765
+        "line": 766
       },
       {
         "id": "codegraph/cli.py::explain_cmd",
         "body_hash": "df452",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 796
+        "line": 797
       },
       {
         "id": "codegraph/cli.py::archi_test_cmd",
         "body_hash": "eb807",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 818
+        "line": 819
       },
       {
         "id": "codegraph/cli.py::test_impact_cmd",
         "body_hash": "d386a",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 873
+        "line": 874
       },
       {
         "id": "codegraph/cli.py::workflow",
         "body_hash": "9f68d",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 937
+        "line": 938
       },
       {
         "id": "codegraph/cli.py::validate",
         "body_hash": "cd236",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 987
+        "line": 988
       },
       {
         "id": "codegraph/cli.py::index_group",
         "body_hash": "06af9",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1018
+        "line": 1019
       },
       {
         "id": "codegraph/cli.py::index_rebuild",
         "body_hash": "46571",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1025
+        "line": 1026
       },
       {
         "id": "codegraph/cli.py::index_dump",
         "body_hash": "ac38b",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1046
+        "line": 1047
       },
       {
         "id": "codegraph/cli.py::index_check",
         "body_hash": "f9b54",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1063
+        "line": 1064
       },
       {
         "id": "codegraph/cli.py::schema",
         "body_hash": "8f4cb",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1087
+        "line": 1088
       },
       {
         "id": "codegraph/cli.py::diff_cmd",
         "body_hash": "befa5",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1108
+        "line": 1109
       },
       {
         "id": "codegraph/cli.py::repair_cmd",
         "body_hash": "6a4b1",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1173
+        "line": 1174
       },
       {
         "id": "codegraph/cli.py::version_cmd",
         "body_hash": "d6887",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1253
+        "line": 1254
       },
       {
         "id": "codegraph/cli.py::completion",
         "body_hash": "55368",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1273
+        "line": 1274
       },
       {
         "id": "codegraph/cli.py::cas_group",
         "body_hash": "a2571",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1290
+        "line": 1291
       },
       {
         "id": "codegraph/cli.py::cas_build",
         "body_hash": "ffe50",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1297
+        "line": 1298
       },
       {
         "id": "codegraph/cli.py::cas_verify",
         "body_hash": "93abc",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1329
+        "line": 1330
       },
       {
         "id": "codegraph/cli.py::cas_impact",
         "body_hash": "9c1e1",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1362
+        "line": 1363
       },
       {
         "id": "codegraph/cli.py::semantic_group",
         "body_hash": "e8781",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1397
+        "line": 1398
       },
       {
         "id": "codegraph/cli.py::semantic_build",
         "body_hash": "9924e",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1404
+        "line": 1405
       },
       {
         "id": "codegraph/cli.py::semantic_show",
         "body_hash": "2985a",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1441
+        "line": 1442
       },
       {
         "id": "codegraph/cli.py::semantic_summary",
         "body_hash": "41c35",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1487
+        "line": 1488
       },
       {
         "id": "codegraph/cli.py::semantic_check",
         "body_hash": "edd12",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1523
+        "line": 1524
       }
     ]
   },
@@ -5913,11 +5913,11 @@
     ]
   },
   "codegraph/tasks.py": {
-    "content_hash": "8f3c193096f7",
+    "content_hash": "72305767de41",
     "nodes": [
       {
         "id": "codegraph/tasks",
-        "body_hash": "966bd",
+        "body_hash": "03e7e",
         "file": "codegraph/tasks.py",
         "type": "module",
         "line": 1
@@ -5959,7 +5959,7 @@
       },
       {
         "id": "codegraph/tasks.py::generate_tasks",
-        "body_hash": "e89ac",
+        "body_hash": "ff64e",
         "file": "codegraph/tasks.py",
         "type": "function",
         "line": 201
@@ -5969,147 +5969,147 @@
         "body_hash": "8d7c0",
         "file": "codegraph/tasks.py",
         "type": "function",
-        "line": 346
+        "line": 360
       },
       {
         "id": "codegraph/tasks.py::_tasks_path",
         "body_hash": "485e3",
         "file": "codegraph/tasks.py",
         "type": "function",
-        "line": 367
+        "line": 381
       },
       {
         "id": "codegraph/tasks.py::write_tasks",
         "body_hash": "f0d53",
         "file": "codegraph/tasks.py",
         "type": "function",
-        "line": 371
+        "line": 385
       },
       {
         "id": "codegraph/tasks.py::load_tasks",
         "body_hash": "f12a5",
         "file": "codegraph/tasks.py",
         "type": "function",
-        "line": 386
+        "line": 400
       },
       {
         "id": "codegraph/tasks.py::parse_agent_response",
         "body_hash": "5b5e1",
         "file": "codegraph/tasks.py",
         "type": "function",
-        "line": 400
+        "line": 414
       },
       {
         "id": "codegraph/tasks.py::validate_version",
         "body_hash": "ebaee",
         "file": "codegraph/tasks.py",
         "type": "function",
-        "line": 415
+        "line": 429
       },
       {
         "id": "codegraph/tasks.py::filter_tasks",
         "body_hash": "841ab",
         "file": "codegraph/tasks.py",
         "type": "function",
-        "line": 433
+        "line": 447
       },
       {
         "id": "codegraph/tasks.py::TaskStats",
         "body_hash": "7d06e",
         "file": "codegraph/tasks.py",
         "type": "class",
-        "line": 465
+        "line": 479
       },
       {
         "id": "codegraph/tasks.py::TaskStats::format",
         "body_hash": "99f6e",
         "file": "codegraph/tasks.py",
         "type": "method",
-        "line": 473
+        "line": 487
       },
       {
         "id": "codegraph/tasks.py::task_statistics",
         "body_hash": "01e59",
         "file": "codegraph/tasks.py",
         "type": "function",
-        "line": 487
+        "line": 501
       },
       {
         "id": "codegraph/tasks.py::mark_tasks_completed",
         "body_hash": "82c94",
         "file": "codegraph/tasks.py",
         "type": "function",
-        "line": 503
+        "line": 517
       },
       {
         "id": "codegraph/tasks.py::validate_tasks_schema",
         "body_hash": "9e3a8",
         "file": "codegraph/tasks.py",
         "type": "function",
-        "line": 531
+        "line": 545
       },
       {
         "id": "codegraph/tasks.py::validate_response_schema",
         "body_hash": "3a995",
         "file": "codegraph/tasks.py",
         "type": "function",
-        "line": 553
+        "line": 567
       },
       {
         "id": "codegraph/tasks.py::HistoryEntry",
         "body_hash": "dc2d9",
         "file": "codegraph/tasks.py",
         "type": "class",
-        "line": 577
+        "line": 591
       },
       {
         "id": "codegraph/tasks.py::TaskHistory",
         "body_hash": "fe0ec",
         "file": "codegraph/tasks.py",
         "type": "class",
-        "line": 587
+        "line": 601
       },
       {
         "id": "codegraph/tasks.py::TaskHistory::__init__",
         "body_hash": "ae4b5",
         "file": "codegraph/tasks.py",
         "type": "method",
-        "line": 590
+        "line": 604
       },
       {
         "id": "codegraph/tasks.py::TaskHistory::_load",
         "body_hash": "22f1d",
         "file": "codegraph/tasks.py",
         "type": "method",
-        "line": 595
+        "line": 609
       },
       {
         "id": "codegraph/tasks.py::TaskHistory::save",
         "body_hash": "5cfdd",
         "file": "codegraph/tasks.py",
         "type": "method",
-        "line": 609
+        "line": 623
       },
       {
         "id": "codegraph/tasks.py::TaskHistory::append",
         "body_hash": "dd945",
         "file": "codegraph/tasks.py",
         "type": "method",
-        "line": 625
+        "line": 639
       },
       {
         "id": "codegraph/tasks.py::TaskHistory::entries",
         "body_hash": "d7714",
         "file": "codegraph/tasks.py",
         "type": "method",
-        "line": 633
+        "line": 647
       },
       {
         "id": "codegraph/tasks.py::TaskHistory::format",
         "body_hash": "4e497",
         "file": "codegraph/tasks.py",
         "type": "method",
-        "line": 636
+        "line": 650
       }
     ]
   },
