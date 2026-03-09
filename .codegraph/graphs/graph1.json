@@ -173,13 +173,166 @@
       "intent_body_hash": "de0ac"
     },
     {
-      "id": "codegraph/analyzer",
-      "intent": "codegraph.analyzer — Orphan analysis, policy diff, task generation",
+      "id": "codegraph/agent_memory",
+      "intent": "persistent agent memory system for learning repair patterns and conventions",
       "layer": 3,
       "intent_author": "copilot",
       "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "0c443"
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "a7fc2"
+    },
+    {
+      "id": "codegraph/agent_memory.py::AgentMemory",
+      "intent": "persistent agent memory store holding patterns conventions stats and notes",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "12e83"
+    },
+    {
+      "id": "codegraph/agent_memory.py::AgentMemory::add_convention",
+      "intent": "record an observed convention boosting confidence if exists",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "04627"
+    },
+    {
+      "id": "codegraph/agent_memory.py::AgentMemory::add_note",
+      "intent": "add a timestamped free-form note to memory",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "58946"
+    },
+    {
+      "id": "codegraph/agent_memory.py::AgentMemory::add_pattern",
+      "intent": "record a successful repair pattern incrementing count if exists",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "47e20"
+    },
+    {
+      "id": "codegraph/agent_memory.py::AgentMemory::format",
+      "intent": "format agent memory as human-readable summary with top patterns",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "494ad"
+    },
+    {
+      "id": "codegraph/agent_memory.py::AgentMemory::record_cycle",
+      "intent": "record performance stats for a completed repair cycle",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "b02d0"
+    },
+    {
+      "id": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "intent": "serialize AgentMemory to dictionary keeping last 20 notes",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "b3039"
+    },
+    {
+      "id": "codegraph/agent_memory.py::AgentMemory::to_json",
+      "intent": "serialize AgentMemory to JSON string",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "139c6"
+    },
+    {
+      "id": "codegraph/agent_memory.py::AgentStats",
+      "intent": "cumulative agent performance statistics across repair cycles",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "197da"
+    },
+    {
+      "id": "codegraph/agent_memory.py::AgentStats::to_dict",
+      "intent": "serialize AgentStats to dictionary",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "e868c"
+    },
+    {
+      "id": "codegraph/agent_memory.py::Convention",
+      "intent": "dataclass representing an observed codebase convention with confidence",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "5d58c"
+    },
+    {
+      "id": "codegraph/agent_memory.py::Convention::to_dict",
+      "intent": "serialize Convention to dictionary with capped examples",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "af9a5"
+    },
+    {
+      "id": "codegraph/agent_memory.py::RepairPattern",
+      "intent": "dataclass representing a learned repair pattern with success count",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "7d605"
+    },
+    {
+      "id": "codegraph/agent_memory.py::RepairPattern::to_dict",
+      "intent": "serialize RepairPattern to dictionary",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "6dfc8"
+    },
+    {
+      "id": "codegraph/agent_memory.py::load_memory",
+      "intent": "load agent memory from .codegraph/agent_memory.json file",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "c29b9"
+    },
+    {
+      "id": "codegraph/agent_memory.py::save_memory",
+      "intent": "save agent memory to .codegraph/agent_memory.json file",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "eb76d"
+    },
+    {
+      "id": "codegraph/analyzer",
+      "intent": "architecture analyzer detecting orphans coverage gaps missing imports policy violations forbidden paths and dependency limits",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "a65f2"
     },
     {
       "id": "codegraph/analyzer.py::AnalysisCache",
@@ -1803,12 +1956,12 @@
     },
     {
       "id": "codegraph/cli",
-      "intent": "cLI entry point module for codegraph using Click",
+      "intent": "click CLI entry point with commands for build analyze tasks apply delta query status metrics path refactor plan memory visualize",
       "layer": 3,
-      "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-09T13:03:15Z",
-      "intent_body_hash": "55306"
+      "intent_author": "copilot",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "befd1"
     },
     {
       "id": "codegraph/cli.py::analyze_cmd",
@@ -2009,6 +2162,42 @@
       "intent_body_hash": "ffff0"
     },
     {
+      "id": "codegraph/cli.py::memory_cmd",
+      "intent": "cLI command viewing and managing persistent agent memory",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "4ef34"
+    },
+    {
+      "id": "codegraph/cli.py::metrics_cmd",
+      "intent": "cLI command displaying risk metrics dashboard with fan-in fan-out and betweenness",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "e39f5"
+    },
+    {
+      "id": "codegraph/cli.py::path_cmd",
+      "intent": "cLI command for pattern-based path queries across the dependency graph",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "3dc5e"
+    },
+    {
+      "id": "codegraph/cli.py::plan_cmd",
+      "intent": "cLI command generating repair plans from current tasks",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "0f5ba"
+    },
+    {
       "id": "codegraph/cli.py::prune",
       "intent": "remove stale Graph_1 entries that no longer exist in Graph_0",
       "layer": 3,
@@ -2025,6 +2214,15 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "88207"
+    },
+    {
+      "id": "codegraph/cli.py::refactor_cmd",
+      "intent": "cLI command running structural refactoring analysis detecting cycles and coupling",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "8898b"
     },
     {
       "id": "codegraph/cli.py::repair_cmd",
@@ -2223,6 +2421,15 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "d6887"
+    },
+    {
+      "id": "codegraph/cli.py::visualize_cmd",
+      "intent": "cLI command exporting graph visualization in JSON Mermaid or HTML format",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "fa549"
     },
     {
       "id": "codegraph/cli.py::workflow",
@@ -6474,30 +6681,30 @@
     },
     {
       "id": "codegraph/models/suggested_workflow",
-      "intent": "codegraph.models.suggested_workflow — SuggestedWorkflow rules & collection",
+      "intent": "data models for architecture policy rules including required_call forbidden_path layer_boundary and dependency_limit",
       "layer": 3,
       "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "4c0f4"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "25dbe"
     },
     {
       "id": "codegraph/models/suggested_workflow.py::RuleType",
-      "intent": "suggested workflow rule type",
+      "intent": "enum of architecture rule types: required_call forbidden_path layer_boundary dependency_limit",
       "layer": 3,
       "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "52df0"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "db264"
     },
     {
       "id": "codegraph/models/suggested_workflow.py::RuleType::is_violation",
-      "intent": "return *True* when the current state violates the rule",
+      "intent": "check if a rule is violated given source and target callees with support for forbidden_path and dependency_limit types",
       "layer": 3,
       "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "8e36e"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "e0fbb"
     },
     {
       "id": "codegraph/models/suggested_workflow.py::SuggestedWorkflow",
@@ -6591,12 +6798,12 @@
     },
     {
       "id": "codegraph/models/suggested_workflow.py::SuggestedWorkflowRule",
-      "intent": "a single architecture policy rule",
+      "intent": "dataclass for a single architecture rule with optional max_fan_in max_fan_out and forbidden fields",
       "layer": 3,
       "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "14281"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "d3466"
     },
     {
       "id": "codegraph/models/suggested_workflow.py::SuggestedWorkflowRule::__post_init__",
@@ -7247,6 +7454,186 @@
       "intent_body_hash": "f5fc7"
     },
     {
+      "id": "codegraph/path_query",
+      "intent": "pattern-based path query engine for dependency graph traversal with glob matching",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "e6fed"
+    },
+    {
+      "id": "codegraph/path_query.py::PathResult",
+      "intent": "dataclass holding results of a pattern-based path query with paths found and match counts",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "47825"
+    },
+    {
+      "id": "codegraph/path_query.py::PathResult::format",
+      "intent": "format path query results as human-readable multiline string",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "2fb83"
+    },
+    {
+      "id": "codegraph/path_query.py::PathResult::has_paths",
+      "intent": "property returning whether any paths were found in the query result",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "68e28"
+    },
+    {
+      "id": "codegraph/path_query.py::PathResult::to_dict",
+      "intent": "serialize PathResult to dictionary for JSON export",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "e3306"
+    },
+    {
+      "id": "codegraph/path_query.py::_bfs_to_set",
+      "intent": "bFS traversal from a source node to any node in a target set via callees",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "4d596"
+    },
+    {
+      "id": "codegraph/path_query.py::_get_all_node_ids",
+      "intent": "retrieve all node IDs from the IndexStore SQLite database",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "46ed0"
+    },
+    {
+      "id": "codegraph/path_query.py::check_forbidden_path",
+      "intent": "check if any forbidden dependency path exists between source and target patterns",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "be86b"
+    },
+    {
+      "id": "codegraph/path_query.py::find_pattern_paths",
+      "intent": "find dependency paths between nodes matching source and target glob patterns using BFS",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "3a627"
+    },
+    {
+      "id": "codegraph/planning",
+      "intent": "agent planning layer generating multi-step repair plans from task batches",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "9bf3c"
+    },
+    {
+      "id": "codegraph/planning.py::PlanStep",
+      "intent": "dataclass for a single step in an agent repair plan with action and dependencies",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "02a06"
+    },
+    {
+      "id": "codegraph/planning.py::PlanStep::to_dict",
+      "intent": "serialize PlanStep to dictionary omitting empty optional fields",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "49322"
+    },
+    {
+      "id": "codegraph/planning.py::RepairPlan",
+      "intent": "structured multi-step repair plan with steps sorted by priority",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "b329a"
+    },
+    {
+      "id": "codegraph/planning.py::RepairPlan::format",
+      "intent": "format repair plan as human-readable step listing",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "af3fe"
+    },
+    {
+      "id": "codegraph/planning.py::RepairPlan::to_dict",
+      "intent": "serialize RepairPlan to dictionary with summary stats",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "c4f8a"
+    },
+    {
+      "id": "codegraph/planning.py::RepairPlan::to_json",
+      "intent": "serialize RepairPlan to JSON string",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "40577"
+    },
+    {
+      "id": "codegraph/planning.py::generate_plan",
+      "intent": "generate ordered repair plan from tasks.json data with dependency tracking",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "0511f"
+    },
+    {
+      "id": "codegraph/planning.py::load_plan",
+      "intent": "load a named repair plan from .codegraph/plans directory",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "fac03"
+    },
+    {
+      "id": "codegraph/planning.py::save_plan",
+      "intent": "save a repair plan to .codegraph/plans directory as JSON",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "c75db"
+    },
+    {
+      "id": "codegraph/planning.py::validate_plan",
+      "intent": "validate plan consistency checking unique step IDs and valid dependencies",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "e73f6"
+    },
+    {
       "id": "codegraph/pytest_plugin",
       "intent": "codegraph.pytest_plugin — Pytest plugin hook for coverage.py tracing (F-025)",
       "layer": 3,
@@ -7614,6 +8001,267 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "9ee54"
+    },
+    {
+      "id": "codegraph/refactor",
+      "intent": "refactoring analysis engine detecting cycles god modules and coupling issues",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "bea5b"
+    },
+    {
+      "id": "codegraph/refactor.py::CouplingPair",
+      "intent": "dataclass describing a pair of modules with high bidirectional coupling",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "1af67"
+    },
+    {
+      "id": "codegraph/refactor.py::CouplingPair::to_dict",
+      "intent": "serialize CouplingPair to dictionary with coupling strength",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "22223"
+    },
+    {
+      "id": "codegraph/refactor.py::CycleInfo",
+      "intent": "dataclass describing a strongly connected component cycle in the call graph",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "4fdfb"
+    },
+    {
+      "id": "codegraph/refactor.py::CycleInfo::__post_init__",
+      "intent": "post-init to compute cycle size from the nodes list length",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "07174"
+    },
+    {
+      "id": "codegraph/refactor.py::CycleInfo::to_dict",
+      "intent": "serialize CycleInfo to dictionary with nodes and files involved",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "4447c"
+    },
+    {
+      "id": "codegraph/refactor.py::GodModule",
+      "intent": "dataclass describing a module with excessive number of nodes",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "d39fb"
+    },
+    {
+      "id": "codegraph/refactor.py::GodModule::to_dict",
+      "intent": "serialize GodModule to dictionary",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "d0c6c"
+    },
+    {
+      "id": "codegraph/refactor.py::RefactorReport",
+      "intent": "complete refactoring analysis report with cycles god modules and suggestions",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "d16d1"
+    },
+    {
+      "id": "codegraph/refactor.py::RefactorReport::format",
+      "intent": "format refactoring report as human-readable summary",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "c0b2b"
+    },
+    {
+      "id": "codegraph/refactor.py::RefactorReport::to_dict",
+      "intent": "serialize RefactorReport to dictionary with summary counts",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "47c9c"
+    },
+    {
+      "id": "codegraph/refactor.py::RefactorSuggestion",
+      "intent": "a single refactoring recommendation with category severity and action",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "98916"
+    },
+    {
+      "id": "codegraph/refactor.py::RefactorSuggestion::to_dict",
+      "intent": "serialize RefactorSuggestion to dictionary",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "9ad27"
+    },
+    {
+      "id": "codegraph/refactor.py::analyze_refactoring",
+      "intent": "run full refactoring analysis detecting cycles god modules and coupling",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "a7b6e"
+    },
+    {
+      "id": "codegraph/refactor.py::detect_coupling",
+      "intent": "detect module pairs with high bidirectional edge count above threshold",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "ced40"
+    },
+    {
+      "id": "codegraph/refactor.py::detect_cycles",
+      "intent": "detect strongly connected components using Tarjan algorithm on the call graph",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "b426e"
+    },
+    {
+      "id": "codegraph/refactor.py::detect_cycles::strongconnect",
+      "intent": "inner recursive function of Tarjan SCC algorithm processing one vertex",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "2dee7"
+    },
+    {
+      "id": "codegraph/refactor.py::detect_god_modules",
+      "intent": "detect modules exceeding a node count threshold",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "a8de4"
+    },
+    {
+      "id": "codegraph/risk_metrics",
+      "intent": "dependency risk scoring module computing fan-in fan-out centrality and coupling metrics",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "d0e1d"
+    },
+    {
+      "id": "codegraph/risk_metrics.py::NodeMetrics",
+      "intent": "dataclass holding structural risk metrics for a single graph node",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "10751"
+    },
+    {
+      "id": "codegraph/risk_metrics.py::NodeMetrics::to_dict",
+      "intent": "serialize NodeMetrics to dictionary with rounded float values",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "fd826"
+    },
+    {
+      "id": "codegraph/risk_metrics.py::RiskLevel",
+      "intent": "enum classifying node risk as LOW MEDIUM HIGH or CRITICAL",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "a2200"
+    },
+    {
+      "id": "codegraph/risk_metrics.py::RiskReport",
+      "intent": "aggregated risk metrics report with top-risk nodes and project averages",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "fa7d0"
+    },
+    {
+      "id": "codegraph/risk_metrics.py::RiskReport::format",
+      "intent": "format risk report as human-readable summary with top risk nodes",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "1f920"
+    },
+    {
+      "id": "codegraph/risk_metrics.py::RiskReport::to_dict",
+      "intent": "serialize RiskReport to dictionary including top 20 risk nodes",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "b6440"
+    },
+    {
+      "id": "codegraph/risk_metrics.py::_approximate_betweenness",
+      "intent": "approximate betweenness centrality via sampled BFS from random source nodes",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "b7cd0"
+    },
+    {
+      "id": "codegraph/risk_metrics.py::check_dependency_limits",
+      "intent": "check fan-in and fan-out dependency limit rules and return violations",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "1ab68"
+    },
+    {
+      "id": "codegraph/risk_metrics.py::compute_risk_metrics",
+      "intent": "compute fan-in fan-out betweenness and composite risk score for all nodes",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "ab736"
+    },
+    {
+      "id": "codegraph/risk_metrics.py::get_node_risk",
+      "intent": "get risk metrics for a single node by computing full report and filtering",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "eccc7"
     },
     {
       "id": "codegraph/schemas",
@@ -9488,6 +10136,123 @@
       "intent_body_hash": "8fc24"
     },
     {
+      "id": "codegraph/visualization",
+      "intent": "graph visualization export module supporting JSON Mermaid and HTML formats",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "d158b"
+    },
+    {
+      "id": "codegraph/visualization.py::VisEdge",
+      "intent": "dataclass representing an edge for visualization",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "6436e"
+    },
+    {
+      "id": "codegraph/visualization.py::VisEdge::to_dict",
+      "intent": "serialize VisEdge to dictionary for JSON export",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "d429c"
+    },
+    {
+      "id": "codegraph/visualization.py::VisGraph",
+      "intent": "complete visualization graph container with nodes edges and metadata",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "84e91"
+    },
+    {
+      "id": "codegraph/visualization.py::VisGraph::to_dict",
+      "intent": "serialize VisGraph to dictionary",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "64b8d"
+    },
+    {
+      "id": "codegraph/visualization.py::VisGraph::to_json",
+      "intent": "serialize VisGraph to JSON string",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "40577"
+    },
+    {
+      "id": "codegraph/visualization.py::VisNode",
+      "intent": "dataclass representing a node for visualization with label and grouping",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "57fd8"
+    },
+    {
+      "id": "codegraph/visualization.py::VisNode::to_dict",
+      "intent": "serialize VisNode to dictionary for JSON export",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "9cacf"
+    },
+    {
+      "id": "codegraph/visualization.py::build_vis_graph",
+      "intent": "build visualization graph from graph0 graph1 and workflow data with optional filtering",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "ab04d"
+    },
+    {
+      "id": "codegraph/visualization.py::export_html_report",
+      "intent": "generate standalone HTML page with interactive D3.js force-directed graph",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "c83c7"
+    },
+    {
+      "id": "codegraph/visualization.py::export_mermaid",
+      "intent": "export dependency graph as Mermaid diagram syntax with subgraph grouping",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "fb091"
+    },
+    {
+      "id": "codegraph/visualization.py::export_mermaid::mermaid_id",
+      "intent": "sanitize node ID for valid Mermaid diagram identifier syntax",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "6e19f"
+    },
+    {
+      "id": "codegraph/visualization.py::save_visualization",
+      "intent": "save visualization in specified format to output path",
+      "layer": 3,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "187bc"
+    },
+    {
       "id": "codegraph/workflow",
       "intent": "codegraph.workflow — Workflow builder (execution graph)",
       "layer": 3,
@@ -10467,6 +11232,177 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "60d31"
+    },
+    {
+      "id": "tests/test_agent_memory",
+      "intent": "test module for agent memory system persistence and operations",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "9bb0d"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestAgentMemory",
+      "intent": "test class for AgentMemory add/record/format operations",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "23e9d"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestAgentMemory::test_add_convention",
+      "intent": "test adding a convention to agent memory",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "ced1b"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestAgentMemory::test_add_duplicate_convention_boosts_confidence",
+      "intent": "test that duplicate convention boosts confidence score",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "eea41"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestAgentMemory::test_add_duplicate_pattern_increments",
+      "intent": "test that duplicate pattern increments success count",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "551b6"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestAgentMemory::test_add_note",
+      "intent": "test adding a timestamped note to memory",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "a8ecb"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestAgentMemory::test_add_pattern",
+      "intent": "test adding a repair pattern to agent memory",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "6abb4"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestAgentMemory::test_format",
+      "intent": "test human-readable formatting of agent memory",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "e6562"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestAgentMemory::test_record_cycle",
+      "intent": "test recording cycle stats updates cumulative counters",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "cfdfe"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestAgentMemory::test_to_json",
+      "intent": "test JSON serialization of agent memory",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "6bb79"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestAgentStats",
+      "intent": "test class for AgentStats serialization",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "ea2f6"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestAgentStats::test_to_dict",
+      "intent": "test AgentStats to_dict serialization",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "2f0bc"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestConvention",
+      "intent": "test class for Convention serialization",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "895ec"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestConvention::test_to_dict",
+      "intent": "test Convention to_dict serialization",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "60e66"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestRepairPattern",
+      "intent": "test class for RepairPattern serialization",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "9c04d"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestRepairPattern::test_to_dict",
+      "intent": "test RepairPattern to_dict serialization",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "c854c"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestSaveLoadMemory",
+      "intent": "test class for save/load round-trip of agent memory",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "b9a2a"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestSaveLoadMemory::test_load_nonexistent",
+      "intent": "test loading memory from nonexistent file returns empty",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "b9484"
+    },
+    {
+      "id": "tests/test_agent_memory.py::TestSaveLoadMemory::test_round_trip",
+      "intent": "test save then load preserves all agent memory data",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "4eb47"
     },
     {
       "id": "tests/test_analyzer",
@@ -14033,6 +14969,312 @@
       "intent_body_hash": "de3e4"
     },
     {
+      "id": "tests/test_path_query",
+      "intent": "test module for path query engine",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "db833"
+    },
+    {
+      "id": "tests/test_path_query.py::TestCheckForbiddenPath",
+      "intent": "test class for forbidden path checking",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "f664f"
+    },
+    {
+      "id": "tests/test_path_query.py::TestCheckForbiddenPath::test_forbidden_path_found",
+      "intent": "test detecting forbidden path marks violation",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "c70b0"
+    },
+    {
+      "id": "tests/test_path_query.py::TestCheckForbiddenPath::test_forbidden_path_not_found",
+      "intent": "test no forbidden path found returns clean result",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "dfd1a"
+    },
+    {
+      "id": "tests/test_path_query.py::TestFindPatternPaths",
+      "intent": "test class for find_pattern_paths function",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "e267f"
+    },
+    {
+      "id": "tests/test_path_query.py::TestFindPatternPaths::test_direct_path",
+      "intent": "test finding a direct dependency path between matching nodes",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "4d8fc"
+    },
+    {
+      "id": "tests/test_path_query.py::TestFindPatternPaths::test_no_index_returns_empty",
+      "intent": "test that empty index returns empty path result",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "78943"
+    },
+    {
+      "id": "tests/test_path_query.py::TestPathResult",
+      "intent": "test class for PathResult dataclass operations",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "4a845"
+    },
+    {
+      "id": "tests/test_path_query.py::TestPathResult::test_empty_result",
+      "intent": "test PathResult with empty paths serializes correctly",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "8a711"
+    },
+    {
+      "id": "tests/test_path_query.py::TestPathResult::test_format_no_paths",
+      "intent": "test PathResult format with no paths found",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "64698"
+    },
+    {
+      "id": "tests/test_path_query.py::TestPathResult::test_format_with_paths",
+      "intent": "test PathResult format with paths found",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "08bbb"
+    },
+    {
+      "id": "tests/test_path_query.py::TestPathResult::test_result_with_paths",
+      "intent": "test PathResult with populated paths",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "27a9c"
+    },
+    {
+      "id": "tests/test_planning",
+      "intent": "test module for agent planning layer",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "38ae7"
+    },
+    {
+      "id": "tests/test_planning.py::TestGeneratePlan",
+      "intent": "test class for plan generation from task data",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "06aa5"
+    },
+    {
+      "id": "tests/test_planning.py::TestGeneratePlan::test_empty_tasks",
+      "intent": "test plan generation with no tasks produces empty plan",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "07006"
+    },
+    {
+      "id": "tests/test_planning.py::TestGeneratePlan::test_intent_missing_tasks",
+      "intent": "test plan generation creates add_intent steps",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "fe7d4"
+    },
+    {
+      "id": "tests/test_planning.py::TestGeneratePlan::test_mixed_tasks_sorted_by_priority",
+      "intent": "test plan steps are sorted by task priority",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "6ef4e"
+    },
+    {
+      "id": "tests/test_planning.py::TestGeneratePlan::test_orphan_tasks",
+      "intent": "test plan generation creates flag_orphan steps",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "eb905"
+    },
+    {
+      "id": "tests/test_planning.py::TestGeneratePlan::test_policy_violation_tasks",
+      "intent": "test plan generation creates connect_call steps",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "16bf9"
+    },
+    {
+      "id": "tests/test_planning.py::TestPlanStep",
+      "intent": "test class for PlanStep serialization",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "07589"
+    },
+    {
+      "id": "tests/test_planning.py::TestPlanStep::test_to_dict",
+      "intent": "test PlanStep to_dict without optional fields",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "6f4d8"
+    },
+    {
+      "id": "tests/test_planning.py::TestPlanStep::test_to_dict_with_target",
+      "intent": "test PlanStep to_dict with target field included",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "e9847"
+    },
+    {
+      "id": "tests/test_planning.py::TestRepairPlan",
+      "intent": "test class for RepairPlan operations",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "9b2c3"
+    },
+    {
+      "id": "tests/test_planning.py::TestRepairPlan::test_empty_plan",
+      "intent": "test empty RepairPlan serializes with zero counts",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "1f6b7"
+    },
+    {
+      "id": "tests/test_planning.py::TestRepairPlan::test_format",
+      "intent": "test RepairPlan human-readable formatting",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "00224"
+    },
+    {
+      "id": "tests/test_planning.py::TestRepairPlan::test_to_json",
+      "intent": "test RepairPlan JSON serialization",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "1b1e1"
+    },
+    {
+      "id": "tests/test_planning.py::TestSaveLoadPlan",
+      "intent": "test class for plan save/load round-trip",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "09421"
+    },
+    {
+      "id": "tests/test_planning.py::TestSaveLoadPlan::test_load_nonexistent",
+      "intent": "test loading nonexistent plan returns None",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "e4982"
+    },
+    {
+      "id": "tests/test_planning.py::TestSaveLoadPlan::test_round_trip",
+      "intent": "test save then load preserves plan data",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "25ffb"
+    },
+    {
+      "id": "tests/test_planning.py::TestValidatePlan",
+      "intent": "test class for plan validation checks",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "35066"
+    },
+    {
+      "id": "tests/test_planning.py::TestValidatePlan::test_duplicate_step_ids",
+      "intent": "test validation detects duplicate step IDs",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "dcbde"
+    },
+    {
+      "id": "tests/test_planning.py::TestValidatePlan::test_invalid_dependency",
+      "intent": "test validation detects invalid dependency references",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "0bcad"
+    },
+    {
+      "id": "tests/test_planning.py::TestValidatePlan::test_missing_graph_version",
+      "intent": "test validation detects missing graph version",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "a704a"
+    },
+    {
+      "id": "tests/test_planning.py::TestValidatePlan::test_valid_plan",
+      "intent": "test validation passes for a correct plan",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "0708e"
+    },
+    {
       "id": "tests/test_properties",
       "intent": "property-based tests for core models",
       "layer": 4,
@@ -14256,6 +15498,366 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "97322"
+    },
+    {
+      "id": "tests/test_refactor",
+      "intent": "test module for refactoring analysis engine",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "cdc13"
+    },
+    {
+      "id": "tests/test_refactor.py::TestAnalyzeRefactoring",
+      "intent": "test class for full refactoring analysis",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "88eaf"
+    },
+    {
+      "id": "tests/test_refactor.py::TestAnalyzeRefactoring::test_full_analysis",
+      "intent": "test analyze_refactoring produces cycles and suggestions",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "2ca72"
+    },
+    {
+      "id": "tests/test_refactor.py::TestCycleInfo",
+      "intent": "test class for CycleInfo dataclass",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "b2402"
+    },
+    {
+      "id": "tests/test_refactor.py::TestCycleInfo::test_to_dict",
+      "intent": "test CycleInfo to_dict serialization with auto-computed size",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "19b68"
+    },
+    {
+      "id": "tests/test_refactor.py::TestDetectCoupling",
+      "intent": "test class for coupling detection",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "b104c"
+    },
+    {
+      "id": "tests/test_refactor.py::TestDetectCoupling::test_high_coupling",
+      "intent": "test high cross-module edge count triggers coupling detection",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "f746f"
+    },
+    {
+      "id": "tests/test_refactor.py::TestDetectCoupling::test_no_coupling",
+      "intent": "test low edge count below threshold returns no coupling",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "8fc69"
+    },
+    {
+      "id": "tests/test_refactor.py::TestDetectCycles",
+      "intent": "test class for Tarjan SCC cycle detection",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "e9928"
+    },
+    {
+      "id": "tests/test_refactor.py::TestDetectCycles::test_no_cycles",
+      "intent": "test acyclic graph returns no cycles",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "8ca1e"
+    },
+    {
+      "id": "tests/test_refactor.py::TestDetectCycles::test_simple_cycle",
+      "intent": "test detecting a simple two-node cycle",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "d2f96"
+    },
+    {
+      "id": "tests/test_refactor.py::TestDetectCycles::test_two_cycles",
+      "intent": "test detecting multiple independent cycles",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "c3b4b"
+    },
+    {
+      "id": "tests/test_refactor.py::TestDetectGodModules",
+      "intent": "test class for god module detection",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "4e073"
+    },
+    {
+      "id": "tests/test_refactor.py::TestDetectGodModules::test_god_module_detected",
+      "intent": "test module exceeding threshold is flagged as god module",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "75533"
+    },
+    {
+      "id": "tests/test_refactor.py::TestDetectGodModules::test_no_god_modules",
+      "intent": "test modules under threshold are not flagged",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "e512c"
+    },
+    {
+      "id": "tests/test_refactor.py::TestDetectGodModules::test_threshold_exact",
+      "intent": "test exact threshold boundary behavior",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "744d2"
+    },
+    {
+      "id": "tests/test_refactor.py::TestRefactorReport",
+      "intent": "test class for RefactorReport",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "526cf"
+    },
+    {
+      "id": "tests/test_refactor.py::TestRefactorReport::test_empty_report",
+      "intent": "test empty RefactorReport serializes with zero counts",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "d3af1"
+    },
+    {
+      "id": "tests/test_refactor.py::TestRefactorReport::test_format",
+      "intent": "test RefactorReport human-readable formatting",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "807f8"
+    },
+    {
+      "id": "tests/test_refactor.py::_make_graph0",
+      "intent": "test helper creating a minimal Graph0 with given file-node mapping",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "d4d80"
+    },
+    {
+      "id": "tests/test_refactor.py::_make_index_mock",
+      "intent": "test helper creating a mock IndexStore with configurable adjacency",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "27fce"
+    },
+    {
+      "id": "tests/test_risk_metrics",
+      "intent": "test module for risk metrics computation",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "404c4"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestApproximateBetweenness",
+      "intent": "test class for betweenness centrality approximation",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "5ecf3"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestApproximateBetweenness::test_empty_graph",
+      "intent": "test betweenness on empty graph returns empty dict",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "6e465"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestApproximateBetweenness::test_linear_path",
+      "intent": "test betweenness on linear path graph",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "9e72d"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestCheckDependencyLimits",
+      "intent": "test class for dependency limit rule checking",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "b6016"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestCheckDependencyLimits::test_fan_out_exceeded",
+      "intent": "test fan-out exceeding limit produces violation",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "29ba6"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestCheckDependencyLimits::test_no_rules",
+      "intent": "test no rules returns no violations",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "5ac19"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestCheckDependencyLimits::test_within_limits",
+      "intent": "test fan values within limits produce no violations",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "f27e6"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestComputeRiskMetrics",
+      "intent": "test class for compute_risk_metrics function",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "0e2ad"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestComputeRiskMetrics::test_empty_graph",
+      "intent": "test risk metrics with no nodes returns empty report",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "957df"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestComputeRiskMetrics::test_risk_levels_assigned",
+      "intent": "test risk levels are correctly assigned based on score",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "37263"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestComputeRiskMetrics::test_simple_graph",
+      "intent": "test risk metrics computation on a small graph",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "71110"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestNodeMetrics",
+      "intent": "test class for NodeMetrics dataclass",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "76258"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestNodeMetrics::test_risk_level_default",
+      "intent": "test NodeMetrics default risk level is LOW",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "3755b"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestNodeMetrics::test_to_dict",
+      "intent": "test NodeMetrics to_dict serialization",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "320d3"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestRiskReport",
+      "intent": "test class for RiskReport",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "1f9f6"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestRiskReport::test_empty_report",
+      "intent": "test empty RiskReport serializes correctly",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "29938"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::TestRiskReport::test_format",
+      "intent": "test RiskReport human-readable formatting",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "10def"
+    },
+    {
+      "id": "tests/test_risk_metrics.py::_make_index_mock",
+      "intent": "test helper creating mock IndexStore with adjacency data for risk metrics tests",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "cbf63"
     },
     {
       "id": "tests/test_semantics",
@@ -15048,6 +16650,222 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "82214"
+    },
+    {
+      "id": "tests/test_visualization",
+      "intent": "test module for visualization export",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "8cd0c"
+    },
+    {
+      "id": "tests/test_visualization.py::TestBuildVisGraph",
+      "intent": "test class for build_vis_graph function",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "23f1e"
+    },
+    {
+      "id": "tests/test_visualization.py::TestBuildVisGraph::test_basic_graph",
+      "intent": "test building visualization graph from codegraph data",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "3cf33"
+    },
+    {
+      "id": "tests/test_visualization.py::TestBuildVisGraph::test_filter_file",
+      "intent": "test file-based filtering of visualization nodes",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "77ea8"
+    },
+    {
+      "id": "tests/test_visualization.py::TestBuildVisGraph::test_max_nodes",
+      "intent": "test max_nodes limit truncates visualization",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "c6410"
+    },
+    {
+      "id": "tests/test_visualization.py::TestExportHtmlReport",
+      "intent": "test class for HTML report export",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "5dc5c"
+    },
+    {
+      "id": "tests/test_visualization.py::TestExportHtmlReport::test_basic_html",
+      "intent": "test standalone HTML page generation with D3.js",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "2c4d6"
+    },
+    {
+      "id": "tests/test_visualization.py::TestExportMermaid",
+      "intent": "test class for Mermaid diagram export",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "7993c"
+    },
+    {
+      "id": "tests/test_visualization.py::TestExportMermaid::test_basic_mermaid",
+      "intent": "test basic Mermaid diagram generation",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "f8cd9"
+    },
+    {
+      "id": "tests/test_visualization.py::TestSaveVisualization",
+      "intent": "test class for save_visualization function",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "d1cff"
+    },
+    {
+      "id": "tests/test_visualization.py::TestSaveVisualization::test_invalid_format",
+      "intent": "test invalid format raises ValueError",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "6d1ca"
+    },
+    {
+      "id": "tests/test_visualization.py::TestSaveVisualization::test_save_html",
+      "intent": "test saving visualization in HTML format",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "e3ab6"
+    },
+    {
+      "id": "tests/test_visualization.py::TestSaveVisualization::test_save_json",
+      "intent": "test saving visualization in JSON format",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "e7c62"
+    },
+    {
+      "id": "tests/test_visualization.py::TestSaveVisualization::test_save_mermaid",
+      "intent": "test saving visualization in Mermaid format",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "b0048"
+    },
+    {
+      "id": "tests/test_visualization.py::TestVisEdge",
+      "intent": "test class for VisEdge dataclass",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "c6f50"
+    },
+    {
+      "id": "tests/test_visualization.py::TestVisEdge::test_to_dict",
+      "intent": "test VisEdge to_dict serialization",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "cba05"
+    },
+    {
+      "id": "tests/test_visualization.py::TestVisGraph",
+      "intent": "test class for VisGraph container",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "b6351"
+    },
+    {
+      "id": "tests/test_visualization.py::TestVisGraph::test_empty",
+      "intent": "test empty VisGraph serializes to dict with empty lists",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "9959a"
+    },
+    {
+      "id": "tests/test_visualization.py::TestVisGraph::test_to_json",
+      "intent": "test VisGraph JSON serialization with nodes",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "b8612"
+    },
+    {
+      "id": "tests/test_visualization.py::TestVisNode",
+      "intent": "test class for VisNode dataclass",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "4213e"
+    },
+    {
+      "id": "tests/test_visualization.py::TestVisNode::test_to_dict",
+      "intent": "test VisNode to_dict serialization",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "fbd21"
+    },
+    {
+      "id": "tests/test_visualization.py::_make_graph0",
+      "intent": "test helper creating minimal Graph0 for visualization tests",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "8fa57"
+    },
+    {
+      "id": "tests/test_visualization.py::_make_graph1",
+      "intent": "test helper creating minimal Graph1 for visualization tests",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "cbe01"
+    },
+    {
+      "id": "tests/test_visualization.py::_make_workflow",
+      "intent": "test helper creating minimal Workflow for visualization tests",
+      "layer": 4,
+      "intent_author": "copilot",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-09T13:56:31Z",
+      "intent_body_hash": "7635c"
     },
     {
       "id": "tests/test_workflow",

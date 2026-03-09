@@ -15664,5 +15664,419 @@
     "reason": "Test coverage gap - informational",
     "timestamp": "2026-03-09T13:03:15Z",
     "target": ""
+  },
+  {
+    "node": "codegraph/cas.py::CASExplainInfo::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/path_query.py::PathResult::has_paths",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/path_query.py::PathResult::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/refactor.py::CycleInfo::__post_init__",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/risk_metrics.py::RiskLevel",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/visualization.py::export_mermaid::mermaid_id",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_agent_memory.py::TestAgentMemory",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_agent_memory.py::TestAgentStats",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_agent_memory.py::TestConvention",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_agent_memory.py::TestRepairPattern",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_agent_memory.py::TestSaveLoadMemory",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_path_query.py::TestCheckForbiddenPath",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_path_query.py::TestFindPatternPaths",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_path_query.py::TestPathResult",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_planning.py::TestGeneratePlan",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_planning.py::TestPlanStep",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_planning.py::TestRepairPlan",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_planning.py::TestSaveLoadPlan",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_planning.py::TestValidatePlan",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_refactor.py::TestAnalyzeRefactoring",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_refactor.py::TestCycleInfo",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_refactor.py::TestDetectCoupling",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_refactor.py::TestDetectCycles",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_refactor.py::TestDetectGodModules",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_refactor.py::TestRefactorReport",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_risk_metrics.py::TestApproximateBetweenness",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_risk_metrics.py::TestCheckDependencyLimits",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_risk_metrics.py::TestComputeRiskMetrics",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_risk_metrics.py::TestNodeMetrics",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_risk_metrics.py::TestRiskReport",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_visualization.py::TestBuildVisGraph",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_visualization.py::TestExportHtmlReport",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_visualization.py::TestExportMermaid",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_visualization.py::TestSaveVisualization",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_visualization.py::TestVisEdge",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_visualization.py::TestVisGraph",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "tests/test_visualization.py::TestVisNode",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/agent_memory.py::AgentStats::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/agent_memory.py::Convention::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/agent_memory.py::RepairPattern::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/cli.py::memory_cmd",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/cli.py::metrics_cmd",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/cli.py::path_cmd",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/cli.py::plan_cmd",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/cli.py::refactor_cmd",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/cli.py::visualize_cmd",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/models/agent_response.py::AgentResponse::to_json",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/path_query.py::PathResult::format",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/path_query.py::_bfs_to_set",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/path_query.py::_get_all_node_ids",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/planning.py::PlanStep::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/planning.py::RepairPlan::format",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/planning.py::RepairPlan::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/planning.py::RepairPlan::to_json",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/refactor.py::CouplingPair::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/refactor.py::CycleInfo::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/refactor.py::GodModule::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/refactor.py::RefactorReport::format",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/refactor.py::RefactorReport::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/refactor.py::RefactorSuggestion::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/refactor.py::detect_cycles::strongconnect",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/risk_metrics.py::NodeMetrics::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/risk_metrics.py::RiskReport::format",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/risk_metrics.py::RiskReport::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/risk_metrics.py::get_node_risk",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/visualization.py::VisEdge::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/visualization.py::VisGraph::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/visualization.py::VisGraph::to_json",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
+  },
+  {
+    "node": "codegraph/visualization.py::VisNode::to_dict",
+    "reason": "Flagged for human review",
+    "timestamp": "2026-03-09T13:58:06Z",
+    "target": ""
   }
 ]

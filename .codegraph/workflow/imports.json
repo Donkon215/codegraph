@@ -1,28 +1,167 @@
 {
   "edges": [
     {
-      "source": "codegraph/models/graph2.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/models/graph2.py",
-      "target": "hashlib",
-      "names": [
-        "hashlib"
-      ]
-    },
-    {
-      "source": "codegraph/models/graph2.py",
+      "source": "tests/test_visualization.py",
       "target": "json",
       "names": [
         "json"
       ]
     },
     {
-      "source": "codegraph/models/graph2.py",
+      "source": "tests/test_visualization.py",
+      "target": "unittest/mock",
+      "names": [
+        "MagicMock"
+      ]
+    },
+    {
+      "source": "tests/test_visualization.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_visualization.py",
+      "target": "codegraph/visualization",
+      "names": [
+        "VisNode",
+        "VisEdge",
+        "VisGraph",
+        "build_vis_graph",
+        "export_mermaid",
+        "export_html_report",
+        "save_visualization"
+      ]
+    },
+    {
+      "source": "tests/test_risk_metrics.py",
+      "target": "sqlite3",
+      "names": [
+        "sqlite3"
+      ]
+    },
+    {
+      "source": "tests/test_risk_metrics.py",
+      "target": "unittest/mock",
+      "names": [
+        "MagicMock"
+      ]
+    },
+    {
+      "source": "tests/test_risk_metrics.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_risk_metrics.py",
+      "target": "codegraph/risk_metrics",
+      "names": [
+        "NodeMetrics",
+        "RiskLevel",
+        "RiskReport",
+        "compute_risk_metrics",
+        "check_dependency_limits",
+        "_approximate_betweenness"
+      ]
+    },
+    {
+      "source": "codegraph/utils/hashing.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/utils/hashing.py",
+      "target": "ast",
+      "names": [
+        "ast"
+      ]
+    },
+    {
+      "source": "codegraph/utils/hashing.py",
+      "target": "hashlib",
+      "names": [
+        "hashlib"
+      ]
+    },
+    {
+      "source": "codegraph/utils/hashing.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/utils/hashing.py",
+      "target": "typing",
+      "names": [
+        "Optional"
+      ]
+    },
+    {
+      "source": "codegraph/utils/hashing.py",
+      "target": "codegraph/constants",
+      "names": [
+        "BODY_HASH_LENGTH",
+        "FILE_HASH_LENGTH"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "csv",
+      "names": [
+        "csv"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "fnmatch",
+      "names": [
+        "fnmatch"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "io",
+      "names": [
+        "io"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "re",
+      "names": [
+        "re"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "collections",
+      "names": [
+        "Counter",
+        "defaultdict"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
       "target": "dataclasses",
       "names": [
         "dataclass",
@@ -30,14 +169,522 @@
       ]
     },
     {
-      "source": "codegraph/models/graph2.py",
+      "source": "codegraph/annotator.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Sequence"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "codegraph/constants",
+      "names": [
+        "GRAPHS_DIR"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "codegraph/exceptions",
+      "names": [
+        "IntentConflictError"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "codegraph/models/agent_response",
+      "names": [
+        "IntentProposal"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "codegraph/models/graph1",
+      "names": [
+        "Graph1",
+        "Graph1Node",
+        "validate_arch_layer_name",
+        "validate_intent"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "codegraph/storage",
+      "names": [
+        "atomic_write",
+        "resolve_path"
+      ]
+    },
+    {
+      "source": "codegraph/annotator.py",
+      "target": "codegraph/utils/formatting",
+      "names": [
+        "iso_now"
+      ]
+    },
+    {
+      "source": "codegraph/models/dead_code.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/models/dead_code.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass"
+      ]
+    },
+    {
+      "source": "codegraph/models/dead_code.py",
+      "target": "typing",
+      "names": [
+        "List"
+      ]
+    },
+    {
+      "source": "codegraph/formatters.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/formatters.py",
+      "target": "csv",
+      "names": [
+        "csv"
+      ]
+    },
+    {
+      "source": "codegraph/formatters.py",
+      "target": "io",
+      "names": [
+        "io"
+      ]
+    },
+    {
+      "source": "codegraph/formatters.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/formatters.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Sequence",
+        "Union"
+      ]
+    },
+    {
+      "source": "codegraph/formatters.py",
+      "target": "click",
+      "names": [
+        "click"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "ast",
+      "names": [
+        "ast"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "concurrent/futures",
+      "names": [
+        "futures"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "copy",
+      "names": [
+        "copy"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "hashlib",
+      "names": [
+        "hashlib"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "os",
+      "names": [
+        "os"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "time",
+      "names": [
+        "time"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Set",
+        "Tuple",
+        "Union"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "codegraph/config",
+      "names": [
+        "CodegraphConfig",
+        "load_config"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "codegraph/constants",
+      "names": [
+        "BODY_HASH_LENGTH",
+        "CODEGRAPH_DIR",
+        "CURRENT_FORMAT_VERSION",
+        "GRAPHS_DIR"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "CollisionResolver",
+        "Graph0",
+        "Graph0Node"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "codegraph/storage",
+      "names": [
+        "atomic_write",
+        "ensure_codegraph_dir",
+        "increment_graph_version",
+        "resolve_path"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "codegraph/utils/file_discovery",
+      "names": [
+        "discover_source_files"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "codegraph/utils/formatting",
+      "names": [
+        "iso_now"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "codegraph/utils/hashing",
+      "names": [
+        "hash_file"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "codegraph/utils/ids",
+      "names": [
+        "normalize_path"
+      ]
+    },
+    {
+      "source": "codegraph/extractor.py",
+      "target": "codegraph/utils/progress",
+      "names": [
+        "ProgressReporter"
+      ]
+    },
+    {
+      "source": "codegraph/risk_metrics.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/risk_metrics.py",
+      "target": "collections",
+      "names": [
+        "defaultdict"
+      ]
+    },
+    {
+      "source": "codegraph/risk_metrics.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/risk_metrics.py",
       "target": "enum",
       "names": [
         "Enum"
       ]
     },
     {
-      "source": "codegraph/models/graph2.py",
+      "source": "codegraph/risk_metrics.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Set",
+        "Tuple"
+      ]
+    },
+    {
+      "source": "codegraph/risk_metrics.py",
+      "target": "codegraph/index",
+      "names": [
+        "IndexStore"
+      ]
+    },
+    {
+      "source": "codegraph/risk_metrics.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/risk_metrics.py",
+      "target": "fnmatch",
+      "names": [
+        "fnmatch"
+      ]
+    },
+    {
+      "source": "codegraph/risk_metrics.py",
+      "target": "random",
+      "names": [
+        "random"
+      ]
+    },
+    {
+      "source": "codegraph/cas.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/cas.py",
+      "target": "hashlib",
+      "names": [
+        "hashlib"
+      ]
+    },
+    {
+      "source": "codegraph/cas.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/cas.py",
+      "target": "time",
+      "names": [
+        "time"
+      ]
+    },
+    {
+      "source": "codegraph/cas.py",
+      "target": "collections",
+      "names": [
+        "defaultdict",
+        "deque"
+      ]
+    },
+    {
+      "source": "codegraph/cas.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/cas.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/cas.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "FrozenSet",
+        "List",
+        "Optional",
+        "Set",
+        "Tuple"
+      ]
+    },
+    {
+      "source": "codegraph/cas.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/cas.py",
+      "target": "codegraph/utils/formatting",
+      "names": [
+        "format_json",
+        "iso_now"
+      ]
+    },
+    {
+      "source": "codegraph/cas.py",
+      "target": "codegraph/layers",
+      "names": [
+        "Layer"
+      ]
+    },
+    {
+      "source": "tests/test_graph2.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_graph2.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "tests/test_graph2.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_graph2.py",
+      "target": "codegraph/models/graph2",
+      "names": [
+        "ActionType",
+        "SideEffectType",
+        "SemanticAction",
+        "Guard",
+        "SideEffect",
+        "DataFlowItem",
+        "DataFlowSummary",
+        "Graph2Node",
+        "Graph2"
+      ]
+    },
+    {
+      "source": "codegraph/known_libraries.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/known_libraries.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/known_libraries.py",
       "target": "typing",
       "names": [
         "Any",
@@ -48,22 +695,170 @@
       ]
     },
     {
-      "source": "codegraph/models/graph2.py",
-      "target": "codegraph/utils/formatting",
+      "source": "codegraph/known_libraries.py",
+      "target": "codegraph/models/graph2",
       "names": [
-        "format_json",
-        "iso_now"
+        "SideEffectType"
       ]
     },
     {
-      "source": "examples/trading/src/trade.py",
+      "source": "codegraph/models/alignment.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "examples/trading/src/trade.py",
+      "source": "codegraph/models/alignment.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/models/alignment.py",
+      "target": "typing",
+      "names": [
+        "Dict",
+        "List"
+      ]
+    },
+    {
+      "source": "codegraph/models/alignment.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0"
+      ]
+    },
+    {
+      "source": "codegraph/models/alignment.py",
+      "target": "codegraph/models/graph1",
+      "names": [
+        "Graph1"
+      ]
+    },
+    {
+      "source": "examples/trading/tests/test_trade.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "examples/trading/tests/test_trade.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "examples/trading/tests/test_trade.py",
+      "target": "src/trade",
+      "names": [
+        "execute_order",
+        "validate_trade"
+      ]
+    },
+    {
+      "source": "codegraph/models/agent_response.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/models/agent_response.py",
+      "target": "enum",
+      "names": [
+        "enum"
+      ]
+    },
+    {
+      "source": "codegraph/models/agent_response.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/models/agent_response.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/models/agent_response.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Tuple"
+      ]
+    },
+    {
+      "source": "codegraph/models/agent_response.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/models/agent_response.py",
+      "target": "codegraph/utils/formatting",
+      "names": [
+        "format_json"
+      ]
+    },
+    {
+      "source": "tests/test_delta.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_delta.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_delta.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0",
+        "Graph0Node"
+      ]
+    },
+    {
+      "source": "tests/test_delta.py",
+      "target": "codegraph/delta",
+      "names": [
+        "run_delta"
+      ]
+    },
+    {
+      "source": "codegraph/models/status.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/models/status.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass"
+      ]
+    },
+    {
+      "source": "codegraph/models/status.py",
       "target": "typing",
       "names": [
         "Any",
@@ -71,121 +866,344 @@
       ]
     },
     {
-      "source": "examples/trading/src/trade.py",
-      "target": "src/signal",
+      "source": "codegraph/models/status.py",
+      "target": "codegraph/utils/formatting",
       "names": [
-        "generate_signal"
+        "format_json"
       ]
     },
     {
-      "source": "tests/test_known_libraries.py",
+      "source": "codegraph/metrics.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "tests/test_known_libraries.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_known_libraries.py",
-      "target": "codegraph/known_libraries",
-      "names": [
-        "LibraryInfo",
-        "get_library_info",
-        "get_all_known_names",
-        "get_libraries_by_category",
-        "enrich_side_effects_from_library",
-        "enrich_domain_tags_from_library"
-      ]
-    },
-    {
-      "source": "tests/test_known_libraries.py",
-      "target": "codegraph/models/graph2",
-      "names": [
-        "SideEffectType"
-      ]
-    },
-    {
-      "source": "benchmarks/benchmark_query.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "benchmarks/benchmark_query.py",
-      "target": "sqlite3",
-      "names": [
-        "sqlite3"
-      ]
-    },
-    {
-      "source": "benchmarks/benchmark_query.py",
-      "target": "tempfile",
-      "names": [
-        "tempfile"
-      ]
-    },
-    {
-      "source": "benchmarks/benchmark_query.py",
+      "source": "codegraph/metrics.py",
       "target": "time",
       "names": [
         "time"
       ]
     },
     {
-      "source": "benchmarks/benchmark_query.py",
-      "target": "pathlib",
+      "source": "codegraph/metrics.py",
+      "target": "dataclasses",
       "names": [
-        "Path"
+        "dataclass",
+        "field"
       ]
     },
     {
-      "source": "benchmarks/benchmark_query.py",
-      "target": "random",
+      "source": "codegraph/metrics.py",
+      "target": "typing",
       "names": [
-        "random"
+        "Any"
       ]
     },
     {
-      "source": "codegraph/extractors/python.py",
+      "source": "codegraph/archi_test.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "codegraph/extractors/python.py",
+      "source": "codegraph/archi_test.py",
+      "target": "ast",
+      "names": [
+        "ast"
+      ]
+    },
+    {
+      "source": "codegraph/archi_test.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/archi_test.py",
+      "target": "os",
+      "names": [
+        "os"
+      ]
+    },
+    {
+      "source": "codegraph/archi_test.py",
+      "target": "subprocess",
+      "names": [
+        "subprocess"
+      ]
+    },
+    {
+      "source": "codegraph/archi_test.py",
+      "target": "textwrap",
+      "names": [
+        "textwrap"
+      ]
+    },
+    {
+      "source": "codegraph/archi_test.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/archi_test.py",
       "target": "pathlib",
       "names": [
         "Path"
       ]
     },
     {
-      "source": "codegraph/extractors/python.py",
+      "source": "codegraph/archi_test.py",
       "target": "typing",
       "names": [
-        "List"
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Set"
       ]
     },
     {
-      "source": "codegraph/extractors/python.py",
-      "target": "codegraph/extractor",
+      "source": "codegraph/archi_test.py",
+      "target": "codegraph/constants",
       "names": [
-        "FileExtractionResult",
-        "extract_file"
+        "TEST_ARCHI_DIR"
       ]
     },
     {
-      "source": "codegraph/extractors/python.py",
+      "source": "codegraph/archi_test.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/archi_test.py",
+      "target": "codegraph/models/delta",
+      "names": [
+        "DeltaResult"
+      ]
+    },
+    {
+      "source": "codegraph/archi_test.py",
       "target": "codegraph/models/graph0",
       "names": [
+        "Graph0",
         "Graph0Node"
+      ]
+    },
+    {
+      "source": "codegraph/archi_test.py",
+      "target": "codegraph/models/workflow",
+      "names": [
+        "Workflow"
+      ]
+    },
+    {
+      "source": "codegraph/archi_test.py",
+      "target": "codegraph/storage",
+      "names": [
+        "resolve_path"
+      ]
+    },
+    {
+      "source": "codegraph/archi_test.py",
+      "target": "time",
+      "names": [
+        "time"
+      ]
+    },
+    {
+      "source": "codegraph/archi_test.py",
+      "target": "re",
+      "names": [
+        "re"
+      ]
+    },
+    {
+      "source": "tests/test_suggest.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_suggest.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_suggest.py",
+      "target": "codegraph/models/suggested_workflow",
+      "names": [
+        "SuggestedWorkflowRule",
+        "RuleType"
+      ]
+    },
+    {
+      "source": "tests/test_refactor.py",
+      "target": "sqlite3",
+      "names": [
+        "sqlite3"
+      ]
+    },
+    {
+      "source": "tests/test_refactor.py",
+      "target": "unittest/mock",
+      "names": [
+        "MagicMock"
+      ]
+    },
+    {
+      "source": "tests/test_refactor.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_refactor.py",
+      "target": "codegraph/refactor",
+      "names": [
+        "CycleInfo",
+        "GodModule",
+        "CouplingPair",
+        "RefactorSuggestion",
+        "RefactorReport",
+        "detect_cycles",
+        "detect_god_modules",
+        "detect_coupling",
+        "analyze_refactoring"
+      ]
+    },
+    {
+      "source": "codegraph/models/delta.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/models/delta.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/models/delta.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/models/delta.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Tuple"
+      ]
+    },
+    {
+      "source": "codegraph/models/delta.py",
+      "target": "codegraph/utils/formatting",
+      "names": [
+        "format_json",
+        "iso_now"
+      ]
+    },
+    {
+      "source": "codegraph/visualization.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/visualization.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/visualization.py",
+      "target": "collections",
+      "names": [
+        "defaultdict"
+      ]
+    },
+    {
+      "source": "codegraph/visualization.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/visualization.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/visualization.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Set"
+      ]
+    },
+    {
+      "source": "codegraph/visualization.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/visualization.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0"
+      ]
+    },
+    {
+      "source": "codegraph/visualization.py",
+      "target": "codegraph/models/graph1",
+      "names": [
+        "Graph1"
+      ]
+    },
+    {
+      "source": "codegraph/visualization.py",
+      "target": "codegraph/models/workflow",
+      "names": [
+        "Workflow"
+      ]
+    },
+    {
+      "source": "codegraph/visualization.py",
+      "target": "fnmatch",
+      "names": [
+        "fnmatch"
       ]
     },
     {
@@ -259,51 +1277,350 @@
       ]
     },
     {
-      "source": "codegraph/utils/file_discovery.py",
+      "source": "tests/test_layers.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "codegraph/utils/file_discovery.py",
-      "target": "fnmatch",
+      "source": "tests/test_layers.py",
+      "target": "pytest",
       "names": [
-        "fnmatch"
+        "pytest"
       ]
     },
     {
-      "source": "codegraph/utils/file_discovery.py",
-      "target": "os",
+      "source": "tests/test_layers.py",
+      "target": "codegraph/layers",
       "names": [
-        "os"
+        "Layer"
       ]
     },
     {
-      "source": "codegraph/utils/file_discovery.py",
+      "source": "examples/trading/src/data.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "examples/trading/src/data.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict"
+      ]
+    },
+    {
+      "source": "codegraph/semantics.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/semantics.py",
+      "target": "ast",
+      "names": [
+        "ast"
+      ]
+    },
+    {
+      "source": "codegraph/semantics.py",
+      "target": "hashlib",
+      "names": [
+        "hashlib"
+      ]
+    },
+    {
+      "source": "codegraph/semantics.py",
+      "target": "re",
+      "names": [
+        "re"
+      ]
+    },
+    {
+      "source": "codegraph/semantics.py",
+      "target": "time",
+      "names": [
+        "time"
+      ]
+    },
+    {
+      "source": "codegraph/semantics.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/semantics.py",
       "target": "pathlib",
       "names": [
         "Path"
       ]
     },
     {
-      "source": "codegraph/utils/file_discovery.py",
+      "source": "codegraph/semantics.py",
       "target": "typing",
       "names": [
+        "Any",
+        "Dict",
         "List",
         "Optional",
-        "Sequence"
+        "Set",
+        "Tuple"
       ]
     },
     {
-      "source": "codegraph/utils/file_discovery.py",
+      "source": "codegraph/semantics.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/semantics.py",
+      "target": "codegraph/models/graph2",
+      "names": [
+        "ActionType",
+        "DataFlowItem",
+        "DataFlowSummary",
+        "Graph2",
+        "Graph2Node",
+        "Guard",
+        "SemanticAction",
+        "SideEffect",
+        "SideEffectType"
+      ]
+    },
+    {
+      "source": "codegraph/semantics.py",
+      "target": "codegraph/storage",
+      "names": [
+        "ensure_codegraph_dir"
+      ]
+    },
+    {
+      "source": "codegraph/suggest.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/suggest.py",
+      "target": "fnmatch",
+      "names": [
+        "fnmatch"
+      ]
+    },
+    {
+      "source": "codegraph/suggest.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/suggest.py",
+      "target": "collections",
+      "names": [
+        "defaultdict"
+      ]
+    },
+    {
+      "source": "codegraph/suggest.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/suggest.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/suggest.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Set",
+        "Tuple"
+      ]
+    },
+    {
+      "source": "codegraph/suggest.py",
       "target": "codegraph/constants",
       "names": [
-        "CODEGRAPH_DIR"
+        "LAYER_PROJECT",
+        "LAYER_TEST",
+        "SUGGESTED_WORKFLOW_FILE",
+        "WORKFLOW_DIR"
       ]
     },
     {
-      "source": "codegraph/utils/file_discovery.py",
+      "source": "codegraph/suggest.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/suggest.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0"
+      ]
+    },
+    {
+      "source": "codegraph/suggest.py",
+      "target": "codegraph/models/graph1",
+      "names": [
+        "Graph1"
+      ]
+    },
+    {
+      "source": "codegraph/suggest.py",
+      "target": "codegraph/models/suggested_workflow",
+      "names": [
+        "RuleType",
+        "SuggestedWorkflow",
+        "SuggestedWorkflowRule",
+        "expand_arch_layer_scope",
+        "expand_layer_scope",
+        "expand_rule_scope"
+      ]
+    },
+    {
+      "source": "codegraph/suggest.py",
+      "target": "codegraph/models/workflow",
+      "names": [
+        "Workflow",
+        "WorkflowEdge"
+      ]
+    },
+    {
+      "source": "codegraph/suggest.py",
+      "target": "codegraph/storage",
+      "names": [
+        "atomic_write",
+        "ensure_codegraph_dir",
+        "resolve_path"
+      ]
+    },
+    {
+      "source": "codegraph/suggest.py",
+      "target": "codegraph/utils/formatting",
+      "names": [
+        "iso_now"
+      ]
+    },
+    {
+      "source": "codegraph/suggest.py",
+      "target": "codegraph/semantics",
+      "names": [
+        "evaluate_semantic_rules_impl"
+      ]
+    },
+    {
+      "source": "codegraph/planning.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/planning.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/planning.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/planning.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/planning.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional"
+      ]
+    },
+    {
+      "source": "codegraph/planning.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/filters.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/filters.py",
+      "target": "re",
+      "names": [
+        "re"
+      ]
+    },
+    {
+      "source": "codegraph/filters.py",
+      "target": "abc",
+      "names": [
+        "ABC",
+        "abstractmethod"
+      ]
+    },
+    {
+      "source": "codegraph/filters.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/filters.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Set"
+      ]
+    },
+    {
+      "source": "codegraph/filters.py",
       "target": "codegraph/logging_config",
       "names": [
         "get_logger"
@@ -331,609 +1648,172 @@
       ]
     },
     {
-      "source": "tests/test_query.py",
+      "source": "codegraph/constants.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "tests/test_query.py",
+      "source": "codegraph/pytest_plugin.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_apply.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_apply.py",
       "target": "pytest",
       "names": [
         "pytest"
       ]
     },
     {
-      "source": "tests/test_query.py",
-      "target": "codegraph/query",
+      "source": "tests/test_apply.py",
+      "target": "codegraph/apply",
       "names": [
-        "parse_query",
-        "ParsedQuery"
+        "run_apply"
       ]
     },
     {
-      "source": "tests/test_layers.py",
+      "source": "examples/trading/src/signal.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "tests/test_layers.py",
-      "target": "pytest",
+      "source": "examples/trading/src/signal.py",
+      "target": "src/data",
       "names": [
-        "pytest"
+        "fetch_data"
       ]
     },
     {
-      "source": "tests/test_layers.py",
-      "target": "codegraph/layers",
+      "source": "codegraph/__main__.py",
+      "target": "codegraph/cli",
       "names": [
-        "Layer"
+        "main"
       ]
     },
     {
-      "source": "codegraph/models/convergence.py",
+      "source": "codegraph/config.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "codegraph/models/convergence.py",
+      "source": "codegraph/config.py",
       "target": "dataclasses",
       "names": [
-        "dataclass",
-        "field"
+        "dataclasses"
       ]
     },
     {
-      "source": "codegraph/models/convergence.py",
+      "source": "codegraph/config.py",
+      "target": "hashlib",
+      "names": [
+        "hashlib"
+      ]
+    },
+    {
+      "source": "codegraph/config.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/config.py",
       "target": "typing",
       "names": [
-        "List",
-        "Tuple"
+        "Any",
+        "Optional"
       ]
     },
     {
-      "source": "tests/test_fuzz.py",
+      "source": "codegraph/config.py",
+      "target": "yaml",
+      "names": [
+        "yaml"
+      ]
+    },
+    {
+      "source": "codegraph/config.py",
+      "target": "codegraph/constants",
+      "names": [
+        "CODEGRAPH_DIR",
+        "CONFIG_FILE",
+        "CONVERGENCE_THRESHOLD",
+        "DEFAULT_DUNDER_EXCLUDE",
+        "DEFAULT_EDGE_FILTERS",
+        "MAX_ITERATIONS",
+        "PROJECT_ROOT_MARKERS"
+      ]
+    },
+    {
+      "source": "codegraph/config.py",
+      "target": "codegraph/exceptions",
+      "names": [
+        "ProjectNotFoundError"
+      ]
+    },
+    {
+      "source": "codegraph/config.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/logging_config.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "tests/test_fuzz.py",
+      "source": "codegraph/logging_config.py",
       "target": "json",
       "names": [
         "json"
       ]
     },
     {
-      "source": "tests/test_fuzz.py",
-      "target": "random",
+      "source": "codegraph/logging_config.py",
+      "target": "logging",
       "names": [
-        "random"
+        "logging"
       ]
     },
     {
-      "source": "tests/test_fuzz.py",
-      "target": "string",
-      "names": [
-        "string"
-      ]
-    },
-    {
-      "source": "tests/test_fuzz.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_fuzz.py",
-      "target": "codegraph/query",
-      "names": [
-        "parse_query"
-      ]
-    },
-    {
-      "source": "tests/test_fuzz.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "Graph0"
-      ]
-    },
-    {
-      "source": "tests/test_fuzz.py",
-      "target": "codegraph/models/graph1",
-      "names": [
-        "Graph1"
-      ]
-    },
-    {
-      "source": "tests/test_fuzz.py",
-      "target": "codegraph/models/workflow",
-      "names": [
-        "Workflow"
-      ]
-    },
-    {
-      "source": "tests/test_fuzz.py",
-      "target": "codegraph/utils/ids",
-      "names": [
-        "generate_node_id"
-      ]
-    },
-    {
-      "source": "codegraph/utils/progress.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/utils/progress.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/utils/progress.py",
+      "source": "codegraph/logging_config.py",
       "target": "sys",
       "names": [
         "sys"
       ]
     },
     {
-      "source": "codegraph/utils/progress.py",
-      "target": "time",
+      "source": "codegraph/logging_config.py",
+      "target": "datetime",
       "names": [
-        "time"
+        "datetime",
+        "timezone"
       ]
     },
     {
-      "source": "codegraph/utils/progress.py",
-      "target": "typing",
-      "names": [
-        "IO",
-        "Optional"
-      ]
-    },
-    {
-      "source": "codegraph/error_codes.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/error_codes.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass"
-      ]
-    },
-    {
-      "source": "codegraph/error_codes.py",
+      "source": "codegraph/logging_config.py",
       "target": "typing",
       "names": [
         "Optional"
-      ]
-    },
-    {
-      "source": "codegraph/error_codes.py",
-      "target": "codegraph/exceptions",
-      "names": [
-        "ASTParseError",
-        "AlreadyConnectedError",
-        "CodegraphError",
-        "CycleMismatchError",
-        "DanglingRuleError",
-        "DeltaUncommittedError",
-        "GraphDriftError",
-        "IndexInconsistencyError",
-        "InsufficientDeadCodeSignalsError",
-        "IntentConflictError",
-        "LayerViolationError",
-        "ModuleImportError",
-        "NodeIDCollisionError",
-        "ProjectNotFoundError",
-        "RepairConflictError",
-        "StaleBodyHashError",
-        "TraceCrashError",
-        "VersionMismatchError"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "Optional",
-        "Type",
-        "TypeVar"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "codegraph/constants",
-      "names": [
-        "CODEGRAPH_DIR",
-        "DELTA_FILE",
-        "GRAPH0_FILE",
-        "GRAPH1_FILE",
-        "GRAPH2_FILE",
-        "GRAPHS_DIR",
-        "SUGGESTED_WORKFLOW_FILE",
-        "WORKFLOW_DIR",
-        "WORKFLOW_FILE"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "CollisionResolver",
-        "Graph0",
-        "Graph0Node",
-        "NodeType"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "codegraph/models/graph1",
-      "names": [
-        "Graph1",
-        "Graph1Node",
-        "validate_intent"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "codegraph/models/workflow",
-      "names": [
-        "Confidence",
-        "EdgeType",
-        "Workflow",
-        "WorkflowEdge",
-        "WorkflowLevel",
-        "compare_edges",
-        "deduplicate_edges"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "codegraph/models/suggested_workflow",
-      "names": [
-        "RuleType",
-        "SuggestedWorkflow",
-        "SuggestedWorkflowRule"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "codegraph/models/tasks",
-      "names": [
-        "PolicyViolation",
-        "SuggestedFix",
-        "TaskBatch",
-        "TaskID",
-        "TaskItem",
-        "TaskNode",
-        "TestChangeType"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "codegraph/models/agent_response",
-      "names": [
-        "AgentResponse",
-        "IntentProposal",
-        "RepairAction",
-        "RepairActionType",
-        "WorkflowSuggestion"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "codegraph/models/delta",
-      "names": [
-        "DeltaResult"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "codegraph/models/status",
-      "names": [
-        "StatusReport"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "codegraph/models/explain",
-      "names": [
-        "ExplainResult"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "codegraph/models/diff",
-      "names": [
-        "DiffResult"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "codegraph/models/alignment",
-      "names": [
-        "AlignmentReport",
-        "check_alignment"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "codegraph/models/dead_code",
-      "names": [
-        "DeadCodeSignals"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "codegraph/models/convergence",
-      "names": [
-        "ConvergenceState"
-      ]
-    },
-    {
-      "source": "codegraph/models/__init__.py",
-      "target": "codegraph/models/graph2",
-      "names": [
-        "DataFlowSummary",
-        "Graph2",
-        "Graph2Node",
-        "SemanticAction",
-        "SideEffect"
-      ]
-    },
-    {
-      "source": "tests/test_analyzer.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/test_analyzer.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_analyzer.py",
-      "target": "codegraph/analyzer",
-      "names": [
-        "run_analyze"
-      ]
-    },
-    {
-      "source": "tests/test_models.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/test_models.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "tests/test_models.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_models.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "Graph0",
-        "Graph0Node",
-        "NodeType",
-        "CollisionResolver"
-      ]
-    },
-    {
-      "source": "tests/test_models.py",
-      "target": "codegraph/models/graph1",
-      "names": [
-        "Graph1",
-        "Graph1Node",
-        "validate_intent"
-      ]
-    },
-    {
-      "source": "tests/test_models.py",
-      "target": "codegraph/models/workflow",
-      "names": [
-        "Workflow",
-        "WorkflowEdge",
-        "EdgeType",
-        "Confidence",
-        "deduplicate_edges",
-        "compare_edges"
-      ]
-    },
-    {
-      "source": "tests/test_models.py",
-      "target": "codegraph/utils/ids",
-      "names": [
-        "generate_node_id",
-        "normalize_path"
-      ]
-    },
-    {
-      "source": "tests/test_models.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "tests/test_filters.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/test_filters.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_filters.py",
-      "target": "codegraph/models/workflow",
-      "names": [
-        "WorkflowEdge"
-      ]
-    },
-    {
-      "source": "tests/test_graph2.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/test_graph2.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "tests/test_graph2.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_graph2.py",
-      "target": "codegraph/models/graph2",
-      "names": [
-        "ActionType",
-        "SideEffectType",
-        "SemanticAction",
-        "Guard",
-        "SideEffect",
-        "DataFlowItem",
-        "DataFlowSummary",
-        "Graph2Node",
-        "Graph2"
-      ]
-    },
-    {
-      "source": "examples/trading/src/data.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "examples/trading/src/data.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict"
-      ]
-    },
-    {
-      "source": "codegraph/models/workflow.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/models/workflow.py",
-      "target": "enum",
-      "names": [
-        "enum"
-      ]
-    },
-    {
-      "source": "codegraph/models/workflow.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/models/workflow.py",
-      "target": "collections",
-      "names": [
-        "defaultdict"
-      ]
-    },
-    {
-      "source": "codegraph/models/workflow.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/models/workflow.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional",
-        "Set",
-        "Tuple"
-      ]
-    },
-    {
-      "source": "codegraph/models/workflow.py",
-      "target": "codegraph/utils/formatting",
-      "names": [
-        "format_json",
-        "iso_now"
       ]
     },
     {
@@ -1117,50 +1997,1407 @@
       ]
     },
     {
-      "source": "codegraph/formatters.py",
+      "source": "tests/test_properties.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "codegraph/formatters.py",
-      "target": "csv",
-      "names": [
-        "csv"
-      ]
-    },
-    {
-      "source": "codegraph/formatters.py",
-      "target": "io",
-      "names": [
-        "io"
-      ]
-    },
-    {
-      "source": "codegraph/formatters.py",
+      "source": "tests/test_properties.py",
       "target": "json",
       "names": [
         "json"
       ]
     },
     {
-      "source": "codegraph/formatters.py",
+      "source": "tests/test_properties.py",
+      "target": "random",
+      "names": [
+        "random"
+      ]
+    },
+    {
+      "source": "tests/test_properties.py",
+      "target": "string",
+      "names": [
+        "string"
+      ]
+    },
+    {
+      "source": "tests/test_properties.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_properties.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0",
+        "Graph0Node"
+      ]
+    },
+    {
+      "source": "tests/test_properties.py",
+      "target": "codegraph/models/graph1",
+      "names": [
+        "Graph1",
+        "Graph1Node"
+      ]
+    },
+    {
+      "source": "tests/test_properties.py",
+      "target": "codegraph/models/workflow",
+      "names": [
+        "Workflow",
+        "WorkflowEdge",
+        "deduplicate_edges"
+      ]
+    },
+    {
+      "source": "tests/test_properties.py",
+      "target": "codegraph/utils/ids",
+      "names": [
+        "generate_node_id"
+      ]
+    },
+    {
+      "source": "codegraph/models/diff.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/models/diff.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/models/diff.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List"
+      ]
+    },
+    {
+      "source": "codegraph/models/diff.py",
+      "target": "codegraph/utils/formatting",
+      "names": [
+        "format_json"
+      ]
+    },
+    {
+      "source": "codegraph/types.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/types.py",
+      "target": "enum",
+      "names": [
+        "enum"
+      ]
+    },
+    {
+      "source": "codegraph/types.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/types.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/types.py",
       "target": "typing",
       "names": [
         "Any",
         "Dict",
         "List",
         "Optional",
+        "Protocol",
         "Sequence",
-        "Union"
+        "runtime_checkable"
       ]
     },
     {
-      "source": "codegraph/formatters.py",
-      "target": "click",
+      "source": "tests/test_path_query.py",
+      "target": "pytest",
       "names": [
-        "click"
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_path_query.py",
+      "target": "codegraph/path_query",
+      "names": [
+        "PathResult",
+        "find_pattern_paths",
+        "check_forbidden_path"
+      ]
+    },
+    {
+      "source": "tests/test_path_query.py",
+      "target": "unittest/mock",
+      "names": [
+        "MagicMock"
+      ]
+    },
+    {
+      "source": "tests/test_path_query.py",
+      "target": "sqlite3",
+      "names": [
+        "sqlite3"
+      ]
+    },
+    {
+      "source": "tests/test_cli.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_cli.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "tests/test_cli.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "tests/test_cli.py",
+      "target": "unittest/mock",
+      "names": [
+        "patch"
+      ]
+    },
+    {
+      "source": "tests/test_cli.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_cli.py",
+      "target": "click/testing",
+      "names": [
+        "CliRunner"
+      ]
+    },
+    {
+      "source": "tests/test_cli.py",
+      "target": "codegraph/cli",
+      "names": [
+        "main"
+      ]
+    },
+    {
+      "source": "tests/test_models.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_models.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "tests/test_models.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_models.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0",
+        "Graph0Node",
+        "NodeType",
+        "CollisionResolver"
+      ]
+    },
+    {
+      "source": "tests/test_models.py",
+      "target": "codegraph/models/graph1",
+      "names": [
+        "Graph1",
+        "Graph1Node",
+        "validate_intent"
+      ]
+    },
+    {
+      "source": "tests/test_models.py",
+      "target": "codegraph/models/workflow",
+      "names": [
+        "Workflow",
+        "WorkflowEdge",
+        "EdgeType",
+        "Confidence",
+        "deduplicate_edges",
+        "compare_edges"
+      ]
+    },
+    {
+      "source": "tests/test_models.py",
+      "target": "codegraph/utils/ids",
+      "names": [
+        "generate_node_id",
+        "normalize_path"
+      ]
+    },
+    {
+      "source": "tests/test_models.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph0.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph0.py",
+      "target": "enum",
+      "names": [
+        "enum"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph0.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph0.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph0.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph0.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph0.py",
+      "target": "codegraph/utils/formatting",
+      "names": [
+        "format_json",
+        "iso_now"
+      ]
+    },
+    {
+      "source": "codegraph/exceptions.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/exceptions.py",
+      "target": "typing",
+      "names": [
+        "Optional"
+      ]
+    },
+    {
+      "source": "codegraph/utils/formatting.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/utils/formatting.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/utils/formatting.py",
+      "target": "datetime",
+      "names": [
+        "datetime",
+        "timezone"
+      ]
+    },
+    {
+      "source": "codegraph/utils/formatting.py",
+      "target": "typing",
+      "names": [
+        "Any"
+      ]
+    },
+    {
+      "source": "tests/conftest.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/conftest.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "tests/conftest.py",
+      "target": "shutil",
+      "names": [
+        "shutil"
+      ]
+    },
+    {
+      "source": "tests/conftest.py",
+      "target": "textwrap",
+      "names": [
+        "textwrap"
+      ]
+    },
+    {
+      "source": "tests/conftest.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "tests/conftest.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict"
+      ]
+    },
+    {
+      "source": "tests/conftest.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/conftest.py",
+      "target": "codegraph/config",
+      "names": [
+        "CodegraphConfig"
+      ]
+    },
+    {
+      "source": "tests/conftest.py",
+      "target": "codegraph/storage",
+      "names": [
+        "ensure_codegraph_dir"
+      ]
+    },
+    {
+      "source": "codegraph/utils/progress.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/utils/progress.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/utils/progress.py",
+      "target": "sys",
+      "names": [
+        "sys"
+      ]
+    },
+    {
+      "source": "codegraph/utils/progress.py",
+      "target": "time",
+      "names": [
+        "time"
+      ]
+    },
+    {
+      "source": "codegraph/utils/progress.py",
+      "target": "typing",
+      "names": [
+        "IO",
+        "Optional"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph2.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph2.py",
+      "target": "hashlib",
+      "names": [
+        "hashlib"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph2.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph2.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph2.py",
+      "target": "enum",
+      "names": [
+        "Enum"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph2.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Set"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph2.py",
+      "target": "codegraph/utils/formatting",
+      "names": [
+        "format_json",
+        "iso_now"
+      ]
+    },
+    {
+      "source": "codegraph/models/convergence.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/models/convergence.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/models/convergence.py",
+      "target": "typing",
+      "names": [
+        "List",
+        "Tuple"
+      ]
+    },
+    {
+      "source": "tests/test_semantics.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_semantics.py",
+      "target": "ast",
+      "names": [
+        "ast"
+      ]
+    },
+    {
+      "source": "tests/test_semantics.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "tests/test_semantics.py",
+      "target": "textwrap",
+      "names": [
+        "textwrap"
+      ]
+    },
+    {
+      "source": "tests/test_semantics.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "tests/test_semantics.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_semantics.py",
+      "target": "codegraph/semantics",
+      "names": [
+        "_classify_verb",
+        "extract_actions",
+        "extract_guards",
+        "extract_side_effects",
+        "extract_data_flow",
+        "infer_domain_tags",
+        "classify_sql_operations",
+        "detect_library_calls",
+        "extract_semantics_for_node",
+        "extract_semantics_for_file",
+        "build_graph2",
+        "detect_behavior_changes",
+        "save_graph2",
+        "load_graph2",
+        "evaluate_semantic_rules_impl"
+      ]
+    },
+    {
+      "source": "tests/test_semantics.py",
+      "target": "codegraph/models/graph2",
+      "names": [
+        "ActionType",
+        "SideEffectType",
+        "Graph2",
+        "Graph2Node",
+        "SemanticAction",
+        "Guard",
+        "SideEffect"
+      ]
+    },
+    {
+      "source": "tests/test_semantics.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0",
+        "Graph0Node"
+      ]
+    },
+    {
+      "source": "sample_project/main.py",
+      "target": "services/user_service",
+      "names": [
+        "UserService"
+      ]
+    },
+    {
+      "source": "sample_project/main.py",
+      "target": "services/order_service",
+      "names": [
+        "OrderService"
+      ]
+    },
+    {
+      "source": "codegraph/test_impact.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/test_impact.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/test_impact.py",
+      "target": "time",
+      "names": [
+        "time"
+      ]
+    },
+    {
+      "source": "codegraph/test_impact.py",
+      "target": "collections",
+      "names": [
+        "deque"
+      ]
+    },
+    {
+      "source": "codegraph/test_impact.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/test_impact.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/test_impact.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Set",
+        "Tuple"
+      ]
+    },
+    {
+      "source": "codegraph/test_impact.py",
+      "target": "codegraph/index",
+      "names": [
+        "IndexStore"
+      ]
+    },
+    {
+      "source": "codegraph/test_impact.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/test_impact.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0"
+      ]
+    },
+    {
+      "source": "codegraph/test_impact.py",
+      "target": "codegraph/models/graph1",
+      "names": [
+        "Graph1"
+      ]
+    },
+    {
+      "source": "codegraph/test_impact.py",
+      "target": "codegraph/models/workflow",
+      "names": [
+        "Workflow"
+      ]
+    },
+    {
+      "source": "codegraph/index.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/index.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/index.py",
+      "target": "os",
+      "names": [
+        "os"
+      ]
+    },
+    {
+      "source": "codegraph/index.py",
+      "target": "sqlite3",
+      "names": [
+        "sqlite3"
+      ]
+    },
+    {
+      "source": "codegraph/index.py",
+      "target": "time",
+      "names": [
+        "time"
+      ]
+    },
+    {
+      "source": "codegraph/index.py",
+      "target": "collections",
+      "names": [
+        "deque"
+      ]
+    },
+    {
+      "source": "codegraph/index.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/index.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/index.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Set",
+        "Tuple"
+      ]
+    },
+    {
+      "source": "codegraph/index.py",
+      "target": "codegraph/constants",
+      "names": [
+        "CODEGRAPH_DIR",
+        "INDEX_DIR"
+      ]
+    },
+    {
+      "source": "codegraph/index.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/index.py",
+      "target": "codegraph/storage",
+      "names": [
+        "resolve_path"
+      ]
+    },
+    {
+      "source": "codegraph/index.py",
+      "target": "codegraph/extractor",
+      "names": [
+        "load_graph0"
+      ]
+    },
+    {
+      "source": "codegraph/index.py",
+      "target": "codegraph/annotator",
+      "names": [
+        "load_graph1"
+      ]
+    },
+    {
+      "source": "codegraph/index.py",
+      "target": "codegraph/workflow",
+      "names": [
+        "load_workflow"
+      ]
+    },
+    {
+      "source": "tests/test_formatters.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_formatters.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "tests/test_formatters.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_formatters.py",
+      "target": "codegraph/formatters",
+      "names": [
+        "OutputFormatter"
+      ]
+    },
+    {
+      "source": "tests/test_analyzer.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_analyzer.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_analyzer.py",
+      "target": "codegraph/analyzer",
+      "names": [
+        "run_analyze"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "collections",
+      "names": [
+        "defaultdict"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "concurrent/futures",
+      "names": [
+        "ThreadPoolExecutor",
+        "as_completed"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Set",
+        "Tuple"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "codegraph/constants",
+      "names": [
+        "CONVERGENCE_THRESHOLD",
+        "LAYER_PROJECT",
+        "LAYER_TEST",
+        "MAX_ITERATIONS"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "codegraph/models/graph1",
+      "names": [
+        "Graph1"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "codegraph/models/suggested_workflow",
+      "names": [
+        "SuggestedWorkflow"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "codegraph/models/workflow",
+      "names": [
+        "Workflow"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "codegraph/storage",
+      "names": [
+        "resolve_path"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "codegraph/workflow",
+      "names": [
+        "find_orphans"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "codegraph/extractor",
+      "names": [
+        "load_graph0"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "codegraph/annotator",
+      "names": [
+        "load_graph1"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "codegraph/suggest",
+      "names": [
+        "load_suggested_workflow"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "codegraph/index",
+      "names": [
+        "IndexStore"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "codegraph/semantics",
+      "names": [
+        "evaluate_semantic_rules_impl"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "codegraph/path_query",
+      "names": [
+        "check_forbidden_path"
+      ]
+    },
+    {
+      "source": "codegraph/analyzer.py",
+      "target": "codegraph/risk_metrics",
+      "names": [
+        "check_dependency_limits"
+      ]
+    },
+    {
+      "source": "sample_project/services/order_service.py",
+      "target": "utils/validators",
+      "names": [
+        "validate_order_items"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "enum",
+      "names": [
+        "enum"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "site",
+      "names": [
+        "site"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "sys",
+      "names": [
+        "sys"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "pathlib",
+      "names": [
+        "Path",
+        "PurePosixPath"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "typing",
+      "names": [
+        "TYPE_CHECKING",
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Sequence"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "codegraph/constants",
+      "names": [
+        "LAYER_EXTERNAL",
+        "LAYER_INTERNAL_LIB",
+        "LAYER_PROJECT",
+        "LAYER_STDLIB",
+        "LAYER_TEST"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "codegraph/config",
+      "names": [
+        "CodegraphConfig"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0",
+        "Graph0Node"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "codegraph/models/graph1",
+      "names": [
+        "Graph1",
+        "Graph1Node"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "codegraph/models/suggested_workflow",
+      "names": [
+        "SuggestedWorkflow",
+        "SuggestedWorkflowRule"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "codegraph/models/tasks",
+      "names": [
+        "PolicyViolation"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "codegraph/models/workflow",
+      "names": [
+        "Workflow"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "codegraph/exceptions",
+      "names": [
+        "LayerViolationError"
+      ]
+    },
+    {
+      "source": "codegraph/layers.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph1.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph1.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph1.py",
+      "target": "re",
+      "names": [
+        "re"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph1.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph1.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Tuple"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph1.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/models/graph1.py",
+      "target": "codegraph/utils/formatting",
+      "names": [
+        "format_json",
+        "iso_now"
+      ]
+    },
+    {
+      "source": "tests/test_agent_memory.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_agent_memory.py",
+      "target": "codegraph/agent_memory",
+      "names": [
+        "AgentMemory",
+        "AgentStats",
+        "Convention",
+        "RepairPattern",
+        "load_memory",
+        "save_memory"
+      ]
+    },
+    {
+      "source": "codegraph/refactor.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/refactor.py",
+      "target": "collections",
+      "names": [
+        "defaultdict"
+      ]
+    },
+    {
+      "source": "codegraph/refactor.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/refactor.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Set",
+        "Tuple"
+      ]
+    },
+    {
+      "source": "codegraph/refactor.py",
+      "target": "codegraph/index",
+      "names": [
+        "IndexStore"
+      ]
+    },
+    {
+      "source": "codegraph/refactor.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/refactor.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0"
+      ]
+    },
+    {
+      "source": "codegraph/refactor.py",
+      "target": "sys",
+      "names": [
+        "sys"
+      ]
+    },
+    {
+      "source": "codegraph/path_query.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/path_query.py",
+      "target": "fnmatch",
+      "names": [
+        "fnmatch"
+      ]
+    },
+    {
+      "source": "codegraph/path_query.py",
+      "target": "collections",
+      "names": [
+        "deque"
+      ]
+    },
+    {
+      "source": "codegraph/path_query.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/path_query.py",
+      "target": "typing",
+      "names": [
+        "Dict",
+        "List",
+        "Optional",
+        "Set",
+        "Tuple"
+      ]
+    },
+    {
+      "source": "codegraph/path_query.py",
+      "target": "codegraph/index",
+      "names": [
+        "IndexStore"
+      ]
+    },
+    {
+      "source": "codegraph/path_query.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
       ]
     },
     {
@@ -1200,49 +3437,158 @@
       ]
     },
     {
-      "source": "codegraph/archi_test.py",
+      "source": "codegraph/models/history.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "codegraph/archi_test.py",
-      "target": "ast",
-      "names": [
-        "ast"
-      ]
-    },
-    {
-      "source": "codegraph/archi_test.py",
+      "source": "codegraph/models/history.py",
       "target": "json",
       "names": [
         "json"
       ]
     },
     {
-      "source": "codegraph/archi_test.py",
+      "source": "codegraph/models/history.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/models/history.py",
+      "target": "typing",
+      "names": [
+        "List",
+        "Optional"
+      ]
+    },
+    {
+      "source": "codegraph/models/history.py",
+      "target": "codegraph/constants",
+      "names": [
+        "CODEGRAPH_DIR",
+        "RESPONSES_DIR",
+        "TASKS_DIR"
+      ]
+    },
+    {
+      "source": "codegraph/models/history.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/models/history.py",
+      "target": "codegraph/models/agent_response",
+      "names": [
+        "AgentResponse"
+      ]
+    },
+    {
+      "source": "codegraph/models/history.py",
+      "target": "codegraph/models/tasks",
+      "names": [
+        "TaskBatch"
+      ]
+    },
+    {
+      "source": "codegraph/models/history.py",
+      "target": "codegraph/storage",
+      "names": [
+        "atomic_write"
+      ]
+    },
+    {
+      "source": "codegraph/extractors/python.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/extractors/python.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/extractors/python.py",
+      "target": "typing",
+      "names": [
+        "List"
+      ]
+    },
+    {
+      "source": "codegraph/extractors/python.py",
+      "target": "codegraph/extractor",
+      "names": [
+        "FileExtractionResult",
+        "extract_file"
+      ]
+    },
+    {
+      "source": "codegraph/extractors/python.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0Node"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
+      "target": "ast",
+      "names": [
+        "ast"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
       "target": "os",
       "names": [
         "os"
       ]
     },
     {
-      "source": "codegraph/archi_test.py",
+      "source": "codegraph/apply.py",
+      "target": "shutil",
+      "names": [
+        "shutil"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
       "target": "subprocess",
       "names": [
         "subprocess"
       ]
     },
     {
-      "source": "codegraph/archi_test.py",
+      "source": "codegraph/apply.py",
       "target": "textwrap",
       "names": [
         "textwrap"
       ]
     },
     {
-      "source": "codegraph/archi_test.py",
+      "source": "codegraph/apply.py",
       "target": "dataclasses",
       "names": [
         "dataclass",
@@ -1250,46 +3596,241 @@
       ]
     },
     {
-      "source": "codegraph/archi_test.py",
+      "source": "codegraph/apply.py",
       "target": "pathlib",
       "names": [
         "Path"
       ]
     },
     {
-      "source": "codegraph/archi_test.py",
+      "source": "codegraph/apply.py",
       "target": "typing",
       "names": [
         "Any",
         "Dict",
         "List",
         "Optional",
-        "Set"
+        "Set",
+        "Tuple"
       ]
     },
     {
-      "source": "codegraph/archi_test.py",
+      "source": "codegraph/apply.py",
       "target": "codegraph/constants",
       "names": [
-        "TEST_ARCHI_DIR"
+        "CODEGRAPH_DIR",
+        "DELTA_FILE",
+        "RESPONSES_DIR"
       ]
     },
     {
-      "source": "codegraph/archi_test.py",
+      "source": "codegraph/apply.py",
+      "target": "codegraph/exceptions",
+      "names": [
+        "AlreadyConnectedError",
+        "CodegraphError",
+        "InsufficientDeadCodeSignalsError",
+        "VersionMismatchError"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
       "target": "codegraph/logging_config",
       "names": [
         "get_logger"
       ]
     },
     {
-      "source": "codegraph/archi_test.py",
+      "source": "codegraph/apply.py",
+      "target": "codegraph/models/agent_response",
+      "names": [
+        "AgentResponse",
+        "RepairAction",
+        "RepairActionType",
+        "WorkflowSuggestion"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
+      "target": "codegraph/models/graph1",
+      "names": [
+        "Graph1"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
+      "target": "codegraph/models/workflow",
+      "names": [
+        "Workflow"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
+      "target": "codegraph/storage",
+      "names": [
+        "atomic_write",
+        "resolve_path"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
+      "target": "codegraph/utils/formatting",
+      "names": [
+        "iso_now"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
+      "target": "codegraph/suggest",
+      "names": [
+        "promote_suggestion"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
+      "target": "hashlib",
+      "names": [
+        "hashlib"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
+      "target": "codegraph/annotator",
+      "names": [
+        "apply_intents_batch",
+        "save_graph1"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
+      "target": "codegraph/extractor",
+      "names": [
+        "load_graph0"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
+      "target": "codegraph/workflow",
+      "names": [
+        "load_workflow"
+      ]
+    },
+    {
+      "source": "codegraph/apply.py",
+      "target": "codegraph/index",
+      "names": [
+        "IndexStore"
+      ]
+    },
+    {
+      "source": "codegraph/utils/ids.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/utils/ids.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/utils/ids.py",
+      "target": "typing",
+      "names": [
+        "Optional"
+      ]
+    },
+    {
+      "source": "codegraph/delta.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/delta.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/delta.py",
+      "target": "subprocess",
+      "names": [
+        "subprocess"
+      ]
+    },
+    {
+      "source": "codegraph/delta.py",
+      "target": "concurrent/futures",
+      "names": [
+        "ThreadPoolExecutor"
+      ]
+    },
+    {
+      "source": "codegraph/delta.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/delta.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/delta.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Set",
+        "Tuple"
+      ]
+    },
+    {
+      "source": "codegraph/delta.py",
+      "target": "codegraph/constants",
+      "names": [
+        "CODEGRAPH_DIR",
+        "DELTA_FILE",
+        "GRAPHS_DIR",
+        "WORKFLOW_DIR"
+      ]
+    },
+    {
+      "source": "codegraph/delta.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/delta.py",
       "target": "codegraph/models/delta",
       "names": [
         "DeltaResult"
       ]
     },
     {
-      "source": "codegraph/archi_test.py",
+      "source": "codegraph/delta.py",
       "target": "codegraph/models/graph0",
       "names": [
         "Graph0",
@@ -1297,152 +3838,523 @@
       ]
     },
     {
-      "source": "codegraph/archi_test.py",
+      "source": "codegraph/delta.py",
+      "target": "codegraph/models/graph1",
+      "names": [
+        "Graph1"
+      ]
+    },
+    {
+      "source": "codegraph/delta.py",
       "target": "codegraph/models/workflow",
       "names": [
         "Workflow"
       ]
     },
     {
-      "source": "codegraph/archi_test.py",
+      "source": "codegraph/delta.py",
       "target": "codegraph/storage",
       "names": [
+        "atomic_write",
         "resolve_path"
       ]
     },
     {
-      "source": "codegraph/archi_test.py",
-      "target": "time",
-      "names": [
-        "time"
-      ]
-    },
-    {
-      "source": "codegraph/archi_test.py",
-      "target": "re",
-      "names": [
-        "re"
-      ]
-    },
-    {
-      "source": "codegraph/utils/formatting.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/utils/formatting.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/utils/formatting.py",
-      "target": "datetime",
-      "names": [
-        "datetime",
-        "timezone"
-      ]
-    },
-    {
-      "source": "codegraph/utils/formatting.py",
-      "target": "typing",
-      "names": [
-        "Any"
-      ]
-    },
-    {
-      "source": "codegraph/constants.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/models/delta.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/models/delta.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/models/delta.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/models/delta.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Tuple"
-      ]
-    },
-    {
-      "source": "codegraph/models/delta.py",
+      "source": "codegraph/delta.py",
       "target": "codegraph/utils/formatting",
       "names": [
-        "format_json",
         "iso_now"
       ]
     },
     {
-      "source": "codegraph/models/diff.py",
-      "target": "__future__",
+      "source": "codegraph/delta.py",
+      "target": "codegraph/git_utils",
       "names": [
-        "annotations"
+        "get_current_commit"
       ]
     },
     {
-      "source": "codegraph/models/diff.py",
-      "target": "dataclasses",
+      "source": "codegraph/delta.py",
+      "target": "codegraph/extractor",
       "names": [
-        "dataclass",
-        "field"
+        "extract_file"
       ]
     },
     {
-      "source": "codegraph/models/diff.py",
-      "target": "typing",
+      "source": "codegraph/delta.py",
+      "target": "codegraph/workflow",
       "names": [
-        "Any",
-        "Dict",
-        "List"
+        "update_workflow_incremental",
+        "diff_workflows"
       ]
     },
     {
-      "source": "codegraph/models/diff.py",
-      "target": "codegraph/utils/formatting",
+      "source": "codegraph/delta.py",
+      "target": "codegraph/index",
       "names": [
-        "format_json"
+        "update_index_delta"
       ]
     },
     {
-      "source": "sample_project/main.py",
+      "source": "codegraph/delta.py",
+      "target": "codegraph/annotator",
+      "names": [
+        "load_graph1",
+        "save_graph1"
+      ]
+    },
+    {
+      "source": "codegraph/delta.py",
+      "target": "codegraph/cas",
+      "names": [
+        "run_cas_pipeline",
+        "load_hash_snapshot",
+        "save_hash_snapshot",
+        "detect_node_changes"
+      ]
+    },
+    {
+      "source": "sample_project/tests/test_user_service.py",
       "target": "services/user_service",
       "names": [
         "UserService"
       ]
     },
     {
-      "source": "sample_project/main.py",
+      "source": "benchmarks/benchmark_query.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "benchmarks/benchmark_query.py",
+      "target": "sqlite3",
+      "names": [
+        "sqlite3"
+      ]
+    },
+    {
+      "source": "benchmarks/benchmark_query.py",
+      "target": "tempfile",
+      "names": [
+        "tempfile"
+      ]
+    },
+    {
+      "source": "benchmarks/benchmark_query.py",
+      "target": "time",
+      "names": [
+        "time"
+      ]
+    },
+    {
+      "source": "benchmarks/benchmark_query.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "benchmarks/benchmark_query.py",
+      "target": "random",
+      "names": [
+        "random"
+      ]
+    },
+    {
+      "source": "sample_project/tests/test_order_service.py",
       "target": "services/order_service",
       "names": [
         "OrderService"
+      ]
+    },
+    {
+      "source": "sample_project/utils/validators.py",
+      "target": "re",
+      "names": [
+        "re"
+      ]
+    },
+    {
+      "source": "tests/test_query.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_query.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_query.py",
+      "target": "codegraph/query",
+      "names": [
+        "parse_query",
+        "ParsedQuery"
+      ]
+    },
+    {
+      "source": "codegraph/error_codes.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/error_codes.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass"
+      ]
+    },
+    {
+      "source": "codegraph/error_codes.py",
+      "target": "typing",
+      "names": [
+        "Optional"
+      ]
+    },
+    {
+      "source": "codegraph/error_codes.py",
+      "target": "codegraph/exceptions",
+      "names": [
+        "ASTParseError",
+        "AlreadyConnectedError",
+        "CodegraphError",
+        "CycleMismatchError",
+        "DanglingRuleError",
+        "DeltaUncommittedError",
+        "GraphDriftError",
+        "IndexInconsistencyError",
+        "InsufficientDeadCodeSignalsError",
+        "IntentConflictError",
+        "LayerViolationError",
+        "ModuleImportError",
+        "NodeIDCollisionError",
+        "ProjectNotFoundError",
+        "RepairConflictError",
+        "StaleBodyHashError",
+        "TraceCrashError",
+        "VersionMismatchError"
+      ]
+    },
+    {
+      "source": "codegraph/models/explain.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/models/explain.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/models/explain.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional"
+      ]
+    },
+    {
+      "source": "codegraph/models/explain.py",
+      "target": "codegraph/utils/formatting",
+      "names": [
+        "format_json"
+      ]
+    },
+    {
+      "source": "tests/test_planning.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_planning.py",
+      "target": "codegraph/planning",
+      "names": [
+        "PlanStep",
+        "RepairPlan",
+        "generate_plan",
+        "validate_plan",
+        "save_plan",
+        "load_plan"
+      ]
+    },
+    {
+      "source": "tests/test_tasks.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_tasks.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_tasks.py",
+      "target": "codegraph/models/tasks",
+      "names": [
+        "TaskID",
+        "TestChangeType",
+        "SuggestedFix",
+        "PolicyViolation"
+      ]
+    },
+    {
+      "source": "tests/test_fuzz.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_fuzz.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "tests/test_fuzz.py",
+      "target": "random",
+      "names": [
+        "random"
+      ]
+    },
+    {
+      "source": "tests/test_fuzz.py",
+      "target": "string",
+      "names": [
+        "string"
+      ]
+    },
+    {
+      "source": "tests/test_fuzz.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_fuzz.py",
+      "target": "codegraph/query",
+      "names": [
+        "parse_query"
+      ]
+    },
+    {
+      "source": "tests/test_fuzz.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0"
+      ]
+    },
+    {
+      "source": "tests/test_fuzz.py",
+      "target": "codegraph/models/graph1",
+      "names": [
+        "Graph1"
+      ]
+    },
+    {
+      "source": "tests/test_fuzz.py",
+      "target": "codegraph/models/workflow",
+      "names": [
+        "Workflow"
+      ]
+    },
+    {
+      "source": "tests/test_fuzz.py",
+      "target": "codegraph/utils/ids",
+      "names": [
+        "generate_node_id"
+      ]
+    },
+    {
+      "source": "codegraph/recovery.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/recovery.py",
+      "target": "functools",
+      "names": [
+        "functools"
+      ]
+    },
+    {
+      "source": "codegraph/recovery.py",
+      "target": "traceback",
+      "names": [
+        "traceback"
+      ]
+    },
+    {
+      "source": "codegraph/recovery.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Callable",
+        "Optional",
+        "TypeVar"
+      ]
+    },
+    {
+      "source": "codegraph/recovery.py",
+      "target": "codegraph/exceptions",
+      "names": [
+        "ASTParseError",
+        "CodegraphError",
+        "DeltaUncommittedError",
+        "ModuleImportError",
+        "TraceCrashError"
+      ]
+    },
+    {
+      "source": "codegraph/recovery.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "tests/test_extractor.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_extractor.py",
+      "target": "ast",
+      "names": [
+        "ast"
+      ]
+    },
+    {
+      "source": "tests/test_extractor.py",
+      "target": "textwrap",
+      "names": [
+        "textwrap"
+      ]
+    },
+    {
+      "source": "tests/test_extractor.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "tests/test_extractor.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_extractor.py",
+      "target": "codegraph/utils/hashing",
+      "names": [
+        "compute_body_hash"
+      ]
+    },
+    {
+      "source": "tests/test_extractor.py",
+      "target": "codegraph/extractor",
+      "names": [
+        "parse_file"
+      ]
+    },
+    {
+      "source": "sample_project/utils/hashing.py",
+      "target": "hashlib",
+      "names": [
+        "hashlib"
+      ]
+    },
+    {
+      "source": "examples/trading/src/trade.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "examples/trading/src/trade.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict"
+      ]
+    },
+    {
+      "source": "examples/trading/src/trade.py",
+      "target": "src/signal",
+      "names": [
+        "generate_signal"
+      ]
+    },
+    {
+      "source": "benchmarks/benchmark_build.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "benchmarks/benchmark_build.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "benchmarks/benchmark_build.py",
+      "target": "tempfile",
+      "names": [
+        "tempfile"
+      ]
+    },
+    {
+      "source": "benchmarks/benchmark_build.py",
+      "target": "time",
+      "names": [
+        "time"
+      ]
+    },
+    {
+      "source": "benchmarks/benchmark_build.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "benchmarks/benchmark_build.py",
+      "target": "codegraph/extractor",
+      "names": [
+        "extract_graph0"
       ]
     },
     {
@@ -1714,6 +4626,56 @@
     },
     {
       "source": "codegraph/cli.py",
+      "target": "codegraph/path_query",
+      "names": [
+        "find_pattern_paths",
+        "check_forbidden_path"
+      ]
+    },
+    {
+      "source": "codegraph/cli.py",
+      "target": "codegraph/risk_metrics",
+      "names": [
+        "compute_risk_metrics",
+        "get_node_risk"
+      ]
+    },
+    {
+      "source": "codegraph/cli.py",
+      "target": "codegraph/refactor",
+      "names": [
+        "analyze_refactoring"
+      ]
+    },
+    {
+      "source": "codegraph/cli.py",
+      "target": "codegraph/planning",
+      "names": [
+        "generate_plan",
+        "validate_plan",
+        "save_plan"
+      ]
+    },
+    {
+      "source": "codegraph/cli.py",
+      "target": "codegraph/agent_memory",
+      "names": [
+        "load_memory",
+        "save_memory"
+      ]
+    },
+    {
+      "source": "codegraph/cli.py",
+      "target": "codegraph/visualization",
+      "names": [
+        "save_visualization",
+        "export_mermaid",
+        "export_html_report",
+        "build_vis_graph"
+      ]
+    },
+    {
+      "source": "codegraph/cli.py",
       "target": "codegraph/models/graph1",
       "names": [
         "Graph1"
@@ -1731,6 +4693,714 @@
       "target": "codegraph/models/graph0",
       "names": [
         "Graph0"
+      ]
+    },
+    {
+      "source": "tests/test_filters.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_filters.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_filters.py",
+      "target": "codegraph/models/workflow",
+      "names": [
+        "WorkflowEdge"
+      ]
+    },
+    {
+      "source": "tests/test_workflow.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_workflow.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_workflow.py",
+      "target": "codegraph/models/workflow",
+      "names": [
+        "Workflow",
+        "WorkflowEdge",
+        "deduplicate_edges",
+        "compare_edges",
+        "best_edge_for",
+        "Confidence"
+      ]
+    },
+    {
+      "source": "codegraph/extractors/__init__.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/extractors/__init__.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/extractors/__init__.py",
+      "target": "typing",
+      "names": [
+        "Dict",
+        "List",
+        "Optional",
+        "Type"
+      ]
+    },
+    {
+      "source": "codegraph/extractors/__init__.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/extractors/__init__.py",
+      "target": "codegraph/types",
+      "names": [
+        "Graph0Node",
+        "LanguageExtractor",
+        "WorkflowEdge"
+      ]
+    },
+    {
+      "source": "benchmarks/index_benchmark.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "benchmarks/index_benchmark.py",
+      "target": "sqlite3",
+      "names": [
+        "sqlite3"
+      ]
+    },
+    {
+      "source": "benchmarks/index_benchmark.py",
+      "target": "tempfile",
+      "names": [
+        "tempfile"
+      ]
+    },
+    {
+      "source": "benchmarks/index_benchmark.py",
+      "target": "time",
+      "names": [
+        "time"
+      ]
+    },
+    {
+      "source": "benchmarks/index_benchmark.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "benchmarks/index_benchmark.py",
+      "target": "random",
+      "names": [
+        "random"
+      ]
+    },
+    {
+      "source": "tests/test_cas.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_cas.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "tests/test_cas.py",
+      "target": "hashlib",
+      "names": [
+        "hashlib"
+      ]
+    },
+    {
+      "source": "tests/test_cas.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "tests/test_cas.py",
+      "target": "typing",
+      "names": [
+        "Dict",
+        "Set"
+      ]
+    },
+    {
+      "source": "tests/test_cas.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_cas.py",
+      "target": "codegraph/cas",
+      "names": [
+        "compute_dependency_hash",
+        "topological_sort",
+        "_tarjan_scc",
+        "compute_scc_hash",
+        "build_dependency_hashes",
+        "build_reverse_dependency_map",
+        "get_all_dependents",
+        "propagate_invalidation",
+        "recompute_affected_hashes",
+        "detect_node_changes",
+        "run_cas_pipeline",
+        "get_cas_index_updates",
+        "detect_stale_intents_cas",
+        "test_impact_cas",
+        "filter_affected_rules",
+        "save_hash_snapshot",
+        "load_hash_snapshot",
+        "CASCache",
+        "verify_cas_integrity",
+        "explain_cas",
+        "NodeChanges",
+        "StaleIntentReport",
+        "CASTestImpact",
+        "CASVerificationResult",
+        "CASExplainInfo"
+      ]
+    },
+    {
+      "source": "tests/test_cas.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0",
+        "Graph0Node"
+      ]
+    },
+    {
+      "source": "tests/test_cas.py",
+      "target": "codegraph/models/workflow",
+      "names": [
+        "Workflow",
+        "WorkflowEdge"
+      ]
+    },
+    {
+      "source": "tests/test_cas.py",
+      "target": "codegraph/models/graph1",
+      "names": [
+        "Graph1",
+        "Graph1Node"
+      ]
+    },
+    {
+      "source": "tests/test_integration.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "tests/test_integration.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "tests/test_integration.py",
+      "target": "textwrap",
+      "names": [
+        "textwrap"
+      ]
+    },
+    {
+      "source": "tests/test_integration.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "tests/test_integration.py",
+      "target": "pytest",
+      "names": [
+        "pytest"
+      ]
+    },
+    {
+      "source": "tests/test_integration.py",
+      "target": "click/testing",
+      "names": [
+        "CliRunner"
+      ]
+    },
+    {
+      "source": "tests/test_integration.py",
+      "target": "codegraph/cli",
+      "names": [
+        "main"
+      ]
+    },
+    {
+      "source": "tests/test_group_c_smoke.py",
+      "target": "ast",
+      "names": [
+        "ast"
+      ]
+    },
+    {
+      "source": "tests/test_group_c_smoke.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "tests/test_group_c_smoke.py",
+      "target": "codegraph/extractor",
+      "names": [
+        "parse_file",
+        "extract_file",
+        "extract_imports",
+        "extract_globals",
+        "extract_call_sites",
+        "compare_graphs",
+        "ScopeTree",
+        "resolve_call_target",
+        "CallSite",
+        "ImportInfo",
+        "_body_hash_node",
+        "_body_hash_source"
+      ]
+    },
+    {
+      "source": "tests/test_group_c_smoke.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0",
+        "Graph0Node"
+      ]
+    },
+    {
+      "source": "examples/trading/src/pipeline.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "examples/trading/src/pipeline.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List"
+      ]
+    },
+    {
+      "source": "examples/trading/src/pipeline.py",
+      "target": "src/data",
+      "names": [
+        "fetch_data"
+      ]
+    },
+    {
+      "source": "examples/trading/src/pipeline.py",
+      "target": "src/signal",
+      "names": [
+        "generate_signal"
+      ]
+    },
+    {
+      "source": "examples/trading/src/pipeline.py",
+      "target": "src/trade",
+      "names": [
+        "execute_order"
+      ]
+    },
+    {
+      "source": "codegraph/models/suggested_workflow.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/models/suggested_workflow.py",
+      "target": "enum",
+      "names": [
+        "enum"
+      ]
+    },
+    {
+      "source": "codegraph/models/suggested_workflow.py",
+      "target": "fnmatch",
+      "names": [
+        "fnmatch"
+      ]
+    },
+    {
+      "source": "codegraph/models/suggested_workflow.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/models/suggested_workflow.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/models/suggested_workflow.py",
+      "target": "typing",
+      "names": [
+        "TYPE_CHECKING",
+        "Any",
+        "Dict",
+        "List",
+        "Optional"
+      ]
+    },
+    {
+      "source": "codegraph/models/suggested_workflow.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/models/suggested_workflow.py",
+      "target": "codegraph/utils/formatting",
+      "names": [
+        "format_json",
+        "iso_now"
+      ]
+    },
+    {
+      "source": "codegraph/models/suggested_workflow.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "Graph0Node"
+      ]
+    },
+    {
+      "source": "codegraph/models/suggested_workflow.py",
+      "target": "codegraph/models/graph1",
+      "names": [
+        "Graph1"
+      ]
+    },
+    {
+      "source": "codegraph/models/tasks.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/models/tasks.py",
+      "target": "enum",
+      "names": [
+        "enum"
+      ]
+    },
+    {
+      "source": "codegraph/models/tasks.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/models/tasks.py",
+      "target": "dataclasses",
+      "names": [
+        "dataclass",
+        "field"
+      ]
+    },
+    {
+      "source": "codegraph/models/tasks.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional"
+      ]
+    },
+    {
+      "source": "codegraph/models/tasks.py",
+      "target": "codegraph/utils/formatting",
+      "names": [
+        "format_json",
+        "iso_now"
+      ]
+    },
+    {
+      "source": "codegraph/schemas.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/schemas.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional"
+      ]
+    },
+    {
+      "source": "codegraph/schemas.py",
+      "target": "codegraph/constants",
+      "names": [
+        "CURRENT_FORMAT_VERSION"
+      ]
+    },
+    {
+      "source": "codegraph/schemas.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "sample_project/services/user_service.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "sample_project/services/user_service.py",
+      "target": "os",
+      "names": [
+        "os"
+      ]
+    },
+    {
+      "source": "sample_project/services/user_service.py",
+      "target": "utils/validators",
+      "names": [
+        "validate_email"
+      ]
+    },
+    {
+      "source": "sample_project/services/user_service.py",
+      "target": "utils/hashing",
+      "names": [
+        "hash_password"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "__future__",
+      "names": [
+        "annotations"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "json",
+      "names": [
+        "json"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "pathlib",
+      "names": [
+        "Path"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "typing",
+      "names": [
+        "Any",
+        "Dict",
+        "Optional",
+        "Type",
+        "TypeVar"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "codegraph/constants",
+      "names": [
+        "CODEGRAPH_DIR",
+        "DELTA_FILE",
+        "GRAPH0_FILE",
+        "GRAPH1_FILE",
+        "GRAPH2_FILE",
+        "GRAPHS_DIR",
+        "SUGGESTED_WORKFLOW_FILE",
+        "WORKFLOW_DIR",
+        "WORKFLOW_FILE"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "codegraph/models/graph0",
+      "names": [
+        "CollisionResolver",
+        "Graph0",
+        "Graph0Node",
+        "NodeType"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "codegraph/models/graph1",
+      "names": [
+        "Graph1",
+        "Graph1Node",
+        "validate_intent"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "codegraph/models/workflow",
+      "names": [
+        "Confidence",
+        "EdgeType",
+        "Workflow",
+        "WorkflowEdge",
+        "WorkflowLevel",
+        "compare_edges",
+        "deduplicate_edges"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "codegraph/models/suggested_workflow",
+      "names": [
+        "RuleType",
+        "SuggestedWorkflow",
+        "SuggestedWorkflowRule"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "codegraph/models/tasks",
+      "names": [
+        "PolicyViolation",
+        "SuggestedFix",
+        "TaskBatch",
+        "TaskID",
+        "TaskItem",
+        "TaskNode",
+        "TestChangeType"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "codegraph/models/agent_response",
+      "names": [
+        "AgentResponse",
+        "IntentProposal",
+        "RepairAction",
+        "RepairActionType",
+        "WorkflowSuggestion"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "codegraph/models/delta",
+      "names": [
+        "DeltaResult"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "codegraph/models/status",
+      "names": [
+        "StatusReport"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "codegraph/models/explain",
+      "names": [
+        "ExplainResult"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "codegraph/models/diff",
+      "names": [
+        "DiffResult"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "codegraph/models/alignment",
+      "names": [
+        "AlignmentReport",
+        "check_alignment"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "codegraph/models/dead_code",
+      "names": [
+        "DeadCodeSignals"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "codegraph/models/convergence",
+      "names": [
+        "ConvergenceState"
+      ]
+    },
+    {
+      "source": "codegraph/models/__init__.py",
+      "target": "codegraph/models/graph2",
+      "names": [
+        "DataFlowSummary",
+        "Graph2",
+        "Graph2Node",
+        "SemanticAction",
+        "SideEffect"
       ]
     },
     {
@@ -1786,191 +5456,42 @@
       ]
     },
     {
-      "source": "sample_project/utils/hashing.py",
-      "target": "hashlib",
-      "names": [
-        "hashlib"
-      ]
-    },
-    {
-      "source": "tests/test_tasks.py",
+      "source": "codegraph/query.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "tests/test_tasks.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_tasks.py",
-      "target": "codegraph/models/tasks",
-      "names": [
-        "TaskID",
-        "TestChangeType",
-        "SuggestedFix",
-        "PolicyViolation"
-      ]
-    },
-    {
-      "source": "codegraph/models/dead_code.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/models/dead_code.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass"
-      ]
-    },
-    {
-      "source": "codegraph/models/dead_code.py",
-      "target": "typing",
-      "names": [
-        "List"
-      ]
-    },
-    {
-      "source": "tests/test_integration.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/test_integration.py",
+      "source": "codegraph/query.py",
       "target": "json",
       "names": [
         "json"
       ]
     },
     {
-      "source": "tests/test_integration.py",
-      "target": "textwrap",
-      "names": [
-        "textwrap"
-      ]
-    },
-    {
-      "source": "tests/test_integration.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "tests/test_integration.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_integration.py",
-      "target": "click/testing",
-      "names": [
-        "CliRunner"
-      ]
-    },
-    {
-      "source": "tests/test_integration.py",
-      "target": "codegraph/cli",
-      "names": [
-        "main"
-      ]
-    },
-    {
-      "source": "codegraph/known_libraries.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/known_libraries.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/known_libraries.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional",
-        "Set"
-      ]
-    },
-    {
-      "source": "codegraph/known_libraries.py",
-      "target": "codegraph/models/graph2",
-      "names": [
-        "SideEffectType"
-      ]
-    },
-    {
-      "source": "codegraph/annotator.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/annotator.py",
-      "target": "csv",
-      "names": [
-        "csv"
-      ]
-    },
-    {
-      "source": "codegraph/annotator.py",
-      "target": "fnmatch",
-      "names": [
-        "fnmatch"
-      ]
-    },
-    {
-      "source": "codegraph/annotator.py",
-      "target": "io",
-      "names": [
-        "io"
-      ]
-    },
-    {
-      "source": "codegraph/annotator.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/annotator.py",
+      "source": "codegraph/query.py",
       "target": "re",
       "names": [
         "re"
       ]
     },
     {
-      "source": "codegraph/annotator.py",
-      "target": "collections",
+      "source": "codegraph/query.py",
+      "target": "time",
       "names": [
-        "Counter",
-        "defaultdict"
+        "time"
       ]
     },
     {
-      "source": "codegraph/annotator.py",
+      "source": "codegraph/query.py",
+      "target": "collections",
+      "names": [
+        "deque"
+      ]
+    },
+    {
+      "source": "codegraph/query.py",
       "target": "dataclasses",
       "names": [
         "dataclass",
@@ -1978,525 +5499,184 @@
       ]
     },
     {
-      "source": "codegraph/annotator.py",
+      "source": "codegraph/query.py",
       "target": "pathlib",
       "names": [
         "Path"
       ]
     },
     {
-      "source": "codegraph/annotator.py",
+      "source": "codegraph/query.py",
       "target": "typing",
       "names": [
         "Any",
         "Dict",
         "List",
         "Optional",
-        "Sequence"
+        "Set",
+        "Tuple"
       ]
     },
     {
-      "source": "codegraph/annotator.py",
-      "target": "codegraph/constants",
+      "source": "codegraph/query.py",
+      "target": "codegraph/index",
       "names": [
-        "GRAPHS_DIR"
+        "IndexStore"
       ]
     },
     {
-      "source": "codegraph/annotator.py",
-      "target": "codegraph/exceptions",
-      "names": [
-        "IntentConflictError"
-      ]
-    },
-    {
-      "source": "codegraph/annotator.py",
+      "source": "codegraph/query.py",
       "target": "codegraph/logging_config",
       "names": [
         "get_logger"
       ]
     },
     {
-      "source": "codegraph/annotator.py",
-      "target": "codegraph/models/agent_response",
-      "names": [
-        "IntentProposal"
-      ]
-    },
-    {
-      "source": "codegraph/annotator.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "Graph0"
-      ]
-    },
-    {
-      "source": "codegraph/annotator.py",
-      "target": "codegraph/models/graph1",
-      "names": [
-        "Graph1",
-        "Graph1Node",
-        "validate_arch_layer_name",
-        "validate_intent"
-      ]
-    },
-    {
-      "source": "codegraph/annotator.py",
+      "source": "codegraph/query.py",
       "target": "codegraph/storage",
       "names": [
-        "atomic_write",
         "resolve_path"
       ]
     },
     {
-      "source": "codegraph/annotator.py",
-      "target": "codegraph/utils/formatting",
-      "names": [
-        "iso_now"
-      ]
-    },
-    {
-      "source": "tests/test_cli.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/test_cli.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "tests/test_cli.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "tests/test_cli.py",
-      "target": "unittest/mock",
-      "names": [
-        "patch"
-      ]
-    },
-    {
-      "source": "tests/test_cli.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_cli.py",
-      "target": "click/testing",
-      "names": [
-        "CliRunner"
-      ]
-    },
-    {
-      "source": "tests/test_cli.py",
-      "target": "codegraph/cli",
-      "names": [
-        "main"
-      ]
-    },
-    {
-      "source": "codegraph/schemas.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/schemas.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional"
-      ]
-    },
-    {
-      "source": "codegraph/schemas.py",
-      "target": "codegraph/constants",
-      "names": [
-        "CURRENT_FORMAT_VERSION"
-      ]
-    },
-    {
-      "source": "codegraph/schemas.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/models/explain.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/models/explain.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/models/explain.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional"
-      ]
-    },
-    {
-      "source": "codegraph/models/explain.py",
-      "target": "codegraph/utils/formatting",
-      "names": [
-        "format_json"
-      ]
-    },
-    {
-      "source": "tests/conftest.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/conftest.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "tests/conftest.py",
-      "target": "shutil",
-      "names": [
-        "shutil"
-      ]
-    },
-    {
-      "source": "tests/conftest.py",
-      "target": "textwrap",
-      "names": [
-        "textwrap"
-      ]
-    },
-    {
-      "source": "tests/conftest.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "tests/conftest.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict"
-      ]
-    },
-    {
-      "source": "tests/conftest.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/conftest.py",
-      "target": "codegraph/config",
-      "names": [
-        "CodegraphConfig"
-      ]
-    },
-    {
-      "source": "tests/conftest.py",
-      "target": "codegraph/storage",
-      "names": [
-        "ensure_codegraph_dir"
-      ]
-    },
-    {
-      "source": "tests/test_delta.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/test_delta.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_delta.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "Graph0",
-        "Graph0Node"
-      ]
-    },
-    {
-      "source": "tests/test_delta.py",
-      "target": "codegraph/delta",
-      "names": [
-        "run_delta"
-      ]
-    },
-    {
-      "source": "codegraph/extractors/__init__.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/extractors/__init__.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/extractors/__init__.py",
-      "target": "typing",
-      "names": [
-        "Dict",
-        "List",
-        "Optional",
-        "Type"
-      ]
-    },
-    {
-      "source": "codegraph/extractors/__init__.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/extractors/__init__.py",
-      "target": "codegraph/types",
-      "names": [
-        "Graph0Node",
-        "LanguageExtractor",
-        "WorkflowEdge"
-      ]
-    },
-    {
-      "source": "tests/test_extractor.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/test_extractor.py",
-      "target": "ast",
-      "names": [
-        "ast"
-      ]
-    },
-    {
-      "source": "tests/test_extractor.py",
-      "target": "textwrap",
-      "names": [
-        "textwrap"
-      ]
-    },
-    {
-      "source": "tests/test_extractor.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "tests/test_extractor.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_extractor.py",
-      "target": "codegraph/utils/hashing",
-      "names": [
-        "compute_body_hash"
-      ]
-    },
-    {
-      "source": "tests/test_extractor.py",
+      "source": "codegraph/query.py",
       "target": "codegraph/extractor",
       "names": [
-        "parse_file"
+        "load_graph0"
       ]
     },
     {
-      "source": "codegraph/models/history.py",
+      "source": "codegraph/query.py",
+      "target": "codegraph/annotator",
+      "names": [
+        "load_graph1"
+      ]
+    },
+    {
+      "source": "codegraph/storage.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "codegraph/models/history.py",
+      "source": "codegraph/storage.py",
       "target": "json",
       "names": [
         "json"
       ]
     },
     {
-      "source": "codegraph/models/history.py",
+      "source": "codegraph/storage.py",
+      "target": "os",
+      "names": [
+        "os"
+      ]
+    },
+    {
+      "source": "codegraph/storage.py",
+      "target": "platform",
+      "names": [
+        "platform"
+      ]
+    },
+    {
+      "source": "codegraph/storage.py",
+      "target": "tempfile",
+      "names": [
+        "tempfile"
+      ]
+    },
+    {
+      "source": "codegraph/storage.py",
       "target": "pathlib",
       "names": [
         "Path"
       ]
     },
     {
-      "source": "codegraph/models/history.py",
-      "target": "typing",
-      "names": [
-        "List",
-        "Optional"
-      ]
-    },
-    {
-      "source": "codegraph/models/history.py",
-      "target": "codegraph/constants",
-      "names": [
-        "CODEGRAPH_DIR",
-        "RESPONSES_DIR",
-        "TASKS_DIR"
-      ]
-    },
-    {
-      "source": "codegraph/models/history.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/models/history.py",
-      "target": "codegraph/models/agent_response",
-      "names": [
-        "AgentResponse"
-      ]
-    },
-    {
-      "source": "codegraph/models/history.py",
-      "target": "codegraph/models/tasks",
-      "names": [
-        "TaskBatch"
-      ]
-    },
-    {
-      "source": "codegraph/models/history.py",
-      "target": "codegraph/storage",
-      "names": [
-        "atomic_write"
-      ]
-    },
-    {
-      "source": "examples/trading/src/signal.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "examples/trading/src/signal.py",
-      "target": "src/data",
-      "names": [
-        "fetch_data"
-      ]
-    },
-    {
-      "source": "codegraph/config.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/config.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclasses"
-      ]
-    },
-    {
-      "source": "codegraph/config.py",
-      "target": "hashlib",
-      "names": [
-        "hashlib"
-      ]
-    },
-    {
-      "source": "codegraph/config.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/config.py",
+      "source": "codegraph/storage.py",
       "target": "typing",
       "names": [
         "Any",
-        "Optional"
+        "Optional",
+        "Union"
       ]
     },
     {
-      "source": "codegraph/config.py",
+      "source": "codegraph/storage.py",
       "target": "yaml",
       "names": [
         "yaml"
       ]
     },
     {
-      "source": "codegraph/config.py",
+      "source": "codegraph/storage.py",
       "target": "codegraph/constants",
       "names": [
         "CODEGRAPH_DIR",
         "CONFIG_FILE",
-        "CONVERGENCE_THRESHOLD",
-        "DEFAULT_DUNDER_EXCLUDE",
-        "DEFAULT_EDGE_FILTERS",
-        "MAX_ITERATIONS",
-        "PROJECT_ROOT_MARKERS"
+        "CURRENT_FORMAT_VERSION",
+        "CYCLE_FILE",
+        "GRAPHS_DIR",
+        "INDEX_DIR",
+        "RESPONSES_DIR",
+        "TASKS_DIR",
+        "TEST_ARCHI_DIR",
+        "WORKFLOW_DIR"
       ]
     },
     {
-      "source": "codegraph/config.py",
+      "source": "codegraph/storage.py",
       "target": "codegraph/exceptions",
       "names": [
-        "ProjectNotFoundError"
+        "FormatVersionError"
       ]
     },
     {
-      "source": "codegraph/config.py",
+      "source": "codegraph/storage.py",
       "target": "codegraph/logging_config",
       "names": [
         "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/utils/__init__.py",
+      "target": "codegraph/utils/file_discovery",
+      "names": [
+        "discover_source_files"
+      ]
+    },
+    {
+      "source": "codegraph/utils/__init__.py",
+      "target": "codegraph/utils/formatting",
+      "names": [
+        "format_json",
+        "iso_now",
+        "parse_iso"
+      ]
+    },
+    {
+      "source": "codegraph/utils/__init__.py",
+      "target": "codegraph/utils/hashing",
+      "names": [
+        "compute_body_hash",
+        "hash_file"
+      ]
+    },
+    {
+      "source": "codegraph/utils/__init__.py",
+      "target": "codegraph/utils/ids",
+      "names": [
+        "generate_node_id",
+        "normalize_path"
+      ]
+    },
+    {
+      "source": "codegraph/utils/__init__.py",
+      "target": "codegraph/utils/progress",
+      "names": [
+        "ProgressReporter"
       ]
     },
     {
@@ -2616,1404 +5796,36 @@
       ]
     },
     {
-      "source": "codegraph/models/graph1.py",
+      "source": "tests/test_known_libraries.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "codegraph/models/graph1.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/models/graph1.py",
-      "target": "re",
-      "names": [
-        "re"
-      ]
-    },
-    {
-      "source": "codegraph/models/graph1.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/models/graph1.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional",
-        "Tuple"
-      ]
-    },
-    {
-      "source": "codegraph/models/graph1.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/models/graph1.py",
-      "target": "codegraph/utils/formatting",
-      "names": [
-        "format_json",
-        "iso_now"
-      ]
-    },
-    {
-      "source": "tests/test_properties.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/test_properties.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "tests/test_properties.py",
-      "target": "random",
-      "names": [
-        "random"
-      ]
-    },
-    {
-      "source": "tests/test_properties.py",
-      "target": "string",
-      "names": [
-        "string"
-      ]
-    },
-    {
-      "source": "tests/test_properties.py",
+      "source": "tests/test_known_libraries.py",
       "target": "pytest",
       "names": [
         "pytest"
       ]
     },
     {
-      "source": "tests/test_properties.py",
-      "target": "codegraph/models/graph0",
+      "source": "tests/test_known_libraries.py",
+      "target": "codegraph/known_libraries",
       "names": [
-        "Graph0",
-        "Graph0Node"
+        "LibraryInfo",
+        "get_library_info",
+        "get_all_known_names",
+        "get_libraries_by_category",
+        "enrich_side_effects_from_library",
+        "enrich_domain_tags_from_library"
       ]
     },
     {
-      "source": "tests/test_properties.py",
-      "target": "codegraph/models/graph1",
+      "source": "tests/test_known_libraries.py",
+      "target": "codegraph/models/graph2",
       "names": [
-        "Graph1",
-        "Graph1Node"
-      ]
-    },
-    {
-      "source": "tests/test_properties.py",
-      "target": "codegraph/models/workflow",
-      "names": [
-        "Workflow",
-        "WorkflowEdge",
-        "deduplicate_edges"
-      ]
-    },
-    {
-      "source": "tests/test_properties.py",
-      "target": "codegraph/utils/ids",
-      "names": [
-        "generate_node_id"
-      ]
-    },
-    {
-      "source": "codegraph/exceptions.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/exceptions.py",
-      "target": "typing",
-      "names": [
-        "Optional"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "collections",
-      "names": [
-        "defaultdict"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "concurrent/futures",
-      "names": [
-        "ThreadPoolExecutor",
-        "as_completed"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional",
-        "Set",
-        "Tuple"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "codegraph/constants",
-      "names": [
-        "CONVERGENCE_THRESHOLD",
-        "LAYER_PROJECT",
-        "LAYER_TEST",
-        "MAX_ITERATIONS"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "Graph0"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "codegraph/models/graph1",
-      "names": [
-        "Graph1"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "codegraph/models/suggested_workflow",
-      "names": [
-        "SuggestedWorkflow"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "codegraph/models/workflow",
-      "names": [
-        "Workflow"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "codegraph/storage",
-      "names": [
-        "resolve_path"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "codegraph/workflow",
-      "names": [
-        "find_orphans"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "codegraph/extractor",
-      "names": [
-        "load_graph0"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "codegraph/annotator",
-      "names": [
-        "load_graph1"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "codegraph/suggest",
-      "names": [
-        "load_suggested_workflow"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "codegraph/index",
-      "names": [
-        "IndexStore"
-      ]
-    },
-    {
-      "source": "codegraph/analyzer.py",
-      "target": "codegraph/semantics",
-      "names": [
-        "evaluate_semantic_rules_impl"
-      ]
-    },
-    {
-      "source": "sample_project/services/user_service.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "sample_project/services/user_service.py",
-      "target": "os",
-      "names": [
-        "os"
-      ]
-    },
-    {
-      "source": "sample_project/services/user_service.py",
-      "target": "utils/validators",
-      "names": [
-        "validate_email"
-      ]
-    },
-    {
-      "source": "sample_project/services/user_service.py",
-      "target": "utils/hashing",
-      "names": [
-        "hash_password"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "ast",
-      "names": [
-        "ast"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "os",
-      "names": [
-        "os"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "shutil",
-      "names": [
-        "shutil"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "subprocess",
-      "names": [
-        "subprocess"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "textwrap",
-      "names": [
-        "textwrap"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional",
-        "Set",
-        "Tuple"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "codegraph/constants",
-      "names": [
-        "CODEGRAPH_DIR",
-        "DELTA_FILE",
-        "RESPONSES_DIR"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "codegraph/exceptions",
-      "names": [
-        "AlreadyConnectedError",
-        "CodegraphError",
-        "InsufficientDeadCodeSignalsError",
-        "VersionMismatchError"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "codegraph/models/agent_response",
-      "names": [
-        "AgentResponse",
-        "RepairAction",
-        "RepairActionType",
-        "WorkflowSuggestion"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "Graph0"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "codegraph/models/graph1",
-      "names": [
-        "Graph1"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "codegraph/models/workflow",
-      "names": [
-        "Workflow"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "codegraph/storage",
-      "names": [
-        "atomic_write",
-        "resolve_path"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "codegraph/utils/formatting",
-      "names": [
-        "iso_now"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "codegraph/suggest",
-      "names": [
-        "promote_suggestion"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "hashlib",
-      "names": [
-        "hashlib"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "codegraph/annotator",
-      "names": [
-        "apply_intents_batch",
-        "save_graph1"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "codegraph/extractor",
-      "names": [
-        "load_graph0"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "codegraph/workflow",
-      "names": [
-        "load_workflow"
-      ]
-    },
-    {
-      "source": "codegraph/apply.py",
-      "target": "codegraph/index",
-      "names": [
-        "IndexStore"
-      ]
-    },
-    {
-      "source": "codegraph/models/tasks.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/models/tasks.py",
-      "target": "enum",
-      "names": [
-        "enum"
-      ]
-    },
-    {
-      "source": "codegraph/models/tasks.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/models/tasks.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/models/tasks.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional"
-      ]
-    },
-    {
-      "source": "codegraph/models/tasks.py",
-      "target": "codegraph/utils/formatting",
-      "names": [
-        "format_json",
-        "iso_now"
-      ]
-    },
-    {
-      "source": "codegraph/filters.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/filters.py",
-      "target": "re",
-      "names": [
-        "re"
-      ]
-    },
-    {
-      "source": "codegraph/filters.py",
-      "target": "abc",
-      "names": [
-        "ABC",
-        "abstractmethod"
-      ]
-    },
-    {
-      "source": "codegraph/filters.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/filters.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional",
-        "Set"
-      ]
-    },
-    {
-      "source": "codegraph/filters.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/models/suggested_workflow.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/models/suggested_workflow.py",
-      "target": "enum",
-      "names": [
-        "enum"
-      ]
-    },
-    {
-      "source": "codegraph/models/suggested_workflow.py",
-      "target": "fnmatch",
-      "names": [
-        "fnmatch"
-      ]
-    },
-    {
-      "source": "codegraph/models/suggested_workflow.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/models/suggested_workflow.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/models/suggested_workflow.py",
-      "target": "typing",
-      "names": [
-        "TYPE_CHECKING",
-        "Any",
-        "Dict",
-        "List",
-        "Optional"
-      ]
-    },
-    {
-      "source": "codegraph/models/suggested_workflow.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/models/suggested_workflow.py",
-      "target": "codegraph/utils/formatting",
-      "names": [
-        "format_json",
-        "iso_now"
-      ]
-    },
-    {
-      "source": "codegraph/models/suggested_workflow.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "Graph0Node"
-      ]
-    },
-    {
-      "source": "codegraph/models/suggested_workflow.py",
-      "target": "codegraph/models/graph1",
-      "names": [
-        "Graph1"
-      ]
-    },
-    {
-      "source": "tests/test_apply.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/test_apply.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_apply.py",
-      "target": "codegraph/apply",
-      "names": [
-        "run_apply"
-      ]
-    },
-    {
-      "source": "codegraph/utils/ids.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/utils/ids.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/utils/ids.py",
-      "target": "typing",
-      "names": [
-        "Optional"
-      ]
-    },
-    {
-      "source": "codegraph/pytest_plugin.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "subprocess",
-      "names": [
-        "subprocess"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "concurrent/futures",
-      "names": [
-        "ThreadPoolExecutor"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional",
-        "Set",
-        "Tuple"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "codegraph/constants",
-      "names": [
-        "CODEGRAPH_DIR",
-        "DELTA_FILE",
-        "GRAPHS_DIR",
-        "WORKFLOW_DIR"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "codegraph/models/delta",
-      "names": [
-        "DeltaResult"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "Graph0",
-        "Graph0Node"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "codegraph/models/graph1",
-      "names": [
-        "Graph1"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "codegraph/models/workflow",
-      "names": [
-        "Workflow"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "codegraph/storage",
-      "names": [
-        "atomic_write",
-        "resolve_path"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "codegraph/utils/formatting",
-      "names": [
-        "iso_now"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "codegraph/git_utils",
-      "names": [
-        "get_current_commit"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "codegraph/extractor",
-      "names": [
-        "extract_file"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "codegraph/workflow",
-      "names": [
-        "update_workflow_incremental",
-        "diff_workflows"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "codegraph/index",
-      "names": [
-        "update_index_delta"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "codegraph/annotator",
-      "names": [
-        "load_graph1",
-        "save_graph1"
-      ]
-    },
-    {
-      "source": "codegraph/delta.py",
-      "target": "codegraph/cas",
-      "names": [
-        "run_cas_pipeline",
-        "load_hash_snapshot",
-        "save_hash_snapshot",
-        "detect_node_changes"
-      ]
-    },
-    {
-      "source": "codegraph/recovery.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/recovery.py",
-      "target": "functools",
-      "names": [
-        "functools"
-      ]
-    },
-    {
-      "source": "codegraph/recovery.py",
-      "target": "traceback",
-      "names": [
-        "traceback"
-      ]
-    },
-    {
-      "source": "codegraph/recovery.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Callable",
-        "Optional",
-        "TypeVar"
-      ]
-    },
-    {
-      "source": "codegraph/recovery.py",
-      "target": "codegraph/exceptions",
-      "names": [
-        "ASTParseError",
-        "CodegraphError",
-        "DeltaUncommittedError",
-        "ModuleImportError",
-        "TraceCrashError"
-      ]
-    },
-    {
-      "source": "codegraph/recovery.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/index.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/index.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/index.py",
-      "target": "os",
-      "names": [
-        "os"
-      ]
-    },
-    {
-      "source": "codegraph/index.py",
-      "target": "sqlite3",
-      "names": [
-        "sqlite3"
-      ]
-    },
-    {
-      "source": "codegraph/index.py",
-      "target": "time",
-      "names": [
-        "time"
-      ]
-    },
-    {
-      "source": "codegraph/index.py",
-      "target": "collections",
-      "names": [
-        "deque"
-      ]
-    },
-    {
-      "source": "codegraph/index.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/index.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/index.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional",
-        "Set",
-        "Tuple"
-      ]
-    },
-    {
-      "source": "codegraph/index.py",
-      "target": "codegraph/constants",
-      "names": [
-        "CODEGRAPH_DIR",
-        "INDEX_DIR"
-      ]
-    },
-    {
-      "source": "codegraph/index.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/index.py",
-      "target": "codegraph/storage",
-      "names": [
-        "resolve_path"
-      ]
-    },
-    {
-      "source": "codegraph/index.py",
-      "target": "codegraph/extractor",
-      "names": [
-        "load_graph0"
-      ]
-    },
-    {
-      "source": "codegraph/index.py",
-      "target": "codegraph/annotator",
-      "names": [
-        "load_graph1"
-      ]
-    },
-    {
-      "source": "codegraph/index.py",
-      "target": "codegraph/workflow",
-      "names": [
-        "load_workflow"
-      ]
-    },
-    {
-      "source": "tests/test_cas.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/test_cas.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "tests/test_cas.py",
-      "target": "hashlib",
-      "names": [
-        "hashlib"
-      ]
-    },
-    {
-      "source": "tests/test_cas.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "tests/test_cas.py",
-      "target": "typing",
-      "names": [
-        "Dict",
-        "Set"
-      ]
-    },
-    {
-      "source": "tests/test_cas.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_cas.py",
-      "target": "codegraph/cas",
-      "names": [
-        "compute_dependency_hash",
-        "topological_sort",
-        "_tarjan_scc",
-        "compute_scc_hash",
-        "build_dependency_hashes",
-        "build_reverse_dependency_map",
-        "get_all_dependents",
-        "propagate_invalidation",
-        "recompute_affected_hashes",
-        "detect_node_changes",
-        "run_cas_pipeline",
-        "get_cas_index_updates",
-        "detect_stale_intents_cas",
-        "test_impact_cas",
-        "filter_affected_rules",
-        "save_hash_snapshot",
-        "load_hash_snapshot",
-        "CASCache",
-        "verify_cas_integrity",
-        "explain_cas",
-        "NodeChanges",
-        "StaleIntentReport",
-        "CASTestImpact",
-        "CASVerificationResult",
-        "CASExplainInfo"
-      ]
-    },
-    {
-      "source": "tests/test_cas.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "Graph0",
-        "Graph0Node"
-      ]
-    },
-    {
-      "source": "tests/test_cas.py",
-      "target": "codegraph/models/workflow",
-      "names": [
-        "Workflow",
-        "WorkflowEdge"
-      ]
-    },
-    {
-      "source": "tests/test_cas.py",
-      "target": "codegraph/models/graph1",
-      "names": [
-        "Graph1",
-        "Graph1Node"
-      ]
-    },
-    {
-      "source": "codegraph/__main__.py",
-      "target": "codegraph/cli",
-      "names": [
-        "main"
-      ]
-    },
-    {
-      "source": "benchmarks/index_benchmark.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "benchmarks/index_benchmark.py",
-      "target": "sqlite3",
-      "names": [
-        "sqlite3"
-      ]
-    },
-    {
-      "source": "benchmarks/index_benchmark.py",
-      "target": "tempfile",
-      "names": [
-        "tempfile"
-      ]
-    },
-    {
-      "source": "benchmarks/index_benchmark.py",
-      "target": "time",
-      "names": [
-        "time"
-      ]
-    },
-    {
-      "source": "benchmarks/index_benchmark.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "benchmarks/index_benchmark.py",
-      "target": "random",
-      "names": [
-        "random"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "ast",
-      "names": [
-        "ast"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "concurrent/futures",
-      "names": [
-        "futures"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "copy",
-      "names": [
-        "copy"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "hashlib",
-      "names": [
-        "hashlib"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "os",
-      "names": [
-        "os"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "time",
-      "names": [
-        "time"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional",
-        "Set",
-        "Tuple",
-        "Union"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "codegraph/config",
-      "names": [
-        "CodegraphConfig",
-        "load_config"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "codegraph/constants",
-      "names": [
-        "BODY_HASH_LENGTH",
-        "CODEGRAPH_DIR",
-        "CURRENT_FORMAT_VERSION",
-        "GRAPHS_DIR"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "CollisionResolver",
-        "Graph0",
-        "Graph0Node"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "codegraph/storage",
-      "names": [
-        "atomic_write",
-        "ensure_codegraph_dir",
-        "increment_graph_version",
-        "resolve_path"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "codegraph/utils/file_discovery",
-      "names": [
-        "discover_source_files"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "codegraph/utils/formatting",
-      "names": [
-        "iso_now"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "codegraph/utils/hashing",
-      "names": [
-        "hash_file"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "codegraph/utils/ids",
-      "names": [
-        "normalize_path"
-      ]
-    },
-    {
-      "source": "codegraph/extractor.py",
-      "target": "codegraph/utils/progress",
-      "names": [
-        "ProgressReporter"
-      ]
-    },
-    {
-      "source": "codegraph/types.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/types.py",
-      "target": "enum",
-      "names": [
-        "enum"
-      ]
-    },
-    {
-      "source": "codegraph/types.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/types.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/types.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional",
-        "Protocol",
-        "Sequence",
-        "runtime_checkable"
+        "SideEffectType"
       ]
     },
     {
@@ -4089,168 +5901,86 @@
       ]
     },
     {
-      "source": "codegraph/metrics.py",
+      "source": "codegraph/utils/file_discovery.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "codegraph/metrics.py",
-      "target": "time",
+      "source": "codegraph/utils/file_discovery.py",
+      "target": "fnmatch",
       "names": [
-        "time"
+        "fnmatch"
       ]
     },
     {
-      "source": "codegraph/metrics.py",
-      "target": "dataclasses",
+      "source": "codegraph/utils/file_discovery.py",
+      "target": "os",
       "names": [
-        "dataclass",
-        "field"
+        "os"
       ]
     },
     {
-      "source": "codegraph/metrics.py",
-      "target": "typing",
-      "names": [
-        "Any"
-      ]
-    },
-    {
-      "source": "tests/test_formatters.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/test_formatters.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "tests/test_formatters.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_formatters.py",
-      "target": "codegraph/formatters",
-      "names": [
-        "OutputFormatter"
-      ]
-    },
-    {
-      "source": "tests/test_group_c_smoke.py",
-      "target": "ast",
-      "names": [
-        "ast"
-      ]
-    },
-    {
-      "source": "tests/test_group_c_smoke.py",
+      "source": "codegraph/utils/file_discovery.py",
       "target": "pathlib",
       "names": [
         "Path"
       ]
     },
     {
-      "source": "tests/test_group_c_smoke.py",
-      "target": "codegraph/extractor",
-      "names": [
-        "parse_file",
-        "extract_file",
-        "extract_imports",
-        "extract_globals",
-        "extract_call_sites",
-        "compare_graphs",
-        "ScopeTree",
-        "resolve_call_target",
-        "CallSite",
-        "ImportInfo",
-        "_body_hash_node",
-        "_body_hash_source"
-      ]
-    },
-    {
-      "source": "tests/test_group_c_smoke.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "Graph0",
-        "Graph0Node"
-      ]
-    },
-    {
-      "source": "codegraph/logging_config.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/logging_config.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/logging_config.py",
-      "target": "logging",
-      "names": [
-        "logging"
-      ]
-    },
-    {
-      "source": "codegraph/logging_config.py",
-      "target": "sys",
-      "names": [
-        "sys"
-      ]
-    },
-    {
-      "source": "codegraph/logging_config.py",
-      "target": "datetime",
-      "names": [
-        "datetime",
-        "timezone"
-      ]
-    },
-    {
-      "source": "codegraph/logging_config.py",
+      "source": "codegraph/utils/file_discovery.py",
       "target": "typing",
       "names": [
-        "Optional"
+        "List",
+        "Optional",
+        "Sequence"
       ]
     },
     {
-      "source": "codegraph/models/graph0.py",
+      "source": "codegraph/utils/file_discovery.py",
+      "target": "codegraph/constants",
+      "names": [
+        "CODEGRAPH_DIR"
+      ]
+    },
+    {
+      "source": "codegraph/utils/file_discovery.py",
+      "target": "codegraph/logging_config",
+      "names": [
+        "get_logger"
+      ]
+    },
+    {
+      "source": "codegraph/models/workflow.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "codegraph/models/graph0.py",
+      "source": "codegraph/models/workflow.py",
       "target": "enum",
       "names": [
         "enum"
       ]
     },
     {
-      "source": "codegraph/models/graph0.py",
+      "source": "codegraph/models/workflow.py",
       "target": "json",
       "names": [
         "json"
       ]
     },
     {
-      "source": "codegraph/models/graph0.py",
+      "source": "codegraph/models/workflow.py",
+      "target": "collections",
+      "names": [
+        "defaultdict"
+      ]
+    },
+    {
+      "source": "codegraph/models/workflow.py",
       "target": "dataclasses",
       "names": [
         "dataclass",
@@ -4258,24 +5988,19 @@
       ]
     },
     {
-      "source": "codegraph/models/graph0.py",
+      "source": "codegraph/models/workflow.py",
       "target": "typing",
       "names": [
         "Any",
         "Dict",
         "List",
-        "Optional"
+        "Optional",
+        "Set",
+        "Tuple"
       ]
     },
     {
-      "source": "codegraph/models/graph0.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/models/graph0.py",
+      "source": "codegraph/models/workflow.py",
       "target": "codegraph/utils/formatting",
       "names": [
         "format_json",
@@ -4283,35 +6008,28 @@
       ]
     },
     {
-      "source": "codegraph/layers.py",
+      "source": "codegraph/agent_memory.py",
       "target": "__future__",
       "names": [
         "annotations"
       ]
     },
     {
-      "source": "codegraph/layers.py",
-      "target": "enum",
+      "source": "codegraph/agent_memory.py",
+      "target": "json",
       "names": [
-        "enum"
+        "json"
       ]
     },
     {
-      "source": "codegraph/layers.py",
-      "target": "site",
+      "source": "codegraph/agent_memory.py",
+      "target": "collections",
       "names": [
-        "site"
+        "defaultdict"
       ]
     },
     {
-      "source": "codegraph/layers.py",
-      "target": "sys",
-      "names": [
-        "sys"
-      ]
-    },
-    {
-      "source": "codegraph/layers.py",
+      "source": "codegraph/agent_memory.py",
       "target": "dataclasses",
       "names": [
         "dataclass",
@@ -4319,154 +6037,34 @@
       ]
     },
     {
-      "source": "codegraph/layers.py",
+      "source": "codegraph/agent_memory.py",
       "target": "pathlib",
       "names": [
-        "Path",
-        "PurePosixPath"
+        "Path"
       ]
     },
     {
-      "source": "codegraph/layers.py",
+      "source": "codegraph/agent_memory.py",
       "target": "typing",
       "names": [
-        "TYPE_CHECKING",
         "Any",
         "Dict",
         "List",
-        "Optional",
-        "Sequence"
+        "Optional"
       ]
     },
     {
-      "source": "codegraph/layers.py",
-      "target": "codegraph/constants",
-      "names": [
-        "LAYER_EXTERNAL",
-        "LAYER_INTERNAL_LIB",
-        "LAYER_PROJECT",
-        "LAYER_STDLIB",
-        "LAYER_TEST"
-      ]
-    },
-    {
-      "source": "codegraph/layers.py",
+      "source": "codegraph/agent_memory.py",
       "target": "codegraph/logging_config",
       "names": [
         "get_logger"
       ]
     },
     {
-      "source": "codegraph/layers.py",
-      "target": "codegraph/config",
-      "names": [
-        "CodegraphConfig"
-      ]
-    },
-    {
-      "source": "codegraph/layers.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "Graph0",
-        "Graph0Node"
-      ]
-    },
-    {
-      "source": "codegraph/layers.py",
-      "target": "codegraph/models/graph1",
-      "names": [
-        "Graph1",
-        "Graph1Node"
-      ]
-    },
-    {
-      "source": "codegraph/layers.py",
-      "target": "codegraph/models/suggested_workflow",
-      "names": [
-        "SuggestedWorkflow",
-        "SuggestedWorkflowRule"
-      ]
-    },
-    {
-      "source": "codegraph/layers.py",
-      "target": "codegraph/models/tasks",
-      "names": [
-        "PolicyViolation"
-      ]
-    },
-    {
-      "source": "codegraph/layers.py",
-      "target": "codegraph/models/workflow",
-      "names": [
-        "Workflow"
-      ]
-    },
-    {
-      "source": "codegraph/layers.py",
-      "target": "codegraph/exceptions",
-      "names": [
-        "LayerViolationError"
-      ]
-    },
-    {
-      "source": "codegraph/layers.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/models/agent_response.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/models/agent_response.py",
-      "target": "enum",
-      "names": [
-        "enum"
-      ]
-    },
-    {
-      "source": "codegraph/models/agent_response.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/models/agent_response.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/models/agent_response.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional",
-        "Tuple"
-      ]
-    },
-    {
-      "source": "codegraph/models/agent_response.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/models/agent_response.py",
+      "source": "codegraph/agent_memory.py",
       "target": "codegraph/utils/formatting",
       "names": [
-        "format_json"
+        "iso_now"
       ]
     },
     {
@@ -4505,996 +6103,6 @@
         "IndexInconsistencyError",
         "CycleMismatchError",
         "ProjectNotFoundError"
-      ]
-    },
-    {
-      "source": "codegraph/query.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/query.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/query.py",
-      "target": "re",
-      "names": [
-        "re"
-      ]
-    },
-    {
-      "source": "codegraph/query.py",
-      "target": "time",
-      "names": [
-        "time"
-      ]
-    },
-    {
-      "source": "codegraph/query.py",
-      "target": "collections",
-      "names": [
-        "deque"
-      ]
-    },
-    {
-      "source": "codegraph/query.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/query.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/query.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional",
-        "Set",
-        "Tuple"
-      ]
-    },
-    {
-      "source": "codegraph/query.py",
-      "target": "codegraph/index",
-      "names": [
-        "IndexStore"
-      ]
-    },
-    {
-      "source": "codegraph/query.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/query.py",
-      "target": "codegraph/storage",
-      "names": [
-        "resolve_path"
-      ]
-    },
-    {
-      "source": "codegraph/query.py",
-      "target": "codegraph/extractor",
-      "names": [
-        "load_graph0"
-      ]
-    },
-    {
-      "source": "codegraph/query.py",
-      "target": "codegraph/annotator",
-      "names": [
-        "load_graph1"
-      ]
-    },
-    {
-      "source": "benchmarks/benchmark_build.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "benchmarks/benchmark_build.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "benchmarks/benchmark_build.py",
-      "target": "tempfile",
-      "names": [
-        "tempfile"
-      ]
-    },
-    {
-      "source": "benchmarks/benchmark_build.py",
-      "target": "time",
-      "names": [
-        "time"
-      ]
-    },
-    {
-      "source": "benchmarks/benchmark_build.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "benchmarks/benchmark_build.py",
-      "target": "codegraph/extractor",
-      "names": [
-        "extract_graph0"
-      ]
-    },
-    {
-      "source": "sample_project/utils/validators.py",
-      "target": "re",
-      "names": [
-        "re"
-      ]
-    },
-    {
-      "source": "tests/test_workflow.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/test_workflow.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_workflow.py",
-      "target": "codegraph/models/workflow",
-      "names": [
-        "Workflow",
-        "WorkflowEdge",
-        "deduplicate_edges",
-        "compare_edges",
-        "best_edge_for",
-        "Confidence"
-      ]
-    },
-    {
-      "source": "codegraph/utils/hashing.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/utils/hashing.py",
-      "target": "ast",
-      "names": [
-        "ast"
-      ]
-    },
-    {
-      "source": "codegraph/utils/hashing.py",
-      "target": "hashlib",
-      "names": [
-        "hashlib"
-      ]
-    },
-    {
-      "source": "codegraph/utils/hashing.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/utils/hashing.py",
-      "target": "typing",
-      "names": [
-        "Optional"
-      ]
-    },
-    {
-      "source": "codegraph/utils/hashing.py",
-      "target": "codegraph/constants",
-      "names": [
-        "BODY_HASH_LENGTH",
-        "FILE_HASH_LENGTH"
-      ]
-    },
-    {
-      "source": "sample_project/services/order_service.py",
-      "target": "utils/validators",
-      "names": [
-        "validate_order_items"
-      ]
-    },
-    {
-      "source": "examples/trading/tests/test_trade.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "examples/trading/tests/test_trade.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "examples/trading/tests/test_trade.py",
-      "target": "src/trade",
-      "names": [
-        "execute_order",
-        "validate_trade"
-      ]
-    },
-    {
-      "source": "sample_project/tests/test_order_service.py",
-      "target": "services/order_service",
-      "names": [
-        "OrderService"
-      ]
-    },
-    {
-      "source": "codegraph/models/alignment.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/models/alignment.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/models/alignment.py",
-      "target": "typing",
-      "names": [
-        "Dict",
-        "List"
-      ]
-    },
-    {
-      "source": "codegraph/models/alignment.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "Graph0"
-      ]
-    },
-    {
-      "source": "codegraph/models/alignment.py",
-      "target": "codegraph/models/graph1",
-      "names": [
-        "Graph1"
-      ]
-    },
-    {
-      "source": "codegraph/utils/__init__.py",
-      "target": "codegraph/utils/file_discovery",
-      "names": [
-        "discover_source_files"
-      ]
-    },
-    {
-      "source": "codegraph/utils/__init__.py",
-      "target": "codegraph/utils/formatting",
-      "names": [
-        "format_json",
-        "iso_now",
-        "parse_iso"
-      ]
-    },
-    {
-      "source": "codegraph/utils/__init__.py",
-      "target": "codegraph/utils/hashing",
-      "names": [
-        "compute_body_hash",
-        "hash_file"
-      ]
-    },
-    {
-      "source": "codegraph/utils/__init__.py",
-      "target": "codegraph/utils/ids",
-      "names": [
-        "generate_node_id",
-        "normalize_path"
-      ]
-    },
-    {
-      "source": "codegraph/utils/__init__.py",
-      "target": "codegraph/utils/progress",
-      "names": [
-        "ProgressReporter"
-      ]
-    },
-    {
-      "source": "codegraph/test_impact.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/test_impact.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/test_impact.py",
-      "target": "time",
-      "names": [
-        "time"
-      ]
-    },
-    {
-      "source": "codegraph/test_impact.py",
-      "target": "collections",
-      "names": [
-        "deque"
-      ]
-    },
-    {
-      "source": "codegraph/test_impact.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/test_impact.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/test_impact.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional",
-        "Set",
-        "Tuple"
-      ]
-    },
-    {
-      "source": "codegraph/test_impact.py",
-      "target": "codegraph/index",
-      "names": [
-        "IndexStore"
-      ]
-    },
-    {
-      "source": "codegraph/test_impact.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/test_impact.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "Graph0"
-      ]
-    },
-    {
-      "source": "codegraph/test_impact.py",
-      "target": "codegraph/models/graph1",
-      "names": [
-        "Graph1"
-      ]
-    },
-    {
-      "source": "codegraph/test_impact.py",
-      "target": "codegraph/models/workflow",
-      "names": [
-        "Workflow"
-      ]
-    },
-    {
-      "source": "examples/trading/src/pipeline.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "examples/trading/src/pipeline.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List"
-      ]
-    },
-    {
-      "source": "examples/trading/src/pipeline.py",
-      "target": "src/data",
-      "names": [
-        "fetch_data"
-      ]
-    },
-    {
-      "source": "examples/trading/src/pipeline.py",
-      "target": "src/signal",
-      "names": [
-        "generate_signal"
-      ]
-    },
-    {
-      "source": "examples/trading/src/pipeline.py",
-      "target": "src/trade",
-      "names": [
-        "execute_order"
-      ]
-    },
-    {
-      "source": "sample_project/tests/test_user_service.py",
-      "target": "services/user_service",
-      "names": [
-        "UserService"
-      ]
-    },
-    {
-      "source": "tests/test_suggest.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/test_suggest.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_suggest.py",
-      "target": "codegraph/models/suggested_workflow",
-      "names": [
-        "SuggestedWorkflowRule",
-        "RuleType"
-      ]
-    },
-    {
-      "source": "codegraph/cas.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/cas.py",
-      "target": "hashlib",
-      "names": [
-        "hashlib"
-      ]
-    },
-    {
-      "source": "codegraph/cas.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/cas.py",
-      "target": "time",
-      "names": [
-        "time"
-      ]
-    },
-    {
-      "source": "codegraph/cas.py",
-      "target": "collections",
-      "names": [
-        "defaultdict",
-        "deque"
-      ]
-    },
-    {
-      "source": "codegraph/cas.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/cas.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/cas.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "FrozenSet",
-        "List",
-        "Optional",
-        "Set",
-        "Tuple"
-      ]
-    },
-    {
-      "source": "codegraph/cas.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/cas.py",
-      "target": "codegraph/utils/formatting",
-      "names": [
-        "format_json",
-        "iso_now"
-      ]
-    },
-    {
-      "source": "codegraph/cas.py",
-      "target": "codegraph/layers",
-      "names": [
-        "Layer"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "fnmatch",
-      "names": [
-        "fnmatch"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "collections",
-      "names": [
-        "defaultdict"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional",
-        "Set",
-        "Tuple"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "codegraph/constants",
-      "names": [
-        "LAYER_PROJECT",
-        "LAYER_TEST",
-        "SUGGESTED_WORKFLOW_FILE",
-        "WORKFLOW_DIR"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "Graph0"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "codegraph/models/graph1",
-      "names": [
-        "Graph1"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "codegraph/models/suggested_workflow",
-      "names": [
-        "RuleType",
-        "SuggestedWorkflow",
-        "SuggestedWorkflowRule",
-        "expand_arch_layer_scope",
-        "expand_layer_scope",
-        "expand_rule_scope"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "codegraph/models/workflow",
-      "names": [
-        "Workflow",
-        "WorkflowEdge"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "codegraph/storage",
-      "names": [
-        "atomic_write",
-        "ensure_codegraph_dir",
-        "resolve_path"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "codegraph/utils/formatting",
-      "names": [
-        "iso_now"
-      ]
-    },
-    {
-      "source": "codegraph/suggest.py",
-      "target": "codegraph/semantics",
-      "names": [
-        "evaluate_semantic_rules_impl"
-      ]
-    },
-    {
-      "source": "codegraph/storage.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/storage.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "codegraph/storage.py",
-      "target": "os",
-      "names": [
-        "os"
-      ]
-    },
-    {
-      "source": "codegraph/storage.py",
-      "target": "platform",
-      "names": [
-        "platform"
-      ]
-    },
-    {
-      "source": "codegraph/storage.py",
-      "target": "tempfile",
-      "names": [
-        "tempfile"
-      ]
-    },
-    {
-      "source": "codegraph/storage.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/storage.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Optional",
-        "Union"
-      ]
-    },
-    {
-      "source": "codegraph/storage.py",
-      "target": "yaml",
-      "names": [
-        "yaml"
-      ]
-    },
-    {
-      "source": "codegraph/storage.py",
-      "target": "codegraph/constants",
-      "names": [
-        "CODEGRAPH_DIR",
-        "CONFIG_FILE",
-        "CURRENT_FORMAT_VERSION",
-        "CYCLE_FILE",
-        "GRAPHS_DIR",
-        "INDEX_DIR",
-        "RESPONSES_DIR",
-        "TASKS_DIR",
-        "TEST_ARCHI_DIR",
-        "WORKFLOW_DIR"
-      ]
-    },
-    {
-      "source": "codegraph/storage.py",
-      "target": "codegraph/exceptions",
-      "names": [
-        "FormatVersionError"
-      ]
-    },
-    {
-      "source": "codegraph/storage.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/semantics.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/semantics.py",
-      "target": "ast",
-      "names": [
-        "ast"
-      ]
-    },
-    {
-      "source": "codegraph/semantics.py",
-      "target": "hashlib",
-      "names": [
-        "hashlib"
-      ]
-    },
-    {
-      "source": "codegraph/semantics.py",
-      "target": "re",
-      "names": [
-        "re"
-      ]
-    },
-    {
-      "source": "codegraph/semantics.py",
-      "target": "time",
-      "names": [
-        "time"
-      ]
-    },
-    {
-      "source": "codegraph/semantics.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass",
-        "field"
-      ]
-    },
-    {
-      "source": "codegraph/semantics.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "codegraph/semantics.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict",
-        "List",
-        "Optional",
-        "Set",
-        "Tuple"
-      ]
-    },
-    {
-      "source": "codegraph/semantics.py",
-      "target": "codegraph/logging_config",
-      "names": [
-        "get_logger"
-      ]
-    },
-    {
-      "source": "codegraph/semantics.py",
-      "target": "codegraph/models/graph2",
-      "names": [
-        "ActionType",
-        "DataFlowItem",
-        "DataFlowSummary",
-        "Graph2",
-        "Graph2Node",
-        "Guard",
-        "SemanticAction",
-        "SideEffect",
-        "SideEffectType"
-      ]
-    },
-    {
-      "source": "codegraph/semantics.py",
-      "target": "codegraph/storage",
-      "names": [
-        "ensure_codegraph_dir"
-      ]
-    },
-    {
-      "source": "tests/test_semantics.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "tests/test_semantics.py",
-      "target": "ast",
-      "names": [
-        "ast"
-      ]
-    },
-    {
-      "source": "tests/test_semantics.py",
-      "target": "json",
-      "names": [
-        "json"
-      ]
-    },
-    {
-      "source": "tests/test_semantics.py",
-      "target": "textwrap",
-      "names": [
-        "textwrap"
-      ]
-    },
-    {
-      "source": "tests/test_semantics.py",
-      "target": "pathlib",
-      "names": [
-        "Path"
-      ]
-    },
-    {
-      "source": "tests/test_semantics.py",
-      "target": "pytest",
-      "names": [
-        "pytest"
-      ]
-    },
-    {
-      "source": "tests/test_semantics.py",
-      "target": "codegraph/semantics",
-      "names": [
-        "_classify_verb",
-        "extract_actions",
-        "extract_guards",
-        "extract_side_effects",
-        "extract_data_flow",
-        "infer_domain_tags",
-        "classify_sql_operations",
-        "detect_library_calls",
-        "extract_semantics_for_node",
-        "extract_semantics_for_file",
-        "build_graph2",
-        "detect_behavior_changes",
-        "save_graph2",
-        "load_graph2",
-        "evaluate_semantic_rules_impl"
-      ]
-    },
-    {
-      "source": "tests/test_semantics.py",
-      "target": "codegraph/models/graph2",
-      "names": [
-        "ActionType",
-        "SideEffectType",
-        "Graph2",
-        "Graph2Node",
-        "SemanticAction",
-        "Guard",
-        "SideEffect"
-      ]
-    },
-    {
-      "source": "tests/test_semantics.py",
-      "target": "codegraph/models/graph0",
-      "names": [
-        "Graph0",
-        "Graph0Node"
-      ]
-    },
-    {
-      "source": "codegraph/models/status.py",
-      "target": "__future__",
-      "names": [
-        "annotations"
-      ]
-    },
-    {
-      "source": "codegraph/models/status.py",
-      "target": "dataclasses",
-      "names": [
-        "dataclass"
-      ]
-    },
-    {
-      "source": "codegraph/models/status.py",
-      "target": "typing",
-      "names": [
-        "Any",
-        "Dict"
-      ]
-    },
-    {
-      "source": "codegraph/models/status.py",
-      "target": "codegraph/utils/formatting",
-      "names": [
-        "format_json"
       ]
     }
   ]
