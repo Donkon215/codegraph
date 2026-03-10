@@ -1,7 +1,7 @@
 {
   "format_version": 1,
-  "graph_version": 13,
-  "extracted_at": "2026-03-09T14:41:10Z",
+  "graph_version": 14,
+  "extracted_at": "2026-03-10T10:46:36Z",
   "source_files": [
     "benchmarks/benchmark_build.py",
     "benchmarks/benchmark_query.py",
@@ -14,6 +14,9 @@
     "codegraph/apply.py",
     "codegraph/arch_diff.py",
     "codegraph/arch_health.py",
+    "codegraph/arch_planner.py",
+    "codegraph/arch_schema.py",
+    "codegraph/arch_viewer.py",
     "codegraph/archi_test.py",
     "codegraph/cas.py",
     "codegraph/cli.py",
@@ -101,6 +104,9 @@
     "tests/test_apply.py",
     "tests/test_arch_diff.py",
     "tests/test_arch_health.py",
+    "tests/test_arch_planner.py",
+    "tests/test_arch_schema.py",
+    "tests/test_arch_viewer.py",
     "tests/test_cas.py",
     "tests/test_cli.py",
     "tests/test_context_builder.py",
@@ -1408,6 +1414,391 @@
       "line": 261
     },
     {
+      "id": "codegraph/arch_planner",
+      "body_hash": "51885",
+      "file": "codegraph/arch_planner.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/arch_planner.py::ArchPlan",
+      "body_hash": "47cc1",
+      "file": "codegraph/arch_planner.py",
+      "type": "class",
+      "line": 137
+    },
+    {
+      "id": "codegraph/arch_planner.py::ArchPlan::format",
+      "body_hash": "ce633",
+      "file": "codegraph/arch_planner.py",
+      "type": "method",
+      "line": 160
+    },
+    {
+      "id": "codegraph/arch_planner.py::ArchPlan::to_dict",
+      "body_hash": "6b985",
+      "file": "codegraph/arch_planner.py",
+      "type": "method",
+      "line": 148
+    },
+    {
+      "id": "codegraph/arch_planner.py::CoverageResult",
+      "body_hash": "c328b",
+      "file": "codegraph/arch_planner.py",
+      "type": "class",
+      "line": 88
+    },
+    {
+      "id": "codegraph/arch_planner.py::CoverageResult::edge_coverage",
+      "body_hash": "fda4a",
+      "file": "codegraph/arch_planner.py",
+      "type": "method",
+      "line": 107
+    },
+    {
+      "id": "codegraph/arch_planner.py::CoverageResult::function_coverage",
+      "body_hash": "8a71c",
+      "file": "codegraph/arch_planner.py",
+      "type": "method",
+      "line": 103
+    },
+    {
+      "id": "codegraph/arch_planner.py::CoverageResult::module_coverage",
+      "body_hash": "487f3",
+      "file": "codegraph/arch_planner.py",
+      "type": "method",
+      "line": 99
+    },
+    {
+      "id": "codegraph/arch_planner.py::CoverageResult::overall_coverage",
+      "body_hash": "81153",
+      "file": "codegraph/arch_planner.py",
+      "type": "method",
+      "line": 111
+    },
+    {
+      "id": "codegraph/arch_planner.py::CoverageResult::to_dict",
+      "body_hash": "e0908",
+      "file": "codegraph/arch_planner.py",
+      "type": "method",
+      "line": 121
+    },
+    {
+      "id": "codegraph/arch_planner.py::PlannedTask",
+      "body_hash": "ef81e",
+      "file": "codegraph/arch_planner.py",
+      "type": "class",
+      "line": 42
+    },
+    {
+      "id": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "body_hash": "f080a",
+      "file": "codegraph/arch_planner.py",
+      "type": "method",
+      "line": 71
+    },
+    {
+      "id": "codegraph/arch_planner.py::PlannedTask::to_dict",
+      "body_hash": "3aef3",
+      "file": "codegraph/arch_planner.py",
+      "type": "method",
+      "line": 54
+    },
+    {
+      "id": "codegraph/arch_planner.py::_check_arch_edges",
+      "body_hash": "9990d",
+      "file": "codegraph/arch_planner.py",
+      "type": "function",
+      "line": 330
+    },
+    {
+      "id": "codegraph/arch_planner.py::_find_subsystem_for_module",
+      "body_hash": "71e6e",
+      "file": "codegraph/arch_planner.py",
+      "type": "function",
+      "line": 321
+    },
+    {
+      "id": "codegraph/arch_planner.py::_module_exists",
+      "body_hash": "66b75",
+      "file": "codegraph/arch_planner.py",
+      "type": "function",
+      "line": 304
+    },
+    {
+      "id": "codegraph/arch_planner.py::_resolve_target_files",
+      "body_hash": "e6aa8",
+      "file": "codegraph/arch_planner.py",
+      "type": "function",
+      "line": 411
+    },
+    {
+      "id": "codegraph/arch_planner.py::plan_architecture",
+      "body_hash": "3fa44",
+      "file": "codegraph/arch_planner.py",
+      "type": "function",
+      "line": 196
+    },
+    {
+      "id": "codegraph/arch_planner.py::plan_to_agent_response",
+      "body_hash": "4f597",
+      "file": "codegraph/arch_planner.py",
+      "type": "function",
+      "line": 424
+    },
+    {
+      "id": "codegraph/arch_schema",
+      "body_hash": "a1b6e",
+      "file": "codegraph/arch_schema.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchComponent",
+      "body_hash": "2d568",
+      "file": "codegraph/arch_schema.py",
+      "type": "class",
+      "line": 34
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchComponent::from_dict",
+      "body_hash": "0da32",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 53
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchComponent::to_dict",
+      "body_hash": "f305e",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 42
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchConstraint",
+      "body_hash": "ac0ea",
+      "file": "codegraph/arch_schema.py",
+      "type": "class",
+      "line": 94
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchConstraint::from_dict",
+      "body_hash": "d1ed5",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 113
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchConstraint::to_dict",
+      "body_hash": "70204",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 102
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchEdge",
+      "body_hash": "df209",
+      "file": "codegraph/arch_schema.py",
+      "type": "class",
+      "line": 66
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchEdge::from_dict",
+      "body_hash": "43893",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 80
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchEdge::to_dict",
+      "body_hash": "0533e",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 73
+    },
+    {
+      "id": "codegraph/arch_schema.py::SubsystemDef",
+      "body_hash": "c6c19",
+      "file": "codegraph/arch_schema.py",
+      "type": "class",
+      "line": 126
+    },
+    {
+      "id": "codegraph/arch_schema.py::SubsystemDef::all_functions",
+      "body_hash": "4a794",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 164
+    },
+    {
+      "id": "codegraph/arch_schema.py::SubsystemDef::component_names",
+      "body_hash": "3cf00",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 156
+    },
+    {
+      "id": "codegraph/arch_schema.py::SubsystemDef::from_dict",
+      "body_hash": "e17fa",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 145
+    },
+    {
+      "id": "codegraph/arch_schema.py::SubsystemDef::module_paths",
+      "body_hash": "512be",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 160
+    },
+    {
+      "id": "codegraph/arch_schema.py::SubsystemDef::to_dict",
+      "body_hash": "52f0f",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 134
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture",
+      "body_hash": "8b2d7",
+      "file": "codegraph/arch_schema.py",
+      "type": "class",
+      "line": 181
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::all_components",
+      "body_hash": "4d933",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 262
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::all_modules",
+      "body_hash": "0f0fd",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 255
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::from_dict",
+      "body_hash": "74784",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 212
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::get_constraint_violations",
+      "body_hash": "6ba29",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 268
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
+      "body_hash": "32eba",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 244
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "body_hash": "6ba29",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 237
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "body_hash": "d5f3f",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 225
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::subsystem_names",
+      "body_hash": "c6c6a",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 251
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::to_dict",
+      "body_hash": "0ea23",
+      "file": "codegraph/arch_schema.py",
+      "type": "method",
+      "line": 196
+    },
+    {
+      "id": "codegraph/arch_schema.py::_matches_target",
+      "body_hash": "3f407",
+      "file": "codegraph/arch_schema.py",
+      "type": "function",
+      "line": 309
+    },
+    {
+      "id": "codegraph/arch_schema.py::init_architecture",
+      "body_hash": "02f18",
+      "file": "codegraph/arch_schema.py",
+      "type": "function",
+      "line": 331
+    },
+    {
+      "id": "codegraph/arch_viewer",
+      "body_hash": "cd9c6",
+      "file": "codegraph/arch_viewer.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/arch_viewer.py::_build_code_data",
+      "body_hash": "383af",
+      "file": "codegraph/arch_viewer.py",
+      "type": "function",
+      "line": 206
+    },
+    {
+      "id": "codegraph/arch_viewer.py::_build_stats",
+      "body_hash": "b6aa2",
+      "file": "codegraph/arch_viewer.py",
+      "type": "function",
+      "line": 252
+    },
+    {
+      "id": "codegraph/arch_viewer.py::_build_subsystem_data",
+      "body_hash": "9de4b",
+      "file": "codegraph/arch_viewer.py",
+      "type": "function",
+      "line": 159
+    },
+    {
+      "id": "codegraph/arch_viewer.py::_build_system_data",
+      "body_hash": "b00e5",
+      "file": "codegraph/arch_viewer.py",
+      "type": "function",
+      "line": 74
+    },
+    {
+      "id": "codegraph/arch_viewer.py::_escape_html",
+      "body_hash": "3e2f5",
+      "file": "codegraph/arch_viewer.py",
+      "type": "function",
+      "line": 541
+    },
+    {
+      "id": "codegraph/arch_viewer.py::_render_html",
+      "body_hash": "fae97",
+      "file": "codegraph/arch_viewer.py",
+      "type": "function",
+      "line": 271
+    },
+    {
+      "id": "codegraph/arch_viewer.py::generate_viewer",
+      "body_hash": "b8172",
+      "file": "codegraph/arch_viewer.py",
+      "type": "function",
+      "line": 32
+    },
+    {
       "id": "codegraph/archi_test",
       "body_hash": "aeac9",
       "file": "codegraph/archi_test.py",
@@ -1878,7 +2269,7 @@
     },
     {
       "id": "codegraph/cli",
-      "body_hash": "dfce3",
+      "body_hash": "9f621",
       "file": "codegraph/cli.py",
       "type": "module",
       "line": 1
@@ -1917,6 +2308,13 @@
       "file": "codegraph/cli.py",
       "type": "function",
       "line": 819
+    },
+    {
+      "id": "codegraph/cli.py::architecture_cmd",
+      "body_hash": "21ab0",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2011
     },
     {
       "id": "codegraph/cli.py::build",
@@ -2085,6 +2483,13 @@
       "file": "codegraph/cli.py",
       "type": "function",
       "line": 1685
+    },
+    {
+      "id": "codegraph/cli.py::plan_cmd[2]",
+      "body_hash": "1ed35",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2079
     },
     {
       "id": "codegraph/cli.py::prune",
@@ -2274,6 +2679,13 @@
       "file": "codegraph/cli.py",
       "type": "function",
       "line": 1254
+    },
+    {
+      "id": "codegraph/cli.py::viewer_cmd",
+      "body_hash": "019dd",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2136
     },
     {
       "id": "codegraph/cli.py::visualize_cmd",
@@ -9904,6 +10316,580 @@
       "file": "tests/test_arch_health.py",
       "type": "function",
       "line": 15
+    },
+    {
+      "id": "tests/test_arch_planner",
+      "body_hash": "e52e5",
+      "file": "tests/test_arch_planner.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestArchPlan",
+      "body_hash": "3c5c9",
+      "file": "tests/test_arch_planner.py",
+      "type": "class",
+      "line": 101
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestArchPlan::test_empty_plan",
+      "body_hash": "1d7dd",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 102
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestArchPlan::test_format",
+      "body_hash": "e63f9",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 108
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestCoverageResult",
+      "body_hash": "0ff93",
+      "file": "tests/test_arch_planner.py",
+      "type": "class",
+      "line": 76
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestCoverageResult::test_empty_is_100_percent",
+      "body_hash": "62170",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 77
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestCoverageResult::test_overall_average",
+      "body_hash": "b5771",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 85
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestCoverageResult::test_partial_coverage",
+      "body_hash": "a8f5b",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 81
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestCoverageResult::test_to_dict",
+      "body_hash": "12f5e",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 93
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanArchitecture",
+      "body_hash": "dc8c6",
+      "file": "tests/test_arch_planner.py",
+      "type": "class",
+      "line": 120
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
+      "body_hash": "79e52",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 121
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
+      "body_hash": "8d306",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 192
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
+      "body_hash": "23574",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 220
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
+      "body_hash": "4affc",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 165
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
+      "body_hash": "54ced",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 141
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority",
+      "body_hash": "4397a",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 244
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanToAgentResponse",
+      "body_hash": "44522",
+      "file": "tests/test_arch_planner.py",
+      "type": "class",
+      "line": 274
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanToAgentResponse::test_basic_conversion",
+      "body_hash": "325f0",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 275
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlannedTask",
+      "body_hash": "67730",
+      "file": "tests/test_arch_planner.py",
+      "type": "class",
+      "line": 48
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlannedTask::test_from_dict",
+      "body_hash": "2a950",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 69
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlannedTask::test_to_dict_full",
+      "body_hash": "3229b",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 55
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlannedTask::test_to_dict_minimal",
+      "body_hash": "dc357",
+      "file": "tests/test_arch_planner.py",
+      "type": "method",
+      "line": 49
+    },
+    {
+      "id": "tests/test_arch_planner.py::_make_graph0",
+      "body_hash": "eed3b",
+      "file": "tests/test_arch_planner.py",
+      "type": "function",
+      "line": 27
+    },
+    {
+      "id": "tests/test_arch_planner.py::_make_index",
+      "body_hash": "536ac",
+      "file": "tests/test_arch_planner.py",
+      "type": "function",
+      "line": 36
+    },
+    {
+      "id": "tests/test_arch_schema",
+      "body_hash": "a9bea",
+      "file": "tests/test_arch_schema.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchComponent",
+      "body_hash": "92068",
+      "file": "tests/test_arch_schema.py",
+      "type": "class",
+      "line": 19
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchComponent::test_from_dict",
+      "body_hash": "90f57",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 38
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchComponent::test_roundtrip",
+      "body_hash": "23830",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 45
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchComponent::test_to_dict_full",
+      "body_hash": "b8649",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 25
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchComponent::test_to_dict_minimal",
+      "body_hash": "f4160",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 20
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchConstraint",
+      "body_hash": "19637",
+      "file": "tests/test_arch_schema.py",
+      "type": "class",
+      "line": 74
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict",
+      "body_hash": "6c540",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 83
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict_no_reason",
+      "body_hash": "aebf7",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 90
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchConstraint::test_to_dict",
+      "body_hash": "951e4",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 75
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchEdge",
+      "body_hash": "7019f",
+      "file": "tests/test_arch_schema.py",
+      "type": "class",
+      "line": 50
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_list",
+      "body_hash": "442be",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 67
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_object",
+      "body_hash": "48070",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 62
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchEdge::test_to_dict_custom_type",
+      "body_hash": "54aa3",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 57
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchEdge::test_to_dict_default_type",
+      "body_hash": "fd43b",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 51
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestInitArchitecture",
+      "body_hash": "8486a",
+      "file": "tests/test_arch_schema.py",
+      "type": "class",
+      "line": 274
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestInitArchitecture::test_creates_template",
+      "body_hash": "3fe50",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 275
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSubsystemDef",
+      "body_hash": "96ea1",
+      "file": "tests/test_arch_schema.py",
+      "type": "class",
+      "line": 95
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSubsystemDef::test_all_functions",
+      "body_hash": "116a2",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 146
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSubsystemDef::test_component_names",
+      "body_hash": "3a2c8",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 126
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSubsystemDef::test_empty",
+      "body_hash": "e4738",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 96
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSubsystemDef::test_from_dict",
+      "body_hash": "43f1c",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 115
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSubsystemDef::test_module_paths",
+      "body_hash": "773e5",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 136
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSubsystemDef::test_with_components",
+      "body_hash": "e7361",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 103
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture",
+      "body_hash": "29e27",
+      "file": "tests/test_arch_schema.py",
+      "type": "class",
+      "line": 158
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_all_components",
+      "body_hash": "74129",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 215
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_all_modules",
+      "body_hash": "1d0cd",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 203
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_constraint_violations",
+      "body_hash": "8f913",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 243
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_empty",
+      "body_hash": "2fbf7",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 159
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip",
+      "body_hash": "f8812",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 165
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_get_subsystem",
+      "body_hash": "19288",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 187
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_load_missing",
+      "body_hash": "ef808",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 238
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_no_constraint_violations",
+      "body_hash": "01eaf",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 265
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_save_and_load",
+      "body_hash": "cea7b",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 227
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_subsystem_names",
+      "body_hash": "be25e",
+      "file": "tests/test_arch_schema.py",
+      "type": "method",
+      "line": 196
+    },
+    {
+      "id": "tests/test_arch_viewer",
+      "body_hash": "edce6",
+      "file": "tests/test_arch_viewer.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildCodeData",
+      "body_hash": "51e7c",
+      "file": "tests/test_arch_viewer.py",
+      "type": "class",
+      "line": 119
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildCodeData::test_basic",
+      "body_hash": "ac94f",
+      "file": "tests/test_arch_viewer.py",
+      "type": "method",
+      "line": 120
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildCodeData::test_intent_attached",
+      "body_hash": "86ba1",
+      "file": "tests/test_arch_viewer.py",
+      "type": "method",
+      "line": 136
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildStats",
+      "body_hash": "93883",
+      "file": "tests/test_arch_viewer.py",
+      "type": "class",
+      "line": 145
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildStats::test_basic_stats",
+      "body_hash": "98ca7",
+      "file": "tests/test_arch_viewer.py",
+      "type": "method",
+      "line": 146
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
+      "body_hash": "c396c",
+      "file": "tests/test_arch_viewer.py",
+      "type": "method",
+      "line": 154
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildSubsystemData",
+      "body_hash": "6ccb4",
+      "file": "tests/test_arch_viewer.py",
+      "type": "class",
+      "line": 87
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_auto_detection",
+      "body_hash": "4a9ea",
+      "file": "tests/test_arch_viewer.py",
+      "type": "method",
+      "line": 88
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
+      "body_hash": "43a43",
+      "file": "tests/test_arch_viewer.py",
+      "type": "method",
+      "line": 98
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildSystemData",
+      "body_hash": "b7b69",
+      "file": "tests/test_arch_viewer.py",
+      "type": "class",
+      "line": 61
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildSystemData::test_auto_detection",
+      "body_hash": "55080",
+      "file": "tests/test_arch_viewer.py",
+      "type": "method",
+      "line": 62
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
+      "body_hash": "a4c61",
+      "file": "tests/test_arch_viewer.py",
+      "type": "method",
+      "line": 74
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestEscapeHtml",
+      "body_hash": "12dd0",
+      "file": "tests/test_arch_viewer.py",
+      "type": "class",
+      "line": 163
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestEscapeHtml::test_escapes",
+      "body_hash": "14bbe",
+      "file": "tests/test_arch_viewer.py",
+      "type": "method",
+      "line": 164
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestGenerateViewer",
+      "body_hash": "f3fda",
+      "file": "tests/test_arch_viewer.py",
+      "type": "class",
+      "line": 170
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestGenerateViewer::test_custom_output_path",
+      "body_hash": "92115",
+      "file": "tests/test_arch_viewer.py",
+      "type": "method",
+      "line": 189
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestGenerateViewer::test_generates_html_file",
+      "body_hash": "9c2ff",
+      "file": "tests/test_arch_viewer.py",
+      "type": "method",
+      "line": 171
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture",
+      "body_hash": "6a2b8",
+      "file": "tests/test_arch_viewer.py",
+      "type": "method",
+      "line": 202
+    },
+    {
+      "id": "tests/test_arch_viewer.py::_g0",
+      "body_hash": "82cd0",
+      "file": "tests/test_arch_viewer.py",
+      "type": "function",
+      "line": 29
+    },
+    {
+      "id": "tests/test_arch_viewer.py::_g1",
+      "body_hash": "fffa4",
+      "file": "tests/test_arch_viewer.py",
+      "type": "function",
+      "line": 36
+    },
+    {
+      "id": "tests/test_arch_viewer.py::_make_mock_index",
+      "body_hash": "5bb63",
+      "file": "tests/test_arch_viewer.py",
+      "type": "function",
+      "line": 50
+    },
+    {
+      "id": "tests/test_arch_viewer.py::_wf",
+      "body_hash": "42bb7",
+      "file": "tests/test_arch_viewer.py",
+      "type": "function",
+      "line": 43
     },
     {
       "id": "tests/test_cas",

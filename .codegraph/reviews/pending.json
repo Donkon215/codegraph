@@ -16378,5 +16378,317 @@
     "reason": "Property orphan \u2014 accessed as attribute, not detected as call edge",
     "timestamp": "2026-03-09T14:41:06Z",
     "target": ""
+  },
+  {
+    "node": "codegraph/arch_planner.py::CoverageResult::edge_coverage",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::CoverageResult::function_coverage",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::CoverageResult::module_coverage",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SubsystemDef::component_names",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SubsystemDef::module_paths",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SystemArchitecture::all_components",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SystemArchitecture::all_modules",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SystemArchitecture::subsystem_names",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli.py::plan_cmd[2]",
+    "reason": "Node ID collision with existing plan_cmd from planning module",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_planner.py::TestArchPlan",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_planner.py::TestCoverageResult",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_planner.py::TestPlanArchitecture",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_planner.py::TestPlanToAgentResponse",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_planner.py::TestPlannedTask",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchComponent",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchConstraint",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchEdge",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestInitArchitecture",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestSubsystemDef",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestSystemArchitecture",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_viewer.py::TestBuildCodeData",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_viewer.py::TestBuildStats",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_viewer.py::TestBuildSubsystemData",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_viewer.py::TestBuildSystemData",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_viewer.py::TestEscapeHtml",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_viewer.py::TestGenerateViewer",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:06Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::CoverageResult::edge_coverage",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:11Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::CoverageResult::function_coverage",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:11Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::CoverageResult::module_coverage",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:11Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SubsystemDef::component_names",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:11Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SubsystemDef::module_paths",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:11Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SystemArchitecture::all_components",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:11Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SystemArchitecture::all_modules",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:11Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SystemArchitecture::subsystem_names",
+    "reason": "Property accessed as attribute, not detected as call edge",
+    "timestamp": "2026-03-10T10:53:11Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli.py::plan_cmd[2]",
+    "reason": "Node ID collision with existing plan_cmd from planning module",
+    "timestamp": "2026-03-10T10:53:11Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_planner.py::TestArchPlan",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:11Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_planner.py::TestCoverageResult",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:11Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_planner.py::TestPlanArchitecture",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:11Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_planner.py::TestPlanToAgentResponse",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:11Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_planner.py::TestPlannedTask",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:11Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchComponent",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchConstraint",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchEdge",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestInitArchitecture",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestSubsystemDef",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestSystemArchitecture",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_viewer.py::TestBuildCodeData",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_viewer.py::TestBuildStats",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_viewer.py::TestBuildSubsystemData",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_viewer.py::TestBuildSystemData",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_viewer.py::TestEscapeHtml",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_viewer.py::TestGenerateViewer",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T10:53:12Z",
+    "target": null
   }
 ]

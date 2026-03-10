@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-09T14:41:16Z",
+    "built_at": "2026-03-10T10:46:43Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -9,12 +9,12 @@
       "stdlib",
       "test_harness"
     ],
-    "edge_count": 2838,
-    "node_count": 1424,
-    "build_time_s": 5.78
+    "edge_count": 3102,
+    "node_count": 1532,
+    "build_time_s": 6.31
   },
   "format_version": 1,
-  "built_at": "2026-03-09T14:41:16Z",
+  "built_at": "2026-03-10T10:46:43Z",
   "level": "function",
   "edges": [
     {
@@ -1009,7 +1009,7 @@
     },
     {
       "source": "codegraph/annotator.py::load_intent_file",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -2046,6 +2046,360 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/arch_planner.py::ArchPlan::format",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::ArchPlan::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::CoverageResult::overall_coverage",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::CoverageResult::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::PlannedTask::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::_check_arch_edges",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::_check_arch_edges",
+      "target": "codegraph/arch_planner.py::PlannedTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::_check_arch_edges",
+      "target": "codegraph/arch_planner.py::_resolve_target_files",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::_check_arch_edges",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::plan_architecture",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::plan_architecture",
+      "target": "codegraph/arch_planner.py::ArchPlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::plan_architecture",
+      "target": "codegraph/arch_planner.py::PlannedTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::plan_architecture",
+      "target": "codegraph/arch_planner.py::_check_arch_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::plan_architecture",
+      "target": "codegraph/arch_planner.py::_find_subsystem_for_module",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::plan_architecture",
+      "target": "codegraph/arch_planner.py::_module_exists",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::plan_architecture",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::get_constraint_violations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::plan_architecture",
+      "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::plan_architecture",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::plan_architecture",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_planner.py::plan_to_agent_response",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::ArchComponent::from_dict",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::ArchComponent::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::ArchComponent::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::ArchConstraint::from_dict",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::ArchConstraint::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::ArchConstraint::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::ArchEdge::from_dict",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::ArchEdge::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::ArchEdge::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::SubsystemDef::all_functions",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::SubsystemDef::from_dict",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::SubsystemDef::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::SubsystemDef::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::SystemArchitecture::from_dict",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::SystemArchitecture::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::SystemArchitecture::get_constraint_violations",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::SystemArchitecture::get_constraint_violations",
+      "target": "codegraph/arch_schema.py::_matches_target",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::SystemArchitecture::get_constraint_violations",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::SystemArchitecture::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::init_architecture",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::init_architecture",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::init_architecture",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_schema.py::init_architecture",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_viewer.py::_build_code_data",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_viewer.py::_build_code_data",
+      "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_viewer.py::_build_code_data",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_viewer.py::_build_subsystem_data",
+      "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_viewer.py::_build_subsystem_data",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_viewer.py::_build_system_data",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_viewer.py::_build_system_data",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_viewer.py::_render_html",
+      "target": "codegraph/arch_viewer.py::_escape_html",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_viewer.py::generate_viewer",
+      "target": "codegraph/arch_viewer.py::_build_code_data",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_viewer.py::generate_viewer",
+      "target": "codegraph/arch_viewer.py::_build_stats",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_viewer.py::generate_viewer",
+      "target": "codegraph/arch_viewer.py::_build_subsystem_data",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_viewer.py::generate_viewer",
+      "target": "codegraph/arch_viewer.py::_build_system_data",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_viewer.py::generate_viewer",
+      "target": "codegraph/arch_viewer.py::_render_html",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/archi_test.py::_archi_dir",
       "target": "codegraph/storage.py::resolve_path",
       "edge_type": "call",
@@ -2892,6 +3246,66 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/cli.py::architecture_cmd",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architecture_cmd",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architecture_cmd",
+      "target": "codegraph/arch_planner.py::plan_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architecture_cmd",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architecture_cmd",
+      "target": "codegraph/arch_schema.py::init_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architecture_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architecture_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architecture_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architecture_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architecture_cmd",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/cli.py::build",
       "target": "codegraph/analyzer.py::AnalysisCache::get",
       "edge_type": "call",
@@ -3619,7 +4033,31 @@
     },
     {
       "source": "codegraph/cli.py::plan_cmd",
-      "target": "codegraph/agent_memory.py::AgentMemory::to_json",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::plan_cmd",
+      "target": "codegraph/arch_planner.py::plan_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::plan_cmd",
+      "target": "codegraph/arch_planner.py::plan_to_agent_response",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::plan_cmd",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::plan_cmd",
+      "target": "codegraph/cli.py::handle_error",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3631,31 +4069,13 @@
     },
     {
       "source": "codegraph/cli.py::plan_cmd",
-      "target": "codegraph/planning.py::generate_plan",
+      "target": "codegraph/extractor.py::load_graph0",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/cli.py::plan_cmd",
-      "target": "codegraph/planning.py::save_plan",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli.py::plan_cmd",
-      "target": "codegraph/planning.py::validate_plan",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli.py::plan_cmd",
-      "target": "codegraph/storage.py::get_graph_version",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli.py::plan_cmd",
-      "target": "codegraph/tasks.py::load_tasks",
+      "target": "codegraph/index.py::IndexStore",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -4470,6 +4890,60 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/cli.py::viewer_cmd",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::viewer_cmd",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::viewer_cmd",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::viewer_cmd",
+      "target": "codegraph/arch_viewer.py::generate_viewer",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::viewer_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::viewer_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::viewer_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::viewer_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::viewer_cmd",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/cli.py::visualize_cmd",
       "target": "codegraph/agent_memory.py::AgentMemory::to_json",
       "edge_type": "call",
@@ -4609,13 +5083,13 @@
     },
     {
       "source": "codegraph/config.py::load_config",
-      "target": "codegraph/config.py::CodegraphConfig",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/config.py::load_config",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/config.py::CodegraphConfig",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -5653,7 +6127,13 @@
     },
     {
       "source": "codegraph/extractor.py::extract_project",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::extract_project",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::save",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -5666,12 +6146,6 @@
     {
       "source": "codegraph/extractor.py::extract_project",
       "target": "codegraph/extractor.py::ExtractionCache",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/extractor.py::extract_project",
-      "target": "codegraph/extractor.py::ExtractionCache::save",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -6853,7 +7327,7 @@
     },
     {
       "source": "codegraph/models/agent_response.py::AgentResponse::from_json",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7015,7 +7489,7 @@
     },
     {
       "source": "codegraph/models/factories.py::make_task",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7075,7 +7549,7 @@
     },
     {
       "source": "codegraph/models/graph0.py::Graph0::from_json",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7141,7 +7615,7 @@
     },
     {
       "source": "codegraph/models/graph1.py::Graph1::from_json",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7237,7 +7711,7 @@
     },
     {
       "source": "codegraph/models/graph2.py::DataFlowItem::from_dict",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7255,7 +7729,7 @@
     },
     {
       "source": "codegraph/models/graph2.py::DataFlowSummary::from_dict",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7285,7 +7759,7 @@
     },
     {
       "source": "codegraph/models/graph2.py::Graph2::from_json",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7357,7 +7831,7 @@
     },
     {
       "source": "codegraph/models/graph2.py::Graph2Node::from_dict",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7375,7 +7849,7 @@
     },
     {
       "source": "codegraph/models/graph2.py::Guard::from_dict",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7393,7 +7867,7 @@
     },
     {
       "source": "codegraph/models/graph2.py::SemanticAction::from_dict",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7411,7 +7885,7 @@
     },
     {
       "source": "codegraph/models/graph2.py::SideEffect::from_dict",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7501,7 +7975,7 @@
     },
     {
       "source": "codegraph/models/suggested_workflow.py::SuggestedWorkflow::from_json",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7567,7 +8041,7 @@
     },
     {
       "source": "codegraph/models/tasks.py::PolicyViolation::from_dict",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7591,7 +8065,7 @@
     },
     {
       "source": "codegraph/models/tasks.py::TaskBatch::from_json",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7615,7 +8089,7 @@
     },
     {
       "source": "codegraph/models/tasks.py::TaskItem::from_dict",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7633,7 +8107,7 @@
     },
     {
       "source": "codegraph/models/tasks.py::TaskNode::from_dict",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7831,7 +8305,7 @@
     },
     {
       "source": "codegraph/models/workflow.py::Workflow::from_json",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -9901,7 +10375,7 @@
     },
     {
       "source": "codegraph/suggest.py::import_rules_template",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -11203,7 +11677,7 @@
     },
     {
       "source": "codegraph/workflow.py::load_import_graph",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -12038,6 +12512,1116 @@
     {
       "source": "tests/test_arch_health.py::_make_graph0",
       "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestArchPlan::test_empty_plan",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestArchPlan::test_empty_plan",
+      "target": "codegraph/arch_planner.py::ArchPlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestArchPlan::test_format",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestArchPlan::test_format",
+      "target": "codegraph/arch_planner.py::ArchPlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestArchPlan::test_format",
+      "target": "codegraph/arch_planner.py::PlannedTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestCoverageResult::test_empty_is_100_percent",
+      "target": "codegraph/arch_planner.py::CoverageResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestCoverageResult::test_overall_average",
+      "target": "codegraph/arch_planner.py::CoverageResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestCoverageResult::test_partial_coverage",
+      "target": "codegraph/arch_planner.py::CoverageResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestCoverageResult::test_to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestCoverageResult::test_to_dict",
+      "target": "codegraph/arch_planner.py::CoverageResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
+      "target": "codegraph/arch_planner.py::plan_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
+      "target": "tests/test_arch_planner.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
+      "target": "tests/test_arch_planner.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
+      "target": "codegraph/arch_planner.py::plan_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
+      "target": "codegraph/arch_schema.py::ArchConstraint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
+      "target": "tests/test_arch_planner.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
+      "target": "tests/test_arch_planner.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
+      "target": "codegraph/arch_planner.py::plan_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
+      "target": "codegraph/arch_schema.py::ArchEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
+      "target": "tests/test_arch_planner.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
+      "target": "tests/test_arch_planner.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
+      "target": "codegraph/arch_planner.py::plan_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
+      "target": "tests/test_arch_planner.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
+      "target": "tests/test_arch_planner.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
+      "target": "codegraph/arch_planner.py::plan_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
+      "target": "tests/test_arch_planner.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
+      "target": "tests/test_arch_planner.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority",
+      "target": "codegraph/arch_planner.py::plan_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority",
+      "target": "codegraph/arch_schema.py::ArchConstraint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority",
+      "target": "tests/test_arch_planner.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority",
+      "target": "tests/test_arch_planner.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanToAgentResponse::test_basic_conversion",
+      "target": "codegraph/arch_planner.py::ArchPlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanToAgentResponse::test_basic_conversion",
+      "target": "codegraph/arch_planner.py::PlannedTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlanToAgentResponse::test_basic_conversion",
+      "target": "codegraph/arch_planner.py::plan_to_agent_response",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlannedTask::test_from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlannedTask::test_to_dict_full",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlannedTask::test_to_dict_full",
+      "target": "codegraph/arch_planner.py::PlannedTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlannedTask::test_to_dict_minimal",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::TestPlannedTask::test_to_dict_minimal",
+      "target": "codegraph/arch_planner.py::PlannedTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::_make_graph0",
+      "target": "codegraph/models/graph0.py::Graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_planner.py::_make_graph0",
+      "target": "codegraph/models/graph0.py::Graph0Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchComponent::test_from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchComponent::test_roundtrip",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchComponent::test_roundtrip",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchComponent::test_roundtrip",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchComponent::test_to_dict_full",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchComponent::test_to_dict_full",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchComponent::test_to_dict_minimal",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchComponent::test_to_dict_minimal",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict_no_reason",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchConstraint::test_to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchConstraint::test_to_dict",
+      "target": "codegraph/arch_schema.py::ArchConstraint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_list",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_object",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchEdge::test_to_dict_custom_type",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchEdge::test_to_dict_custom_type",
+      "target": "codegraph/arch_schema.py::ArchEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchEdge::test_to_dict_default_type",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestArchEdge::test_to_dict_default_type",
+      "target": "codegraph/arch_schema.py::ArchEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestInitArchitecture::test_creates_template",
+      "target": "codegraph/arch_schema.py::init_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSubsystemDef::test_all_functions",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSubsystemDef::test_all_functions",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSubsystemDef::test_component_names",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSubsystemDef::test_component_names",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSubsystemDef::test_empty",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSubsystemDef::test_empty",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSubsystemDef::test_from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSubsystemDef::test_module_paths",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSubsystemDef::test_module_paths",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSubsystemDef::test_with_components",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSubsystemDef::test_with_components",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSubsystemDef::test_with_components",
+      "target": "codegraph/arch_schema.py::ArchEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSubsystemDef::test_with_components",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_all_components",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_all_components",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_all_components",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_all_modules",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_all_modules",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_all_modules",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_constraint_violations",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_constraint_violations",
+      "target": "codegraph/arch_schema.py::ArchConstraint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_constraint_violations",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_constraint_violations",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_constraint_violations",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::get_constraint_violations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_empty",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_empty",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip",
+      "target": "codegraph/arch_schema.py::ArchConstraint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip",
+      "target": "codegraph/arch_schema.py::ArchEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_get_subsystem",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_get_subsystem",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_get_subsystem",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_load_missing",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_no_constraint_violations",
+      "target": "codegraph/arch_schema.py::ArchConstraint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_no_constraint_violations",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_no_constraint_violations",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::get_constraint_violations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_save_and_load",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_save_and_load",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_save_and_load",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_subsystem_names",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_subsystem_names",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildCodeData::test_basic",
+      "target": "codegraph/arch_viewer.py::_build_code_data",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildCodeData::test_basic",
+      "target": "tests/test_arch_viewer.py::_g0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildCodeData::test_basic",
+      "target": "tests/test_arch_viewer.py::_g1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildCodeData::test_basic",
+      "target": "tests/test_arch_viewer.py::_wf",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildCodeData::test_intent_attached",
+      "target": "codegraph/arch_viewer.py::_build_code_data",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildCodeData::test_intent_attached",
+      "target": "tests/test_arch_viewer.py::_g0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildCodeData::test_intent_attached",
+      "target": "tests/test_arch_viewer.py::_g1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildCodeData::test_intent_attached",
+      "target": "tests/test_arch_viewer.py::_wf",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildStats::test_basic_stats",
+      "target": "codegraph/arch_viewer.py::_build_stats",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildStats::test_basic_stats",
+      "target": "tests/test_arch_viewer.py::_g0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildStats::test_basic_stats",
+      "target": "tests/test_arch_viewer.py::_wf",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
+      "target": "codegraph/arch_viewer.py::generate_viewer",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_g0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_g1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_make_mock_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_wf",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_auto_detection",
+      "target": "codegraph/arch_viewer.py::_build_subsystem_data",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_auto_detection",
+      "target": "tests/test_arch_viewer.py::_g0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_auto_detection",
+      "target": "tests/test_arch_viewer.py::_make_mock_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
+      "target": "codegraph/arch_viewer.py::generate_viewer",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_g0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_g1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_make_mock_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_wf",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSystemData::test_auto_detection",
+      "target": "codegraph/arch_viewer.py::_build_subsystem_data",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSystemData::test_auto_detection",
+      "target": "tests/test_arch_viewer.py::_g0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSystemData::test_auto_detection",
+      "target": "tests/test_arch_viewer.py::_make_mock_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
+      "target": "codegraph/arch_viewer.py::generate_viewer",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_g0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_g1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_make_mock_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_wf",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestEscapeHtml::test_escapes",
+      "target": "codegraph/arch_viewer.py::_escape_html",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_custom_output_path",
+      "target": "codegraph/arch_viewer.py::generate_viewer",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_custom_output_path",
+      "target": "tests/test_arch_viewer.py::_g0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_custom_output_path",
+      "target": "tests/test_arch_viewer.py::_g1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_custom_output_path",
+      "target": "tests/test_arch_viewer.py::_make_mock_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_custom_output_path",
+      "target": "tests/test_arch_viewer.py::_wf",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_generates_html_file",
+      "target": "codegraph/arch_viewer.py::generate_viewer",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_generates_html_file",
+      "target": "tests/test_arch_viewer.py::_g0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_generates_html_file",
+      "target": "tests/test_arch_viewer.py::_g1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_generates_html_file",
+      "target": "tests/test_arch_viewer.py::_make_mock_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_generates_html_file",
+      "target": "tests/test_arch_viewer.py::_wf",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture",
+      "target": "codegraph/arch_viewer.py::generate_viewer",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_g0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_g1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_make_mock_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture",
+      "target": "tests/test_arch_viewer.py::_wf",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::_g0",
+      "target": "codegraph/models/graph0.py::Graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::_g0",
+      "target": "codegraph/models/graph0.py::Graph0Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::_g1",
+      "target": "codegraph/models/graph1.py::Graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::_g1",
+      "target": "codegraph/models/graph1.py::Graph1Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::_wf",
+      "target": "codegraph/models/workflow.py::Workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_viewer.py::_wf",
+      "target": "codegraph/models/workflow.py::WorkflowEdge",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -13549,7 +15133,7 @@
     },
     {
       "source": "tests/test_graph2.py::TestDataFlow::test_item_roundtrip",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -13567,7 +15151,7 @@
     },
     {
       "source": "tests/test_graph2.py::TestDataFlow::test_summary_roundtrip",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -13867,7 +15451,7 @@
     },
     {
       "source": "tests/test_graph2.py::TestGraph2Node::test_roundtrip_dict",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -13915,7 +15499,7 @@
     },
     {
       "source": "tests/test_graph2.py::TestGuard::test_roundtrip_dict",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -13963,7 +15547,7 @@
     },
     {
       "source": "tests/test_graph2.py::TestSemanticAction::test_roundtrip_dict",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -14011,7 +15595,7 @@
     },
     {
       "source": "tests/test_graph2.py::TestSideEffect::test_roundtrip_dict",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -14365,7 +15949,7 @@
     },
     {
       "source": "tests/test_models.py::TestGraph0Node::test_serialization_roundtrip",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -16495,7 +18079,7 @@
     },
     {
       "source": "tests/test_suggest.py::TestRuleCreation::test_serialization_roundtrip",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -16849,7 +18433,7 @@
     },
     {
       "source": "tests/test_workflow.py::TestEdgeBuilding::test_edge_serialization",
-      "target": "codegraph/config.py::CodegraphConfig::from_dict",
+      "target": "codegraph/arch_planner.py::PlannedTask::from_dict",
       "edge_type": "call",
       "confidence": "static"
     },

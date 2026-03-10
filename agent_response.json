@@ -1,46 +1,753 @@
 {
-  "cycle": 2,
-  "graph_version": 12,
+  "cycle": 1,
+  "graph_version": 14,
   "intents": [
     {
-      "node": "codegraph/arch_diff.py::ArchDiffReport::has_changes",
-      "intent": "Property indicating whether the diff contains any structural graph changes (added/removed nodes or edges)",
-      "tags": ["entry_point"]
+      "node": "codegraph/arch_planner",
+      "intent": "Architecture decomposition engine comparing definitions to code generating executable tasks"
     },
     {
-      "node": "codegraph/arch_diff.py::ArchDiffReport::has_regression",
-      "intent": "Property indicating whether the diff contains any architecture regressions (metric degradations)",
-      "tags": ["entry_point"]
+      "node": "codegraph/arch_planner.py::ArchPlan",
+      "intent": "Dataclass containing complete architecture plan with decomposed tasks and coverage metrics"
     },
     {
-      "node": "codegraph/analyzer.py::analyze",
-      "intent": "Run all architecture analyses (orphans, stale intents, coverage gaps, missing intents, policy violations, missing edges) scoped to affected_nodes if provided, and return combined AnalysisResult"
+      "node": "codegraph/arch_planner.py::ArchPlan::format",
+      "intent": "Format architecture plan as human-readable text with coverage and task summary"
     },
     {
-      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflowRule::__post_init__",
-      "intent": "Validate rule after initialization: set added_at timestamp, require source specifiers for dependency_limit rules, require both source and target specifiers for all other rule types"
+      "node": "codegraph/arch_planner.py::ArchPlan::to_dict",
+      "intent": "Serialize architecture plan to dictionary for JSON serialization"
     },
     {
-      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflowRule::from_dict",
-      "intent": "Deserialize a SuggestedWorkflowRule from a dictionary with safe defaults for optional fields"
+      "node": "codegraph/arch_planner.py::CoverageResult",
+      "intent": "Dataclass tracking module function and edge coverage metrics for architecture"
     },
     {
-      "node": "codegraph/models/suggested_workflow.py::SuggestedWorkflowRule::to_dict",
-      "intent": "Serialize the rule to a compact dictionary, including required fields always and optional fields only when not None"
+      "node": "codegraph/arch_planner.py::CoverageResult::edge_coverage",
+      "intent": "Compute edge coverage ratio between existing and total architecture edges"
+    },
+    {
+      "node": "codegraph/arch_planner.py::CoverageResult::function_coverage",
+      "intent": "Compute function coverage ratio between existing and required functions"
+    },
+    {
+      "node": "codegraph/arch_planner.py::CoverageResult::module_coverage",
+      "intent": "Compute module coverage ratio between existing and expected modules"
+    },
+    {
+      "node": "codegraph/arch_planner.py::CoverageResult::overall_coverage",
+      "intent": "Compute overall coverage as average of module function and edge coverage"
+    },
+    {
+      "node": "codegraph/arch_planner.py::CoverageResult::to_dict",
+      "intent": "Serialize coverage metrics to dictionary with rounded percentages"
+    },
+    {
+      "node": "codegraph/arch_planner.py::PlannedTask",
+      "intent": "Dataclass representing single granular architecture task for agent execution"
+    },
+    {
+      "node": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "intent": "Deserialize planned task from dictionary representation"
+    },
+    {
+      "node": "codegraph/arch_planner.py::PlannedTask::to_dict",
+      "intent": "Serialize planned task to dictionary with only non-empty fields"
+    },
+    {
+      "node": "codegraph/arch_planner.py::_check_arch_edges",
+      "intent": "Validate inter-subsystem and intra-subsystem edges against actual code"
+    },
+    {
+      "node": "codegraph/arch_planner.py::_find_subsystem_for_module",
+      "intent": "Locate which subsystem a module belongs to in architecture definition"
+    },
+    {
+      "node": "codegraph/arch_planner.py::_module_exists",
+      "intent": "Check if a module path exists in the actual codebase with flexibility"
+    },
+    {
+      "node": "codegraph/arch_planner.py::_resolve_target_files",
+      "intent": "Map subsystem or component names to their actual file paths"
+    },
+    {
+      "node": "codegraph/arch_planner.py::plan_architecture",
+      "intent": "Compare architecture definition to code graph and generate repair tasks"
+    },
+    {
+      "node": "codegraph/arch_planner.py::plan_to_agent_response",
+      "intent": "Convert architecture plan to agent-executable JSON format for repairs"
+    },
+    {
+      "node": "codegraph/arch_schema",
+      "intent": "Dataclass models for defining system architecture and constraints as JSON"
+    },
+    {
+      "node": "codegraph/arch_schema.py::ArchComponent",
+      "intent": "Dataclass representing module or package within a subsystem"
+    },
+    {
+      "node": "codegraph/arch_schema.py::ArchComponent::from_dict",
+      "intent": "Deserialize architecture component from dictionary"
+    },
+    {
+      "node": "codegraph/arch_schema.py::ArchComponent::to_dict",
+      "intent": "Serialize architecture component to dictionary omitting empty fields"
+    },
+    {
+      "node": "codegraph/arch_schema.py::ArchConstraint",
+      "intent": "Dataclass representing forbidden or required architectural rule"
+    },
+    {
+      "node": "codegraph/arch_schema.py::ArchConstraint::from_dict",
+      "intent": "Deserialize constraint from dictionary with optional reason field"
+    },
+    {
+      "node": "codegraph/arch_schema.py::ArchConstraint::to_dict",
+      "intent": "Serialize constraint to dictionary with optional reason field"
+    },
+    {
+      "node": "codegraph/arch_schema.py::ArchEdge",
+      "intent": "Dataclass representing dependency between components or subsystems"
+    },
+    {
+      "node": "codegraph/arch_schema.py::ArchEdge::from_dict",
+      "intent": "Parse edge from list or object format supporting backward compatibility"
+    },
+    {
+      "node": "codegraph/arch_schema.py::ArchEdge::to_dict",
+      "intent": "Serialize edge to dictionary omitting default edge_type"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SubsystemDef",
+      "intent": "Dataclass for named architectural subsystem with components and edges"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SubsystemDef::all_functions",
+      "intent": "Extract all functions from subsystem components as fully qualified ids"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SubsystemDef::component_names",
+      "intent": "Get list of component names in subsystem"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SubsystemDef::from_dict",
+      "intent": "Deserialize subsystem with components and edges from dictionary"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SubsystemDef::module_paths",
+      "intent": "Get list of module paths for components in subsystem"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SubsystemDef::to_dict",
+      "intent": "Serialize subsystem to dictionary omitting empty collections"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SystemArchitecture",
+      "intent": "Dataclass for top-level system architecture with subsystems and constraints"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SystemArchitecture::all_components",
+      "intent": "Get flattened list of all components across all subsystems"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SystemArchitecture::all_modules",
+      "intent": "Get flattened list of all module paths across subsystems"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SystemArchitecture::from_dict",
+      "intent": "Deserialize complete system architecture from dictionary"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SystemArchitecture::get_constraint_violations",
+      "intent": "Check actual edges against forbidden constraints returning violations"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
+      "intent": "Find subsystem by name or return None if not found"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "intent": "Load architecture definition from project codegraph directory"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "intent": "Save architecture definition to project codegraph architecture directory"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SystemArchitecture::subsystem_names",
+      "intent": "Get list of subsystem names in architecture"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SystemArchitecture::to_dict",
+      "intent": "Serialize complete system architecture to dictionary"
+    },
+    {
+      "node": "codegraph/arch_schema.py::_matches_target",
+      "intent": "Check if file path matches subsystem component or target name pattern"
+    },
+    {
+      "node": "codegraph/arch_schema.py::init_architecture",
+      "intent": "Create template architecture definition with core subsystem"
+    },
+    {
+      "node": "codegraph/arch_viewer",
+      "intent": "Interactive HTML architecture dashboard generator with Cytoscape visualization"
+    },
+    {
+      "node": "codegraph/arch_viewer.py::_build_code_data",
+      "intent": "Build code-level graph data with function nodes and call edges"
+    },
+    {
+      "node": "codegraph/arch_viewer.py::_build_stats",
+      "intent": "Build summary statistics for dashboard including subsystem and constraint counts"
+    },
+    {
+      "node": "codegraph/arch_viewer.py::_build_subsystem_data",
+      "intent": "Build per-subsystem component and internal edge data for dashboard"
+    },
+    {
+      "node": "codegraph/arch_viewer.py::_build_system_data",
+      "intent": "Build system-level graph with subsystems and inter-subsystem edges"
+    },
+    {
+      "node": "codegraph/arch_viewer.py::_escape_html",
+      "intent": "Escape HTML special characters for safe embedding in HTML"
+    },
+    {
+      "node": "codegraph/arch_viewer.py::_render_html",
+      "intent": "Render complete HTML dashboard with embedded Cytoscape graph visualization"
+    },
+    {
+      "node": "codegraph/arch_viewer.py::generate_viewer",
+      "intent": "Generate interactive HTML architecture dashboard at system subsystem code levels"
+    },
+    {
+      "node": "codegraph/cli.py::architecture_cmd",
+      "intent": "Manage architecture definitions init validate and display system architecture"
+    },
+    {
+      "node": "codegraph/cli.py::plan_cmd[2]",
+      "intent": "Generate architecture plan tasks against actual code graph"
+    },
+    {
+      "node": "codegraph/cli.py::viewer_cmd",
+      "intent": "Generate interactive HTML architecture dashboard visualization"
+    },
+    {
+      "node": "tests/test_arch_planner",
+      "intent": "Test suite for architecture planner decomposition engine and task generation"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestArchPlan",
+      "intent": "Test class for ArchPlan dataclass serialization and formatting",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestArchPlan::test_empty_plan",
+      "intent": "Test empty architecture plan has zero task count"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestArchPlan::test_format",
+      "intent": "Test format produces human readable plan text with statistics"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestCoverageResult",
+      "intent": "Test class for architecture coverage calculation and statistics",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestCoverageResult::test_empty_is_100_percent",
+      "intent": "Test empty coverage result is 100 percent no requirements"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestCoverageResult::test_overall_average",
+      "intent": "Test overall coverage is average of module and function coverage"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestCoverageResult::test_partial_coverage",
+      "intent": "Test partial coverage calculation with module ratios"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestCoverageResult::test_to_dict",
+      "intent": "Test coverage result serialization with rounded percentages"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlanArchitecture",
+      "intent": "Test class for plan_architecture comparison and task generation",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
+      "intent": "Test plan when all architecture elements exist in code"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
+      "intent": "Test plan detects forbidden constraint violations"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
+      "intent": "Test plan generates task for missing architecture edges"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
+      "intent": "Test plan detects functions required by architecture but absent"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
+      "intent": "Test plan detects missing modules required by architecture"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority",
+      "intent": "Test plan tasks are sorted by priority lowest first"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlanToAgentResponse",
+      "intent": "Test class for converting architecture plans to agent response format",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlanToAgentResponse::test_basic_conversion",
+      "intent": "Test architecture plan converts to agent response with repairs"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlannedTask",
+      "intent": "Test class for PlannedTask serialization and deserialization",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlannedTask::test_from_dict",
+      "intent": "Test deserialize planned task from dictionary"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlannedTask::test_to_dict_full",
+      "intent": "Test serialize full planned task with all fields"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlannedTask::test_to_dict_minimal",
+      "intent": "Test serialize minimal planned task omitting defaults"
+    },
+    {
+      "node": "tests/test_arch_planner.py::_make_graph0",
+      "intent": "Test helper creating Graph0 with given node data"
+    },
+    {
+      "node": "tests/test_arch_planner.py::_make_index",
+      "intent": "Test helper creating mock IndexStore with callee relationships"
+    },
+    {
+      "node": "tests/test_arch_schema",
+      "intent": "Test suite for architecture schema dataclasses and serialization"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchComponent",
+      "intent": "Test class for ArchComponent serialization and deserialization",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchComponent::test_from_dict",
+      "intent": "Test deserialize component from dictionary"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchComponent::test_roundtrip",
+      "intent": "Test component roundtrip serialize and deserialize"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchComponent::test_to_dict_full",
+      "intent": "Test serialize full component with all fields"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchComponent::test_to_dict_minimal",
+      "intent": "Test serialize component with only required name field"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchConstraint",
+      "intent": "Test class for ArchConstraint serialization and deserialization",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict",
+      "intent": "Test deserialize constraint from dictionary"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict_no_reason",
+      "intent": "Test deserialize constraint without optional reason field"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchConstraint::test_to_dict",
+      "intent": "Test serialize constraint to dictionary"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchEdge",
+      "intent": "Test class for ArchEdge serialization supporting multiple formats",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_list",
+      "intent": "Test deserialize edge from list format backward compatibility"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_object",
+      "intent": "Test deserialize edge from object format with custom type"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchEdge::test_to_dict_custom_type",
+      "intent": "Test serialize edge with custom edge_type"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchEdge::test_to_dict_default_type",
+      "intent": "Test serialize edge omits default edge_type value"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestInitArchitecture",
+      "intent": "Test class for init_architecture template creation",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestInitArchitecture::test_creates_template",
+      "intent": "Test init creates template architecture file correctly"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSubsystemDef",
+      "intent": "Test class for SubsystemDef serialization and properties",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSubsystemDef::test_all_functions",
+      "intent": "Test all_functions property returns qualified function names"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSubsystemDef::test_component_names",
+      "intent": "Test component_names property returns list of names"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSubsystemDef::test_empty",
+      "intent": "Test serialize empty subsystem with only name field"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSubsystemDef::test_from_dict",
+      "intent": "Test deserialize subsystem with components and edges"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSubsystemDef::test_module_paths",
+      "intent": "Test module_paths property returns list of module paths"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSubsystemDef::test_with_components",
+      "intent": "Test serialize subsystem with components and edges"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSystemArchitecture",
+      "intent": "Test class for SystemArchitecture serialization and operations",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSystemArchitecture::test_all_components",
+      "intent": "Test all_components flattens components from all subsystems"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSystemArchitecture::test_all_modules",
+      "intent": "Test all_modules flattens module paths from subsystems"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSystemArchitecture::test_constraint_violations",
+      "intent": "Test constraint_violations detects forbidden edges"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSystemArchitecture::test_empty",
+      "intent": "Test serialize empty system architecture"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip",
+      "intent": "Test architecture roundtrip with all components"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSystemArchitecture::test_get_subsystem",
+      "intent": "Test get_subsystem finds subsystem by name"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSystemArchitecture::test_load_missing",
+      "intent": "Test load returns None when architecture file missing"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSystemArchitecture::test_no_constraint_violations",
+      "intent": "Test constraint_violations returns empty when no violations"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSystemArchitecture::test_save_and_load",
+      "intent": "Test architecture save and load roundtrip"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSystemArchitecture::test_subsystem_names",
+      "intent": "Test subsystem_names property returns subsystem name list"
+    },
+    {
+      "node": "tests/test_arch_viewer",
+      "intent": "Test suite for architecture viewer HTML dashboard generation"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildCodeData",
+      "intent": "Test class for _build_code_data function call graph building",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildCodeData::test_basic",
+      "intent": "Test build code data includes only nodes with edges"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildCodeData::test_intent_attached",
+      "intent": "Test build code data attaches intent annotations to nodes"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildStats",
+      "intent": "Test class for _build_stats dashboard statistics generation",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildStats::test_basic_stats",
+      "intent": "Test build stats computes node edge and file counts"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
+      "intent": "Test build stats includes architecture metadata when available"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildSubsystemData",
+      "intent": "Test class for _build_subsystem_data component building",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_auto_detection",
+      "intent": "Test build subsystem data auto detects groups from files"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
+      "intent": "Test build subsystem data uses architecture definitions"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildSystemData",
+      "intent": "Test class for _build_system_data system level graph building",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildSystemData::test_auto_detection",
+      "intent": "Test build system data auto detects subsystems from files"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
+      "intent": "Test build system data uses architecture subsystems and edges"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestEscapeHtml",
+      "intent": "Test class for HTML escaping function",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestEscapeHtml::test_escapes",
+      "intent": "Test escape_html escapes dangerous HTML characters"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestGenerateViewer",
+      "intent": "Test class for generate_viewer HTML dashboard generation",
+      "tags": [
+        "entry_point"
+      ]
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestGenerateViewer::test_custom_output_path",
+      "intent": "Test generate_viewer respects custom output path"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestGenerateViewer::test_generates_html_file",
+      "intent": "Test generate_viewer creates valid HTML file"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture",
+      "intent": "Test generate_viewer includes architecture data in dashboard"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::_g0",
+      "intent": "Test helper creating Graph0 with given node data"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::_g1",
+      "intent": "Test helper creating Graph1 with given intent data"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::_make_mock_index",
+      "intent": "Test helper creating mock IndexStore with callee table"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::_wf",
+      "intent": "Test helper creating Workflow with given edge data"
+    },
+    {
+      "node": "codegraph/cli",
+      "intent": "CLI entry point with commands for build analyze tasks apply delta query explain status validate diff CAS semantic intent-apply subsystem arch-health context simulator arch-diff path-query risk refactor plan-refactor agent-memory visualize architecture plan viewer"
     }
   ],
   "repairs": [
     {
-      "node": "codegraph/arch_diff.py::ArchDiffReport::has_changes",
+      "node": "codegraph/arch_planner.py::CoverageResult::edge_coverage",
       "action": "flag_for_human_review",
-      "target": "",
-      "reason": "Property orphan — accessed as attribute, not detected as call edge"
+      "reason": "Property accessed as attribute, not detected as call edge"
     },
     {
-      "node": "codegraph/arch_diff.py::ArchDiffReport::has_regression",
+      "node": "codegraph/arch_planner.py::CoverageResult::function_coverage",
       "action": "flag_for_human_review",
-      "target": "",
-      "reason": "Property orphan — accessed as attribute, not detected as call edge"
+      "reason": "Property accessed as attribute, not detected as call edge"
+    },
+    {
+      "node": "codegraph/arch_planner.py::CoverageResult::module_coverage",
+      "action": "flag_for_human_review",
+      "reason": "Property accessed as attribute, not detected as call edge"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SubsystemDef::component_names",
+      "action": "flag_for_human_review",
+      "reason": "Property accessed as attribute, not detected as call edge"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SubsystemDef::module_paths",
+      "action": "flag_for_human_review",
+      "reason": "Property accessed as attribute, not detected as call edge"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SystemArchitecture::all_components",
+      "action": "flag_for_human_review",
+      "reason": "Property accessed as attribute, not detected as call edge"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SystemArchitecture::all_modules",
+      "action": "flag_for_human_review",
+      "reason": "Property accessed as attribute, not detected as call edge"
+    },
+    {
+      "node": "codegraph/arch_schema.py::SystemArchitecture::subsystem_names",
+      "action": "flag_for_human_review",
+      "reason": "Property accessed as attribute, not detected as call edge"
+    },
+    {
+      "node": "codegraph/cli.py::plan_cmd[2]",
+      "action": "flag_for_human_review",
+      "reason": "Node ID collision with existing plan_cmd from planning module"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestArchPlan",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestCoverageResult",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlanArchitecture",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlanToAgentResponse",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlannedTask",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchComponent",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchConstraint",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchEdge",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestInitArchitecture",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSubsystemDef",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSystemArchitecture",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildCodeData",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildStats",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildSubsystemData",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestBuildSystemData",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestEscapeHtml",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
+    },
+    {
+      "node": "tests/test_arch_viewer.py::TestGenerateViewer",
+      "action": "flag_for_human_review",
+      "reason": "Test class entry point invoked by pytest runner"
     }
   ]
 }

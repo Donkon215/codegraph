@@ -1646,6 +1646,501 @@
       "intent_body_hash": "0f5ea"
     },
     {
+      "id": "codegraph/arch_planner",
+      "intent": "architecture decomposition engine comparing definitions to code generating executable tasks",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "51885"
+    },
+    {
+      "id": "codegraph/arch_planner.py::ArchPlan",
+      "intent": "dataclass containing complete architecture plan with decomposed tasks and coverage metrics",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "47cc1"
+    },
+    {
+      "id": "codegraph/arch_planner.py::ArchPlan::format",
+      "intent": "format architecture plan as human-readable text with coverage and task summary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "ce633"
+    },
+    {
+      "id": "codegraph/arch_planner.py::ArchPlan::to_dict",
+      "intent": "serialize architecture plan to dictionary for JSON serialization",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "6b985"
+    },
+    {
+      "id": "codegraph/arch_planner.py::CoverageResult",
+      "intent": "dataclass tracking module function and edge coverage metrics for architecture",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "c328b"
+    },
+    {
+      "id": "codegraph/arch_planner.py::CoverageResult::edge_coverage",
+      "intent": "compute edge coverage ratio between existing and total architecture edges",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "fda4a"
+    },
+    {
+      "id": "codegraph/arch_planner.py::CoverageResult::function_coverage",
+      "intent": "compute function coverage ratio between existing and required functions",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "8a71c"
+    },
+    {
+      "id": "codegraph/arch_planner.py::CoverageResult::module_coverage",
+      "intent": "compute module coverage ratio between existing and expected modules",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "487f3"
+    },
+    {
+      "id": "codegraph/arch_planner.py::CoverageResult::overall_coverage",
+      "intent": "compute overall coverage as average of module function and edge coverage",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "81153"
+    },
+    {
+      "id": "codegraph/arch_planner.py::CoverageResult::to_dict",
+      "intent": "serialize coverage metrics to dictionary with rounded percentages",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "e0908"
+    },
+    {
+      "id": "codegraph/arch_planner.py::PlannedTask",
+      "intent": "dataclass representing single granular architecture task for agent execution",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "ef81e"
+    },
+    {
+      "id": "codegraph/arch_planner.py::PlannedTask::from_dict",
+      "intent": "deserialize planned task from dictionary representation",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "f080a"
+    },
+    {
+      "id": "codegraph/arch_planner.py::PlannedTask::to_dict",
+      "intent": "serialize planned task to dictionary with only non-empty fields",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "3aef3"
+    },
+    {
+      "id": "codegraph/arch_planner.py::_check_arch_edges",
+      "intent": "validate inter-subsystem and intra-subsystem edges against actual code",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "9990d"
+    },
+    {
+      "id": "codegraph/arch_planner.py::_find_subsystem_for_module",
+      "intent": "locate which subsystem a module belongs to in architecture definition",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "71e6e"
+    },
+    {
+      "id": "codegraph/arch_planner.py::_module_exists",
+      "intent": "check if a module path exists in the actual codebase with flexibility",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "66b75"
+    },
+    {
+      "id": "codegraph/arch_planner.py::_resolve_target_files",
+      "intent": "map subsystem or component names to their actual file paths",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "e6aa8"
+    },
+    {
+      "id": "codegraph/arch_planner.py::plan_architecture",
+      "intent": "compare architecture definition to code graph and generate repair tasks",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "3fa44"
+    },
+    {
+      "id": "codegraph/arch_planner.py::plan_to_agent_response",
+      "intent": "convert architecture plan to agent-executable JSON format for repairs",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "4f597"
+    },
+    {
+      "id": "codegraph/arch_schema",
+      "intent": "dataclass models for defining system architecture and constraints as JSON",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "a1b6e"
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchComponent",
+      "intent": "dataclass representing module or package within a subsystem",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "2d568"
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchComponent::from_dict",
+      "intent": "deserialize architecture component from dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "0da32"
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchComponent::to_dict",
+      "intent": "serialize architecture component to dictionary omitting empty fields",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "f305e"
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchConstraint",
+      "intent": "dataclass representing forbidden or required architectural rule",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "ac0ea"
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchConstraint::from_dict",
+      "intent": "deserialize constraint from dictionary with optional reason field",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "d1ed5"
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchConstraint::to_dict",
+      "intent": "serialize constraint to dictionary with optional reason field",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "70204"
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchEdge",
+      "intent": "dataclass representing dependency between components or subsystems",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "df209"
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchEdge::from_dict",
+      "intent": "parse edge from list or object format supporting backward compatibility",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "43893"
+    },
+    {
+      "id": "codegraph/arch_schema.py::ArchEdge::to_dict",
+      "intent": "serialize edge to dictionary omitting default edge_type",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "0533e"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SubsystemDef",
+      "intent": "dataclass for named architectural subsystem with components and edges",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "c6c19"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SubsystemDef::all_functions",
+      "intent": "extract all functions from subsystem components as fully qualified ids",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "4a794"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SubsystemDef::component_names",
+      "intent": "get list of component names in subsystem",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "3cf00"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SubsystemDef::from_dict",
+      "intent": "deserialize subsystem with components and edges from dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "e17fa"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SubsystemDef::module_paths",
+      "intent": "get list of module paths for components in subsystem",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "512be"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SubsystemDef::to_dict",
+      "intent": "serialize subsystem to dictionary omitting empty collections",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "52f0f"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture",
+      "intent": "dataclass for top-level system architecture with subsystems and constraints",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "8b2d7"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::all_components",
+      "intent": "get flattened list of all components across all subsystems",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "4d933"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::all_modules",
+      "intent": "get flattened list of all module paths across subsystems",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "0f0fd"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::from_dict",
+      "intent": "deserialize complete system architecture from dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "74784"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::get_constraint_violations",
+      "intent": "check actual edges against forbidden constraints returning violations",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "6ba29"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
+      "intent": "find subsystem by name or return None if not found",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "32eba"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "intent": "load architecture definition from project codegraph directory",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "6ba29"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "intent": "save architecture definition to project codegraph architecture directory",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "d5f3f"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::subsystem_names",
+      "intent": "get list of subsystem names in architecture",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "c6c6a"
+    },
+    {
+      "id": "codegraph/arch_schema.py::SystemArchitecture::to_dict",
+      "intent": "serialize complete system architecture to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "0ea23"
+    },
+    {
+      "id": "codegraph/arch_schema.py::_matches_target",
+      "intent": "check if file path matches subsystem component or target name pattern",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "3f407"
+    },
+    {
+      "id": "codegraph/arch_schema.py::init_architecture",
+      "intent": "create template architecture definition with core subsystem",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "02f18"
+    },
+    {
+      "id": "codegraph/arch_viewer",
+      "intent": "interactive HTML architecture dashboard generator with Cytoscape visualization",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "cd9c6"
+    },
+    {
+      "id": "codegraph/arch_viewer.py::_build_code_data",
+      "intent": "build code-level graph data with function nodes and call edges",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "383af"
+    },
+    {
+      "id": "codegraph/arch_viewer.py::_build_stats",
+      "intent": "build summary statistics for dashboard including subsystem and constraint counts",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "b6aa2"
+    },
+    {
+      "id": "codegraph/arch_viewer.py::_build_subsystem_data",
+      "intent": "build per-subsystem component and internal edge data for dashboard",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "9de4b"
+    },
+    {
+      "id": "codegraph/arch_viewer.py::_build_system_data",
+      "intent": "build system-level graph with subsystems and inter-subsystem edges",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "b00e5"
+    },
+    {
+      "id": "codegraph/arch_viewer.py::_escape_html",
+      "intent": "escape HTML special characters for safe embedding in HTML",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "3e2f5"
+    },
+    {
+      "id": "codegraph/arch_viewer.py::_render_html",
+      "intent": "render complete HTML dashboard with embedded Cytoscape graph visualization",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "fae97"
+    },
+    {
+      "id": "codegraph/arch_viewer.py::generate_viewer",
+      "intent": "generate interactive HTML architecture dashboard at system subsystem code levels",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "b8172"
+    },
+    {
       "id": "codegraph/archi_test",
       "intent": "codegraph.archi_test — Architecture test generation and management",
       "layer": 4,
@@ -2250,12 +2745,12 @@
     },
     {
       "id": "codegraph/cli",
-      "intent": "click CLI entry point with commands for build, analyze, tasks, apply, delta, query, status, health, subsystems, context, simulate, arch-diff, and more",
+      "intent": "cLI entry point with commands for build analyze tasks apply delta query explain status validate diff CAS semantic intent-apply subsystem arch-health context simulator arch-diff path-query risk refactor plan-refactor agent-memory visualize architecture plan viewer",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 4,
-      "intent_timestamp": "2026-03-09T14:36:45Z",
-      "intent_body_hash": "dfce3"
+      "intent_version": 5,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "9f621"
     },
     {
       "id": "codegraph/cli.py::analyze_cmd",
@@ -2301,6 +2796,15 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "eb807"
+    },
+    {
+      "id": "codegraph/cli.py::architecture_cmd",
+      "intent": "manage architecture definitions init validate and display system architecture",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "21ab0"
     },
     {
       "id": "codegraph/cli.py::build",
@@ -2517,6 +3021,15 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T13:56:31Z",
       "intent_body_hash": "0f5ba"
+    },
+    {
+      "id": "codegraph/cli.py::plan_cmd[2]",
+      "intent": "generate architecture plan tasks against actual code graph",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "1ed35"
     },
     {
       "id": "codegraph/cli.py::prune",
@@ -2760,6 +3273,15 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "d6887"
+    },
+    {
+      "id": "codegraph/cli.py::viewer_cmd",
+      "intent": "generate interactive HTML architecture dashboard visualization",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "019dd"
     },
     {
       "id": "codegraph/cli.py::visualize_cmd",
@@ -12678,6 +13200,795 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T14:36:45Z",
       "intent_body_hash": "30577"
+    },
+    {
+      "id": "tests/test_arch_planner",
+      "intent": "test suite for architecture planner decomposition engine and task generation",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "e52e5"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestArchPlan",
+      "intent": "test class for ArchPlan dataclass serialization and formatting",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "3c5c9"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestArchPlan::test_empty_plan",
+      "intent": "test empty architecture plan has zero task count",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "1d7dd"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestArchPlan::test_format",
+      "intent": "test format produces human readable plan text with statistics",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "e63f9"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestCoverageResult",
+      "intent": "test class for architecture coverage calculation and statistics",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "0ff93"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestCoverageResult::test_empty_is_100_percent",
+      "intent": "test empty coverage result is 100 percent no requirements",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "62170"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestCoverageResult::test_overall_average",
+      "intent": "test overall coverage is average of module and function coverage",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "b5771"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestCoverageResult::test_partial_coverage",
+      "intent": "test partial coverage calculation with module ratios",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "a8f5b"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestCoverageResult::test_to_dict",
+      "intent": "test coverage result serialization with rounded percentages",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "12f5e"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanArchitecture",
+      "intent": "test class for plan_architecture comparison and task generation",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "dc8c6"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
+      "intent": "test plan when all architecture elements exist in code",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "79e52"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
+      "intent": "test plan detects forbidden constraint violations",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "8d306"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
+      "intent": "test plan generates task for missing architecture edges",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "23574"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
+      "intent": "test plan detects functions required by architecture but absent",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "4affc"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
+      "intent": "test plan detects missing modules required by architecture",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "54ced"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority",
+      "intent": "test plan tasks are sorted by priority lowest first",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "4397a"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanToAgentResponse",
+      "intent": "test class for converting architecture plans to agent response format",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "44522"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlanToAgentResponse::test_basic_conversion",
+      "intent": "test architecture plan converts to agent response with repairs",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "325f0"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlannedTask",
+      "intent": "test class for PlannedTask serialization and deserialization",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "67730"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlannedTask::test_from_dict",
+      "intent": "test deserialize planned task from dictionary",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "2a950"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlannedTask::test_to_dict_full",
+      "intent": "test serialize full planned task with all fields",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "3229b"
+    },
+    {
+      "id": "tests/test_arch_planner.py::TestPlannedTask::test_to_dict_minimal",
+      "intent": "test serialize minimal planned task omitting defaults",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "dc357"
+    },
+    {
+      "id": "tests/test_arch_planner.py::_make_graph0",
+      "intent": "test helper creating Graph0 with given node data",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "eed3b"
+    },
+    {
+      "id": "tests/test_arch_planner.py::_make_index",
+      "intent": "test helper creating mock IndexStore with callee relationships",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "536ac"
+    },
+    {
+      "id": "tests/test_arch_schema",
+      "intent": "test suite for architecture schema dataclasses and serialization",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "a9bea"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchComponent",
+      "intent": "test class for ArchComponent serialization and deserialization",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "92068"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchComponent::test_from_dict",
+      "intent": "test deserialize component from dictionary",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "90f57"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchComponent::test_roundtrip",
+      "intent": "test component roundtrip serialize and deserialize",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "23830"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchComponent::test_to_dict_full",
+      "intent": "test serialize full component with all fields",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "b8649"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchComponent::test_to_dict_minimal",
+      "intent": "test serialize component with only required name field",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "f4160"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchConstraint",
+      "intent": "test class for ArchConstraint serialization and deserialization",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "19637"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict",
+      "intent": "test deserialize constraint from dictionary",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "6c540"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict_no_reason",
+      "intent": "test deserialize constraint without optional reason field",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "aebf7"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchConstraint::test_to_dict",
+      "intent": "test serialize constraint to dictionary",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "951e4"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchEdge",
+      "intent": "test class for ArchEdge serialization supporting multiple formats",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "7019f"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_list",
+      "intent": "test deserialize edge from list format backward compatibility",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "442be"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_object",
+      "intent": "test deserialize edge from object format with custom type",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "48070"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchEdge::test_to_dict_custom_type",
+      "intent": "test serialize edge with custom edge_type",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "54aa3"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestArchEdge::test_to_dict_default_type",
+      "intent": "test serialize edge omits default edge_type value",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "fd43b"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestInitArchitecture",
+      "intent": "test class for init_architecture template creation",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "8486a"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestInitArchitecture::test_creates_template",
+      "intent": "test init creates template architecture file correctly",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "3fe50"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSubsystemDef",
+      "intent": "test class for SubsystemDef serialization and properties",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "96ea1"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSubsystemDef::test_all_functions",
+      "intent": "test all_functions property returns qualified function names",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "116a2"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSubsystemDef::test_component_names",
+      "intent": "test component_names property returns list of names",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "3a2c8"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSubsystemDef::test_empty",
+      "intent": "test serialize empty subsystem with only name field",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "e4738"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSubsystemDef::test_from_dict",
+      "intent": "test deserialize subsystem with components and edges",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "43f1c"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSubsystemDef::test_module_paths",
+      "intent": "test module_paths property returns list of module paths",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "773e5"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSubsystemDef::test_with_components",
+      "intent": "test serialize subsystem with components and edges",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "e7361"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture",
+      "intent": "test class for SystemArchitecture serialization and operations",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "29e27"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_all_components",
+      "intent": "test all_components flattens components from all subsystems",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "74129"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_all_modules",
+      "intent": "test all_modules flattens module paths from subsystems",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "1d0cd"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_constraint_violations",
+      "intent": "test constraint_violations detects forbidden edges",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "8f913"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_empty",
+      "intent": "test serialize empty system architecture",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "2fbf7"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip",
+      "intent": "test architecture roundtrip with all components",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "f8812"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_get_subsystem",
+      "intent": "test get_subsystem finds subsystem by name",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "19288"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_load_missing",
+      "intent": "test load returns None when architecture file missing",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "ef808"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_no_constraint_violations",
+      "intent": "test constraint_violations returns empty when no violations",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "01eaf"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_save_and_load",
+      "intent": "test architecture save and load roundtrip",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "cea7b"
+    },
+    {
+      "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_subsystem_names",
+      "intent": "test subsystem_names property returns subsystem name list",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "be25e"
+    },
+    {
+      "id": "tests/test_arch_viewer",
+      "intent": "test suite for architecture viewer HTML dashboard generation",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "edce6"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildCodeData",
+      "intent": "test class for _build_code_data function call graph building",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "51e7c"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildCodeData::test_basic",
+      "intent": "test build code data includes only nodes with edges",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "ac94f"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildCodeData::test_intent_attached",
+      "intent": "test build code data attaches intent annotations to nodes",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "86ba1"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildStats",
+      "intent": "test class for _build_stats dashboard statistics generation",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "93883"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildStats::test_basic_stats",
+      "intent": "test build stats computes node edge and file counts",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "98ca7"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
+      "intent": "test build stats includes architecture metadata when available",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "c396c"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildSubsystemData",
+      "intent": "test class for _build_subsystem_data component building",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "6ccb4"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_auto_detection",
+      "intent": "test build subsystem data auto detects groups from files",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "4a9ea"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
+      "intent": "test build subsystem data uses architecture definitions",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "43a43"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildSystemData",
+      "intent": "test class for _build_system_data system level graph building",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "b7b69"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildSystemData::test_auto_detection",
+      "intent": "test build system data auto detects subsystems from files",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "55080"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
+      "intent": "test build system data uses architecture subsystems and edges",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "a4c61"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestEscapeHtml",
+      "intent": "test class for HTML escaping function",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "12dd0"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestEscapeHtml::test_escapes",
+      "intent": "test escape_html escapes dangerous HTML characters",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "14bbe"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestGenerateViewer",
+      "intent": "test class for generate_viewer HTML dashboard generation",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "f3fda"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestGenerateViewer::test_custom_output_path",
+      "intent": "test generate_viewer respects custom output path",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "92115"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestGenerateViewer::test_generates_html_file",
+      "intent": "test generate_viewer creates valid HTML file",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "9c2ff"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture",
+      "intent": "test generate_viewer includes architecture data in dashboard",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "6a2b8"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::_g0",
+      "intent": "test helper creating Graph0 with given node data",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "82cd0"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::_g1",
+      "intent": "test helper creating Graph1 with given intent data",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "fffa4"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::_make_mock_index",
+      "intent": "test helper creating mock IndexStore with callee table",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "5bb63"
+    },
+    {
+      "id": "tests/test_arch_viewer.py::_wf",
+      "intent": "test helper creating Workflow with given edge data",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_body_hash": "42bb7"
     },
     {
       "id": "tests/test_cas",
