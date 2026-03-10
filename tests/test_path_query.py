@@ -48,6 +48,7 @@ class TestFindPatternPaths:
         conn.execute("CREATE TABLE nodes (node_id TEXT, id TEXT, file TEXT, type TEXT, line INTEGER, body_hash TEXT, dep_hash TEXT)")
         mock_index = MagicMock()
         mock_index._conn = conn
+        mock_index._get_conn.return_value = conn
         mock_index.get_callees.return_value = []
 
         result = find_pattern_paths("a/*", "b/*", mock_index)
@@ -60,12 +61,13 @@ class TestFindPatternPaths:
         import sqlite3
 
         conn = sqlite3.connect(":memory:")
-        conn.execute("CREATE TABLE nodes (node_id TEXT)")
-        conn.execute("INSERT INTO nodes VALUES ('a/x::func1')")
-        conn.execute("INSERT INTO nodes VALUES ('b/y::func2')")
+        conn.execute("CREATE TABLE nodes (node_id TEXT, id TEXT)")
+        conn.execute("INSERT INTO nodes VALUES ('a/x::func1', 'a/x::func1')")
+        conn.execute("INSERT INTO nodes VALUES ('b/y::func2', 'b/y::func2')")
 
         mock_index = MagicMock()
         mock_index._conn = conn
+        mock_index._get_conn.return_value = conn
         mock_index.get_callees.side_effect = lambda nid: ["b/y::func2"] if nid == "a/x::func1" else []
 
         result = find_pattern_paths("a/*", "b/*", mock_index)
@@ -80,12 +82,13 @@ class TestCheckForbiddenPath:
         import sqlite3
 
         conn = sqlite3.connect(":memory:")
-        conn.execute("CREATE TABLE nodes (node_id TEXT)")
-        conn.execute("INSERT INTO nodes VALUES ('api/handler::process')")
-        conn.execute("INSERT INTO nodes VALUES ('db/engine::query')")
+        conn.execute("CREATE TABLE nodes (node_id TEXT, id TEXT)")
+        conn.execute("INSERT INTO nodes VALUES ('api/handler::process', 'api/handler::process')")
+        conn.execute("INSERT INTO nodes VALUES ('db/engine::query', 'db/engine::query')")
 
         mock_index = MagicMock()
         mock_index._conn = conn
+        mock_index._get_conn.return_value = conn
         mock_index.get_callees.side_effect = lambda nid: ["db/engine::query"] if nid == "api/handler::process" else []
 
         result = check_forbidden_path("api/*", "db/*", mock_index)
@@ -96,12 +99,13 @@ class TestCheckForbiddenPath:
         import sqlite3
 
         conn = sqlite3.connect(":memory:")
-        conn.execute("CREATE TABLE nodes (node_id TEXT)")
-        conn.execute("INSERT INTO nodes VALUES ('api/handler::process')")
-        conn.execute("INSERT INTO nodes VALUES ('db/engine::query')")
+        conn.execute("CREATE TABLE nodes (node_id TEXT, id TEXT)")
+        conn.execute("INSERT INTO nodes VALUES ('api/handler::process', 'api/handler::process')")
+        conn.execute("INSERT INTO nodes VALUES ('db/engine::query', 'db/engine::query')")
 
         mock_index = MagicMock()
         mock_index._conn = conn
+        mock_index._get_conn.return_value = conn
         mock_index.get_callees.return_value = []
 
         result = check_forbidden_path("api/*", "db/*", mock_index)

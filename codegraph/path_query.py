@@ -143,7 +143,7 @@ def _bfs_to_set(
 def _get_all_node_ids(index: IndexStore) -> List[str]:
     """Get all node IDs from the index."""
     try:
-        rows = index._conn.execute("SELECT node_id FROM nodes").fetchall()
+        rows = index._get_conn().execute("SELECT id FROM nodes").fetchall()
         return [r[0] for r in rows]
     except Exception:
         return []

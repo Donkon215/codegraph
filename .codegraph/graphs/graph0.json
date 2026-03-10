@@ -1,7 +1,7 @@
 {
   "format_version": 1,
-  "graph_version": 17,
-  "extracted_at": "2026-03-10T12:31:32Z",
+  "graph_version": 22,
+  "extracted_at": "2026-03-10T13:31:17Z",
   "source_files": [
     "benchmarks/benchmark_build.py",
     "benchmarks/benchmark_query.py",
@@ -1340,7 +1340,7 @@
     },
     {
       "id": "codegraph/arch_health",
-      "body_hash": "f331d",
+      "body_hash": "390e5",
       "file": "codegraph/arch_health.py",
       "type": "module",
       "line": 1
@@ -1396,7 +1396,7 @@
     },
     {
       "id": "codegraph/arch_health.py::compute_health",
-      "body_hash": "d6f69",
+      "body_hash": "82c7b",
       "file": "codegraph/arch_health.py",
       "type": "function",
       "line": 125
@@ -6800,7 +6800,7 @@
     },
     {
       "id": "codegraph/path_query",
-      "body_hash": "e6fed",
+      "body_hash": "2fc0a",
       "file": "codegraph/path_query.py",
       "type": "module",
       "line": 1
@@ -6842,7 +6842,7 @@
     },
     {
       "id": "codegraph/path_query.py::_get_all_node_ids",
-      "body_hash": "46ed0",
+      "body_hash": "d129e",
       "file": "codegraph/path_query.py",
       "type": "function",
       "line": 143
@@ -7227,7 +7227,7 @@
     },
     {
       "id": "codegraph/refactor",
-      "body_hash": "bea5b",
+      "body_hash": "cb764",
       "file": "codegraph/refactor.py",
       "type": "module",
       "line": 1
@@ -7325,14 +7325,14 @@
     },
     {
       "id": "codegraph/refactor.py::detect_coupling",
-      "body_hash": "ced40",
+      "body_hash": "e2409",
       "file": "codegraph/refactor.py",
       "type": "function",
       "line": 295
     },
     {
       "id": "codegraph/refactor.py::detect_cycles",
-      "body_hash": "b426e",
+      "body_hash": "163ff",
       "file": "codegraph/refactor.py",
       "type": "function",
       "line": 205
@@ -7353,7 +7353,7 @@
     },
     {
       "id": "codegraph/risk_metrics",
-      "body_hash": "d0e1d",
+      "body_hash": "6c361",
       "file": "codegraph/risk_metrics.py",
       "type": "module",
       "line": 1
@@ -7409,14 +7409,14 @@
     },
     {
       "id": "codegraph/risk_metrics.py::check_dependency_limits",
-      "body_hash": "1ab68",
+      "body_hash": "73a43",
       "file": "codegraph/risk_metrics.py",
       "type": "function",
       "line": 211
     },
     {
       "id": "codegraph/risk_metrics.py::compute_risk_metrics",
-      "body_hash": "ab736",
+      "body_hash": "84242",
       "file": "codegraph/risk_metrics.py",
       "type": "function",
       "line": 100
@@ -7696,7 +7696,7 @@
     },
     {
       "id": "codegraph/simulator",
-      "body_hash": "2d306",
+      "body_hash": "afeb0",
       "file": "codegraph/simulator.py",
       "type": "module",
       "line": 1
@@ -7773,7 +7773,7 @@
     },
     {
       "id": "codegraph/simulator.py::_original_adj",
-      "body_hash": "9208c",
+      "body_hash": "eabbb",
       "file": "codegraph/simulator.py",
       "type": "function",
       "line": 316
@@ -7787,7 +7787,7 @@
     },
     {
       "id": "codegraph/simulator.py::simulate_changes",
-      "body_hash": "753d0",
+      "body_hash": "5c30a",
       "file": "codegraph/simulator.py",
       "type": "function",
       "line": 96
@@ -7906,7 +7906,7 @@
     },
     {
       "id": "codegraph/subsystem",
-      "body_hash": "e3ddc",
+      "body_hash": "28d71",
       "file": "codegraph/subsystem.py",
       "type": "module",
       "line": 1
@@ -7976,7 +7976,7 @@
     },
     {
       "id": "codegraph/subsystem.py::detect_subsystems",
-      "body_hash": "aa54a",
+      "body_hash": "b12f4",
       "file": "codegraph/subsystem.py",
       "type": "function",
       "line": 108
@@ -10342,7 +10342,7 @@
     },
     {
       "id": "tests/test_arch_health",
-      "body_hash": "6513d",
+      "body_hash": "32ea7",
       "file": "tests/test_arch_health.py",
       "type": "module",
       "line": 1
@@ -10352,88 +10352,88 @@
       "body_hash": "57276",
       "file": "tests/test_arch_health.py",
       "type": "class",
-      "line": 71
+      "line": 72
     },
     {
       "id": "tests/test_arch_health.py::TestArchHealthReport::test_format",
       "body_hash": "c5013",
       "file": "tests/test_arch_health.py",
       "type": "method",
-      "line": 89
+      "line": 90
     },
     {
       "id": "tests/test_arch_health.py::TestArchHealthReport::test_grade_mapping",
       "body_hash": "05e45",
       "file": "tests/test_arch_health.py",
       "type": "method",
-      "line": 72
+      "line": 73
     },
     {
       "id": "tests/test_arch_health.py::TestArchHealthReport::test_to_dict",
       "body_hash": "46bbf",
       "file": "tests/test_arch_health.py",
       "type": "method",
-      "line": 82
+      "line": 83
     },
     {
       "id": "tests/test_arch_health.py::TestComputeHealth",
       "body_hash": "87838",
       "file": "tests/test_arch_health.py",
       "type": "class",
-      "line": 96
+      "line": 97
     },
     {
       "id": "tests/test_arch_health.py::TestComputeHealth::test_cyclic_graph_penalized",
       "body_hash": "0e77d",
       "file": "tests/test_arch_health.py",
       "type": "method",
-      "line": 119
+      "line": 120
     },
     {
       "id": "tests/test_arch_health.py::TestComputeHealth::test_empty_graph",
       "body_hash": "f6734",
       "file": "tests/test_arch_health.py",
       "type": "method",
-      "line": 112
+      "line": 113
     },
     {
       "id": "tests/test_arch_health.py::TestComputeHealth::test_simple_healthy",
       "body_hash": "3bd4f",
       "file": "tests/test_arch_health.py",
       "type": "method",
-      "line": 97
+      "line": 98
     },
     {
       "id": "tests/test_arch_health.py::TestModuleHealth",
       "body_hash": "055fa",
       "file": "tests/test_arch_health.py",
       "type": "class",
-      "line": 49
+      "line": 50
     },
     {
       "id": "tests/test_arch_health.py::TestModuleHealth::test_defaults",
       "body_hash": "1d089",
       "file": "tests/test_arch_health.py",
       "type": "method",
-      "line": 65
+      "line": 66
     },
     {
       "id": "tests/test_arch_health.py::TestModuleHealth::test_to_dict",
       "body_hash": "d9b2b",
       "file": "tests/test_arch_health.py",
       "type": "method",
-      "line": 50
+      "line": 51
     },
     {
       "id": "tests/test_arch_health.py::_make_graph0",
       "body_hash": "269e6",
       "file": "tests/test_arch_health.py",
       "type": "function",
-      "line": 34
+      "line": 35
     },
     {
       "id": "tests/test_arch_health.py::_make_index",
-      "body_hash": "30577",
+      "body_hash": "53795",
       "file": "tests/test_arch_health.py",
       "type": "function",
       "line": 15
@@ -11014,7 +11014,7 @@
     },
     {
       "id": "tests/test_architecture_advisor",
-      "body_hash": "26186",
+      "body_hash": "d65f0",
       "file": "tests/test_architecture_advisor.py",
       "type": "module",
       "line": 1
@@ -11217,7 +11217,7 @@
     },
     {
       "id": "tests/test_architecture_advisor.py::_make_index",
-      "body_hash": "e3b0d",
+      "body_hash": "3a751",
       "file": "tests/test_architecture_advisor.py",
       "type": "function",
       "line": 39
@@ -14003,49 +14003,49 @@
     },
     {
       "id": "tests/test_path_query",
-      "body_hash": "db833",
+      "body_hash": "530d0",
       "file": "tests/test_path_query.py",
       "type": "module",
       "line": 1
     },
     {
       "id": "tests/test_path_query.py::TestCheckForbiddenPath",
-      "body_hash": "f664f",
+      "body_hash": "53e3a",
       "file": "tests/test_path_query.py",
       "type": "class",
-      "line": 77
+      "line": 79
     },
     {
       "id": "tests/test_path_query.py::TestCheckForbiddenPath::test_forbidden_path_found",
-      "body_hash": "c70b0",
+      "body_hash": "a1188",
       "file": "tests/test_path_query.py",
       "type": "method",
-      "line": 78
+      "line": 80
     },
     {
       "id": "tests/test_path_query.py::TestCheckForbiddenPath::test_forbidden_path_not_found",
-      "body_hash": "dfd1a",
+      "body_hash": "8d86e",
       "file": "tests/test_path_query.py",
       "type": "method",
-      "line": 94
+      "line": 97
     },
     {
       "id": "tests/test_path_query.py::TestFindPatternPaths",
-      "body_hash": "e267f",
+      "body_hash": "9ee8e",
       "file": "tests/test_path_query.py",
       "type": "class",
       "line": 41
     },
     {
       "id": "tests/test_path_query.py::TestFindPatternPaths::test_direct_path",
-      "body_hash": "4d8fc",
+      "body_hash": "49444",
       "file": "tests/test_path_query.py",
       "type": "method",
-      "line": 57
+      "line": 58
     },
     {
       "id": "tests/test_path_query.py::TestFindPatternPaths::test_no_index_returns_empty",
-      "body_hash": "78943",
+      "body_hash": "309fd",
       "file": "tests/test_path_query.py",
       "type": "method",
       "line": 42
@@ -14416,7 +14416,7 @@
     },
     {
       "id": "tests/test_refactor",
-      "body_hash": "cdc13",
+      "body_hash": "81de1",
       "file": "tests/test_refactor.py",
       "type": "module",
       "line": 1
@@ -14426,144 +14426,144 @@
       "body_hash": "88eaf",
       "file": "tests/test_refactor.py",
       "type": "class",
-      "line": 147
+      "line": 148
     },
     {
       "id": "tests/test_refactor.py::TestAnalyzeRefactoring::test_full_analysis",
       "body_hash": "2ca72",
       "file": "tests/test_refactor.py",
       "type": "method",
-      "line": 148
+      "line": 149
     },
     {
       "id": "tests/test_refactor.py::TestCycleInfo",
       "body_hash": "b2402",
       "file": "tests/test_refactor.py",
       "type": "class",
-      "line": 65
+      "line": 66
     },
     {
       "id": "tests/test_refactor.py::TestCycleInfo::test_to_dict",
       "body_hash": "19b68",
       "file": "tests/test_refactor.py",
       "type": "method",
-      "line": 66
+      "line": 67
     },
     {
       "id": "tests/test_refactor.py::TestDetectCoupling",
       "body_hash": "b104c",
       "file": "tests/test_refactor.py",
       "type": "class",
-      "line": 112
+      "line": 113
     },
     {
       "id": "tests/test_refactor.py::TestDetectCoupling::test_high_coupling",
       "body_hash": "f746f",
       "file": "tests/test_refactor.py",
       "type": "method",
-      "line": 121
+      "line": 122
     },
     {
       "id": "tests/test_refactor.py::TestDetectCoupling::test_no_coupling",
       "body_hash": "8fc69",
       "file": "tests/test_refactor.py",
       "type": "method",
-      "line": 113
+      "line": 114
     },
     {
       "id": "tests/test_refactor.py::TestDetectCycles",
       "body_hash": "e9928",
       "file": "tests/test_refactor.py",
       "type": "class",
-      "line": 73
+      "line": 74
     },
     {
       "id": "tests/test_refactor.py::TestDetectCycles::test_no_cycles",
       "body_hash": "8ca1e",
       "file": "tests/test_refactor.py",
       "type": "method",
-      "line": 74
+      "line": 75
     },
     {
       "id": "tests/test_refactor.py::TestDetectCycles::test_simple_cycle",
       "body_hash": "d2f96",
       "file": "tests/test_refactor.py",
       "type": "method",
-      "line": 79
+      "line": 80
     },
     {
       "id": "tests/test_refactor.py::TestDetectCycles::test_two_cycles",
       "body_hash": "c3b4b",
       "file": "tests/test_refactor.py",
       "type": "method",
-      "line": 85
+      "line": 86
     },
     {
       "id": "tests/test_refactor.py::TestDetectGodModules",
       "body_hash": "4e073",
       "file": "tests/test_refactor.py",
       "type": "class",
-      "line": 94
+      "line": 95
     },
     {
       "id": "tests/test_refactor.py::TestDetectGodModules::test_god_module_detected",
       "body_hash": "75533",
       "file": "tests/test_refactor.py",
       "type": "method",
-      "line": 100
+      "line": 101
     },
     {
       "id": "tests/test_refactor.py::TestDetectGodModules::test_no_god_modules",
       "body_hash": "e512c",
       "file": "tests/test_refactor.py",
       "type": "method",
-      "line": 95
+      "line": 96
     },
     {
       "id": "tests/test_refactor.py::TestDetectGodModules::test_threshold_exact",
       "body_hash": "744d2",
       "file": "tests/test_refactor.py",
       "type": "method",
-      "line": 106
+      "line": 107
     },
     {
       "id": "tests/test_refactor.py::TestRefactorReport",
       "body_hash": "526cf",
       "file": "tests/test_refactor.py",
       "type": "class",
-      "line": 133
+      "line": 134
     },
     {
       "id": "tests/test_refactor.py::TestRefactorReport::test_empty_report",
       "body_hash": "d3af1",
       "file": "tests/test_refactor.py",
       "type": "method",
-      "line": 134
+      "line": 135
     },
     {
       "id": "tests/test_refactor.py::TestRefactorReport::test_format",
       "body_hash": "807f8",
       "file": "tests/test_refactor.py",
       "type": "method",
-      "line": 139
+      "line": 140
     },
     {
       "id": "tests/test_refactor.py::_make_graph0",
       "body_hash": "d4d80",
       "file": "tests/test_refactor.py",
       "type": "function",
-      "line": 50
+      "line": 51
     },
     {
       "id": "tests/test_refactor.py::_make_index_mock",
-      "body_hash": "27fce",
+      "body_hash": "aadc6",
       "file": "tests/test_refactor.py",
       "type": "function",
       "line": 21
     },
     {
       "id": "tests/test_risk_metrics",
-      "body_hash": "404c4",
+      "body_hash": "28064",
       "file": "tests/test_risk_metrics.py",
       "type": "module",
       "line": 1
@@ -14573,123 +14573,123 @@
       "body_hash": "5ecf3",
       "file": "tests/test_risk_metrics.py",
       "type": "class",
-      "line": 138
+      "line": 139
     },
     {
       "id": "tests/test_risk_metrics.py::TestApproximateBetweenness::test_empty_graph",
       "body_hash": "6e465",
       "file": "tests/test_risk_metrics.py",
       "type": "method",
-      "line": 139
+      "line": 140
     },
     {
       "id": "tests/test_risk_metrics.py::TestApproximateBetweenness::test_linear_path",
       "body_hash": "9e72d",
       "file": "tests/test_risk_metrics.py",
       "type": "method",
-      "line": 143
+      "line": 144
     },
     {
       "id": "tests/test_risk_metrics.py::TestCheckDependencyLimits",
       "body_hash": "b6016",
       "file": "tests/test_risk_metrics.py",
       "type": "class",
-      "line": 95
+      "line": 96
     },
     {
       "id": "tests/test_risk_metrics.py::TestCheckDependencyLimits::test_fan_out_exceeded",
       "body_hash": "29ba6",
       "file": "tests/test_risk_metrics.py",
       "type": "method",
-      "line": 101
+      "line": 102
     },
     {
       "id": "tests/test_risk_metrics.py::TestCheckDependencyLimits::test_no_rules",
       "body_hash": "5ac19",
       "file": "tests/test_risk_metrics.py",
       "type": "method",
-      "line": 96
+      "line": 97
     },
     {
       "id": "tests/test_risk_metrics.py::TestCheckDependencyLimits::test_within_limits",
       "body_hash": "f27e6",
       "file": "tests/test_risk_metrics.py",
       "type": "method",
-      "line": 120
+      "line": 121
     },
     {
       "id": "tests/test_risk_metrics.py::TestComputeRiskMetrics",
       "body_hash": "0e2ad",
       "file": "tests/test_risk_metrics.py",
       "type": "class",
-      "line": 64
+      "line": 65
     },
     {
       "id": "tests/test_risk_metrics.py::TestComputeRiskMetrics::test_empty_graph",
       "body_hash": "957df",
       "file": "tests/test_risk_metrics.py",
       "type": "method",
-      "line": 65
+      "line": 66
     },
     {
       "id": "tests/test_risk_metrics.py::TestComputeRiskMetrics::test_risk_levels_assigned",
       "body_hash": "37263",
       "file": "tests/test_risk_metrics.py",
       "type": "method",
-      "line": 80
+      "line": 81
     },
     {
       "id": "tests/test_risk_metrics.py::TestComputeRiskMetrics::test_simple_graph",
       "body_hash": "71110",
       "file": "tests/test_risk_metrics.py",
       "type": "method",
-      "line": 70
+      "line": 71
     },
     {
       "id": "tests/test_risk_metrics.py::TestNodeMetrics",
       "body_hash": "76258",
       "file": "tests/test_risk_metrics.py",
       "type": "class",
-      "line": 37
+      "line": 38
     },
     {
       "id": "tests/test_risk_metrics.py::TestNodeMetrics::test_risk_level_default",
       "body_hash": "3755b",
       "file": "tests/test_risk_metrics.py",
       "type": "method",
-      "line": 46
+      "line": 47
     },
     {
       "id": "tests/test_risk_metrics.py::TestNodeMetrics::test_to_dict",
       "body_hash": "320d3",
       "file": "tests/test_risk_metrics.py",
       "type": "method",
-      "line": 38
+      "line": 39
     },
     {
       "id": "tests/test_risk_metrics.py::TestRiskReport",
       "body_hash": "1f9f6",
       "file": "tests/test_risk_metrics.py",
       "type": "class",
-      "line": 51
+      "line": 52
     },
     {
       "id": "tests/test_risk_metrics.py::TestRiskReport::test_empty_report",
       "body_hash": "29938",
       "file": "tests/test_risk_metrics.py",
       "type": "method",
-      "line": 52
+      "line": 53
     },
     {
       "id": "tests/test_risk_metrics.py::TestRiskReport::test_format",
       "body_hash": "10def",
       "file": "tests/test_risk_metrics.py",
       "type": "method",
-      "line": 58
+      "line": 59
     },
     {
       "id": "tests/test_risk_metrics.py::_make_index_mock",
-      "body_hash": "cbf63",
+      "body_hash": "be33a",
       "file": "tests/test_risk_metrics.py",
       "type": "function",
       "line": 18
@@ -15060,7 +15060,7 @@
     },
     {
       "id": "tests/test_simulator",
-      "body_hash": "8560c",
+      "body_hash": "318cb",
       "file": "tests/test_simulator.py",
       "type": "module",
       "line": 1
@@ -15070,123 +15070,123 @@
       "body_hash": "5ac31",
       "file": "tests/test_simulator.py",
       "type": "class",
-      "line": 44
+      "line": 45
     },
     {
       "id": "tests/test_simulator.py::TestSimViolation::test_to_dict",
       "body_hash": "e4c37",
       "file": "tests/test_simulator.py",
       "type": "method",
-      "line": 45
+      "line": 46
     },
     {
       "id": "tests/test_simulator.py::TestSimulateAgentResponse",
       "body_hash": "75f21",
       "file": "tests/test_simulator.py",
       "type": "class",
-      "line": 122
+      "line": 123
     },
     {
       "id": "tests/test_simulator.py::TestSimulateAgentResponse::test_connect_call_repair",
       "body_hash": "e7e36",
       "file": "tests/test_simulator.py",
       "type": "method",
-      "line": 129
+      "line": 130
     },
     {
       "id": "tests/test_simulator.py::TestSimulateAgentResponse::test_empty_response",
       "body_hash": "6395b",
       "file": "tests/test_simulator.py",
       "type": "method",
-      "line": 123
+      "line": 124
     },
     {
       "id": "tests/test_simulator.py::TestSimulateAgentResponse::test_no_repairs_key",
       "body_hash": "116cc",
       "file": "tests/test_simulator.py",
       "type": "method",
-      "line": 146
+      "line": 147
     },
     {
       "id": "tests/test_simulator.py::TestSimulateChanges",
       "body_hash": "3d4fa",
       "file": "tests/test_simulator.py",
       "type": "class",
-      "line": 68
+      "line": 69
     },
     {
       "id": "tests/test_simulator.py::TestSimulateChanges::test_add_edge_creates_cycle",
       "body_hash": "329c3",
       "file": "tests/test_simulator.py",
       "type": "method",
-      "line": 85
+      "line": 86
     },
     {
       "id": "tests/test_simulator.py::TestSimulateChanges::test_add_edge_no_cycle",
       "body_hash": "cab1d",
       "file": "tests/test_simulator.py",
       "type": "method",
-      "line": 76
+      "line": 77
     },
     {
       "id": "tests/test_simulator.py::TestSimulateChanges::test_forbidden_pattern",
       "body_hash": "535a9",
       "file": "tests/test_simulator.py",
       "type": "method",
-      "line": 106
+      "line": 107
     },
     {
       "id": "tests/test_simulator.py::TestSimulateChanges::test_no_changes",
       "body_hash": "e1ff6",
       "file": "tests/test_simulator.py",
       "type": "method",
-      "line": 69
+      "line": 70
     },
     {
       "id": "tests/test_simulator.py::TestSimulateChanges::test_remove_edge",
       "body_hash": "6be4a",
       "file": "tests/test_simulator.py",
       "type": "method",
-      "line": 97
+      "line": 98
     },
     {
       "id": "tests/test_simulator.py::TestSimulatedChange",
       "body_hash": "a9b6a",
       "file": "tests/test_simulator.py",
       "type": "class",
-      "line": 36
+      "line": 37
     },
     {
       "id": "tests/test_simulator.py::TestSimulatedChange::test_to_dict",
       "body_hash": "e3588",
       "file": "tests/test_simulator.py",
       "type": "method",
-      "line": 37
+      "line": 38
     },
     {
       "id": "tests/test_simulator.py::TestSimulationResult",
       "body_hash": "a11dd",
       "file": "tests/test_simulator.py",
       "type": "class",
-      "line": 56
+      "line": 57
     },
     {
       "id": "tests/test_simulator.py::TestSimulationResult::test_safe_result",
       "body_hash": "be196",
       "file": "tests/test_simulator.py",
       "type": "method",
-      "line": 57
+      "line": 58
     },
     {
       "id": "tests/test_simulator.py::TestSimulationResult::test_unsafe_result",
       "body_hash": "7ba32",
       "file": "tests/test_simulator.py",
       "type": "method",
-      "line": 62
+      "line": 63
     },
     {
       "id": "tests/test_simulator.py::_make_index",
-      "body_hash": "daa5a",
+      "body_hash": "90918",
       "file": "tests/test_simulator.py",
       "type": "function",
       "line": 17

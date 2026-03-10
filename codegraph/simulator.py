@@ -115,7 +115,7 @@ def simulate_changes(
     result = SimulationResult(changes=changes)
 
     # Build current adjacency from index
-    conn = index._conn
+    conn = index._get_conn()
     adj: Dict[str, Set[str]] = defaultdict(set)
     reverse_adj: Dict[str, Set[str]] = defaultdict(set)
     all_nodes: Set[str] = set()
@@ -126,7 +126,7 @@ def simulate_changes(
         all_nodes.add(row[0])
         all_nodes.add(row[1])
 
-    for row in conn.execute("SELECT node_id FROM nodes").fetchall():
+    for row in conn.execute("SELECT id FROM nodes").fetchall():
         all_nodes.add(row[0])
 
     # Snapshot: existing cycles (for comparison)
@@ -316,7 +316,7 @@ def _find_cycles_in_adj(adj: Dict[str, Set[str]]) -> Set[frozenset]:
 def _original_adj(index: IndexStore) -> Dict[str, Set[str]]:
     """Get the original adjacency from the index."""
     adj: Dict[str, Set[str]] = defaultdict(set)
-    conn = index._conn
+    conn = index._get_conn()
     for row in conn.execute("SELECT node_id, callee_id FROM callees").fetchall():
         adj[row[0]].add(row[1])
     return adj

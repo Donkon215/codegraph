@@ -23,7 +23,7 @@ def _make_index_mock(nodes, callers, callees):
     conn.execute("CREATE TABLE callees (node_id TEXT, callee_id TEXT)")
 
     for nid in nodes:
-        conn.execute("INSERT INTO nodes (node_id) VALUES (?)", (nid,))
+        conn.execute("INSERT INTO nodes (node_id, id) VALUES (?, ?)", (nid, nid))
     for nid, caller in callers:
         conn.execute("INSERT INTO callers VALUES (?, ?)", (nid, caller))
     for nid, callee in callees:
@@ -31,6 +31,7 @@ def _make_index_mock(nodes, callers, callees):
 
     mock = MagicMock()
     mock._conn = conn
+    mock._get_conn.return_value = conn
     return mock
 
 

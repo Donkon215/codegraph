@@ -2,6 +2,14 @@
   "format_version": 1,
   "nodes": [
     {
+      "id": "_get_intents",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T13:27:13Z"
+    },
+    {
       "id": "benchmarks/benchmark_build",
       "intent": "build pipeline performance benchmarks (O-025)",
       "layer": 3,
@@ -1548,12 +1556,12 @@
     },
     {
       "id": "codegraph/arch_health",
-      "intent": "architecture health scoring engine aggregating risk and cohesion metrics",
+      "intent": "architecture health scoring engine aggregating risk metrics, cycle detection, coupling analysis, and subsystem cohesion into unified health reports",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T14:36:45Z",
-      "intent_body_hash": "f331d"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "390e5"
     },
     {
       "id": "codegraph/arch_health.py::ArchHealthReport",
@@ -1620,12 +1628,12 @@
     },
     {
       "id": "codegraph/arch_health.py::compute_health",
-      "intent": "compute comprehensive architecture health score with cycle and cohesion analysis",
+      "intent": "compute comprehensive architecture health report by aggregating risk metrics, cycles, coupling, and subsystem cohesion scores",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T14:36:45Z",
-      "intent_body_hash": "d6f69"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "82c7b"
     },
     {
       "id": "codegraph/arch_health.py::load_health_history",
@@ -8568,12 +8576,12 @@
     },
     {
       "id": "codegraph/path_query",
-      "intent": "pattern-based path query engine for dependency graph traversal with glob matching",
+      "intent": "pattern-based path query engine supporting glob-pattern dependency path searches and forbidden path detection for architecture enforcement",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "e6fed"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "2fc0a"
     },
     {
       "id": "codegraph/path_query.py::PathResult",
@@ -8622,12 +8630,12 @@
     },
     {
       "id": "codegraph/path_query.py::_get_all_node_ids",
-      "intent": "retrieve all node IDs from the IndexStore SQLite database",
+      "intent": "retrieve all node IDs from the IndexStore SQLite database for pattern matching in path queries",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "46ed0"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:29:25Z",
+      "intent_body_hash": "d129e"
     },
     {
       "id": "codegraph/path_query.py::check_forbidden_path",
@@ -9117,12 +9125,12 @@
     },
     {
       "id": "codegraph/refactor",
-      "intent": "refactoring analysis engine detecting cycles god modules and coupling issues",
+      "intent": "refactoring suggestions engine detecting cycles via Tarjan SCC, god modules, high coupling, and generating refactoring recommendations",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "bea5b"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "cb764"
     },
     {
       "id": "codegraph/refactor.py::CouplingPair",
@@ -9243,21 +9251,21 @@
     },
     {
       "id": "codegraph/refactor.py::detect_coupling",
-      "intent": "detect module pairs with high bidirectional edge count above threshold",
+      "intent": "detect pairs of modules with high bidirectional coupling by counting cross-module edges from the index callees table",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "ced40"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "e2409"
     },
     {
       "id": "codegraph/refactor.py::detect_cycles",
-      "intent": "detect strongly connected components using Tarjan algorithm on the call graph",
+      "intent": "detect strongly connected components in the call graph using Tarjan SCC algorithm to find dependency cycles",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "b426e"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "163ff"
     },
     {
       "id": "codegraph/refactor.py::detect_cycles::strongconnect",
@@ -9279,12 +9287,12 @@
     },
     {
       "id": "codegraph/risk_metrics",
-      "intent": "dependency risk scoring module computing fan-in fan-out centrality and coupling metrics",
+      "intent": "dependency risk scoring module computing fan-in, fan-out, betweenness centrality, coupling scores, and risk levels for graph nodes",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "d0e1d"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "6c361"
     },
     {
       "id": "codegraph/risk_metrics.py::NodeMetrics",
@@ -9351,21 +9359,21 @@
     },
     {
       "id": "codegraph/risk_metrics.py::check_dependency_limits",
-      "intent": "check fan-in and fan-out dependency limit rules and return violations",
+      "intent": "check dependency_limit policy rules against actual fan-in and fan-out values, returning violations for exceeded thresholds",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "1ab68"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "73a43"
     },
     {
       "id": "codegraph/risk_metrics.py::compute_risk_metrics",
-      "intent": "compute fan-in fan-out betweenness and composite risk score for all nodes",
+      "intent": "compute risk metrics for all nodes including fan-in, fan-out, betweenness centrality, coupling score, and risk classification",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "ab736"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "84242"
     },
     {
       "id": "codegraph/risk_metrics.py::get_node_risk",
@@ -9720,12 +9728,12 @@
     },
     {
       "id": "codegraph/simulator",
-      "intent": "suggestion simulation engine checking proposed changes for violations",
+      "intent": "change simulation engine that tests proposed graph modifications for architecture violations, new cycles, forbidden paths, and coupling increases before applying",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T14:36:45Z",
-      "intent_body_hash": "2d306"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "afeb0"
     },
     {
       "id": "codegraph/simulator.py::SimViolation",
@@ -9819,12 +9827,12 @@
     },
     {
       "id": "codegraph/simulator.py::_original_adj",
-      "intent": "get original adjacency graph from index database",
+      "intent": "retrieve the original adjacency map from the index callees table for coupling comparison during simulation",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T14:36:45Z",
-      "intent_body_hash": "9208c"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "eabbb"
     },
     {
       "id": "codegraph/simulator.py::simulate_agent_response",
@@ -9837,12 +9845,12 @@
     },
     {
       "id": "codegraph/simulator.py::simulate_changes",
-      "intent": "simulate proposed changes checking for cycles, forbidden paths, and coupling",
+      "intent": "simulate proposed changes on a virtual copy of the dependency graph checking for new cycles, forbidden paths, and coupling increases",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T14:36:45Z",
-      "intent_body_hash": "753d0"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "5c30a"
     },
     {
       "id": "codegraph/storage",
@@ -9990,12 +9998,12 @@
     },
     {
       "id": "codegraph/subsystem",
-      "intent": "automatic sub-architecture detection clustering graph into subsystems",
+      "intent": "automatic sub-architecture detection using Louvain-style community detection to cluster the dependency graph into cohesive subsystems",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T14:36:45Z",
-      "intent_body_hash": "e3ddc"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "28d71"
     },
     {
       "id": "codegraph/subsystem.py::Subsystem",
@@ -10080,12 +10088,12 @@
     },
     {
       "id": "codegraph/subsystem.py::detect_subsystems",
-      "intent": "detect subsystems using Louvain-style community detection algorithm",
+      "intent": "detect subsystems using module-level Louvain community detection with greedy modularity optimization on file-level edges",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T14:36:45Z",
-      "intent_body_hash": "aa54a"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "b12f4"
     },
     {
       "id": "codegraph/suggest",
@@ -13197,12 +13205,12 @@
     },
     {
       "id": "tests/test_arch_health",
-      "intent": "test suite for architecture health scoring engine",
+      "intent": "test suite for architecture health scoring engine verifying health computation, grading, and metric aggregation",
       "layer": 4,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T14:36:45Z",
-      "intent_body_hash": "6513d"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "32ea7"
     },
     {
       "id": "tests/test_arch_health.py::TestArchHealthReport",
@@ -13347,12 +13355,12 @@
     },
     {
       "id": "tests/test_arch_health.py::_make_index",
-      "intent": "helper function creating mock index with in-memory SQLite tables",
+      "intent": "create mock IndexStore with in-memory SQLite containing nodes, callers, and callees tables for arch_health tests",
       "layer": 4,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T14:36:45Z",
-      "intent_body_hash": "30577"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "53795"
     },
     {
       "id": "tests/test_arch_planner",
@@ -14145,12 +14153,12 @@
     },
     {
       "id": "tests/test_architecture_advisor",
-      "intent": "test suite for architecture advisor engine and workflow enrichment",
+      "intent": "test suite for architecture advisor verifying god module detection, cycle detection, fan-in/fan-out analysis, and advice generation",
       "layer": 4,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T12:31:20Z",
-      "intent_body_hash": "26186"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "d65f0"
     },
     {
       "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture",
@@ -14430,12 +14438,12 @@
     },
     {
       "id": "tests/test_architecture_advisor.py::_make_index",
-      "intent": "test helper creating mock IndexStore with callee and caller tables",
+      "intent": "create mock IndexStore with in-memory SQLite containing nodes and callees tables for architecture advisor tests",
       "layer": 4,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T12:31:20Z",
-      "intent_body_hash": "e3b0d"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "3a751"
     },
     {
       "id": "tests/test_cas",
@@ -18042,66 +18050,66 @@
     },
     {
       "id": "tests/test_path_query",
-      "intent": "test module for path query engine",
+      "intent": "test suite for pattern-based path queries verifying path finding, forbidden path detection, and empty result handling",
       "layer": 4,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "db833"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "530d0"
     },
     {
       "id": "tests/test_path_query.py::TestCheckForbiddenPath",
-      "intent": "test class for forbidden path checking",
+      "intent": "test class verifying forbidden path detection with both found and not-found scenarios",
       "layer": 4,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "f664f"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:29:25Z",
+      "intent_body_hash": "53e3a"
     },
     {
       "id": "tests/test_path_query.py::TestCheckForbiddenPath::test_forbidden_path_found",
-      "intent": "test detecting forbidden path marks violation",
+      "intent": "verify that check_forbidden_path detects and reports a forbidden path between matching source and target patterns",
       "layer": 4,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "c70b0"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "a1188"
     },
     {
       "id": "tests/test_path_query.py::TestCheckForbiddenPath::test_forbidden_path_not_found",
-      "intent": "test no forbidden path found returns clean result",
+      "intent": "verify that check_forbidden_path returns no violation when no path exists between source and target patterns",
       "layer": 4,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "dfd1a"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "8d86e"
     },
     {
       "id": "tests/test_path_query.py::TestFindPatternPaths",
-      "intent": "test class for find_pattern_paths function",
+      "intent": "test class verifying pattern-based path finding with direct paths and empty index scenarios",
       "layer": 4,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "e267f"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:29:25Z",
+      "intent_body_hash": "9ee8e"
     },
     {
       "id": "tests/test_path_query.py::TestFindPatternPaths::test_direct_path",
-      "intent": "test finding a direct dependency path between matching nodes",
+      "intent": "verify that find_pattern_paths discovers a direct path between nodes matching source and target glob patterns",
       "layer": 4,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "4d8fc"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "49444"
     },
     {
       "id": "tests/test_path_query.py::TestFindPatternPaths::test_no_index_returns_empty",
-      "intent": "test that empty index returns empty path result",
+      "intent": "verify that find_pattern_paths returns empty result when index has no matching nodes",
       "layer": 4,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "78943"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "309fd"
     },
     {
       "id": "tests/test_path_query.py::TestPathResult",
@@ -18573,12 +18581,12 @@
     },
     {
       "id": "tests/test_refactor",
-      "intent": "test module for refactoring analysis engine",
+      "intent": "test suite for refactoring engine verifying cycle detection, god module detection, coupling analysis, and refactoring suggestions",
       "layer": 4,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "cdc13"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "81de1"
     },
     {
       "id": "tests/test_refactor.py::TestAnalyzeRefactoring",
@@ -18753,21 +18761,21 @@
     },
     {
       "id": "tests/test_refactor.py::_make_index_mock",
-      "intent": "test helper creating a mock IndexStore with configurable adjacency",
+      "intent": "create mock IndexStore with in-memory SQLite containing callees and optionally nodes tables for refactor tests",
       "layer": 4,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "27fce"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "aadc6"
     },
     {
       "id": "tests/test_risk_metrics",
-      "intent": "test module for risk metrics computation",
+      "intent": "test suite for risk metrics verifying fan-in/fan-out computation, risk scoring, and dependency limit checking",
       "layer": 4,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "404c4"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "28064"
     },
     {
       "id": "tests/test_risk_metrics.py::TestApproximateBetweenness",
@@ -18924,12 +18932,12 @@
     },
     {
       "id": "tests/test_risk_metrics.py::_make_index_mock",
-      "intent": "test helper creating mock IndexStore with adjacency data for risk metrics tests",
+      "intent": "create mock IndexStore with in-memory SQLite containing nodes, callers, and callees tables for risk metrics tests",
       "layer": 4,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T13:56:31Z",
-      "intent_body_hash": "cbf63"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "be33a"
     },
     {
       "id": "tests/test_semantics",
@@ -19401,12 +19409,12 @@
     },
     {
       "id": "tests/test_simulator",
-      "intent": "test suite for change simulation engine",
+      "intent": "test suite for change simulation engine verifying cycle detection, forbidden path checking, and coupling analysis in simulated changes",
       "layer": 4,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T14:36:45Z",
-      "intent_body_hash": "8560c"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "318cb"
     },
     {
       "id": "tests/test_simulator.py::TestSimViolation",
@@ -19614,12 +19622,12 @@
     },
     {
       "id": "tests/test_simulator.py::_make_index",
-      "intent": "helper creating mock index with tables for callees and nodes",
+      "intent": "create mock IndexStore with in-memory SQLite containing callees and nodes tables for simulator tests",
       "layer": 4,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T14:36:45Z",
-      "intent_body_hash": "daa5a"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T13:27:07Z",
+      "intent_body_hash": "90918"
     },
     {
       "id": "tests/test_snapshots",

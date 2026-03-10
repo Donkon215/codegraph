@@ -125,7 +125,7 @@ def detect_subsystems(
     report = SubsystemReport()
 
     # Build module-level adjacency from workflow edges
-    conn = index._conn
+    conn = index._get_conn()
     callee_rows = conn.execute("SELECT node_id, callee_id FROM callees").fetchall()
 
     # Map nodes to files

@@ -32,11 +32,11 @@ def _make_index_mock(callees, node_files=None):
 
     if node_files:
         for nid, fpath in node_files.items():
-            conn.execute("INSERT INTO nodes (node_id, file) VALUES (?, ?)", (nid, fpath))
+            conn.execute("INSERT INTO nodes (node_id, id, file) VALUES (?, ?, ?)", (nid, nid, fpath))
             all_nodes.discard(nid)
 
     for nid in all_nodes:
-        conn.execute("INSERT INTO nodes (node_id, file) VALUES (?, ?)", (nid, "unknown"))
+        conn.execute("INSERT INTO nodes (node_id, id, file) VALUES (?, ?, ?)", (nid, nid, "unknown"))
 
     for src, dst in callees:
         conn.execute("INSERT INTO callees VALUES (?, ?)", (src, dst))
@@ -44,6 +44,7 @@ def _make_index_mock(callees, node_files=None):
 
     mock = MagicMock()
     mock._conn = conn
+    mock._get_conn.return_value = conn
     return mock
 
 

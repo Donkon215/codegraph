@@ -1,7 +1,7 @@
 {
   "cycle": 1,
-  "graph_version": 17,
-  "generated_at": "2026-03-10T12:31:49Z",
+  "graph_version": 22,
+  "generated_at": "2026-03-10T13:31:23Z",
   "tasks": [
     {
       "task_id": "missing_test_coverage",
@@ -914,13 +914,14 @@
           "file": "codegraph/simulator.py",
           "type": "function",
           "calls": [
-            "codegraph/filters.py::FilterPipeline::add"
+            "codegraph/filters.py::FilterPipeline::add",
+            "codegraph/index.py::IndexStore::_get_conn"
           ],
           "called_by": [
             "codegraph/simulator.py::simulate_changes"
           ],
           "suggested_fix": "Create a test function covering this production code",
-          "previous_intent": "get original adjacency graph from index database",
+          "previous_intent": "retrieve the original adjacency map from the index callees table for coupling comparison during simulation",
           "body_hash_changed": false
         },
         {

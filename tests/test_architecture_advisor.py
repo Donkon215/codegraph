@@ -40,13 +40,13 @@ def _make_index(callee_pairs=None, node_ids=None):
     """Create a mock IndexStore with callee/callers/nodes tables."""
     mock = MagicMock()
     conn = sqlite3.connect(":memory:")
-    conn.execute("CREATE TABLE nodes (node_id TEXT, file TEXT, type TEXT, line INTEGER)")
+    conn.execute("CREATE TABLE nodes (node_id TEXT, id TEXT, file TEXT, type TEXT, line INTEGER)")
     conn.execute("CREATE TABLE callees (node_id TEXT, callee_id TEXT)")
     conn.execute("CREATE TABLE callers (node_id TEXT, caller_id TEXT)")
 
     if node_ids:
         for nid in node_ids:
-            conn.execute("INSERT INTO nodes VALUES (?, '', '', 0)", (nid,))
+            conn.execute("INSERT INTO nodes VALUES (?, ?, '', '', 0)", (nid, nid))
 
     if callee_pairs:
         for src, tgt in callee_pairs:

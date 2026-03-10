@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-10T12:31:39Z",
+    "built_at": "2026-03-10T13:31:22Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -9,12 +9,12 @@
       "stdlib",
       "test_harness"
     ],
-    "edge_count": 3207,
+    "edge_count": 3216,
     "node_count": 1569,
-    "build_time_s": 6.28
+    "build_time_s": 5.55
   },
   "format_version": 1,
-  "built_at": "2026-03-10T12:31:39Z",
+  "built_at": "2026-03-10T13:31:22Z",
   "level": "function",
   "edges": [
     {
@@ -2006,6 +2006,12 @@
     {
       "source": "codegraph/arch_health.py::compute_health",
       "target": "codegraph/arch_health.py::ModuleHealth",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_health.py::compute_health",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -8700,6 +8706,12 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/path_query.py::_get_all_node_ids",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/path_query.py::check_forbidden_path",
       "target": "codegraph/path_query.py::find_pattern_paths",
       "edge_type": "call",
@@ -9439,6 +9451,12 @@
     },
     {
       "source": "codegraph/refactor.py::detect_coupling",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/refactor.py::detect_coupling",
       "target": "codegraph/refactor.py::CouplingPair",
       "edge_type": "call",
       "confidence": "static"
@@ -9464,6 +9482,12 @@
     {
       "source": "codegraph/refactor.py::detect_cycles",
       "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/refactor.py::detect_cycles",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -9553,6 +9577,12 @@
     },
     {
       "source": "codegraph/risk_metrics.py::check_dependency_limits",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/risk_metrics.py::check_dependency_limits",
       "target": "codegraph/tasks.py::TaskHistory::append",
       "edge_type": "call",
       "confidence": "static"
@@ -9560,6 +9590,12 @@
     {
       "source": "codegraph/risk_metrics.py::compute_risk_metrics",
       "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/risk_metrics.py::compute_risk_metrics",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -10164,6 +10200,12 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/simulator.py::_original_adj",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/simulator.py::simulate_agent_response",
       "target": "codegraph/analyzer.py::AnalysisCache::get",
       "edge_type": "call",
@@ -10196,6 +10238,12 @@
     {
       "source": "codegraph/simulator.py::simulate_changes",
       "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::simulate_changes",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -10394,6 +10442,12 @@
     {
       "source": "codegraph/subsystem.py::detect_subsystems",
       "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/subsystem.py::detect_subsystems",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
       "edge_type": "call",
       "confidence": "static"
     },

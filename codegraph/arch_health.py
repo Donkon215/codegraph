@@ -144,7 +144,7 @@ def compute_health(
     report.total_files = len(set(n.file for n in graph0.nodes))
 
     # Count edges
-    conn = index._conn
+    conn = index._get_conn()
     edge_count = conn.execute("SELECT COUNT(*) FROM callees").fetchone()[0]
     report.total_edges = edge_count
 

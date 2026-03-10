@@ -109,8 +109,8 @@ def compute_risk_metrics(
     report = RiskReport()
 
     # Get all nodes
-    conn = index._conn
-    rows = conn.execute("SELECT node_id FROM nodes").fetchall()
+    conn = index._get_conn()
+    rows = conn.execute("SELECT id FROM nodes").fetchall()
     all_node_ids = [r[0] for r in rows]
     report.total_nodes = len(all_node_ids)
 
@@ -222,8 +222,8 @@ def check_dependency_limits(
     if not rules:
         return violations
 
-    conn = index._conn
-    all_node_ids = [r[0] for r in conn.execute("SELECT node_id FROM nodes").fetchall()]
+    conn = index._get_conn()
+    all_node_ids = [r[0] for r in conn.execute("SELECT id FROM nodes").fetchall()]
 
     # Pre-compute fan counts
     fan_in_map: Dict[str, int] = defaultdict(int)

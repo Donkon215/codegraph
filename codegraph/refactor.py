@@ -204,7 +204,7 @@ def analyze_refactoring(
 
 def detect_cycles(index: IndexStore) -> List[CycleInfo]:
     """Detect all non-trivial strongly connected components using Tarjan's algorithm."""
-    conn = index._conn
+    conn = index._get_conn()
     callee_rows = conn.execute("SELECT node_id, callee_id FROM callees").fetchall()
 
     adj: Dict[str, List[str]] = defaultdict(list)
@@ -297,13 +297,13 @@ def detect_coupling(
     threshold: int = 10,
 ) -> List[CouplingPair]:
     """Detect pairs of modules with high bidirectional coupling."""
-    conn = index._conn
+    conn = index._get_conn()
 
     # Count cross-module edges
     callee_rows = conn.execute("SELECT node_id, callee_id FROM callees").fetchall()
 
     # Map node → module (file path)
-    node_rows = conn.execute("SELECT node_id, file FROM nodes").fetchall()
+    node_rows = conn.execute("SELECT id, file FROM nodes").fetchall()
     node_to_file: Dict[str, str] = {r[0]: r[1] for r in node_rows}
 
     pair_counts: Dict[Tuple[str, str], int] = defaultdict(int)

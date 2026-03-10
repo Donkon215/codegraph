@@ -21,15 +21,16 @@ def _make_index(callees, nodes=None):
     conn.execute("CREATE TABLE callees (node_id TEXT, callee_id TEXT)")
     if nodes:
         for nid in nodes:
-            conn.execute("INSERT INTO nodes (node_id) VALUES (?)", (nid,))
+            conn.execute("INSERT INTO nodes (node_id, id) VALUES (?, ?)", (nid, nid))
     for nid, callee in callees:
         conn.execute("INSERT INTO callees VALUES (?, ?)", (nid, callee))
         # Ensure nodes exist for all referenced nodes
-        conn.execute("INSERT OR IGNORE INTO nodes (node_id) VALUES (?)", (nid,))
-        conn.execute("INSERT OR IGNORE INTO nodes (node_id) VALUES (?)", (callee,))
+        conn.execute("INSERT OR IGNORE INTO nodes (node_id, id) VALUES (?, ?)", (nid, nid))
+        conn.execute("INSERT OR IGNORE INTO nodes (node_id, id) VALUES (?, ?)", (callee, callee))
 
     mock = MagicMock()
     mock._conn = conn
+    mock._get_conn.return_value = conn
     return mock
 
 
