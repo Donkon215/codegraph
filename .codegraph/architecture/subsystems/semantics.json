@@ -1,0 +1,39 @@
+{
+  "name": "semantics",
+  "description": "Semantic behavior extraction. Analyzes function bodies to detect actions, side effects, and data flow patterns.",
+  "intent": "Semantic behavior extraction. Analyzes function bodies to detect actions, side effects, and data flow patterns.",
+  "components": [
+    {
+      "name": "semantics_engine",
+      "module": "codegraph/semantics.py",
+      "functions": [
+        "extract_behaviors",
+        "build_graph2"
+      ],
+      "description": "Extracts semantic behaviors from AST. Builds graph2 with actions and side effects."
+    },
+    {
+      "name": "cas",
+      "module": "codegraph/cas.py",
+      "functions": [
+        "build_cas",
+        "verify_cas"
+      ],
+      "description": "Content-addressable storage. Computes and verifies file hashes for integrity."
+    }
+  ],
+  "edges": [
+    [
+      "semantics_engine",
+      "cas"
+    ]
+  ],
+  "rules": [
+    {
+      "type": "forbidden",
+      "source": "semantics",
+      "target": "governance",
+      "reason": "Semantics is independent of governance enforcement."
+    }
+  ]
+}

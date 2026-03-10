@@ -1,0 +1,97 @@
+{
+  "name": "core_engine",
+  "description": "Graph extraction and construction pipeline. Parses Python AST, builds structural graph (graph0), classifies layers, filters edges, builds call-graph workflow.",
+  "intent": "Graph extraction and construction pipeline. Parses Python AST, builds structural graph (graph0), classifies layers, filters edges, builds call-graph workflow.",
+  "components": [
+    {
+      "name": "extractor",
+      "module": "codegraph/extractor.py",
+      "functions": [
+        "extract_project",
+        "extract_files",
+        "extract_file",
+        "extract_call_sites",
+        "extract_imports",
+        "resolve_call_target"
+      ],
+      "description": "AST parser. Extracts nodes (functions, classes, modules) from Python source files."
+    },
+    {
+      "name": "python_extractor",
+      "module": "codegraph/extractors/python.py",
+      "functions": [
+        "PythonExtractor::extract_nodes",
+        "PythonExtractor::extract_edges"
+      ],
+      "description": "Language-specific extractor for Python files."
+    },
+    {
+      "name": "workflow_builder",
+      "module": "codegraph/workflow.py",
+      "functions": [
+        "build_workflow",
+        "build_static_edges",
+        "build_dynamic_edges",
+        "build_import_edges",
+        "find_orphans"
+      ],
+      "description": "Builds function-level call graph (workflow.json) from extracted AST data."
+    },
+    {
+      "name": "layers",
+      "module": "codegraph/layers.py",
+      "functions": [
+        "assign_layers",
+        "detect_layer",
+        "filter_by_layer"
+      ],
+      "description": "Classifies nodes into layers: stdlib, external, internal_lib, project, test."
+    },
+    {
+      "name": "filters",
+      "module": "codegraph/filters.py",
+      "functions": [
+        "FilterPipeline::apply",
+        "EdgeFilter::should_filter"
+      ],
+      "description": "Edge filtering pipeline removing stdlib, dunder, test-harness, and logging edges."
+    },
+    {
+      "name": "annotator",
+      "module": "codegraph/annotator.py",
+      "functions": [
+        "initialize_graph1",
+        "apply_intent",
+        "detect_stale_intents",
+        "get_missing_intents"
+      ],
+      "description": "Manages intent annotations (graph1). Tracks body hashes to detect stale intents."
+    }
+  ],
+  "edges": [
+    [
+      "workflow_builder",
+      "extractor"
+    ],
+    [
+      "workflow_builder",
+      "layers"
+    ],
+    [
+      "workflow_builder",
+      "filters"
+    ],
+    [
+      "annotator",
+      "extractor"
+    ]
+  ],
+  "rules": [
+    {
+      "type": "forbidden",
+      "source": "models",
+      "target": "core_engine",
+      "reason": "Models are pure data. They must not import engine modules."
+    }
+  ]
+}

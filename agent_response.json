@@ -1,18 +1,464 @@
 {
-  "cycle": 2,
-  "graph_version": 21,
+  "cycle": 1,
+  "graph_version": 23,
   "intents": [
     {
-      "node": "codegraph/path_query.py::_get_all_node_ids",
-      "intent": "Retrieve all node IDs from the IndexStore SQLite database for pattern matching in path queries"
+      "node": "codegraph/cli",
+      "intent": "CLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest, architecture, plan, viewer, architect, enrich, evolve, branch, lifecycle, multilevel, arch-memory, and more"
     },
     {
-      "node": "tests/test_path_query.py::TestCheckForbiddenPath",
-      "intent": "Test class verifying forbidden path detection with both found and not-found scenarios"
+      "node": "codegraph/cli.py::architect_cmd",
+      "intent": "Run architecture advisor detecting smells and suggesting improvements, with options for JSON output and saving to file"
     },
     {
-      "node": "tests/test_path_query.py::TestFindPatternPaths",
-      "intent": "Test class verifying pattern-based path finding with direct paths and empty index scenarios"
+      "node": "codegraph/target_architecture",
+      "intent": "Target architecture state engine — defines desired future state, computes delta between current and target workflow"
+    },
+    {
+      "node": "codegraph/target_architecture.py::TargetEdge",
+      "intent": "Data class representing a desired call-graph edge in the target workflow"
+    },
+    {
+      "node": "codegraph/target_architecture.py::TargetEdge::to_dict",
+      "intent": "Serialize target edge to dictionary for JSON persistence"
+    },
+    {
+      "node": "codegraph/target_architecture.py::TargetEdge::from_dict",
+      "intent": "Deserialize target edge from dictionary"
+    },
+    {
+      "node": "codegraph/target_architecture.py::TargetNode",
+      "intent": "Data class representing a desired node in the target architecture"
+    },
+    {
+      "node": "codegraph/target_architecture.py::TargetNode::to_dict",
+      "intent": "Serialize target node to dictionary"
+    },
+    {
+      "node": "codegraph/target_architecture.py::TargetNode::from_dict",
+      "intent": "Deserialize target node from dictionary"
+    },
+    {
+      "node": "codegraph/target_architecture.py::TargetWorkflow",
+      "intent": "Desired future state of the call graph — stores target edges and nodes for delta computation"
+    },
+    {
+      "node": "codegraph/target_architecture.py::TargetWorkflow::to_dict",
+      "intent": "Serialize target workflow to dictionary"
+    },
+    {
+      "node": "codegraph/target_architecture.py::TargetWorkflow::from_dict",
+      "intent": "Deserialize target workflow from dictionary"
+    },
+    {
+      "node": "codegraph/target_architecture.py::TargetWorkflow::save",
+      "intent": "Save target workflow to .codegraph/workflow/target_workflow.json"
+    },
+    {
+      "node": "codegraph/target_architecture.py::TargetWorkflow::load",
+      "intent": "Load target workflow from disk, returns None if not found"
+    },
+    {
+      "node": "codegraph/target_architecture.py::TargetWorkflow::add_edge",
+      "intent": "Add a desired edge to the target workflow"
+    },
+    {
+      "node": "codegraph/target_architecture.py::TargetWorkflow::add_node",
+      "intent": "Add a desired node to the target workflow"
+    },
+    {
+      "node": "codegraph/target_architecture.py::ArchitectureDelta",
+      "intent": "Delta between target and current architecture — lists missing edges, extra edges, missing nodes, extra nodes"
+    },
+    {
+      "node": "codegraph/target_architecture.py::ArchitectureDelta::has_changes",
+      "intent": "Returns True if any changes exist in the delta"
+    },
+    {
+      "node": "codegraph/target_architecture.py::ArchitectureDelta::total_changes",
+      "intent": "Returns total count of all changes across edge and node categories"
+    },
+    {
+      "node": "codegraph/target_architecture.py::ArchitectureDelta::to_dict",
+      "intent": "Serialize delta with summary counts to dictionary"
+    },
+    {
+      "node": "codegraph/target_architecture.py::ArchitectureDelta::format",
+      "intent": "Format delta as human-readable text report"
+    },
+    {
+      "node": "codegraph/target_architecture.py::ArchitectureDelta::save",
+      "intent": "Save delta to .codegraph/planning/delta.json"
+    },
+    {
+      "node": "codegraph/target_architecture.py::compute_architecture_delta",
+      "intent": "Compute delta = target - current by comparing target workflow edges/nodes against current workflow and graph0 nodes"
+    },
+    {
+      "node": "codegraph/target_architecture.py::delta_to_tasks",
+      "intent": "Convert architecture delta into agent_response.json format with connect_call and flag_for_human_review repairs"
+    },
+    {
+      "node": "codegraph/target_architecture.py::generate_target_from_architecture",
+      "intent": "Auto-generate target workflow from SystemArchitecture definition, matching architecture edges to function-level edges"
+    },
+    {
+      "node": "codegraph/branch_executor",
+      "intent": "Git branch-based architecture execution — create, validate, compare, merge, and discard branches for safe architecture changes"
+    },
+    {
+      "node": "codegraph/branch_executor.py::BranchMetrics",
+      "intent": "Architecture metrics captured on a branch for comparison"
+    },
+    {
+      "node": "codegraph/branch_executor.py::BranchMetrics::to_dict",
+      "intent": "Serialize branch metrics to dictionary"
+    },
+    {
+      "node": "codegraph/branch_executor.py::BranchMetrics::from_dict",
+      "intent": "Deserialize branch metrics from dictionary"
+    },
+    {
+      "node": "codegraph/branch_executor.py::BranchState",
+      "intent": "State of an architecture execution branch with status tracking"
+    },
+    {
+      "node": "codegraph/branch_executor.py::BranchState::to_dict",
+      "intent": "Serialize branch state to dictionary"
+    },
+    {
+      "node": "codegraph/branch_executor.py::BranchState::from_dict",
+      "intent": "Deserialize branch state from dictionary"
+    },
+    {
+      "node": "codegraph/branch_executor.py::BranchComparison",
+      "intent": "Comparison results between base and branch metrics with merge/reject/review recommendation"
+    },
+    {
+      "node": "codegraph/branch_executor.py::BranchComparison::to_dict",
+      "intent": "Serialize branch comparison to dictionary"
+    },
+    {
+      "node": "codegraph/branch_executor.py::BranchComparison::format",
+      "intent": "Format branch comparison as human-readable text"
+    },
+    {
+      "node": "codegraph/branch_executor.py::create_branch",
+      "intent": "Create a new git branch for architecture changes and save initial branch state"
+    },
+    {
+      "node": "codegraph/branch_executor.py::get_current_branch",
+      "intent": "Get the name of the current git branch"
+    },
+    {
+      "node": "codegraph/branch_executor.py::load_branch_state",
+      "intent": "Load the current branch execution state from .codegraph/git/branch.json"
+    },
+    {
+      "node": "codegraph/branch_executor.py::update_branch_status",
+      "intent": "Update the status of the current branch in the state file"
+    },
+    {
+      "node": "codegraph/branch_executor.py::capture_metrics",
+      "intent": "Capture current architecture metrics from .codegraph data files for branch comparison"
+    },
+    {
+      "node": "codegraph/branch_executor.py::compare_branches",
+      "intent": "Compare base and branch metrics and recommend merge, reject, or review based on blocker/improvement scoring"
+    },
+    {
+      "node": "codegraph/branch_executor.py::validate_branch",
+      "intent": "Validate current branch against base metrics, returns comparison with recommendation"
+    },
+    {
+      "node": "codegraph/branch_executor.py::merge_branch",
+      "intent": "Merge the current architecture branch back to base branch"
+    },
+    {
+      "node": "codegraph/branch_executor.py::discard_branch",
+      "intent": "Discard the current architecture branch and clean up state"
+    },
+    {
+      "node": "codegraph/branch_executor.py::list_architecture_branches",
+      "intent": "List all codegraph architecture branches from git"
+    },
+    {
+      "node": "codegraph/branch_executor.py::_run_git",
+      "intent": "Run a git command and return stdout, raising RuntimeError on failure"
+    },
+    {
+      "node": "codegraph/branch_executor.py::_save_branch_state",
+      "intent": "Save branch state to .codegraph/git/branch.json"
+    },
+    {
+      "node": "codegraph/arch_memory",
+      "intent": "Architecture decision memory — records decisions, experiments, and lessons learned for architecture evolution"
+    },
+    {
+      "node": "codegraph/arch_memory.py::ArchDecision",
+      "intent": "A recorded architecture decision with rationale, result, and health impact"
+    },
+    {
+      "node": "codegraph/arch_memory.py::ArchDecision::to_dict",
+      "intent": "Serialize architecture decision to dictionary"
+    },
+    {
+      "node": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "intent": "Deserialize architecture decision from dictionary"
+    },
+    {
+      "node": "codegraph/arch_memory.py::ArchExperiment",
+      "intent": "Record of a branch experiment with health metrics before/after and lesson learned"
+    },
+    {
+      "node": "codegraph/arch_memory.py::ArchExperiment::to_dict",
+      "intent": "Serialize experiment to dictionary"
+    },
+    {
+      "node": "codegraph/arch_memory.py::ArchExperiment::from_dict",
+      "intent": "Deserialize experiment from dictionary"
+    },
+    {
+      "node": "codegraph/arch_memory.py::ArchMemory",
+      "intent": "Long-term architecture knowledge store containing decisions and experiments"
+    },
+    {
+      "node": "codegraph/arch_memory.py::ArchMemory::to_dict",
+      "intent": "Serialize architecture memory with summary counts"
+    },
+    {
+      "node": "codegraph/arch_memory.py::ArchMemory::format",
+      "intent": "Format architecture memory as human-readable summary"
+    },
+    {
+      "node": "codegraph/arch_memory.py::load_memory",
+      "intent": "Load architecture memory from .codegraph/memory/ directory"
+    },
+    {
+      "node": "codegraph/arch_memory.py::save_memory",
+      "intent": "Save architecture memory to .codegraph/memory/ directory"
+    },
+    {
+      "node": "codegraph/arch_memory.py::record_decision",
+      "intent": "Record a new architecture decision with auto-generated ID and persist"
+    },
+    {
+      "node": "codegraph/arch_memory.py::record_experiment",
+      "intent": "Record the result of a branch experiment with auto-generated ID and persist"
+    },
+    {
+      "node": "codegraph/arch_memory.py::get_relevant_decisions",
+      "intent": "Query architecture decisions filtered by tags, result type, and limit"
+    },
+    {
+      "node": "codegraph/multilevel",
+      "intent": "Multi-level architecture graph analysis at function, module, and subsystem levels"
+    },
+    {
+      "node": "codegraph/multilevel.py::ModuleNode",
+      "intent": "A node in the module-level graph with function counts and fan-in/out"
+    },
+    {
+      "node": "codegraph/multilevel.py::ModuleNode::to_dict",
+      "intent": "Serialize module node to dictionary"
+    },
+    {
+      "node": "codegraph/multilevel.py::ModuleEdge",
+      "intent": "An edge in the module-level graph aggregating function-level calls"
+    },
+    {
+      "node": "codegraph/multilevel.py::ModuleEdge::to_dict",
+      "intent": "Serialize module edge to dictionary"
+    },
+    {
+      "node": "codegraph/multilevel.py::ModuleGraph",
+      "intent": "Module-level architecture graph (Level 2) aggregating function data by file"
+    },
+    {
+      "node": "codegraph/multilevel.py::ModuleGraph::to_dict",
+      "intent": "Serialize module graph with summary statistics"
+    },
+    {
+      "node": "codegraph/multilevel.py::ModuleGraph::format",
+      "intent": "Format module graph as human-readable text with top modules by fan-out"
+    },
+    {
+      "node": "codegraph/multilevel.py::SubsystemNode",
+      "intent": "A node in the subsystem-level graph with module counts, edge counts, and cohesion"
+    },
+    {
+      "node": "codegraph/multilevel.py::SubsystemNode::to_dict",
+      "intent": "Serialize subsystem node to dictionary"
+    },
+    {
+      "node": "codegraph/multilevel.py::SubsystemEdge",
+      "intent": "An edge in the subsystem-level graph with cross-subsystem call count"
+    },
+    {
+      "node": "codegraph/multilevel.py::SubsystemEdge::to_dict",
+      "intent": "Serialize subsystem edge to dictionary"
+    },
+    {
+      "node": "codegraph/multilevel.py::SubsystemGraph",
+      "intent": "Subsystem-level architecture graph (Level 3) aggregating module data by subsystem"
+    },
+    {
+      "node": "codegraph/multilevel.py::SubsystemGraph::to_dict",
+      "intent": "Serialize subsystem graph with summary"
+    },
+    {
+      "node": "codegraph/multilevel.py::SubsystemGraph::format",
+      "intent": "Format subsystem graph as human-readable text with cohesion and cross-edges"
+    },
+    {
+      "node": "codegraph/multilevel.py::MultiLevelSmell",
+      "intent": "An architecture smell detected at function, module, or subsystem level"
+    },
+    {
+      "node": "codegraph/multilevel.py::MultiLevelSmell::to_dict",
+      "intent": "Serialize smell to dictionary with level name mapping"
+    },
+    {
+      "node": "codegraph/multilevel.py::MultiLevelReport",
+      "intent": "Multi-level analysis report containing module graph, subsystem graph, and smells"
+    },
+    {
+      "node": "codegraph/multilevel.py::MultiLevelReport::to_dict",
+      "intent": "Serialize report with smells grouped by level"
+    },
+    {
+      "node": "codegraph/multilevel.py::MultiLevelReport::format",
+      "intent": "Format multi-level report as human-readable text"
+    },
+    {
+      "node": "codegraph/multilevel.py::build_module_graph",
+      "intent": "Build Level 2 module graph from function-level graph0 and index data"
+    },
+    {
+      "node": "codegraph/multilevel.py::build_subsystem_graph",
+      "intent": "Build Level 3 subsystem graph using file-to-subsystem mapping"
+    },
+    {
+      "node": "codegraph/multilevel.py::analyze_multilevel",
+      "intent": "Run architecture analysis at all three levels detecting god functions, god modules, god subsystems, high fanout, and low cohesion"
+    },
+    {
+      "node": "codegraph/multilevel.py::_infer_subsystem_mapping",
+      "intent": "Infer subsystem mapping from file paths using top-level directory as subsystem name"
+    },
+    {
+      "node": "codegraph/subsystem_lifecycle",
+      "intent": "Subsystem lifecycle management — create, split, merge, move operations for evolving subsystem boundaries"
+    },
+    {
+      "node": "codegraph/subsystem_lifecycle.py::SubsystemChange",
+      "intent": "Data class representing a planned subsystem lifecycle change"
+    },
+    {
+      "node": "codegraph/subsystem_lifecycle.py::SubsystemChange::to_dict",
+      "intent": "Serialize subsystem change to dictionary"
+    },
+    {
+      "node": "codegraph/subsystem_lifecycle.py::SubsystemFile",
+      "intent": "Per-subsystem architecture file containing components, edges, and rules"
+    },
+    {
+      "node": "codegraph/subsystem_lifecycle.py::SubsystemFile::to_dict",
+      "intent": "Serialize subsystem file to dictionary"
+    },
+    {
+      "node": "codegraph/subsystem_lifecycle.py::create_subsystem",
+      "intent": "Create a new subsystem in the architecture definition"
+    },
+    {
+      "node": "codegraph/subsystem_lifecycle.py::split_subsystem",
+      "intent": "Split a subsystem by moving specified components to a new subsystem, updating internal and cross edges"
+    },
+    {
+      "node": "codegraph/subsystem_lifecycle.py::merge_subsystems",
+      "intent": "Merge two subsystems into one, combining components, edges, and updating constraints"
+    },
+    {
+      "node": "codegraph/subsystem_lifecycle.py::move_component",
+      "intent": "Move a component from one subsystem to another with edge migration"
+    },
+    {
+      "node": "codegraph/subsystem_lifecycle.py::generate_subsystem_files",
+      "intent": "Generate per-subsystem JSON files in .codegraph/architecture/subsystems/"
+    },
+    {
+      "node": "codegraph/subsystem_lifecycle.py::load_subsystem_file",
+      "intent": "Load a per-subsystem JSON file by name"
+    },
+    {
+      "node": "codegraph/subsystem_lifecycle.py::list_subsystem_files",
+      "intent": "List available subsystem file names"
+    },
+    {
+      "node": "codegraph/cli.py::evolve_cmd",
+      "intent": "Run full architecture evolution loop: advisor, target delta, task generation"
+    },
+    {
+      "node": "codegraph/cli.py::multilevel_cmd",
+      "intent": "Run multi-level architecture analysis across function, module, and subsystem levels"
+    },
+    {
+      "node": "codegraph/cli.py::branch_group",
+      "intent": "Click group for branch management subcommands",
+      "tags": ["entry_point"]
+    },
+    {
+      "node": "codegraph/cli.py::branch_create",
+      "intent": "CLI command to create a new architecture branch"
+    },
+    {
+      "node": "codegraph/cli.py::branch_validate",
+      "intent": "CLI command to validate current architecture branch metrics"
+    },
+    {
+      "node": "codegraph/cli.py::branch_compare",
+      "intent": "CLI command to compare current branch metrics against base"
+    },
+    {
+      "node": "codegraph/cli.py::branch_merge",
+      "intent": "CLI command to merge current architecture branch to base"
+    },
+    {
+      "node": "codegraph/cli.py::branch_discard",
+      "intent": "CLI command to discard current architecture branch"
+    },
+    {
+      "node": "codegraph/cli.py::branch_list",
+      "intent": "CLI command to list architecture branches"
+    },
+    {
+      "node": "codegraph/cli.py::arch_memory_cmd",
+      "intent": "CLI command to view architecture decision memory with filtering"
+    },
+    {
+      "node": "codegraph/cli.py::lifecycle_group",
+      "intent": "Click group for subsystem lifecycle management subcommands",
+      "tags": ["entry_point"]
+    },
+    {
+      "node": "codegraph/cli.py::lifecycle_create",
+      "intent": "CLI command to create a new subsystem in the architecture"
+    },
+    {
+      "node": "codegraph/cli.py::lifecycle_split",
+      "intent": "CLI command to split a subsystem by moving components"
+    },
+    {
+      "node": "codegraph/cli.py::lifecycle_merge",
+      "intent": "CLI command to merge two subsystems"
+    },
+    {
+      "node": "codegraph/cli.py::lifecycle_move",
+      "intent": "CLI command to move a component between subsystems"
+    },
+    {
+      "node": "codegraph/cli.py::lifecycle_generate_files",
+      "intent": "CLI command to generate per-subsystem JSON files from architecture"
     }
   ],
   "repairs": []

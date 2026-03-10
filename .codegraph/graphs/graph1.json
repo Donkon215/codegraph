@@ -2,14 +2,6 @@
   "format_version": 1,
   "nodes": [
     {
-      "id": "_get_intents",
-      "intent": "",
-      "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-10T13:27:13Z"
-    },
-    {
       "id": "benchmarks/benchmark_build",
       "intent": "build pipeline performance benchmarks (O-025)",
       "layer": 3,
@@ -1654,6 +1646,149 @@
       "intent_body_hash": "0f5ea"
     },
     {
+      "id": "codegraph/arch_memory",
+      "intent": "architecture decision memory — records decisions, experiments, and lessons learned for architecture evolution",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "e638e"
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchDecision",
+      "intent": "a recorded architecture decision with rationale, result, and health impact",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "b634b"
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "intent": "deserialize architecture decision from dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "93d5e"
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchDecision::to_dict",
+      "intent": "serialize architecture decision to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "e9cbf"
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchExperiment",
+      "intent": "record of a branch experiment with health metrics before/after and lesson learned",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "b6263"
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchExperiment::from_dict",
+      "intent": "deserialize experiment from dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "9c8ca"
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchExperiment::to_dict",
+      "intent": "serialize experiment to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "dad7a"
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchMemory",
+      "intent": "long-term architecture knowledge store containing decisions and experiments",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "1b661"
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchMemory::format",
+      "intent": "format architecture memory as human-readable summary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "883a0"
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchMemory::to_dict",
+      "intent": "serialize architecture memory with summary counts",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "42b6c"
+    },
+    {
+      "id": "codegraph/arch_memory.py::get_experiment_success_rate",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "codegraph/arch_memory.py::get_relevant_decisions",
+      "intent": "query architecture decisions filtered by tags, result type, and limit",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "0e4b6"
+    },
+    {
+      "id": "codegraph/arch_memory.py::load_memory",
+      "intent": "load architecture memory from .codegraph/memory/ directory",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "50ee6"
+    },
+    {
+      "id": "codegraph/arch_memory.py::record_decision",
+      "intent": "record a new architecture decision with auto-generated ID and persist",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "cef0e"
+    },
+    {
+      "id": "codegraph/arch_memory.py::record_experiment",
+      "intent": "record the result of a branch experiment with auto-generated ID and persist",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "f4967"
+    },
+    {
+      "id": "codegraph/arch_memory.py::save_memory",
+      "intent": "save architecture memory to .codegraph/memory/ directory",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "eb07b"
+    },
+    {
       "id": "codegraph/arch_planner",
       "intent": "architecture decomposition engine comparing definitions to code generating executable tasks",
       "layer": 3,
@@ -2500,6 +2635,204 @@
       "intent_body_hash": "c2c36"
     },
     {
+      "id": "codegraph/branch_executor",
+      "intent": "git branch-based architecture execution — create, validate, compare, merge, and discard branches for safe architecture changes",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "ca944"
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchComparison",
+      "intent": "comparison results between base and branch metrics with merge/reject/review recommendation",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "1544e"
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchComparison::format",
+      "intent": "format branch comparison as human-readable text",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "431fa"
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchComparison::to_dict",
+      "intent": "serialize branch comparison to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "13ca2"
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchMetrics",
+      "intent": "architecture metrics captured on a branch for comparison",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "ac3d9"
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchMetrics::from_dict",
+      "intent": "deserialize branch metrics from dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "59890"
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchMetrics::to_dict",
+      "intent": "serialize branch metrics to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "bbc9e"
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchState",
+      "intent": "state of an architecture execution branch with status tracking",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "22646"
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchState::from_dict",
+      "intent": "deserialize branch state from dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "aa2b1"
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchState::to_dict",
+      "intent": "serialize branch state to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "90bf5"
+    },
+    {
+      "id": "codegraph/branch_executor.py::_run_git",
+      "intent": "run a git command and return stdout, raising RuntimeError on failure",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "a94c2"
+    },
+    {
+      "id": "codegraph/branch_executor.py::_save_branch_state",
+      "intent": "save branch state to .codegraph/git/branch.json",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "4dcba"
+    },
+    {
+      "id": "codegraph/branch_executor.py::capture_metrics",
+      "intent": "capture current architecture metrics from .codegraph data files for branch comparison",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "bc000"
+    },
+    {
+      "id": "codegraph/branch_executor.py::compare_branches",
+      "intent": "compare base and branch metrics and recommend merge, reject, or review based on blocker/improvement scoring",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "ee750"
+    },
+    {
+      "id": "codegraph/branch_executor.py::create_branch",
+      "intent": "create a new git branch for architecture changes and save initial branch state",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "5c11b"
+    },
+    {
+      "id": "codegraph/branch_executor.py::discard_branch",
+      "intent": "discard the current architecture branch and clean up state",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "ca8e9"
+    },
+    {
+      "id": "codegraph/branch_executor.py::get_current_branch",
+      "intent": "get the name of the current git branch",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "693ae"
+    },
+    {
+      "id": "codegraph/branch_executor.py::list_architecture_branches",
+      "intent": "list all codegraph architecture branches from git",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "8d1c4"
+    },
+    {
+      "id": "codegraph/branch_executor.py::load_branch_state",
+      "intent": "load the current branch execution state from .codegraph/git/branch.json",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "ca648"
+    },
+    {
+      "id": "codegraph/branch_executor.py::merge_branch",
+      "intent": "merge the current architecture branch back to base branch",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "2a08f"
+    },
+    {
+      "id": "codegraph/branch_executor.py::update_branch_status",
+      "intent": "update the status of the current branch in the state file",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "8e6e3"
+    },
+    {
+      "id": "codegraph/branch_executor.py::validate_branch",
+      "intent": "validate current branch against base metrics, returns comparison with recommendation",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "08868"
+    },
+    {
       "id": "codegraph/cas",
       "intent": "codegraph.cas — Content Addressed Store (CAS) graph module",
       "layer": 3,
@@ -2888,12 +3221,12 @@
     },
     {
       "id": "codegraph/cli",
-      "intent": "cLI entry point with commands for build analyze tasks apply delta query explain status validate diff CAS semantic intent-apply subsystem arch-health context simulator arch-diff path-query risk refactor plan-refactor agent-memory visualize architecture plan viewer architect enrich",
+      "intent": "cLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest, architecture, plan, viewer, architect, enrich, evolve, branch, lifecycle, multilevel, arch-memory, and more",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 6,
-      "intent_timestamp": "2026-03-10T12:31:20Z",
-      "intent_body_hash": "ea718"
+      "intent_version": 7,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "13cf2"
     },
     {
       "id": "codegraph/cli.py::analyze_cmd",
@@ -2932,6 +3265,15 @@
       "intent_body_hash": "d116d"
     },
     {
+      "id": "codegraph/cli.py::arch_memory_cmd",
+      "intent": "cLI command to view architecture decision memory with filtering",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "be848"
+    },
+    {
       "id": "codegraph/cli.py::archi_test_cmd",
       "intent": "manage architecture tests",
       "layer": 3,
@@ -2942,12 +3284,12 @@
     },
     {
       "id": "codegraph/cli.py::architect_cmd",
-      "intent": "run architecture advisor detecting smells and suggesting improvements",
+      "intent": "run architecture advisor detecting smells and suggesting improvements, with options for JSON output and saving to file",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T12:31:20Z",
-      "intent_body_hash": "139f7"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "7d184"
     },
     {
       "id": "codegraph/cli.py::architecture_cmd",
@@ -2957,6 +3299,72 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-10T10:53:12Z",
       "intent_body_hash": "21ab0"
+    },
+    {
+      "id": "codegraph/cli.py::branch_compare",
+      "intent": "cLI command to compare current branch metrics against base",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "72818"
+    },
+    {
+      "id": "codegraph/cli.py::branch_create",
+      "intent": "cLI command to create a new architecture branch",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "6e67a"
+    },
+    {
+      "id": "codegraph/cli.py::branch_discard",
+      "intent": "cLI command to discard current architecture branch",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "94154"
+    },
+    {
+      "id": "codegraph/cli.py::branch_group",
+      "intent": "click group for branch management subcommands",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "7250a"
+    },
+    {
+      "id": "codegraph/cli.py::branch_list",
+      "intent": "cLI command to list architecture branches",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "f9353"
+    },
+    {
+      "id": "codegraph/cli.py::branch_merge",
+      "intent": "cLI command to merge current architecture branch to base",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "e098c"
+    },
+    {
+      "id": "codegraph/cli.py::branch_validate",
+      "intent": "cLI command to validate current architecture branch metrics",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "d0405"
     },
     {
       "id": "codegraph/cli.py::build",
@@ -3049,6 +3457,15 @@
       "intent_body_hash": "4516f"
     },
     {
+      "id": "codegraph/cli.py::evolve_cmd",
+      "intent": "run full architecture evolution loop: advisor, target delta, task generation",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "679fa"
+    },
+    {
       "id": "codegraph/cli.py::explain_cmd",
       "intent": "show comprehensive information about a node",
       "layer": 3,
@@ -3139,6 +3556,63 @@
       "intent_body_hash": "05dfb"
     },
     {
+      "id": "codegraph/cli.py::lifecycle_create",
+      "intent": "cLI command to create a new subsystem in the architecture",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "baa39"
+    },
+    {
+      "id": "codegraph/cli.py::lifecycle_generate_files",
+      "intent": "cLI command to generate per-subsystem JSON files from architecture",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "b83d8"
+    },
+    {
+      "id": "codegraph/cli.py::lifecycle_group",
+      "intent": "click group for subsystem lifecycle management subcommands",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "8e9c3"
+    },
+    {
+      "id": "codegraph/cli.py::lifecycle_merge",
+      "intent": "cLI command to merge two subsystems",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "e58f1"
+    },
+    {
+      "id": "codegraph/cli.py::lifecycle_move",
+      "intent": "cLI command to move a component between subsystems",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "10615"
+    },
+    {
+      "id": "codegraph/cli.py::lifecycle_split",
+      "intent": "cLI command to split a subsystem by moving components",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "8d1e0"
+    },
+    {
       "id": "codegraph/cli.py::main",
       "intent": "codegraph — A CLI-driven graph system for AI agents",
       "layer": 3,
@@ -3164,6 +3638,15 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T13:56:31Z",
       "intent_body_hash": "e39f5"
+    },
+    {
+      "id": "codegraph/cli.py::multilevel_cmd",
+      "intent": "run multi-level architecture analysis across function, module, and subsystem levels",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "4d6d4"
     },
     {
       "id": "codegraph/cli.py::path_cmd",
@@ -8575,6 +9058,222 @@
       "intent_body_hash": "f5fc7"
     },
     {
+      "id": "codegraph/multilevel",
+      "intent": "multi-level architecture graph analysis at function, module, and subsystem levels",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "fe544"
+    },
+    {
+      "id": "codegraph/multilevel.py::ModuleEdge",
+      "intent": "an edge in the module-level graph aggregating function-level calls",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "8a969"
+    },
+    {
+      "id": "codegraph/multilevel.py::ModuleEdge::to_dict",
+      "intent": "serialize module edge to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "6eb92"
+    },
+    {
+      "id": "codegraph/multilevel.py::ModuleGraph",
+      "intent": "module-level architecture graph (Level 2) aggregating function data by file",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "53eb4"
+    },
+    {
+      "id": "codegraph/multilevel.py::ModuleGraph::format",
+      "intent": "format module graph as human-readable text with top modules by fan-out",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "81d59"
+    },
+    {
+      "id": "codegraph/multilevel.py::ModuleGraph::to_dict",
+      "intent": "serialize module graph with summary statistics",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "ca8da"
+    },
+    {
+      "id": "codegraph/multilevel.py::ModuleNode",
+      "intent": "a node in the module-level graph with function counts and fan-in/out",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "a5faf"
+    },
+    {
+      "id": "codegraph/multilevel.py::ModuleNode::to_dict",
+      "intent": "serialize module node to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "07e9e"
+    },
+    {
+      "id": "codegraph/multilevel.py::MultiLevelReport",
+      "intent": "multi-level analysis report containing module graph, subsystem graph, and smells",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "38de1"
+    },
+    {
+      "id": "codegraph/multilevel.py::MultiLevelReport::format",
+      "intent": "format multi-level report as human-readable text",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "b9bf8"
+    },
+    {
+      "id": "codegraph/multilevel.py::MultiLevelReport::to_dict",
+      "intent": "serialize report with smells grouped by level",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "a42ae"
+    },
+    {
+      "id": "codegraph/multilevel.py::MultiLevelSmell",
+      "intent": "an architecture smell detected at function, module, or subsystem level",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "fb11d"
+    },
+    {
+      "id": "codegraph/multilevel.py::MultiLevelSmell::to_dict",
+      "intent": "serialize smell to dictionary with level name mapping",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "749f4"
+    },
+    {
+      "id": "codegraph/multilevel.py::SubsystemEdge",
+      "intent": "an edge in the subsystem-level graph with cross-subsystem call count",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "d75ca"
+    },
+    {
+      "id": "codegraph/multilevel.py::SubsystemEdge::to_dict",
+      "intent": "serialize subsystem edge to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "ac6fe"
+    },
+    {
+      "id": "codegraph/multilevel.py::SubsystemGraph",
+      "intent": "subsystem-level architecture graph (Level 3) aggregating module data by subsystem",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "07f18"
+    },
+    {
+      "id": "codegraph/multilevel.py::SubsystemGraph::format",
+      "intent": "format subsystem graph as human-readable text with cohesion and cross-edges",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "09cc9"
+    },
+    {
+      "id": "codegraph/multilevel.py::SubsystemGraph::to_dict",
+      "intent": "serialize subsystem graph with summary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "421f0"
+    },
+    {
+      "id": "codegraph/multilevel.py::SubsystemNode",
+      "intent": "a node in the subsystem-level graph with module counts, edge counts, and cohesion",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "bb5f3"
+    },
+    {
+      "id": "codegraph/multilevel.py::SubsystemNode::to_dict",
+      "intent": "serialize subsystem node to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "63f82"
+    },
+    {
+      "id": "codegraph/multilevel.py::_infer_subsystem_mapping",
+      "intent": "infer subsystem mapping from file paths using top-level directory as subsystem name",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "5fa5c"
+    },
+    {
+      "id": "codegraph/multilevel.py::analyze_multilevel",
+      "intent": "run architecture analysis at all three levels detecting god functions, god modules, god subsystems, high fanout, and low cohesion",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "2dd2e"
+    },
+    {
+      "id": "codegraph/multilevel.py::build_module_graph",
+      "intent": "build Level 2 module graph from function-level graph0 and index data",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "4cef4"
+    },
+    {
+      "id": "codegraph/multilevel.py::build_subsystem_graph",
+      "intent": "build Level 3 subsystem graph using file-to-subsystem mapping",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "aa40e"
+    },
+    {
       "id": "codegraph/path_query",
       "intent": "pattern-based path query engine supporting glob-pattern dependency path searches and forbidden path detection for architecture enforcement",
       "layer": 3,
@@ -10096,6 +10795,114 @@
       "intent_body_hash": "b12f4"
     },
     {
+      "id": "codegraph/subsystem_lifecycle",
+      "intent": "subsystem lifecycle management — create, split, merge, move operations for evolving subsystem boundaries",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "f95d1"
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::SubsystemChange",
+      "intent": "data class representing a planned subsystem lifecycle change",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "09dde"
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::SubsystemChange::to_dict",
+      "intent": "serialize subsystem change to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "23e45"
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::SubsystemFile",
+      "intent": "per-subsystem architecture file containing components, edges, and rules",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "f59ea"
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::SubsystemFile::to_dict",
+      "intent": "serialize subsystem file to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "557a4"
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::create_subsystem",
+      "intent": "create a new subsystem in the architecture definition",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "4c838"
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::generate_subsystem_files",
+      "intent": "generate per-subsystem JSON files in .codegraph/architecture/subsystems/",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "0b0d0"
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::list_subsystem_files",
+      "intent": "list available subsystem file names",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "1d308"
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::load_subsystem_file",
+      "intent": "load a per-subsystem JSON file by name",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "7edd2"
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::merge_subsystems",
+      "intent": "merge two subsystems into one, combining components, edges, and updating constraints",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "739b2"
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::move_component",
+      "intent": "move a component from one subsystem to another with edge migration",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "c2c36"
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::split_subsystem",
+      "intent": "split a subsystem by moving specified components to a new subsystem, updating internal and cross edges",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "799b5"
+    },
+    {
       "id": "codegraph/suggest",
       "intent": "codegraph.suggest — Suggested workflow / architecture policy manager",
       "layer": 3,
@@ -10490,6 +11297,213 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "ad639"
+    },
+    {
+      "id": "codegraph/target_architecture",
+      "intent": "target architecture state engine — defines desired future state, computes delta between current and target workflow",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "53c2a"
+    },
+    {
+      "id": "codegraph/target_architecture.py::ArchitectureDelta",
+      "intent": "delta between target and current architecture — lists missing edges, extra edges, missing nodes, extra nodes",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "49c22"
+    },
+    {
+      "id": "codegraph/target_architecture.py::ArchitectureDelta::format",
+      "intent": "format delta as human-readable text report",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "bcc7f"
+    },
+    {
+      "id": "codegraph/target_architecture.py::ArchitectureDelta::has_changes",
+      "intent": "returns True if any changes exist in the delta",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "26721"
+    },
+    {
+      "id": "codegraph/target_architecture.py::ArchitectureDelta::save",
+      "intent": "save delta to .codegraph/planning/delta.json",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "75781"
+    },
+    {
+      "id": "codegraph/target_architecture.py::ArchitectureDelta::to_dict",
+      "intent": "serialize delta with summary counts to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "80457"
+    },
+    {
+      "id": "codegraph/target_architecture.py::ArchitectureDelta::total_changes",
+      "intent": "returns total count of all changes across edge and node categories",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "16eb2"
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetEdge",
+      "intent": "data class representing a desired call-graph edge in the target workflow",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "9d560"
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetEdge::from_dict",
+      "intent": "deserialize target edge from dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "f60b4"
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetEdge::to_dict",
+      "intent": "serialize target edge to dictionary for JSON persistence",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "e5dc0"
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetNode",
+      "intent": "data class representing a desired node in the target architecture",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "21d70"
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetNode::from_dict",
+      "intent": "deserialize target node from dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "0b8fd"
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetNode::to_dict",
+      "intent": "serialize target node to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "3f799"
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetWorkflow",
+      "intent": "desired future state of the call graph — stores target edges and nodes for delta computation",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "5b14f"
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetWorkflow::add_edge",
+      "intent": "add a desired edge to the target workflow",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "204bd"
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetWorkflow::add_node",
+      "intent": "add a desired node to the target workflow",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "6ae78"
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetWorkflow::from_dict",
+      "intent": "deserialize target workflow from dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "d009f"
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetWorkflow::load",
+      "intent": "load target workflow from disk, returns None if not found",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "c799d"
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetWorkflow::save",
+      "intent": "save target workflow to .codegraph/workflow/target_workflow.json",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "12b6a"
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetWorkflow::to_dict",
+      "intent": "serialize target workflow to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "e5297"
+    },
+    {
+      "id": "codegraph/target_architecture.py::compute_architecture_delta",
+      "intent": "compute delta = target - current by comparing target workflow edges/nodes against current workflow and graph0 nodes",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "2e902"
+    },
+    {
+      "id": "codegraph/target_architecture.py::delta_to_tasks",
+      "intent": "convert architecture delta into agent_response.json format with connect_call and flag_for_human_review repairs",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "05f58"
+    },
+    {
+      "id": "codegraph/target_architecture.py::generate_target_from_architecture",
+      "intent": "auto-generate target workflow from SystemArchitecture definition, matching architecture edges to function-level edges",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T16:23:14Z",
+      "intent_body_hash": "bb354"
     },
     {
       "id": "codegraph/tasks",
@@ -13363,6 +14377,206 @@
       "intent_body_hash": "53795"
     },
     {
+      "id": "tests/test_arch_memory",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchDecision",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchDecision::test_defaults",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchDecision::test_minimal_to_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchDecision::test_roundtrip",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchExperiment",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchExperiment::test_roundtrip",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchMemory",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchMemory::test_empty",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchMemory::test_format",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchMemory::test_get_experiment_success_rate",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchMemory::test_get_experiment_success_rate_empty",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchMemory::test_with_data",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestGetRelevantDecisions",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestGetRelevantDecisions::test_filter_by_result",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestGetRelevantDecisions::test_filter_by_tag",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestGetRelevantDecisions::test_limit",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestLoadSaveMemory",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestLoadSaveMemory::test_load_empty",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestLoadSaveMemory::test_save_and_load",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestRecordDecision",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestRecordDecision::test_increments_id",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestRecordDecision::test_records_and_persists",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestRecordExperiment",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestRecordExperiment::test_records_and_persists",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
       "id": "tests/test_arch_planner",
       "intent": "test suite for architecture planner decomposition engine and task generation",
       "layer": 4,
@@ -14444,6 +15658,214 @@
       "intent_version": 2,
       "intent_timestamp": "2026-03-10T13:27:07Z",
       "intent_body_hash": "3a751"
+    },
+    {
+      "id": "tests/test_branch_executor",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchComparison",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchComparison::test_format",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchComparison::test_to_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchMetrics",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchMetrics::test_default_values",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchMetrics::test_from_dict_defaults",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchMetrics::test_roundtrip",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchState",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchState::test_minimal",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchState::test_roundtrip",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchState::test_without_metrics",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCaptureMetrics",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCaptureMetrics::test_empty_project",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCaptureMetrics::test_reads_graph_data",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCompareBranches",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCompareBranches::test_custom_names",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCompareBranches::test_degradation_recommends_reject",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCompareBranches::test_improvement_recommends_merge",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCompareBranches::test_mixed_recommends_review",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCompareBranches::test_no_change_recommends_review",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestLoadBranchState",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestLoadBranchState::test_load_existing",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestLoadBranchState::test_load_nonexistent",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestUpdateBranchStatus",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestUpdateBranchStatus::test_update_status",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
     },
     {
       "id": "tests/test_cas",
@@ -18049,6 +19471,270 @@
       "intent_body_hash": "de3e4"
     },
     {
+      "id": "tests/test_multilevel",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestAnalyzeMultilevel",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestAnalyzeMultilevel::_make_data",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestAnalyzeMultilevel::test_god_function_detected",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestAnalyzeMultilevel::test_god_module_detected",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestAnalyzeMultilevel::test_no_smells_small_project",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestBuildModuleGraph",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestBuildModuleGraph::test_basic",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestBuildModuleGraph::test_same_file_edges_ignored",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestBuildSubsystemGraph",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestBuildSubsystemGraph::test_basic",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestInferSubsystemMapping",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestInferSubsystemMapping::test_basic",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestInferSubsystemMapping::test_root_files",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestModuleGraph",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestModuleGraph::test_empty_avg",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestModuleGraph::test_format",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestModuleGraph::test_to_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestModuleNode",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestModuleNode::test_to_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestMultiLevelReport",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestMultiLevelReport::test_empty",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestMultiLevelReport::test_format",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestMultiLevelReport::test_with_smells",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestMultiLevelSmell",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestMultiLevelSmell::test_to_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestSubsystemGraph",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestSubsystemGraph::test_format",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestSubsystemGraph::test_to_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestSubsystemNode",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::TestSubsystemNode::test_to_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::_make_graph0",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_multilevel.py::_make_index",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
       "id": "tests/test_path_query",
       "intent": "test suite for pattern-based path queries verifying path finding, forbidden path detection, and empty result handling",
       "layer": 4,
@@ -19948,6 +21634,310 @@
       "intent_body_hash": "4e592"
     },
     {
+      "id": "tests/test_subsystem_lifecycle",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestCreateSubsystem",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestCreateSubsystem::test_creates_new",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestCreateSubsystem::test_duplicate_raises",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestGenerateSubsystemFiles",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestGenerateSubsystemFiles::test_generates_files",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestGenerateSubsystemFiles::test_includes_constraints",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestListSubsystemFiles",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestListSubsystemFiles::test_empty",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestListSubsystemFiles::test_list",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestLoadSubsystemFile",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestLoadSubsystemFile::test_load_existing",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestLoadSubsystemFile::test_load_nonexistent",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_basic_merge",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_constraints_updated",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_custom_name",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_nonexistent_raises",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_self_edges_removed",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_basic_move",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_nonexistent_component_raises",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_nonexistent_source_raises",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_nonexistent_target_raises",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_related_edges_moved",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_basic_split",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_duplicate_target_raises",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_no_matching_components_raises",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_nonexistent_source_raises",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_splits_edges",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSubsystemChange",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSubsystemChange::test_minimal",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSubsystemChange::test_to_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSubsystemFile",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSubsystemFile::test_minimal",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSubsystemFile::test_to_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::_make_arch",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
       "id": "tests/test_suggest",
       "intent": "unit tests for suggested workflow / policy system",
       "layer": 4,
@@ -20063,6 +22053,334 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "4f216"
+    },
+    {
+      "id": "tests/test_target_architecture",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestArchitectureDelta",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_empty_delta",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_format",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_has_changes",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_save",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_to_dict_summary",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_total_changes",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_existing_node_not_missing",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_extra_edge",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_missing_edge",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_missing_node",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_no_changes",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_priority_sorting",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestDeltaToTasks",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestDeltaToTasks::test_empty_delta",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestDeltaToTasks::test_extra_edge_flagged",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestDeltaToTasks::test_missing_edge_repair",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestDeltaToTasks::test_missing_node_flagged",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::_make_arch",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::test_generates_edges_from_architecture",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::test_generates_target_nodes",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::test_missing_architecture_edge_becomes_target",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetEdge",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetEdge::test_from_dict_defaults",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetEdge::test_roundtrip",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetEdge::test_to_dict_full",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetEdge::test_to_dict_minimal",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetNode",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetNode::test_roundtrip",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetNode::test_to_dict_full",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetNode::test_to_dict_minimal",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetWorkflow",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_add_edge",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_add_node",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_empty_workflow",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_load_nonexistent",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_roundtrip",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_save_and_load",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T16:15:33Z"
     },
     {
       "id": "tests/test_tasks",

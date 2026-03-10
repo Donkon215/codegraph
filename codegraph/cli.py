@@ -2208,7 +2208,8 @@ def architect_cmd(
         click.echo(f"Advice saved: {path}")
 
     if json_output:
-        click.echo(json.dumps(advice.to_dict(), indent=2))
+        import json as _json
+        click.echo(_json.dumps(advice.to_dict(), indent=2))
     else:
         click.echo(advice.format())
 
@@ -2232,3 +2233,483 @@ def enrich_cmd(ctx: click.Context) -> None:
     graph1 = load_graph1(root)
     path = save_enriched_workflow(workflow, graph1, root)
     click.echo(f"Enriched workflow saved: {path}")
+
+
+# ── Architecture Evolution ────────────────────────────────────────────
+@main.command("evolve")
+@click.option("--max-cycles", type=int, default=3,
+              help="Maximum repair cycles before stopping.")
+@click.option("--dry-run", is_flag=True,
+              help="Show what would be done without modifying files.")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+@timed_command
+def evolve_cmd(ctx: click.Context, max_cycles: int, dry_run: bool,
+               json_output: bool) -> None:
+    """Run the full architecture evolution loop.
+
+    Sequence: advisor → target delta → tasks → (optional apply).
+    Shows what the architecture engine would do to converge the codebase.
+    """
+    import json as _json
+
+    from codegraph.arch_schema import SystemArchitecture
+    from codegraph.architecture_advisor import advise_architecture
+    from codegraph.extractor import load_graph0
+    from codegraph.index import IndexStore
+    from codegraph.target_architecture import (
+        TargetWorkflow,
+        compute_architecture_delta,
+        delta_to_tasks,
+        generate_target_from_architecture,
+    )
+    from codegraph.workflow import load_workflow
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    # 1. Load current state
+    graph0 = load_graph0(root)
+    workflow = load_workflow(root)
+    arch = SystemArchitecture.load(root)
+
+    if not arch:
+        click.echo("No architecture defined. Use 'codegraph architecture --init'.",
+                    err=True)
+        sys.exit(EXIT_ERROR)
+
+    # 2. Run advisor
+    with IndexStore(root) as index:
+        advice = advise_architecture(graph0, index)
+
+    click.echo(f"=== Architecture Evolution ===")
+    click.echo(f"Advisor findings: {len(advice.smells)} smells")
+    for smell in advice.smells[:5]:
+        click.echo(f"  - [{smell.severity}] {smell.smell_type}: {smell.entity}")
+
+    # 3. Generate target from architecture
+    target = generate_target_from_architecture(arch, workflow)
+    click.echo(f"\nTarget workflow: {len(target.edges)} edges, {len(target.nodes)} nodes")
+
+    # 4. Compute delta (target vs current)
+    current_nodes = list(graph0.nodes.keys()) if hasattr(graph0, 'nodes') else []
+    delta = compute_architecture_delta(target, workflow, current_nodes)
+
+    if not delta.has_changes:
+        click.echo("\nArchitecture is converged. No changes needed.")
+        return
+
+    click.echo(f"\nDelta: {delta.total_changes} changes")
+    click.echo(delta.format())
+
+    if dry_run:
+        click.echo("\n[dry-run] No changes applied.")
+        return
+
+    # 5. Generate tasks from delta
+    gv_path = root / ".codegraph" / "graphs" / "graph0.json"
+    if gv_path.exists():
+        gv_data = _json.loads(gv_path.read_text(encoding="utf-8"))
+        gv = gv_data.get("graph_version", 0)
+    else:
+        gv = 0
+
+    response = delta_to_tasks(delta, gv)
+    delta.save(root)
+
+    if json_output:
+        click.echo(_json.dumps(response, indent=2))
+    else:
+        n_repairs = len(response.get("repairs", []))
+        click.echo(f"\nGenerated {n_repairs} repair tasks.")
+        click.echo("Use 'codegraph apply agent_response.json' to execute.")
+
+    # Save as agent_response.json
+    resp_path = root / "agent_response.json"
+    resp_path.write_text(
+        _json.dumps(response, indent=2, ensure_ascii=False), encoding="utf-8",
+    )
+    click.echo(f"Agent response saved: {resp_path}")
+
+
+# ── Multi-level Analysis ─────────────────────────────────────────────
+@main.command("multilevel")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.option("--save", is_flag=True,
+              help="Save report to .codegraph/analysis/multilevel.json.")
+@click.pass_context
+@timed_command
+def multilevel_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
+    """Run multi-level architecture analysis (function → module → subsystem)."""
+    import json as _json
+
+    from codegraph.extractor import load_graph0
+    from codegraph.index import IndexStore
+    from codegraph.multilevel import analyze_multilevel
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    graph0 = load_graph0(root)
+    with IndexStore(root) as index:
+        report = analyze_multilevel(graph0, index)
+
+    if save:
+        out_dir = root / ".codegraph" / "analysis"
+        out_dir.mkdir(parents=True, exist_ok=True)
+        out_path = out_dir / "multilevel.json"
+        out_path.write_text(
+            _json.dumps(report.to_dict(), indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        click.echo(f"Report saved: {out_path}")
+
+    if json_output:
+        click.echo(_json.dumps(report.to_dict(), indent=2))
+    else:
+        click.echo(report.format())
+
+
+# ── Branch Management ─────────────────────────────────────────────────
+@main.group("branch")
+def branch_group() -> None:
+    """Manage architecture branches for safe evolution."""
+    pass
+
+
+@branch_group.command("create")
+@click.argument("name")
+@click.option("--base", default="main", help="Base branch to branch from.")
+@click.pass_context
+def branch_create(ctx: click.Context, name: str, base: str) -> None:
+    """Create a new architecture branch."""
+    from codegraph.branch_executor import create_branch
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    state = create_branch(root, name, base)
+    click.echo(f"Created branch: {state.branch_name}")
+    click.echo(f"  Base: {state.base_branch}")
+    click.echo(f"  Status: {state.status}")
+
+
+@branch_group.command("validate")
+@click.pass_context
+def branch_validate(ctx: click.Context) -> None:
+    """Validate the current architecture branch."""
+    from codegraph.branch_executor import (
+        capture_metrics,
+        load_branch_state,
+        update_branch_status,
+    )
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    state = load_branch_state(root)
+    if not state:
+        click.echo("No active branch state found.", err=True)
+        sys.exit(EXIT_ERROR)
+
+    metrics = capture_metrics(root)
+    update_branch_status(root, "validating")
+    click.echo(f"Branch: {state.branch_name}")
+    click.echo(f"  Nodes: {metrics.node_count}")
+    click.echo(f"  Edges: {metrics.edge_count}")
+    click.echo(f"  Violations: {metrics.policy_violations}")
+    click.echo(f"  Cycles: {metrics.cycles}")
+    click.echo(f"  Health: {metrics.health_score:.2f}")
+
+
+@branch_group.command("compare")
+@click.pass_context
+def branch_compare(ctx: click.Context) -> None:
+    """Compare current branch metrics against base."""
+    from codegraph.branch_executor import compare_branches, load_branch_state
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    state = load_branch_state(root)
+    if not state or not state.base_metrics or not state.branch_metrics:
+        click.echo("Run 'branch validate' first to capture metrics.", err=True)
+        sys.exit(EXIT_ERROR)
+
+    comparison = compare_branches(state.base_metrics, state.branch_metrics)
+    click.echo(f"Branch: {state.branch_name}")
+    click.echo(f"  Health delta: {comparison.health_delta:+.2f}")
+    click.echo(f"  Cycle delta: {comparison.cycle_delta:+d}")
+    click.echo(f"  Violation delta: {comparison.violation_delta:+d}")
+    click.echo(f"  Recommendation: {comparison.recommendation}")
+    for r in comparison.reasons:
+        click.echo(f"    - {r}")
+
+
+@branch_group.command("merge")
+@click.pass_context
+def branch_merge(ctx: click.Context) -> None:
+    """Merge current architecture branch to base."""
+    from codegraph.branch_executor import load_branch_state, merge_branch
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    state = load_branch_state(root)
+    if not state:
+        click.echo("No active branch state found.", err=True)
+        sys.exit(EXIT_ERROR)
+
+    merge_branch(root)
+    click.echo(f"Merged {state.branch_name} → {state.base_branch}")
+
+
+@branch_group.command("discard")
+@click.pass_context
+def branch_discard(ctx: click.Context) -> None:
+    """Discard the current architecture branch."""
+    from codegraph.branch_executor import discard_branch, load_branch_state
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    state = load_branch_state(root)
+    if not state:
+        click.echo("No active branch state found.", err=True)
+        sys.exit(EXIT_ERROR)
+
+    discard_branch(root)
+    click.echo(f"Discarded branch: {state.branch_name}")
+
+
+@branch_group.command("list")
+@click.pass_context
+def branch_list(ctx: click.Context) -> None:
+    """List architecture branches."""
+    from codegraph.branch_executor import list_architecture_branches
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    branches = list_architecture_branches(root)
+    if not branches:
+        click.echo("No architecture branches found.")
+        return
+    for b in branches:
+        click.echo(f"  {b}")
+
+
+# ── Architecture Memory ──────────────────────────────────────────────
+@main.command("arch-memory")
+@click.option("--decisions", is_flag=True, help="Show recent decisions.")
+@click.option("--experiments", is_flag=True, help="Show experiment results.")
+@click.option("--tag", default=None, help="Filter by tag.")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def arch_memory_cmd(ctx: click.Context, decisions: bool, experiments: bool,
+                    tag: str, json_output: bool) -> None:
+    """View architecture decision memory."""
+    import json as _json
+
+    from codegraph.arch_memory import load_memory
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    mem = load_memory(root)
+
+    if json_output:
+        click.echo(_json.dumps(mem.to_dict(), indent=2))
+        return
+
+    if decisions or (not decisions and not experiments):
+        matched = mem.decisions
+        if tag:
+            matched = [d for d in matched if tag in d.tags]
+        click.echo(f"Decisions ({len(matched)}):")
+        for d in matched[-10:]:
+            result_color = "green" if d.result == "success" else "red"
+            click.echo(f"  [{d.decision_id}] {d.decision}")
+            click.echo(f"    Result: " + click.style(d.result, fg=result_color))
+            if d.reason:
+                click.echo(f"    Reason: {d.reason}")
+
+    if experiments:
+        click.echo(f"\nExperiments ({len(mem.experiments)}):")
+        for e in mem.experiments[-10:]:
+            outcome_color = "green" if e.outcome == "success" else "red"
+            click.echo(f"  [{e.experiment_id}] {e.branch_name}")
+            click.echo(f"    Outcome: " + click.style(e.outcome, fg=outcome_color))
+            if e.lesson:
+                click.echo(f"    Lesson: {e.lesson}")
+        rate = mem.get_experiment_success_rate()
+        click.echo(f"  Success rate: {rate:.0%}")
+
+
+# ── Subsystem Lifecycle ──────────────────────────────────────────────
+@main.group("lifecycle")
+def lifecycle_group() -> None:
+    """Manage subsystem lifecycle (create, split, merge, move)."""
+    pass
+
+
+@lifecycle_group.command("create")
+@click.argument("name")
+@click.option("--description", "-d", default="",
+              help="Description for the new subsystem.")
+@click.pass_context
+def lifecycle_create(ctx: click.Context, name: str, description: str) -> None:
+    """Create a new subsystem in the architecture."""
+    from codegraph.arch_schema import SystemArchitecture
+    from codegraph.subsystem_lifecycle import create_subsystem
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    arch = SystemArchitecture.load(root)
+    if not arch:
+        click.echo("No architecture defined.", err=True)
+        sys.exit(EXIT_ERROR)
+
+    create_subsystem(arch, name, description=description)
+    arch.save(root)
+    click.echo(f"Created subsystem: {name}")
+
+
+@lifecycle_group.command("split")
+@click.argument("source")
+@click.argument("new_name")
+@click.argument("components", nargs=-1, required=True)
+@click.option("--description", "-d", default="",
+              help="Description for the new subsystem.")
+@click.pass_context
+def lifecycle_split(ctx: click.Context, source: str, new_name: str,
+                    components: tuple[str, ...], description: str) -> None:
+    """Split a subsystem by moving components to a new subsystem."""
+    from codegraph.arch_schema import SystemArchitecture
+    from codegraph.subsystem_lifecycle import split_subsystem
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    arch = SystemArchitecture.load(root)
+    if not arch:
+        click.echo("No architecture defined.", err=True)
+        sys.exit(EXIT_ERROR)
+
+    split_subsystem(arch, source, new_name, list(components),
+                    new_description=description)
+    arch.save(root)
+    click.echo(f"Split {source} → {source} + {new_name}")
+
+
+@lifecycle_group.command("merge")
+@click.argument("name_a")
+@click.argument("name_b")
+@click.option("--as", "merged_name", default=None,
+              help="Name for the merged subsystem.")
+@click.pass_context
+def lifecycle_merge(ctx: click.Context, name_a: str, name_b: str,
+                    merged_name: str | None) -> None:
+    """Merge two subsystems into one."""
+    from codegraph.arch_schema import SystemArchitecture
+    from codegraph.subsystem_lifecycle import merge_subsystems
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    arch = SystemArchitecture.load(root)
+    if not arch:
+        click.echo("No architecture defined.", err=True)
+        sys.exit(EXIT_ERROR)
+
+    merge_subsystems(arch, name_a, name_b, merged_name=merged_name)
+    arch.save(root)
+    click.echo(f"Merged {name_a} + {name_b}")
+
+
+@lifecycle_group.command("move")
+@click.argument("component")
+@click.argument("from_subsystem")
+@click.argument("to_subsystem")
+@click.pass_context
+def lifecycle_move(ctx: click.Context, component: str, from_subsystem: str,
+                   to_subsystem: str) -> None:
+    """Move a component from one subsystem to another."""
+    from codegraph.arch_schema import SystemArchitecture
+    from codegraph.subsystem_lifecycle import move_component
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    arch = SystemArchitecture.load(root)
+    if not arch:
+        click.echo("No architecture defined.", err=True)
+        sys.exit(EXIT_ERROR)
+
+    move_component(arch, component, from_subsystem, to_subsystem)
+    arch.save(root)
+    click.echo(f"Moved {component}: {from_subsystem} → {to_subsystem}")
+
+
+@lifecycle_group.command("generate-files")
+@click.pass_context
+def lifecycle_generate_files(ctx: click.Context) -> None:
+    """Generate per-subsystem JSON files from architecture definition."""
+    from codegraph.arch_schema import SystemArchitecture
+    from codegraph.subsystem_lifecycle import generate_subsystem_files
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    arch = SystemArchitecture.load(root)
+    if not arch:
+        click.echo("No architecture defined.", err=True)
+        sys.exit(EXIT_ERROR)
+
+    paths = generate_subsystem_files(arch, root)
+    for p in paths:
+        click.echo(f"  {p}")
+    click.echo(f"Generated {len(paths)} subsystem files.")

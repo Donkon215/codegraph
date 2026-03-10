@@ -1,8 +1,442 @@
 {
   "cycle": 1,
-  "graph_version": 22,
-  "generated_at": "2026-03-10T13:31:23Z",
+  "graph_version": 24,
+  "generated_at": "2026-03-10T16:23:38Z",
   "tasks": [
+    {
+      "task_id": "orphan_nodes",
+      "priority": 3,
+      "nodes": [
+        {
+          "id": "codegraph/branch_executor.py::BranchComparison::to_dict",
+          "file": "codegraph/branch_executor.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize branch comparison to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/branch_executor.py::BranchMetrics::to_dict",
+          "file": "codegraph/branch_executor.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize branch metrics to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/branch_executor.py::BranchState::to_dict",
+          "file": "codegraph/branch_executor.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize branch state to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/cli.py::branch_group",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "click group for branch management subcommands",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/cli.py::lifecycle_group",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "click group for subsystem lifecycle management subcommands",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/subsystem_lifecycle.py::SubsystemChange",
+          "file": "codegraph/subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Review disconnected node and connect to workflow",
+          "previous_intent": "data class representing a planned subsystem lifecycle change",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/subsystem_lifecycle.py::SubsystemChange::to_dict",
+          "file": "codegraph/subsystem_lifecycle.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize subsystem change to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/subsystem_lifecycle.py::SubsystemFile::to_dict",
+          "file": "codegraph/subsystem_lifecycle.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize subsystem file to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/target_architecture.py::ArchitectureDelta::has_changes",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "returns True if any changes exist in the delta",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/target_architecture.py::ArchitectureDelta::total_changes",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "returns total count of all changes across edge and node categories",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/target_architecture.py::TargetEdge::to_dict",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize target edge to dictionary for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/target_architecture.py::TargetNode::to_dict",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize target node to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchDecision",
+          "file": "tests/test_arch_memory.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchExperiment",
+          "file": "tests/test_arch_memory.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchMemory",
+          "file": "tests/test_arch_memory.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestGetRelevantDecisions",
+          "file": "tests/test_arch_memory.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestLoadSaveMemory",
+          "file": "tests/test_arch_memory.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestRecordDecision",
+          "file": "tests/test_arch_memory.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestRecordExperiment",
+          "file": "tests/test_arch_memory.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestBranchComparison",
+          "file": "tests/test_branch_executor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestBranchMetrics",
+          "file": "tests/test_branch_executor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestBranchState",
+          "file": "tests/test_branch_executor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestCaptureMetrics",
+          "file": "tests/test_branch_executor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestCompareBranches",
+          "file": "tests/test_branch_executor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestLoadBranchState",
+          "file": "tests/test_branch_executor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestUpdateBranchStatus",
+          "file": "tests/test_branch_executor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestAnalyzeMultilevel",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestBuildModuleGraph",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestBuildSubsystemGraph",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestInferSubsystemMapping",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestModuleGraph",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestModuleNode",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestMultiLevelReport",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestMultiLevelSmell",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestSubsystemGraph",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestSubsystemNode",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestCreateSubsystem",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestGenerateSubsystemFiles",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestListSubsystemFiles",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestLoadSubsystemFile",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestSubsystemChange",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestSubsystemFile",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestArchitectureDelta",
+          "file": "tests/test_target_architecture.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta",
+          "file": "tests/test_target_architecture.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestDeltaToTasks",
+          "file": "tests/test_target_architecture.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture",
+          "file": "tests/test_target_architecture.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetEdge",
+          "file": "tests/test_target_architecture.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetNode",
+          "file": "tests/test_target_architecture.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetWorkflow",
+          "file": "tests/test_target_architecture.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        }
+      ]
+    },
     {
       "task_id": "missing_test_coverage",
       "priority": 5,
@@ -230,6 +664,74 @@
           "body_hash_changed": false
         },
         {
+          "id": "codegraph/arch_memory.py::ArchDecision::to_dict",
+          "file": "codegraph/arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize architecture decision to dictionary",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_memory.py::ArchExperiment::from_dict",
+          "file": "codegraph/arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize experiment from dictionary",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_memory.py::ArchExperiment::to_dict",
+          "file": "codegraph/arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize experiment to dictionary",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_memory.py::ArchMemory::format",
+          "file": "codegraph/arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format architecture memory as human-readable summary",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_memory.py::ArchMemory::to_dict",
+          "file": "codegraph/arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize architecture memory with summary counts",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_memory.py::get_experiment_success_rate",
+          "file": "codegraph/arch_memory.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory.py::load_memory"
+          ],
+          "called_by": [
+            "codegraph/cli.py::arch_memory_cmd"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/arch_planner.py::ArchPlan::format",
           "file": "codegraph/arch_planner.py",
           "type": "method",
@@ -271,6 +773,17 @@
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize coverage metrics to dictionary with rounded percentages",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_planner.py::PlannedTask::from_dict",
+          "file": "codegraph/arch_planner.py",
+          "type": "method",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize planned task from dictionary representation",
           "body_hash_changed": false
         },
         {
@@ -340,7 +853,7 @@
           "type": "method",
           "calls": [
             "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
+            "codegraph/arch_memory.py::ArchDecision::from_dict"
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize architecture component from dictionary",
@@ -363,7 +876,7 @@
           "type": "method",
           "calls": [
             "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
+            "codegraph/arch_memory.py::ArchDecision::from_dict"
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize constraint from dictionary with optional reason field",
@@ -386,7 +899,7 @@
           "type": "method",
           "calls": [
             "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
+            "codegraph/arch_memory.py::ArchDecision::from_dict"
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "parse edge from list or object format supporting backward compatibility",
@@ -420,7 +933,7 @@
           "type": "method",
           "calls": [
             "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
+            "codegraph/arch_memory.py::ArchDecision::from_dict"
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize subsystem with components and edges from dictionary",
@@ -443,7 +956,7 @@
           "type": "method",
           "calls": [
             "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
+            "codegraph/arch_memory.py::ArchDecision::from_dict"
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize complete system architecture from dictionary",
@@ -579,6 +1092,196 @@
           "body_hash_changed": false
         },
         {
+          "id": "codegraph/branch_executor.py::BranchComparison::format",
+          "file": "codegraph/branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format branch comparison as human-readable text",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/branch_executor.py::BranchComparison::to_dict",
+          "file": "codegraph/branch_executor.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize branch comparison to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/branch_executor.py::BranchMetrics::from_dict",
+          "file": "codegraph/branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_memory.py::ArchDecision::from_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize branch metrics from dictionary",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/branch_executor.py::BranchMetrics::to_dict",
+          "file": "codegraph/branch_executor.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize branch metrics to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/branch_executor.py::BranchState::from_dict",
+          "file": "codegraph/branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_memory.py::ArchDecision::from_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize branch state from dictionary",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/branch_executor.py::BranchState::to_dict",
+          "file": "codegraph/branch_executor.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize branch state to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/branch_executor.py::_run_git",
+          "file": "codegraph/branch_executor.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/branch_executor.py::create_branch",
+            "codegraph/branch_executor.py::discard_branch",
+            "codegraph/branch_executor.py::get_current_branch",
+            "codegraph/branch_executor.py::list_architecture_branches",
+            "codegraph/branch_executor.py::merge_branch"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "run a git command and return stdout, raising RuntimeError on failure",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/branch_executor.py::_save_branch_state",
+          "file": "codegraph/branch_executor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "called_by": [
+            "codegraph/branch_executor.py::create_branch",
+            "codegraph/branch_executor.py::merge_branch",
+            "codegraph/branch_executor.py::update_branch_status",
+            "codegraph/branch_executor.py::validate_branch"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "save branch state to .codegraph/git/branch.json",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/branch_executor.py::create_branch",
+          "file": "codegraph/branch_executor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/branch_executor.py::BranchState",
+            "codegraph/branch_executor.py::_run_git",
+            "codegraph/branch_executor.py::_save_branch_state",
+            "codegraph/git_utils.py::get_current_commit",
+            "codegraph/git_utils.py::is_git_repo"
+          ],
+          "called_by": [
+            "codegraph/cli.py::branch_create"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "create a new git branch for architecture changes and save initial branch state",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/branch_executor.py::discard_branch",
+          "file": "codegraph/branch_executor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/branch_executor.py::_run_git",
+            "codegraph/branch_executor.py::load_branch_state"
+          ],
+          "called_by": [
+            "codegraph/cli.py::branch_discard"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "discard the current architecture branch and clean up state",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/branch_executor.py::get_current_branch",
+          "file": "codegraph/branch_executor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/branch_executor.py::_run_git"
+          ],
+          "called_by": [
+            "codegraph/branch_executor.py::merge_branch"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "get the name of the current git branch",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/branch_executor.py::list_architecture_branches",
+          "file": "codegraph/branch_executor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/branch_executor.py::_run_git",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "called_by": [
+            "codegraph/cli.py::branch_list"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "list all codegraph architecture branches from git",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/branch_executor.py::merge_branch",
+          "file": "codegraph/branch_executor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/branch_executor.py::_run_git",
+            "codegraph/branch_executor.py::_save_branch_state",
+            "codegraph/branch_executor.py::get_current_branch",
+            "codegraph/branch_executor.py::load_branch_state",
+            "codegraph/formatters.py::OutputFormatter::error"
+          ],
+          "called_by": [
+            "codegraph/cli.py::branch_merge"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "merge the current architecture branch back to base branch",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/branch_executor.py::validate_branch",
+          "file": "codegraph/branch_executor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/branch_executor.py::BranchMetrics",
+            "codegraph/branch_executor.py::_save_branch_state",
+            "codegraph/branch_executor.py::capture_metrics",
+            "codegraph/branch_executor.py::compare_branches",
+            "codegraph/branch_executor.py::load_branch_state"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "validate current branch against base metrics, returns comparison with recommendation",
+          "body_hash_changed": false
+        },
+        {
           "id": "codegraph/cli.py::arch_diff_cmd",
           "file": "codegraph/cli.py",
           "type": "function",
@@ -593,6 +1296,22 @@
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "cLI command comparing architecture across graph versions or snapshots",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::arch_memory_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/agent_memory.py::load_memory",
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_memory.py::get_experiment_success_rate",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command to view architecture decision memory with filtering",
           "body_hash_changed": false
         },
         {
@@ -611,7 +1330,7 @@
             "codegraph/index.py::IndexStore"
           ],
           "suggested_fix": "Create a test function covering this production code",
-          "previous_intent": "run architecture advisor detecting smells and suggesting improvements",
+          "previous_intent": "run architecture advisor detecting smells and suggesting improvements, with options for JSON output and saving to file",
           "body_hash_changed": false
         },
         {
@@ -632,6 +1351,104 @@
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "manage architecture definitions init validate and display system architecture",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::branch_compare",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/branch_executor.py::compare_branches",
+            "codegraph/branch_executor.py::load_branch_state",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command to compare current branch metrics against base",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::branch_create",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/branch_executor.py::create_branch",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command to create a new architecture branch",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::branch_discard",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/branch_executor.py::discard_branch",
+            "codegraph/branch_executor.py::load_branch_state",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command to discard current architecture branch",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::branch_group",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "click group for branch management subcommands",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/cli.py::branch_list",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/branch_executor.py::list_architecture_branches",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command to list architecture branches",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::branch_merge",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/branch_executor.py::load_branch_state",
+            "codegraph/branch_executor.py::merge_branch",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command to merge current architecture branch to base",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::branch_validate",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/branch_executor.py::capture_metrics",
+            "codegraph/branch_executor.py::load_branch_state",
+            "codegraph/branch_executor.py::update_branch_status",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command to validate current architecture branch metrics",
           "body_hash_changed": false
         },
         {
@@ -672,6 +1489,29 @@
           "body_hash_changed": false
         },
         {
+          "id": "codegraph/cli.py::evolve_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::format",
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_schema.py::SystemArchitecture::load",
+            "codegraph/arch_schema.py::SystemArchitecture::save",
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/extractor.py::load_graph0",
+            "codegraph/index.py::IndexStore",
+            "codegraph/target_architecture.py::compute_architecture_delta",
+            "codegraph/target_architecture.py::delta_to_tasks",
+            "codegraph/target_architecture.py::generate_target_from_architecture",
+            "codegraph/workflow.py::load_workflow"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "run full architecture evolution loop: advisor, target delta, task generation",
+          "body_hash_changed": false
+        },
+        {
           "id": "codegraph/cli.py::health_cmd",
           "file": "codegraph/cli.py",
           "type": "function",
@@ -688,6 +1528,112 @@
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "cLI command computing architecture health score and grade",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::lifecycle_create",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_schema.py::SystemArchitecture::load",
+            "codegraph/arch_schema.py::SystemArchitecture::save",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/subsystem_lifecycle.py::create_subsystem"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command to create a new subsystem in the architecture",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::lifecycle_generate_files",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_schema.py::SystemArchitecture::load",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/subsystem_lifecycle.py::generate_subsystem_files"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command to generate per-subsystem JSON files from architecture",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::lifecycle_group",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "click group for subsystem lifecycle management subcommands",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/cli.py::lifecycle_merge",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_schema.py::SystemArchitecture::load",
+            "codegraph/arch_schema.py::SystemArchitecture::save",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/subsystem_lifecycle.py::merge_subsystems"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command to merge two subsystems",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::lifecycle_move",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_schema.py::SystemArchitecture::load",
+            "codegraph/arch_schema.py::SystemArchitecture::save",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/subsystem_lifecycle.py::move_component"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command to move a component between subsystems",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::lifecycle_split",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_schema.py::SystemArchitecture::load",
+            "codegraph/arch_schema.py::SystemArchitecture::save",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/subsystem_lifecycle.py::split_subsystem"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command to split a subsystem by moving components",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::multilevel_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::format",
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/extractor.py::load_graph0",
+            "codegraph/index.py::IndexStore",
+            "codegraph/multilevel.py::analyze_multilevel"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "run multi-level architecture analysis across function, module, and subsystem levels",
           "body_hash_changed": false
         },
         {
@@ -820,6 +1766,155 @@
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "build context for specific task from tasks.json with affected nodes",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/multilevel.py::ModuleEdge::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize module edge to dictionary",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/multilevel.py::ModuleGraph::format",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format module graph as human-readable text with top modules by fan-out",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/multilevel.py::ModuleGraph::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize module graph with summary statistics",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/multilevel.py::ModuleNode::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize module node to dictionary",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/multilevel.py::MultiLevelReport::format",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format multi-level report as human-readable text",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/multilevel.py::MultiLevelReport::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize report with smells grouped by level",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/multilevel.py::MultiLevelSmell::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize smell to dictionary with level name mapping",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/multilevel.py::SubsystemEdge::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize subsystem edge to dictionary",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/multilevel.py::SubsystemGraph::format",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format subsystem graph as human-readable text with cohesion and cross-edges",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/multilevel.py::SubsystemGraph::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize subsystem graph with summary",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/multilevel.py::SubsystemNode::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize subsystem node to dictionary",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/multilevel.py::build_subsystem_graph",
+          "file": "codegraph/multilevel.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/filters.py::FilterPipeline::add",
+            "codegraph/index.py::IndexStore::_get_conn",
+            "codegraph/multilevel.py::SubsystemEdge",
+            "codegraph/multilevel.py::SubsystemGraph",
+            "codegraph/multilevel.py::SubsystemNode",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "called_by": [
+            "codegraph/multilevel.py::analyze_multilevel"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "build Level 3 subsystem graph using file-to-subsystem mapping",
           "body_hash_changed": false
         },
         {
@@ -979,6 +2074,1938 @@
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "derive short subsystem name from module file path",
           "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/subsystem_lifecycle.py::SubsystemChange::to_dict",
+          "file": "codegraph/subsystem_lifecycle.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize subsystem change to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/subsystem_lifecycle.py::SubsystemFile::to_dict",
+          "file": "codegraph/subsystem_lifecycle.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize subsystem file to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/target_architecture.py::ArchitectureDelta::format",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format delta as human-readable text report",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/target_architecture.py::ArchitectureDelta::has_changes",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "returns True if any changes exist in the delta",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/target_architecture.py::ArchitectureDelta::save",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/target_architecture.py::ArchitectureDelta::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "save delta to .codegraph/planning/delta.json",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/target_architecture.py::ArchitectureDelta::to_dict",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "called_by": [
+            "codegraph/target_architecture.py::ArchitectureDelta::save"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize delta with summary counts to dictionary",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/target_architecture.py::ArchitectureDelta::total_changes",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "returns total count of all changes across edge and node categories",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/target_architecture.py::TargetEdge::from_dict",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_memory.py::ArchDecision::from_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize target edge from dictionary",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/target_architecture.py::TargetEdge::to_dict",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize target edge to dictionary for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/target_architecture.py::TargetNode::from_dict",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_memory.py::ArchDecision::from_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize target node from dictionary",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/target_architecture.py::TargetNode::to_dict",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize target node to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/target_architecture.py::TargetWorkflow::add_edge",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/target_architecture.py::TargetEdge",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "add a desired edge to the target workflow",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/target_architecture.py::TargetWorkflow::add_node",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/target_architecture.py::TargetNode",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "add a desired node to the target workflow",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/target_architecture.py::TargetWorkflow::from_dict",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_memory.py::ArchDecision::from_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize target workflow from dictionary",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/target_architecture.py::TargetWorkflow::load",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchDecision::from_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "load target workflow from disk, returns None if not found",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/target_architecture.py::TargetWorkflow::save",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/target_architecture.py::TargetWorkflow::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "save target workflow to .codegraph/workflow/target_workflow.json",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/target_architecture.py::TargetWorkflow::to_dict",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "called_by": [
+            "codegraph/target_architecture.py::TargetWorkflow::save"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize target workflow to dictionary",
+          "body_hash_changed": false
+        }
+      ]
+    },
+    {
+      "task_id": "intent_missing",
+      "priority": 5,
+      "nodes": [
+        {
+          "id": "codegraph/arch_memory.py::get_experiment_success_rate",
+          "file": "codegraph/arch_memory.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory.py::load_memory"
+          ],
+          "called_by": [
+            "codegraph/cli.py::arch_memory_cmd"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory",
+          "file": "tests/test_arch_memory.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchDecision",
+          "file": "tests/test_arch_memory.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchDecision::test_defaults",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchDecision::from_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchDecision::test_minimal_to_dict",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_memory.py::ArchDecision"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchDecision::test_roundtrip",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_memory.py::ArchDecision::from_dict",
+            "codegraph/arch_memory.py::ArchExperiment"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchExperiment",
+          "file": "tests/test_arch_memory.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchExperiment::test_roundtrip",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_memory.py::ArchDecision::from_dict",
+            "codegraph/arch_memory.py::ArchExperiment"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchMemory",
+          "file": "tests/test_arch_memory.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchMemory::test_empty",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_memory.py::ArchMemory"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchMemory::test_format",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::format",
+            "codegraph/arch_memory.py::ArchDecision",
+            "codegraph/arch_memory.py::ArchMemory"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchMemory::test_get_experiment_success_rate",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchExperiment",
+            "codegraph/arch_memory.py::ArchMemory"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchMemory::test_get_experiment_success_rate_empty",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_memory.py::ArchMemory"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchMemory::test_with_data",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_memory.py::ArchDecision",
+            "codegraph/arch_memory.py::ArchExperiment",
+            "codegraph/arch_memory.py::ArchMemory"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestGetRelevantDecisions",
+          "file": "tests/test_arch_memory.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestGetRelevantDecisions::test_filter_by_result",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::get_relevant_decisions",
+            "codegraph/arch_memory.py::record_decision"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestGetRelevantDecisions::test_filter_by_tag",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::get_relevant_decisions",
+            "codegraph/arch_memory.py::record_decision"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestGetRelevantDecisions::test_limit",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::get_relevant_decisions",
+            "codegraph/arch_memory.py::record_decision"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestLoadSaveMemory",
+          "file": "tests/test_arch_memory.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestLoadSaveMemory::test_load_empty",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::load_memory"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestLoadSaveMemory::test_save_and_load",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchDecision",
+            "codegraph/arch_memory.py::ArchExperiment",
+            "codegraph/arch_memory.py::ArchMemory",
+            "codegraph/arch_memory.py::load_memory",
+            "codegraph/arch_memory.py::save_memory"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestRecordDecision",
+          "file": "tests/test_arch_memory.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestRecordDecision::test_increments_id",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::record_decision"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestRecordDecision::test_records_and_persists",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::load_memory",
+            "codegraph/arch_memory.py::record_experiment"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestRecordExperiment",
+          "file": "tests/test_arch_memory.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestRecordExperiment::test_records_and_persists",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::load_memory",
+            "codegraph/arch_memory.py::record_experiment"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor",
+          "file": "tests/test_branch_executor.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestBranchComparison",
+          "file": "tests/test_branch_executor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestBranchComparison::test_format",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::format",
+            "codegraph/branch_executor.py::BranchComparison"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestBranchComparison::test_to_dict",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/branch_executor.py::BranchComparison"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestBranchMetrics",
+          "file": "tests/test_branch_executor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestBranchMetrics::test_default_values",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/branch_executor.py::BranchMetrics"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestBranchMetrics::test_from_dict_defaults",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchDecision::from_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestBranchMetrics::test_roundtrip",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_memory.py::ArchDecision::from_dict",
+            "codegraph/branch_executor.py::BranchMetrics",
+            "codegraph/branch_executor.py::BranchState"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestBranchState",
+          "file": "tests/test_branch_executor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestBranchState::test_minimal",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/branch_executor.py::BranchState"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestBranchState::test_roundtrip",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_memory.py::ArchDecision::from_dict",
+            "codegraph/branch_executor.py::BranchMetrics",
+            "codegraph/branch_executor.py::BranchState"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestBranchState::test_without_metrics",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_memory.py::ArchDecision::from_dict",
+            "codegraph/branch_executor.py::BranchState"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestCaptureMetrics",
+          "file": "tests/test_branch_executor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestCaptureMetrics::test_empty_project",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/branch_executor.py::capture_metrics"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestCaptureMetrics::test_reads_graph_data",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/branch_executor.py::capture_metrics"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestCompareBranches",
+          "file": "tests/test_branch_executor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestCompareBranches::test_custom_names",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/branch_executor.py::BranchMetrics",
+            "codegraph/branch_executor.py::compare_branches"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestCompareBranches::test_degradation_recommends_reject",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/branch_executor.py::BranchMetrics",
+            "codegraph/branch_executor.py::compare_branches"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestCompareBranches::test_improvement_recommends_merge",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/branch_executor.py::BranchMetrics",
+            "codegraph/branch_executor.py::compare_branches"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestCompareBranches::test_mixed_recommends_review",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/branch_executor.py::BranchMetrics",
+            "codegraph/branch_executor.py::compare_branches"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestCompareBranches::test_no_change_recommends_review",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/branch_executor.py::BranchMetrics",
+            "codegraph/branch_executor.py::compare_branches"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestLoadBranchState",
+          "file": "tests/test_branch_executor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestLoadBranchState::test_load_existing",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/branch_executor.py::load_branch_state"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestLoadBranchState::test_load_nonexistent",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/branch_executor.py::load_branch_state"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestUpdateBranchStatus",
+          "file": "tests/test_branch_executor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_branch_executor.py::TestUpdateBranchStatus::test_update_status",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/branch_executor.py::load_branch_state",
+            "codegraph/branch_executor.py::update_branch_status"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel",
+          "file": "tests/test_multilevel.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestAnalyzeMultilevel",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestAnalyzeMultilevel::_make_data",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/tasks.py::TaskHistory::append",
+            "tests/test_multilevel.py::_make_graph0",
+            "tests/test_multilevel.py::_make_index"
+          ],
+          "called_by": [
+            "tests/test_multilevel.py::TestAnalyzeMultilevel::test_god_module_detected",
+            "tests/test_multilevel.py::TestAnalyzeMultilevel::test_no_smells_small_project"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestAnalyzeMultilevel::test_god_function_detected",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/multilevel.py::analyze_multilevel",
+            "tests/test_multilevel.py::_make_graph0",
+            "tests/test_multilevel.py::_make_index"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestAnalyzeMultilevel::test_god_module_detected",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/multilevel.py::analyze_multilevel",
+            "tests/test_multilevel.py::TestAnalyzeMultilevel::_make_data"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestAnalyzeMultilevel::test_no_smells_small_project",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/multilevel.py::analyze_multilevel",
+            "tests/test_multilevel.py::TestAnalyzeMultilevel::_make_data"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestBuildModuleGraph",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestBuildModuleGraph::test_basic",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/multilevel.py::_infer_subsystem_mapping",
+            "tests/test_multilevel.py::_make_graph0"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestBuildModuleGraph::test_same_file_edges_ignored",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/multilevel.py::build_module_graph",
+            "tests/test_multilevel.py::_make_graph0",
+            "tests/test_multilevel.py::_make_index"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestBuildSubsystemGraph",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestBuildSubsystemGraph::test_basic",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/multilevel.py::_infer_subsystem_mapping",
+            "tests/test_multilevel.py::_make_graph0"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestInferSubsystemMapping",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestInferSubsystemMapping::test_basic",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/multilevel.py::_infer_subsystem_mapping",
+            "tests/test_multilevel.py::_make_graph0"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestInferSubsystemMapping::test_root_files",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/multilevel.py::_infer_subsystem_mapping",
+            "tests/test_multilevel.py::_make_graph0"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestModuleGraph",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestModuleGraph::test_empty_avg",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/multilevel.py::ModuleGraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestModuleGraph::test_format",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::format",
+            "codegraph/multilevel.py::MultiLevelReport",
+            "codegraph/multilevel.py::MultiLevelSmell"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestModuleGraph::test_to_dict",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/multilevel.py::MultiLevelSmell"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestModuleNode",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestModuleNode::test_to_dict",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/multilevel.py::MultiLevelSmell"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestMultiLevelReport",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestMultiLevelReport::test_empty",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/multilevel.py::MultiLevelReport"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestMultiLevelReport::test_format",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::format",
+            "codegraph/multilevel.py::MultiLevelReport",
+            "codegraph/multilevel.py::MultiLevelSmell"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestMultiLevelReport::test_with_smells",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/multilevel.py::MultiLevelReport",
+            "codegraph/multilevel.py::MultiLevelSmell"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestMultiLevelSmell",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestMultiLevelSmell::test_to_dict",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/multilevel.py::MultiLevelSmell"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestSubsystemGraph",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestSubsystemGraph::test_format",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::format",
+            "codegraph/multilevel.py::MultiLevelReport",
+            "codegraph/multilevel.py::MultiLevelSmell"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestSubsystemGraph::test_to_dict",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/multilevel.py::MultiLevelSmell"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::TestSubsystemNode",
+          "file": "tests/test_multilevel.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_multilevel.py::TestSubsystemNode::test_to_dict",
+          "file": "tests/test_multilevel.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/multilevel.py::MultiLevelSmell"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::_make_graph0",
+          "file": "tests/test_multilevel.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/models/graph0.py::Graph0",
+            "codegraph/models/graph0.py::Graph0Node",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "called_by": [
+            "tests/test_multilevel.py::TestAnalyzeMultilevel::_make_data",
+            "tests/test_multilevel.py::TestAnalyzeMultilevel::test_god_function_detected",
+            "tests/test_multilevel.py::TestBuildModuleGraph::test_basic",
+            "tests/test_multilevel.py::TestBuildModuleGraph::test_same_file_edges_ignored",
+            "tests/test_multilevel.py::TestBuildSubsystemGraph::test_basic",
+            "tests/test_multilevel.py::TestInferSubsystemMapping::test_basic",
+            "tests/test_multilevel.py::TestInferSubsystemMapping::test_root_files"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_multilevel.py::_make_index",
+          "file": "tests/test_multilevel.py",
+          "type": "function",
+          "called_by": [
+            "tests/test_multilevel.py::TestAnalyzeMultilevel::_make_data",
+            "tests/test_multilevel.py::TestAnalyzeMultilevel::test_god_function_detected",
+            "tests/test_multilevel.py::TestBuildModuleGraph::test_same_file_edges_ignored"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestCreateSubsystem",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestCreateSubsystem::test_creates_new",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
+            "codegraph/subsystem_lifecycle.py::create_subsystem",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestCreateSubsystem::test_duplicate_raises",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::create_subsystem",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestGenerateSubsystemFiles",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestGenerateSubsystemFiles::test_generates_files",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::generate_subsystem_files",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestGenerateSubsystemFiles::test_includes_constraints",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::generate_subsystem_files",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestListSubsystemFiles",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestListSubsystemFiles::test_empty",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::list_subsystem_files"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestListSubsystemFiles::test_list",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::generate_subsystem_files",
+            "codegraph/subsystem_lifecycle.py::list_subsystem_files",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestLoadSubsystemFile",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestLoadSubsystemFile::test_load_existing",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::generate_subsystem_files",
+            "codegraph/subsystem_lifecycle.py::load_subsystem_file",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestLoadSubsystemFile::test_load_nonexistent",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::load_subsystem_file"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_basic_merge",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
+            "codegraph/subsystem_lifecycle.py::merge_subsystems",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_constraints_updated",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::merge_subsystems",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_custom_name",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
+            "codegraph/subsystem_lifecycle.py::merge_subsystems",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_nonexistent_raises",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::merge_subsystems",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_self_edges_removed",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::merge_subsystems",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_basic_move",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
+            "codegraph/subsystem_lifecycle.py::move_component",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_nonexistent_component_raises",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::move_component",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_nonexistent_source_raises",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::move_component",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_nonexistent_target_raises",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::move_component",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_related_edges_moved",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
+            "codegraph/subsystem_lifecycle.py::move_component",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_basic_split",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
+            "codegraph/subsystem_lifecycle.py::split_subsystem",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_duplicate_target_raises",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::split_subsystem",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_no_matching_components_raises",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::split_subsystem",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_nonexistent_source_raises",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::move_component",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_splits_edges",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/subsystem_lifecycle.py::split_subsystem",
+            "tests/test_subsystem_lifecycle.py::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestSubsystemChange",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestSubsystemChange::test_minimal",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/subsystem_lifecycle.py::SubsystemFile"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestSubsystemChange::test_to_dict",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/subsystem_lifecycle.py::SubsystemFile"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestSubsystemFile",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestSubsystemFile::test_minimal",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/subsystem_lifecycle.py::SubsystemFile"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::TestSubsystemFile::test_to_dict",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/subsystem_lifecycle.py::SubsystemFile"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_subsystem_lifecycle.py::_make_arch",
+          "file": "tests/test_subsystem_lifecycle.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_schema.py::ArchComponent",
+            "codegraph/arch_schema.py::ArchConstraint",
+            "codegraph/arch_schema.py::ArchEdge",
+            "codegraph/arch_schema.py::SubsystemDef",
+            "codegraph/arch_schema.py::SystemArchitecture"
+          ],
+          "called_by": [
+            "tests/test_subsystem_lifecycle.py::TestCreateSubsystem::test_creates_new",
+            "tests/test_subsystem_lifecycle.py::TestCreateSubsystem::test_duplicate_raises",
+            "tests/test_subsystem_lifecycle.py::TestGenerateSubsystemFiles::test_generates_files",
+            "tests/test_subsystem_lifecycle.py::TestGenerateSubsystemFiles::test_includes_constraints",
+            "tests/test_subsystem_lifecycle.py::TestListSubsystemFiles::test_list",
+            "tests/test_subsystem_lifecycle.py::TestLoadSubsystemFile::test_load_existing",
+            "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_basic_merge",
+            "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_constraints_updated",
+            "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_custom_name",
+            "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_nonexistent_raises",
+            "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_self_edges_removed",
+            "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_basic_move",
+            "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_nonexistent_component_raises",
+            "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_nonexistent_source_raises",
+            "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_nonexistent_target_raises",
+            "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_related_edges_moved",
+            "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_basic_split",
+            "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_duplicate_target_raises",
+            "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_no_matching_components_raises",
+            "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_nonexistent_source_raises",
+            "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_splits_edges"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture",
+          "file": "tests/test_target_architecture.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestArchitectureDelta",
+          "file": "tests/test_target_architecture.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_empty_delta",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/target_architecture.py::ArchitectureDelta",
+            "codegraph/target_architecture.py::delta_to_tasks"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_format",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::format",
+            "codegraph/target_architecture.py::ArchitectureDelta"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_has_changes",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/target_architecture.py::ArchitectureDelta"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_save",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_schema.py::SystemArchitecture::save",
+            "codegraph/target_architecture.py::ArchitectureDelta"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_to_dict_summary",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/target_architecture.py::ArchitectureDelta"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_total_changes",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/target_architecture.py::ArchitectureDelta"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta",
+          "file": "tests/test_target_architecture.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_existing_node_not_missing",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/models/graph0.py::Graph0::add_node",
+            "codegraph/target_architecture.py::TargetWorkflow",
+            "codegraph/target_architecture.py::compute_architecture_delta"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_extra_edge",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/models/workflow.py::Workflow::add_edge",
+            "codegraph/target_architecture.py::TargetWorkflow",
+            "codegraph/target_architecture.py::compute_architecture_delta"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_missing_edge",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/models/workflow.py::Workflow::add_edge",
+            "codegraph/target_architecture.py::TargetWorkflow",
+            "codegraph/target_architecture.py::compute_architecture_delta"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_missing_node",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/models/graph0.py::Graph0::add_node",
+            "codegraph/target_architecture.py::TargetWorkflow",
+            "codegraph/target_architecture.py::compute_architecture_delta"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_no_changes",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/models/workflow.py::Workflow::add_edge",
+            "codegraph/target_architecture.py::TargetWorkflow",
+            "codegraph/target_architecture.py::compute_architecture_delta"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_priority_sorting",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/models/workflow.py::Workflow::add_edge",
+            "codegraph/target_architecture.py::TargetWorkflow",
+            "codegraph/target_architecture.py::compute_architecture_delta"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestDeltaToTasks",
+          "file": "tests/test_target_architecture.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestDeltaToTasks::test_empty_delta",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/target_architecture.py::ArchitectureDelta",
+            "codegraph/target_architecture.py::delta_to_tasks"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestDeltaToTasks::test_extra_edge_flagged",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/target_architecture.py::ArchitectureDelta",
+            "codegraph/target_architecture.py::delta_to_tasks"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestDeltaToTasks::test_missing_edge_repair",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/target_architecture.py::ArchitectureDelta",
+            "codegraph/target_architecture.py::delta_to_tasks"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestDeltaToTasks::test_missing_node_flagged",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/target_architecture.py::ArchitectureDelta",
+            "codegraph/target_architecture.py::delta_to_tasks"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture",
+          "file": "tests/test_target_architecture.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::_make_arch",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_schema.py::ArchComponent",
+            "codegraph/arch_schema.py::ArchEdge",
+            "codegraph/arch_schema.py::SubsystemDef",
+            "codegraph/arch_schema.py::SystemArchitecture"
+          ],
+          "called_by": [
+            "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::test_generates_edges_from_architecture",
+            "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::test_generates_target_nodes",
+            "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::test_missing_architecture_edge_becomes_target"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::test_generates_edges_from_architecture",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/target_architecture.py::generate_target_from_architecture",
+            "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::test_generates_target_nodes",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/target_architecture.py::generate_target_from_architecture",
+            "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::test_missing_architecture_edge_becomes_target",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/target_architecture.py::generate_target_from_architecture",
+            "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::_make_arch"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetEdge",
+          "file": "tests/test_target_architecture.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetEdge::test_from_dict_defaults",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchDecision::from_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetEdge::test_roundtrip",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_memory.py::ArchDecision::from_dict",
+            "codegraph/models/graph0.py::Graph0::add_node",
+            "codegraph/models/workflow.py::Workflow::add_edge",
+            "codegraph/target_architecture.py::TargetWorkflow"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetEdge::test_to_dict_full",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/target_architecture.py::TargetNode"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetEdge::test_to_dict_minimal",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/target_architecture.py::TargetNode"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetNode",
+          "file": "tests/test_target_architecture.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetNode::test_roundtrip",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_memory.py::ArchDecision::from_dict",
+            "codegraph/models/graph0.py::Graph0::add_node",
+            "codegraph/models/workflow.py::Workflow::add_edge",
+            "codegraph/target_architecture.py::TargetWorkflow"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetNode::test_to_dict_full",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/target_architecture.py::TargetNode"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetNode::test_to_dict_minimal",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/target_architecture.py::TargetNode"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetWorkflow",
+          "file": "tests/test_target_architecture.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_add_edge",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/models/workflow.py::Workflow::add_edge",
+            "codegraph/target_architecture.py::TargetWorkflow"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_add_node",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/models/graph0.py::Graph0::add_node",
+            "codegraph/target_architecture.py::TargetWorkflow"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_empty_workflow",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/target_architecture.py::TargetWorkflow"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_load_nonexistent",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_schema.py::SystemArchitecture::load"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_roundtrip",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_memory.py::ArchDecision::from_dict",
+            "codegraph/models/graph0.py::Graph0::add_node",
+            "codegraph/models/workflow.py::Workflow::add_edge",
+            "codegraph/target_architecture.py::TargetWorkflow"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_save_and_load",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_schema.py::SystemArchitecture::load",
+            "codegraph/arch_schema.py::SystemArchitecture::save",
+            "codegraph/models/workflow.py::Workflow::add_edge",
+            "codegraph/target_architecture.py::TargetWorkflow"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
         }
       ]
     }

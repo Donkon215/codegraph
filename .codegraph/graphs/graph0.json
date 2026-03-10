@@ -1,7 +1,7 @@
 {
   "format_version": 1,
-  "graph_version": 22,
-  "extracted_at": "2026-03-10T13:31:17Z",
+  "graph_version": 24,
+  "extracted_at": "2026-03-10T16:23:18Z",
   "source_files": [
     "benchmarks/benchmark_build.py",
     "benchmarks/benchmark_query.py",
@@ -14,11 +14,13 @@
     "codegraph/apply.py",
     "codegraph/arch_diff.py",
     "codegraph/arch_health.py",
+    "codegraph/arch_memory.py",
     "codegraph/arch_planner.py",
     "codegraph/arch_schema.py",
     "codegraph/arch_viewer.py",
     "codegraph/archi_test.py",
     "codegraph/architecture_advisor.py",
+    "codegraph/branch_executor.py",
     "codegraph/cas.py",
     "codegraph/cli.py",
     "codegraph/config.py",
@@ -56,6 +58,7 @@
     "codegraph/models/tasks.py",
     "codegraph/models/validation.py",
     "codegraph/models/workflow.py",
+    "codegraph/multilevel.py",
     "codegraph/path_query.py",
     "codegraph/planning.py",
     "codegraph/pytest_plugin.py",
@@ -69,7 +72,9 @@
     "codegraph/simulator.py",
     "codegraph/storage.py",
     "codegraph/subsystem.py",
+    "codegraph/subsystem_lifecycle.py",
     "codegraph/suggest.py",
+    "codegraph/target_architecture.py",
     "codegraph/tasks.py",
     "codegraph/test_impact.py",
     "codegraph/types.py",
@@ -105,10 +110,12 @@
     "tests/test_apply.py",
     "tests/test_arch_diff.py",
     "tests/test_arch_health.py",
+    "tests/test_arch_memory.py",
     "tests/test_arch_planner.py",
     "tests/test_arch_schema.py",
     "tests/test_arch_viewer.py",
     "tests/test_architecture_advisor.py",
+    "tests/test_branch_executor.py",
     "tests/test_cas.py",
     "tests/test_cli.py",
     "tests/test_context_builder.py",
@@ -125,6 +132,7 @@
     "tests/test_known_libraries.py",
     "tests/test_layers.py",
     "tests/test_models.py",
+    "tests/test_multilevel.py",
     "tests/test_path_query.py",
     "tests/test_planning.py",
     "tests/test_properties.py",
@@ -135,7 +143,9 @@
     "tests/test_simulator.py",
     "tests/test_snapshots.py",
     "tests/test_subsystem.py",
+    "tests/test_subsystem_lifecycle.py",
     "tests/test_suggest.py",
+    "tests/test_target_architecture.py",
     "tests/test_tasks.py",
     "tests/test_visualization.py",
     "tests/test_workflow.py"
@@ -1416,6 +1426,118 @@
       "line": 261
     },
     {
+      "id": "codegraph/arch_memory",
+      "body_hash": "e638e",
+      "file": "codegraph/arch_memory.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchDecision",
+      "body_hash": "b634b",
+      "file": "codegraph/arch_memory.py",
+      "type": "class",
+      "line": 30
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "body_hash": "93d5e",
+      "file": "codegraph/arch_memory.py",
+      "type": "method",
+      "line": 65
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchDecision::to_dict",
+      "body_hash": "e9cbf",
+      "file": "codegraph/arch_memory.py",
+      "type": "method",
+      "line": 44
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchExperiment",
+      "body_hash": "b6263",
+      "file": "codegraph/arch_memory.py",
+      "type": "class",
+      "line": 81
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchExperiment::from_dict",
+      "body_hash": "9c8ca",
+      "file": "codegraph/arch_memory.py",
+      "type": "method",
+      "line": 114
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchExperiment::to_dict",
+      "body_hash": "dad7a",
+      "file": "codegraph/arch_memory.py",
+      "type": "method",
+      "line": 97
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchMemory",
+      "body_hash": "1b661",
+      "file": "codegraph/arch_memory.py",
+      "type": "class",
+      "line": 132
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchMemory::format",
+      "body_hash": "883a0",
+      "file": "codegraph/arch_memory.py",
+      "type": "method",
+      "line": 154
+    },
+    {
+      "id": "codegraph/arch_memory.py::ArchMemory::to_dict",
+      "body_hash": "42b6c",
+      "file": "codegraph/arch_memory.py",
+      "type": "method",
+      "line": 138
+    },
+    {
+      "id": "codegraph/arch_memory.py::get_experiment_success_rate",
+      "body_hash": "2e6dd",
+      "file": "codegraph/arch_memory.py",
+      "type": "function",
+      "line": 311
+    },
+    {
+      "id": "codegraph/arch_memory.py::get_relevant_decisions",
+      "body_hash": "0e4b6",
+      "file": "codegraph/arch_memory.py",
+      "type": "function",
+      "line": 291
+    },
+    {
+      "id": "codegraph/arch_memory.py::load_memory",
+      "body_hash": "50ee6",
+      "file": "codegraph/arch_memory.py",
+      "type": "function",
+      "line": 184
+    },
+    {
+      "id": "codegraph/arch_memory.py::record_decision",
+      "body_hash": "cef0e",
+      "file": "codegraph/arch_memory.py",
+      "type": "function",
+      "line": 225
+    },
+    {
+      "id": "codegraph/arch_memory.py::record_experiment",
+      "body_hash": "f4967",
+      "file": "codegraph/arch_memory.py",
+      "type": "function",
+      "line": 256
+    },
+    {
+      "id": "codegraph/arch_memory.py::save_memory",
+      "body_hash": "eb07b",
+      "file": "codegraph/arch_memory.py",
+      "type": "function",
+      "line": 202
+    },
+    {
       "id": "codegraph/arch_planner",
       "body_hash": "51885",
       "file": "codegraph/arch_planner.py",
@@ -2074,6 +2196,160 @@
       "line": 524
     },
     {
+      "id": "codegraph/branch_executor",
+      "body_hash": "ca944",
+      "file": "codegraph/branch_executor.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchComparison",
+      "body_hash": "1544e",
+      "file": "codegraph/branch_executor.py",
+      "type": "class",
+      "line": 130
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchComparison::format",
+      "body_hash": "431fa",
+      "file": "codegraph/branch_executor.py",
+      "type": "method",
+      "line": 156
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchComparison::to_dict",
+      "body_hash": "13ca2",
+      "file": "codegraph/branch_executor.py",
+      "type": "method",
+      "line": 143
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchMetrics",
+      "body_hash": "ac3d9",
+      "file": "codegraph/branch_executor.py",
+      "type": "class",
+      "line": 29
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchMetrics::from_dict",
+      "body_hash": "59890",
+      "file": "codegraph/branch_executor.py",
+      "type": "method",
+      "line": 58
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchMetrics::to_dict",
+      "body_hash": "bbc9e",
+      "file": "codegraph/branch_executor.py",
+      "type": "method",
+      "line": 43
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchState",
+      "body_hash": "22646",
+      "file": "codegraph/branch_executor.py",
+      "type": "class",
+      "line": 74
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchState::from_dict",
+      "body_hash": "aa2b1",
+      "file": "codegraph/branch_executor.py",
+      "type": "method",
+      "line": 108
+    },
+    {
+      "id": "codegraph/branch_executor.py::BranchState::to_dict",
+      "body_hash": "90bf5",
+      "file": "codegraph/branch_executor.py",
+      "type": "method",
+      "line": 88
+    },
+    {
+      "id": "codegraph/branch_executor.py::_run_git",
+      "body_hash": "a94c2",
+      "file": "codegraph/branch_executor.py",
+      "type": "function",
+      "line": 432
+    },
+    {
+      "id": "codegraph/branch_executor.py::_save_branch_state",
+      "body_hash": "4dcba",
+      "file": "codegraph/branch_executor.py",
+      "type": "function",
+      "line": 446
+    },
+    {
+      "id": "codegraph/branch_executor.py::capture_metrics",
+      "body_hash": "bc000",
+      "file": "codegraph/branch_executor.py",
+      "type": "function",
+      "line": 226
+    },
+    {
+      "id": "codegraph/branch_executor.py::compare_branches",
+      "body_hash": "ee750",
+      "file": "codegraph/branch_executor.py",
+      "type": "function",
+      "line": 269
+    },
+    {
+      "id": "codegraph/branch_executor.py::create_branch",
+      "body_hash": "5c11b",
+      "file": "codegraph/branch_executor.py",
+      "type": "function",
+      "line": 170
+    },
+    {
+      "id": "codegraph/branch_executor.py::discard_branch",
+      "body_hash": "ca8e9",
+      "file": "codegraph/branch_executor.py",
+      "type": "function",
+      "line": 399
+    },
+    {
+      "id": "codegraph/branch_executor.py::get_current_branch",
+      "body_hash": "693ae",
+      "file": "codegraph/branch_executor.py",
+      "type": "function",
+      "line": 203
+    },
+    {
+      "id": "codegraph/branch_executor.py::list_architecture_branches",
+      "body_hash": "8d1c4",
+      "file": "codegraph/branch_executor.py",
+      "type": "function",
+      "line": 418
+    },
+    {
+      "id": "codegraph/branch_executor.py::load_branch_state",
+      "body_hash": "ca648",
+      "file": "codegraph/branch_executor.py",
+      "type": "function",
+      "line": 209
+    },
+    {
+      "id": "codegraph/branch_executor.py::merge_branch",
+      "body_hash": "2a08f",
+      "file": "codegraph/branch_executor.py",
+      "type": "function",
+      "line": 370
+    },
+    {
+      "id": "codegraph/branch_executor.py::update_branch_status",
+      "body_hash": "8e6e3",
+      "file": "codegraph/branch_executor.py",
+      "type": "function",
+      "line": 218
+    },
+    {
+      "id": "codegraph/branch_executor.py::validate_branch",
+      "body_hash": "08868",
+      "file": "codegraph/branch_executor.py",
+      "type": "function",
+      "line": 329
+    },
+    {
       "id": "codegraph/cas",
       "body_hash": "e5995",
       "file": "codegraph/cas.py",
@@ -2376,7 +2652,7 @@
     },
     {
       "id": "codegraph/cli",
-      "body_hash": "ea718",
+      "body_hash": "13cf2",
       "file": "codegraph/cli.py",
       "type": "module",
       "line": 1
@@ -2410,6 +2686,13 @@
       "line": 1971
     },
     {
+      "id": "codegraph/cli.py::arch_memory_cmd",
+      "body_hash": "be848",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2533
+    },
+    {
       "id": "codegraph/cli.py::archi_test_cmd",
       "body_hash": "eb807",
       "file": "codegraph/cli.py",
@@ -2418,7 +2701,7 @@
     },
     {
       "id": "codegraph/cli.py::architect_cmd",
-      "body_hash": "139f7",
+      "body_hash": "7d184",
       "file": "codegraph/cli.py",
       "type": "function",
       "line": 2178
@@ -2429,6 +2712,55 @@
       "file": "codegraph/cli.py",
       "type": "function",
       "line": 2011
+    },
+    {
+      "id": "codegraph/cli.py::branch_compare",
+      "body_hash": "72818",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2439
+    },
+    {
+      "id": "codegraph/cli.py::branch_create",
+      "body_hash": "6e67a",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2390
+    },
+    {
+      "id": "codegraph/cli.py::branch_discard",
+      "body_hash": "94154",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2487
+    },
+    {
+      "id": "codegraph/cli.py::branch_group",
+      "body_hash": "7250a",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2381
+    },
+    {
+      "id": "codegraph/cli.py::branch_list",
+      "body_hash": "f9353",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2508
+    },
+    {
+      "id": "codegraph/cli.py::branch_merge",
+      "body_hash": "e098c",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2466
+    },
+    {
+      "id": "codegraph/cli.py::branch_validate",
+      "body_hash": "d0405",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2408
     },
     {
       "id": "codegraph/cli.py::build",
@@ -2498,7 +2830,14 @@
       "body_hash": "4516f",
       "file": "codegraph/cli.py",
       "type": "function",
-      "line": 2219
+      "line": 2220
+    },
+    {
+      "id": "codegraph/cli.py::evolve_cmd",
+      "body_hash": "679fa",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2247
     },
     {
       "id": "codegraph/cli.py::explain_cmd",
@@ -2571,6 +2910,48 @@
       "line": 316
     },
     {
+      "id": "codegraph/cli.py::lifecycle_create",
+      "body_hash": "baa39",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2588
+    },
+    {
+      "id": "codegraph/cli.py::lifecycle_generate_files",
+      "body_hash": "b83d8",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2696
+    },
+    {
+      "id": "codegraph/cli.py::lifecycle_group",
+      "body_hash": "8e9c3",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2578
+    },
+    {
+      "id": "codegraph/cli.py::lifecycle_merge",
+      "body_hash": "e58f1",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2645
+    },
+    {
+      "id": "codegraph/cli.py::lifecycle_move",
+      "body_hash": "10615",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2672
+    },
+    {
+      "id": "codegraph/cli.py::lifecycle_split",
+      "body_hash": "8d1e0",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2616
+    },
+    {
       "id": "codegraph/cli.py::main",
       "body_hash": "ffff0",
       "file": "codegraph/cli.py",
@@ -2590,6 +2971,13 @@
       "file": "codegraph/cli.py",
       "type": "function",
       "line": 1606
+    },
+    {
+      "id": "codegraph/cli.py::multilevel_cmd",
+      "body_hash": "4d6d4",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2345
     },
     {
       "id": "codegraph/cli.py::path_cmd",
@@ -6799,6 +7187,174 @@
       "line": 154
     },
     {
+      "id": "codegraph/multilevel",
+      "body_hash": "fe544",
+      "file": "codegraph/multilevel.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/multilevel.py::ModuleEdge",
+      "body_hash": "8a969",
+      "file": "codegraph/multilevel.py",
+      "type": "class",
+      "line": 50
+    },
+    {
+      "id": "codegraph/multilevel.py::ModuleEdge::to_dict",
+      "body_hash": "6eb92",
+      "file": "codegraph/multilevel.py",
+      "type": "method",
+      "line": 58
+    },
+    {
+      "id": "codegraph/multilevel.py::ModuleGraph",
+      "body_hash": "53eb4",
+      "file": "codegraph/multilevel.py",
+      "type": "class",
+      "line": 67
+    },
+    {
+      "id": "codegraph/multilevel.py::ModuleGraph::format",
+      "body_hash": "81d59",
+      "file": "codegraph/multilevel.py",
+      "type": "method",
+      "line": 89
+    },
+    {
+      "id": "codegraph/multilevel.py::ModuleGraph::to_dict",
+      "body_hash": "ca8da",
+      "file": "codegraph/multilevel.py",
+      "type": "method",
+      "line": 73
+    },
+    {
+      "id": "codegraph/multilevel.py::ModuleNode",
+      "body_hash": "a5faf",
+      "file": "codegraph/multilevel.py",
+      "type": "class",
+      "line": 29
+    },
+    {
+      "id": "codegraph/multilevel.py::ModuleNode::to_dict",
+      "body_hash": "07e9e",
+      "file": "codegraph/multilevel.py",
+      "type": "method",
+      "line": 39
+    },
+    {
+      "id": "codegraph/multilevel.py::MultiLevelReport",
+      "body_hash": "38de1",
+      "file": "codegraph/multilevel.py",
+      "type": "class",
+      "line": 208
+    },
+    {
+      "id": "codegraph/multilevel.py::MultiLevelReport::format",
+      "body_hash": "b9bf8",
+      "file": "codegraph/multilevel.py",
+      "type": "method",
+      "line": 237
+    },
+    {
+      "id": "codegraph/multilevel.py::MultiLevelReport::to_dict",
+      "body_hash": "a42ae",
+      "file": "codegraph/multilevel.py",
+      "type": "method",
+      "line": 215
+    },
+    {
+      "id": "codegraph/multilevel.py::MultiLevelSmell",
+      "body_hash": "fb11d",
+      "file": "codegraph/multilevel.py",
+      "type": "class",
+      "line": 183
+    },
+    {
+      "id": "codegraph/multilevel.py::MultiLevelSmell::to_dict",
+      "body_hash": "749f4",
+      "file": "codegraph/multilevel.py",
+      "type": "method",
+      "line": 194
+    },
+    {
+      "id": "codegraph/multilevel.py::SubsystemEdge",
+      "body_hash": "d75ca",
+      "file": "codegraph/multilevel.py",
+      "type": "class",
+      "line": 129
+    },
+    {
+      "id": "codegraph/multilevel.py::SubsystemEdge::to_dict",
+      "body_hash": "ac6fe",
+      "file": "codegraph/multilevel.py",
+      "type": "method",
+      "line": 137
+    },
+    {
+      "id": "codegraph/multilevel.py::SubsystemGraph",
+      "body_hash": "07f18",
+      "file": "codegraph/multilevel.py",
+      "type": "class",
+      "line": 147
+    },
+    {
+      "id": "codegraph/multilevel.py::SubsystemGraph::format",
+      "body_hash": "09cc9",
+      "file": "codegraph/multilevel.py",
+      "type": "method",
+      "line": 165
+    },
+    {
+      "id": "codegraph/multilevel.py::SubsystemGraph::to_dict",
+      "body_hash": "421f0",
+      "file": "codegraph/multilevel.py",
+      "type": "method",
+      "line": 153
+    },
+    {
+      "id": "codegraph/multilevel.py::SubsystemNode",
+      "body_hash": "bb5f3",
+      "file": "codegraph/multilevel.py",
+      "type": "class",
+      "line": 103
+    },
+    {
+      "id": "codegraph/multilevel.py::SubsystemNode::to_dict",
+      "body_hash": "63f82",
+      "file": "codegraph/multilevel.py",
+      "type": "method",
+      "line": 115
+    },
+    {
+      "id": "codegraph/multilevel.py::_infer_subsystem_mapping",
+      "body_hash": "5fa5c",
+      "file": "codegraph/multilevel.py",
+      "type": "function",
+      "line": 490
+    },
+    {
+      "id": "codegraph/multilevel.py::analyze_multilevel",
+      "body_hash": "2dd2e",
+      "file": "codegraph/multilevel.py",
+      "type": "function",
+      "line": 389
+    },
+    {
+      "id": "codegraph/multilevel.py::build_module_graph",
+      "body_hash": "4cef4",
+      "file": "codegraph/multilevel.py",
+      "type": "function",
+      "line": 254
+    },
+    {
+      "id": "codegraph/multilevel.py::build_subsystem_graph",
+      "body_hash": "aa40e",
+      "file": "codegraph/multilevel.py",
+      "type": "function",
+      "line": 313
+    },
+    {
       "id": "codegraph/path_query",
       "body_hash": "2fc0a",
       "file": "codegraph/path_query.py",
@@ -7982,6 +8538,90 @@
       "line": 108
     },
     {
+      "id": "codegraph/subsystem_lifecycle",
+      "body_hash": "f95d1",
+      "file": "codegraph/subsystem_lifecycle.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::SubsystemChange",
+      "body_hash": "09dde",
+      "file": "codegraph/subsystem_lifecycle.py",
+      "type": "class",
+      "line": 33
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::SubsystemChange::to_dict",
+      "body_hash": "23e45",
+      "file": "codegraph/subsystem_lifecycle.py",
+      "type": "method",
+      "line": 43
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::SubsystemFile",
+      "body_hash": "f59ea",
+      "file": "codegraph/subsystem_lifecycle.py",
+      "type": "class",
+      "line": 60
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::SubsystemFile::to_dict",
+      "body_hash": "557a4",
+      "file": "codegraph/subsystem_lifecycle.py",
+      "type": "method",
+      "line": 70
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::create_subsystem",
+      "body_hash": "4c838",
+      "file": "codegraph/subsystem_lifecycle.py",
+      "type": "function",
+      "line": 88
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::generate_subsystem_files",
+      "body_hash": "0b0d0",
+      "file": "codegraph/subsystem_lifecycle.py",
+      "type": "function",
+      "line": 287
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::list_subsystem_files",
+      "body_hash": "1d308",
+      "file": "codegraph/subsystem_lifecycle.py",
+      "type": "function",
+      "line": 340
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::load_subsystem_file",
+      "body_hash": "7edd2",
+      "file": "codegraph/subsystem_lifecycle.py",
+      "type": "function",
+      "line": 324
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::merge_subsystems",
+      "body_hash": "739b2",
+      "file": "codegraph/subsystem_lifecycle.py",
+      "type": "function",
+      "line": 181
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::move_component",
+      "body_hash": "c2c36",
+      "file": "codegraph/subsystem_lifecycle.py",
+      "type": "function",
+      "line": 242
+    },
+    {
+      "id": "codegraph/subsystem_lifecycle.py::split_subsystem",
+      "body_hash": "799b5",
+      "file": "codegraph/subsystem_lifecycle.py",
+      "type": "function",
+      "line": 109
+    },
+    {
       "id": "codegraph/suggest",
       "body_hash": "6f45e",
       "file": "codegraph/suggest.py",
@@ -8288,6 +8928,167 @@
       "file": "codegraph/suggest.py",
       "type": "function",
       "line": 533
+    },
+    {
+      "id": "codegraph/target_architecture",
+      "body_hash": "53c2a",
+      "file": "codegraph/target_architecture.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/target_architecture.py::ArchitectureDelta",
+      "body_hash": "49c22",
+      "file": "codegraph/target_architecture.py",
+      "type": "class",
+      "line": 175
+    },
+    {
+      "id": "codegraph/target_architecture.py::ArchitectureDelta::format",
+      "body_hash": "bcc7f",
+      "file": "codegraph/target_architecture.py",
+      "type": "method",
+      "line": 212
+    },
+    {
+      "id": "codegraph/target_architecture.py::ArchitectureDelta::has_changes",
+      "body_hash": "26721",
+      "file": "codegraph/target_architecture.py",
+      "type": "method",
+      "line": 188
+    },
+    {
+      "id": "codegraph/target_architecture.py::ArchitectureDelta::save",
+      "body_hash": "75781",
+      "file": "codegraph/target_architecture.py",
+      "type": "method",
+      "line": 239
+    },
+    {
+      "id": "codegraph/target_architecture.py::ArchitectureDelta::to_dict",
+      "body_hash": "80457",
+      "file": "codegraph/target_architecture.py",
+      "type": "method",
+      "line": 197
+    },
+    {
+      "id": "codegraph/target_architecture.py::ArchitectureDelta::total_changes",
+      "body_hash": "16eb2",
+      "file": "codegraph/target_architecture.py",
+      "type": "method",
+      "line": 193
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetEdge",
+      "body_hash": "9d560",
+      "file": "codegraph/target_architecture.py",
+      "type": "class",
+      "line": 37
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetEdge::from_dict",
+      "body_hash": "f60b4",
+      "file": "codegraph/target_architecture.py",
+      "type": "method",
+      "line": 57
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetEdge::to_dict",
+      "body_hash": "e5dc0",
+      "file": "codegraph/target_architecture.py",
+      "type": "method",
+      "line": 46
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetNode",
+      "body_hash": "21d70",
+      "file": "codegraph/target_architecture.py",
+      "type": "class",
+      "line": 71
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetNode::from_dict",
+      "body_hash": "0b8fd",
+      "file": "codegraph/target_architecture.py",
+      "type": "method",
+      "line": 93
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetNode::to_dict",
+      "body_hash": "3f799",
+      "file": "codegraph/target_architecture.py",
+      "type": "method",
+      "line": 80
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetWorkflow",
+      "body_hash": "5b14f",
+      "file": "codegraph/target_architecture.py",
+      "type": "class",
+      "line": 107
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetWorkflow::add_edge",
+      "body_hash": "204bd",
+      "file": "codegraph/target_architecture.py",
+      "type": "method",
+      "line": 156
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetWorkflow::add_node",
+      "body_hash": "6ae78",
+      "file": "codegraph/target_architecture.py",
+      "type": "method",
+      "line": 163
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetWorkflow::from_dict",
+      "body_hash": "d009f",
+      "file": "codegraph/target_architecture.py",
+      "type": "method",
+      "line": 128
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetWorkflow::load",
+      "body_hash": "c799d",
+      "file": "codegraph/target_architecture.py",
+      "type": "method",
+      "line": 149
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetWorkflow::save",
+      "body_hash": "12b6a",
+      "file": "codegraph/target_architecture.py",
+      "type": "method",
+      "line": 138
+    },
+    {
+      "id": "codegraph/target_architecture.py::TargetWorkflow::to_dict",
+      "body_hash": "e5297",
+      "file": "codegraph/target_architecture.py",
+      "type": "method",
+      "line": 119
+    },
+    {
+      "id": "codegraph/target_architecture.py::compute_architecture_delta",
+      "body_hash": "2e902",
+      "file": "codegraph/target_architecture.py",
+      "type": "function",
+      "line": 253
+    },
+    {
+      "id": "codegraph/target_architecture.py::delta_to_tasks",
+      "body_hash": "05f58",
+      "file": "codegraph/target_architecture.py",
+      "type": "function",
+      "line": 318
+    },
+    {
+      "id": "codegraph/target_architecture.py::generate_target_from_architecture",
+      "body_hash": "bb354",
+      "file": "codegraph/target_architecture.py",
+      "type": "function",
+      "line": 364
     },
     {
       "id": "codegraph/tasks",
@@ -10439,6 +11240,181 @@
       "line": 15
     },
     {
+      "id": "tests/test_arch_memory",
+      "body_hash": "239ae",
+      "file": "tests/test_arch_memory.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchDecision",
+      "body_hash": "b628a",
+      "file": "tests/test_arch_memory.py",
+      "type": "class",
+      "line": 21
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchDecision::test_defaults",
+      "body_hash": "9218b",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 41
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchDecision::test_minimal_to_dict",
+      "body_hash": "988f1",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 50
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchDecision::test_roundtrip",
+      "body_hash": "c3b3d",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 22
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchExperiment",
+      "body_hash": "23655",
+      "file": "tests/test_arch_memory.py",
+      "type": "class",
+      "line": 63
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchExperiment::test_roundtrip",
+      "body_hash": "be4c4",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 64
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchMemory",
+      "body_hash": "bc893",
+      "file": "tests/test_arch_memory.py",
+      "type": "class",
+      "line": 84
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchMemory::test_empty",
+      "body_hash": "bd228",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 85
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchMemory::test_format",
+      "body_hash": "92541",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 108
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchMemory::test_get_experiment_success_rate",
+      "body_hash": "37286",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 121
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchMemory::test_get_experiment_success_rate_empty",
+      "body_hash": "45622",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 116
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestArchMemory::test_with_data",
+      "body_hash": "e67d5",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 91
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestGetRelevantDecisions",
+      "body_hash": "7c6e1",
+      "file": "tests/test_arch_memory.py",
+      "type": "class",
+      "line": 205
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestGetRelevantDecisions::test_filter_by_result",
+      "body_hash": "fd5ee",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 216
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestGetRelevantDecisions::test_filter_by_tag",
+      "body_hash": "04a13",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 206
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestGetRelevantDecisions::test_limit",
+      "body_hash": "00ea7",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 226
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestLoadSaveMemory",
+      "body_hash": "56499",
+      "file": "tests/test_arch_memory.py",
+      "type": "class",
+      "line": 131
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestLoadSaveMemory::test_load_empty",
+      "body_hash": "ab57e",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 132
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestLoadSaveMemory::test_save_and_load",
+      "body_hash": "6c42a",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 138
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestRecordDecision",
+      "body_hash": "6e4b4",
+      "file": "tests/test_arch_memory.py",
+      "type": "class",
+      "line": 158
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestRecordDecision::test_increments_id",
+      "body_hash": "7cc8f",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 177
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestRecordDecision::test_records_and_persists",
+      "body_hash": "f7a83",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 159
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestRecordExperiment",
+      "body_hash": "3a6a1",
+      "file": "tests/test_arch_memory.py",
+      "type": "class",
+      "line": 185
+    },
+    {
+      "id": "tests/test_arch_memory.py::TestRecordExperiment::test_records_and_persists",
+      "body_hash": "33f92",
+      "file": "tests/test_arch_memory.py",
+      "type": "method",
+      "line": 186
+    },
+    {
       "id": "tests/test_arch_planner",
       "body_hash": "e52e5",
       "file": "tests/test_arch_planner.py",
@@ -11221,6 +12197,188 @@
       "file": "tests/test_architecture_advisor.py",
       "type": "function",
       "line": 39
+    },
+    {
+      "id": "tests/test_branch_executor",
+      "body_hash": "3fe39",
+      "file": "tests/test_branch_executor.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchComparison",
+      "body_hash": "ed9b1",
+      "file": "tests/test_branch_executor.py",
+      "type": "class",
+      "line": 88
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchComparison::test_format",
+      "body_hash": "0d9d4",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 102
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchComparison::test_to_dict",
+      "body_hash": "dc427",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 89
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchMetrics",
+      "body_hash": "6da33",
+      "file": "tests/test_branch_executor.py",
+      "type": "class",
+      "line": 21
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchMetrics::test_default_values",
+      "body_hash": "cf895",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 22
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchMetrics::test_from_dict_defaults",
+      "body_hash": "28e84",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 46
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchMetrics::test_roundtrip",
+      "body_hash": "a5c09",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 28
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchState",
+      "body_hash": "baa65",
+      "file": "tests/test_branch_executor.py",
+      "type": "class",
+      "line": 52
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchState::test_minimal",
+      "body_hash": "dc491",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 53
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchState::test_roundtrip",
+      "body_hash": "7e8ad",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 58
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestBranchState::test_without_metrics",
+      "body_hash": "03e3c",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 78
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCaptureMetrics",
+      "body_hash": "bd2fc",
+      "file": "tests/test_branch_executor.py",
+      "type": "class",
+      "line": 162
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCaptureMetrics::test_empty_project",
+      "body_hash": "b2d23",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 190
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCaptureMetrics::test_reads_graph_data",
+      "body_hash": "90bb6",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 163
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCompareBranches",
+      "body_hash": "46e73",
+      "file": "tests/test_branch_executor.py",
+      "type": "class",
+      "line": 114
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCompareBranches::test_custom_names",
+      "body_hash": "1584f",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 153
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCompareBranches::test_degradation_recommends_reject",
+      "body_hash": "d1a16",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 129
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCompareBranches::test_improvement_recommends_merge",
+      "body_hash": "e6725",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 115
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCompareBranches::test_mixed_recommends_review",
+      "body_hash": "f94a6",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 141
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestCompareBranches::test_no_change_recommends_review",
+      "body_hash": "dfe13",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 147
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestLoadBranchState",
+      "body_hash": "a1693",
+      "file": "tests/test_branch_executor.py",
+      "type": "class",
+      "line": 196
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestLoadBranchState::test_load_existing",
+      "body_hash": "e30c0",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 201
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestLoadBranchState::test_load_nonexistent",
+      "body_hash": "c51a2",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 197
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestUpdateBranchStatus",
+      "body_hash": "1de33",
+      "file": "tests/test_branch_executor.py",
+      "type": "class",
+      "line": 219
+    },
+    {
+      "id": "tests/test_branch_executor.py::TestUpdateBranchStatus::test_update_status",
+      "body_hash": "c33a1",
+      "file": "tests/test_branch_executor.py",
+      "type": "method",
+      "line": 220
     },
     {
       "id": "tests/test_cas",
@@ -14002,6 +15160,237 @@
       "line": 249
     },
     {
+      "id": "tests/test_multilevel",
+      "body_hash": "82bc6",
+      "file": "tests/test_multilevel.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_multilevel.py::TestAnalyzeMultilevel",
+      "body_hash": "a9d3b",
+      "file": "tests/test_multilevel.py",
+      "type": "class",
+      "line": 233
+    },
+    {
+      "id": "tests/test_multilevel.py::TestAnalyzeMultilevel::_make_data",
+      "body_hash": "42422",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 234
+    },
+    {
+      "id": "tests/test_multilevel.py::TestAnalyzeMultilevel::test_god_function_detected",
+      "body_hash": "50867",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 257
+    },
+    {
+      "id": "tests/test_multilevel.py::TestAnalyzeMultilevel::test_god_module_detected",
+      "body_hash": "e09ec",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 250
+    },
+    {
+      "id": "tests/test_multilevel.py::TestAnalyzeMultilevel::test_no_smells_small_project",
+      "body_hash": "a9202",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 245
+    },
+    {
+      "id": "tests/test_multilevel.py::TestBuildModuleGraph",
+      "body_hash": "bcdf2",
+      "file": "tests/test_multilevel.py",
+      "type": "class",
+      "line": 170
+    },
+    {
+      "id": "tests/test_multilevel.py::TestBuildModuleGraph::test_basic",
+      "body_hash": "f40c9",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 171
+    },
+    {
+      "id": "tests/test_multilevel.py::TestBuildModuleGraph::test_same_file_edges_ignored",
+      "body_hash": "ad6ab",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 194
+    },
+    {
+      "id": "tests/test_multilevel.py::TestBuildSubsystemGraph",
+      "body_hash": "2cefb",
+      "file": "tests/test_multilevel.py",
+      "type": "class",
+      "line": 204
+    },
+    {
+      "id": "tests/test_multilevel.py::TestBuildSubsystemGraph::test_basic",
+      "body_hash": "8297a",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 205
+    },
+    {
+      "id": "tests/test_multilevel.py::TestInferSubsystemMapping",
+      "body_hash": "d5b6f",
+      "file": "tests/test_multilevel.py",
+      "type": "class",
+      "line": 269
+    },
+    {
+      "id": "tests/test_multilevel.py::TestInferSubsystemMapping::test_basic",
+      "body_hash": "2dfd9",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 270
+    },
+    {
+      "id": "tests/test_multilevel.py::TestInferSubsystemMapping::test_root_files",
+      "body_hash": "08b64",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 279
+    },
+    {
+      "id": "tests/test_multilevel.py::TestModuleGraph",
+      "body_hash": "96453",
+      "file": "tests/test_multilevel.py",
+      "type": "class",
+      "line": 68
+    },
+    {
+      "id": "tests/test_multilevel.py::TestModuleGraph::test_empty_avg",
+      "body_hash": "958f9",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 79
+    },
+    {
+      "id": "tests/test_multilevel.py::TestModuleGraph::test_format",
+      "body_hash": "14c44",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 84
+    },
+    {
+      "id": "tests/test_multilevel.py::TestModuleGraph::test_to_dict",
+      "body_hash": "448f3",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 69
+    },
+    {
+      "id": "tests/test_multilevel.py::TestModuleNode",
+      "body_hash": "abb96",
+      "file": "tests/test_multilevel.py",
+      "type": "class",
+      "line": 58
+    },
+    {
+      "id": "tests/test_multilevel.py::TestModuleNode::test_to_dict",
+      "body_hash": "e0695",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 59
+    },
+    {
+      "id": "tests/test_multilevel.py::TestMultiLevelReport",
+      "body_hash": "f1f3a",
+      "file": "tests/test_multilevel.py",
+      "type": "class",
+      "line": 138
+    },
+    {
+      "id": "tests/test_multilevel.py::TestMultiLevelReport::test_empty",
+      "body_hash": "33cf0",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 139
+    },
+    {
+      "id": "tests/test_multilevel.py::TestMultiLevelReport::test_format",
+      "body_hash": "6b5dd",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 158
+    },
+    {
+      "id": "tests/test_multilevel.py::TestMultiLevelReport::test_with_smells",
+      "body_hash": "135bd",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 144
+    },
+    {
+      "id": "tests/test_multilevel.py::TestMultiLevelSmell",
+      "body_hash": "92868",
+      "file": "tests/test_multilevel.py",
+      "type": "class",
+      "line": 125
+    },
+    {
+      "id": "tests/test_multilevel.py::TestMultiLevelSmell::test_to_dict",
+      "body_hash": "4c8a6",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 126
+    },
+    {
+      "id": "tests/test_multilevel.py::TestSubsystemGraph",
+      "body_hash": "1789c",
+      "file": "tests/test_multilevel.py",
+      "type": "class",
+      "line": 105
+    },
+    {
+      "id": "tests/test_multilevel.py::TestSubsystemGraph::test_format",
+      "body_hash": "21aed",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 116
+    },
+    {
+      "id": "tests/test_multilevel.py::TestSubsystemGraph::test_to_dict",
+      "body_hash": "765c7",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 106
+    },
+    {
+      "id": "tests/test_multilevel.py::TestSubsystemNode",
+      "body_hash": "7d3b8",
+      "file": "tests/test_multilevel.py",
+      "type": "class",
+      "line": 92
+    },
+    {
+      "id": "tests/test_multilevel.py::TestSubsystemNode::test_to_dict",
+      "body_hash": "e3544",
+      "file": "tests/test_multilevel.py",
+      "type": "method",
+      "line": 93
+    },
+    {
+      "id": "tests/test_multilevel.py::_make_graph0",
+      "body_hash": "92717",
+      "file": "tests/test_multilevel.py",
+      "type": "function",
+      "line": 28
+    },
+    {
+      "id": "tests/test_multilevel.py::_make_index",
+      "body_hash": "8730f",
+      "file": "tests/test_multilevel.py",
+      "type": "function",
+      "line": 43
+    },
+    {
       "id": "tests/test_path_query",
       "body_hash": "530d0",
       "file": "tests/test_path_query.py",
@@ -15402,6 +16791,272 @@
       "line": 17
     },
     {
+      "id": "tests/test_subsystem_lifecycle",
+      "body_hash": "b47ce",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestCreateSubsystem",
+      "body_hash": "1dd6b",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "class",
+      "line": 103
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestCreateSubsystem::test_creates_new",
+      "body_hash": "69dcf",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 104
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestCreateSubsystem::test_duplicate_raises",
+      "body_hash": "b0823",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 111
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestGenerateSubsystemFiles",
+      "body_hash": "c720a",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "class",
+      "line": 229
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestGenerateSubsystemFiles::test_generates_files",
+      "body_hash": "9ea72",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 230
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestGenerateSubsystemFiles::test_includes_constraints",
+      "body_hash": "11b96",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 243
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestListSubsystemFiles",
+      "body_hash": "9e610",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "class",
+      "line": 272
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestListSubsystemFiles::test_empty",
+      "body_hash": "a6e7f",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 283
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestListSubsystemFiles::test_list",
+      "body_hash": "0f910",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 273
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestLoadSubsystemFile",
+      "body_hash": "19b83",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "class",
+      "line": 255
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestLoadSubsystemFile::test_load_existing",
+      "body_hash": "b2afd",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 256
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestLoadSubsystemFile::test_load_nonexistent",
+      "body_hash": "b1cf0",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 267
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems",
+      "body_hash": "033d8",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "class",
+      "line": 157
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_basic_merge",
+      "body_hash": "293ee",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 158
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_constraints_updated",
+      "body_hash": "7f312",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 174
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_custom_name",
+      "body_hash": "5d5a1",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 166
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_nonexistent_raises",
+      "body_hash": "f7f1e",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 189
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems::test_self_edges_removed",
+      "body_hash": "6c97f",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 183
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent",
+      "body_hash": "3a3a1",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "class",
+      "line": 195
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_basic_move",
+      "body_hash": "e3425",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 196
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_nonexistent_component_raises",
+      "body_hash": "e3f6a",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 213
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_nonexistent_source_raises",
+      "body_hash": "a7d1b",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 218
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_nonexistent_target_raises",
+      "body_hash": "535f4",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 223
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestMoveComponent::test_related_edges_moved",
+      "body_hash": "57157",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 206
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem",
+      "body_hash": "ffbe4",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "class",
+      "line": 117
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_basic_split",
+      "body_hash": "32adc",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 118
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_duplicate_target_raises",
+      "body_hash": "9846c",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 146
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_no_matching_components_raises",
+      "body_hash": "8c6b7",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 151
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_nonexistent_source_raises",
+      "body_hash": "88622",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 141
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem::test_splits_edges",
+      "body_hash": "0fe3d",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 129
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSubsystemChange",
+      "body_hash": "237b1",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "class",
+      "line": 61
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSubsystemChange::test_minimal",
+      "body_hash": "36c74",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 74
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSubsystemChange::test_to_dict",
+      "body_hash": "617a9",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 62
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSubsystemFile",
+      "body_hash": "cb18d",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "class",
+      "line": 81
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSubsystemFile::test_minimal",
+      "body_hash": "fe14d",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 95
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::TestSubsystemFile::test_to_dict",
+      "body_hash": "5a245",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "method",
+      "line": 82
+    },
+    {
+      "id": "tests/test_subsystem_lifecycle.py::_make_arch",
+      "body_hash": "a3c5e",
+      "file": "tests/test_subsystem_lifecycle.py",
+      "type": "function",
+      "line": 29
+    },
+    {
       "id": "tests/test_suggest",
       "body_hash": "3d5c0",
       "file": "tests/test_suggest.py",
@@ -15491,6 +17146,293 @@
       "file": "tests/test_suggest.py",
       "type": "method",
       "line": 85
+    },
+    {
+      "id": "tests/test_target_architecture",
+      "body_hash": "55605",
+      "file": "tests/test_target_architecture.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestArchitectureDelta",
+      "body_hash": "4a707",
+      "file": "tests/test_target_architecture.py",
+      "type": "class",
+      "line": 121
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_empty_delta",
+      "body_hash": "650df",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 122
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_format",
+      "body_hash": "f5986",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 151
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_has_changes",
+      "body_hash": "b3f02",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 127
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_save",
+      "body_hash": "d67c6",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 160
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_to_dict_summary",
+      "body_hash": "a46f7",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 143
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestArchitectureDelta::test_total_changes",
+      "body_hash": "897e1",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 134
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta",
+      "body_hash": "d0009",
+      "file": "tests/test_target_architecture.py",
+      "type": "class",
+      "line": 172
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_existing_node_not_missing",
+      "body_hash": "b5e6c",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 209
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_extra_edge",
+      "body_hash": "d887d",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 189
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_missing_edge",
+      "body_hash": "42e9c",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 181
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_missing_node",
+      "body_hash": "52eb0",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 201
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_no_changes",
+      "body_hash": "db19d",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 173
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestComputeArchitectureDelta::test_priority_sorting",
+      "body_hash": "57575",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 216
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestDeltaToTasks",
+      "body_hash": "dc27c",
+      "file": "tests/test_target_architecture.py",
+      "type": "class",
+      "line": 225
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestDeltaToTasks::test_empty_delta",
+      "body_hash": "5131b",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 255
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestDeltaToTasks::test_extra_edge_flagged",
+      "body_hash": "96001",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 247
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestDeltaToTasks::test_missing_edge_repair",
+      "body_hash": "9a58d",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 226
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestDeltaToTasks::test_missing_node_flagged",
+      "body_hash": "87ce3",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 236
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture",
+      "body_hash": "4817e",
+      "file": "tests/test_target_architecture.py",
+      "type": "class",
+      "line": 262
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::_make_arch",
+      "body_hash": "c307f",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 263
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::test_generates_edges_from_architecture",
+      "body_hash": "56bcf",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 297
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::test_generates_target_nodes",
+      "body_hash": "1ef7c",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 291
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture::test_missing_architecture_edge_becomes_target",
+      "body_hash": "9c92b",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 307
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetEdge",
+      "body_hash": "f2f28",
+      "file": "tests/test_target_architecture.py",
+      "type": "class",
+      "line": 20
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetEdge::test_from_dict_defaults",
+      "body_hash": "f8334",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 44
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetEdge::test_roundtrip",
+      "body_hash": "9bfa0",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 36
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetEdge::test_to_dict_full",
+      "body_hash": "0837b",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 29
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetEdge::test_to_dict_minimal",
+      "body_hash": "47b8a",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 21
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetNode",
+      "body_hash": "f6dd6",
+      "file": "tests/test_target_architecture.py",
+      "type": "class",
+      "line": 51
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetNode::test_roundtrip",
+      "body_hash": "306cd",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 65
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetNode::test_to_dict_full",
+      "body_hash": "2664e",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 58
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetNode::test_to_dict_minimal",
+      "body_hash": "d8c41",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 52
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetWorkflow",
+      "body_hash": "3bfc8",
+      "file": "tests/test_target_architecture.py",
+      "type": "class",
+      "line": 73
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_add_edge",
+      "body_hash": "00cf5",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 81
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_add_node",
+      "body_hash": "a215c",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 88
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_empty_workflow",
+      "body_hash": "5f782",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 74
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_load_nonexistent",
+      "body_hash": "9569d",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 116
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_roundtrip",
+      "body_hash": "ef584",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 94
+    },
+    {
+      "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_save_and_load",
+      "body_hash": "91b6e",
+      "file": "tests/test_target_architecture.py",
+      "type": "method",
+      "line": 103
     },
     {
       "id": "tests/test_tasks",

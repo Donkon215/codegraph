@@ -1,0 +1,102 @@
+{
+  "name": "governance",
+  "description": "Architecture enforcement. Analyzes graphs for violations, generates task queues, applies repairs, manages policy rules.",
+  "intent": "Architecture enforcement. Analyzes graphs for violations, generates task queues, applies repairs, manages policy rules.",
+  "components": [
+    {
+      "name": "analyzer",
+      "module": "codegraph/analyzer.py",
+      "functions": [
+        "analyze",
+        "run_analysis",
+        "detect_coverage_gaps"
+      ],
+      "description": "Main analysis engine. Detects orphans, missing imports, policy violations, stale intents, coverage gaps."
+    },
+    {
+      "name": "suggest",
+      "module": "codegraph/suggest.py",
+      "functions": [
+        "load_suggested_workflow",
+        "save_suggested_workflow",
+        "detect_violations",
+        "add_rule",
+        "remove_rule"
+      ],
+      "description": "Policy rule manager. Loads/saves rules, detects violations against actual workflow."
+    },
+    {
+      "name": "tasks",
+      "module": "codegraph/tasks.py",
+      "functions": [
+        "generate_tasks",
+        "load_tasks",
+        "save_tasks"
+      ],
+      "description": "Task generator. Converts analysis findings into prioritized agent work items."
+    },
+    {
+      "name": "apply",
+      "module": "codegraph/apply.py",
+      "functions": [
+        "apply_response",
+        "apply_repairs",
+        "apply_intents"
+      ],
+      "description": "Repair executor. Applies agent_response.json repairs and intents to codebase."
+    },
+    {
+      "name": "delta",
+      "module": "codegraph/delta.py",
+      "functions": [
+        "compute_delta",
+        "apply_delta"
+      ],
+      "description": "Incremental graph updates. Detects changed files via git and updates graph/workflow."
+    }
+  ],
+  "edges": [
+    [
+      "analyzer",
+      "suggest"
+    ],
+    [
+      "tasks",
+      "analyzer"
+    ],
+    [
+      "apply",
+      "analyzer"
+    ],
+    [
+      "delta",
+      "analyzer"
+    ]
+  ],
+  "rules": [
+    {
+      "type": "forbidden",
+      "source": "models",
+      "target": "governance",
+      "reason": "Models must not depend on governance logic."
+    },
+    {
+      "type": "forbidden",
+      "source": "infrastructure",
+      "target": "governance",
+      "reason": "Infrastructure is a foundation layer. It must not import governance."
+    },
+    {
+      "type": "forbidden",
+      "source": "query",
+      "target": "governance",
+      "reason": "Query subsystem reads graphs. It should not depend on governance."
+    },
+    {
+      "type": "forbidden",
+      "source": "semantics",
+      "target": "governance",
+      "reason": "Semantics is independent of governance enforcement."
+    }
+  ]
+}
