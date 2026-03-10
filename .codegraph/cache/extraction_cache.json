@@ -1010,11 +1010,11 @@
     ]
   },
   "codegraph/cli.py": {
-    "content_hash": "abc57e57c458",
+    "content_hash": "b8ca1b69ba71",
     "nodes": [
       {
         "id": "codegraph/cli",
-        "body_hash": "a1b61",
+        "body_hash": "c6492",
         "file": "codegraph/cli.py",
         "type": "module",
         "line": 1
@@ -1588,14 +1588,14 @@
       },
       {
         "id": "codegraph/cli.py::lock_cmd",
-        "body_hash": "24208",
+        "body_hash": "23ae8",
         "file": "codegraph/cli.py",
         "type": "function",
         "line": 2827
       },
       {
         "id": "codegraph/cli.py::drift_cmd",
-        "body_hash": "2ce27",
+        "body_hash": "d941f",
         "file": "codegraph/cli.py",
         "type": "function",
         "line": 2883

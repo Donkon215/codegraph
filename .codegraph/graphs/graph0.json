@@ -1,7 +1,7 @@
 {
   "format_version": 1,
-  "graph_version": 29,
-  "extracted_at": "2026-03-10T18:23:17Z",
+  "graph_version": 30,
+  "extracted_at": "2026-03-10T18:28:12Z",
   "source_files": [
     "benchmarks/benchmark_build.py",
     "benchmarks/benchmark_query.py",
@@ -3141,7 +3141,7 @@
     },
     {
       "id": "codegraph/cli",
-      "body_hash": "a1b61",
+      "body_hash": "c6492",
       "file": "codegraph/cli.py",
       "type": "module",
       "line": 1
@@ -3344,7 +3344,7 @@
     },
     {
       "id": "codegraph/cli.py::drift_cmd",
-      "body_hash": "2ce27",
+      "body_hash": "d941f",
       "file": "codegraph/cli.py",
       "type": "function",
       "line": 2883
@@ -3477,7 +3477,7 @@
     },
     {
       "id": "codegraph/cli.py::lock_cmd",
-      "body_hash": "24208",
+      "body_hash": "23ae8",
       "file": "codegraph/cli.py",
       "type": "function",
       "line": 2827

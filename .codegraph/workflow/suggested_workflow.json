@@ -4,101 +4,137 @@
     {
       "id": "rule_001",
       "type": "layer_boundary",
+      "reason": "Models are pure data. Must not depend on engine modules.",
       "source_arch_layer": "models",
       "target_arch_layer": "engine",
-      "reason": "Models are pure data. Must not depend on engine modules.",
       "added_by": "copilot",
       "added_at": "2026-03-10T13:00:18Z"
     },
     {
       "id": "rule_002",
       "type": "forbidden_call",
+      "reason": "Query is read-only. Must not invoke apply repairs.",
       "source": "codegraph/query.py::execute_query",
       "target": "codegraph/apply.py::apply_response",
-      "reason": "Query is read-only. Must not invoke apply repairs.",
       "added_by": "copilot",
       "added_at": "2026-03-10T13:00:18Z"
     },
     {
       "id": "rule_003",
       "type": "forbidden_call",
+      "reason": "Path query is read-only. Must not invoke apply.",
       "source": "codegraph/path_query.py::find_paths",
       "target": "codegraph/apply.py::apply_response",
-      "reason": "Path query is read-only. Must not invoke apply.",
       "added_by": "copilot",
       "added_at": "2026-03-10T13:00:18Z"
     },
     {
       "id": "rule_004",
       "type": "forbidden_call",
+      "reason": "Advisor only suggests. Must not apply repairs directly.",
       "source": "codegraph/architecture_advisor.py::advise_architecture",
       "target": "codegraph/apply.py::apply_response",
-      "reason": "Advisor only suggests. Must not apply repairs directly.",
       "added_by": "copilot",
       "added_at": "2026-03-10T13:00:18Z"
     },
     {
       "id": "rule_005",
       "type": "forbidden_call",
+      "reason": "Advisor only suggests. Must not apply repairs directly.",
       "source": "codegraph/architecture_advisor.py::advise_architecture",
       "target": "codegraph/apply.py::apply_repairs",
-      "reason": "Advisor only suggests. Must not apply repairs directly.",
       "added_by": "copilot",
       "added_at": "2026-03-10T13:00:18Z"
     },
     {
       "id": "rule_006",
       "type": "dependency_limit",
+      "reason": "Main analyze function should stay focused. Cap outgoing deps.",
       "source": "codegraph/analyzer.py::analyze",
       "max_fan_out": 25,
-      "reason": "Main analyze function should stay focused. Cap outgoing deps.",
       "added_by": "copilot",
       "added_at": "2026-03-10T13:00:18Z"
     },
     {
       "id": "rule_007",
       "type": "dependency_limit",
+      "reason": "Extractor top-level should delegate, not accumulate dependencies.",
       "source": "codegraph/extractor.py::extract_project",
       "max_fan_out": 20,
-      "reason": "Extractor top-level should delegate, not accumulate dependencies.",
       "added_by": "copilot",
       "added_at": "2026-03-10T13:00:18Z"
     },
     {
       "id": "rule_008",
       "type": "forbidden_call",
+      "reason": "Semantics engine must not depend on analyzer.",
       "source": "codegraph/semantics.py::extract_behaviors",
       "target": "codegraph/analyzer.py::analyze",
-      "reason": "Semantics engine must not depend on analyzer.",
       "added_by": "copilot",
       "added_at": "2026-03-10T13:00:18Z"
     },
     {
       "id": "rule_009",
       "type": "forbidden_call",
+      "reason": "Semantics must not depend on task generation.",
       "source": "codegraph/semantics.py::extract_behaviors",
       "target": "codegraph/tasks.py::generate_tasks",
-      "reason": "Semantics must not depend on task generation.",
       "added_by": "copilot",
       "added_at": "2026-03-10T13:00:18Z"
     },
     {
       "id": "rule_010",
       "type": "forbidden_call",
+      "reason": "Storage is infrastructure. Must not depend on analyzer.",
       "source": "codegraph/storage.py::atomic_write",
       "target": "codegraph/analyzer.py::analyze",
-      "reason": "Storage is infrastructure. Must not depend on analyzer.",
       "added_by": "copilot",
       "added_at": "2026-03-10T13:00:18Z"
     },
     {
       "id": "rule_011",
       "type": "forbidden_call",
+      "reason": "Storage must not depend on violation detection.",
       "source": "codegraph/storage.py::atomic_write",
       "target": "codegraph/suggest.py::detect_violations",
-      "reason": "Storage must not depend on violation detection.",
       "added_by": "copilot",
       "added_at": "2026-03-10T13:00:18Z"
+    },
+    {
+      "id": "rule_012",
+      "type": "forbidden_call",
+      "reason": "architecture_memory is a persistence layer. It must not trigger the analysis engine.",
+      "source": "codegraph/architecture_memory.py::*",
+      "target": "codegraph/analyzer.py::analyze",
+      "added_by": "human",
+      "added_at": "2026-03-10T18:27:22Z"
+    },
+    {
+      "id": "rule_013",
+      "type": "forbidden_call",
+      "reason": "architecture_memory must not query policy violations. It stores data only.",
+      "source": "codegraph/architecture_memory.py::*",
+      "target": "codegraph/suggest.py::detect_violations",
+      "added_by": "human",
+      "added_at": "2026-03-10T18:27:29Z"
+    },
+    {
+      "id": "rule_014",
+      "type": "forbidden_call",
+      "reason": "architecture_memory must not trigger task generation.",
+      "source": "codegraph/architecture_memory.py::*",
+      "target": "codegraph/tasks.py::generate_tasks",
+      "added_by": "human",
+      "added_at": "2026-03-10T18:27:29Z"
+    },
+    {
+      "id": "rule_015",
+      "type": "forbidden_call",
+      "reason": "architecture_memory must not trigger repair execution.",
+      "source": "codegraph/architecture_memory.py::*",
+      "target": "codegraph/apply.py::apply_response",
+      "added_by": "human",
+      "added_at": "2026-03-10T18:27:30Z"
     }
   ]
 }
