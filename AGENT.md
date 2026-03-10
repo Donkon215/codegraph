@@ -1,23 +1,32 @@
-# Codegraph — AI Architecture Analysis Engine
+# Codegraph — Self-Evolving AI Architecture Engine
 
 ## Design
 
-Codegraph is **not a tool for users to run**. It is a **backend engine operated exclusively by the AI agent (Copilot)**.
+Codegraph is a **self-evolving architecture engine** operated by the AI agent (Copilot). It builds, analyzes, enforces, and evolves architecture through 7 layers.
 
 ```
-Copilot Agent    → runs codegraph, reads tasks, writes repairs, loops until clean
-Human + Ext LLM  → design architecture rules in suggested_workflow.json
-Codegraph        → graph engine + analyzer + repair engine
+Human             = Architecture Designer (approves rules, reviews proposals)
+Codegraph         = Architecture Governor  (enforces rules, detects violations)
+Copilot (Agent)   = Architecture Worker    (executes tasks, proposes rules, implements code)
 ```
 
-### Phase 1 — Copilot stabilizes the codebase
-Copilot runs `build → analyze → tasks → reason → apply → delta → rebuild` until all tasks are resolved (intents annotated, orphans resolved, imports fixed).
+### The 7-Layer Architecture Pipeline
 
-### Phase 2 — Human designs architecture
-Human reads graph files, asks an external LLM to propose architecture rules, saves them in `suggested_workflow.json`.
+| Layer | Purpose | Key Modules |
+|-------|---------|-------------|
+| 1. **Intent** | Capture what functions do | graph1 intents, semantic behaviors |
+| 2. **Architecture** | Define system structure | system.json, arch_schema, target_architecture |
+| 3. **Analysis** | Detect violations & smells | analyzer, architecture_advisor, architecture_lock, drift_detector |
+| 4. **Planning** | Convert deltas to tasks | architecture_compiler, code_planner, tasks |
+| 5. **Execution** | Apply repairs & changes | apply, branch_executor, agent_response |
+| 6. **Validation** | Verify convergence | CAS hashing, delta, copilot_context |
+| 7. **Evolution** | Improve architecture over time | architecture_simulator, arch_memory, subsystem_lifecycle |
 
-### Phase 3 — Copilot enforces architecture
-Analyzer compares actual workflow against rules. Policy violations become tasks. Copilot fixes them automatically.
+### Autonomous Loop
+
+```
+intent → compile → simulate → plan → execute → validate → evolve → repeat
+```
 
 ## For AI Agents
 
@@ -30,19 +39,48 @@ Read `.claude/agents/codegraph.agent.md` for the complete protocol:
 
 ## CLI Commands
 
+### Core Pipeline
 ```
 codegraph build              # Extract structure, build all graphs
 codegraph analyze            # Detect architecture violations
 codegraph tasks              # Generate agent task queue
-codegraph query EXPR         # Query graph (callees, callers)
-codegraph explain NODE       # Comprehensive node info
 codegraph apply FILE         # Apply agent repairs
 codegraph delta              # Incremental change detection
+codegraph status             # Project overview
+```
+
+### Query & Exploration
+```
+codegraph query EXPR         # Query graph (callees, callers)
+codegraph explain NODE       # Comprehensive node info
+codegraph diff               # Show graph changes
+codegraph validate           # Check workflow integrity
+```
+
+### Architecture Management
+```
+codegraph architect          # Architecture advisor report
+codegraph enrich             # Add intents to workflow edges
+codegraph compile INTENT     # Compile intent → architecture changes
+codegraph code-plan          # Generate code plan from delta
+codegraph lock               # Check architecture boundary enforcement
+codegraph drift              # Detect code vs architecture drift
+codegraph arch-simulate      # Simulate architecture changes
+codegraph copilot-context    # Generate comprehensive Copilot context
+```
+
+### Governance & Policy
+```
+codegraph suggest list       # Show all policy rules
+codegraph suggest add        # Add a new rule
+codegraph suggest remove     # Remove a rule
+```
+
+### Content Addressing & Semantics
+```
 codegraph cas build          # Compute content hashes
 codegraph cas verify         # Verify hash integrity
 codegraph semantic build     # Extract semantic behaviors
 codegraph semantic summary   # Show behavior statistics
-codegraph status             # Project overview
-codegraph diff               # Show graph changes
-codegraph validate           # Check workflow integrity
+codegraph semantic check     # Semantic policy checks
 ```

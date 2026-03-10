@@ -2713,3 +2713,284 @@ def lifecycle_generate_files(ctx: click.Context) -> None:
     for p in paths:
         click.echo(f"  {p}")
     click.echo(f"Generated {len(paths)} subsystem files.")
+
+
+# ── Compiler Commands ──────────────────────────────────────────────────
+
+
+@main.command("compile")
+@click.argument("intent")
+@click.option("--apply", "do_apply", is_flag=True,
+              help="Apply plan to architecture (modify system.json).")
+@click.option("--save", is_flag=True, help="Save plan to disk.")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.pass_context
+def compile_cmd(ctx: click.Context, intent: str, do_apply: bool,
+                save: bool, json_output: bool) -> None:
+    """Compile an architecture intent into a concrete plan."""
+    import json as _json
+    from codegraph.arch_schema import SystemArchitecture
+    from codegraph.architecture_compiler import (
+        apply_plan, compile_intent, plan_to_target_workflow,
+    )
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    arch = SystemArchitecture.load(root)
+    if not arch:
+        click.echo("No architecture defined. Run: codegraph architecture --init",
+                    err=True)
+        sys.exit(EXIT_ERROR)
+
+    plan = compile_intent(intent, arch)
+    if json_output:
+        click.echo(_json.dumps(plan.to_dict(), indent=2))
+    else:
+        click.echo(plan.format())
+
+    if save:
+        plan.save(root)
+        click.echo(f"\nPlan saved to .codegraph/planning/")
+
+    if do_apply:
+        arch = apply_plan(plan, arch)
+        arch.save(root)
+        click.echo("\nApplied plan to architecture.")
+        target = plan_to_target_workflow(plan)
+        target.save(root)
+        click.echo("Updated target workflow.")
+
+
+@main.command("code-plan")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.option("--save", is_flag=True, help="Save plan to disk.")
+@click.pass_context
+def code_plan_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
+    """Generate a code implementation plan from architecture delta."""
+    import json as _json
+    from codegraph.arch_schema import SystemArchitecture
+    from codegraph.code_planner import generate_plan, validate_plan
+    from codegraph.target_architecture import ArchitectureDelta
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    arch = SystemArchitecture.load(root)
+    if not arch:
+        click.echo("No architecture defined.", err=True)
+        sys.exit(EXIT_ERROR)
+
+    delta_path = root / ".codegraph" / "planning" / "delta.json"
+    if not delta_path.exists():
+        click.echo("No architecture delta found. Run: codegraph evolve", err=True)
+        sys.exit(EXIT_ERROR)
+
+    delta_data = _json.loads(delta_path.read_text(encoding="utf-8"))
+    delta = ArchitectureDelta(
+        missing_edges=delta_data.get("missing_edges", []),
+        extra_edges=delta_data.get("extra_edges", []),
+        missing_nodes=delta_data.get("missing_nodes", []),
+        extra_nodes=delta_data.get("extra_nodes", []),
+    )
+
+    plan = generate_plan(delta, arch)
+    violations = validate_plan(plan, arch)
+    if violations:
+        for v in violations:
+            plan.warnings.append(v)
+
+    if json_output:
+        click.echo(_json.dumps(plan.to_dict(), indent=2))
+    else:
+        click.echo(plan.format())
+
+    if save:
+        plan.save(root)
+        click.echo(f"\nCode plan saved.")
+
+
+# ── Lock Commands ──────────────────────────────────────────────────────
+
+
+@main.command("lock")
+@click.option("--strict", is_flag=True,
+              help="Treat undeclared modules as errors.")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.pass_context
+def lock_cmd(ctx: click.Context, strict: bool, json_output: bool) -> None:
+    """Check architecture lock — verify code obeys architecture rules."""
+    import json as _json
+    from codegraph.arch_schema import SystemArchitecture
+    from codegraph.architecture_lock import check_lock
+    from codegraph.models.graph0 import Graph0
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    arch = SystemArchitecture.load(root)
+    if not arch:
+        click.echo("No architecture defined.", err=True)
+        sys.exit(EXIT_ERROR)
+
+    graph0_path = root / ".codegraph" / "graphs" / "graph0.json"
+    if not graph0_path.exists():
+        click.echo("No graph0 found. Run: codegraph build", err=True)
+        sys.exit(EXIT_ERROR)
+
+    graph0 = Graph0.from_json(graph0_path)
+    actual_modules = list({n.file for n in graph0.nodes if n.file})
+
+    workflow_path = root / ".codegraph" / "workflow" / "workflow.json"
+    actual_edges: list[tuple[str, str]] = []
+    if workflow_path.exists():
+        wf_data = _json.loads(workflow_path.read_text(encoding="utf-8"))
+        for e in wf_data.get("edges", []):
+            src = e.get("source", "")
+            tgt = e.get("target", "")
+            if "::" in src:
+                src = src.split("::")[0] + ".py"
+            if "::" in tgt:
+                tgt = tgt.split("::")[0] + ".py"
+            actual_edges.append((src, tgt))
+
+    report = check_lock(arch, actual_modules, actual_edges, strict=strict)
+    if json_output:
+        click.echo(_json.dumps(report.to_dict(), indent=2))
+    else:
+        click.echo(report.format())
+
+    if not report.is_locked:
+        sys.exit(EXIT_ERROR)
+
+
+# ── Drift Commands ─────────────────────────────────────────────────────
+
+
+@main.command("drift")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.option("--save", is_flag=True, help="Save drift report.")
+@click.pass_context
+def drift_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
+    """Detect drift between declared architecture and actual code."""
+    import json as _json
+    from codegraph.arch_schema import SystemArchitecture
+    from codegraph.drift_detector import detect_drift
+    from codegraph.models.graph0 import Graph0
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    arch = SystemArchitecture.load(root)
+    if not arch:
+        click.echo("No architecture defined.", err=True)
+        sys.exit(EXIT_ERROR)
+
+    graph0_path = root / ".codegraph" / "graphs" / "graph0.json"
+    if not graph0_path.exists():
+        click.echo("No graph0 found. Run: codegraph build", err=True)
+        sys.exit(EXIT_ERROR)
+
+    graph0 = Graph0.from_json(graph0_path)
+
+    workflow_path = root / ".codegraph" / "workflow" / "workflow.json"
+    actual_edges: list[tuple[str, str]] = []
+    if workflow_path.exists():
+        wf_data = _json.loads(workflow_path.read_text(encoding="utf-8"))
+        for e in wf_data.get("edges", []):
+            src = e.get("source", "").split("::")[0]
+            tgt = e.get("target", "").split("::")[0]
+            if src and tgt:
+                if not src.endswith(".py"):
+                    src += ".py"
+                if not tgt.endswith(".py"):
+                    tgt += ".py"
+                actual_edges.append((src, tgt))
+
+    report = detect_drift(arch, graph0, actual_edges, project_root=root)
+    if json_output:
+        click.echo(_json.dumps(report.to_dict(), indent=2))
+    else:
+        click.echo(report.format())
+
+    if save:
+        report.save(root)
+        click.echo(f"\nDrift report saved.")
+
+
+# ── Context Commands ───────────────────────────────────────────────────
+
+
+@main.command("copilot-context")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.option("--save", is_flag=True, help="Save context to disk.")
+@click.pass_context
+def copilot_context_cmd(ctx: click.Context, json_output: bool,
+                        save: bool) -> None:
+    """Generate comprehensive context for Copilot decision-making."""
+    import json as _json
+    from codegraph.copilot_context import build_copilot_context
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    context = build_copilot_context(root)
+    if json_output:
+        click.echo(_json.dumps(context.to_dict(), indent=2))
+    else:
+        click.echo(context.format())
+
+    if save:
+        context.save(root)
+        click.echo(f"\nCopilot context saved.")
+
+
+# ── Architecture Simulator Commands ────────────────────────────────────
+
+
+@main.command("arch-simulate")
+@click.argument("subsystem_name")
+@click.option("--depends-on", "deps", multiple=True,
+              help="Dependencies for the new subsystem (repeatable).")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.pass_context
+def arch_simulate_cmd(ctx: click.Context, subsystem_name: str,
+                      deps: tuple, json_output: bool) -> None:
+    """Simulate adding a subsystem and predict impact."""
+    import json as _json
+    from codegraph.arch_schema import SystemArchitecture
+    from codegraph.architecture_simulator import simulate_subsystem_addition
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    arch = SystemArchitecture.load(root)
+    if not arch:
+        click.echo("No architecture defined.", err=True)
+        sys.exit(EXIT_ERROR)
+
+    result = simulate_subsystem_addition(
+        subsystem_name, list(deps), arch,
+    )
+    if json_output:
+        click.echo(_json.dumps(result.to_dict(), indent=2))
+    else:
+        click.echo(result.format())

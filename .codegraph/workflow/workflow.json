@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-10T16:23:28Z",
+    "built_at": "2026-03-10T17:55:08Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -9,12 +9,12 @@
       "stdlib",
       "test_harness"
     ],
-    "edge_count": 3710,
-    "node_count": 1784,
-    "build_time_s": 9.26
+    "edge_count": 4260,
+    "node_count": 2003,
+    "build_time_s": 8.39
   },
   "format_version": 1,
-  "built_at": "2026-03-10T16:23:28Z",
+  "built_at": "2026-03-10T17:55:08Z",
   "level": "function",
   "edges": [
     {
@@ -2922,6 +2922,540 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/architecture_compiler.py::ArchitecturePlan::format",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::ArchitecturePlan::from_dict",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::ArchitecturePlan::from_dict",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::ArchitecturePlan::load",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::ArchitecturePlan::save",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::ArchitecturePlan::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::CompiledChange::from_dict",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::CompiledChange::from_dict",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::CompiledChange::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::_add_default_constraints",
+      "target": "codegraph/architecture_compiler.py::CompiledChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::_add_default_constraints",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::apply_plan",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::apply_plan",
+      "target": "codegraph/arch_schema.py::ArchConstraint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::apply_plan",
+      "target": "codegraph/arch_schema.py::ArchEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::apply_plan",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::apply_plan",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::apply_plan",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::compile_intent",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::compile_intent",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::compile_intent",
+      "target": "codegraph/architecture_compiler.py::CompiledChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::compile_intent",
+      "target": "codegraph/architecture_compiler.py::_add_default_constraints",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::compile_intent",
+      "target": "codegraph/architecture_compiler.py::_extract_subsystem_name",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::compile_intent",
+      "target": "codegraph/architecture_compiler.py::_match_intent_patterns",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::compile_intent",
+      "target": "codegraph/target_architecture.py::TargetNode",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::compile_intent",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::plan_to_target_workflow",
+      "target": "codegraph/target_architecture.py::TargetWorkflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::plan_to_target_workflow",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::LockReport::format",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::LockReport::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::LockViolation::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::_check_forbidden_dependencies",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::_check_forbidden_dependencies",
+      "target": "codegraph/architecture_lock.py::LockViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::_check_forbidden_dependencies",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::_check_subsystem_boundaries",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::_check_subsystem_boundaries",
+      "target": "codegraph/architecture_lock.py::LockViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::_check_subsystem_boundaries",
+      "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::_check_subsystem_boundaries",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::_check_undeclared_modules",
+      "target": "codegraph/architecture_lock.py::LockViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::_check_undeclared_modules",
+      "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::_check_undeclared_modules",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::check_dependency_allowed",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::check_dependency_allowed",
+      "target": "codegraph/architecture_lock.py::LockViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::check_dependency_allowed",
+      "target": "codegraph/architecture_lock.py::_build_reverse_module_map",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::check_lock",
+      "target": "codegraph/architecture_lock.py::LockReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::check_lock",
+      "target": "codegraph/architecture_lock.py::_build_reverse_module_map",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::check_lock",
+      "target": "codegraph/architecture_lock.py::_build_subsystem_module_map",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::check_lock",
+      "target": "codegraph/architecture_lock.py::_check_forbidden_dependencies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::check_lock",
+      "target": "codegraph/architecture_lock.py::_check_subsystem_boundaries",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::check_lock",
+      "target": "codegraph/architecture_lock.py::_check_undeclared_modules",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_lock.py::check_module_placement",
+      "target": "codegraph/architecture_lock.py::LockViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::ArchChange::from_dict",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::ArchChange::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::ArchPrediction::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::ArchSimulationResult::format",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::ArchSimulationResult::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_apply_changes",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_apply_changes",
+      "target": "codegraph/arch_schema.py::ArchConstraint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_apply_changes",
+      "target": "codegraph/arch_schema.py::ArchEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_apply_changes",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_apply_changes",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_apply_changes",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_check_constraints",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_compute_arch_metrics",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_compute_arch_metrics",
+      "target": "codegraph/architecture_simulator.py::_count_subsystem_cycles",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_compute_arch_metrics",
+      "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_count_subsystem_cycles",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_count_subsystem_cycles",
+      "target": "codegraph/extractor.py::ScopeTree::pop",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_count_subsystem_cycles",
+      "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_count_subsystem_cycles",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_count_subsystem_cycles",
+      "target": "codegraph/utils/progress.py::ProgressReporter::update",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_count_subsystem_cycles::strongconnect",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_count_subsystem_cycles::strongconnect",
+      "target": "codegraph/extractor.py::ScopeTree::pop",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_count_subsystem_cycles::strongconnect",
+      "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_count_subsystem_cycles::strongconnect",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_determine_recommendation",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_generate_predictions",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_generate_predictions",
+      "target": "codegraph/architecture_simulator.py::ArchPrediction",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::_generate_predictions",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "target": "codegraph/architecture_simulator.py::ArchPrediction",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "target": "codegraph/architecture_simulator.py::ArchSimulationResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "target": "codegraph/architecture_simulator.py::_apply_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "target": "codegraph/architecture_simulator.py::_check_constraints",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "target": "codegraph/architecture_simulator.py::_compute_arch_metrics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "target": "codegraph/architecture_simulator.py::_determine_recommendation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "target": "codegraph/architecture_simulator.py::_generate_predictions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::simulate_subsystem_addition",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::simulate_subsystem_addition",
+      "target": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_simulator.py::simulate_subsystem_addition",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/branch_executor.py::BranchComparison::format",
       "target": "codegraph/tasks.py::TaskHistory::append",
       "edge_type": "call",
@@ -3744,6 +4278,48 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/cli.py::arch_simulate_cmd",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_simulate_cmd",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_simulate_cmd",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_simulate_cmd",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_simulate_cmd",
+      "target": "codegraph/architecture_simulator.py::simulate_subsystem_addition",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_simulate_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_simulate_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/cli.py::archi_test_cmd",
       "target": "codegraph/archi_test.py::archi_test_coverage",
       "edge_type": "call",
@@ -4368,6 +4944,132 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/cli.py::code_plan_cmd",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::code_plan_cmd",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::code_plan_cmd",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::code_plan_cmd",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::code_plan_cmd",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::code_plan_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::code_plan_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::code_plan_cmd",
+      "target": "codegraph/planning.py::generate_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::code_plan_cmd",
+      "target": "codegraph/planning.py::validate_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::code_plan_cmd",
+      "target": "codegraph/target_architecture.py::ArchitectureDelta",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::code_plan_cmd",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::compile_cmd",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::compile_cmd",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::compile_cmd",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::compile_cmd",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::compile_cmd",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::compile_cmd",
+      "target": "codegraph/architecture_compiler.py::apply_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::compile_cmd",
+      "target": "codegraph/architecture_compiler.py::compile_intent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::compile_cmd",
+      "target": "codegraph/architecture_compiler.py::plan_to_target_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::compile_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::compile_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/cli.py::completion",
       "target": "benchmarks/benchmark_build.py::main",
       "edge_type": "call",
@@ -4446,6 +5148,48 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/cli.py::copilot_context_cmd",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::copilot_context_cmd",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::copilot_context_cmd",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::copilot_context_cmd",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::copilot_context_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::copilot_context_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::copilot_context_cmd",
+      "target": "codegraph/copilot_context.py::build_copilot_context",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/cli.py::delta",
       "target": "codegraph/config.py::find_project_root",
       "edge_type": "call",
@@ -4489,6 +5233,66 @@
     },
     {
       "source": "codegraph/cli.py::diff_cmd",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::drift_cmd",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::drift_cmd",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::drift_cmd",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::drift_cmd",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::drift_cmd",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::drift_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::drift_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::drift_cmd",
+      "target": "codegraph/drift_detector.py::detect_drift",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::drift_cmd",
+      "target": "codegraph/models/agent_response.py::AgentResponse::from_json",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::drift_cmd",
       "target": "codegraph/tasks.py::TaskHistory::append",
       "edge_type": "call",
       "confidence": "static"
@@ -4970,6 +5774,60 @@
     {
       "source": "codegraph/cli.py::lifecycle_split",
       "target": "codegraph/subsystem_lifecycle.py::split_subsystem",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::lock_cmd",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::lock_cmd",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::lock_cmd",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::lock_cmd",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::lock_cmd",
+      "target": "codegraph/architecture_lock.py::check_lock",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::lock_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::lock_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::lock_cmd",
+      "target": "codegraph/models/agent_response.py::AgentResponse::from_json",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::lock_cmd",
+      "target": "codegraph/tasks.py::TaskHistory::append",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -6168,6 +7026,132 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/code_planner.py::CodePlan::format",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::CodePlan::from_dict",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::CodePlan::from_dict",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::CodePlan::load",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::CodePlan::ordered_tasks",
+      "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::CodePlan::ordered_tasks",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::CodePlan::ordered_tasks::_visit",
+      "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::CodePlan::ordered_tasks::_visit",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::CodePlan::save",
+      "target": "codegraph/code_planner.py::CodePlan::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::CodePlan::tasks_by_type",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::CodePlan::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::PlanTask::from_dict",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::PlanTask::from_dict",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::PlanTask::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::generate_plan",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::generate_plan",
+      "target": "codegraph/code_planner.py::CodePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::generate_plan",
+      "target": "codegraph/code_planner.py::PlanTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::generate_plan",
+      "target": "codegraph/code_planner.py::_build_module_mapping",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::generate_plan",
+      "target": "codegraph/code_planner.py::_module_to_test",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::generate_plan",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/code_planner.py::validate_plan",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/config.py::CodegraphConfig::from_dict",
       "target": "codegraph/formatters.py::OutputFormatter::warning",
       "edge_type": "call",
@@ -6356,6 +7340,198 @@
     {
       "source": "codegraph/context_builder.py::build_task_context",
       "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::CopilotContext::format",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::CopilotContext::format",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::CopilotContext::from_dict",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::CopilotContext::from_dict",
+      "target": "codegraph/copilot_context.py::SubsystemSummary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::CopilotContext::load",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::CopilotContext::save",
+      "target": "codegraph/copilot_context.py::CopilotContext::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::CopilotContext::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::SubsystemSummary::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_architecture",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_architecture",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_architecture",
+      "target": "codegraph/copilot_context.py::SubsystemSummary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_architecture",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_decisions",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_decisions",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_drift",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_graph_stats",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_health",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_policy_rules",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_policy_rules",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_target",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_tasks",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_tasks",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::build_copilot_context",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::build_copilot_context",
+      "target": "codegraph/copilot_context.py::CopilotContext",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::build_copilot_context",
+      "target": "codegraph/copilot_context.py::_populate_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::build_copilot_context",
+      "target": "codegraph/copilot_context.py::_populate_decisions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::build_copilot_context",
+      "target": "codegraph/copilot_context.py::_populate_drift",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::build_copilot_context",
+      "target": "codegraph/copilot_context.py::_populate_graph_stats",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::build_copilot_context",
+      "target": "codegraph/copilot_context.py::_populate_health",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::build_copilot_context",
+      "target": "codegraph/copilot_context.py::_populate_policy_rules",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::build_copilot_context",
+      "target": "codegraph/copilot_context.py::_populate_target",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::build_copilot_context",
+      "target": "codegraph/copilot_context.py::_populate_tasks",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -6830,6 +8006,162 @@
     {
       "source": "codegraph/delta.py::write_delta_result",
       "target": "codegraph/storage.py::atomic_write",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::DriftFinding::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::DriftReport::findings_by_type",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::DriftReport::format",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::DriftReport::save",
+      "target": "codegraph/drift_detector.py::DriftReport::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::DriftReport::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::_detect_missing_dependencies",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::_detect_missing_dependencies",
+      "target": "codegraph/drift_detector.py::DriftFinding",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::_detect_missing_dependencies",
+      "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::_detect_missing_dependencies",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::_detect_missing_modules",
+      "target": "codegraph/drift_detector.py::DriftFinding",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::_detect_missing_modules",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::_detect_undeclared_dependencies",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::_detect_undeclared_dependencies",
+      "target": "codegraph/drift_detector.py::DriftFinding",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::_detect_undeclared_dependencies",
+      "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::_detect_undeclared_dependencies",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::_detect_undeclared_modules",
+      "target": "codegraph/drift_detector.py::DriftFinding",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::_detect_undeclared_modules",
+      "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::_detect_undeclared_modules",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::detect_drift",
+      "target": "codegraph/drift_detector.py::DriftReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::detect_drift",
+      "target": "codegraph/drift_detector.py::_build_module_to_subsystem",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::detect_drift",
+      "target": "codegraph/drift_detector.py::_build_subsystem_modules",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::detect_drift",
+      "target": "codegraph/drift_detector.py::_detect_missing_dependencies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::detect_drift",
+      "target": "codegraph/drift_detector.py::_detect_missing_modules",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::detect_drift",
+      "target": "codegraph/drift_detector.py::_detect_undeclared_dependencies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::detect_drift",
+      "target": "codegraph/drift_detector.py::_detect_undeclared_modules",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/drift_detector.py::detect_drift",
+      "target": "codegraph/filters.py::FilterPipeline::add",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -15882,6 +17214,1188 @@
       "confidence": "static"
     },
     {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_component",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_component",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_component",
+      "target": "codegraph/architecture_compiler.py::CompiledChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_component",
+      "target": "codegraph/architecture_compiler.py::apply_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_component",
+      "target": "tests/test_architecture_compiler.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_constraint",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_constraint",
+      "target": "codegraph/architecture_compiler.py::CompiledChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_constraint",
+      "target": "codegraph/architecture_compiler.py::apply_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_constraint",
+      "target": "tests/test_architecture_compiler.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_edge",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_edge",
+      "target": "codegraph/architecture_compiler.py::CompiledChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_edge",
+      "target": "codegraph/architecture_compiler.py::apply_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_edge",
+      "target": "tests/test_architecture_compiler.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_subsystem",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_subsystem",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_subsystem",
+      "target": "codegraph/architecture_compiler.py::CompiledChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_subsystem",
+      "target": "codegraph/architecture_compiler.py::apply_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_subsystem",
+      "target": "tests/test_architecture_compiler.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_no_duplicate_edge",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_no_duplicate_edge",
+      "target": "codegraph/architecture_compiler.py::CompiledChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_no_duplicate_edge",
+      "target": "codegraph/architecture_compiler.py::apply_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_no_duplicate_edge",
+      "target": "tests/test_architecture_compiler.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_no_duplicate_subsystem",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_no_duplicate_subsystem",
+      "target": "codegraph/architecture_compiler.py::CompiledChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_no_duplicate_subsystem",
+      "target": "codegraph/architecture_compiler.py::apply_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestApplyPlan::test_no_duplicate_subsystem",
+      "target": "tests/test_architecture_compiler.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_format_output",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_format_output",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_format_output",
+      "target": "codegraph/architecture_compiler.py::CompiledChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_has_changes_empty",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_has_changes_with_change",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_has_changes_with_change",
+      "target": "codegraph/architecture_compiler.py::CompiledChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_load_missing",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_roundtrip",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_roundtrip",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_roundtrip",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_roundtrip",
+      "target": "codegraph/architecture_compiler.py::CompiledChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_roundtrip",
+      "target": "codegraph/target_architecture.py::TargetNode",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_save_load",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_save_load",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_save_load",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_save_load",
+      "target": "codegraph/architecture_compiler.py::CompiledChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompileIntent::test_auto_constraints_default",
+      "target": "codegraph/architecture_compiler.py::compile_intent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompileIntent::test_auto_constraints_default",
+      "target": "tests/test_architecture_compiler.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompileIntent::test_auto_constraints_disabled",
+      "target": "codegraph/architecture_compiler.py::compile_intent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompileIntent::test_auto_constraints_disabled",
+      "target": "tests/test_architecture_compiler.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompileIntent::test_existing_subsystem_no_duplicate",
+      "target": "codegraph/architecture_compiler.py::compile_intent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompileIntent::test_existing_subsystem_no_duplicate",
+      "target": "tests/test_architecture_compiler.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompileIntent::test_generic_intent",
+      "target": "codegraph/architecture_compiler.py::compile_intent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompileIntent::test_generic_intent",
+      "target": "tests/test_architecture_compiler.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompileIntent::test_known_pattern_api",
+      "target": "codegraph/architecture_compiler.py::compile_intent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompileIntent::test_known_pattern_api",
+      "target": "tests/test_architecture_compiler.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompileIntent::test_known_pattern_cache",
+      "target": "codegraph/architecture_compiler.py::compile_intent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompileIntent::test_known_pattern_cache",
+      "target": "tests/test_architecture_compiler.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompileIntent::test_unrecognized_intent",
+      "target": "codegraph/architecture_compiler.py::compile_intent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompileIntent::test_unrecognized_intent",
+      "target": "tests/test_architecture_compiler.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompiledChange::test_roundtrip",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompiledChange::test_roundtrip",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompiledChange::test_roundtrip",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompiledChange::test_roundtrip",
+      "target": "codegraph/architecture_compiler.py::CompiledChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompiledChange::test_roundtrip",
+      "target": "codegraph/target_architecture.py::TargetNode",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompiledChange::test_to_dict_minimal",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestCompiledChange::test_to_dict_minimal",
+      "target": "codegraph/architecture_compiler.py::CompiledChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestPlanToTargetWorkflow::test_append_to_existing",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestPlanToTargetWorkflow::test_append_to_existing",
+      "target": "codegraph/architecture_compiler.py::plan_to_target_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestPlanToTargetWorkflow::test_append_to_existing",
+      "target": "codegraph/target_architecture.py::TargetEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestPlanToTargetWorkflow::test_append_to_existing",
+      "target": "codegraph/target_architecture.py::TargetWorkflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestPlanToTargetWorkflow::test_append_to_existing",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestPlanToTargetWorkflow::test_new_target",
+      "target": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestPlanToTargetWorkflow::test_new_target",
+      "target": "codegraph/architecture_compiler.py::plan_to_target_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestPlanToTargetWorkflow::test_new_target",
+      "target": "codegraph/target_architecture.py::TargetEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::TestPlanToTargetWorkflow::test_new_target",
+      "target": "codegraph/target_architecture.py::TargetNode",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::_make_arch",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::_make_arch",
+      "target": "codegraph/arch_schema.py::ArchConstraint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::_make_arch",
+      "target": "codegraph/arch_schema.py::ArchEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::_make_arch",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_compiler.py::_make_arch",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_allowed_dependency",
+      "target": "codegraph/architecture_lock.py::check_dependency_allowed",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_allowed_dependency",
+      "target": "tests/test_architecture_lock.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_forbidden_dependency",
+      "target": "codegraph/architecture_lock.py::check_dependency_allowed",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_forbidden_dependency",
+      "target": "tests/test_architecture_lock.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_same_subsystem",
+      "target": "codegraph/architecture_lock.py::check_dependency_allowed",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_same_subsystem",
+      "target": "tests/test_architecture_lock.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_undeclared_cross_subsystem",
+      "target": "codegraph/architecture_lock.py::check_dependency_allowed",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_undeclared_cross_subsystem",
+      "target": "tests/test_architecture_lock.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_undeclared_modules",
+      "target": "codegraph/architecture_lock.py::check_dependency_allowed",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_undeclared_modules",
+      "target": "tests/test_architecture_lock.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckLock::test_allowed_edge_no_violation",
+      "target": "codegraph/architecture_lock.py::check_lock",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckLock::test_allowed_edge_no_violation",
+      "target": "tests/test_architecture_lock.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckLock::test_boundary_violation",
+      "target": "codegraph/architecture_lock.py::check_lock",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckLock::test_boundary_violation",
+      "target": "tests/test_architecture_lock.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckLock::test_clean_lock",
+      "target": "codegraph/architecture_lock.py::check_lock",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckLock::test_clean_lock",
+      "target": "tests/test_architecture_lock.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckLock::test_forbidden_dependency_error",
+      "target": "codegraph/architecture_lock.py::check_lock",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckLock::test_forbidden_dependency_error",
+      "target": "tests/test_architecture_lock.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckLock::test_undeclared_module_strict",
+      "target": "codegraph/architecture_lock.py::check_lock",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckLock::test_undeclared_module_strict",
+      "target": "tests/test_architecture_lock.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckLock::test_undeclared_module_warning",
+      "target": "codegraph/architecture_lock.py::check_lock",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckLock::test_undeclared_module_warning",
+      "target": "tests/test_architecture_lock.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckModulePlacement::test_declared_module_ok",
+      "target": "codegraph/architecture_lock.py::check_module_placement",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckModulePlacement::test_declared_module_ok",
+      "target": "tests/test_architecture_lock.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckModulePlacement::test_module_under_known_prefix",
+      "target": "codegraph/architecture_lock.py::check_module_placement",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckModulePlacement::test_module_under_known_prefix",
+      "target": "tests/test_architecture_lock.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckModulePlacement::test_undeclared_module",
+      "target": "codegraph/architecture_lock.py::check_module_placement",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestCheckModulePlacement::test_undeclared_module",
+      "target": "tests/test_architecture_lock.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestLockReport::test_empty_is_locked",
+      "target": "codegraph/architecture_lock.py::LockReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestLockReport::test_format",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestLockReport::test_format",
+      "target": "codegraph/architecture_lock.py::LockReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestLockReport::test_format",
+      "target": "codegraph/architecture_lock.py::LockViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestLockReport::test_to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestLockReport::test_to_dict",
+      "target": "codegraph/architecture_lock.py::LockReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestLockReport::test_warnings_still_locked",
+      "target": "codegraph/architecture_lock.py::LockReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestLockReport::test_warnings_still_locked",
+      "target": "codegraph/architecture_lock.py::LockViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestLockReport::test_with_errors_unlocked",
+      "target": "codegraph/architecture_lock.py::LockReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestLockReport::test_with_errors_unlocked",
+      "target": "codegraph/architecture_lock.py::LockViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestLockViolation::test_to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestLockViolation::test_to_dict",
+      "target": "codegraph/architecture_lock.py::LockReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestLockViolation::test_to_dict_minimal",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::TestLockViolation::test_to_dict_minimal",
+      "target": "codegraph/architecture_lock.py::LockViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::_make_arch",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::_make_arch",
+      "target": "codegraph/arch_schema.py::ArchConstraint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::_make_arch",
+      "target": "codegraph/arch_schema.py::ArchEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::_make_arch",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_lock.py::_make_arch",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchChange::test_roundtrip",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchChange::test_roundtrip",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchChange::test_roundtrip",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchChange::test_to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchChange::test_to_dict",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchChange::test_to_dict",
+      "target": "codegraph/architecture_simulator.py::ArchPrediction",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchChange::test_to_dict",
+      "target": "codegraph/architecture_simulator.py::ArchSimulationResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchChange::test_with_components",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchChange::test_with_components",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchChange::test_with_components",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchPrediction::test_to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchPrediction::test_to_dict",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchPrediction::test_to_dict",
+      "target": "codegraph/architecture_simulator.py::ArchPrediction",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchPrediction::test_to_dict",
+      "target": "codegraph/architecture_simulator.py::ArchSimulationResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchSimulationResult::test_empty_result",
+      "target": "codegraph/architecture_simulator.py::ArchSimulationResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchSimulationResult::test_format",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchSimulationResult::test_format",
+      "target": "codegraph/architecture_simulator.py::ArchPrediction",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchSimulationResult::test_format",
+      "target": "codegraph/architecture_simulator.py::ArchSimulationResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchSimulationResult::test_to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchSimulationResult::test_to_dict",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchSimulationResult::test_to_dict",
+      "target": "codegraph/architecture_simulator.py::ArchPrediction",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestArchSimulationResult::test_to_dict",
+      "target": "codegraph/architecture_simulator.py::ArchSimulationResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestCycleDetection::test_detects_cycle",
+      "target": "codegraph/arch_schema.py::ArchEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestCycleDetection::test_detects_cycle",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestCycleDetection::test_detects_cycle",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestCycleDetection::test_detects_cycle",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestCycleDetection::test_detects_cycle",
+      "target": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_component",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_component",
+      "target": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_component",
+      "target": "tests/test_architecture_simulator.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_constraint",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_constraint",
+      "target": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_constraint",
+      "target": "tests/test_architecture_simulator.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_edge",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_edge",
+      "target": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_edge",
+      "target": "tests/test_architecture_simulator.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_subsystem",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_subsystem",
+      "target": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_subsystem",
+      "target": "tests/test_architecture_simulator.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_does_not_modify_original",
+      "target": "codegraph/architecture_simulator.py::simulate_subsystem_addition",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_does_not_modify_original",
+      "target": "tests/test_architecture_simulator.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_forbidden_edge_violation",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_forbidden_edge_violation",
+      "target": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_forbidden_edge_violation",
+      "target": "tests/test_architecture_simulator.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_merge_subsystems",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_merge_subsystems",
+      "target": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_merge_subsystems",
+      "target": "tests/test_architecture_simulator.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_recommendation_accept",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_recommendation_accept",
+      "target": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_recommendation_accept",
+      "target": "tests/test_architecture_simulator.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_recommendation_review_or_reject",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_recommendation_review_or_reject",
+      "target": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_recommendation_review_or_reject",
+      "target": "tests/test_architecture_simulator.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_remove_edge",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_remove_edge",
+      "target": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_remove_edge",
+      "target": "tests/test_architecture_simulator.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_split_subsystem",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_split_subsystem",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_split_subsystem",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_split_subsystem",
+      "target": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_split_subsystem",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_split_subsystem",
+      "target": "tests/test_architecture_simulator.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateSubsystemAddition::test_basic_addition",
+      "target": "codegraph/architecture_simulator.py::simulate_subsystem_addition",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateSubsystemAddition::test_basic_addition",
+      "target": "tests/test_architecture_simulator.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateSubsystemAddition::test_does_not_modify_original",
+      "target": "codegraph/architecture_simulator.py::simulate_subsystem_addition",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateSubsystemAddition::test_does_not_modify_original",
+      "target": "tests/test_architecture_simulator.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateSubsystemAddition::test_no_dependencies",
+      "target": "codegraph/architecture_simulator.py::simulate_subsystem_addition",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::TestSimulateSubsystemAddition::test_no_dependencies",
+      "target": "tests/test_architecture_simulator.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::_make_arch",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::_make_arch",
+      "target": "codegraph/arch_schema.py::ArchConstraint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::_make_arch",
+      "target": "codegraph/arch_schema.py::ArchEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::_make_arch",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_simulator.py::_make_arch",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "tests/test_branch_executor.py::TestBranchComparison::test_format",
       "target": "codegraph/agent_memory.py::AgentMemory::format",
       "edge_type": "call",
@@ -16872,6 +19386,330 @@
       "confidence": "static"
     },
     {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_format_output",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_format_output",
+      "target": "codegraph/code_planner.py::CodePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_format_output",
+      "target": "codegraph/code_planner.py::PlanTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_load_missing",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_ordered_tasks_by_dependency",
+      "target": "codegraph/code_planner.py::CodePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_ordered_tasks_by_dependency",
+      "target": "codegraph/code_planner.py::CodePlan::ordered_tasks",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_ordered_tasks_by_dependency",
+      "target": "codegraph/code_planner.py::PlanTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_ordered_tasks_by_priority",
+      "target": "codegraph/code_planner.py::CodePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_ordered_tasks_by_priority",
+      "target": "codegraph/code_planner.py::CodePlan::ordered_tasks",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_ordered_tasks_by_priority",
+      "target": "codegraph/code_planner.py::PlanTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_save_load",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_save_load",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_save_load",
+      "target": "codegraph/code_planner.py::CodePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_save_load",
+      "target": "codegraph/code_planner.py::PlanTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_task_count",
+      "target": "codegraph/code_planner.py::CodePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_task_count",
+      "target": "codegraph/code_planner.py::PlanTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_tasks_by_type",
+      "target": "codegraph/code_planner.py::CodePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestCodePlan::test_tasks_by_type",
+      "target": "codegraph/code_planner.py::PlanTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_architecture_update_task",
+      "target": "codegraph/code_planner.py::generate_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_architecture_update_task",
+      "target": "codegraph/target_architecture.py::ArchitectureDelta",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_architecture_update_task",
+      "target": "tests/test_code_planner.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_empty_delta",
+      "target": "codegraph/code_planner.py::generate_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_empty_delta",
+      "target": "codegraph/target_architecture.py::ArchitectureDelta",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_empty_delta",
+      "target": "tests/test_code_planner.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_extra_edges",
+      "target": "codegraph/code_planner.py::generate_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_extra_edges",
+      "target": "codegraph/target_architecture.py::ArchitectureDelta",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_extra_edges",
+      "target": "tests/test_code_planner.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_missing_edges",
+      "target": "codegraph/code_planner.py::generate_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_missing_edges",
+      "target": "codegraph/target_architecture.py::ArchitectureDelta",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_missing_edges",
+      "target": "tests/test_code_planner.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_missing_nodes",
+      "target": "codegraph/code_planner.py::generate_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_missing_nodes",
+      "target": "codegraph/target_architecture.py::ArchitectureDelta",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_missing_nodes",
+      "target": "tests/test_code_planner.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_task_ids_generated",
+      "target": "codegraph/code_planner.py::generate_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_task_ids_generated",
+      "target": "codegraph/target_architecture.py::ArchitectureDelta",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestGeneratePlan::test_task_ids_generated",
+      "target": "tests/test_code_planner.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestPlanTask::test_roundtrip",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestPlanTask::test_roundtrip",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestPlanTask::test_roundtrip",
+      "target": "codegraph/code_planner.py::PlanTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestPlanTask::test_to_dict_minimal",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestPlanTask::test_to_dict_minimal",
+      "target": "codegraph/code_planner.py::PlanTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestValidatePlan::test_forbidden_import_detected",
+      "target": "codegraph/code_planner.py::CodePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestValidatePlan::test_forbidden_import_detected",
+      "target": "codegraph/code_planner.py::PlanTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestValidatePlan::test_forbidden_import_detected",
+      "target": "codegraph/code_planner.py::validate_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestValidatePlan::test_forbidden_import_detected",
+      "target": "tests/test_code_planner.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestValidatePlan::test_valid_plan",
+      "target": "codegraph/code_planner.py::CodePlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestValidatePlan::test_valid_plan",
+      "target": "codegraph/code_planner.py::PlanTask",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestValidatePlan::test_valid_plan",
+      "target": "codegraph/code_planner.py::validate_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::TestValidatePlan::test_valid_plan",
+      "target": "tests/test_code_planner.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::_make_arch",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::_make_arch",
+      "target": "codegraph/arch_schema.py::ArchConstraint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::_make_arch",
+      "target": "codegraph/arch_schema.py::ArchEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::_make_arch",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_code_planner.py::_make_arch",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "tests/test_context_builder.py::TestBuildContext::test_basic_context",
       "target": "codegraph/context_builder.py::build_context",
       "edge_type": "call",
@@ -17052,6 +19890,168 @@
       "confidence": "static"
     },
     {
+      "source": "tests/test_copilot_context.py::TestBuildCopilotContext::test_empty_project",
+      "target": "codegraph/copilot_context.py::build_copilot_context",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestBuildCopilotContext::test_skip_tasks",
+      "target": "codegraph/copilot_context.py::build_copilot_context",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestBuildCopilotContext::test_with_architecture",
+      "target": "codegraph/copilot_context.py::build_copilot_context",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestBuildCopilotContext::test_with_decisions",
+      "target": "codegraph/copilot_context.py::build_copilot_context",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestBuildCopilotContext::test_with_drift",
+      "target": "codegraph/copilot_context.py::build_copilot_context",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestBuildCopilotContext::test_with_graph_stats",
+      "target": "codegraph/copilot_context.py::build_copilot_context",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestBuildCopilotContext::test_with_health",
+      "target": "codegraph/copilot_context.py::build_copilot_context",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestBuildCopilotContext::test_with_policy_rules",
+      "target": "codegraph/copilot_context.py::build_copilot_context",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestBuildCopilotContext::test_with_tasks",
+      "target": "codegraph/copilot_context.py::build_copilot_context",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestCopilotContext::test_empty",
+      "target": "codegraph/copilot_context.py::CopilotContext",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestCopilotContext::test_format",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestCopilotContext::test_format",
+      "target": "codegraph/copilot_context.py::CopilotContext",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestCopilotContext::test_format",
+      "target": "codegraph/copilot_context.py::SubsystemSummary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestCopilotContext::test_load_missing",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestCopilotContext::test_roundtrip",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestCopilotContext::test_roundtrip",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestCopilotContext::test_roundtrip",
+      "target": "codegraph/copilot_context.py::CopilotContext",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestCopilotContext::test_roundtrip",
+      "target": "codegraph/copilot_context.py::SubsystemSummary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestCopilotContext::test_save_load",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::load",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestCopilotContext::test_save_load",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestCopilotContext::test_save_load",
+      "target": "codegraph/copilot_context.py::CopilotContext",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestCopilotContext::test_to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestCopilotContext::test_to_dict",
+      "target": "codegraph/copilot_context.py::CopilotContext",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestCopilotContext::test_to_dict",
+      "target": "codegraph/copilot_context.py::SubsystemSummary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestSubsystemSummary::test_to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestSubsystemSummary::test_to_dict",
+      "target": "codegraph/copilot_context.py::CopilotContext",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_copilot_context.py::TestSubsystemSummary::test_to_dict",
+      "target": "codegraph/copilot_context.py::SubsystemSummary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "tests/test_delta.py::TestChangeDetection::test_different_hash_is_change",
       "target": "codegraph/models/graph0.py::Graph0Node",
       "edge_type": "call",
@@ -17126,6 +20126,306 @@
     {
       "source": "tests/test_delta.py::TestChangeDetection::test_same_hash_no_change",
       "target": "codegraph/models/graph0.py::Graph0Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_drift_score",
+      "target": "codegraph/drift_detector.py::detect_drift",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_drift_score",
+      "target": "tests/test_drift_detector.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_drift_score",
+      "target": "tests/test_drift_detector.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_missing_dependency",
+      "target": "codegraph/drift_detector.py::detect_drift",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_missing_dependency",
+      "target": "tests/test_drift_detector.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_missing_dependency",
+      "target": "tests/test_drift_detector.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_missing_module",
+      "target": "codegraph/drift_detector.py::detect_drift",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_missing_module",
+      "target": "tests/test_drift_detector.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_missing_module",
+      "target": "tests/test_drift_detector.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_module_counts",
+      "target": "codegraph/drift_detector.py::detect_drift",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_module_counts",
+      "target": "tests/test_drift_detector.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_module_counts",
+      "target": "tests/test_drift_detector.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_no_drift",
+      "target": "codegraph/drift_detector.py::detect_drift",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_no_drift",
+      "target": "tests/test_drift_detector.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_no_drift",
+      "target": "tests/test_drift_detector.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_skips_test_files",
+      "target": "codegraph/drift_detector.py::detect_drift",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_skips_test_files",
+      "target": "tests/test_drift_detector.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_skips_test_files",
+      "target": "tests/test_drift_detector.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_undeclared_dependency",
+      "target": "codegraph/drift_detector.py::detect_drift",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_undeclared_dependency",
+      "target": "tests/test_drift_detector.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_undeclared_dependency",
+      "target": "tests/test_drift_detector.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_undeclared_module",
+      "target": "codegraph/drift_detector.py::detect_drift",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_undeclared_module",
+      "target": "tests/test_drift_detector.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDetectDrift::test_undeclared_module",
+      "target": "tests/test_drift_detector.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftFinding::test_to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftFinding::test_to_dict",
+      "target": "codegraph/drift_detector.py::DriftFinding",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftFinding::test_to_dict_minimal",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftFinding::test_to_dict_minimal",
+      "target": "codegraph/drift_detector.py::DriftFinding",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftReport::test_findings_by_type",
+      "target": "codegraph/drift_detector.py::DriftFinding",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftReport::test_findings_by_type",
+      "target": "codegraph/drift_detector.py::DriftReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftReport::test_format",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftReport::test_format",
+      "target": "codegraph/drift_detector.py::DriftFinding",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftReport::test_format",
+      "target": "codegraph/drift_detector.py::DriftReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftReport::test_format_no_drift",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftReport::test_format_no_drift",
+      "target": "codegraph/drift_detector.py::DriftReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftReport::test_no_drift",
+      "target": "codegraph/drift_detector.py::detect_drift",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftReport::test_no_drift",
+      "target": "tests/test_drift_detector.py::_make_arch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftReport::test_no_drift",
+      "target": "tests/test_drift_detector.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftReport::test_save",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftReport::test_save",
+      "target": "codegraph/drift_detector.py::DriftFinding",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftReport::test_save",
+      "target": "codegraph/drift_detector.py::DriftReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftReport::test_with_findings",
+      "target": "codegraph/drift_detector.py::DriftFinding",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::TestDriftReport::test_with_findings",
+      "target": "codegraph/drift_detector.py::DriftReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::_make_arch",
+      "target": "codegraph/arch_schema.py::ArchComponent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::_make_arch",
+      "target": "codegraph/arch_schema.py::ArchEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::_make_arch",
+      "target": "codegraph/arch_schema.py::SubsystemDef",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::_make_arch",
+      "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::_make_graph0",
+      "target": "codegraph/models/graph0.py::Graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::_make_graph0",
+      "target": "codegraph/models/graph0.py::Graph0Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_drift_detector.py::_make_graph0",
+      "target": "codegraph/tasks.py::TaskHistory::append",
       "edge_type": "call",
       "confidence": "static"
     },

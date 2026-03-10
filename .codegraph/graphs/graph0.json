@@ -1,7 +1,7 @@
 {
   "format_version": 1,
-  "graph_version": 24,
-  "extracted_at": "2026-03-10T16:23:18Z",
+  "graph_version": 26,
+  "extracted_at": "2026-03-10T17:54:59Z",
   "source_files": [
     "benchmarks/benchmark_build.py",
     "benchmarks/benchmark_query.py",
@@ -20,13 +20,19 @@
     "codegraph/arch_viewer.py",
     "codegraph/archi_test.py",
     "codegraph/architecture_advisor.py",
+    "codegraph/architecture_compiler.py",
+    "codegraph/architecture_lock.py",
+    "codegraph/architecture_simulator.py",
     "codegraph/branch_executor.py",
     "codegraph/cas.py",
     "codegraph/cli.py",
+    "codegraph/code_planner.py",
     "codegraph/config.py",
     "codegraph/constants.py",
     "codegraph/context_builder.py",
+    "codegraph/copilot_context.py",
     "codegraph/delta.py",
+    "codegraph/drift_detector.py",
     "codegraph/error_codes.py",
     "codegraph/exceptions.py",
     "codegraph/extractor.py",
@@ -115,11 +121,17 @@
     "tests/test_arch_schema.py",
     "tests/test_arch_viewer.py",
     "tests/test_architecture_advisor.py",
+    "tests/test_architecture_compiler.py",
+    "tests/test_architecture_lock.py",
+    "tests/test_architecture_simulator.py",
     "tests/test_branch_executor.py",
     "tests/test_cas.py",
     "tests/test_cli.py",
+    "tests/test_code_planner.py",
     "tests/test_context_builder.py",
+    "tests/test_copilot_context.py",
     "tests/test_delta.py",
+    "tests/test_drift_detector.py",
     "tests/test_extractor.py",
     "tests/test_failure_modes.py",
     "tests/test_filters.py",
@@ -2196,6 +2208,370 @@
       "line": 524
     },
     {
+      "id": "codegraph/architecture_compiler",
+      "body_hash": "5a8ef",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::ArchitecturePlan",
+      "body_hash": "6ce6e",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "class",
+      "line": 87
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::ArchitecturePlan::format",
+      "body_hash": "e2c0b",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "method",
+      "line": 152
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::ArchitecturePlan::from_dict",
+      "body_hash": "48282",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "method",
+      "line": 120
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::ArchitecturePlan::has_changes",
+      "body_hash": "878d5",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "method",
+      "line": 101
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::ArchitecturePlan::load",
+      "body_hash": "cfa3d",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "method",
+      "line": 145
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::ArchitecturePlan::save",
+      "body_hash": "24e8a",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "method",
+      "line": 134
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::ArchitecturePlan::to_dict",
+      "body_hash": "25770",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "method",
+      "line": 104
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::CompiledChange",
+      "body_hash": "a1e59",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "class",
+      "line": 46
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::CompiledChange::from_dict",
+      "body_hash": "dbea9",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "method",
+      "line": 70
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::CompiledChange::to_dict",
+      "body_hash": "a530c",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "method",
+      "line": 59
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::_add_default_constraints",
+      "body_hash": "ea601",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "function",
+      "line": 435
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::_extract_subsystem_name",
+      "body_hash": "76a57",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "function",
+      "line": 423
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::_match_intent_patterns",
+      "body_hash": "20ea5",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "function",
+      "line": 412
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::apply_plan",
+      "body_hash": "04255",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "function",
+      "line": 330
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::compile_intent",
+      "body_hash": "2aea3",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "function",
+      "line": 228
+    },
+    {
+      "id": "codegraph/architecture_compiler.py::plan_to_target_workflow",
+      "body_hash": "5d345",
+      "file": "codegraph/architecture_compiler.py",
+      "type": "function",
+      "line": 389
+    },
+    {
+      "id": "codegraph/architecture_lock",
+      "body_hash": "00bb7",
+      "file": "codegraph/architecture_lock.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/architecture_lock.py::LockReport",
+      "body_hash": "a55e6",
+      "file": "codegraph/architecture_lock.py",
+      "type": "class",
+      "line": 60
+    },
+    {
+      "id": "codegraph/architecture_lock.py::LockReport::error_count",
+      "body_hash": "4824c",
+      "file": "codegraph/architecture_lock.py",
+      "type": "method",
+      "line": 73
+    },
+    {
+      "id": "codegraph/architecture_lock.py::LockReport::format",
+      "body_hash": "8b743",
+      "file": "codegraph/architecture_lock.py",
+      "type": "method",
+      "line": 90
+    },
+    {
+      "id": "codegraph/architecture_lock.py::LockReport::is_locked",
+      "body_hash": "b2ac9",
+      "file": "codegraph/architecture_lock.py",
+      "type": "method",
+      "line": 68
+    },
+    {
+      "id": "codegraph/architecture_lock.py::LockReport::to_dict",
+      "body_hash": "e690f",
+      "file": "codegraph/architecture_lock.py",
+      "type": "method",
+      "line": 80
+    },
+    {
+      "id": "codegraph/architecture_lock.py::LockReport::warning_count",
+      "body_hash": "c88f6",
+      "file": "codegraph/architecture_lock.py",
+      "type": "method",
+      "line": 77
+    },
+    {
+      "id": "codegraph/architecture_lock.py::LockViolation",
+      "body_hash": "9bcc8",
+      "file": "codegraph/architecture_lock.py",
+      "type": "class",
+      "line": 33
+    },
+    {
+      "id": "codegraph/architecture_lock.py::LockViolation::to_dict",
+      "body_hash": "a4ebd",
+      "file": "codegraph/architecture_lock.py",
+      "type": "method",
+      "line": 44
+    },
+    {
+      "id": "codegraph/architecture_lock.py::_build_reverse_module_map",
+      "body_hash": "58cf2",
+      "file": "codegraph/architecture_lock.py",
+      "type": "function",
+      "line": 262
+    },
+    {
+      "id": "codegraph/architecture_lock.py::_build_subsystem_module_map",
+      "body_hash": "b4c7c",
+      "file": "codegraph/architecture_lock.py",
+      "type": "function",
+      "line": 252
+    },
+    {
+      "id": "codegraph/architecture_lock.py::_check_forbidden_dependencies",
+      "body_hash": "fb1fb",
+      "file": "codegraph/architecture_lock.py",
+      "type": "function",
+      "line": 309
+    },
+    {
+      "id": "codegraph/architecture_lock.py::_check_subsystem_boundaries",
+      "body_hash": "f5608",
+      "file": "codegraph/architecture_lock.py",
+      "type": "function",
+      "line": 346
+    },
+    {
+      "id": "codegraph/architecture_lock.py::_check_undeclared_modules",
+      "body_hash": "8e7ac",
+      "file": "codegraph/architecture_lock.py",
+      "type": "function",
+      "line": 274
+    },
+    {
+      "id": "codegraph/architecture_lock.py::check_dependency_allowed",
+      "body_hash": "d161c",
+      "file": "codegraph/architecture_lock.py",
+      "type": "function",
+      "line": 188
+    },
+    {
+      "id": "codegraph/architecture_lock.py::check_lock",
+      "body_hash": "dfa68",
+      "file": "codegraph/architecture_lock.py",
+      "type": "function",
+      "line": 109
+    },
+    {
+      "id": "codegraph/architecture_lock.py::check_module_placement",
+      "body_hash": "1529e",
+      "file": "codegraph/architecture_lock.py",
+      "type": "function",
+      "line": 160
+    },
+    {
+      "id": "codegraph/architecture_simulator",
+      "body_hash": "f501b",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::ArchChange",
+      "body_hash": "da29e",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "class",
+      "line": 40
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::ArchChange::from_dict",
+      "body_hash": "148ab",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "method",
+      "line": 67
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::ArchChange::to_dict",
+      "body_hash": "286b7",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "method",
+      "line": 55
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::ArchPrediction",
+      "body_hash": "eb2a0",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "class",
+      "line": 84
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::ArchPrediction::to_dict",
+      "body_hash": "4d3ea",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "method",
+      "line": 95
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::ArchSimulationResult",
+      "body_hash": "1d719",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "class",
+      "line": 110
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::ArchSimulationResult::format",
+      "body_hash": "e7b5c",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "method",
+      "line": 128
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::ArchSimulationResult::to_dict",
+      "body_hash": "840a5",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "method",
+      "line": 119
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::_apply_changes",
+      "body_hash": "759be",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "function",
+      "line": 320
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::_check_constraints",
+      "body_hash": "4647e",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "function",
+      "line": 412
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::_compute_arch_metrics",
+      "body_hash": "0f401",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "function",
+      "line": 227
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::_count_subsystem_cycles",
+      "body_hash": "12c1a",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "function",
+      "line": 271
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::_count_subsystem_cycles::strongconnect",
+      "body_hash": "38aab",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "function",
+      "line": 284
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::_determine_recommendation",
+      "body_hash": "eb4fd",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "function",
+      "line": 470
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::_generate_predictions",
+      "body_hash": "40969",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "function",
+      "line": 429
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "body_hash": "7d5fc",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "function",
+      "line": 155
+    },
+    {
+      "id": "codegraph/architecture_simulator.py::simulate_subsystem_addition",
+      "body_hash": "7f08f",
+      "file": "codegraph/architecture_simulator.py",
+      "type": "function",
+      "line": 203
+    },
+    {
       "id": "codegraph/branch_executor",
       "body_hash": "ca944",
       "file": "codegraph/branch_executor.py",
@@ -2652,7 +3028,7 @@
     },
     {
       "id": "codegraph/cli",
-      "body_hash": "13cf2",
+      "body_hash": "a1b61",
       "file": "codegraph/cli.py",
       "type": "module",
       "line": 1
@@ -2691,6 +3067,13 @@
       "file": "codegraph/cli.py",
       "type": "function",
       "line": 2533
+    },
+    {
+      "id": "codegraph/cli.py::arch_simulate_cmd",
+      "body_hash": "00197",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2972
     },
     {
       "id": "codegraph/cli.py::archi_test_cmd",
@@ -2798,6 +3181,20 @@
       "line": 1330
     },
     {
+      "id": "codegraph/cli.py::code_plan_cmd",
+      "body_hash": "d6942",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2772
+    },
+    {
+      "id": "codegraph/cli.py::compile_cmd",
+      "body_hash": "878b6",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2728
+    },
+    {
       "id": "codegraph/cli.py::completion",
       "body_hash": "55368",
       "file": "codegraph/cli.py",
@@ -2812,6 +3209,13 @@
       "line": 1894
     },
     {
+      "id": "codegraph/cli.py::copilot_context_cmd",
+      "body_hash": "e0d96",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2940
+    },
+    {
       "id": "codegraph/cli.py::delta",
       "body_hash": "92228",
       "file": "codegraph/cli.py",
@@ -2824,6 +3228,13 @@
       "file": "codegraph/cli.py",
       "type": "function",
       "line": 1109
+    },
+    {
+      "id": "codegraph/cli.py::drift_cmd",
+      "body_hash": "2ce27",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2883
     },
     {
       "id": "codegraph/cli.py::enrich_cmd",
@@ -2950,6 +3361,13 @@
       "file": "codegraph/cli.py",
       "type": "function",
       "line": 2616
+    },
+    {
+      "id": "codegraph/cli.py::lock_cmd",
+      "body_hash": "24208",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2827
     },
     {
       "id": "codegraph/cli.py::main",
@@ -3211,6 +3629,132 @@
       "line": 938
     },
     {
+      "id": "codegraph/code_planner",
+      "body_hash": "f381e",
+      "file": "codegraph/code_planner.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/code_planner.py::CodePlan",
+      "body_hash": "9f163",
+      "file": "codegraph/code_planner.py",
+      "type": "class",
+      "line": 85
+    },
+    {
+      "id": "codegraph/code_planner.py::CodePlan::format",
+      "body_hash": "45598",
+      "file": "codegraph/code_planner.py",
+      "type": "method",
+      "line": 149
+    },
+    {
+      "id": "codegraph/code_planner.py::CodePlan::from_dict",
+      "body_hash": "6f1f2",
+      "file": "codegraph/code_planner.py",
+      "type": "method",
+      "line": 122
+    },
+    {
+      "id": "codegraph/code_planner.py::CodePlan::load",
+      "body_hash": "4c1af",
+      "file": "codegraph/code_planner.py",
+      "type": "method",
+      "line": 142
+    },
+    {
+      "id": "codegraph/code_planner.py::CodePlan::ordered_tasks",
+      "body_hash": "2d8e4",
+      "file": "codegraph/code_planner.py",
+      "type": "method",
+      "line": 173
+    },
+    {
+      "id": "codegraph/code_planner.py::CodePlan::ordered_tasks::_visit",
+      "body_hash": "a615f",
+      "file": "codegraph/code_planner.py",
+      "type": "function",
+      "line": 184
+    },
+    {
+      "id": "codegraph/code_planner.py::CodePlan::save",
+      "body_hash": "23148",
+      "file": "codegraph/code_planner.py",
+      "type": "method",
+      "line": 131
+    },
+    {
+      "id": "codegraph/code_planner.py::CodePlan::task_count",
+      "body_hash": "b9f57",
+      "file": "codegraph/code_planner.py",
+      "type": "method",
+      "line": 98
+    },
+    {
+      "id": "codegraph/code_planner.py::CodePlan::tasks_by_type",
+      "body_hash": "20e9e",
+      "file": "codegraph/code_planner.py",
+      "type": "method",
+      "line": 102
+    },
+    {
+      "id": "codegraph/code_planner.py::CodePlan::to_dict",
+      "body_hash": "b2576",
+      "file": "codegraph/code_planner.py",
+      "type": "method",
+      "line": 108
+    },
+    {
+      "id": "codegraph/code_planner.py::PlanTask",
+      "body_hash": "86f32",
+      "file": "codegraph/code_planner.py",
+      "type": "class",
+      "line": 39
+    },
+    {
+      "id": "codegraph/code_planner.py::PlanTask::from_dict",
+      "body_hash": "62cd3",
+      "file": "codegraph/code_planner.py",
+      "type": "method",
+      "line": 69
+    },
+    {
+      "id": "codegraph/code_planner.py::PlanTask::to_dict",
+      "body_hash": "eb5a1",
+      "file": "codegraph/code_planner.py",
+      "type": "method",
+      "line": 51
+    },
+    {
+      "id": "codegraph/code_planner.py::_build_module_mapping",
+      "body_hash": "83928",
+      "file": "codegraph/code_planner.py",
+      "type": "function",
+      "line": 351
+    },
+    {
+      "id": "codegraph/code_planner.py::_module_to_test",
+      "body_hash": "8312a",
+      "file": "codegraph/code_planner.py",
+      "type": "function",
+      "line": 363
+    },
+    {
+      "id": "codegraph/code_planner.py::generate_plan",
+      "body_hash": "4d0a4",
+      "file": "codegraph/code_planner.py",
+      "type": "function",
+      "line": 202
+    },
+    {
+      "id": "codegraph/code_planner.py::validate_plan",
+      "body_hash": "0c45b",
+      "file": "codegraph/code_planner.py",
+      "type": "function",
+      "line": 308
+    },
+    {
       "id": "codegraph/config",
       "body_hash": "e3a81",
       "file": "codegraph/config.py",
@@ -3363,6 +3907,132 @@
       "file": "codegraph/context_builder.py",
       "type": "function",
       "line": 268
+    },
+    {
+      "id": "codegraph/copilot_context",
+      "body_hash": "a24fb",
+      "file": "codegraph/copilot_context.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/copilot_context.py::CopilotContext",
+      "body_hash": "a1da9",
+      "file": "codegraph/copilot_context.py",
+      "type": "class",
+      "line": 61
+    },
+    {
+      "id": "codegraph/copilot_context.py::CopilotContext::format",
+      "body_hash": "aa97b",
+      "file": "codegraph/copilot_context.py",
+      "type": "method",
+      "line": 146
+    },
+    {
+      "id": "codegraph/copilot_context.py::CopilotContext::from_dict",
+      "body_hash": "41e3a",
+      "file": "codegraph/copilot_context.py",
+      "type": "method",
+      "line": 100
+    },
+    {
+      "id": "codegraph/copilot_context.py::CopilotContext::load",
+      "body_hash": "0b2ec",
+      "file": "codegraph/copilot_context.py",
+      "type": "method",
+      "line": 139
+    },
+    {
+      "id": "codegraph/copilot_context.py::CopilotContext::save",
+      "body_hash": "0796f",
+      "file": "codegraph/copilot_context.py",
+      "type": "method",
+      "line": 128
+    },
+    {
+      "id": "codegraph/copilot_context.py::CopilotContext::to_dict",
+      "body_hash": "190cd",
+      "file": "codegraph/copilot_context.py",
+      "type": "method",
+      "line": 80
+    },
+    {
+      "id": "codegraph/copilot_context.py::SubsystemSummary",
+      "body_hash": "41598",
+      "file": "codegraph/copilot_context.py",
+      "type": "class",
+      "line": 39
+    },
+    {
+      "id": "codegraph/copilot_context.py::SubsystemSummary::to_dict",
+      "body_hash": "0bfc4",
+      "file": "codegraph/copilot_context.py",
+      "type": "method",
+      "line": 49
+    },
+    {
+      "id": "codegraph/copilot_context.py::_populate_architecture",
+      "body_hash": "c2c1c",
+      "file": "codegraph/copilot_context.py",
+      "type": "function",
+      "line": 233
+    },
+    {
+      "id": "codegraph/copilot_context.py::_populate_decisions",
+      "body_hash": "8323b",
+      "file": "codegraph/copilot_context.py",
+      "type": "function",
+      "line": 389
+    },
+    {
+      "id": "codegraph/copilot_context.py::_populate_drift",
+      "body_hash": "ced2a",
+      "file": "codegraph/copilot_context.py",
+      "type": "function",
+      "line": 369
+    },
+    {
+      "id": "codegraph/copilot_context.py::_populate_graph_stats",
+      "body_hash": "b6b53",
+      "file": "codegraph/copilot_context.py",
+      "type": "function",
+      "line": 261
+    },
+    {
+      "id": "codegraph/copilot_context.py::_populate_health",
+      "body_hash": "ad2a2",
+      "file": "codegraph/copilot_context.py",
+      "type": "function",
+      "line": 331
+    },
+    {
+      "id": "codegraph/copilot_context.py::_populate_policy_rules",
+      "body_hash": "1e9c0",
+      "file": "codegraph/copilot_context.py",
+      "type": "function",
+      "line": 285
+    },
+    {
+      "id": "codegraph/copilot_context.py::_populate_target",
+      "body_hash": "a271e",
+      "file": "codegraph/copilot_context.py",
+      "type": "function",
+      "line": 349
+    },
+    {
+      "id": "codegraph/copilot_context.py::_populate_tasks",
+      "body_hash": "1a081",
+      "file": "codegraph/copilot_context.py",
+      "type": "function",
+      "line": 310
+    },
+    {
+      "id": "codegraph/copilot_context.py::build_copilot_context",
+      "body_hash": "c6a54",
+      "file": "codegraph/copilot_context.py",
+      "type": "function",
+      "line": 179
     },
     {
       "id": "codegraph/delta",
@@ -3566,6 +4236,132 @@
       "file": "codegraph/delta.py",
       "type": "function",
       "line": 501
+    },
+    {
+      "id": "codegraph/drift_detector",
+      "body_hash": "f4ed5",
+      "file": "codegraph/drift_detector.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/drift_detector.py::DriftFinding",
+      "body_hash": "3fc29",
+      "file": "codegraph/drift_detector.py",
+      "type": "class",
+      "line": 37
+    },
+    {
+      "id": "codegraph/drift_detector.py::DriftFinding::to_dict",
+      "body_hash": "ca303",
+      "file": "codegraph/drift_detector.py",
+      "type": "method",
+      "line": 49
+    },
+    {
+      "id": "codegraph/drift_detector.py::DriftReport",
+      "body_hash": "554eb",
+      "file": "codegraph/drift_detector.py",
+      "type": "class",
+      "line": 68
+    },
+    {
+      "id": "codegraph/drift_detector.py::DriftReport::error_count",
+      "body_hash": "4f478",
+      "file": "codegraph/drift_detector.py",
+      "type": "method",
+      "line": 81
+    },
+    {
+      "id": "codegraph/drift_detector.py::DriftReport::findings_by_type",
+      "body_hash": "af13e",
+      "file": "codegraph/drift_detector.py",
+      "type": "method",
+      "line": 89
+    },
+    {
+      "id": "codegraph/drift_detector.py::DriftReport::format",
+      "body_hash": "1b074",
+      "file": "codegraph/drift_detector.py",
+      "type": "method",
+      "line": 120
+    },
+    {
+      "id": "codegraph/drift_detector.py::DriftReport::has_drift",
+      "body_hash": "69c8f",
+      "file": "codegraph/drift_detector.py",
+      "type": "method",
+      "line": 77
+    },
+    {
+      "id": "codegraph/drift_detector.py::DriftReport::save",
+      "body_hash": "9673b",
+      "file": "codegraph/drift_detector.py",
+      "type": "method",
+      "line": 110
+    },
+    {
+      "id": "codegraph/drift_detector.py::DriftReport::to_dict",
+      "body_hash": "8e1b4",
+      "file": "codegraph/drift_detector.py",
+      "type": "method",
+      "line": 95
+    },
+    {
+      "id": "codegraph/drift_detector.py::DriftReport::warning_count",
+      "body_hash": "47680",
+      "file": "codegraph/drift_detector.py",
+      "type": "method",
+      "line": 85
+    },
+    {
+      "id": "codegraph/drift_detector.py::_build_module_to_subsystem",
+      "body_hash": "b7dc2",
+      "file": "codegraph/drift_detector.py",
+      "type": "function",
+      "line": 355
+    },
+    {
+      "id": "codegraph/drift_detector.py::_build_subsystem_modules",
+      "body_hash": "b7683",
+      "file": "codegraph/drift_detector.py",
+      "type": "function",
+      "line": 367
+    },
+    {
+      "id": "codegraph/drift_detector.py::_detect_missing_dependencies",
+      "body_hash": "9c424",
+      "file": "codegraph/drift_detector.py",
+      "type": "function",
+      "line": 316
+    },
+    {
+      "id": "codegraph/drift_detector.py::_detect_missing_modules",
+      "body_hash": "a41f4",
+      "file": "codegraph/drift_detector.py",
+      "type": "function",
+      "line": 250
+    },
+    {
+      "id": "codegraph/drift_detector.py::_detect_undeclared_dependencies",
+      "body_hash": "31fcc",
+      "file": "codegraph/drift_detector.py",
+      "type": "function",
+      "line": 279
+    },
+    {
+      "id": "codegraph/drift_detector.py::_detect_undeclared_modules",
+      "body_hash": "af490",
+      "file": "codegraph/drift_detector.py",
+      "type": "function",
+      "line": 217
+    },
+    {
+      "id": "codegraph/drift_detector.py::detect_drift",
+      "body_hash": "de1f0",
+      "file": "codegraph/drift_detector.py",
+      "type": "function",
+      "line": 146
     },
     {
       "id": "codegraph/error_codes",
@@ -12199,6 +12995,622 @@
       "line": 39
     },
     {
+      "id": "tests/test_architecture_compiler",
+      "body_hash": "912d5",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestApplyPlan",
+      "body_hash": "392d8",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "class",
+      "line": 200
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_component",
+      "body_hash": "6b2d3",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 212
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_constraint",
+      "body_hash": "5784c",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 241
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_edge",
+      "body_hash": "e367f",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 229
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestApplyPlan::test_add_subsystem",
+      "body_hash": "25dae",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 201
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestApplyPlan::test_no_duplicate_edge",
+      "body_hash": "8cf28",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 268
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestApplyPlan::test_no_duplicate_subsystem",
+      "body_hash": "6beef",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 258
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestArchitecturePlan",
+      "body_hash": "9ef19",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "class",
+      "line": 88
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_format_output",
+      "body_hash": "29088",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 127
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_has_changes_empty",
+      "body_hash": "3bb7d",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 89
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_has_changes_with_change",
+      "body_hash": "0ffb0",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 93
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_load_missing",
+      "body_hash": "49e61",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 124
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_roundtrip",
+      "body_hash": "761cf",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 100
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_save_load",
+      "body_hash": "73baa",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 114
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestCompileIntent",
+      "body_hash": "5b18e",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "class",
+      "line": 142
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestCompileIntent::test_auto_constraints_default",
+      "body_hash": "d33fb",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 175
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestCompileIntent::test_auto_constraints_disabled",
+      "body_hash": "66c89",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 182
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestCompileIntent::test_existing_subsystem_no_duplicate",
+      "body_hash": "671f3",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 188
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestCompileIntent::test_generic_intent",
+      "body_hash": "c2f00",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 162
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestCompileIntent::test_known_pattern_api",
+      "body_hash": "f68de",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 143
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestCompileIntent::test_known_pattern_cache",
+      "body_hash": "33829",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 153
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestCompileIntent::test_unrecognized_intent",
+      "body_hash": "aba57",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 169
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestCompiledChange",
+      "body_hash": "3c237",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "class",
+      "line": 62
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestCompiledChange::test_roundtrip",
+      "body_hash": "815d4",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 70
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestCompiledChange::test_to_dict_minimal",
+      "body_hash": "175eb",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 63
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestPlanToTargetWorkflow",
+      "body_hash": "08fbc",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "class",
+      "line": 282
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestPlanToTargetWorkflow::test_append_to_existing",
+      "body_hash": "2de69",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 294
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::TestPlanToTargetWorkflow::test_new_target",
+      "body_hash": "9d848",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "method",
+      "line": 283
+    },
+    {
+      "id": "tests/test_architecture_compiler.py::_make_arch",
+      "body_hash": "ac36c",
+      "file": "tests/test_architecture_compiler.py",
+      "type": "function",
+      "line": 27
+    },
+    {
+      "id": "tests/test_architecture_lock",
+      "body_hash": "d5571",
+      "file": "tests/test_architecture_lock.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckDependencyAllowed",
+      "body_hash": "e6166",
+      "file": "tests/test_architecture_lock.py",
+      "type": "class",
+      "line": 213
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_allowed_dependency",
+      "body_hash": "24b31",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 214
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_forbidden_dependency",
+      "body_hash": "ba238",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 221
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_same_subsystem",
+      "body_hash": "72a4d",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 229
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_undeclared_cross_subsystem",
+      "body_hash": "891e8",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 243
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_undeclared_modules",
+      "body_hash": "144bb",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 236
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckLock",
+      "body_hash": "099be",
+      "file": "tests/test_architecture_lock.py",
+      "type": "class",
+      "line": 131
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckLock::test_allowed_edge_no_violation",
+      "body_hash": "eea83",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 175
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckLock::test_boundary_violation",
+      "body_hash": "c21b1",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 166
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckLock::test_clean_lock",
+      "body_hash": "27011",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 132
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckLock::test_forbidden_dependency_error",
+      "body_hash": "bac53",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 157
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckLock::test_undeclared_module_strict",
+      "body_hash": "f98a3",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 148
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckLock::test_undeclared_module_warning",
+      "body_hash": "8be68",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 139
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckModulePlacement",
+      "body_hash": "d3961",
+      "file": "tests/test_architecture_lock.py",
+      "type": "class",
+      "line": 190
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckModulePlacement::test_declared_module_ok",
+      "body_hash": "46345",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 191
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckModulePlacement::test_module_under_known_prefix",
+      "body_hash": "2fb84",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 202
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestCheckModulePlacement::test_undeclared_module",
+      "body_hash": "7ec12",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 196
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestLockReport",
+      "body_hash": "bc445",
+      "file": "tests/test_architecture_lock.py",
+      "type": "class",
+      "line": 91
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestLockReport::test_empty_is_locked",
+      "body_hash": "9a405",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 92
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestLockReport::test_format",
+      "body_hash": "2f3df",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 117
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestLockReport::test_to_dict",
+      "body_hash": "47a83",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 111
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestLockReport::test_warnings_still_locked",
+      "body_hash": "96b2a",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 104
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestLockReport::test_with_errors_unlocked",
+      "body_hash": "59e5c",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 97
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestLockViolation",
+      "body_hash": "64fdf",
+      "file": "tests/test_architecture_lock.py",
+      "type": "class",
+      "line": 66
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestLockViolation::test_to_dict",
+      "body_hash": "72f29",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 67
+    },
+    {
+      "id": "tests/test_architecture_lock.py::TestLockViolation::test_to_dict_minimal",
+      "body_hash": "b010d",
+      "file": "tests/test_architecture_lock.py",
+      "type": "method",
+      "line": 82
+    },
+    {
+      "id": "tests/test_architecture_lock.py::_make_arch",
+      "body_hash": "f3d1f",
+      "file": "tests/test_architecture_lock.py",
+      "type": "function",
+      "line": 24
+    },
+    {
+      "id": "tests/test_architecture_simulator",
+      "body_hash": "c2ac4",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestArchChange",
+      "body_hash": "721ac",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "class",
+      "line": 59
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestArchChange::test_roundtrip",
+      "body_hash": "36cd5",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 67
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestArchChange::test_to_dict",
+      "body_hash": "ed1bb",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 60
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestArchChange::test_with_components",
+      "body_hash": "c57cc",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 80
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestArchPrediction",
+      "body_hash": "7e76a",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "class",
+      "line": 92
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestArchPrediction::test_to_dict",
+      "body_hash": "cdf8c",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 93
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestArchSimulationResult",
+      "body_hash": "35bdc",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "class",
+      "line": 112
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestArchSimulationResult::test_empty_result",
+      "body_hash": "becf8",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 113
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestArchSimulationResult::test_format",
+      "body_hash": "64ed1",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 131
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestArchSimulationResult::test_to_dict",
+      "body_hash": "09c6f",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 118
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestCycleDetection",
+      "body_hash": "f7da9",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "class",
+      "line": 282
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestCycleDetection::test_detects_cycle",
+      "body_hash": "8a3e4",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 283
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges",
+      "body_hash": "bec31",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "class",
+      "line": 151
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_component",
+      "body_hash": "1fff5",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 190
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_constraint",
+      "body_hash": "1bc9d",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 244
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_edge",
+      "body_hash": "544cb",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 161
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_add_subsystem",
+      "body_hash": "796cc",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 152
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_does_not_modify_original",
+      "body_hash": "888ce",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 176
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_forbidden_edge_violation",
+      "body_hash": "dd0cf",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 168
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_merge_subsystems",
+      "body_hash": "82875",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 217
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_recommendation_accept",
+      "body_hash": "2eb59",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 229
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_recommendation_review_or_reject",
+      "body_hash": "0d7c6",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 237
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_remove_edge",
+      "body_hash": "61cbd",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 183
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges::test_split_subsystem",
+      "body_hash": "4d99a",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 200
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateSubsystemAddition",
+      "body_hash": "a64eb",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "class",
+      "line": 261
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateSubsystemAddition::test_basic_addition",
+      "body_hash": "94312",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 262
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateSubsystemAddition::test_does_not_modify_original",
+      "body_hash": "d1989",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 275
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::TestSimulateSubsystemAddition::test_no_dependencies",
+      "body_hash": "7d368",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "method",
+      "line": 270
+    },
+    {
+      "id": "tests/test_architecture_simulator.py::_make_arch",
+      "body_hash": "61c19",
+      "file": "tests/test_architecture_simulator.py",
+      "type": "function",
+      "line": 24
+    },
+    {
       "id": "tests/test_branch_executor",
       "body_hash": "3fe39",
       "file": "tests/test_branch_executor.py",
@@ -13389,6 +14801,167 @@
       "line": 19
     },
     {
+      "id": "tests/test_code_planner",
+      "body_hash": "92074",
+      "file": "tests/test_code_planner.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_code_planner.py::TestCodePlan",
+      "body_hash": "d8fa9",
+      "file": "tests/test_code_planner.py",
+      "type": "class",
+      "line": 83
+    },
+    {
+      "id": "tests/test_code_planner.py::TestCodePlan::test_format_output",
+      "body_hash": "5bb05",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 115
+    },
+    {
+      "id": "tests/test_code_planner.py::TestCodePlan::test_load_missing",
+      "body_hash": "0d5c8",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 112
+    },
+    {
+      "id": "tests/test_code_planner.py::TestCodePlan::test_ordered_tasks_by_dependency",
+      "body_hash": "e97ae",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 139
+    },
+    {
+      "id": "tests/test_code_planner.py::TestCodePlan::test_ordered_tasks_by_priority",
+      "body_hash": "f6795",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 130
+    },
+    {
+      "id": "tests/test_code_planner.py::TestCodePlan::test_save_load",
+      "body_hash": "3ee9c",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 101
+    },
+    {
+      "id": "tests/test_code_planner.py::TestCodePlan::test_task_count",
+      "body_hash": "243ed",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 84
+    },
+    {
+      "id": "tests/test_code_planner.py::TestCodePlan::test_tasks_by_type",
+      "body_hash": "10dc5",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 91
+    },
+    {
+      "id": "tests/test_code_planner.py::TestGeneratePlan",
+      "body_hash": "31157",
+      "file": "tests/test_code_planner.py",
+      "type": "class",
+      "line": 153
+    },
+    {
+      "id": "tests/test_code_planner.py::TestGeneratePlan::test_architecture_update_task",
+      "body_hash": "029fd",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 189
+    },
+    {
+      "id": "tests/test_code_planner.py::TestGeneratePlan::test_empty_delta",
+      "body_hash": "9adba",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 200
+    },
+    {
+      "id": "tests/test_code_planner.py::TestGeneratePlan::test_extra_edges",
+      "body_hash": "09582",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 178
+    },
+    {
+      "id": "tests/test_code_planner.py::TestGeneratePlan::test_missing_edges",
+      "body_hash": "b8334",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 167
+    },
+    {
+      "id": "tests/test_code_planner.py::TestGeneratePlan::test_missing_nodes",
+      "body_hash": "1b206",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 154
+    },
+    {
+      "id": "tests/test_code_planner.py::TestGeneratePlan::test_task_ids_generated",
+      "body_hash": "91aa2",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 206
+    },
+    {
+      "id": "tests/test_code_planner.py::TestPlanTask",
+      "body_hash": "838cc",
+      "file": "tests/test_code_planner.py",
+      "type": "class",
+      "line": 54
+    },
+    {
+      "id": "tests/test_code_planner.py::TestPlanTask::test_roundtrip",
+      "body_hash": "a6a7a",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 62
+    },
+    {
+      "id": "tests/test_code_planner.py::TestPlanTask::test_to_dict_minimal",
+      "body_hash": "359d0",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 55
+    },
+    {
+      "id": "tests/test_code_planner.py::TestValidatePlan",
+      "body_hash": "e4a16",
+      "file": "tests/test_code_planner.py",
+      "type": "class",
+      "line": 221
+    },
+    {
+      "id": "tests/test_code_planner.py::TestValidatePlan::test_forbidden_import_detected",
+      "body_hash": "6af96",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 230
+    },
+    {
+      "id": "tests/test_code_planner.py::TestValidatePlan::test_valid_plan",
+      "body_hash": "043b2",
+      "file": "tests/test_code_planner.py",
+      "type": "method",
+      "line": 222
+    },
+    {
+      "id": "tests/test_code_planner.py::_make_arch",
+      "body_hash": "82f50",
+      "file": "tests/test_code_planner.py",
+      "type": "function",
+      "line": 26
+    },
+    {
       "id": "tests/test_context_builder",
       "body_hash": "e2e47",
       "file": "tests/test_context_builder.py",
@@ -13508,6 +15081,146 @@
       "line": 66
     },
     {
+      "id": "tests/test_copilot_context",
+      "body_hash": "9cb39",
+      "file": "tests/test_copilot_context.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestBuildCopilotContext",
+      "body_hash": "bde9f",
+      "file": "tests/test_copilot_context.py",
+      "type": "class",
+      "line": 113
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestBuildCopilotContext::test_empty_project",
+      "body_hash": "227e2",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 114
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestBuildCopilotContext::test_skip_tasks",
+      "body_hash": "ec5cc",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 199
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestBuildCopilotContext::test_with_architecture",
+      "body_hash": "49f97",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 119
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestBuildCopilotContext::test_with_decisions",
+      "body_hash": "b7dd5",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 224
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestBuildCopilotContext::test_with_drift",
+      "body_hash": "26c0f",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 209
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestBuildCopilotContext::test_with_graph_stats",
+      "body_hash": "0ba27",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 143
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestBuildCopilotContext::test_with_health",
+      "body_hash": "773f5",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 188
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestBuildCopilotContext::test_with_policy_rules",
+      "body_hash": "4c524",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 161
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestBuildCopilotContext::test_with_tasks",
+      "body_hash": "cc546",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 174
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestCopilotContext",
+      "body_hash": "da8fe",
+      "file": "tests/test_copilot_context.py",
+      "type": "class",
+      "line": 39
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestCopilotContext::test_empty",
+      "body_hash": "1936f",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 40
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestCopilotContext::test_format",
+      "body_hash": "b1e11",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 91
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestCopilotContext::test_load_missing",
+      "body_hash": "fa387",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 88
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestCopilotContext::test_roundtrip",
+      "body_hash": "8e78c",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 61
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestCopilotContext::test_save_load",
+      "body_hash": "3e1e7",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 81
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestCopilotContext::test_to_dict",
+      "body_hash": "6da81",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 45
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestSubsystemSummary",
+      "body_hash": "0308e",
+      "file": "tests/test_copilot_context.py",
+      "type": "class",
+      "line": 18
+    },
+    {
+      "id": "tests/test_copilot_context.py::TestSubsystemSummary::test_to_dict",
+      "body_hash": "d65ec",
+      "file": "tests/test_copilot_context.py",
+      "type": "method",
+      "line": 19
+    },
+    {
       "id": "tests/test_delta",
       "body_hash": "43976",
       "file": "tests/test_delta.py",
@@ -13576,6 +15289,160 @@
       "file": "tests/test_delta.py",
       "type": "method",
       "line": 16
+    },
+    {
+      "id": "tests/test_drift_detector",
+      "body_hash": "d41fc",
+      "file": "tests/test_drift_detector.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDetectDrift",
+      "body_hash": "42846",
+      "file": "tests/test_drift_detector.py",
+      "type": "class",
+      "line": 138
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDetectDrift::test_drift_score",
+      "body_hash": "984f1",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 197
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDetectDrift::test_missing_dependency",
+      "body_hash": "d8215",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 188
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDetectDrift::test_missing_module",
+      "body_hash": "9b48a",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 171
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDetectDrift::test_module_counts",
+      "body_hash": "f0251",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 208
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDetectDrift::test_no_drift",
+      "body_hash": "2e596",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 139
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDetectDrift::test_skips_test_files",
+      "body_hash": "a91d6",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 160
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDetectDrift::test_undeclared_dependency",
+      "body_hash": "c85d4",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 179
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDetectDrift::test_undeclared_module",
+      "body_hash": "64471",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 148
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDriftFinding",
+      "body_hash": "731f7",
+      "file": "tests/test_drift_detector.py",
+      "type": "class",
+      "line": 63
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDriftFinding::test_to_dict",
+      "body_hash": "11677",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 64
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDriftFinding::test_to_dict_minimal",
+      "body_hash": "c7a99",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 75
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDriftReport",
+      "body_hash": "f613d",
+      "file": "tests/test_drift_detector.py",
+      "type": "class",
+      "line": 84
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDriftReport::test_findings_by_type",
+      "body_hash": "4af7d",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 100
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDriftReport::test_format",
+      "body_hash": "2c6d0",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 118
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDriftReport::test_format_no_drift",
+      "body_hash": "8ef83",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 129
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDriftReport::test_no_drift",
+      "body_hash": "b8f08",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 85
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDriftReport::test_save",
+      "body_hash": "f2364",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 110
+    },
+    {
+      "id": "tests/test_drift_detector.py::TestDriftReport::test_with_findings",
+      "body_hash": "1b756",
+      "file": "tests/test_drift_detector.py",
+      "type": "method",
+      "line": 91
+    },
+    {
+      "id": "tests/test_drift_detector.py::_make_arch",
+      "body_hash": "ebae7",
+      "file": "tests/test_drift_detector.py",
+      "type": "function",
+      "line": 24
+    },
+    {
+      "id": "tests/test_drift_detector.py::_make_graph0",
+      "body_hash": "c53f2",
+      "file": "tests/test_drift_detector.py",
+      "type": "function",
+      "line": 47
     },
     {
       "id": "tests/test_extractor",

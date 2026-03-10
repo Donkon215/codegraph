@@ -471,9 +471,58 @@ Pattern: `relative/path.py::ClassName::method_name`
 | `workflow/workflow.json` | Call edges (function-level) | Yes | No |
 | `workflow/enriched_workflow.json` | Call edges with intent annotations | Yes | No |
 | `architecture/architecture_advice.json` | Advisor suggestions | Yes | Via `codegraph architect --save` |
+| `planning/architecture_plan.json` | Compiled architecture plan | Yes | Via `codegraph compile --save` |
+| `planning/.plan.json` | Code implementation plan | Yes | Via `codegraph code-plan` |
+| `architecture/drift_report.json` | Code vs architecture drift | Yes | Via `codegraph drift --save` |
+| `context/copilot_context.json` | Complete Copilot context | Yes | Via `codegraph copilot-context --save` |
 | `tasks/tasks.json` | Task queue | Yes | No |
 | `agent_response.json` | Your repair response | No | **Yes** |
 | `codegraph.db` | SQLite index | Via query | No |
+
+---
+
+## Orchestration Commands
+
+### Compile Intent → Architecture
+```bash
+codegraph compile "add REST API"          # preview what changes would be made
+codegraph compile "add REST API" --apply  # apply changes to system.json
+codegraph compile "add REST API" --save   # save plan to planning/architecture_plan.json
+```
+Translates natural language intents into concrete architecture changes (new subsystems, components, edges, constraints).
+
+### Generate Code Plan
+```bash
+codegraph code-plan                       # generate implementation tasks from delta
+```
+Converts architecture deltas (missing nodes, edges) into ordered code tasks: create_file, create_function, add_import, add_test.
+
+### Check Architecture Lock
+```bash
+codegraph lock                            # check boundary enforcement
+codegraph lock --strict                   # undeclared modules are errors
+```
+Prevents architecture drift by checking module placement, forbidden dependencies, and subsystem boundaries.
+
+### Detect Drift
+```bash
+codegraph drift                           # detect code vs architecture drift
+codegraph drift --save                    # save drift report
+```
+Compares declared architecture against actual code to find undeclared modules, missing modules, and dependency mismatches.
+
+### Generate Copilot Context
+```bash
+codegraph copilot-context                 # generate comprehensive context
+codegraph copilot-context --save          # save to context/copilot_context.json
+```
+Builds a complete context package from all .codegraph data for informed decision-making.
+
+### Simulate Architecture Changes
+```bash
+codegraph arch-simulate API --depends-on core --depends-on models
+```
+Predicts impact of adding a subsystem before implementing: cycles, fan-out, coupling, constraint violations. Returns accept/review/reject recommendation.
 
 ---
 
@@ -577,6 +626,12 @@ codegraph architecture --init     # create architecture template
 codegraph architecture --validate # validate architecture against code
 codegraph plan                    # generate tasks from architecture
 codegraph viewer                  # generate HTML architecture dashboard
+codegraph compile INTENT          # compile intent → architecture changes
+codegraph code-plan               # generate code implementation tasks
+codegraph lock [--strict]         # check architecture boundary enforcement
+codegraph drift [--save]          # detect code vs architecture drift
+codegraph copilot-context [--save]# generate complete Copilot context
+codegraph arch-simulate NAME      # simulate adding a subsystem
 ```
 
 ---
@@ -614,10 +669,31 @@ code changes → codegraph build → codegraph architect
 
 This loop enables controlled architecture evolution:
 1. **Codegraph observes** — builds graph, detects smells
-2. **Copilot proposes** — adds rules to prevent bad patterns
-3. **Copilot fixes** — implements repairs for violations
-4. **Codegraph verifies** — rebuilds graph, checks convergence
-5. **Human reviews** — approves or adjusts rules
+2. **Copilot simulates** — `codegraph arch-simulate` predicts impact before changing
+3. **Copilot compiles** — `codegraph compile` translates intent to architecture changes
+4. **Copilot plans** — `codegraph code-plan` creates ordered implementation tasks
+5. **Copilot proposes** — `codegraph suggest add` prevents bad patterns
+6. **Copilot fixes** — implements repairs for violations
+7. **Codegraph locks** — `codegraph lock` enforces boundaries, `codegraph drift` detects divergence
+8. **Codegraph verifies** — rebuilds graph, checks convergence
+9. **Human reviews** — approves or adjusts rules
+
+### Full Orchestrated Pipeline
+
+```
+intent → compile → simulate → plan → execute → lock → drift → verify → evolve
+```
+
+| Step | Command | Output |
+|------|---------|--------|
+| 1. Capture intent | `codegraph compile "add X"` | architecture_plan.json |
+| 2. Simulate impact | `codegraph arch-simulate X` | accept/review/reject |
+| 3. Plan implementation | `codegraph code-plan` | .plan.json |
+| 4. Execute changes | `codegraph apply` | code modifications |
+| 5. Check boundaries | `codegraph lock` | lock report |
+| 6. Detect drift | `codegraph drift` | drift report |
+| 7. Validate | `codegraph analyze` | tasks/violations |
+| 8. Generate context | `codegraph copilot-context` | copilot_context.json |
 
 ---
 
@@ -635,3 +711,6 @@ This loop enables controlled architecture evolution:
 10. **Use `codegraph architect`** before large changes to understand system health.
 11. **Never bypass governance.** If `codegraph analyze` finds issues, fix them before merging.
 12. **Never guess dependencies.** Use `codegraph query` to understand the graph before adding imports.
+13. **Simulate before implementing.** Use `codegraph arch-simulate` to predict impact of architecture changes.
+14. **Use `codegraph lock`** after changes to verify boundary enforcement.
+15. **Use `codegraph drift`** to detect code vs architecture divergence.
