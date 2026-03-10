@@ -135,6 +135,42 @@
       "target": "codegraph/apply.py::apply_response",
       "added_by": "human",
       "added_at": "2026-03-10T18:27:30Z"
+    },
+    {
+      "id": "rule_016",
+      "type": "forbidden_call",
+      "reason": "Extractor (core_engine) must not call the analysis engine (governance). Prevents cross-layer dependency and caps extract_project fan-out below 25.",
+      "source": "codegraph/extractor.py::extract_project",
+      "target": "codegraph/analyzer.py::analyze",
+      "added_by": "human",
+      "added_at": "2026-03-10T18:44:10Z"
+    },
+    {
+      "id": "rule_017",
+      "type": "forbidden_call",
+      "reason": "Workflow builder (core_engine) must not call analysis engine (governance). Core engine builds graphs; governance analyzes them.",
+      "source": "codegraph/workflow.py::build_workflow",
+      "target": "codegraph/analyzer.py::analyze",
+      "added_by": "human",
+      "added_at": "2026-03-10T18:44:16Z"
+    },
+    {
+      "id": "rule_018",
+      "type": "forbidden_call",
+      "reason": "Delta computation must not trigger architecture analysis. run_delta has fan-out=24; coupling it to the advisor would create a governance\u00e2\u2020\u2019intelligence cycle risk.",
+      "source": "codegraph/delta.py::run_delta",
+      "target": "codegraph/architecture_advisor.py::advise_architecture",
+      "added_by": "human",
+      "added_at": "2026-03-10T18:44:22Z"
+    },
+    {
+      "id": "rule_019",
+      "type": "dependency_limit",
+      "reason": "apply_response currently has fan-out=28. Cap at 30 to prevent further growth of this governance orchestrator.",
+      "source": "codegraph/apply.py::apply_response",
+      "max_fan_out": 30,
+      "added_by": "human",
+      "added_at": "2026-03-10T18:44:58Z"
     }
   ]
 }

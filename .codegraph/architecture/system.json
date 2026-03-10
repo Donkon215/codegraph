@@ -456,22 +456,8 @@
     },
     {
       "name": "infrastructure",
-      "description": "Core infrastructure: storage, configuration, CLI, logging, error handling, git integration. Foundation layer that all other subsystems depend on.",
+      "description": "Core infrastructure: storage, configuration, logging, error handling, git integration. Foundation layer that all other subsystems depend on. Does NOT include the CLI entry point.",
       "components": [
-        {
-          "name": "cli",
-          "module": "codegraph/cli.py",
-          "functions": [
-            "main",
-            "build",
-            "analyze",
-            "tasks",
-            "apply",
-            "query",
-            "status"
-          ],
-          "description": "Click CLI entry point. Dispatches to all subsystem commands."
-        },
         {
           "name": "storage",
           "module": "codegraph/storage.py",
@@ -572,6 +558,26 @@
           "description": "Stores and retrieves architecture decisions, simulation recordings, and advisor advice findings."
         }
       ]
+    },
+    {
+      "name": "cli",
+      "description": "Top-level CLI orchestrator. Dispatches all user commands to appropriate subsystems via lazy imports. The only module permitted to depend on all other subsystems.",
+      "components": [
+        {
+          "name": "cli",
+          "module": "codegraph/cli.py",
+          "functions": [
+            "main",
+            "build",
+            "analyze",
+            "tasks",
+            "apply",
+            "query",
+            "status"
+          ],
+          "description": "Click CLI entry point. Dispatches to all subsystem commands via lazy imports inside command functions."
+        }
+      ]
     }
   ],
   "edges": [
@@ -634,6 +640,42 @@
     {
       "source": "architecture_memory",
       "target": "infrastructure"
+    },
+    {
+      "source": "models",
+      "target": "infrastructure"
+    },
+    {
+      "source": "cli",
+      "target": "core_engine"
+    },
+    {
+      "source": "cli",
+      "target": "models"
+    },
+    {
+      "source": "cli",
+      "target": "governance"
+    },
+    {
+      "source": "cli",
+      "target": "intelligence"
+    },
+    {
+      "source": "cli",
+      "target": "query"
+    },
+    {
+      "source": "cli",
+      "target": "semantics"
+    },
+    {
+      "source": "cli",
+      "target": "infrastructure"
+    },
+    {
+      "source": "cli",
+      "target": "architecture_memory"
     }
   ],
   "constraints": [

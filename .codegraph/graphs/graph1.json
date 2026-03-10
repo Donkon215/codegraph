@@ -3881,12 +3881,15 @@
     },
     {
       "id": "codegraph/cli",
-      "intent": "cLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest, delta, diff, validate, status, cas, semantic, plan, architecture, viewer, architect, enrich, compile, code-plan, lock, drift, copilot-context, and arch-simulate",
+      "intent": "cLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest, delta, diff, validate, status, cas, semantic, plan, architecture, viewer, architect, enrich, compile, code-plan, lock, drift, copilot-context, arch-simulate, arch-diff, arch-memory, archi-test, context, evolve, health, intent-apply, intent-missing, memory, metrics, multilevel, path, refactor, repair, simulate, subsystems, test-impact, version, and visualize",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 9,
-      "intent_timestamp": "2026-03-10T18:23:09Z",
-      "intent_body_hash": "a1b61"
+      "intent_version": 10,
+      "intent_timestamp": "2026-03-10T18:47:46Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "c6492"
     },
     {
       "id": "codegraph/cli.py::analyze_cmd",
