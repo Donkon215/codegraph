@@ -2357,6 +2357,141 @@
       "intent_body_hash": "333e3"
     },
     {
+      "id": "codegraph/architecture_advisor",
+      "intent": "architecture reasoning engine detecting smells and producing actionable improvement suggestions",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "1f147"
+    },
+    {
+      "id": "codegraph/architecture_advisor.py::ArchAdvice",
+      "intent": "dataclass for complete architecture advisor report with score smells and suggestions",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "e6b5e"
+    },
+    {
+      "id": "codegraph/architecture_advisor.py::ArchAdvice::format",
+      "intent": "format architecture advice as human-readable text report",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "bf795"
+    },
+    {
+      "id": "codegraph/architecture_advisor.py::ArchAdvice::save",
+      "intent": "save advice report to codegraph architecture directory as JSON",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "8a035"
+    },
+    {
+      "id": "codegraph/architecture_advisor.py::ArchAdvice::to_dict",
+      "intent": "serialize architecture advice to dictionary for JSON output",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "a587f"
+    },
+    {
+      "id": "codegraph/architecture_advisor.py::ArchSmell",
+      "intent": "dataclass representing single detected architecture smell with severity and suggestion",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "8767a"
+    },
+    {
+      "id": "codegraph/architecture_advisor.py::ArchSmell::to_dict",
+      "intent": "serialize architecture smell to dictionary omitting empty fields",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "63f95"
+    },
+    {
+      "id": "codegraph/architecture_advisor.py::ArchSuggestion",
+      "intent": "dataclass for concrete architecture improvement suggestion with priority",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "2fada"
+    },
+    {
+      "id": "codegraph/architecture_advisor.py::ArchSuggestion::to_dict",
+      "intent": "serialize architecture suggestion to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "c942b"
+    },
+    {
+      "id": "codegraph/architecture_advisor.py::_compute_grade",
+      "intent": "convert numeric score to letter grade A through F",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "0d645"
+    },
+    {
+      "id": "codegraph/architecture_advisor.py::_compute_max_depth",
+      "intent": "compute maximum dependency chain depth via BFS from root nodes",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "39b98"
+    },
+    {
+      "id": "codegraph/architecture_advisor.py::_detect_hidden_coupling",
+      "intent": "detect cross-layer coupling like support code calling private production APIs",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "a6fa5"
+    },
+    {
+      "id": "codegraph/architecture_advisor.py::advise_architecture",
+      "intent": "run full architecture analysis aggregating risk cycles subsystems into advice",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "2425a"
+    },
+    {
+      "id": "codegraph/architecture_advisor.py::enrich_workflow_with_intents",
+      "intent": "add intent annotations from graph1 to workflow edges for semantic enrichment",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "a0e9d"
+    },
+    {
+      "id": "codegraph/architecture_advisor.py::save_enriched_workflow",
+      "intent": "enrich workflow with intents and save to enriched_workflow.json",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "c2c36"
+    },
+    {
       "id": "codegraph/cas",
       "intent": "codegraph.cas — Content Addressed Store (CAS) graph module",
       "layer": 3,
@@ -2745,12 +2880,12 @@
     },
     {
       "id": "codegraph/cli",
-      "intent": "cLI entry point with commands for build analyze tasks apply delta query explain status validate diff CAS semantic intent-apply subsystem arch-health context simulator arch-diff path-query risk refactor plan-refactor agent-memory visualize architecture plan viewer",
+      "intent": "cLI entry point with commands for build analyze tasks apply delta query explain status validate diff CAS semantic intent-apply subsystem arch-health context simulator arch-diff path-query risk refactor plan-refactor agent-memory visualize architecture plan viewer architect enrich",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 5,
-      "intent_timestamp": "2026-03-10T10:53:12Z",
-      "intent_body_hash": "9f621"
+      "intent_version": 6,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "ea718"
     },
     {
       "id": "codegraph/cli.py::analyze_cmd",
@@ -2796,6 +2931,15 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "eb807"
+    },
+    {
+      "id": "codegraph/cli.py::architect_cmd",
+      "intent": "run architecture advisor detecting smells and suggesting improvements",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "139f7"
     },
     {
       "id": "codegraph/cli.py::architecture_cmd",
@@ -2886,6 +3030,15 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "befa5"
+    },
+    {
+      "id": "codegraph/cli.py::enrich_cmd",
+      "intent": "enrich workflow edges with intent annotations from graph1",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "4516f"
     },
     {
       "id": "codegraph/cli.py::explain_cmd",
@@ -13989,6 +14142,300 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-10T10:53:12Z",
       "intent_body_hash": "42bb7"
+    },
+    {
+      "id": "tests/test_architecture_advisor",
+      "intent": "test suite for architecture advisor engine and workflow enrichment",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "26186"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture",
+      "intent": "test class for advise_architecture smell detection and scoring",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "f67c3"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_cycle_detection",
+      "intent": "test advisor detects cyclic dependencies in graph",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "9113d"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_god_module",
+      "intent": "test advisor detects modules exceeding node threshold",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "69d2e"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_high_fan_in",
+      "intent": "test advisor detects nodes with excessive incoming dependencies",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "dcc5f"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_empty_graph",
+      "intent": "test advisor handles empty graph without errors",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "84ae3"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_no_smells_clean_graph",
+      "intent": "test advisor gives high score for clean graph",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "ffa25"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_score_reduces_with_issues",
+      "intent": "test advisor reduces score when issues are found",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "97d90"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestArchAdvice",
+      "intent": "test class for ArchAdvice serialization and formatting",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "9f6a7"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestArchAdvice::test_format",
+      "intent": "test advice format produces readable text with grade and counts",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "c4549"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestArchAdvice::test_save",
+      "intent": "test advice save creates JSON file in codegraph directory",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "00c82"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestArchAdvice::test_to_dict",
+      "intent": "test advice serialization to dictionary",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "d8178"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestArchSmell",
+      "intent": "test class for ArchSmell serialization",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "3055d"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestArchSmell::test_to_dict_full",
+      "intent": "test smell serialization with all fields populated",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "af21a"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestArchSmell::test_to_dict_minimal",
+      "intent": "test smell serialization with only required fields",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "9aaef"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestArchSuggestion",
+      "intent": "test class for ArchSuggestion serialization",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "b0135"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestArchSuggestion::test_to_dict",
+      "intent": "test suggestion serialization to dictionary",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "37c1b"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestComputeGrade",
+      "intent": "test class for grade computation from scores",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "6082e"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestComputeGrade::test_grades",
+      "intent": "test grade boundaries map correctly to letter grades",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "d36f8"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestComputeMaxDepth",
+      "intent": "test class for dependency depth computation",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "f2625"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestComputeMaxDepth::test_chain",
+      "intent": "test max depth computed correctly for linear chain",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "c0908"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestComputeMaxDepth::test_no_edges",
+      "intent": "test max depth is zero for empty graph",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "6c6a0"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestEnrichWorkflow",
+      "intent": "test class for workflow intent enrichment",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "91975"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_basic_enrichment",
+      "intent": "test intents attached to workflow edges from graph1",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "ea860"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_missing_intents",
+      "intent": "test enrichment handles missing intents gracefully",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "b14e7"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_partial_intents",
+      "intent": "test enrichment with only source intent available",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "35cf8"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow",
+      "intent": "test class for save_enriched_workflow file creation",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "13a62"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow::test_creates_file",
+      "intent": "test enriched workflow saves with intent data in JSON",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "8658d"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::_make_graph0",
+      "intent": "test helper creating Graph0 from node data tuples",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "efa23"
+    },
+    {
+      "id": "tests/test_architecture_advisor.py::_make_index",
+      "intent": "test helper creating mock IndexStore with callee and caller tables",
+      "layer": 4,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T12:31:20Z",
+      "intent_body_hash": "e3b0d"
     },
     {
       "id": "tests/test_cas",

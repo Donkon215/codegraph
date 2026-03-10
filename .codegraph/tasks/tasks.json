@@ -1,8 +1,92 @@
 {
   "cycle": 1,
-  "graph_version": 15,
-  "generated_at": "2026-03-10T10:53:40Z",
+  "graph_version": 16,
+  "generated_at": "2026-03-10T12:28:42Z",
   "tasks": [
+    {
+      "task_id": "orphan_nodes",
+      "priority": 3,
+      "nodes": [
+        {
+          "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestArchAdvice",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestArchSmell",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestArchSuggestion",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestComputeGrade",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestComputeMaxDepth",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestEnrichWorkflow",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        }
+      ]
+    },
+    {
+      "task_id": "stale_intent",
+      "priority": 4,
+      "nodes": [
+        {
+          "id": "codegraph/cli",
+          "file": "codegraph/cli.py",
+          "type": "module",
+          "suggested_fix": "Review and update intent to match current implementation",
+          "previous_intent": "cLI entry point with commands for build analyze tasks apply delta query explain status validate diff CAS semantic intent-apply subsystem arch-health context simulator arch-diff path-query risk refactor plan-refactor agent-memory visualize architecture plan viewer",
+          "body_hash_changed": true
+        }
+      ]
+    },
     {
       "task_id": "missing_test_coverage",
       "priority": 5,
@@ -504,6 +588,75 @@
           "body_hash_changed": false
         },
         {
+          "id": "codegraph/architecture_advisor.py::ArchAdvice::format",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::ArchAdvice::save",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/architecture_advisor.py::ArchAdvice::to_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::ArchAdvice::to_dict",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "called_by": [
+            "codegraph/architecture_advisor.py::ArchAdvice::save"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::ArchSmell::to_dict",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::ArchSuggestion::to_dict",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::_detect_hidden_coupling",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/architecture_advisor.py::ArchSmell",
+            "codegraph/index.py::IndexStore::_get_conn",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "called_by": [
+            "codegraph/architecture_advisor.py::advise_architecture"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/cli.py::arch_diff_cmd",
           "file": "codegraph/cli.py",
           "type": "function",
@@ -519,6 +672,24 @@
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "cLI command comparing architecture across graph versions or snapshots",
           "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::architect_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::format",
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_schema.py::SystemArchitecture::save",
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/extractor.py::load_graph0",
+            "codegraph/index.py::IndexStore"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
         },
         {
           "id": "codegraph/cli.py::architecture_cmd",
@@ -560,6 +731,21 @@
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "cLI command building LLM prompt context for given node IDs",
           "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::enrich_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/annotator.py::load_graph1",
+            "codegraph/architecture_advisor.py::save_enriched_workflow",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/workflow.py::load_workflow"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
         },
         {
           "id": "codegraph/cli.py::health_cmd",
@@ -868,6 +1054,586 @@
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "derive short subsystem name from module file path",
           "body_hash_changed": false
+        }
+      ]
+    },
+    {
+      "task_id": "intent_missing",
+      "priority": 5,
+      "nodes": [
+        {
+          "id": "codegraph/architecture_advisor",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::ArchAdvice",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "tests/test_architecture_advisor.py::TestArchAdvice::test_format",
+            "tests/test_architecture_advisor.py::TestArchAdvice::test_save",
+            "tests/test_architecture_advisor.py::TestArchAdvice::test_to_dict",
+            "tests/test_architecture_advisor.py::TestArchSuggestion::test_to_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::ArchAdvice::format",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::ArchAdvice::save",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/architecture_advisor.py::ArchAdvice::to_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::ArchAdvice::to_dict",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "called_by": [
+            "codegraph/architecture_advisor.py::ArchAdvice::save"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::ArchSmell",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/architecture_advisor.py::_detect_hidden_coupling",
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "tests/test_architecture_advisor.py::TestArchSmell::test_to_dict_full",
+            "tests/test_architecture_advisor.py::TestArchSmell::test_to_dict_minimal"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::ArchSmell::to_dict",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::ArchSuggestion",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/architecture_advisor.py::advise_architecture"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::ArchSuggestion::to_dict",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::_compute_grade",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "tests/test_architecture_advisor.py::TestComputeGrade::test_grades"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::_compute_max_depth",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/extractor.py::ScopeTree::pop",
+            "codegraph/filters.py::FilterPipeline::add",
+            "codegraph/index.py::IndexStore::_get_conn",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "called_by": [
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "tests/test_architecture_advisor.py::TestComputeMaxDepth::test_chain",
+            "tests/test_architecture_advisor.py::TestComputeMaxDepth::test_no_edges"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::_detect_hidden_coupling",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/architecture_advisor.py::ArchSmell",
+            "codegraph/index.py::IndexStore::_get_conn",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "called_by": [
+            "codegraph/architecture_advisor.py::advise_architecture"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::advise_architecture",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/architecture_advisor.py::ArchAdvice",
+            "codegraph/architecture_advisor.py::ArchSmell",
+            "codegraph/architecture_advisor.py::ArchSuggestion",
+            "codegraph/architecture_advisor.py::_compute_grade",
+            "codegraph/architecture_advisor.py::_compute_max_depth",
+            "codegraph/architecture_advisor.py::_detect_hidden_coupling",
+            "codegraph/index.py::IndexStore::_get_conn",
+            "codegraph/refactor.py::detect_cycles",
+            "codegraph/risk_metrics.py::compute_risk_metrics",
+            "codegraph/subsystem.py::detect_subsystems",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "called_by": [
+            "codegraph/cli.py::architect_cmd",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_cycle_detection",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_god_module",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_high_fan_in",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_empty_graph",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_no_smells_clean_graph",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_score_reduces_with_issues"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::enrich_workflow_with_intents",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/index.py::IndexStore::get_node",
+            "codegraph/models/workflow.py::Workflow",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "called_by": [
+            "codegraph/architecture_advisor.py::save_enriched_workflow",
+            "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_basic_enrichment",
+            "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_missing_intents",
+            "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_partial_intents"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::save_enriched_workflow",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/architecture_advisor.py::enrich_workflow_with_intents"
+          ],
+          "called_by": [
+            "codegraph/cli.py::enrich_cmd",
+            "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow::test_creates_file"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/cli.py::architect_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::format",
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/arch_schema.py::SystemArchitecture::save",
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/extractor.py::load_graph0",
+            "codegraph/index.py::IndexStore"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/cli.py::enrich_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/annotator.py::load_graph1",
+            "codegraph/architecture_advisor.py::save_enriched_workflow",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/workflow.py::load_workflow"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_cycle_detection",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "tests/test_architecture_advisor.py::_make_graph0",
+            "tests/test_architecture_advisor.py::_make_index"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_god_module",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "tests/test_architecture_advisor.py::_make_graph0",
+            "tests/test_architecture_advisor.py::_make_index"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_high_fan_in",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "tests/test_architecture_advisor.py::_make_graph0",
+            "tests/test_architecture_advisor.py::_make_index"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_empty_graph",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "tests/test_architecture_advisor.py::_make_graph0",
+            "tests/test_architecture_advisor.py::_make_index"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_no_smells_clean_graph",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "tests/test_architecture_advisor.py::_make_graph0",
+            "tests/test_architecture_advisor.py::_make_index"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_score_reduces_with_issues",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "codegraph/tasks.py::TaskHistory::append",
+            "tests/test_architecture_advisor.py::_make_graph0",
+            "tests/test_architecture_advisor.py::_make_index"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestArchAdvice",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestArchAdvice::test_format",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::format",
+            "codegraph/architecture_advisor.py::ArchAdvice"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestArchAdvice::test_save",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_schema.py::SystemArchitecture::save",
+            "codegraph/architecture_advisor.py::ArchAdvice"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestArchAdvice::test_to_dict",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/architecture_advisor.py::ArchAdvice"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestArchSmell",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestArchSmell::test_to_dict_full",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/architecture_advisor.py::ArchSmell"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestArchSmell::test_to_dict_minimal",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/architecture_advisor.py::ArchSmell"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestArchSuggestion",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestArchSuggestion::test_to_dict",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/architecture_advisor.py::ArchAdvice"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestComputeGrade",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestComputeGrade::test_grades",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/architecture_advisor.py::_compute_grade"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestComputeMaxDepth",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestComputeMaxDepth::test_chain",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/architecture_advisor.py::_compute_max_depth",
+            "tests/test_architecture_advisor.py::_make_index"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestComputeMaxDepth::test_no_edges",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/architecture_advisor.py::_compute_max_depth",
+            "tests/test_architecture_advisor.py::_make_index"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestEnrichWorkflow",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_basic_enrichment",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/architecture_advisor.py::enrich_workflow_with_intents",
+            "codegraph/models/graph1.py::Graph1",
+            "codegraph/models/graph1.py::Graph1Node",
+            "codegraph/models/workflow.py::Workflow",
+            "codegraph/models/workflow.py::WorkflowEdge"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_missing_intents",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/architecture_advisor.py::enrich_workflow_with_intents",
+            "codegraph/models/graph1.py::Graph1",
+            "codegraph/models/workflow.py::Workflow",
+            "codegraph/models/workflow.py::WorkflowEdge"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_partial_intents",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/architecture_advisor.py::enrich_workflow_with_intents",
+            "codegraph/models/graph1.py::Graph1",
+            "codegraph/models/graph1.py::Graph1Node",
+            "codegraph/models/workflow.py::Workflow",
+            "codegraph/models/workflow.py::WorkflowEdge"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow::test_creates_file",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get",
+            "codegraph/architecture_advisor.py::save_enriched_workflow",
+            "codegraph/models/graph1.py::Graph1",
+            "codegraph/models/graph1.py::Graph1Node",
+            "codegraph/models/workflow.py::Workflow",
+            "codegraph/models/workflow.py::WorkflowEdge"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::_make_graph0",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/models/graph0.py::Graph0",
+            "codegraph/models/graph0.py::Graph0Node"
+          ],
+          "called_by": [
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_cycle_detection",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_god_module",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_high_fan_in",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_empty_graph",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_no_smells_clean_graph",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_score_reduces_with_issues"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_architecture_advisor.py::_make_index",
+          "file": "tests/test_architecture_advisor.py",
+          "type": "function",
+          "called_by": [
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_cycle_detection",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_god_module",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_high_fan_in",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_empty_graph",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_no_smells_clean_graph",
+            "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_score_reduces_with_issues",
+            "tests/test_architecture_advisor.py::TestComputeMaxDepth::test_chain",
+            "tests/test_architecture_advisor.py::TestComputeMaxDepth::test_no_edges"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
         }
       ]
     }

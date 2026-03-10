@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-10T10:53:33Z",
+    "built_at": "2026-03-10T12:28:32Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -9,12 +9,12 @@
       "stdlib",
       "test_harness"
     ],
-    "edge_count": 3102,
-    "node_count": 1532,
-    "build_time_s": 5.49
+    "edge_count": 3207,
+    "node_count": 1569,
+    "build_time_s": 6.59
   },
   "format_version": 1,
-  "built_at": "2026-03-10T10:53:33Z",
+  "built_at": "2026-03-10T12:28:32Z",
   "level": "function",
   "edges": [
     {
@@ -2604,6 +2604,198 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/architecture_advisor.py::ArchAdvice::format",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::ArchAdvice::save",
+      "target": "codegraph/architecture_advisor.py::ArchAdvice::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::ArchAdvice::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::ArchSmell::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::ArchSuggestion::to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::_compute_max_depth",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::_compute_max_depth",
+      "target": "codegraph/extractor.py::ScopeTree::pop",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::_compute_max_depth",
+      "target": "codegraph/filters.py::FilterPipeline::add",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::_compute_max_depth",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::_compute_max_depth",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::_detect_hidden_coupling",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::_detect_hidden_coupling",
+      "target": "codegraph/architecture_advisor.py::ArchSmell",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::_detect_hidden_coupling",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::_detect_hidden_coupling",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/architecture_advisor.py::ArchAdvice",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/architecture_advisor.py::ArchSmell",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/architecture_advisor.py::ArchSuggestion",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/architecture_advisor.py::_compute_grade",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/architecture_advisor.py::_compute_max_depth",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/architecture_advisor.py::_detect_hidden_coupling",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/refactor.py::detect_cycles",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/risk_metrics.py::compute_risk_metrics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/subsystem.py::detect_subsystems",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::enrich_workflow_with_intents",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::enrich_workflow_with_intents",
+      "target": "codegraph/index.py::IndexStore::get_node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::enrich_workflow_with_intents",
+      "target": "codegraph/models/workflow.py::Workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::enrich_workflow_with_intents",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::save_enriched_workflow",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::save_enriched_workflow",
+      "target": "codegraph/architecture_advisor.py::enrich_workflow_with_intents",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/cas.py::CASCache::get",
       "target": "codegraph/analyzer.py::AnalysisCache::get",
       "edge_type": "call",
@@ -3246,6 +3438,60 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/cli.py::architect_cmd",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architect_cmd",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architect_cmd",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architect_cmd",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architect_cmd",
+      "target": "codegraph/architecture_advisor.py::advise_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architect_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architect_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architect_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::architect_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/cli.py::architecture_cmd",
       "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
       "edge_type": "call",
@@ -3710,6 +3956,42 @@
     {
       "source": "codegraph/cli.py::diff_cmd",
       "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::enrich_cmd",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::enrich_cmd",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::enrich_cmd",
+      "target": "codegraph/architecture_advisor.py::save_enriched_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::enrich_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::enrich_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::enrich_cmd",
+      "target": "codegraph/workflow.py::load_workflow",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -13622,6 +13904,354 @@
     {
       "source": "tests/test_arch_viewer.py::_wf",
       "target": "codegraph/models/workflow.py::WorkflowEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_cycle_detection",
+      "target": "codegraph/architecture_advisor.py::advise_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_cycle_detection",
+      "target": "tests/test_architecture_advisor.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_cycle_detection",
+      "target": "tests/test_architecture_advisor.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_god_module",
+      "target": "codegraph/architecture_advisor.py::advise_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_god_module",
+      "target": "tests/test_architecture_advisor.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_god_module",
+      "target": "tests/test_architecture_advisor.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_high_fan_in",
+      "target": "codegraph/architecture_advisor.py::advise_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_high_fan_in",
+      "target": "tests/test_architecture_advisor.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_high_fan_in",
+      "target": "tests/test_architecture_advisor.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_empty_graph",
+      "target": "codegraph/architecture_advisor.py::advise_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_empty_graph",
+      "target": "tests/test_architecture_advisor.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_empty_graph",
+      "target": "tests/test_architecture_advisor.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_no_smells_clean_graph",
+      "target": "codegraph/architecture_advisor.py::advise_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_no_smells_clean_graph",
+      "target": "tests/test_architecture_advisor.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_no_smells_clean_graph",
+      "target": "tests/test_architecture_advisor.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_score_reduces_with_issues",
+      "target": "codegraph/architecture_advisor.py::advise_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_score_reduces_with_issues",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_score_reduces_with_issues",
+      "target": "tests/test_architecture_advisor.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_score_reduces_with_issues",
+      "target": "tests/test_architecture_advisor.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestArchAdvice::test_format",
+      "target": "codegraph/agent_memory.py::AgentMemory::format",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestArchAdvice::test_format",
+      "target": "codegraph/architecture_advisor.py::ArchAdvice",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestArchAdvice::test_save",
+      "target": "codegraph/arch_schema.py::SystemArchitecture::save",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestArchAdvice::test_save",
+      "target": "codegraph/architecture_advisor.py::ArchAdvice",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestArchAdvice::test_to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestArchAdvice::test_to_dict",
+      "target": "codegraph/architecture_advisor.py::ArchAdvice",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestArchSmell::test_to_dict_full",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestArchSmell::test_to_dict_full",
+      "target": "codegraph/architecture_advisor.py::ArchSmell",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestArchSmell::test_to_dict_minimal",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestArchSmell::test_to_dict_minimal",
+      "target": "codegraph/architecture_advisor.py::ArchSmell",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestArchSuggestion::test_to_dict",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestArchSuggestion::test_to_dict",
+      "target": "codegraph/architecture_advisor.py::ArchAdvice",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestComputeGrade::test_grades",
+      "target": "codegraph/architecture_advisor.py::_compute_grade",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestComputeMaxDepth::test_chain",
+      "target": "codegraph/architecture_advisor.py::_compute_max_depth",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestComputeMaxDepth::test_chain",
+      "target": "tests/test_architecture_advisor.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestComputeMaxDepth::test_no_edges",
+      "target": "codegraph/architecture_advisor.py::_compute_max_depth",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestComputeMaxDepth::test_no_edges",
+      "target": "tests/test_architecture_advisor.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_basic_enrichment",
+      "target": "codegraph/architecture_advisor.py::enrich_workflow_with_intents",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_basic_enrichment",
+      "target": "codegraph/models/graph1.py::Graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_basic_enrichment",
+      "target": "codegraph/models/graph1.py::Graph1Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_basic_enrichment",
+      "target": "codegraph/models/workflow.py::Workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_basic_enrichment",
+      "target": "codegraph/models/workflow.py::WorkflowEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_missing_intents",
+      "target": "codegraph/architecture_advisor.py::enrich_workflow_with_intents",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_missing_intents",
+      "target": "codegraph/models/graph1.py::Graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_missing_intents",
+      "target": "codegraph/models/workflow.py::Workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_missing_intents",
+      "target": "codegraph/models/workflow.py::WorkflowEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_partial_intents",
+      "target": "codegraph/architecture_advisor.py::enrich_workflow_with_intents",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_partial_intents",
+      "target": "codegraph/models/graph1.py::Graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_partial_intents",
+      "target": "codegraph/models/graph1.py::Graph1Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_partial_intents",
+      "target": "codegraph/models/workflow.py::Workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_partial_intents",
+      "target": "codegraph/models/workflow.py::WorkflowEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow::test_creates_file",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow::test_creates_file",
+      "target": "codegraph/architecture_advisor.py::save_enriched_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow::test_creates_file",
+      "target": "codegraph/models/graph1.py::Graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow::test_creates_file",
+      "target": "codegraph/models/graph1.py::Graph1Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow::test_creates_file",
+      "target": "codegraph/models/workflow.py::Workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow::test_creates_file",
+      "target": "codegraph/models/workflow.py::WorkflowEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::_make_graph0",
+      "target": "codegraph/models/graph0.py::Graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_advisor.py::_make_graph0",
+      "target": "codegraph/models/graph0.py::Graph0Node",
       "edge_type": "call",
       "confidence": "static"
     },

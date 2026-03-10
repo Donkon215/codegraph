@@ -16690,5 +16690,101 @@
     "reason": "Test class entry point invoked by pytest runner",
     "timestamp": "2026-03-10T10:53:12Z",
     "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestAdviseArchitecture",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestArchAdvice",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestArchSmell",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestArchSuggestion",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestComputeGrade",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestComputeMaxDepth",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestEnrichWorkflow",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:12Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestAdviseArchitecture",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:20Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestArchAdvice",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:20Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestArchSmell",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:20Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestArchSuggestion",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:20Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestComputeGrade",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:20Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestComputeMaxDepth",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:20Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestEnrichWorkflow",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:20Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow",
+    "reason": "Test class entry point invoked by pytest runner",
+    "timestamp": "2026-03-10T12:31:20Z",
+    "target": null
   }
 ]

@@ -1010,11 +1010,11 @@
     ]
   },
   "codegraph/cli.py": {
-    "content_hash": "964a7f0ba088",
+    "content_hash": "79e48d55685a",
     "nodes": [
       {
         "id": "codegraph/cli",
-        "body_hash": "9f621",
+        "body_hash": "ea718",
         "file": "codegraph/cli.py",
         "type": "module",
         "line": 1
@@ -1445,6 +1445,20 @@
         "file": "codegraph/cli.py",
         "type": "function",
         "line": 2136
+      },
+      {
+        "id": "codegraph/cli.py::architect_cmd",
+        "body_hash": "139f7",
+        "file": "codegraph/cli.py",
+        "type": "function",
+        "line": 2178
+      },
+      {
+        "id": "codegraph/cli.py::enrich_cmd",
+        "body_hash": "4516f",
+        "file": "codegraph/cli.py",
+        "type": "function",
+        "line": 2219
       }
     ]
   },
@@ -16111,6 +16125,331 @@
         "file": "tests/test_arch_viewer.py",
         "type": "method",
         "line": 202
+      }
+    ]
+  },
+  "codegraph/architecture_advisor.py": {
+    "content_hash": "38790b359d82",
+    "nodes": [
+      {
+        "id": "codegraph/architecture_advisor",
+        "body_hash": "1f147",
+        "file": "codegraph/architecture_advisor.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/architecture_advisor.py::ArchSmell",
+        "body_hash": "8767a",
+        "file": "codegraph/architecture_advisor.py",
+        "type": "class",
+        "line": 36
+      },
+      {
+        "id": "codegraph/architecture_advisor.py::ArchSmell::to_dict",
+        "body_hash": "63f95",
+        "file": "codegraph/architecture_advisor.py",
+        "type": "method",
+        "line": 49
+      },
+      {
+        "id": "codegraph/architecture_advisor.py::ArchSuggestion",
+        "body_hash": "2fada",
+        "file": "codegraph/architecture_advisor.py",
+        "type": "class",
+        "line": 68
+      },
+      {
+        "id": "codegraph/architecture_advisor.py::ArchSuggestion::to_dict",
+        "body_hash": "c942b",
+        "file": "codegraph/architecture_advisor.py",
+        "type": "method",
+        "line": 78
+      },
+      {
+        "id": "codegraph/architecture_advisor.py::ArchAdvice",
+        "body_hash": "e6b5e",
+        "file": "codegraph/architecture_advisor.py",
+        "type": "class",
+        "line": 89
+      },
+      {
+        "id": "codegraph/architecture_advisor.py::ArchAdvice::to_dict",
+        "body_hash": "a587f",
+        "file": "codegraph/architecture_advisor.py",
+        "type": "method",
+        "line": 110
+      },
+      {
+        "id": "codegraph/architecture_advisor.py::ArchAdvice::save",
+        "body_hash": "8a035",
+        "file": "codegraph/architecture_advisor.py",
+        "type": "method",
+        "line": 131
+      },
+      {
+        "id": "codegraph/architecture_advisor.py::ArchAdvice::format",
+        "body_hash": "bf795",
+        "file": "codegraph/architecture_advisor.py",
+        "type": "method",
+        "line": 139
+      },
+      {
+        "id": "codegraph/architecture_advisor.py::_compute_grade",
+        "body_hash": "0d645",
+        "file": "codegraph/architecture_advisor.py",
+        "type": "function",
+        "line": 172
+      },
+      {
+        "id": "codegraph/architecture_advisor.py::advise_architecture",
+        "body_hash": "2425a",
+        "file": "codegraph/architecture_advisor.py",
+        "type": "function",
+        "line": 187
+      },
+      {
+        "id": "codegraph/architecture_advisor.py::_detect_hidden_coupling",
+        "body_hash": "a6fa5",
+        "file": "codegraph/architecture_advisor.py",
+        "type": "function",
+        "line": 400
+      },
+      {
+        "id": "codegraph/architecture_advisor.py::_compute_max_depth",
+        "body_hash": "39b98",
+        "file": "codegraph/architecture_advisor.py",
+        "type": "function",
+        "line": 438
+      },
+      {
+        "id": "codegraph/architecture_advisor.py::enrich_workflow_with_intents",
+        "body_hash": "a0e9d",
+        "file": "codegraph/architecture_advisor.py",
+        "type": "function",
+        "line": 484
+      },
+      {
+        "id": "codegraph/architecture_advisor.py::save_enriched_workflow",
+        "body_hash": "c2c36",
+        "file": "codegraph/architecture_advisor.py",
+        "type": "function",
+        "line": 524
+      }
+    ]
+  },
+  "tests/test_architecture_advisor.py": {
+    "content_hash": "4fae394f6263",
+    "nodes": [
+      {
+        "id": "tests/test_architecture_advisor",
+        "body_hash": "26186",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::_make_graph0",
+        "body_hash": "efa23",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "function",
+        "line": 30
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::_make_index",
+        "body_hash": "e3b0d",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "function",
+        "line": 39
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestArchSmell",
+        "body_hash": "3055d",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "class",
+        "line": 63
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestArchSmell::test_to_dict_minimal",
+        "body_hash": "9aaef",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 64
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestArchSmell::test_to_dict_full",
+        "body_hash": "af21a",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 72
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestArchSuggestion",
+        "body_hash": "b0135",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "class",
+        "line": 92
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestArchSuggestion::test_to_dict",
+        "body_hash": "37c1b",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 93
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestArchAdvice",
+        "body_hash": "9f6a7",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "class",
+        "line": 108
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestArchAdvice::test_to_dict",
+        "body_hash": "d8178",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 109
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestArchAdvice::test_format",
+        "body_hash": "c4549",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 116
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestArchAdvice::test_save",
+        "body_hash": "00c82",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 131
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestComputeGrade",
+        "body_hash": "6082e",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "class",
+        "line": 143
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestComputeGrade::test_grades",
+        "body_hash": "d36f8",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 144
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture",
+        "body_hash": "f67c3",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "class",
+        "line": 154
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_empty_graph",
+        "body_hash": "84ae3",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 155
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_god_module",
+        "body_hash": "69d2e",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 162
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_detects_high_fan_in",
+        "body_hash": "dcc5f",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 177
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_no_smells_clean_graph",
+        "body_hash": "ffa25",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 196
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_cycle_detection",
+        "body_hash": "9113d",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 209
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestAdviseArchitecture::test_score_reduces_with_issues",
+        "body_hash": "97d90",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 224
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestComputeMaxDepth",
+        "body_hash": "f2625",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "class",
+        "line": 243
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestComputeMaxDepth::test_no_edges",
+        "body_hash": "6c6a0",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 244
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestComputeMaxDepth::test_chain",
+        "body_hash": "c0908",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 248
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestEnrichWorkflow",
+        "body_hash": "91975",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "class",
+        "line": 258
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_basic_enrichment",
+        "body_hash": "ea860",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 259
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_missing_intents",
+        "body_hash": "b14e7",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 272
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestEnrichWorkflow::test_partial_intents",
+        "body_hash": "35cf8",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 282
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow",
+        "body_hash": "13a62",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "class",
+        "line": 297
+      },
+      {
+        "id": "tests/test_architecture_advisor.py::TestSaveEnrichedWorkflow::test_creates_file",
+        "body_hash": "8658d",
+        "file": "tests/test_architecture_advisor.py",
+        "type": "method",
+        "line": 298
       }
     ]
   }
