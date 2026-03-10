@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-10T12:28:32Z",
+    "built_at": "2026-03-10T12:31:39Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -11,10 +11,10 @@
     ],
     "edge_count": 3207,
     "node_count": 1569,
-    "build_time_s": 6.59
+    "build_time_s": 6.28
   },
   "format_version": 1,
-  "built_at": "2026-03-10T12:28:32Z",
+  "built_at": "2026-03-10T12:31:39Z",
   "level": "function",
   "edges": [
     {
