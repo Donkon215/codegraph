@@ -2160,3 +2160,75 @@ def viewer_cmd(ctx: click.Context, output_file: str | None) -> None:
             architecture=architecture, output_path=out_path,
         )
     click.echo(f"Dashboard generated: {result_path}")
+
+
+# ── Architecture Advisor ──────────────────────────────────────────────
+@main.command("architect")
+@click.option("--json", "json_output", is_flag=True,
+              help="Output advice as JSON.")
+@click.option("--save", is_flag=True,
+              help="Save advice to .codegraph/architecture/architecture_advice.json.")
+@click.option("--god-module-threshold", type=int, default=30,
+              help="Node count threshold for god module detection.")
+@click.option("--fan-in-threshold", type=int, default=20,
+              help="Fan-in threshold for high-coupling detection.")
+@click.option("--fan-out-threshold", type=int, default=15,
+              help="Fan-out threshold for high-coupling detection.")
+@click.pass_context
+def architect_cmd(
+    ctx: click.Context,
+    json_output: bool,
+    save: bool,
+    god_module_threshold: int,
+    fan_in_threshold: int,
+    fan_out_threshold: int,
+) -> None:
+    """Run architecture advisor — detect smells and suggest improvements."""
+    from codegraph.architecture_advisor import advise_architecture
+    from codegraph.extractor import load_graph0
+    from codegraph.index import IndexStore
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    graph0 = load_graph0(root)
+    with IndexStore(root) as index:
+        advice = advise_architecture(
+            graph0, index,
+            god_module_threshold=god_module_threshold,
+            fan_in_threshold=fan_in_threshold,
+            fan_out_threshold=fan_out_threshold,
+        )
+
+    if save:
+        path = advice.save(root)
+        click.echo(f"Advice saved: {path}")
+
+    if json_output:
+        click.echo(json.dumps(advice.to_dict(), indent=2))
+    else:
+        click.echo(advice.format())
+
+
+# ── Workflow Intent Enrichment ────────────────────────────────────────
+@main.command("enrich")
+@click.pass_context
+def enrich_cmd(ctx: click.Context) -> None:
+    """Enrich workflow edges with intent annotations from graph1."""
+    from codegraph.annotator import load_graph1
+    from codegraph.architecture_advisor import save_enriched_workflow
+    from codegraph.workflow import load_workflow
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    workflow = load_workflow(root)
+    graph1 = load_graph1(root)
+    path = save_enriched_workflow(workflow, graph1, root)
+    click.echo(f"Enriched workflow saved: {path}")
