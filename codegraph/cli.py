@@ -1997,3 +1997,166 @@ def arch_diff_cmd(ctx: click.Context, old_label: str | None,
         click.echo(_json.dumps(report.to_dict(), indent=2))
     else:
         click.echo(report.format())
+
+
+# ── Architecture Definition ───────────────────────────────────────────
+@main.command("architecture")
+@click.option("--init", "do_init", is_flag=True,
+              help="Create a template architecture definition.")
+@click.option("--validate", "do_validate", is_flag=True,
+              help="Validate architecture against actual code.")
+@click.option("--name", default="", help="Project name (for --init).")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def architecture_cmd(ctx: click.Context, do_init: bool, do_validate: bool,
+                     name: str, json_output: bool) -> None:
+    """Manage architecture definitions."""
+    import json as _json
+
+    from codegraph.arch_schema import SystemArchitecture, init_architecture
+    from codegraph.extractor import load_graph0
+    from codegraph.index import IndexStore
+    from codegraph.workflow import load_workflow
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    if do_init:
+        arch = init_architecture(root, name=name)
+        path = root / ".codegraph" / "architecture" / "system.json"
+        click.echo(f"Architecture template created: {path}")
+        if json_output:
+            click.echo(_json.dumps(arch.to_dict(), indent=2))
+        return
+
+    arch = SystemArchitecture.load(root)
+    if arch is None:
+        click.echo("No architecture defined. Use --init to create one.", err=True)
+        sys.exit(EXIT_ERROR)
+
+    if do_validate:
+        graph0 = load_graph0(root)
+        workflow = load_workflow(root)
+        with IndexStore(root) as index:
+            from codegraph.arch_planner import plan_architecture
+
+            plan = plan_architecture(arch, graph0, index)
+        click.echo(f"Architecture: {arch.name}")
+        click.echo(f"  Coverage: {plan.coverage.overall_coverage:.1%}")
+        click.echo(f"  Missing modules: {len(plan.missing_modules)}")
+        click.echo(f"  Missing functions: {len(plan.missing_functions)}")
+        click.echo(f"  Missing connections: {len(plan.missing_connections)}")
+        click.echo(f"  Constraint violations: {len(plan.constraint_violations)}")
+        if json_output:
+            click.echo(_json.dumps(plan.to_dict(), indent=2))
+        return
+
+    # Default: show architecture
+    if json_output:
+        click.echo(_json.dumps(arch.to_dict(), indent=2))
+    else:
+        click.echo(f"Architecture: {arch.name}")
+        if arch.description:
+            click.echo(f"  {arch.description}")
+        click.echo(f"  Subsystems: {len(arch.subsystems)}")
+        for s in arch.subsystems:
+            click.echo(f"    - {s.name} ({len(s.components)} components)")
+        click.echo(f"  Edges: {len(arch.edges)}")
+        click.echo(f"  Constraints: {len(arch.constraints)}")
+
+
+# ── Architecture Planner ──────────────────────────────────────────────
+@main.command("plan")
+@click.option("--output", "output_file", default=None,
+              help="Save generated tasks to a file.")
+@click.option("--agent-response", "agent_response", is_flag=True,
+              help="Output as agent_response.json format.")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def plan_cmd(ctx: click.Context, output_file: str | None,
+             agent_response: bool, json_output: bool) -> None:
+    """Generate tasks from architecture definition."""
+    import json as _json
+
+    from codegraph.arch_planner import plan_architecture, plan_to_agent_response
+    from codegraph.arch_schema import SystemArchitecture
+    from codegraph.extractor import load_graph0
+    from codegraph.index import IndexStore
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    arch = SystemArchitecture.load(root)
+    if arch is None:
+        click.echo("No architecture defined. Use 'codegraph architecture --init' first.",
+                    err=True)
+        sys.exit(EXIT_ERROR)
+
+    graph0 = load_graph0(root)
+    with IndexStore(root) as index:
+        plan = plan_architecture(arch, graph0, index)
+
+    if agent_response:
+        # Read graph version
+        graph0_path = root / ".codegraph" / "graphs" / "graph0.json"
+        graph_data = _json.loads(graph0_path.read_text(encoding="utf-8"))
+        gv = graph_data.get("graph_version", 0)
+        response = plan_to_agent_response(plan, gv)
+        output = _json.dumps(response, indent=2, ensure_ascii=False)
+        if output_file:
+            Path(output_file).write_text(output, encoding="utf-8")
+            click.echo(f"Agent response written to {output_file}")
+        else:
+            click.echo(output)
+        return
+
+    if output_file:
+        Path(output_file).write_text(
+            _json.dumps(plan.to_dict(), indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        click.echo(f"Plan written to {output_file}")
+    elif json_output:
+        click.echo(_json.dumps(plan.to_dict(), indent=2))
+    else:
+        click.echo(plan.format())
+
+
+# ── Architecture Viewer ───────────────────────────────────────────────
+@main.command("viewer")
+@click.option("--output", "output_file", default=None,
+              help="Custom output path for HTML file.")
+@click.pass_context
+def viewer_cmd(ctx: click.Context, output_file: str | None) -> None:
+    """Generate interactive HTML architecture dashboard."""
+    from codegraph.annotator import load_graph1
+    from codegraph.arch_schema import SystemArchitecture
+    from codegraph.arch_viewer import generate_viewer
+    from codegraph.extractor import load_graph0
+    from codegraph.index import IndexStore
+    from codegraph.workflow import load_workflow
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    graph0 = load_graph0(root)
+    graph1 = load_graph1(root)
+    workflow = load_workflow(root)
+    architecture = SystemArchitecture.load(root)
+
+    out_path = Path(output_file) if output_file else None
+    with IndexStore(root) as index:
+        result_path = generate_viewer(
+            root, graph0, graph1, workflow, index,
+            architecture=architecture, output_path=out_path,
+        )
+    click.echo(f"Dashboard generated: {result_path}")
