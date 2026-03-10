@@ -1,236 +1,8 @@
 {
   "cycle": 1,
-  "graph_version": 14,
-  "generated_at": "2026-03-10T10:46:54Z",
+  "graph_version": 15,
+  "generated_at": "2026-03-10T10:53:40Z",
   "tasks": [
-    {
-      "task_id": "orphan_nodes",
-      "priority": 3,
-      "nodes": [
-        {
-          "id": "codegraph/arch_planner.py::CoverageResult::edge_coverage",
-          "file": "codegraph/arch_planner.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_planner.py::CoverageResult::function_coverage",
-          "file": "codegraph/arch_planner.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_planner.py::CoverageResult::module_coverage",
-          "file": "codegraph/arch_planner.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_schema.py::SubsystemDef::component_names",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_schema.py::SubsystemDef::module_paths",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture::all_components",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture::all_modules",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture::subsystem_names",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/cli.py::plan_cmd[2]",
-          "file": "codegraph/cli.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestArchPlan",
-          "file": "tests/test_arch_planner.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestCoverageResult",
-          "file": "tests/test_arch_planner.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlanArchitecture",
-          "file": "tests/test_arch_planner.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlanToAgentResponse",
-          "file": "tests/test_arch_planner.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlannedTask",
-          "file": "tests/test_arch_planner.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchComponent",
-          "file": "tests/test_arch_schema.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchConstraint",
-          "file": "tests/test_arch_schema.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchEdge",
-          "file": "tests/test_arch_schema.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestInitArchitecture",
-          "file": "tests/test_arch_schema.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSubsystemDef",
-          "file": "tests/test_arch_schema.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSystemArchitecture",
-          "file": "tests/test_arch_schema.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildCodeData",
-          "file": "tests/test_arch_viewer.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildStats",
-          "file": "tests/test_arch_viewer.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildSubsystemData",
-          "file": "tests/test_arch_viewer.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildSystemData",
-          "file": "tests/test_arch_viewer.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestEscapeHtml",
-          "file": "tests/test_arch_viewer.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestGenerateViewer",
-          "file": "tests/test_arch_viewer.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        }
-      ]
-    },
-    {
-      "task_id": "stale_intent",
-      "priority": 4,
-      "nodes": [
-        {
-          "id": "codegraph/cli",
-          "file": "codegraph/cli.py",
-          "type": "module",
-          "suggested_fix": "Review and update intent to match current implementation",
-          "previous_intent": "click CLI entry point with commands for build, analyze, tasks, apply, delta, query, status, health, subsystems, context, simulate, arch-diff, and more",
-          "body_hash_changed": true
-        }
-      ]
-    },
     {
       "task_id": "missing_test_coverage",
       "priority": 5,
@@ -464,8 +236,9 @@
           "calls": [
             "codegraph/tasks.py::TaskHistory::append"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format architecture plan as human-readable text with coverage and task summary",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_planner.py::ArchPlan::to_dict",
@@ -474,32 +247,9 @@
           "calls": [
             "codegraph/agent_memory.py::AgentMemory::to_dict"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::CoverageResult::edge_coverage",
-          "file": "codegraph/arch_planner.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_planner.py::CoverageResult::function_coverage",
-          "file": "codegraph/arch_planner.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_planner.py::CoverageResult::module_coverage",
-          "file": "codegraph/arch_planner.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize architecture plan to dictionary for JSON serialization",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_planner.py::CoverageResult::overall_coverage",
@@ -508,8 +258,9 @@
           "calls": [
             "codegraph/tasks.py::TaskHistory::append"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "compute overall coverage as average of module function and edge coverage",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_planner.py::CoverageResult::to_dict",
@@ -518,8 +269,9 @@
           "calls": [
             "codegraph/agent_memory.py::AgentMemory::to_dict"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize coverage metrics to dictionary with rounded percentages",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_planner.py::PlannedTask::to_dict",
@@ -528,8 +280,9 @@
           "calls": [
             "codegraph/agent_memory.py::AgentMemory::to_dict"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize planned task to dictionary with only non-empty fields",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_planner.py::_check_arch_edges",
@@ -544,8 +297,9 @@
           "called_by": [
             "codegraph/arch_planner.py::plan_architecture"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "validate inter-subsystem and intra-subsystem edges against actual code",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_planner.py::_find_subsystem_for_module",
@@ -554,8 +308,9 @@
           "called_by": [
             "codegraph/arch_planner.py::plan_architecture"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "locate which subsystem a module belongs to in architecture definition",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_planner.py::_module_exists",
@@ -564,8 +319,9 @@
           "called_by": [
             "codegraph/arch_planner.py::plan_architecture"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "check if a module path exists in the actual codebase with flexibility",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_planner.py::_resolve_target_files",
@@ -574,8 +330,9 @@
           "called_by": [
             "codegraph/arch_planner.py::_check_arch_edges"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "map subsystem or component names to their actual file paths",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_schema.py::ArchComponent::from_dict",
@@ -585,8 +342,9 @@
             "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/arch_planner.py::PlannedTask::from_dict"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize architecture component from dictionary",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_schema.py::ArchComponent::to_dict",
@@ -595,8 +353,9 @@
           "calls": [
             "codegraph/agent_memory.py::AgentMemory::to_dict"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize architecture component to dictionary omitting empty fields",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_schema.py::ArchConstraint::from_dict",
@@ -606,8 +365,9 @@
             "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/arch_planner.py::PlannedTask::from_dict"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize constraint from dictionary with optional reason field",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_schema.py::ArchConstraint::to_dict",
@@ -616,8 +376,9 @@
           "calls": [
             "codegraph/agent_memory.py::AgentMemory::to_dict"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize constraint to dictionary with optional reason field",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_schema.py::ArchEdge::from_dict",
@@ -627,8 +388,9 @@
             "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/arch_planner.py::PlannedTask::from_dict"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "parse edge from list or object format supporting backward compatibility",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_schema.py::ArchEdge::to_dict",
@@ -637,8 +399,9 @@
           "calls": [
             "codegraph/agent_memory.py::AgentMemory::to_dict"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize edge to dictionary omitting default edge_type",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_schema.py::SubsystemDef::all_functions",
@@ -647,16 +410,9 @@
           "calls": [
             "codegraph/tasks.py::TaskHistory::append"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::SubsystemDef::component_names",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "extract all functions from subsystem components as fully qualified ids",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_schema.py::SubsystemDef::from_dict",
@@ -666,16 +422,9 @@
             "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/arch_planner.py::PlannedTask::from_dict"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::SubsystemDef::module_paths",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize subsystem with components and edges from dictionary",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_schema.py::SubsystemDef::to_dict",
@@ -684,24 +433,9 @@
           "calls": [
             "codegraph/agent_memory.py::AgentMemory::to_dict"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture::all_components",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture::all_modules",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize subsystem to dictionary omitting empty collections",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_schema.py::SystemArchitecture::from_dict",
@@ -711,16 +445,9 @@
             "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/arch_planner.py::PlannedTask::from_dict"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture::subsystem_names",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize complete system architecture from dictionary",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_schema.py::SystemArchitecture::to_dict",
@@ -732,8 +459,9 @@
           "called_by": [
             "codegraph/arch_schema.py::SystemArchitecture::save"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize complete system architecture to dictionary",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_schema.py::_matches_target",
@@ -742,8 +470,9 @@
           "called_by": [
             "codegraph/arch_schema.py::SystemArchitecture::get_constraint_violations"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "check if file path matches subsystem component or target name pattern",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_viewer.py::_build_system_data",
@@ -756,8 +485,9 @@
           "called_by": [
             "codegraph/arch_viewer.py::generate_viewer"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "build system-level graph with subsystems and inter-subsystem edges",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_viewer.py::_render_html",
@@ -769,8 +499,9 @@
           "called_by": [
             "codegraph/arch_viewer.py::generate_viewer"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "render complete HTML dashboard with embedded Cytoscape graph visualization",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/cli.py::arch_diff_cmd",
@@ -805,8 +536,9 @@
             "codegraph/index.py::IndexStore",
             "codegraph/workflow.py::load_workflow"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "manage architecture definitions init validate and display system architecture",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/cli.py::context_cmd",
@@ -847,14 +579,6 @@
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "cLI command computing architecture health score and grade",
           "body_hash_changed": false
-        },
-        {
-          "id": "codegraph/cli.py::plan_cmd[2]",
-          "file": "codegraph/cli.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/cli.py::simulate_cmd",
@@ -905,8 +629,9 @@
             "codegraph/index.py::IndexStore",
             "codegraph/workflow.py::load_workflow"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "generate interactive HTML architecture dashboard visualization",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/config.py::CodegraphConfig::from_dict",
@@ -1143,1761 +868,6 @@
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "derive short subsystem name from module file path",
           "body_hash_changed": false
-        }
-      ]
-    },
-    {
-      "task_id": "intent_missing",
-      "priority": 5,
-      "nodes": [
-        {
-          "id": "codegraph/arch_planner",
-          "file": "codegraph/arch_planner.py",
-          "type": "module",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::ArchPlan",
-          "file": "codegraph/arch_planner.py",
-          "type": "class",
-          "called_by": [
-            "codegraph/arch_planner.py::plan_architecture",
-            "tests/test_arch_planner.py::TestArchPlan::test_empty_plan",
-            "tests/test_arch_planner.py::TestArchPlan::test_format",
-            "tests/test_arch_planner.py::TestPlanToAgentResponse::test_basic_conversion"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::ArchPlan::format",
-          "file": "codegraph/arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::ArchPlan::to_dict",
-          "file": "codegraph/arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::CoverageResult",
-          "file": "codegraph/arch_planner.py",
-          "type": "class",
-          "called_by": [
-            "tests/test_arch_planner.py::TestCoverageResult::test_empty_is_100_percent",
-            "tests/test_arch_planner.py::TestCoverageResult::test_overall_average",
-            "tests/test_arch_planner.py::TestCoverageResult::test_partial_coverage",
-            "tests/test_arch_planner.py::TestCoverageResult::test_to_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::CoverageResult::edge_coverage",
-          "file": "codegraph/arch_planner.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_planner.py::CoverageResult::function_coverage",
-          "file": "codegraph/arch_planner.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_planner.py::CoverageResult::module_coverage",
-          "file": "codegraph/arch_planner.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_planner.py::CoverageResult::overall_coverage",
-          "file": "codegraph/arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::CoverageResult::to_dict",
-          "file": "codegraph/arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::PlannedTask",
-          "file": "codegraph/arch_planner.py",
-          "type": "class",
-          "called_by": [
-            "codegraph/arch_planner.py::_check_arch_edges",
-            "codegraph/arch_planner.py::plan_architecture",
-            "tests/test_arch_planner.py::TestArchPlan::test_format",
-            "tests/test_arch_planner.py::TestPlanToAgentResponse::test_basic_conversion",
-            "tests/test_arch_planner.py::TestPlannedTask::test_to_dict_full",
-            "tests/test_arch_planner.py::TestPlannedTask::test_to_dict_minimal"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::PlannedTask::from_dict",
-          "file": "codegraph/arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
-          "called_by": [
-            "codegraph/annotator.py::load_intent_file",
-            "codegraph/arch_schema.py::ArchComponent::from_dict",
-            "codegraph/arch_schema.py::ArchConstraint::from_dict",
-            "codegraph/arch_schema.py::ArchEdge::from_dict",
-            "codegraph/arch_schema.py::SubsystemDef::from_dict",
-            "codegraph/arch_schema.py::SystemArchitecture::from_dict",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/config.py::load_config",
-            "codegraph/extractor.py::extract_project",
-            "codegraph/models/agent_response.py::AgentResponse::from_json",
-            "codegraph/models/factories.py::make_task",
-            "codegraph/models/graph0.py::Graph0::from_json",
-            "codegraph/models/graph1.py::Graph1::from_json",
-            "codegraph/models/graph2.py::DataFlowItem::from_dict",
-            "codegraph/models/graph2.py::DataFlowSummary::from_dict",
-            "codegraph/models/graph2.py::Graph2::from_json",
-            "codegraph/models/graph2.py::Graph2Node::from_dict",
-            "codegraph/models/graph2.py::Guard::from_dict",
-            "codegraph/models/graph2.py::SemanticAction::from_dict",
-            "codegraph/models/graph2.py::SideEffect::from_dict",
-            "codegraph/models/suggested_workflow.py::SuggestedWorkflow::from_json",
-            "codegraph/models/tasks.py::PolicyViolation::from_dict",
-            "codegraph/models/tasks.py::TaskBatch::from_json",
-            "codegraph/models/tasks.py::TaskItem::from_dict",
-            "codegraph/models/tasks.py::TaskNode::from_dict",
-            "codegraph/models/workflow.py::Workflow::from_json",
-            "codegraph/suggest.py::import_rules_template",
-            "codegraph/workflow.py::load_import_graph",
-            "tests/test_arch_planner.py::TestPlannedTask::test_from_dict",
-            "tests/test_arch_schema.py::TestArchComponent::test_from_dict",
-            "tests/test_arch_schema.py::TestArchComponent::test_roundtrip",
-            "tests/test_arch_schema.py::TestArchConstraint::test_from_dict",
-            "tests/test_arch_schema.py::TestArchConstraint::test_from_dict_no_reason",
-            "tests/test_arch_schema.py::TestArchEdge::test_from_dict_list",
-            "tests/test_arch_schema.py::TestArchEdge::test_from_dict_object",
-            "tests/test_arch_schema.py::TestSubsystemDef::test_from_dict",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip",
-            "tests/test_graph2.py::TestDataFlow::test_item_roundtrip",
-            "tests/test_graph2.py::TestDataFlow::test_summary_roundtrip",
-            "tests/test_graph2.py::TestGraph2Node::test_roundtrip_dict",
-            "tests/test_graph2.py::TestGuard::test_roundtrip_dict",
-            "tests/test_graph2.py::TestSemanticAction::test_roundtrip_dict",
-            "tests/test_graph2.py::TestSideEffect::test_roundtrip_dict",
-            "tests/test_models.py::TestGraph0Node::test_serialization_roundtrip",
-            "tests/test_suggest.py::TestRuleCreation::test_serialization_roundtrip",
-            "tests/test_workflow.py::TestEdgeBuilding::test_edge_serialization"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::PlannedTask::to_dict",
-          "file": "codegraph/arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::_check_arch_edges",
-          "file": "codegraph/arch_planner.py",
-          "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_planner.py::PlannedTask",
-            "codegraph/arch_planner.py::_resolve_target_files",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
-          "called_by": [
-            "codegraph/arch_planner.py::plan_architecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::_find_subsystem_for_module",
-          "file": "codegraph/arch_planner.py",
-          "type": "function",
-          "called_by": [
-            "codegraph/arch_planner.py::plan_architecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::_module_exists",
-          "file": "codegraph/arch_planner.py",
-          "type": "function",
-          "called_by": [
-            "codegraph/arch_planner.py::plan_architecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::_resolve_target_files",
-          "file": "codegraph/arch_planner.py",
-          "type": "function",
-          "called_by": [
-            "codegraph/arch_planner.py::_check_arch_edges"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::plan_architecture",
-          "file": "codegraph/arch_planner.py",
-          "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_planner.py::ArchPlan",
-            "codegraph/arch_planner.py::PlannedTask",
-            "codegraph/arch_planner.py::_check_arch_edges",
-            "codegraph/arch_planner.py::_find_subsystem_for_module",
-            "codegraph/arch_planner.py::_module_exists",
-            "codegraph/arch_schema.py::SystemArchitecture::get_constraint_violations",
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/index.py::IndexStore::_get_conn",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
-          "called_by": [
-            "codegraph/cli.py::architecture_cmd",
-            "codegraph/cli.py::plan_cmd",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_planner.py::plan_to_agent_response",
-          "file": "codegraph/arch_planner.py",
-          "type": "function",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
-          "called_by": [
-            "codegraph/cli.py::plan_cmd",
-            "tests/test_arch_planner.py::TestPlanToAgentResponse::test_basic_conversion"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema",
-          "file": "codegraph/arch_schema.py",
-          "type": "module",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::ArchComponent",
-          "file": "codegraph/arch_schema.py",
-          "type": "class",
-          "called_by": [
-            "codegraph/arch_schema.py::init_architecture",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority",
-            "tests/test_arch_schema.py::TestArchComponent::test_roundtrip",
-            "tests/test_arch_schema.py::TestArchComponent::test_to_dict_full",
-            "tests/test_arch_schema.py::TestArchComponent::test_to_dict_minimal",
-            "tests/test_arch_schema.py::TestSubsystemDef::test_all_functions",
-            "tests/test_arch_schema.py::TestSubsystemDef::test_component_names",
-            "tests/test_arch_schema.py::TestSubsystemDef::test_module_paths",
-            "tests/test_arch_schema.py::TestSubsystemDef::test_with_components",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_all_components",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_all_modules",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_constraint_violations",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::ArchComponent::from_dict",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::ArchComponent::to_dict",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::ArchConstraint",
-          "file": "codegraph/arch_schema.py",
-          "type": "class",
-          "called_by": [
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority",
-            "tests/test_arch_schema.py::TestArchConstraint::test_to_dict",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_constraint_violations",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_no_constraint_violations"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::ArchConstraint::from_dict",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::ArchConstraint::to_dict",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::ArchEdge",
-          "file": "codegraph/arch_schema.py",
-          "type": "class",
-          "called_by": [
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
-            "tests/test_arch_schema.py::TestArchEdge::test_to_dict_custom_type",
-            "tests/test_arch_schema.py::TestArchEdge::test_to_dict_default_type",
-            "tests/test_arch_schema.py::TestSubsystemDef::test_with_components",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::ArchEdge::from_dict",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::ArchEdge::to_dict",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::SubsystemDef",
-          "file": "codegraph/arch_schema.py",
-          "type": "class",
-          "called_by": [
-            "codegraph/arch_schema.py::init_architecture",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority",
-            "tests/test_arch_schema.py::TestSubsystemDef::test_all_functions",
-            "tests/test_arch_schema.py::TestSubsystemDef::test_component_names",
-            "tests/test_arch_schema.py::TestSubsystemDef::test_module_paths",
-            "tests/test_arch_schema.py::TestSubsystemDef::test_with_components",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_all_components",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_all_modules",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_constraint_violations",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_get_subsystem",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_subsystem_names",
-            "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
-            "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
-            "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::SubsystemDef::all_functions",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::SubsystemDef::component_names",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_schema.py::SubsystemDef::from_dict",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::SubsystemDef::module_paths",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_schema.py::SubsystemDef::to_dict",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture",
-          "file": "codegraph/arch_schema.py",
-          "type": "class",
-          "called_by": [
-            "codegraph/arch_schema.py::init_architecture",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority",
-            "tests/test_arch_schema.py::TestSubsystemDef::test_empty",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_all_components",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_all_modules",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_constraint_violations",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_empty",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_get_subsystem",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_no_constraint_violations",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_save_and_load",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_subsystem_names",
-            "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
-            "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
-            "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture::all_components",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture::all_modules",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture::from_dict",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture::get_constraint_violations",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_schema.py::_matches_target",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
-          "called_by": [
-            "codegraph/arch_planner.py::plan_architecture",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_constraint_violations",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_no_constraint_violations"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "called_by": [
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_get_subsystem"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture::load",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
-          ],
-          "called_by": [
-            "codegraph/cli.py::architecture_cmd",
-            "codegraph/cli.py::plan_cmd",
-            "codegraph/cli.py::viewer_cmd",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_load_missing",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_save_and_load"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture::save",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::SystemArchitecture::to_dict"
-          ],
-          "called_by": [
-            "codegraph/arch_schema.py::init_architecture",
-            "codegraph/extractor.py::extract_project",
-            "tests/test_arch_schema.py::TestSystemArchitecture::test_save_and_load"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture::subsystem_names",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_schema.py::SystemArchitecture::to_dict",
-          "file": "codegraph/arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
-          "called_by": [
-            "codegraph/arch_schema.py::SystemArchitecture::save"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::_matches_target",
-          "file": "codegraph/arch_schema.py",
-          "type": "function",
-          "called_by": [
-            "codegraph/arch_schema.py::SystemArchitecture::get_constraint_violations"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_schema.py::init_architecture",
-          "file": "codegraph/arch_schema.py",
-          "type": "function",
-          "calls": [
-            "codegraph/arch_schema.py::ArchComponent",
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture",
-            "codegraph/arch_schema.py::SystemArchitecture::save"
-          ],
-          "called_by": [
-            "codegraph/cli.py::architecture_cmd",
-            "tests/test_arch_schema.py::TestInitArchitecture::test_creates_template"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_viewer",
-          "file": "codegraph/arch_viewer.py",
-          "type": "module",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_viewer.py::_build_code_data",
-          "file": "codegraph/arch_viewer.py",
-          "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
-          "called_by": [
-            "codegraph/arch_viewer.py::generate_viewer",
-            "tests/test_arch_viewer.py::TestBuildCodeData::test_basic",
-            "tests/test_arch_viewer.py::TestBuildCodeData::test_intent_attached"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_viewer.py::_build_stats",
-          "file": "codegraph/arch_viewer.py",
-          "type": "function",
-          "called_by": [
-            "codegraph/arch_viewer.py::generate_viewer",
-            "tests/test_arch_viewer.py::TestBuildStats::test_basic_stats"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_viewer.py::_build_subsystem_data",
-          "file": "codegraph/arch_viewer.py",
-          "type": "function",
-          "calls": [
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
-          "called_by": [
-            "codegraph/arch_viewer.py::generate_viewer",
-            "tests/test_arch_viewer.py::TestBuildSubsystemData::test_auto_detection",
-            "tests/test_arch_viewer.py::TestBuildSystemData::test_auto_detection"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_viewer.py::_build_system_data",
-          "file": "codegraph/arch_viewer.py",
-          "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
-          "called_by": [
-            "codegraph/arch_viewer.py::generate_viewer"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_viewer.py::_escape_html",
-          "file": "codegraph/arch_viewer.py",
-          "type": "function",
-          "called_by": [
-            "codegraph/arch_viewer.py::_render_html",
-            "tests/test_arch_viewer.py::TestEscapeHtml::test_escapes"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_viewer.py::_render_html",
-          "file": "codegraph/arch_viewer.py",
-          "type": "function",
-          "calls": [
-            "codegraph/arch_viewer.py::_escape_html"
-          ],
-          "called_by": [
-            "codegraph/arch_viewer.py::generate_viewer"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_viewer.py::generate_viewer",
-          "file": "codegraph/arch_viewer.py",
-          "type": "function",
-          "calls": [
-            "codegraph/arch_viewer.py::_build_code_data",
-            "codegraph/arch_viewer.py::_build_stats",
-            "codegraph/arch_viewer.py::_build_subsystem_data",
-            "codegraph/arch_viewer.py::_build_system_data",
-            "codegraph/arch_viewer.py::_render_html"
-          ],
-          "called_by": [
-            "codegraph/cli.py::viewer_cmd",
-            "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
-            "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
-            "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_custom_output_path",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_generates_html_file",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/cli.py::architecture_cmd",
-          "file": "codegraph/cli.py",
-          "type": "function",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_planner.py::plan_architecture",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::init_architecture",
-            "codegraph/cli.py::handle_error",
-            "codegraph/config.py::find_project_root",
-            "codegraph/extractor.py::load_graph0",
-            "codegraph/index.py::IndexStore",
-            "codegraph/workflow.py::load_workflow"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/cli.py::plan_cmd[2]",
-          "file": "codegraph/cli.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/cli.py::viewer_cmd",
-          "file": "codegraph/cli.py",
-          "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/annotator.py::load_graph1",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_viewer.py::generate_viewer",
-            "codegraph/cli.py::handle_error",
-            "codegraph/config.py::find_project_root",
-            "codegraph/extractor.py::load_graph0",
-            "codegraph/index.py::IndexStore",
-            "codegraph/workflow.py::load_workflow"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner",
-          "file": "tests/test_arch_planner.py",
-          "type": "module",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestArchPlan",
-          "file": "tests/test_arch_planner.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestArchPlan::test_empty_plan",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_planner.py::ArchPlan"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestArchPlan::test_format",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/arch_planner.py::ArchPlan",
-            "codegraph/arch_planner.py::PlannedTask"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestCoverageResult",
-          "file": "tests/test_arch_planner.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestCoverageResult::test_empty_is_100_percent",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::CoverageResult"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestCoverageResult::test_overall_average",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::CoverageResult"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestCoverageResult::test_partial_coverage",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::CoverageResult"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestCoverageResult::test_to_dict",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_planner.py::CoverageResult"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlanArchitecture",
-          "file": "tests/test_arch_planner.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::plan_architecture",
-            "codegraph/arch_schema.py::ArchComponent",
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture",
-            "tests/test_arch_planner.py::_make_graph0",
-            "tests/test_arch_planner.py::_make_index"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::plan_architecture",
-            "codegraph/arch_schema.py::ArchComponent",
-            "codegraph/arch_schema.py::ArchConstraint",
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture",
-            "tests/test_arch_planner.py::_make_graph0",
-            "tests/test_arch_planner.py::_make_index"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::plan_architecture",
-            "codegraph/arch_schema.py::ArchComponent",
-            "codegraph/arch_schema.py::ArchEdge",
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture",
-            "tests/test_arch_planner.py::_make_graph0",
-            "tests/test_arch_planner.py::_make_index"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::plan_architecture",
-            "codegraph/arch_schema.py::ArchComponent",
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture",
-            "tests/test_arch_planner.py::_make_graph0",
-            "tests/test_arch_planner.py::_make_index"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::plan_architecture",
-            "codegraph/arch_schema.py::ArchComponent",
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture",
-            "tests/test_arch_planner.py::_make_graph0",
-            "tests/test_arch_planner.py::_make_index"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::plan_architecture",
-            "codegraph/arch_schema.py::ArchComponent",
-            "codegraph/arch_schema.py::ArchConstraint",
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture",
-            "tests/test_arch_planner.py::_make_graph0",
-            "tests/test_arch_planner.py::_make_index"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlanToAgentResponse",
-          "file": "tests/test_arch_planner.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlanToAgentResponse::test_basic_conversion",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::ArchPlan",
-            "codegraph/arch_planner.py::PlannedTask",
-            "codegraph/arch_planner.py::plan_to_agent_response"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlannedTask",
-          "file": "tests/test_arch_planner.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlannedTask::test_from_dict",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlannedTask::test_to_dict_full",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_planner.py::PlannedTask"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::TestPlannedTask::test_to_dict_minimal",
-          "file": "tests/test_arch_planner.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_planner.py::PlannedTask"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::_make_graph0",
-          "file": "tests/test_arch_planner.py",
-          "type": "function",
-          "calls": [
-            "codegraph/models/graph0.py::Graph0",
-            "codegraph/models/graph0.py::Graph0Node"
-          ],
-          "called_by": [
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_planner.py::_make_index",
-          "file": "tests/test_arch_planner.py",
-          "type": "function",
-          "called_by": [
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_all_existing",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_constraint_violation",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_edge",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_function",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_missing_module",
-            "tests/test_arch_planner.py::TestPlanArchitecture::test_tasks_sorted_by_priority"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema",
-          "file": "tests/test_arch_schema.py",
-          "type": "module",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchComponent",
-          "file": "tests/test_arch_schema.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchComponent::test_from_dict",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchComponent::test_roundtrip",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_planner.py::PlannedTask::from_dict",
-            "codegraph/arch_schema.py::ArchComponent"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchComponent::test_to_dict_full",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_schema.py::ArchComponent"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchComponent::test_to_dict_minimal",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_schema.py::ArchComponent"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchConstraint",
-          "file": "tests/test_arch_schema.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict_no_reason",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchConstraint::test_to_dict",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_schema.py::ArchConstraint"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchEdge",
-          "file": "tests/test_arch_schema.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_list",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_object",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchEdge::test_to_dict_custom_type",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_schema.py::ArchEdge"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestArchEdge::test_to_dict_default_type",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_schema.py::ArchEdge"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestInitArchitecture",
-          "file": "tests/test_arch_schema.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestInitArchitecture::test_creates_template",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::init_architecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSubsystemDef",
-          "file": "tests/test_arch_schema.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSubsystemDef::test_all_functions",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::ArchComponent",
-            "codegraph/arch_schema.py::SubsystemDef"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSubsystemDef::test_component_names",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::ArchComponent",
-            "codegraph/arch_schema.py::SubsystemDef"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSubsystemDef::test_empty",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_schema.py::SystemArchitecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSubsystemDef::test_from_dict",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_planner.py::PlannedTask::from_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSubsystemDef::test_module_paths",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::ArchComponent",
-            "codegraph/arch_schema.py::SubsystemDef"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSubsystemDef::test_with_components",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_schema.py::ArchComponent",
-            "codegraph/arch_schema.py::ArchEdge",
-            "codegraph/arch_schema.py::SubsystemDef"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSystemArchitecture",
-          "file": "tests/test_arch_schema.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_all_components",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::ArchComponent",
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_all_modules",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::ArchComponent",
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_constraint_violations",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::ArchComponent",
-            "codegraph/arch_schema.py::ArchConstraint",
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture",
-            "codegraph/arch_schema.py::SystemArchitecture::get_constraint_violations"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_empty",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_schema.py::SystemArchitecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_full_roundtrip",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_planner.py::PlannedTask::from_dict",
-            "codegraph/arch_schema.py::ArchComponent",
-            "codegraph/arch_schema.py::ArchConstraint",
-            "codegraph/arch_schema.py::ArchEdge",
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_get_subsystem",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture",
-            "codegraph/arch_schema.py::SystemArchitecture::get_subsystem"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_load_missing",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::SystemArchitecture::load"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_no_constraint_violations",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::ArchConstraint",
-            "codegraph/arch_schema.py::SystemArchitecture",
-            "codegraph/arch_schema.py::SystemArchitecture::get_constraint_violations"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_save_and_load",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::SystemArchitecture",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_subsystem_names",
-          "file": "tests/test_arch_schema.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer",
-          "file": "tests/test_arch_viewer.py",
-          "type": "module",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildCodeData",
-          "file": "tests/test_arch_viewer.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildCodeData::test_basic",
-          "file": "tests/test_arch_viewer.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_viewer.py::_build_code_data",
-            "tests/test_arch_viewer.py::_g0",
-            "tests/test_arch_viewer.py::_g1",
-            "tests/test_arch_viewer.py::_wf"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildCodeData::test_intent_attached",
-          "file": "tests/test_arch_viewer.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_viewer.py::_build_code_data",
-            "tests/test_arch_viewer.py::_g0",
-            "tests/test_arch_viewer.py::_g1",
-            "tests/test_arch_viewer.py::_wf"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildStats",
-          "file": "tests/test_arch_viewer.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildStats::test_basic_stats",
-          "file": "tests/test_arch_viewer.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_viewer.py::_build_stats",
-            "tests/test_arch_viewer.py::_g0",
-            "tests/test_arch_viewer.py::_wf"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
-          "file": "tests/test_arch_viewer.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture",
-            "codegraph/arch_viewer.py::generate_viewer",
-            "tests/test_arch_viewer.py::_g0",
-            "tests/test_arch_viewer.py::_g1",
-            "tests/test_arch_viewer.py::_make_mock_index",
-            "tests/test_arch_viewer.py::_wf"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildSubsystemData",
-          "file": "tests/test_arch_viewer.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_auto_detection",
-          "file": "tests/test_arch_viewer.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_viewer.py::_build_subsystem_data",
-            "tests/test_arch_viewer.py::_g0",
-            "tests/test_arch_viewer.py::_make_mock_index"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
-          "file": "tests/test_arch_viewer.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture",
-            "codegraph/arch_viewer.py::generate_viewer",
-            "tests/test_arch_viewer.py::_g0",
-            "tests/test_arch_viewer.py::_g1",
-            "tests/test_arch_viewer.py::_make_mock_index",
-            "tests/test_arch_viewer.py::_wf"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildSystemData",
-          "file": "tests/test_arch_viewer.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildSystemData::test_auto_detection",
-          "file": "tests/test_arch_viewer.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_viewer.py::_build_subsystem_data",
-            "tests/test_arch_viewer.py::_g0",
-            "tests/test_arch_viewer.py::_make_mock_index"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
-          "file": "tests/test_arch_viewer.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture",
-            "codegraph/arch_viewer.py::generate_viewer",
-            "tests/test_arch_viewer.py::_g0",
-            "tests/test_arch_viewer.py::_g1",
-            "tests/test_arch_viewer.py::_make_mock_index",
-            "tests/test_arch_viewer.py::_wf"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestEscapeHtml",
-          "file": "tests/test_arch_viewer.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestEscapeHtml::test_escapes",
-          "file": "tests/test_arch_viewer.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_viewer.py::_escape_html"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestGenerateViewer",
-          "file": "tests/test_arch_viewer.py",
-          "type": "class",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestGenerateViewer::test_custom_output_path",
-          "file": "tests/test_arch_viewer.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_viewer.py::generate_viewer",
-            "tests/test_arch_viewer.py::_g0",
-            "tests/test_arch_viewer.py::_g1",
-            "tests/test_arch_viewer.py::_make_mock_index",
-            "tests/test_arch_viewer.py::_wf"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestGenerateViewer::test_generates_html_file",
-          "file": "tests/test_arch_viewer.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_viewer.py::generate_viewer",
-            "tests/test_arch_viewer.py::_g0",
-            "tests/test_arch_viewer.py::_g1",
-            "tests/test_arch_viewer.py::_make_mock_index",
-            "tests/test_arch_viewer.py::_wf"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture",
-          "file": "tests/test_arch_viewer.py",
-          "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture",
-            "codegraph/arch_viewer.py::generate_viewer",
-            "tests/test_arch_viewer.py::_g0",
-            "tests/test_arch_viewer.py::_g1",
-            "tests/test_arch_viewer.py::_make_mock_index",
-            "tests/test_arch_viewer.py::_wf"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::_g0",
-          "file": "tests/test_arch_viewer.py",
-          "type": "function",
-          "calls": [
-            "codegraph/models/graph0.py::Graph0",
-            "codegraph/models/graph0.py::Graph0Node"
-          ],
-          "called_by": [
-            "tests/test_arch_viewer.py::TestBuildCodeData::test_basic",
-            "tests/test_arch_viewer.py::TestBuildCodeData::test_intent_attached",
-            "tests/test_arch_viewer.py::TestBuildStats::test_basic_stats",
-            "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
-            "tests/test_arch_viewer.py::TestBuildSubsystemData::test_auto_detection",
-            "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
-            "tests/test_arch_viewer.py::TestBuildSystemData::test_auto_detection",
-            "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_custom_output_path",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_generates_html_file",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::_g1",
-          "file": "tests/test_arch_viewer.py",
-          "type": "function",
-          "calls": [
-            "codegraph/models/graph1.py::Graph1",
-            "codegraph/models/graph1.py::Graph1Node"
-          ],
-          "called_by": [
-            "tests/test_arch_viewer.py::TestBuildCodeData::test_basic",
-            "tests/test_arch_viewer.py::TestBuildCodeData::test_intent_attached",
-            "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
-            "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
-            "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_custom_output_path",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_generates_html_file",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::_make_mock_index",
-          "file": "tests/test_arch_viewer.py",
-          "type": "function",
-          "called_by": [
-            "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
-            "tests/test_arch_viewer.py::TestBuildSubsystemData::test_auto_detection",
-            "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
-            "tests/test_arch_viewer.py::TestBuildSystemData::test_auto_detection",
-            "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_custom_output_path",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_generates_html_file",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_viewer.py::_wf",
-          "file": "tests/test_arch_viewer.py",
-          "type": "function",
-          "calls": [
-            "codegraph/models/workflow.py::Workflow",
-            "codegraph/models/workflow.py::WorkflowEdge"
-          ],
-          "called_by": [
-            "tests/test_arch_viewer.py::TestBuildCodeData::test_basic",
-            "tests/test_arch_viewer.py::TestBuildCodeData::test_intent_attached",
-            "tests/test_arch_viewer.py::TestBuildStats::test_basic_stats",
-            "tests/test_arch_viewer.py::TestBuildStats::test_with_architecture",
-            "tests/test_arch_viewer.py::TestBuildSubsystemData::test_with_architecture",
-            "tests/test_arch_viewer.py::TestBuildSystemData::test_with_architecture",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_custom_output_path",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_generates_html_file",
-            "tests/test_arch_viewer.py::TestGenerateViewer::test_with_architecture"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
         }
       ]
     }
