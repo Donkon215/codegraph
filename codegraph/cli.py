@@ -2847,7 +2847,7 @@ def lock_cmd(ctx: click.Context, strict: bool, json_output: bool) -> None:
         click.echo("No graph0 found. Run: codegraph build", err=True)
         sys.exit(EXIT_ERROR)
 
-    graph0 = Graph0.from_json(graph0_path)
+    graph0 = Graph0.from_json(graph0_path.read_text(encoding="utf-8"))
     actual_modules = list({n.file for n in graph0.nodes if n.file})
 
     workflow_path = root / ".codegraph" / "workflow" / "workflow.json"
@@ -2903,7 +2903,7 @@ def drift_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
         click.echo("No graph0 found. Run: codegraph build", err=True)
         sys.exit(EXIT_ERROR)
 
-    graph0 = Graph0.from_json(graph0_path)
+    graph0 = Graph0.from_json(graph0_path.read_text(encoding="utf-8"))
 
     workflow_path = root / ".codegraph" / "workflow" / "workflow.json"
     actual_edges: list[tuple[str, str]] = []
