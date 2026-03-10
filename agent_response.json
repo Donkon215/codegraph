@@ -1,7 +1,67 @@
 {
   "cycle": 1,
-  "graph_version": 25,
+  "graph_version": 28,
   "intents": [
+    {
+      "node": "codegraph/architecture_memory.py::DecisionRecord::to_dict",
+      "intent": "Serialize a DecisionRecord to a plain dict for JSON persistence.",
+      "tags": ["serialization", "internal"]
+    },
+    {
+      "node": "codegraph/architecture_memory.py::DecisionRecord::from_dict",
+      "intent": "Deserialize a DecisionRecord from a plain dict loaded from JSON.",
+      "tags": ["serialization", "internal"]
+    },
+    {
+      "node": "codegraph/architecture_memory.py::SimulationRecord::to_dict",
+      "intent": "Serialize a SimulationRecord to a plain dict for JSON persistence.",
+      "tags": ["serialization", "internal"]
+    },
+    {
+      "node": "codegraph/architecture_memory.py::SimulationRecord::from_dict",
+      "intent": "Deserialize a SimulationRecord from a plain dict loaded from JSON.",
+      "tags": ["serialization", "internal"]
+    },
+    {
+      "node": "codegraph/architecture_memory.py::AdviceRecord::to_dict",
+      "intent": "Serialize an AdviceRecord to a plain dict for JSON persistence.",
+      "tags": ["serialization", "internal"]
+    },
+    {
+      "node": "codegraph/architecture_memory.py::AdviceRecord::from_dict",
+      "intent": "Deserialize an AdviceRecord from a plain dict loaded from JSON.",
+      "tags": ["serialization", "internal"]
+    },
+    {
+      "node": "codegraph/architecture_memory.py::_load_json_list",
+      "intent": "Load a list of record dicts from a JSON file keyed by a given key; returns empty list if file is absent.",
+      "tags": ["storage", "internal"]
+    },
+    {
+      "node": "codegraph/architecture_memory.py::_save_json_list",
+      "intent": "Persist a list of record dicts to a JSON file under a given key, creating parent directories as needed.",
+      "tags": ["storage", "internal"]
+    },
+    {
+      "node": "codegraph/architecture_memory.py::save_decision",
+      "intent": "Persist a new architecture decision record (decision text, reason, result, tags) to .codegraph/memory/decisions.json.",
+      "tags": ["entry_point", "memory", "decisions"]
+    },
+    {
+      "node": "codegraph/architecture_memory.py::load_decisions",
+      "intent": "Load persisted architecture decisions from .codegraph/memory/decisions.json with optional filtering by result status or tags.",
+      "tags": ["entry_point", "memory", "decisions"]
+    },
+    {
+      "node": "codegraph/architecture_memory.py::record_simulation",
+      "intent": "Record an architecture simulation result (subsystem, recommendation, safety, predictions) to .codegraph/memory/simulations.json.",
+      "tags": ["entry_point", "memory", "simulation"]
+    },
+    {
+      "node": "codegraph/architecture_memory.py::record_advice",
+      "intent": "Record an architecture advisor snapshot (grade, score, smells, suggestions) to .codegraph/memory/advice.json.",
+      "tags": ["entry_point", "memory", "advisor"]
+    },
     {
       "node": "codegraph/architecture_compiler",
       "intent": "Intent-to-architecture compiler module"

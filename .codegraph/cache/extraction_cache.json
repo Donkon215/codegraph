@@ -20361,5 +20361,122 @@
         "line": 208
       }
     ]
+  },
+  "codegraph/architecture_memory.py": {
+    "content_hash": "4f3b81f794f6",
+    "nodes": [
+      {
+        "id": "codegraph/architecture_memory",
+        "body_hash": "094c0",
+        "file": "codegraph/architecture_memory.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/architecture_memory.py::DecisionRecord",
+        "body_hash": "2fb66",
+        "file": "codegraph/architecture_memory.py",
+        "type": "class",
+        "line": 38
+      },
+      {
+        "id": "codegraph/architecture_memory.py::DecisionRecord::to_dict",
+        "body_hash": "73dbf",
+        "file": "codegraph/architecture_memory.py",
+        "type": "method",
+        "line": 48
+      },
+      {
+        "id": "codegraph/architecture_memory.py::DecisionRecord::from_dict",
+        "body_hash": "8db9d",
+        "file": "codegraph/architecture_memory.py",
+        "type": "method",
+        "line": 59
+      },
+      {
+        "id": "codegraph/architecture_memory.py::SimulationRecord",
+        "body_hash": "8eba2",
+        "file": "codegraph/architecture_memory.py",
+        "type": "class",
+        "line": 71
+      },
+      {
+        "id": "codegraph/architecture_memory.py::SimulationRecord::to_dict",
+        "body_hash": "8de65",
+        "file": "codegraph/architecture_memory.py",
+        "type": "method",
+        "line": 82
+      },
+      {
+        "id": "codegraph/architecture_memory.py::SimulationRecord::from_dict",
+        "body_hash": "b5213",
+        "file": "codegraph/architecture_memory.py",
+        "type": "method",
+        "line": 94
+      },
+      {
+        "id": "codegraph/architecture_memory.py::AdviceRecord",
+        "body_hash": "063bf",
+        "file": "codegraph/architecture_memory.py",
+        "type": "class",
+        "line": 107
+      },
+      {
+        "id": "codegraph/architecture_memory.py::AdviceRecord::to_dict",
+        "body_hash": "cd8b5",
+        "file": "codegraph/architecture_memory.py",
+        "type": "method",
+        "line": 118
+      },
+      {
+        "id": "codegraph/architecture_memory.py::AdviceRecord::from_dict",
+        "body_hash": "dc324",
+        "file": "codegraph/architecture_memory.py",
+        "type": "method",
+        "line": 130
+      },
+      {
+        "id": "codegraph/architecture_memory.py::_load_json_list",
+        "body_hash": "635b9",
+        "file": "codegraph/architecture_memory.py",
+        "type": "function",
+        "line": 145
+      },
+      {
+        "id": "codegraph/architecture_memory.py::_save_json_list",
+        "body_hash": "17d2d",
+        "file": "codegraph/architecture_memory.py",
+        "type": "function",
+        "line": 152
+      },
+      {
+        "id": "codegraph/architecture_memory.py::save_decision",
+        "body_hash": "cbb44",
+        "file": "codegraph/architecture_memory.py",
+        "type": "function",
+        "line": 164
+      },
+      {
+        "id": "codegraph/architecture_memory.py::load_decisions",
+        "body_hash": "888a2",
+        "file": "codegraph/architecture_memory.py",
+        "type": "function",
+        "line": 200
+      },
+      {
+        "id": "codegraph/architecture_memory.py::record_simulation",
+        "body_hash": "59866",
+        "file": "codegraph/architecture_memory.py",
+        "type": "function",
+        "line": 229
+      },
+      {
+        "id": "codegraph/architecture_memory.py::record_advice",
+        "body_hash": "4b531",
+        "file": "codegraph/architecture_memory.py",
+        "type": "function",
+        "line": 276
+      }
+    ]
   }
 }

@@ -1,0 +1,46 @@
+{
+  "intent": "add architecture_memory subsystem to the intelligence layer to persist architecture decisions, simulation results, and advisor findings",
+  "summary": {
+    "changes": 5,
+    "target_edges": 0,
+    "target_nodes": 0,
+    "warnings": 0
+  },
+  "changes": [
+    {
+      "change_type": "add_subsystem",
+      "subsystem": "architecture_memory",
+      "description": "New subsystem from intent: add architecture_memory subsystem to the intelligence layer to persist architecture decisions, simulation results, and advisor findings",
+      "reason": "add architecture_memory subsystem to the intelligence layer to persist architecture decisions, simulation results, and advisor findings"
+    },
+    {
+      "change_type": "add_edge",
+      "subsystem": "architecture_memory",
+      "target_subsystem": "models",
+      "reason": "architecture_memory depends on models"
+    },
+    {
+      "change_type": "add_edge",
+      "subsystem": "architecture_memory",
+      "target_subsystem": "infrastructure",
+      "reason": "architecture_memory depends on infrastructure"
+    },
+    {
+      "change_type": "add_constraint",
+      "subsystem": "models",
+      "target_subsystem": "architecture_memory",
+      "constraint_type": "forbidden",
+      "reason": "Models must not depend on architecture_memory."
+    },
+    {
+      "change_type": "add_constraint",
+      "subsystem": "infrastructure",
+      "target_subsystem": "architecture_memory",
+      "constraint_type": "forbidden",
+      "reason": "Infrastructure must not depend on architecture_memory."
+    }
+  ],
+  "target_edges": [],
+  "target_nodes": [],
+  "warnings": []
+}

@@ -1,7 +1,7 @@
 {
   "cycle": 1,
-  "graph_version": 26,
-  "generated_at": "2026-03-10T17:55:12Z",
+  "graph_version": 29,
+  "generated_at": "2026-03-10T18:23:26Z",
   "tasks": [
     {
       "task_id": "orphan_nodes",
@@ -40,6 +40,33 @@
           "type": "method",
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "count warning-level violations",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_memory.py::AdviceRecord::to_dict",
+          "file": "codegraph/architecture_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize an AdviceRecord to a plain dict for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_memory.py::DecisionRecord::to_dict",
+          "file": "codegraph/architecture_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize a DecisionRecord to a plain dict for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_memory.py::SimulationRecord::to_dict",
+          "file": "codegraph/architecture_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize a SimulationRecord to a plain dict for JSON persistence",
           "body_hash_changed": false,
           "reason": "Orphan (disconnected)"
         },
@@ -1629,6 +1656,156 @@
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "check for modules not declared in architecture",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/architecture_memory.py::AdviceRecord::from_dict",
+          "file": "codegraph/architecture_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize an AdviceRecord from a plain dict loaded from JSON",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/architecture_memory.py::AdviceRecord::to_dict",
+          "file": "codegraph/architecture_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize an AdviceRecord to a plain dict for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_memory.py::DecisionRecord::from_dict",
+          "file": "codegraph/architecture_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize a DecisionRecord from a plain dict loaded from JSON",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/architecture_memory.py::DecisionRecord::to_dict",
+          "file": "codegraph/architecture_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize a DecisionRecord to a plain dict for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_memory.py::SimulationRecord::from_dict",
+          "file": "codegraph/architecture_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize a SimulationRecord from a plain dict loaded from JSON",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/architecture_memory.py::SimulationRecord::to_dict",
+          "file": "codegraph/architecture_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize a SimulationRecord to a plain dict for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_memory.py::_load_json_list",
+          "file": "codegraph/architecture_memory.py",
+          "type": "function",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::get"
+          ],
+          "called_by": [
+            "codegraph/architecture_memory.py::load_decisions",
+            "codegraph/architecture_memory.py::record_advice",
+            "codegraph/architecture_memory.py::record_simulation",
+            "codegraph/architecture_memory.py::save_decision"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "load a list of record dicts from a JSON file keyed by a given key; returns empty list if file is absent",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/architecture_memory.py::_save_json_list",
+          "file": "codegraph/architecture_memory.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/architecture_memory.py::record_advice",
+            "codegraph/architecture_memory.py::record_simulation",
+            "codegraph/architecture_memory.py::save_decision"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "persist a list of record dicts to a JSON file under a given key, creating parent directories as needed",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/architecture_memory.py::load_decisions",
+          "file": "codegraph/architecture_memory.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory.py::ArchDecision::from_dict",
+            "codegraph/architecture_memory.py::_load_json_list"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "load persisted architecture decisions from .codegraph/memory/decisions.json with optional filtering by result status or tags",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/architecture_memory.py::record_advice",
+          "file": "codegraph/architecture_memory.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_memory.py::ArchDecision::from_dict",
+            "codegraph/architecture_memory.py::AdviceRecord",
+            "codegraph/architecture_memory.py::_load_json_list",
+            "codegraph/architecture_memory.py::_save_json_list",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "record an architecture advisor snapshot (grade, score, smells, suggestions) to .codegraph/memory/advice.json",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/architecture_memory.py::record_simulation",
+          "file": "codegraph/architecture_memory.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_memory.py::ArchDecision::from_dict",
+            "codegraph/architecture_memory.py::SimulationRecord",
+            "codegraph/architecture_memory.py::_load_json_list",
+            "codegraph/architecture_memory.py::_save_json_list",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "record an architecture simulation result (subsystem, recommendation, safety, predictions) to .codegraph/memory/simulations.json",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/architecture_memory.py::save_decision",
+          "file": "codegraph/architecture_memory.py",
+          "type": "function",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict",
+            "codegraph/arch_memory.py::ArchDecision::from_dict",
+            "codegraph/architecture_memory.py::DecisionRecord",
+            "codegraph/architecture_memory.py::_load_json_list",
+            "codegraph/architecture_memory.py::_save_json_list",
+            "codegraph/tasks.py::TaskHistory::append"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "persist a new architecture decision record (decision text, reason, result, tags) to .codegraph/memory/decisions.json",
           "body_hash_changed": false
         },
         {
@@ -3583,6 +3760,43 @@
           ],
           "called_by": [
             "codegraph/cli.py::arch_memory_cmd"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_memory",
+          "file": "codegraph/architecture_memory.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_memory.py::AdviceRecord",
+          "file": "codegraph/architecture_memory.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/architecture_memory.py::record_advice"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_memory.py::DecisionRecord",
+          "file": "codegraph/architecture_memory.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/architecture_memory.py::save_decision"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_memory.py::SimulationRecord",
+          "file": "codegraph/architecture_memory.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/architecture_memory.py::record_simulation"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""

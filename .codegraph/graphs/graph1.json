@@ -2639,8 +2639,8 @@
       "intent": "intent-to-architecture compiler module",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "5a8ef"
     },
     {
@@ -2648,8 +2648,8 @@
       "intent": "dataclass representing a compiled plan of architecture changes from an intent",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "6ce6e"
     },
     {
@@ -2657,8 +2657,8 @@
       "intent": "format architecture plan as human-readable text",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "e2c0b"
     },
     {
@@ -2666,8 +2666,8 @@
       "intent": "deserialize ArchitecturePlan from dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "48282"
     },
     {
@@ -2675,8 +2675,8 @@
       "intent": "check whether the plan contains any changes",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "878d5"
     },
     {
@@ -2684,8 +2684,8 @@
       "intent": "load architecture plan from .codegraph/planning/architecture_plan.json",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "cfa3d"
     },
     {
@@ -2693,8 +2693,8 @@
       "intent": "save architecture plan to .codegraph/planning/architecture_plan.json",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "24e8a"
     },
     {
@@ -2702,8 +2702,8 @@
       "intent": "serialize ArchitecturePlan to dictionary with summary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "25770"
     },
     {
@@ -2711,8 +2711,8 @@
       "intent": "dataclass representing a single compiled architecture change",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "a1e59"
     },
     {
@@ -2720,8 +2720,8 @@
       "intent": "deserialize CompiledChange from dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "dbea9"
     },
     {
@@ -2729,8 +2729,8 @@
       "intent": "serialize CompiledChange to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "a530c"
     },
     {
@@ -2738,8 +2738,8 @@
       "intent": "add default forbidden constraints for a new subsystem",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "ea601"
     },
     {
@@ -2747,8 +2747,8 @@
       "intent": "extract a subsystem name from freeform intent text",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "76a57"
     },
     {
@@ -2756,8 +2756,8 @@
       "intent": "match intent text against known subsystem patterns",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "20ea5"
     },
     {
@@ -2765,8 +2765,8 @@
       "intent": "apply a compiled architecture plan to a SystemArchitecture in-place",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "04255"
     },
     {
@@ -2774,8 +2774,8 @@
       "intent": "compile a high-level architecture intent into concrete changes",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "2aea3"
     },
     {
@@ -2783,8 +2783,8 @@
       "intent": "convert an architecture plan into target workflow additions",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "5d345"
     },
     {
@@ -2792,8 +2792,8 @@
       "intent": "architecture boundary enforcement module",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "00bb7"
     },
     {
@@ -2801,8 +2801,8 @@
       "intent": "dataclass for architecture lock check report",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "a55e6"
     },
     {
@@ -2810,8 +2810,8 @@
       "intent": "count error-level violations",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "4824c"
     },
     {
@@ -2819,8 +2819,8 @@
       "intent": "format lock report as human-readable text",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "8b743"
     },
     {
@@ -2828,8 +2828,8 @@
       "intent": "check if no error-level violations found",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "b2ac9"
     },
     {
@@ -2837,8 +2837,8 @@
       "intent": "serialize LockReport to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "e690f"
     },
     {
@@ -2846,8 +2846,8 @@
       "intent": "count warning-level violations",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "c88f6"
     },
     {
@@ -2855,8 +2855,8 @@
       "intent": "dataclass representing a detected architecture lock violation",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "9bcc8"
     },
     {
@@ -2864,8 +2864,8 @@
       "intent": "serialize LockViolation to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "a4ebd"
     },
     {
@@ -2873,8 +2873,8 @@
       "intent": "build module_path to subsystem_name mapping",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "58cf2"
     },
     {
@@ -2882,8 +2882,8 @@
       "intent": "build subsystem_name to set of module paths mapping",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "b4c7c"
     },
     {
@@ -2891,8 +2891,8 @@
       "intent": "check for forbidden dependency violations",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "fb1fb"
     },
     {
@@ -2900,8 +2900,8 @@
       "intent": "check for undeclared cross-subsystem dependencies",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "f5608"
     },
     {
@@ -2909,8 +2909,8 @@
       "intent": "check for modules not declared in architecture",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "8e7ac"
     },
     {
@@ -2918,8 +2918,8 @@
       "intent": "check if a dependency between two modules is allowed",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "d161c"
     },
     {
@@ -2927,8 +2927,8 @@
       "intent": "check architecture lock against actual code state",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "dfa68"
     },
     {
@@ -2936,17 +2936,209 @@
       "intent": "check if a module is declared in the architecture",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "1529e"
+    },
+    {
+      "id": "codegraph/architecture_memory",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T18:20:47Z"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::AdviceRecord",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T18:20:47Z"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::AdviceRecord::from_dict",
+      "intent": "deserialize an AdviceRecord from a plain dict loaded from JSON",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
+      "tags": [
+        "serialization",
+        "internal"
+      ],
+      "intent_body_hash": "dc324"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::AdviceRecord::to_dict",
+      "intent": "serialize an AdviceRecord to a plain dict for JSON persistence",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
+      "tags": [
+        "serialization",
+        "internal"
+      ],
+      "intent_body_hash": "cd8b5"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::DecisionRecord",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T18:20:47Z"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::DecisionRecord::from_dict",
+      "intent": "deserialize a DecisionRecord from a plain dict loaded from JSON",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
+      "tags": [
+        "serialization",
+        "internal"
+      ],
+      "intent_body_hash": "8db9d"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::DecisionRecord::to_dict",
+      "intent": "serialize a DecisionRecord to a plain dict for JSON persistence",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
+      "tags": [
+        "serialization",
+        "internal"
+      ],
+      "intent_body_hash": "73dbf"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::SimulationRecord",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-10T18:20:47Z"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::SimulationRecord::from_dict",
+      "intent": "deserialize a SimulationRecord from a plain dict loaded from JSON",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
+      "tags": [
+        "serialization",
+        "internal"
+      ],
+      "intent_body_hash": "b5213"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::SimulationRecord::to_dict",
+      "intent": "serialize a SimulationRecord to a plain dict for JSON persistence",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
+      "tags": [
+        "serialization",
+        "internal"
+      ],
+      "intent_body_hash": "8de65"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::_load_json_list",
+      "intent": "load a list of record dicts from a JSON file keyed by a given key; returns empty list if file is absent",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
+      "tags": [
+        "storage",
+        "internal"
+      ],
+      "intent_body_hash": "635b9"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::_save_json_list",
+      "intent": "persist a list of record dicts to a JSON file under a given key, creating parent directories as needed",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
+      "tags": [
+        "storage",
+        "internal"
+      ],
+      "intent_body_hash": "17d2d"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::load_decisions",
+      "intent": "load persisted architecture decisions from .codegraph/memory/decisions.json with optional filtering by result status or tags",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
+      "tags": [
+        "entry_point",
+        "memory",
+        "decisions"
+      ],
+      "intent_body_hash": "888a2"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::record_advice",
+      "intent": "record an architecture advisor snapshot (grade, score, smells, suggestions) to .codegraph/memory/advice.json",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
+      "tags": [
+        "advisor",
+        "entry_point",
+        "memory"
+      ],
+      "intent_body_hash": "4b531"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::record_simulation",
+      "intent": "record an architecture simulation result (subsystem, recommendation, safety, predictions) to .codegraph/memory/simulations.json",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
+      "tags": [
+        "entry_point",
+        "simulation",
+        "memory"
+      ],
+      "intent_body_hash": "59866"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::save_decision",
+      "intent": "persist a new architecture decision record (decision text, reason, result, tags) to .codegraph/memory/decisions.json",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
+      "tags": [
+        "entry_point",
+        "memory",
+        "decisions"
+      ],
+      "intent_body_hash": "cbb44"
     },
     {
       "id": "codegraph/architecture_simulator",
       "intent": "architecture change simulator module",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "f501b"
     },
     {
@@ -2954,8 +3146,8 @@
       "intent": "dataclass representing a proposed architecture change to simulate",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "da29e"
     },
     {
@@ -2963,8 +3155,8 @@
       "intent": "deserialize ArchChange from dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "148ab"
     },
     {
@@ -2972,8 +3164,8 @@
       "intent": "serialize ArchChange to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "286b7"
     },
     {
@@ -2981,8 +3173,8 @@
       "intent": "dataclass representing a predicted impact of a simulated change",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "eb2a0"
     },
     {
@@ -2990,8 +3182,8 @@
       "intent": "serialize ArchPrediction to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "4d3ea"
     },
     {
@@ -2999,8 +3191,8 @@
       "intent": "result of simulating architecture changes",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "1d719"
     },
     {
@@ -3008,8 +3200,8 @@
       "intent": "format simulation result as human-readable text",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "e7b5c"
     },
     {
@@ -3017,8 +3209,8 @@
       "intent": "serialize simulation result to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "840a5"
     },
     {
@@ -3026,8 +3218,8 @@
       "intent": "apply changes to a simulated architecture copy",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "759be"
     },
     {
@@ -3035,8 +3227,8 @@
       "intent": "check if current edges violate any constraints",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "4647e"
     },
     {
@@ -3044,8 +3236,8 @@
       "intent": "compute architecture-level metrics for comparison",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "0f401"
     },
     {
@@ -3053,8 +3245,8 @@
       "intent": "count cycles in subsystem dependency graph using Tarjan",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "12c1a"
     },
     {
@@ -3062,8 +3254,8 @@
       "intent": "tarjan strongconnect recursive helper",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "38aab"
     },
     {
@@ -3071,8 +3263,8 @@
       "intent": "determine accept/review/reject based on predictions",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "eb4fd"
     },
     {
@@ -3080,8 +3272,8 @@
       "intent": "compare before/after metrics and generate predictions",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "40969"
     },
     {
@@ -3089,8 +3281,8 @@
       "intent": "simulate architecture changes and predict impact",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "7d5fc"
     },
     {
@@ -3098,8 +3290,8 @@
       "intent": "convenience function to simulate adding a new subsystem",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "7f08f"
     },
     {
@@ -3692,8 +3884,8 @@
       "intent": "cLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest, delta, diff, validate, status, cas, semantic, plan, architecture, viewer, architect, enrich, compile, code-plan, lock, drift, copilot-context, and arch-simulate",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 8,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 9,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "a1b61"
     },
     {
@@ -3926,8 +4118,8 @@
       "intent": "cLI command: generate comprehensive Copilot context from .codegraph data",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "e0d96"
     },
     {
@@ -4467,8 +4659,8 @@
       "intent": "architecture-aware code implementation planner module",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "f381e"
     },
     {
@@ -4476,8 +4668,8 @@
       "intent": "complete code implementation plan with ordered tasks",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "9f163"
     },
     {
@@ -4485,8 +4677,8 @@
       "intent": "format code plan as human-readable text",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "45598"
     },
     {
@@ -4494,8 +4686,8 @@
       "intent": "deserialize CodePlan from dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "6f1f2"
     },
     {
@@ -4503,8 +4695,8 @@
       "intent": "load code plan from .codegraph/planning/.plan.json",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "4c1af"
     },
     {
@@ -4512,8 +4704,8 @@
       "intent": "return tasks sorted by priority then dependency order",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "2d8e4"
     },
     {
@@ -4521,8 +4713,8 @@
       "intent": "helper for topological sort of tasks by dependencies",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "a615f"
     },
     {
@@ -4530,8 +4722,8 @@
       "intent": "save code plan to .codegraph/planning/.plan.json",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "23148"
     },
     {
@@ -4539,8 +4731,8 @@
       "intent": "return the number of tasks in the plan",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "b9f57"
     },
     {
@@ -4548,8 +4740,8 @@
       "intent": "return task counts grouped by type",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "20e9e"
     },
     {
@@ -4557,8 +4749,8 @@
       "intent": "serialize CodePlan to dictionary with summary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "b2576"
     },
     {
@@ -4566,8 +4758,8 @@
       "intent": "dataclass representing a single task in a code implementation plan",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "86f32"
     },
     {
@@ -4575,8 +4767,8 @@
       "intent": "deserialize PlanTask from dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "62cd3"
     },
     {
@@ -4584,8 +4776,8 @@
       "intent": "serialize PlanTask to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "eb5a1"
     },
     {
@@ -4593,8 +4785,8 @@
       "intent": "build module_path to subsystem_name mapping",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "83928"
     },
     {
@@ -4602,8 +4794,8 @@
       "intent": "convert a module path to its expected test file path",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "8312a"
     },
     {
@@ -4611,8 +4803,8 @@
       "intent": "generate a code plan from an architecture delta",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "4d0a4"
     },
     {
@@ -4620,8 +4812,8 @@
       "intent": "validate a code plan against architecture constraints",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "0c45b"
     },
     {
@@ -4827,8 +5019,8 @@
       "intent": "copilot context generator module",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "a24fb"
     },
     {
@@ -4836,8 +5028,8 @@
       "intent": "complete context package for Copilot decision-making",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "a1da9"
     },
     {
@@ -4845,8 +5037,8 @@
       "intent": "format copilot context as human-readable text",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "aa97b"
     },
     {
@@ -4854,8 +5046,8 @@
       "intent": "deserialize CopilotContext from dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "41e3a"
     },
     {
@@ -4863,8 +5055,8 @@
       "intent": "load copilot context from .codegraph/context/copilot_context.json",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "0b2ec"
     },
     {
@@ -4872,8 +5064,8 @@
       "intent": "save copilot context to .codegraph/context/copilot_context.json",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "0796f"
     },
     {
@@ -4881,8 +5073,8 @@
       "intent": "serialize CopilotContext to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "190cd"
     },
     {
@@ -4890,8 +5082,8 @@
       "intent": "dataclass summarizing a subsystem for Copilot context",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "41598"
     },
     {
@@ -4899,8 +5091,8 @@
       "intent": "serialize SubsystemSummary to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "0bfc4"
     },
     {
@@ -4908,8 +5100,8 @@
       "intent": "populate context with architecture subsystems and constraints",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "c2c1c"
     },
     {
@@ -4917,8 +5109,8 @@
       "intent": "populate recent architecture decisions from memory",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "8323b"
     },
     {
@@ -4926,8 +5118,8 @@
       "intent": "populate drift summary from drift report",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "ced2a"
     },
     {
@@ -4935,8 +5127,8 @@
       "intent": "populate graph version and node/edge counts",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "b6b53"
     },
     {
@@ -4944,8 +5136,8 @@
       "intent": "populate health summary from health.json",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "ad2a2"
     },
     {
@@ -4953,8 +5145,8 @@
       "intent": "populate active policy rules from suggested_workflow",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "1e9c0"
     },
     {
@@ -4962,8 +5154,8 @@
       "intent": "populate target architecture summary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "a271e"
     },
     {
@@ -4971,8 +5163,8 @@
       "intent": "populate active tasks from tasks.json",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "1a081"
     },
     {
@@ -4980,8 +5172,8 @@
       "intent": "build comprehensive context for Copilot from all .codegraph data",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "c6a54"
     },
     {
@@ -5250,8 +5442,8 @@
       "intent": "architecture drift detection module",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "f4ed5"
     },
     {
@@ -5259,8 +5451,8 @@
       "intent": "dataclass representing a single drift finding",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "3fc29"
     },
     {
@@ -5268,8 +5460,8 @@
       "intent": "serialize DriftFinding to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "ca303"
     },
     {
@@ -5277,8 +5469,8 @@
       "intent": "complete drift analysis report",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "554eb"
     },
     {
@@ -5286,8 +5478,8 @@
       "intent": "count error-level drift findings",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "4f478"
     },
     {
@@ -5295,8 +5487,8 @@
       "intent": "group finding counts by drift type",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "af13e"
     },
     {
@@ -5304,8 +5496,8 @@
       "intent": "format drift report as human-readable text",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "1b074"
     },
     {
@@ -5313,8 +5505,8 @@
       "intent": "check whether any drift findings exist",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "69c8f"
     },
     {
@@ -5322,8 +5514,8 @@
       "intent": "save drift report to .codegraph/architecture/drift_report.json",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "9673b"
     },
     {
@@ -5331,8 +5523,8 @@
       "intent": "serialize DriftReport to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "8e1b4"
     },
     {
@@ -5340,8 +5532,8 @@
       "intent": "count warning-level drift findings",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "47680"
     },
     {
@@ -5349,8 +5541,8 @@
       "intent": "build module_path to subsystem_name mapping",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "b7dc2"
     },
     {
@@ -5358,8 +5550,8 @@
       "intent": "build subsystem_name to set of module paths mapping",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "b7683"
     },
     {
@@ -5367,8 +5559,8 @@
       "intent": "find declared edges with no actual calls",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "9c424"
     },
     {
@@ -5376,8 +5568,8 @@
       "intent": "find modules declared but not existing as files",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "a41f4"
     },
     {
@@ -5385,8 +5577,8 @@
       "intent": "find cross-subsystem dependencies not in architecture",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "31fcc"
     },
     {
@@ -5394,8 +5586,8 @@
       "intent": "find modules in code not declared in architecture",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "af490"
     },
     {
@@ -5403,8 +5595,8 @@
       "intent": "detect drift between declared architecture and actual code",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T17:54:54Z",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "de1f0"
     },
     {

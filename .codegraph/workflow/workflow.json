@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-10T17:55:08Z",
+    "built_at": "2026-03-10T18:23:25Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -9,12 +9,12 @@
       "stdlib",
       "test_harness"
     ],
-    "edge_count": 4260,
-    "node_count": 2003,
-    "build_time_s": 8.39
+    "edge_count": 4284,
+    "node_count": 2015,
+    "build_time_s": 8.5
   },
   "format_version": 1,
-  "built_at": "2026-03-10T17:55:08Z",
+  "built_at": "2026-03-10T18:23:25Z",
   "level": "function",
   "edges": [
     {
@@ -3218,6 +3218,150 @@
     {
       "source": "codegraph/architecture_lock.py::check_module_placement",
       "target": "codegraph/architecture_lock.py::LockViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::AdviceRecord::from_dict",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::DecisionRecord::from_dict",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::SimulationRecord::from_dict",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::_load_json_list",
+      "target": "codegraph/analyzer.py::AnalysisCache::get",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::load_decisions",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::load_decisions",
+      "target": "codegraph/architecture_memory.py::_load_json_list",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::record_advice",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::record_advice",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::record_advice",
+      "target": "codegraph/architecture_memory.py::AdviceRecord",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::record_advice",
+      "target": "codegraph/architecture_memory.py::_load_json_list",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::record_advice",
+      "target": "codegraph/architecture_memory.py::_save_json_list",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::record_advice",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::record_simulation",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::record_simulation",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::record_simulation",
+      "target": "codegraph/architecture_memory.py::SimulationRecord",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::record_simulation",
+      "target": "codegraph/architecture_memory.py::_load_json_list",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::record_simulation",
+      "target": "codegraph/architecture_memory.py::_save_json_list",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::record_simulation",
+      "target": "codegraph/tasks.py::TaskHistory::append",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::save_decision",
+      "target": "codegraph/agent_memory.py::AgentMemory::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::save_decision",
+      "target": "codegraph/arch_memory.py::ArchDecision::from_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::save_decision",
+      "target": "codegraph/architecture_memory.py::DecisionRecord",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::save_decision",
+      "target": "codegraph/architecture_memory.py::_load_json_list",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::save_decision",
+      "target": "codegraph/architecture_memory.py::_save_json_list",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_memory.py::save_decision",
+      "target": "codegraph/tasks.py::TaskHistory::append",
       "edge_type": "call",
       "confidence": "static"
     },
