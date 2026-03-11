@@ -1,7 +1,7 @@
 {
   "cycle": 1,
-  "graph_version": 55,
-  "generated_at": "2026-03-11T17:37:03Z",
+  "graph_version": 57,
+  "generated_at": "2026-03-11T18:05:27Z",
   "tasks": [
     {
       "task_id": "orphan_nodes",
@@ -814,6 +814,54 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "codegraph/extractors/api_routes.py::ApiCall::from_dict",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiCall::to_dict",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiEndpoint::from_dict",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiEndpoint::to_dict",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiLinkReport::format",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiLinkReport::to_dict",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
           "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::supported_extensions",
           "file": "codegraph/extractors/javascript.py",
           "type": "method",
@@ -1126,6 +1174,86 @@
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "load target workflow from disk, returns None if not found",
           "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestDataClasses",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestDataClasses::test_api_call_from_dict",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_from_dict",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractJsApiCalls",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractPythonEndpoints",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestLinkApiRoutes",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestLooksLikeApiPath",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestMatchParameterized",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestNormalizeApiPath",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestNormalizePath",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
           "reason": "Orphan (disconnected)"
         },
         {
@@ -1859,80 +1987,11 @@
       "priority": 4,
       "nodes": [
         {
-          "id": "codegraph/apply",
-          "file": "codegraph/apply.py",
+          "id": "codegraph/cli",
+          "file": "codegraph/cli.py",
           "type": "module",
           "suggested_fix": "Review and update intent to match current implementation",
-          "previous_intent": "repair action orchestrator. Coordinates lock, backup, conflict detection, action dispatch via apply_handlers, graph update, and validation",
-          "body_hash_changed": true
-        },
-        {
-          "id": "codegraph/extractor",
-          "file": "codegraph/extractor.py",
-          "type": "module",
-          "suggested_fix": "Review and update intent to match current implementation",
-          "previous_intent": "aST extraction engine (Graph_0). Parses Python source files to extract nodes (functions, classes, modules), call sites, imports, and resolve call targets. Includes ambiguous method name filtering to prevent false positive fan-in from common builtins (get, append, add, etc.)",
-          "body_hash_changed": true
-        },
-        {
-          "id": "codegraph/extractors/javascript",
-          "file": "codegraph/extractors/javascript.py",
-          "type": "module",
-          "suggested_fix": "Review and update intent to match current implementation",
-          "previous_intent": "javaScript/TypeScript/React extractor. Regex-based analysis for .js, .jsx, .ts, .tsx, .mjs, .cjs files. No external AST parser required",
-          "body_hash_changed": true
-        },
-        {
-          "id": "codegraph/extractors/javascript.py::_extract_js_edges",
-          "file": "codegraph/extractors/javascript.py",
-          "type": "function",
-          "calls": [
-            "codegraph/extractors/javascript.py::_resolve_js_import",
-            "codegraph/types.py::WorkflowEdge",
-            "codegraph/utils/ids.py::normalize_path"
-          ],
-          "called_by": [
-            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_edges"
-          ],
-          "suggested_fix": "Review and update intent to match current implementation",
-          "previous_intent": "return import-type WorkflowEdge objects for every unique import/require statement in a JS/TS file",
-          "body_hash_changed": true
-        },
-        {
-          "id": "codegraph/extractors/javascript.py::_extract_js_file",
-          "file": "codegraph/extractors/javascript.py",
-          "type": "function",
-          "calls": [
-            "codegraph/extractor.py::FileExtractionResult",
-            "codegraph/extractor.py::ImportInfo",
-            "codegraph/extractors/javascript.py::_body_hash",
-            "codegraph/extractors/javascript.py::_line_of",
-            "codegraph/extractors/javascript.py::_resolve_js_import",
-            "codegraph/models/graph0.py::Graph0Node",
-            "codegraph/utils/ids.py::normalize_path"
-          ],
-          "called_by": [
-            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
-            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes"
-          ],
-          "suggested_fix": "Review and update intent to match current implementation",
-          "previous_intent": "parse a JS/TS source file using regex to produce Graph0Node list and ImportInfo list wrapped in FileExtractionResult",
-          "body_hash_changed": true
-        },
-        {
-          "id": "codegraph/utils/file_discovery",
-          "file": "codegraph/utils/file_discovery.py",
-          "type": "module",
-          "suggested_fix": "Review and update intent to match current implementation",
-          "previous_intent": "codegraph.utils.file_discovery — Source-file discovery and exclusion",
-          "body_hash_changed": true
-        },
-        {
-          "id": "codegraph/workflow",
-          "file": "codegraph/workflow.py",
-          "type": "module",
-          "suggested_fix": "Review and update intent to match current implementation",
-          "previous_intent": "codegraph.workflow — Workflow builder (execution graph)",
+          "previous_intent": "cLI entry point with commands for build, analyze, tasks, apply, query, architect, arch-search, and all other codegraph operations",
           "body_hash_changed": true
         }
       ]
@@ -1998,8 +2057,9 @@
           "called_by": [
             "codegraph/apply.py::apply_response"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "iterate over repair actions in the agent response and dispatch each to the appropriate handler (connect_call, add_import, remove_dead_code, flag_for_review)",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/apply.py::_finalize_apply",
@@ -2019,8 +2079,9 @@
           "called_by": [
             "codegraph/apply.py::apply_response"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format modified files, apply intents and workflow suggestions, update graph1, validate modified files, and save undo information",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/apply.py::_prepare_apply",
@@ -2040,8 +2101,9 @@
           "called_by": [
             "codegraph/apply.py::apply_response"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "validate graph version, acquire lock, collect files to modify, check for conflicts, and create backups before applying repairs",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/apply_handlers.py::_check_dead_code_signals",
@@ -3737,6 +3799,18 @@
           "body_hash_changed": false
         },
         {
+          "id": "codegraph/cli.py::api_link_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/extractors/api_routes.py::link_api_routes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/cli.py::arch_diff_cmd",
           "file": "codegraph/cli.py",
           "type": "function",
@@ -3763,6 +3837,21 @@
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "cLI command to view architecture decision memory with filtering",
           "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::arch_plan_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_planner.py::plan_architecture",
+            "codegraph/arch_planner.py::plan_to_agent_response",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/extractor.py::load_graph0",
+            "codegraph/index.py::IndexStore"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
         },
         {
           "id": "codegraph/cli.py::arch_search_cmd",
@@ -4135,6 +4224,21 @@
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "run multi-level architecture analysis across function, module, and subsystem levels",
           "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::repair_plan_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/config.py::find_project_root",
+            "codegraph/planning.py::generate_plan",
+            "codegraph/planning.py::save_plan",
+            "codegraph/planning.py::validate_plan",
+            "codegraph/storage.py::get_graph_version",
+            "codegraph/tasks.py::load_tasks"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
         },
         {
           "id": "codegraph/cli.py::simulate_cmd",
@@ -4694,6 +4798,107 @@
           "body_hash_changed": false
         },
         {
+          "id": "codegraph/extractors/api_routes.py::ApiCall::from_dict",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiCall::to_dict",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiEndpoint::from_dict",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiEndpoint::to_dict",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiLinkReport::format",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiLinkReport::to_dict",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::_build_func_ranges",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::_discover_files",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "calls": [
+            "codegraph/extractors/api_routes.py::_should_skip"
+          ],
+          "called_by": [
+            "codegraph/extractors/api_routes.py::link_api_routes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::_find_enclosing_func",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::_find_handler_after",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/extractors/api_routes.py::extract_python_endpoints"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::_should_skip",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/extractors/api_routes.py::_discover_files"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::supported_extensions",
           "file": "codegraph/extractors/javascript.py",
           "type": "method",
@@ -4725,9 +4930,9 @@
           "called_by": [
             "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_edges"
           ],
-          "suggested_fix": "Review and update intent to match current implementation",
-          "previous_intent": "return import-type WorkflowEdge objects for every unique import/require statement in a JS/TS file",
-          "body_hash_changed": true
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "extract import-type WorkflowEdge objects from JS/TS source by parsing import/require statements and resolving relative import paths to actual file locations",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/extractors/javascript.py::_extract_js_file",
@@ -4746,9 +4951,9 @@
             "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
             "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes"
           ],
-          "suggested_fix": "Review and update intent to match current implementation",
-          "previous_intent": "parse a JS/TS source file using regex to produce Graph0Node list and ImportInfo list wrapped in FileExtractionResult",
-          "body_hash_changed": true
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "parse a JS/TS source file using regex patterns to produce Graph0Node objects for functions, arrow functions, React components, class methods, and hooks",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/extractors/javascript.py::_import_candidates",
@@ -4757,8 +4962,9 @@
           "called_by": [
             "codegraph/extractors/javascript.py::_resolve_js_import"
           ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "generate candidate file paths for a JS import by appending common extensions (.ts, .tsx, .js, .jsx, .mjs, .cjs) and checking for index files in directories",
+          "body_hash_changed": false
         },
         {
           "id": "codegraph/filters.py::FilterPipeline::add",
@@ -5205,66 +5411,6 @@
       "task_id": "intent_missing",
       "priority": 5,
       "nodes": [
-        {
-          "id": "codegraph/apply.py::_dispatch_repairs",
-          "file": "codegraph/apply.py",
-          "type": "function",
-          "calls": [
-            "codegraph/apply.py::ActionResult",
-            "codegraph/apply_handlers.py::handle_add_import",
-            "codegraph/apply_handlers.py::handle_connect_call",
-            "codegraph/apply_handlers.py::handle_flag_for_review",
-            "codegraph/apply_handlers.py::handle_remove_dead_code",
-            "codegraph/models/agent_response.py::RepairActionType"
-          ],
-          "called_by": [
-            "codegraph/apply.py::apply_response"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/apply.py::_finalize_apply",
-          "file": "codegraph/apply.py",
-          "type": "function",
-          "calls": [
-            "codegraph/annotator.py::apply_intents_batch",
-            "codegraph/annotator.py::save_graph1",
-            "codegraph/apply.py::_apply_workflow_suggestions",
-            "codegraph/apply.py::_cleanup_backups",
-            "codegraph/apply.py::_format_file",
-            "codegraph/apply.py::_restore_backups",
-            "codegraph/apply.py::_save_undo",
-            "codegraph/apply.py::_update_graph1_after_apply",
-            "codegraph/apply.py::_validate_modified_files"
-          ],
-          "called_by": [
-            "codegraph/apply.py::apply_response"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/apply.py::_prepare_apply",
-          "file": "codegraph/apply.py",
-          "type": "function",
-          "calls": [
-            "codegraph/apply.py::_acquire_lock",
-            "codegraph/apply.py::_check_conflicts",
-            "codegraph/apply.py::_create_backups",
-            "codegraph/exceptions.py::VersionMismatchError",
-            "codegraph/index.py::IndexStore::get_node",
-            "codegraph/models/agent_response.py::AgentResponse::validate_version",
-            "codegraph/models/agent_response.py::RepairActionType",
-            "codegraph/models/agent_response.py::RepairActionType::modifies_code",
-            "codegraph/storage.py::get_graph_version"
-          ],
-          "called_by": [
-            "codegraph/apply.py::apply_response"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
         {
           "id": "codegraph/apply_handlers",
           "file": "codegraph/apply_handlers.py",
@@ -5783,6 +5929,33 @@
           "previous_intent": ""
         },
         {
+          "id": "codegraph/cli.py::api_link_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/extractors/api_routes.py::link_api_routes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/cli.py::arch_plan_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_planner.py::plan_architecture",
+            "codegraph/arch_planner.py::plan_to_agent_response",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/extractor.py::load_graph0",
+            "codegraph/index.py::IndexStore"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/cli.py::arch_search_cmd",
           "file": "codegraph/cli.py",
           "type": "function",
@@ -5859,30 +6032,759 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/extractors/javascript.py::_import_candidates",
-          "file": "codegraph/extractors/javascript.py",
+          "id": "codegraph/cli.py::repair_plan_cmd",
+          "file": "codegraph/cli.py",
           "type": "function",
-          "called_by": [
-            "codegraph/extractors/javascript.py::_resolve_js_import"
+          "calls": [
+            "codegraph/config.py::find_project_root",
+            "codegraph/planning.py::generate_plan",
+            "codegraph/planning.py::save_plan",
+            "codegraph/planning.py::validate_plan",
+            "codegraph/storage.py::get_graph_version",
+            "codegraph/tasks.py::load_tasks"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
         },
         {
-          "id": "codegraph/extractors/javascript.py::_resolve_js_import",
-          "file": "codegraph/extractors/javascript.py",
+          "id": "codegraph/extractors/api_routes",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiCall",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls",
+            "tests/test_api_routes.py::TestDataClasses::test_api_call_to_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiCall::from_dict",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiCall::to_dict",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiEndpoint",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/extractors/api_routes.py::extract_python_endpoints",
+            "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_to_dict",
+            "tests/test_api_routes.py::TestMatchParameterized::test_different_segment_count",
+            "tests/test_api_routes.py::TestMatchParameterized::test_param_match"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiEndpoint::from_dict",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiEndpoint::to_dict",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiLinkReport",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/extractors/api_routes.py::link_api_routes",
+            "tests/test_api_routes.py::TestDataClasses::test_report_format",
+            "tests/test_api_routes.py::TestDataClasses::test_report_to_dict_summary"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiLinkReport::format",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::ApiLinkReport::to_dict",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::_build_func_ranges",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::_discover_files",
+          "file": "codegraph/extractors/api_routes.py",
           "type": "function",
           "calls": [
-            "codegraph/extractors/javascript.py::_import_candidates",
-            "codegraph/utils/ids.py::normalize_path"
+            "codegraph/extractors/api_routes.py::_should_skip"
           ],
           "called_by": [
-            "codegraph/extractors/javascript.py::_extract_js_edges",
-            "codegraph/extractors/javascript.py::_extract_js_file",
-            "tests/test_js_extractor.py::TestResolveJsImport::test_keeps_npm_packages",
-            "tests/test_js_extractor.py::TestResolveJsImport::test_keeps_scoped_packages",
-            "tests/test_js_extractor.py::TestResolveJsImport::test_resolves_relative_ts",
-            "tests/test_js_extractor.py::TestResolveJsImport::test_resolves_relative_tsx"
+            "codegraph/extractors/api_routes.py::link_api_routes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::_find_enclosing_func",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::_find_handler_after",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/extractors/api_routes.py::extract_python_endpoints"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::_looks_like_api_path",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls",
+            "tests/test_api_routes.py::TestLooksLikeApiPath::test_contains_api",
+            "tests/test_api_routes.py::TestLooksLikeApiPath::test_empty",
+            "tests/test_api_routes.py::TestLooksLikeApiPath::test_slash_prefix"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::_match_parameterized",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/extractors/api_routes.py::link_api_routes",
+            "tests/test_api_routes.py::TestMatchParameterized::test_different_segment_count",
+            "tests/test_api_routes.py::TestMatchParameterized::test_param_match"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::_normalize_api_path",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "calls": [
+            "codegraph/extractors/api_routes.py::_normalize_path"
+          ],
+          "called_by": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls",
+            "tests/test_api_routes.py::TestNormalizeApiPath::test_template_literal"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::_normalize_path",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/extractors/api_routes.py::_normalize_api_path",
+            "codegraph/extractors/api_routes.py::extract_python_endpoints",
+            "codegraph/extractors/api_routes.py::link_api_routes",
+            "tests/test_api_routes.py::TestNormalizePath::test_colon_params",
+            "tests/test_api_routes.py::TestNormalizePath::test_curly_brace_params",
+            "tests/test_api_routes.py::TestNormalizePath::test_leading_slash_added",
+            "tests/test_api_routes.py::TestNormalizePath::test_lowercase",
+            "tests/test_api_routes.py::TestNormalizePath::test_trailing_slash"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::_should_skip",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/extractors/api_routes.py::_discover_files"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "calls": [
+            "codegraph/extractors/api_routes.py::ApiCall",
+            "codegraph/extractors/api_routes.py::_build_func_ranges",
+            "codegraph/extractors/api_routes.py::_find_enclosing_func",
+            "codegraph/extractors/api_routes.py::_looks_like_api_path",
+            "codegraph/extractors/api_routes.py::_normalize_api_path"
+          ],
+          "called_by": [
+            "codegraph/extractors/api_routes.py::link_api_routes",
+            "tests/test_api_routes.py::TestExtractJsApiCalls::test_axios_get",
+            "tests/test_api_routes.py::TestExtractJsApiCalls::test_axios_post",
+            "tests/test_api_routes.py::TestExtractJsApiCalls::test_caller_node_from_function",
+            "tests/test_api_routes.py::TestExtractJsApiCalls::test_fetch_get",
+            "tests/test_api_routes.py::TestExtractJsApiCalls::test_fetch_with_method",
+            "tests/test_api_routes.py::TestExtractJsApiCalls::test_non_js_file",
+            "tests/test_api_routes.py::TestExtractJsApiCalls::test_nonexistent_file",
+            "tests/test_api_routes.py::TestExtractJsApiCalls::test_template_literal_path",
+            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_nonexistent_file"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::extract_python_endpoints",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "calls": [
+            "codegraph/extractors/api_routes.py::ApiEndpoint",
+            "codegraph/extractors/api_routes.py::_find_handler_after",
+            "codegraph/extractors/api_routes.py::_normalize_path"
+          ],
+          "called_by": [
+            "codegraph/extractors/api_routes.py::link_api_routes",
+            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_django_path",
+            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_get",
+            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_post",
+            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_with_path_params",
+            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_flask_route",
+            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_flask_route_default_get",
+            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_non_python_file"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/api_routes.py::link_api_routes",
+          "file": "codegraph/extractors/api_routes.py",
+          "type": "function",
+          "calls": [
+            "codegraph/extractors/api_routes.py::ApiLinkReport",
+            "codegraph/extractors/api_routes.py::_discover_files",
+            "codegraph/extractors/api_routes.py::_match_parameterized",
+            "codegraph/extractors/api_routes.py::_normalize_path",
+            "codegraph/extractors/api_routes.py::extract_js_api_calls",
+            "codegraph/extractors/api_routes.py::extract_python_endpoints",
+            "codegraph/types.py::WorkflowEdge"
+          ],
+          "called_by": [
+            "codegraph/cli.py::api_link_cmd",
+            "tests/test_api_routes.py::TestLinkApiRoutes::test_django_any_matches_all",
+            "tests/test_api_routes.py::TestLinkApiRoutes::test_explicit_source_files",
+            "tests/test_api_routes.py::TestLinkApiRoutes::test_link_fastapi_to_fetch",
+            "tests/test_api_routes.py::TestLinkApiRoutes::test_method_mismatch_not_linked",
+            "tests/test_api_routes.py::TestLinkApiRoutes::test_parameterized_matching",
+            "tests/test_api_routes.py::TestLinkApiRoutes::test_unlinked_calls",
+            "tests/test_api_routes.py::TestLinkApiRoutes::test_unlinked_endpoints"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes",
+          "file": "tests/test_api_routes.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestDataClasses",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestDataClasses::test_api_call_from_dict",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestDataClasses::test_api_call_to_dict",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::ApiCall"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_from_dict",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_to_dict",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::ApiEndpoint"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestDataClasses::test_report_format",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::ApiLinkReport"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestDataClasses::test_report_to_dict_summary",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::ApiLinkReport"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractJsApiCalls",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_axios_get",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_axios_post",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_caller_node_from_function",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_fetch_get",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_fetch_with_method",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_non_js_file",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_nonexistent_file",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_template_literal_path",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractPythonEndpoints",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_django_path",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_python_endpoints"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_get",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_python_endpoints"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_post",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_python_endpoints"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_with_path_params",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_python_endpoints"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_flask_route",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_python_endpoints"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_flask_route_default_get",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_python_endpoints"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_non_python_file",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_python_endpoints"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_nonexistent_file",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::extract_js_api_calls"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestLinkApiRoutes",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_django_any_matches_all",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::link_api_routes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_explicit_source_files",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::link_api_routes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_link_fastapi_to_fetch",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::link_api_routes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_method_mismatch_not_linked",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::link_api_routes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_parameterized_matching",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::link_api_routes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_unlinked_calls",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::link_api_routes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_unlinked_endpoints",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::link_api_routes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestLooksLikeApiPath",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestLooksLikeApiPath::test_contains_api",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::_looks_like_api_path"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestLooksLikeApiPath::test_empty",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::_looks_like_api_path"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestLooksLikeApiPath::test_slash_prefix",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::_looks_like_api_path"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestMatchParameterized",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestMatchParameterized::test_different_segment_count",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::ApiEndpoint",
+            "codegraph/extractors/api_routes.py::_match_parameterized"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestMatchParameterized::test_param_match",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::ApiEndpoint",
+            "codegraph/extractors/api_routes.py::_match_parameterized"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestNormalizeApiPath",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestNormalizeApiPath::test_template_literal",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::_normalize_api_path"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestNormalizePath",
+          "file": "tests/test_api_routes.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_api_routes.py::TestNormalizePath::test_colon_params",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::_normalize_path"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestNormalizePath::test_curly_brace_params",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::_normalize_path"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestNormalizePath::test_leading_slash_added",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::_normalize_path"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestNormalizePath::test_lowercase",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::_normalize_path"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_api_routes.py::TestNormalizePath::test_trailing_slash",
+          "file": "tests/test_api_routes.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/api_routes.py::_normalize_path"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""

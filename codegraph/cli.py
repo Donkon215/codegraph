@@ -1683,12 +1683,12 @@ def refactor_cmd(ctx: click.Context, json_output: bool,
         click.echo(report.format())
 
 
-# ── Plan ───────────────────────────────────────────────────────────────
-@main.command("plan")
+# ── Repair Plan ────────────────────────────────────────────────────────
+@main.command("repair-plan")
 @click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
 @click.option("--save", is_flag=True, help="Save the plan to .codegraph/plans/.")
 @click.pass_context
-def plan_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
+def repair_plan_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
     """Generate a repair plan from current tasks."""
     import json as _json
     from codegraph.planning import generate_plan, validate_plan, save_plan
@@ -2075,15 +2075,15 @@ def architecture_cmd(ctx: click.Context, do_init: bool, do_validate: bool,
 
 
 # ── Architecture Planner ──────────────────────────────────────────────
-@main.command("plan")
+@main.command("arch-plan")
 @click.option("--output", "output_file", default=None,
               help="Save generated tasks to a file.")
 @click.option("--agent-response", "agent_response", is_flag=True,
               help="Output as agent_response.json format.")
 @click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
 @click.pass_context
-def plan_cmd(ctx: click.Context, output_file: str | None,
-             agent_response: bool, json_output: bool) -> None:
+def arch_plan_cmd(ctx: click.Context, output_file: str | None,
+                  agent_response: bool, json_output: bool) -> None:
     """Generate tasks from architecture definition."""
     import json as _json
 
@@ -3016,9 +3016,11 @@ def arch_search_cmd(ctx: click.Context, max_candidates: int,
 @click.option("--depends-on", "deps", multiple=True,
               help="Dependencies for the new subsystem (repeatable).")
 @click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.option("--save", is_flag=True,
+              help="Save simulation result to .codegraph/planning/simulation_result.json.")
 @click.pass_context
 def arch_simulate_cmd(ctx: click.Context, subsystem_name: str,
-                      deps: tuple, json_output: bool) -> None:
+                      deps: tuple, json_output: bool, save: bool) -> None:
     """Simulate adding a subsystem and predict impact."""
     import json as _json
     from codegraph.arch_schema import SystemArchitecture
@@ -3042,3 +3044,50 @@ def arch_simulate_cmd(ctx: click.Context, subsystem_name: str,
         click.echo(_json.dumps(result.to_dict(), indent=2))
     else:
         click.echo(result.format())
+
+    if save:
+        planning_dir = root / ".codegraph" / "planning"
+        planning_dir.mkdir(parents=True, exist_ok=True)
+        out_path = planning_dir / "simulation_result.json"
+        out_path.write_text(
+            _json.dumps(result.to_dict(), indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        click.echo(f"Simulation saved to {out_path}")
+
+
+# ── API Link ───────────────────────────────────────────────────────────
+
+
+@main.command("api-link")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.option("--save", is_flag=True,
+              help="Save report to .codegraph/planning/api_link_report.json.")
+@click.pass_context
+def api_link_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
+    """Detect cross-language API links (backend endpoints ↔ frontend calls)."""
+    import json as _json
+    from codegraph.extractors.api_routes import link_api_routes
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    report = link_api_routes(root)
+
+    if json_output:
+        click.echo(_json.dumps(report.to_dict(), indent=2))
+    else:
+        click.echo(report.format())
+
+    if save:
+        planning_dir = root / ".codegraph" / "planning"
+        planning_dir.mkdir(parents=True, exist_ok=True)
+        out_path = planning_dir / "api_link_report.json"
+        out_path.write_text(
+            _json.dumps(report.to_dict(), indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        click.echo(f"API link report saved to {out_path}")

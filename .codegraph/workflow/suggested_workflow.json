@@ -253,6 +253,24 @@
       "max_fan_out": 10,
       "added_by": "human",
       "added_at": "2026-03-11T17:36:46Z"
+    },
+    {
+      "id": "rule_030",
+      "type": "forbidden_call",
+      "reason": "API route extractor must not import analyzer",
+      "source": "codegraph/extractors/api_routes.py::*",
+      "target": "codegraph/analyzer.py::*",
+      "added_by": "human",
+      "added_at": "2026-03-11T18:04:47Z"
+    },
+    {
+      "id": "rule_031",
+      "type": "forbidden_call",
+      "reason": "API route extractor must not import apply module",
+      "source": "codegraph/extractors/api_routes.py::*",
+      "target": "codegraph/apply.py::*",
+      "added_by": "human",
+      "added_at": "2026-03-11T18:04:51Z"
     }
   ]
 }

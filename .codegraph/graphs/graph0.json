@@ -1,7 +1,7 @@
 {
   "format_version": 1,
-  "graph_version": 56,
-  "extracted_at": "2026-03-11T17:40:42Z",
+  "graph_version": 57,
+  "extracted_at": "2026-03-11T18:05:07Z",
   "source_files": [
     "benchmarks/benchmark_build.py",
     "benchmarks/benchmark_query.py",
@@ -40,6 +40,7 @@
     "codegraph/exceptions.py",
     "codegraph/extractor.py",
     "codegraph/extractors/__init__.py",
+    "codegraph/extractors/api_routes.py",
     "codegraph/extractors/javascript.py",
     "codegraph/extractors/python.py",
     "codegraph/filters.py",
@@ -117,6 +118,7 @@
     "tests/conftest.py",
     "tests/test_agent_memory.py",
     "tests/test_analyzer.py",
+    "tests/test_api_routes.py",
     "tests/test_apply.py",
     "tests/test_arch_diff.py",
     "tests/test_arch_health.py",
@@ -3306,7 +3308,7 @@
     },
     {
       "id": "codegraph/cli",
-      "body_hash": "c3672",
+      "body_hash": "678e8",
       "file": "codegraph/cli.py",
       "type": "module",
       "line": 1
@@ -3324,6 +3326,13 @@
       "file": "codegraph/cli.py",
       "type": "function",
       "line": 387
+    },
+    {
+      "id": "codegraph/cli.py::api_link_cmd",
+      "body_hash": "ec410",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 3067
     },
     {
       "id": "codegraph/cli.py::apply",
@@ -3347,6 +3356,13 @@
       "line": 2540
     },
     {
+      "id": "codegraph/cli.py::arch_plan_cmd",
+      "body_hash": "b3e6e",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 2085
+    },
+    {
       "id": "codegraph/cli.py::arch_search_cmd",
       "body_hash": "d0f39",
       "file": "codegraph/cli.py",
@@ -3355,10 +3371,10 @@
     },
     {
       "id": "codegraph/cli.py::arch_simulate_cmd",
-      "body_hash": "00197",
+      "body_hash": "88c12",
       "file": "codegraph/cli.py",
       "type": "function",
-      "line": 3020
+      "line": 3022
     },
     {
       "id": "codegraph/cli.py::archi_test_cmd",
@@ -3690,20 +3706,6 @@
       "line": 1569
     },
     {
-      "id": "codegraph/cli.py::plan_cmd",
-      "body_hash": "0f5ba",
-      "file": "codegraph/cli.py",
-      "type": "function",
-      "line": 1691
-    },
-    {
-      "id": "codegraph/cli.py::plan_cmd[2]",
-      "body_hash": "1ed35",
-      "file": "codegraph/cli.py",
-      "type": "function",
-      "line": 2085
-    },
-    {
       "id": "codegraph/cli.py::prune",
       "body_hash": "e64c3",
       "file": "codegraph/cli.py",
@@ -3730,6 +3732,13 @@
       "file": "codegraph/cli.py",
       "type": "function",
       "line": 1180
+    },
+    {
+      "id": "codegraph/cli.py::repair_plan_cmd",
+      "body_hash": "cc693",
+      "file": "codegraph/cli.py",
+      "type": "function",
+      "line": 1691
     },
     {
       "id": "codegraph/cli.py::schema",
@@ -5424,6 +5433,160 @@
       "file": "codegraph/extractors/__init__.py",
       "type": "function",
       "line": 32
+    },
+    {
+      "id": "codegraph/extractors/api_routes",
+      "body_hash": "e5eea",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiCall",
+      "body_hash": "6f9d0",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "class",
+      "line": 67
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiCall::from_dict",
+      "body_hash": "dc0da",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "method",
+      "line": 88
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiCall::to_dict",
+      "body_hash": "ec926",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "method",
+      "line": 77
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiEndpoint",
+      "body_hash": "8e437",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "class",
+      "line": 34
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiEndpoint::from_dict",
+      "body_hash": "7ac68",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "method",
+      "line": 55
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiEndpoint::to_dict",
+      "body_hash": "bff78",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "method",
+      "line": 44
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiLinkReport",
+      "body_hash": "2eaf0",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "class",
+      "line": 100
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiLinkReport::format",
+      "body_hash": "dc3d7",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "method",
+      "line": 125
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiLinkReport::to_dict",
+      "body_hash": "7a1f8",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "method",
+      "line": 109
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_build_func_ranges",
+      "body_hash": "4855f",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "function",
+      "line": 400
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_discover_files",
+      "body_hash": "a1ee0",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "function",
+      "line": 570
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_find_enclosing_func",
+      "body_hash": "2e703",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "function",
+      "line": 413
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_find_handler_after",
+      "body_hash": "6dfe8",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "function",
+      "line": 257
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_looks_like_api_path",
+      "body_hash": "2b198",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "function",
+      "line": 533
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_match_parameterized",
+      "body_hash": "08594",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "function",
+      "line": 549
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_normalize_api_path",
+      "body_hash": "0a83e",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "function",
+      "line": 526
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_normalize_path",
+      "body_hash": "bcde3",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "function",
+      "line": 513
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_should_skip",
+      "body_hash": "34e19",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "function",
+      "line": 580
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "body_hash": "316db",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "function",
+      "line": 302
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::extract_python_endpoints",
+      "body_hash": "fab71",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "function",
+      "line": 178
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::link_api_routes",
+      "body_hash": "f55ad",
+      "file": "codegraph/extractors/api_routes.py",
+      "type": "function",
+      "line": 433
     },
     {
       "id": "codegraph/extractors/javascript",
@@ -12081,6 +12244,349 @@
       "file": "tests/test_analyzer.py",
       "type": "method",
       "line": 37
+    },
+    {
+      "id": "tests/test_api_routes",
+      "body_hash": "fb1f3",
+      "file": "tests/test_api_routes.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_api_routes.py::TestDataClasses",
+      "body_hash": "f2deb",
+      "file": "tests/test_api_routes.py",
+      "type": "class",
+      "line": 295
+    },
+    {
+      "id": "tests/test_api_routes.py::TestDataClasses::test_api_call_from_dict",
+      "body_hash": "a77b0",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 318
+    },
+    {
+      "id": "tests/test_api_routes.py::TestDataClasses::test_api_call_to_dict",
+      "body_hash": "dfdd1",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 310
+    },
+    {
+      "id": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_from_dict",
+      "body_hash": "8bd6c",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 305
+    },
+    {
+      "id": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_to_dict",
+      "body_hash": "f7e58",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 296
+    },
+    {
+      "id": "tests/test_api_routes.py::TestDataClasses::test_report_format",
+      "body_hash": "0cc45",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 323
+    },
+    {
+      "id": "tests/test_api_routes.py::TestDataClasses::test_report_to_dict_summary",
+      "body_hash": "b6a3b",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 328
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls",
+      "body_hash": "f7560",
+      "file": "tests/test_api_routes.py",
+      "type": "class",
+      "line": 175
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_axios_get",
+      "body_hash": "bab0f",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 206
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_axios_post",
+      "body_hash": "eade2",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 220
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_caller_node_from_function",
+      "body_hash": "e991e",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 255
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_fetch_get",
+      "body_hash": "dfe08",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 176
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_fetch_with_method",
+      "body_hash": "921c7",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 191
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_non_js_file",
+      "body_hash": "cc2c9",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 249
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_nonexistent_file",
+      "body_hash": "5d3b6",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 245
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_template_literal_path",
+      "body_hash": "61887",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 232
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints",
+      "body_hash": "bdb0c",
+      "file": "tests/test_api_routes.py",
+      "type": "class",
+      "line": 63
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_django_path",
+      "body_hash": "ec2fc",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 129
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_get",
+      "body_hash": "be2c4",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 64
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_post",
+      "body_hash": "7d7d1",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 82
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_with_path_params",
+      "body_hash": "0cd8e",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 146
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_flask_route",
+      "body_hash": "3cb00",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 97
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_flask_route_default_get",
+      "body_hash": "b4e6e",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 114
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_non_python_file",
+      "body_hash": "be261",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 165
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_nonexistent_file",
+      "body_hash": "b3a31",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 161
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes",
+      "body_hash": "24118",
+      "file": "tests/test_api_routes.py",
+      "type": "class",
+      "line": 338
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_django_any_matches_all",
+      "body_hash": "02b85",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 450
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_explicit_source_files",
+      "body_hash": "ebdee",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 471
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_link_fastapi_to_fetch",
+      "body_hash": "b1351",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 339
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_method_mismatch_not_linked",
+      "body_hash": "8864d",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 428
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_parameterized_matching",
+      "body_hash": "b91bf",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 407
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_unlinked_calls",
+      "body_hash": "e2d02",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 393
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_unlinked_endpoints",
+      "body_hash": "79730",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 376
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLooksLikeApiPath",
+      "body_hash": "46864",
+      "file": "tests/test_api_routes.py",
+      "type": "class",
+      "line": 49
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLooksLikeApiPath::test_contains_api",
+      "body_hash": "8c892",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 53
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLooksLikeApiPath::test_empty",
+      "body_hash": "59048",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 56
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLooksLikeApiPath::test_slash_prefix",
+      "body_hash": "77fc4",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 50
+    },
+    {
+      "id": "tests/test_api_routes.py::TestMatchParameterized",
+      "body_hash": "eda92",
+      "file": "tests/test_api_routes.py",
+      "type": "class",
+      "line": 272
+    },
+    {
+      "id": "tests/test_api_routes.py::TestMatchParameterized::test_different_segment_count",
+      "body_hash": "0adb6",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 282
+    },
+    {
+      "id": "tests/test_api_routes.py::TestMatchParameterized::test_param_match",
+      "body_hash": "90f3f",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 273
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizeApiPath",
+      "body_hash": "d3906",
+      "file": "tests/test_api_routes.py",
+      "type": "class",
+      "line": 44
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizeApiPath::test_template_literal",
+      "body_hash": "ae083",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 45
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizePath",
+      "body_hash": "08195",
+      "file": "tests/test_api_routes.py",
+      "type": "class",
+      "line": 27
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizePath::test_colon_params",
+      "body_hash": "0f68f",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 40
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizePath::test_curly_brace_params",
+      "body_hash": "d13ec",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 37
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizePath::test_leading_slash_added",
+      "body_hash": "efbf7",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 34
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizePath::test_lowercase",
+      "body_hash": "88230",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 31
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizePath::test_trailing_slash",
+      "body_hash": "d33b1",
+      "file": "tests/test_api_routes.py",
+      "type": "method",
+      "line": 28
     },
     {
       "id": "tests/test_apply",

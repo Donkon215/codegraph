@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-11T17:40:51Z",
+    "built_at": "2026-03-11T18:05:16Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -9,12 +9,12 @@
       "stdlib",
       "test_harness"
     ],
-    "edge_count": 3078,
-    "node_count": 1839,
-    "build_time_s": 8.47
+    "edge_count": 3144,
+    "node_count": 1894,
+    "build_time_s": 9.31
   },
   "format_version": 1,
-  "built_at": "2026-03-11T17:40:51Z",
+  "built_at": "2026-03-11T18:05:16Z",
   "level": "function",
   "edges": [
     {
@@ -2640,6 +2640,24 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/cli.py::api_link_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::api_link_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::api_link_cmd",
+      "target": "codegraph/extractors/api_routes.py::link_api_routes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/cli.py::apply",
       "target": "codegraph/apply.py::format_apply_result",
       "edge_type": "call",
@@ -2708,6 +2726,42 @@
     {
       "source": "codegraph/cli.py::arch_memory_cmd",
       "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_plan_cmd",
+      "target": "codegraph/arch_planner.py::plan_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_plan_cmd",
+      "target": "codegraph/arch_planner.py::plan_to_agent_response",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_plan_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_plan_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_plan_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_plan_cmd",
+      "target": "codegraph/index.py::IndexStore",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3918,42 +3972,6 @@
       "confidence": "static"
     },
     {
-      "source": "codegraph/cli.py::plan_cmd",
-      "target": "codegraph/arch_planner.py::plan_architecture",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli.py::plan_cmd",
-      "target": "codegraph/arch_planner.py::plan_to_agent_response",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli.py::plan_cmd",
-      "target": "codegraph/cli.py::handle_error",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli.py::plan_cmd",
-      "target": "codegraph/config.py::find_project_root",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli.py::plan_cmd",
-      "target": "codegraph/extractor.py::load_graph0",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli.py::plan_cmd",
-      "target": "codegraph/index.py::IndexStore",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
       "source": "codegraph/cli.py::prune",
       "target": "codegraph/annotator.py::load_graph1",
       "edge_type": "call",
@@ -4052,6 +4070,42 @@
     {
       "source": "codegraph/cli.py::repair_cmd",
       "target": "codegraph/delta.py::run_delta",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::repair_plan_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::repair_plan_cmd",
+      "target": "codegraph/planning.py::generate_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::repair_plan_cmd",
+      "target": "codegraph/planning.py::save_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::repair_plan_cmd",
+      "target": "codegraph/planning.py::validate_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::repair_plan_cmd",
+      "target": "codegraph/storage.py::get_graph_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::repair_plan_cmd",
+      "target": "codegraph/tasks.py::load_tasks",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -5822,6 +5876,108 @@
     {
       "source": "codegraph/extractors/__init__.py::setup",
       "target": "codegraph/extractors/python.py::PythonExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::_discover_files",
+      "target": "codegraph/extractors/api_routes.py::_should_skip",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::_normalize_api_path",
+      "target": "codegraph/extractors/api_routes.py::_normalize_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "target": "codegraph/extractors/api_routes.py::ApiCall",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "target": "codegraph/extractors/api_routes.py::_build_func_ranges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "target": "codegraph/extractors/api_routes.py::_find_enclosing_func",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "target": "codegraph/extractors/api_routes.py::_looks_like_api_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "target": "codegraph/extractors/api_routes.py::_normalize_api_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::extract_python_endpoints",
+      "target": "codegraph/extractors/api_routes.py::ApiEndpoint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::extract_python_endpoints",
+      "target": "codegraph/extractors/api_routes.py::_find_handler_after",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::extract_python_endpoints",
+      "target": "codegraph/extractors/api_routes.py::_normalize_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::link_api_routes",
+      "target": "codegraph/extractors/api_routes.py::ApiLinkReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::link_api_routes",
+      "target": "codegraph/extractors/api_routes.py::_discover_files",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::link_api_routes",
+      "target": "codegraph/extractors/api_routes.py::_match_parameterized",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::link_api_routes",
+      "target": "codegraph/extractors/api_routes.py::_normalize_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::link_api_routes",
+      "target": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::link_api_routes",
+      "target": "codegraph/extractors/api_routes.py::extract_python_endpoints",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::link_api_routes",
+      "target": "codegraph/types.py::WorkflowEdge",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -9458,6 +9614,246 @@
     {
       "source": "tests/test_agent_memory.py::TestSaveLoadMemory::test_round_trip",
       "target": "codegraph/agent_memory.py::save_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestDataClasses::test_api_call_to_dict",
+      "target": "codegraph/extractors/api_routes.py::ApiCall",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_to_dict",
+      "target": "codegraph/extractors/api_routes.py::ApiEndpoint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestDataClasses::test_report_format",
+      "target": "codegraph/extractors/api_routes.py::ApiLinkReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestDataClasses::test_report_to_dict_summary",
+      "target": "codegraph/extractors/api_routes.py::ApiLinkReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractJsApiCalls::test_axios_get",
+      "target": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractJsApiCalls::test_axios_post",
+      "target": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractJsApiCalls::test_caller_node_from_function",
+      "target": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractJsApiCalls::test_fetch_get",
+      "target": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractJsApiCalls::test_fetch_with_method",
+      "target": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractJsApiCalls::test_non_js_file",
+      "target": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractJsApiCalls::test_nonexistent_file",
+      "target": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractJsApiCalls::test_template_literal_path",
+      "target": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_django_path",
+      "target": "codegraph/extractors/api_routes.py::extract_python_endpoints",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_get",
+      "target": "codegraph/extractors/api_routes.py::extract_python_endpoints",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_post",
+      "target": "codegraph/extractors/api_routes.py::extract_python_endpoints",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_with_path_params",
+      "target": "codegraph/extractors/api_routes.py::extract_python_endpoints",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_flask_route",
+      "target": "codegraph/extractors/api_routes.py::extract_python_endpoints",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_flask_route_default_get",
+      "target": "codegraph/extractors/api_routes.py::extract_python_endpoints",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_non_python_file",
+      "target": "codegraph/extractors/api_routes.py::extract_python_endpoints",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_nonexistent_file",
+      "target": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestLinkApiRoutes::test_django_any_matches_all",
+      "target": "codegraph/extractors/api_routes.py::link_api_routes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestLinkApiRoutes::test_explicit_source_files",
+      "target": "codegraph/extractors/api_routes.py::link_api_routes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestLinkApiRoutes::test_link_fastapi_to_fetch",
+      "target": "codegraph/extractors/api_routes.py::link_api_routes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestLinkApiRoutes::test_method_mismatch_not_linked",
+      "target": "codegraph/extractors/api_routes.py::link_api_routes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestLinkApiRoutes::test_parameterized_matching",
+      "target": "codegraph/extractors/api_routes.py::link_api_routes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestLinkApiRoutes::test_unlinked_calls",
+      "target": "codegraph/extractors/api_routes.py::link_api_routes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestLinkApiRoutes::test_unlinked_endpoints",
+      "target": "codegraph/extractors/api_routes.py::link_api_routes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestLooksLikeApiPath::test_contains_api",
+      "target": "codegraph/extractors/api_routes.py::_looks_like_api_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestLooksLikeApiPath::test_empty",
+      "target": "codegraph/extractors/api_routes.py::_looks_like_api_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestLooksLikeApiPath::test_slash_prefix",
+      "target": "codegraph/extractors/api_routes.py::_looks_like_api_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestMatchParameterized::test_different_segment_count",
+      "target": "codegraph/extractors/api_routes.py::ApiEndpoint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestMatchParameterized::test_different_segment_count",
+      "target": "codegraph/extractors/api_routes.py::_match_parameterized",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestMatchParameterized::test_param_match",
+      "target": "codegraph/extractors/api_routes.py::ApiEndpoint",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestMatchParameterized::test_param_match",
+      "target": "codegraph/extractors/api_routes.py::_match_parameterized",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestNormalizeApiPath::test_template_literal",
+      "target": "codegraph/extractors/api_routes.py::_normalize_api_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestNormalizePath::test_colon_params",
+      "target": "codegraph/extractors/api_routes.py::_normalize_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestNormalizePath::test_curly_brace_params",
+      "target": "codegraph/extractors/api_routes.py::_normalize_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestNormalizePath::test_leading_slash_added",
+      "target": "codegraph/extractors/api_routes.py::_normalize_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestNormalizePath::test_lowercase",
+      "target": "codegraph/extractors/api_routes.py::_normalize_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_api_routes.py::TestNormalizePath::test_trailing_slash",
+      "target": "codegraph/extractors/api_routes.py::_normalize_path",
       "edge_type": "call",
       "confidence": "static"
     },

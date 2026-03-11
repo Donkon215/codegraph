@@ -1,78 +1,38 @@
 {
   "cycle": 9,
-  "graph_version": 56,
+  "graph_version": 57,
   "intents": [
     {
-      "node": "codegraph/apply",
-      "intent": "Repair action execution system. Coordinates lock, backup, dispatch, and finalization phases for applying agent responses to the codebase. Delegates to _prepare_apply, _dispatch_repairs, and _finalize_apply."
+      "node": "codegraph/cli",
+      "intent": "CLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest, architect, compile, code-plan, repair-plan, arch-plan, arch-search, arch-simulate, api-link, viewer, drift, lock, and copilot-context."
     },
     {
-      "node": "codegraph/apply.py::apply_response",
-      "intent": "Orchestrate applying an agent response by delegating to preparation, dispatch, and finalization phases. Manages lock lifecycle."
+      "node": "codegraph/extractors/api_routes",
+      "intent": "Cross-language API endpoint linker. Detects backend HTTP endpoints and frontend API calls, creates workflow edges between them."
     },
     {
-      "node": "codegraph/apply.py::_prepare_apply",
-      "intent": "Validate graph version, acquire lock, collect files to modify, check for conflicts, and create backups before applying repairs."
+      "node": "codegraph/extractors/api_routes.py::extract_python_endpoints",
+      "intent": "Extract HTTP endpoint definitions from Python source files. Detects FastAPI, Flask, and Django route decorators."
     },
     {
-      "node": "codegraph/apply.py::_dispatch_repairs",
-      "intent": "Iterate over repair actions in the agent response and dispatch each to the appropriate handler (connect_call, add_import, remove_dead_code, flag_for_review)."
+      "node": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "intent": "Extract HTTP API calls from JavaScript/TypeScript source files. Detects fetch() and axios patterns."
     },
     {
-      "node": "codegraph/apply.py::_finalize_apply",
-      "intent": "Format modified files, apply intents and workflow suggestions, update graph1, validate modified files, and save undo information."
+      "node": "codegraph/extractors/api_routes.py::link_api_routes",
+      "intent": "Scan project files for API endpoints and calls, match them by path patterns, and create cross-language workflow edges."
     },
     {
-      "node": "codegraph/extractor",
-      "intent": "AST extraction engine (Graph_0). Parses Python source files and delegates to language-specific extractors via the registry for JS/TS/React files."
+      "node": "codegraph/extractors/api_routes.py::ApiEndpoint",
+      "intent": "Data class representing a backend HTTP endpoint definition with path, method, handler node, and framework."
     },
     {
-      "node": "codegraph/extractor.py::extract_project",
-      "intent": "Extract the complete Graph_0 for a project. Initializes extractor registry, discovers source files across all supported languages, and delegates non-Python files to registered language extractors."
+      "node": "codegraph/extractors/api_routes.py::ApiCall",
+      "intent": "Data class representing a frontend HTTP API call with path, method, caller node, and library."
     },
     {
-      "node": "codegraph/extractors/javascript",
-      "intent": "JavaScript/TypeScript/React extractor. Regex-based parser that extracts function declarations, arrow functions, React components, class methods, hooks, and import edges from JS/TS/JSX/TSX source files."
-    },
-    {
-      "node": "codegraph/extractors/javascript.py::_extract_js_file",
-      "intent": "Parse a JS/TS source file using regex patterns to produce Graph0Node objects for functions, arrow functions, React components, class methods, and hooks."
-    },
-    {
-      "node": "codegraph/extractors/javascript.py::_extract_js_edges",
-      "intent": "Extract import-type WorkflowEdge objects from JS/TS source by parsing import/require statements and resolving relative import paths to actual file locations."
-    },
-    {
-      "node": "codegraph/extractors/javascript.py::_resolve_js_import",
-      "intent": "Resolve a JS import specifier (relative path like ./components/Button) to a project-relative file path by trying common extensions (.ts, .tsx, .js, .jsx) and index file variants."
-    },
-    {
-      "node": "codegraph/extractors/javascript.py::_import_candidates",
-      "intent": "Generate candidate file paths for a JS import by appending common extensions (.ts, .tsx, .js, .jsx, .mjs, .cjs) and checking for index files in directories."
-    },
-    {
-      "node": "codegraph/utils/file_discovery",
-      "intent": "Source-file discovery utilities. Discovers source files under a project root using extensions from the extractor registry, supporting Python, JavaScript, TypeScript, and React file types."
-    },
-    {
-      "node": "codegraph/utils/file_discovery.py::discover_source_files",
-      "intent": "Find all source files under a project root by walking the directory tree. Automatically detects supported extensions from the extractor registry, falling back to .py only."
-    },
-    {
-      "node": "codegraph/workflow",
-      "intent": "Workflow builder (execution graph). Builds function-level call graph from extracted AST data, supporting both Python and JS/TS files via the extractor registry."
-    },
-    {
-      "node": "codegraph/workflow.py::build_workflow",
-      "intent": "Build the complete function-level call graph (Workflow) by combining static edges, dynamic edges, and import dependencies from all supported source languages."
-    },
-    {
-      "node": "codegraph/workflow.py::_collect_call_sites_and_imports",
-      "intent": "Re-extract call sites and imports from a source file using the appropriate language extractor (Python AST or JS/TS regex) via the extractor registry."
-    },
-    {
-      "node": "codegraph/workflow.py::build_import_dependencies",
-      "intent": "Build module-to-module import relationships from extracted imports. Handles both Python dot-notation and JS/TS path-based imports without corrupting file extensions."
+      "node": "codegraph/extractors/api_routes.py::ApiLinkReport",
+      "intent": "Result container for cross-language API linking with endpoints, calls, linked edges, and unlinked items."
     }
   ],
   "repairs": []

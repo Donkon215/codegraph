@@ -83,6 +83,16 @@
             "get_missing_intents"
           ],
           "description": "Manages intent annotations (graph1). Tracks body hashes to detect stale intents."
+        },
+        {
+          "name": "api_linker",
+          "module": "codegraph/extractors/api_routes.py",
+          "functions": [
+            "extract_python_endpoints",
+            "extract_js_api_calls",
+            "link_api_routes"
+          ],
+          "description": "Cross-language API endpoint linker. Detects backend HTTP endpoints and frontend API calls, creates workflow edges between them."
         }
       ],
       "edges": [
@@ -601,7 +611,12 @@
         {
           "name": "architecture_memory",
           "module": "codegraph/architecture_memory.py",
-          "functions": ["save_decision", "load_decisions", "record_simulation", "record_advice"],
+          "functions": [
+            "save_decision",
+            "load_decisions",
+            "record_simulation",
+            "record_advice"
+          ],
           "description": "Stores and retrieves architecture decisions, simulation recordings, and advisor advice findings."
         }
       ]

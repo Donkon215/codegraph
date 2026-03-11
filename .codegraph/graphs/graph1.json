@@ -4238,15 +4238,15 @@
     },
     {
       "id": "codegraph/cli",
-      "intent": "cLI entry point with commands for build, analyze, tasks, apply, query, architect, arch-search, and all other codegraph operations",
+      "intent": "cLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest, architect, compile, code-plan, repair-plan, arch-plan, arch-search, arch-simulate, api-link, viewer, drift, lock, and copilot-context",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 12,
-      "intent_timestamp": "2026-03-11T13:23:56Z",
+      "intent_version": 13,
+      "intent_timestamp": "2026-03-11T18:06:11Z",
       "tags": [
         "entry_point"
       ],
-      "intent_body_hash": "c3672"
+      "intent_body_hash": "678e8"
     },
     {
       "id": "codegraph/cli.py::analyze_cmd",
@@ -4265,6 +4265,14 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "e4c7b"
+    },
+    {
+      "id": "codegraph/cli.py::api_link_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
     },
     {
       "id": "codegraph/cli.py::apply",
@@ -4292,6 +4300,14 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-10T16:23:14Z",
       "intent_body_hash": "be848"
+    },
+    {
+      "id": "codegraph/cli.py::arch_plan_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
     },
     {
       "id": "codegraph/cli.py::arch_search_cmd",
@@ -4793,6 +4809,14 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "6a4b1"
+    },
+    {
+      "id": "codegraph/cli.py::repair_plan_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
     },
     {
       "id": "codegraph/cli.py::schema",
@@ -6983,6 +7007,189 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "d2828"
+    },
+    {
+      "id": "codegraph/extractors/api_routes",
+      "intent": "cross-language API endpoint linker. Detects backend HTTP endpoints and frontend API calls, creates workflow edges between them",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:06:11Z",
+      "intent_body_hash": "e5eea"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiCall",
+      "intent": "data class representing a frontend HTTP API call with path, method, caller node, and library",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:06:11Z",
+      "intent_body_hash": "6f9d0"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiCall::from_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiCall::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiEndpoint",
+      "intent": "data class representing a backend HTTP endpoint definition with path, method, handler node, and framework",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:06:11Z",
+      "intent_body_hash": "8e437"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiEndpoint::from_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiEndpoint::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiLinkReport",
+      "intent": "result container for cross-language API linking with endpoints, calls, linked edges, and unlinked items",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:06:11Z",
+      "intent_body_hash": "2eaf0"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiLinkReport::format",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::ApiLinkReport::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_build_func_ranges",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_discover_files",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_find_enclosing_func",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_find_handler_after",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_looks_like_api_path",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_match_parameterized",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_normalize_api_path",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_normalize_path",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::_should_skip",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::extract_js_api_calls",
+      "intent": "extract HTTP API calls from JavaScript/TypeScript source files. Detects fetch() and axios patterns",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:06:11Z",
+      "intent_body_hash": "316db"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::extract_python_endpoints",
+      "intent": "extract HTTP endpoint definitions from Python source files. Detects FastAPI, Flask, and Django route decorators",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:06:11Z",
+      "intent_body_hash": "fab71"
+    },
+    {
+      "id": "codegraph/extractors/api_routes.py::link_api_routes",
+      "intent": "scan project files for API endpoints and calls, match them by path patterns, and create cross-language workflow edges",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:06:11Z",
+      "intent_body_hash": "f55ad"
     },
     {
       "id": "codegraph/extractors/javascript",
@@ -15759,6 +15966,398 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "39450"
+    },
+    {
+      "id": "tests/test_api_routes",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestDataClasses",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestDataClasses::test_api_call_from_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestDataClasses::test_api_call_to_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_from_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_to_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestDataClasses::test_report_format",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestDataClasses::test_report_to_dict_summary",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_axios_get",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_axios_post",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_caller_node_from_function",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_fetch_get",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_fetch_with_method",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_non_js_file",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_nonexistent_file",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractJsApiCalls::test_template_literal_path",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_django_path",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_get",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_post",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_with_path_params",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_flask_route",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_flask_route_default_get",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_non_python_file",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestExtractPythonEndpoints::test_nonexistent_file",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_django_any_matches_all",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_explicit_source_files",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_link_fastapi_to_fetch",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_method_mismatch_not_linked",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_parameterized_matching",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_unlinked_calls",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLinkApiRoutes::test_unlinked_endpoints",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLooksLikeApiPath",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLooksLikeApiPath::test_contains_api",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLooksLikeApiPath::test_empty",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestLooksLikeApiPath::test_slash_prefix",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestMatchParameterized",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestMatchParameterized::test_different_segment_count",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestMatchParameterized::test_param_match",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizeApiPath",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizeApiPath::test_template_literal",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizePath",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizePath::test_colon_params",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizePath::test_curly_brace_params",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizePath::test_leading_slash_added",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizePath::test_lowercase",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "tests/test_api_routes.py::TestNormalizePath::test_trailing_slash",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:05:07Z"
     },
     {
       "id": "tests/test_apply",
