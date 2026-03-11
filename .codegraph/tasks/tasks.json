@@ -1,7 +1,7 @@
 {
   "cycle": 1,
-  "graph_version": 57,
-  "generated_at": "2026-03-11T18:05:27Z",
+  "graph_version": 58,
+  "generated_at": "2026-03-11T18:53:50Z",
   "tasks": [
     {
       "task_id": "orphan_nodes",
@@ -71,6 +71,46 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "codegraph/arch_evolution.py::EvolutionReport::format",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionReport::to_dict",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionResult::format",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionResult::to_dict",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionStage::to_dict",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
           "id": "codegraph/arch_memory.py::ArchDecision::from_dict",
           "file": "codegraph/arch_memory.py",
           "type": "method",
@@ -125,6 +165,70 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "codegraph/arch_memory_intelligence.py::ArchPattern::from_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::ArchPattern::to_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::format",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::to_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::from_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::to_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::StrategyScore::from_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::StrategyScore::to_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
           "id": "codegraph/arch_planner.py::ArchPlan::format",
           "file": "codegraph/arch_planner.py",
           "type": "method",
@@ -177,6 +281,62 @@
           "previous_intent": "serialize planned task to dictionary with only non-empty fields",
           "body_hash_changed": false,
           "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::ArchPolicy::from_dict",
+          "file": "codegraph/arch_policy.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::ArchPolicy::to_dict",
+          "file": "codegraph/arch_policy.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::PolicyReport::format",
+          "file": "codegraph/arch_policy.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::PolicyReport::to_dict",
+          "file": "codegraph/arch_policy.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::PolicyViolation::to_dict",
+          "file": "codegraph/arch_policy.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_frontend_backend_boundary",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_no_apply_without_plan",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/arch_schema.py::ArchComponent::from_dict",
@@ -1257,6 +1417,78 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionReport",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionResult",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionStage",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolution",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestSaveEvolutionReport",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestSkipRemaining",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
           "id": "tests/test_arch_memory.py::TestArchDecision",
           "file": "tests/test_arch_memory.py",
           "type": "class",
@@ -1321,6 +1553,78 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestMinePatterns",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestRecommendations",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestRecordMetrics",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestReportFormatting",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestScoreStrategies",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestStrategyScore",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
           "id": "tests/test_arch_planner.py::TestPlannedTask::test_from_dict",
           "file": "tests/test_arch_planner.py",
           "type": "method",
@@ -1328,6 +1632,54 @@
           "previous_intent": "test deserialize planned task from dictionary",
           "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestArchPolicy",
+          "file": "tests/test_arch_policy.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestEvaluatePolicies",
+          "file": "tests/test_arch_policy.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestInitDefaults",
+          "file": "tests/test_arch_policy.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyReport",
+          "file": "tests/test_arch_policy.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyStore",
+          "file": "tests/test_arch_policy.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyViolation",
+          "file": "tests/test_arch_policy.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "tests/test_arch_schema.py::TestArchComponent::test_from_dict",
@@ -1991,7 +2343,7 @@
           "file": "codegraph/cli.py",
           "type": "module",
           "suggested_fix": "Review and update intent to match current implementation",
-          "previous_intent": "cLI entry point with commands for build, analyze, tasks, apply, query, architect, arch-search, and all other codegraph operations",
+          "previous_intent": "cLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest, architect, compile, code-plan, repair-plan, arch-plan, arch-search, arch-simulate, api-link, viewer, drift, lock, and copilot-context",
           "body_hash_changed": true
         }
       ]
@@ -2477,6 +2829,126 @@
           "body_hash_changed": false
         },
         {
+          "id": "codegraph/arch_evolution.py::EvolutionReport::format",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionReport::to_dict",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionResult::format",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionResult::to_dict",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionStage::to_dict",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_evolution.py::_check_policies",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::evaluate_policies"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::_get_strategy_ranking",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::get_strategy_ranking"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::_record_metrics_snapshot",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::record_metrics_snapshot"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::_record_to_memory",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory.py::record_decision"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::_run_advisor",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "calls": [
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "codegraph/extractor.py::load_graph0",
+            "codegraph/index.py::IndexStore"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::_run_arch_search",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_search.py::run_arch_search"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/arch_health.py::ArchHealthReport::format",
           "file": "codegraph/arch_health.py",
           "type": "method",
@@ -2615,6 +3087,94 @@
           "previous_intent": ""
         },
         {
+          "id": "codegraph/arch_memory_intelligence.py::ArchPattern::from_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::ArchPattern::to_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::format",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::to_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::from_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::to_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::StrategyScore::from_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::StrategyScore::to_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::_save_metrics_history",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_memory_intelligence.py::record_metrics_snapshot"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::get_strategy_ranking",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory.py::load_memory",
+            "codegraph/arch_memory_intelligence.py::score_strategies"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::_get_strategy_ranking"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/arch_planner.py::ArchPlan::format",
           "file": "codegraph/arch_planner.py",
           "type": "method",
@@ -2715,6 +3275,122 @@
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "map subsystem or component names to their actual file paths",
           "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/arch_policy.py::ArchPolicy::from_dict",
+          "file": "codegraph/arch_policy.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::ArchPolicy::to_dict",
+          "file": "codegraph/arch_policy.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::PolicyReport::format",
+          "file": "codegraph/arch_policy.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::PolicyReport::to_dict",
+          "file": "codegraph/arch_policy.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::PolicyViolation::to_dict",
+          "file": "codegraph/arch_policy.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_coupling_limit",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::PolicyViolation"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_frontend_backend_boundary",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_max_subsystem_size",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::PolicyViolation"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_no_apply_without_plan",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_no_large_modules",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::PolicyViolation"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_policy",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_policy.py::evaluate_policies"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_score_gate",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::PolicyViolation"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::_load_json",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_policy.py::evaluate_policies"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
         },
         {
           "id": "codegraph/arch_schema.py::ArchComponent::from_dict",
@@ -2976,6 +3652,7 @@
             "codegraph/architecture_simulator.py::_compute_arch_metrics"
           ],
           "called_by": [
+            "codegraph/arch_evolution.py::_run_arch_search",
             "codegraph/cli.py::arch_search_cmd"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -4089,6 +4766,20 @@
           "body_hash_changed": false
         },
         {
+          "id": "codegraph/cli.py::evolution_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionReport::from_results",
+            "codegraph/arch_evolution.py::run_evolution",
+            "codegraph/arch_evolution.py::save_evolution_report",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/cli.py::evolve_cmd",
           "file": "codegraph/cli.py",
           "type": "function",
@@ -4211,6 +4902,34 @@
           "previous_intent": ""
         },
         {
+          "id": "codegraph/cli.py::memory_intel_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::analyze_memory",
+            "codegraph/arch_memory_intelligence.py::save_strategy_scores",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/cli.py::metrics_snapshot_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/extractor.py::load_graph0",
+            "codegraph/index.py::IndexStore"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/cli.py::multilevel_cmd",
           "file": "codegraph/cli.py",
           "type": "function",
@@ -4224,6 +4943,22 @@
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "run multi-level architecture analysis across function, module, and subsystem levels",
           "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::policy_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::add_policy",
+            "codegraph/arch_policy.py::evaluate_policies",
+            "codegraph/arch_policy.py::init_default_policies",
+            "codegraph/arch_policy.py::load_policies",
+            "codegraph/arch_policy.py::remove_policy",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
         },
         {
           "id": "codegraph/cli.py::repair_plan_cmd",
@@ -5678,6 +6413,301 @@
           "previous_intent": ""
         },
         {
+          "id": "codegraph/arch_evolution",
+          "file": "codegraph/arch_evolution.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionReport",
+          "file": "codegraph/arch_evolution.py",
+          "type": "class",
+          "called_by": [
+            "tests/test_arch_evolution.py::TestEvolutionReport::test_to_dict",
+            "tests/test_arch_evolution.py::TestEvolutionResult::test_to_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionReport::format",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionReport::from_results",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "called_by": [
+            "codegraph/cli.py::evolution_cmd",
+            "tests/test_arch_evolution.py::TestEvolutionReport::test_format",
+            "tests/test_arch_evolution.py::TestEvolutionReport::test_from_results_converged",
+            "tests/test_arch_evolution.py::TestEvolutionReport::test_from_results_empty",
+            "tests/test_arch_evolution.py::TestSaveEvolutionReport::test_save_and_load"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionReport::to_dict",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionResult",
+          "file": "codegraph/arch_evolution.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle",
+            "tests/test_arch_evolution.py::TestEvolutionReport::test_format",
+            "tests/test_arch_evolution.py::TestEvolutionReport::test_from_results_converged",
+            "tests/test_arch_evolution.py::TestEvolutionReport::test_to_dict",
+            "tests/test_arch_evolution.py::TestEvolutionResult::test_defaults",
+            "tests/test_arch_evolution.py::TestEvolutionResult::test_format_blocked",
+            "tests/test_arch_evolution.py::TestEvolutionResult::test_format_improved",
+            "tests/test_arch_evolution.py::TestEvolutionResult::test_to_dict",
+            "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_blocked_recommendation",
+            "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_no_duplicate_current_strategy",
+            "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_significant_improvement",
+            "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_suggests_effective_strategy",
+            "tests/test_arch_evolution.py::TestRunEvolution::test_multiple_cycles",
+            "tests/test_arch_evolution.py::TestRunEvolution::test_respects_max_cycles",
+            "tests/test_arch_evolution.py::TestRunEvolution::test_stops_on_no_change",
+            "tests/test_arch_evolution.py::TestSaveEvolutionReport::test_save_and_load",
+            "tests/test_arch_evolution.py::TestSkipRemaining::test_does_not_skip_already_set",
+            "tests/test_arch_evolution.py::TestSkipRemaining::test_skips_after_named_stage"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionResult::format",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionResult::to_dict",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionStage",
+          "file": "codegraph/arch_evolution.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle",
+            "tests/test_arch_evolution.py::TestEvolutionReport::test_format",
+            "tests/test_arch_evolution.py::TestEvolutionResult::test_format_blocked",
+            "tests/test_arch_evolution.py::TestEvolutionResult::test_format_improved",
+            "tests/test_arch_evolution.py::TestEvolutionStage::test_basic",
+            "tests/test_arch_evolution.py::TestEvolutionStage::test_with_details",
+            "tests/test_arch_evolution.py::TestSaveEvolutionReport::test_save_and_load",
+            "tests/test_arch_evolution.py::TestSkipRemaining::test_does_not_skip_already_set",
+            "tests/test_arch_evolution.py::TestSkipRemaining::test_skips_after_named_stage"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::EvolutionStage::to_dict",
+          "file": "codegraph/arch_evolution.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_evolution.py::_apply_memory_boost",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle",
+            "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_boost_applied",
+            "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_boost_different_strategy",
+            "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_boost_low_effectiveness",
+            "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_ranking"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::_check_policies",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::evaluate_policies"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::_generate_evolution_recommendations",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle",
+            "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_blocked_recommendation",
+            "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_no_duplicate_current_strategy",
+            "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_significant_improvement",
+            "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_suggests_effective_strategy"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::_get_strategy_ranking",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::get_strategy_ranking"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::_record_metrics_snapshot",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::record_metrics_snapshot"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::_record_to_memory",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory.py::record_decision"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::_run_advisor",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "calls": [
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "codegraph/extractor.py::load_graph0",
+            "codegraph/index.py::IndexStore"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::_run_arch_search",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_search.py::run_arch_search"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::_skip_remaining",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution_cycle",
+            "tests/test_arch_evolution.py::TestSkipRemaining::test_does_not_skip_already_set",
+            "tests/test_arch_evolution.py::TestSkipRemaining::test_skips_after_named_stage"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::run_evolution",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_evolution.py::run_evolution_cycle"
+          ],
+          "called_by": [
+            "codegraph/cli.py::evolution_cmd",
+            "tests/test_arch_evolution.py::TestRunEvolution::test_multiple_cycles",
+            "tests/test_arch_evolution.py::TestRunEvolution::test_respects_max_cycles",
+            "tests/test_arch_evolution.py::TestRunEvolution::test_stops_on_no_change"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::run_evolution_cycle",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionResult",
+            "codegraph/arch_evolution.py::EvolutionStage",
+            "codegraph/arch_evolution.py::_apply_memory_boost",
+            "codegraph/arch_evolution.py::_check_policies",
+            "codegraph/arch_evolution.py::_generate_evolution_recommendations",
+            "codegraph/arch_evolution.py::_get_strategy_ranking",
+            "codegraph/arch_evolution.py::_record_metrics_snapshot",
+            "codegraph/arch_evolution.py::_record_to_memory",
+            "codegraph/arch_evolution.py::_run_advisor",
+            "codegraph/arch_evolution.py::_run_arch_search",
+            "codegraph/arch_evolution.py::_skip_remaining"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::run_evolution",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_advisor_failure",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_dry_run_skips_record",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_full_success",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_safe_candidate",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_smells",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_policy_blocks",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_score_degradation_rejected",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_simulation_unsafe"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_evolution.py::save_evolution_report",
+          "file": "codegraph/arch_evolution.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/cli.py::evolution_cmd",
+            "tests/test_arch_evolution.py::TestSaveEvolutionReport::test_save_and_load"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/arch_memory.py::get_experiment_success_rate",
           "file": "codegraph/arch_memory.py",
           "type": "function",
@@ -5686,6 +6716,540 @@
           ],
           "called_by": [
             "codegraph/cli.py::arch_memory_cmd"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::ArchPattern",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/arch_memory_intelligence.py::mine_patterns"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::ArchPattern::from_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::ArchPattern::to_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/arch_memory_intelligence.py::analyze_memory",
+            "tests/test_arch_memory_intelligence.py::TestReportFormatting::test_format_empty",
+            "tests/test_arch_memory_intelligence.py::TestReportFormatting::test_to_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::format",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::to_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::MetricsSnapshot",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+            "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot::test_defaults",
+            "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_down",
+            "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_up"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::from_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::to_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::StrategyScore",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/arch_memory_intelligence.py::score_strategies",
+            "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot::test_round_trip",
+            "tests/test_arch_memory_intelligence.py::TestRecommendations::test_effective_strategy",
+            "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores::test_save_and_verify",
+            "tests/test_arch_memory_intelligence.py::TestStrategyScore::test_round_trip",
+            "tests/test_arch_memory_intelligence.py::TestStrategyScore::test_to_dict_rounding"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::StrategyScore::from_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::StrategyScore::to_dict",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::_save_metrics_history",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_memory_intelligence.py::record_metrics_snapshot"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::analyze_memory",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory.py::load_memory",
+            "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport",
+            "codegraph/arch_memory_intelligence.py::generate_recommendations",
+            "codegraph/arch_memory_intelligence.py::load_metrics_history",
+            "codegraph/arch_memory_intelligence.py::mine_patterns",
+            "codegraph/arch_memory_intelligence.py::score_strategies"
+          ],
+          "called_by": [
+            "codegraph/cli.py::memory_intel_cmd",
+            "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_empty_project",
+            "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_with_data"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::generate_recommendations",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_memory_intelligence.py::analyze_memory",
+            "tests/test_arch_memory_intelligence.py::TestRecommendations::test_effective_strategy",
+            "tests/test_arch_memory_intelligence.py::TestRecommendations::test_empty_data",
+            "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_down",
+            "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_up"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::get_strategy_ranking",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory.py::load_memory",
+            "codegraph/arch_memory_intelligence.py::score_strategies"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::_get_strategy_ranking"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::load_metrics_history",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_memory_intelligence.py::analyze_memory",
+            "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+            "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_append_multiple",
+            "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_record_and_load"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::mine_patterns",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::ArchPattern"
+          ],
+          "called_by": [
+            "codegraph/arch_memory_intelligence.py::analyze_memory",
+            "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_mines_experiment_patterns",
+            "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_mines_tag_patterns"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::MetricsSnapshot",
+            "codegraph/arch_memory_intelligence.py::_save_metrics_history",
+            "codegraph/arch_memory_intelligence.py::load_metrics_history"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::_record_metrics_snapshot",
+            "codegraph/cli.py::metrics_snapshot_cmd",
+            "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_append_multiple",
+            "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_record_and_load"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::save_strategy_scores",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/cli.py::memory_intel_cmd",
+            "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores::test_save_and_verify"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_memory_intelligence.py::score_strategies",
+          "file": "codegraph/arch_memory_intelligence.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory.py::ArchDecision",
+            "codegraph/arch_memory_intelligence.py::StrategyScore"
+          ],
+          "called_by": [
+            "codegraph/arch_memory_intelligence.py::analyze_memory",
+            "codegraph/arch_memory_intelligence.py::get_strategy_ranking",
+            "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_empty_memory",
+            "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_empty_memory",
+            "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_scores_from_decisions",
+            "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_scores_from_experiments"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy",
+          "file": "codegraph/arch_policy.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::ArchPolicy",
+          "file": "codegraph/arch_policy.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/arch_policy.py::add_policy",
+            "tests/test_arch_policy.py::TestArchPolicy::test_defaults",
+            "tests/test_arch_policy.py::TestArchPolicy::test_round_trip",
+            "tests/test_arch_policy.py::TestPolicyStore::test_save_and_load"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::ArchPolicy::from_dict",
+          "file": "codegraph/arch_policy.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::ArchPolicy::to_dict",
+          "file": "codegraph/arch_policy.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::PolicyReport",
+          "file": "codegraph/arch_policy.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/arch_policy.py::evaluate_policies",
+            "tests/test_arch_policy.py::TestPolicyReport::test_format_blocked",
+            "tests/test_arch_policy.py::TestPolicyReport::test_format_passed",
+            "tests/test_arch_policy.py::TestPolicyReport::test_to_dict_summary"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::PolicyReport::format",
+          "file": "codegraph/arch_policy.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::PolicyReport::to_dict",
+          "file": "codegraph/arch_policy.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::PolicyViolation",
+          "file": "codegraph/arch_policy.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/arch_policy.py::_check_coupling_limit",
+            "codegraph/arch_policy.py::_check_max_subsystem_size",
+            "codegraph/arch_policy.py::_check_no_large_modules",
+            "codegraph/arch_policy.py::_check_score_gate",
+            "tests/test_arch_policy.py::TestPolicyReport::test_format_blocked",
+            "tests/test_arch_policy.py::TestPolicyReport::test_to_dict_summary",
+            "tests/test_arch_policy.py::TestPolicyViolation::test_to_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::PolicyViolation::to_dict",
+          "file": "codegraph/arch_policy.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_coupling_limit",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::PolicyViolation"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_frontend_backend_boundary",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_max_subsystem_size",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::PolicyViolation"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_no_apply_without_plan",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_no_large_modules",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::PolicyViolation"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_policy",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_policy.py::evaluate_policies"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::_check_score_gate",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::PolicyViolation"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::_load_json",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_policy.py::evaluate_policies"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::add_policy",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::ArchPolicy",
+            "codegraph/arch_policy.py::load_policies",
+            "codegraph/arch_policy.py::save_policies"
+          ],
+          "called_by": [
+            "codegraph/cli.py::policy_cmd",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_coupling_limit_pass",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_disabled_policy_skipped",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_pass",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_violation",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_block",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_pass",
+            "tests/test_arch_policy.py::TestPolicyStore::test_add_invalid_action",
+            "tests/test_arch_policy.py::TestPolicyStore::test_add_invalid_type",
+            "tests/test_arch_policy.py::TestPolicyStore::test_add_policy",
+            "tests/test_arch_policy.py::TestPolicyStore::test_remove_policy"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::evaluate_policies",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::PolicyReport",
+            "codegraph/arch_policy.py::_check_policy",
+            "codegraph/arch_policy.py::_load_json",
+            "codegraph/arch_policy.py::load_policies"
+          ],
+          "called_by": [
+            "codegraph/arch_evolution.py::_check_policies",
+            "codegraph/cli.py::policy_cmd",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_coupling_limit_pass",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_disabled_policy_skipped",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_pass",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_violation",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_policies",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_block",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_pass"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::init_default_policies",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::load_policies",
+            "codegraph/arch_policy.py::save_policies"
+          ],
+          "called_by": [
+            "codegraph/cli.py::policy_cmd",
+            "tests/test_arch_policy.py::TestInitDefaults::test_creates_defaults",
+            "tests/test_arch_policy.py::TestInitDefaults::test_idempotent"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::load_policies",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_policy.py::add_policy",
+            "codegraph/arch_policy.py::evaluate_policies",
+            "codegraph/arch_policy.py::init_default_policies",
+            "codegraph/arch_policy.py::remove_policy",
+            "codegraph/cli.py::policy_cmd",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_disabled_policy_skipped",
+            "tests/test_arch_policy.py::TestPolicyStore::test_add_policy",
+            "tests/test_arch_policy.py::TestPolicyStore::test_load_empty",
+            "tests/test_arch_policy.py::TestPolicyStore::test_remove_policy",
+            "tests/test_arch_policy.py::TestPolicyStore::test_save_and_load"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::remove_policy",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::load_policies",
+            "codegraph/arch_policy.py::save_policies"
+          ],
+          "called_by": [
+            "codegraph/cli.py::policy_cmd",
+            "tests/test_arch_policy.py::TestPolicyStore::test_remove_nonexistent",
+            "tests/test_arch_policy.py::TestPolicyStore::test_remove_policy"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_policy.py::save_policies",
+          "file": "codegraph/arch_policy.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_policy.py::add_policy",
+            "codegraph/arch_policy.py::init_default_policies",
+            "codegraph/arch_policy.py::remove_policy",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_disabled_policy_skipped",
+            "tests/test_arch_policy.py::TestPolicyStore::test_save_and_load"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -5838,6 +7402,7 @@
             "codegraph/architecture_simulator.py::_compute_arch_metrics"
           ],
           "called_by": [
+            "codegraph/arch_evolution.py::_run_arch_search",
             "codegraph/cli.py::arch_search_cmd"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6020,11 +7585,69 @@
           "previous_intent": ""
         },
         {
+          "id": "codegraph/cli.py::evolution_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionReport::from_results",
+            "codegraph/arch_evolution.py::run_evolution",
+            "codegraph/arch_evolution.py::save_evolution_report",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/cli.py::lock_cmd",
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
             "codegraph/architecture_lock.py::check_lock",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/cli.py::memory_intel_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::analyze_memory",
+            "codegraph/arch_memory_intelligence.py::save_strategy_scores",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/cli.py::metrics_snapshot_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+            "codegraph/architecture_advisor.py::advise_architecture",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root",
+            "codegraph/extractor.py::load_graph0",
+            "codegraph/index.py::IndexStore"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/cli.py::policy_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_policy.py::add_policy",
+            "codegraph/arch_policy.py::evaluate_policies",
+            "codegraph/arch_policy.py::init_default_policies",
+            "codegraph/arch_policy.py::load_policies",
+            "codegraph/arch_policy.py::remove_policy",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root"
           ],
@@ -6047,24 +7670,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/extractors/api_routes",
-          "file": "codegraph/extractors/api_routes.py",
-          "type": "module",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/extractors/api_routes.py::ApiCall",
-          "file": "codegraph/extractors/api_routes.py",
-          "type": "class",
-          "called_by": [
-            "codegraph/extractors/api_routes.py::extract_js_api_calls",
-            "tests/test_api_routes.py::TestDataClasses::test_api_call_to_dict"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
           "id": "codegraph/extractors/api_routes.py::ApiCall::from_dict",
           "file": "codegraph/extractors/api_routes.py",
           "type": "method",
@@ -6081,19 +7686,6 @@
           "reason": "Orphan (new_code)"
         },
         {
-          "id": "codegraph/extractors/api_routes.py::ApiEndpoint",
-          "file": "codegraph/extractors/api_routes.py",
-          "type": "class",
-          "called_by": [
-            "codegraph/extractors/api_routes.py::extract_python_endpoints",
-            "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_to_dict",
-            "tests/test_api_routes.py::TestMatchParameterized::test_different_segment_count",
-            "tests/test_api_routes.py::TestMatchParameterized::test_param_match"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
           "id": "codegraph/extractors/api_routes.py::ApiEndpoint::from_dict",
           "file": "codegraph/extractors/api_routes.py",
           "type": "method",
@@ -6108,18 +7700,6 @@
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": "",
           "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/extractors/api_routes.py::ApiLinkReport",
-          "file": "codegraph/extractors/api_routes.py",
-          "type": "class",
-          "called_by": [
-            "codegraph/extractors/api_routes.py::link_api_routes",
-            "tests/test_api_routes.py::TestDataClasses::test_report_format",
-            "tests/test_api_routes.py::TestDataClasses::test_report_to_dict_summary"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
         },
         {
           "id": "codegraph/extractors/api_routes.py::ApiLinkReport::format",
@@ -6242,80 +7822,6 @@
           "type": "function",
           "called_by": [
             "codegraph/extractors/api_routes.py::_discover_files"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/extractors/api_routes.py::extract_js_api_calls",
-          "file": "codegraph/extractors/api_routes.py",
-          "type": "function",
-          "calls": [
-            "codegraph/extractors/api_routes.py::ApiCall",
-            "codegraph/extractors/api_routes.py::_build_func_ranges",
-            "codegraph/extractors/api_routes.py::_find_enclosing_func",
-            "codegraph/extractors/api_routes.py::_looks_like_api_path",
-            "codegraph/extractors/api_routes.py::_normalize_api_path"
-          ],
-          "called_by": [
-            "codegraph/extractors/api_routes.py::link_api_routes",
-            "tests/test_api_routes.py::TestExtractJsApiCalls::test_axios_get",
-            "tests/test_api_routes.py::TestExtractJsApiCalls::test_axios_post",
-            "tests/test_api_routes.py::TestExtractJsApiCalls::test_caller_node_from_function",
-            "tests/test_api_routes.py::TestExtractJsApiCalls::test_fetch_get",
-            "tests/test_api_routes.py::TestExtractJsApiCalls::test_fetch_with_method",
-            "tests/test_api_routes.py::TestExtractJsApiCalls::test_non_js_file",
-            "tests/test_api_routes.py::TestExtractJsApiCalls::test_nonexistent_file",
-            "tests/test_api_routes.py::TestExtractJsApiCalls::test_template_literal_path",
-            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_nonexistent_file"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/extractors/api_routes.py::extract_python_endpoints",
-          "file": "codegraph/extractors/api_routes.py",
-          "type": "function",
-          "calls": [
-            "codegraph/extractors/api_routes.py::ApiEndpoint",
-            "codegraph/extractors/api_routes.py::_find_handler_after",
-            "codegraph/extractors/api_routes.py::_normalize_path"
-          ],
-          "called_by": [
-            "codegraph/extractors/api_routes.py::link_api_routes",
-            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_django_path",
-            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_get",
-            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_post",
-            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_fastapi_with_path_params",
-            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_flask_route",
-            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_flask_route_default_get",
-            "tests/test_api_routes.py::TestExtractPythonEndpoints::test_non_python_file"
-          ],
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
-        },
-        {
-          "id": "codegraph/extractors/api_routes.py::link_api_routes",
-          "file": "codegraph/extractors/api_routes.py",
-          "type": "function",
-          "calls": [
-            "codegraph/extractors/api_routes.py::ApiLinkReport",
-            "codegraph/extractors/api_routes.py::_discover_files",
-            "codegraph/extractors/api_routes.py::_match_parameterized",
-            "codegraph/extractors/api_routes.py::_normalize_path",
-            "codegraph/extractors/api_routes.py::extract_js_api_calls",
-            "codegraph/extractors/api_routes.py::extract_python_endpoints",
-            "codegraph/types.py::WorkflowEdge"
-          ],
-          "called_by": [
-            "codegraph/cli.py::api_link_cmd",
-            "tests/test_api_routes.py::TestLinkApiRoutes::test_django_any_matches_all",
-            "tests/test_api_routes.py::TestLinkApiRoutes::test_explicit_source_files",
-            "tests/test_api_routes.py::TestLinkApiRoutes::test_link_fastapi_to_fetch",
-            "tests/test_api_routes.py::TestLinkApiRoutes::test_method_mismatch_not_linked",
-            "tests/test_api_routes.py::TestLinkApiRoutes::test_parameterized_matching",
-            "tests/test_api_routes.py::TestLinkApiRoutes::test_unlinked_calls",
-            "tests/test_api_routes.py::TestLinkApiRoutes::test_unlinked_endpoints"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -6790,6 +8296,468 @@
           "previous_intent": ""
         },
         {
+          "id": "tests/test_arch_evolution",
+          "file": "tests/test_arch_evolution.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_boost_applied",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::_apply_memory_boost"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_boost_different_strategy",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::_apply_memory_boost"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_boost_low_effectiveness",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::_apply_memory_boost"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_ranking",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::_apply_memory_boost"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionReport",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_format",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionReport::from_results",
+            "codegraph/arch_evolution.py::EvolutionResult",
+            "codegraph/arch_evolution.py::EvolutionStage"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_from_results_converged",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionReport::from_results",
+            "codegraph/arch_evolution.py::EvolutionResult"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_from_results_empty",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionReport::from_results"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_to_dict",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionReport",
+            "codegraph/arch_evolution.py::EvolutionResult"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionResult",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_defaults",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionResult"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_format_blocked",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionResult",
+            "codegraph/arch_evolution.py::EvolutionStage"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_format_improved",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionResult",
+            "codegraph/arch_evolution.py::EvolutionStage"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_to_dict",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionReport",
+            "codegraph/arch_evolution.py::EvolutionResult"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionStage",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionStage::test_basic",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionStage"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestEvolutionStage::test_with_details",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionStage"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_blocked_recommendation",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionResult",
+            "codegraph/arch_evolution.py::_generate_evolution_recommendations"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_no_duplicate_current_strategy",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionResult",
+            "codegraph/arch_evolution.py::_generate_evolution_recommendations"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_significant_improvement",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionResult",
+            "codegraph/arch_evolution.py::_generate_evolution_recommendations"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_suggests_effective_strategy",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionResult",
+            "codegraph/arch_evolution.py::_generate_evolution_recommendations"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolution",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolution::test_multiple_cycles",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionResult",
+            "codegraph/arch_evolution.py::run_evolution"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolution::test_respects_max_cycles",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionResult",
+            "codegraph/arch_evolution.py::run_evolution"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolution::test_stops_on_no_change",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionResult",
+            "codegraph/arch_evolution.py::run_evolution"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "called_by": [
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_dry_run_skips_record",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_full_success",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_safe_candidate",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_smells",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_policy_blocks",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_score_degradation_rejected",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_simulation_unsafe"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_search_result",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "called_by": [
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_dry_run_skips_record",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_full_success",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_policy_blocks",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_score_degradation_rejected",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_simulation_unsafe"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_advisor_failure",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::run_evolution_cycle"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_dry_run_skips_record",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::run_evolution_cycle",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_search_result"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_full_success",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::run_evolution_cycle",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_search_result"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_safe_candidate",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::run_evolution_cycle",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_smells",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::run_evolution_cycle",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_policy_blocks",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::run_evolution_cycle",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_search_result"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_score_degradation_rejected",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::run_evolution_cycle",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_search_result"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_simulation_unsafe",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::run_evolution_cycle",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
+            "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_search_result"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestSaveEvolutionReport",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestSaveEvolutionReport::test_save_and_load",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionReport::from_results",
+            "codegraph/arch_evolution.py::EvolutionResult",
+            "codegraph/arch_evolution.py::EvolutionStage",
+            "codegraph/arch_evolution.py::save_evolution_report"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestSkipRemaining",
+          "file": "tests/test_arch_evolution.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestSkipRemaining::test_does_not_skip_already_set",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionResult",
+            "codegraph/arch_evolution.py::EvolutionStage",
+            "codegraph/arch_evolution.py::_skip_remaining"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_evolution.py::TestSkipRemaining::test_skips_after_named_stage",
+          "file": "tests/test_arch_evolution.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_evolution.py::EvolutionResult",
+            "codegraph/arch_evolution.py::EvolutionStage",
+            "codegraph/arch_evolution.py::_skip_remaining"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "tests/test_arch_memory",
           "file": "tests/test_arch_memory.py",
           "type": "module",
@@ -7029,6 +8997,681 @@
           "calls": [
             "codegraph/arch_memory.py::load_memory",
             "codegraph/arch_memory.py::record_experiment"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_empty_project",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::analyze_memory",
+            "tests/test_arch_memory_intelligence.py::_make_codegraph_dirs",
+            "tests/test_arch_memory_intelligence.py::_setup_memory"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_with_data",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchDecision",
+            "codegraph/arch_memory_intelligence.py::analyze_memory",
+            "tests/test_arch_memory_intelligence.py::_make_codegraph_dirs",
+            "tests/test_arch_memory_intelligence.py::_setup_memory"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot::test_defaults",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::MetricsSnapshot"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot::test_round_trip",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::StrategyScore"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestMinePatterns",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_empty_memory",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchMemory",
+            "codegraph/arch_memory_intelligence.py::score_strategies"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_mines_experiment_patterns",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchExperiment",
+            "codegraph/arch_memory.py::ArchMemory",
+            "codegraph/arch_memory_intelligence.py::mine_patterns"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_mines_tag_patterns",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchDecision",
+            "codegraph/arch_memory.py::ArchMemory",
+            "codegraph/arch_memory_intelligence.py::mine_patterns"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestRecommendations",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_effective_strategy",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchMemory",
+            "codegraph/arch_memory_intelligence.py::StrategyScore",
+            "codegraph/arch_memory_intelligence.py::generate_recommendations"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_empty_data",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchMemory",
+            "codegraph/arch_memory_intelligence.py::generate_recommendations"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_down",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchMemory",
+            "codegraph/arch_memory_intelligence.py::MetricsSnapshot",
+            "codegraph/arch_memory_intelligence.py::generate_recommendations"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_up",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchMemory",
+            "codegraph/arch_memory_intelligence.py::MetricsSnapshot",
+            "codegraph/arch_memory_intelligence.py::generate_recommendations"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestRecordMetrics",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_append_multiple",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::load_metrics_history",
+            "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+            "tests/test_arch_memory_intelligence.py::_make_codegraph_dirs"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_record_and_load",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::load_metrics_history",
+            "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+            "tests/test_arch_memory_intelligence.py::_make_codegraph_dirs"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestReportFormatting",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestReportFormatting::test_format_empty",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestReportFormatting::test_to_dict",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores::test_save_and_verify",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::StrategyScore",
+            "codegraph/arch_memory_intelligence.py::save_strategy_scores",
+            "tests/test_arch_memory_intelligence.py::_make_codegraph_dirs"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestScoreStrategies",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_empty_memory",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchMemory",
+            "codegraph/arch_memory_intelligence.py::score_strategies"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_scores_from_decisions",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchDecision",
+            "codegraph/arch_memory.py::ArchMemory",
+            "codegraph/arch_memory_intelligence.py::score_strategies"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_scores_from_experiments",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory.py::ArchExperiment",
+            "codegraph/arch_memory.py::ArchMemory",
+            "codegraph/arch_memory_intelligence.py::score_strategies"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestStrategyScore",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestStrategyScore::test_round_trip",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::StrategyScore"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::TestStrategyScore::test_to_dict_rounding",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_memory_intelligence.py::StrategyScore"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::_make_codegraph_dirs",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "function",
+          "called_by": [
+            "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_empty_project",
+            "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_with_data",
+            "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_append_multiple",
+            "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_record_and_load",
+            "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores::test_save_and_verify"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_memory_intelligence.py::_setup_memory",
+          "file": "tests/test_arch_memory_intelligence.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_memory.py::ArchMemory",
+            "codegraph/arch_memory.py::save_memory"
+          ],
+          "called_by": [
+            "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_empty_project",
+            "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_with_data"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy",
+          "file": "tests/test_arch_policy.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestArchPolicy",
+          "file": "tests/test_arch_policy.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestArchPolicy::test_defaults",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::ArchPolicy"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestArchPolicy::test_round_trip",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::ArchPolicy"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestEvaluatePolicies",
+          "file": "tests/test_arch_policy.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_coupling_limit_pass",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::add_policy",
+            "codegraph/arch_policy.py::evaluate_policies",
+            "tests/test_arch_policy.py::_setup_codegraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_disabled_policy_skipped",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::add_policy",
+            "codegraph/arch_policy.py::evaluate_policies",
+            "codegraph/arch_policy.py::load_policies",
+            "codegraph/arch_policy.py::save_policies",
+            "tests/test_arch_policy.py::_setup_codegraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_pass",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::add_policy",
+            "codegraph/arch_policy.py::evaluate_policies",
+            "tests/test_arch_policy.py::_setup_codegraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_violation",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::add_policy",
+            "codegraph/arch_policy.py::evaluate_policies",
+            "tests/test_arch_policy.py::_setup_codegraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_policies",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::evaluate_policies",
+            "tests/test_arch_policy.py::_setup_codegraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_block",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::add_policy",
+            "codegraph/arch_policy.py::evaluate_policies",
+            "tests/test_arch_policy.py::_setup_codegraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_pass",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::add_policy",
+            "codegraph/arch_policy.py::evaluate_policies",
+            "tests/test_arch_policy.py::_setup_codegraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestInitDefaults",
+          "file": "tests/test_arch_policy.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestInitDefaults::test_creates_defaults",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::init_default_policies",
+            "tests/test_arch_policy.py::_setup_codegraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestInitDefaults::test_idempotent",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::init_default_policies",
+            "tests/test_arch_policy.py::_setup_codegraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyReport",
+          "file": "tests/test_arch_policy.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyReport::test_format_blocked",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::PolicyReport",
+            "codegraph/arch_policy.py::PolicyViolation"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyReport::test_format_passed",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::PolicyReport"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyReport::test_to_dict_summary",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::PolicyReport",
+            "codegraph/arch_policy.py::PolicyViolation"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyStore",
+          "file": "tests/test_arch_policy.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyStore::test_add_invalid_action",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::add_policy",
+            "tests/test_arch_policy.py::_setup_codegraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyStore::test_add_invalid_type",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::add_policy",
+            "tests/test_arch_policy.py::_setup_codegraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyStore::test_add_policy",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::add_policy",
+            "codegraph/arch_policy.py::load_policies",
+            "tests/test_arch_policy.py::_setup_codegraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyStore::test_load_empty",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::load_policies"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyStore::test_remove_nonexistent",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::remove_policy",
+            "tests/test_arch_policy.py::_setup_codegraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyStore::test_remove_policy",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::add_policy",
+            "codegraph/arch_policy.py::load_policies",
+            "codegraph/arch_policy.py::remove_policy",
+            "tests/test_arch_policy.py::_setup_codegraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyStore::test_save_and_load",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::ArchPolicy",
+            "codegraph/arch_policy.py::load_policies",
+            "codegraph/arch_policy.py::save_policies",
+            "tests/test_arch_policy.py::_setup_codegraph"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyViolation",
+          "file": "tests/test_arch_policy.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_policy.py::TestPolicyViolation::test_to_dict",
+          "file": "tests/test_arch_policy.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_policy.py::PolicyViolation"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_arch_policy.py::_setup_codegraph",
+          "file": "tests/test_arch_policy.py",
+          "type": "function",
+          "called_by": [
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_coupling_limit_pass",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_disabled_policy_skipped",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_pass",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_violation",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_policies",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_block",
+            "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_pass",
+            "tests/test_arch_policy.py::TestInitDefaults::test_creates_defaults",
+            "tests/test_arch_policy.py::TestInitDefaults::test_idempotent",
+            "tests/test_arch_policy.py::TestPolicyStore::test_add_invalid_action",
+            "tests/test_arch_policy.py::TestPolicyStore::test_add_invalid_type",
+            "tests/test_arch_policy.py::TestPolicyStore::test_add_policy",
+            "tests/test_arch_policy.py::TestPolicyStore::test_remove_nonexistent",
+            "tests/test_arch_policy.py::TestPolicyStore::test_remove_policy",
+            "tests/test_arch_policy.py::TestPolicyStore::test_save_and_load"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""

@@ -3091,3 +3091,199 @@ def api_link_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
             encoding="utf-8",
         )
         click.echo(f"API link report saved to {out_path}")
+
+
+# ── Architecture Memory Intelligence ──────────────────────────────────
+
+
+@main.command("memory-intel")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.option("--save", is_flag=True,
+              help="Save strategy scores to .codegraph/memory/.")
+@click.pass_context
+def memory_intel_cmd(ctx: click.Context, json_output: bool,
+                     save: bool) -> None:
+    """Analyze architecture memory for patterns and strategy effectiveness."""
+    import json as _json
+    from codegraph.arch_memory_intelligence import (
+        analyze_memory, save_strategy_scores,
+    )
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    report = analyze_memory(root)
+
+    if json_output:
+        click.echo(_json.dumps(report.to_dict(), indent=2))
+    else:
+        click.echo(report.format())
+
+    if save:
+        path = save_strategy_scores(root, report.strategy_scores)
+        click.echo(f"Strategy scores saved to {path}")
+
+
+@main.command("metrics-snapshot")
+@click.option("--trigger", default="manual",
+              help="What triggered this snapshot (build, refactor, evolution).")
+@click.pass_context
+def metrics_snapshot_cmd(ctx: click.Context, trigger: str) -> None:
+    """Record a metrics snapshot from current architecture state."""
+    from codegraph.arch_memory_intelligence import record_metrics_snapshot
+    from codegraph.architecture_advisor import advise_architecture
+    from codegraph.extractor import load_graph0
+    from codegraph.index import IndexStore
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    graph0 = load_graph0(root)
+    with IndexStore(root) as index:
+        advice = advise_architecture(graph0, index)
+
+    snap = record_metrics_snapshot(
+        root,
+        score=advice.score,
+        grade=advice.grade,
+        modularity=getattr(advice, "modularity", 0.0),
+        coupling=getattr(advice, "coupling", 0.0),
+        cycles=len([s for s in advice.smells
+                    if s.smell_type == "cycle"]),
+        god_modules=len([s for s in advice.smells
+                         if s.smell_type == "god_module"]),
+        trigger=trigger,
+    )
+    click.echo(f"Recorded: {snap.grade} {snap.score:.3f} ({trigger})")
+
+
+# ── Architecture Policy Engine ─────────────────────────────────────────
+
+
+@main.command("policy")
+@click.option("--init", "do_init", is_flag=True,
+              help="Initialize default architecture policies.")
+@click.option("--check", "do_check", is_flag=True,
+              help="Evaluate all policies against current architecture.")
+@click.option("--add", "add_name", default=None,
+              help="Add a new policy by name.")
+@click.option("--type", "policy_type", default="custom",
+              help="Policy type (no_large_modules, score_gate, etc.).")
+@click.option("--rule", default="", help="Rule description.")
+@click.option("--action", default="warn", help="Action: warn, block, suggest.")
+@click.option("--threshold", type=float, default=0.0, help="Numeric threshold.")
+@click.option("--remove", "remove_id", default=None,
+              help="Remove a policy by ID.")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.pass_context
+def policy_cmd(ctx: click.Context, do_init: bool, do_check: bool,
+               add_name: str | None, policy_type: str, rule: str,
+               action: str, threshold: float, remove_id: str | None,
+               json_output: bool) -> None:
+    """Manage and evaluate architecture policies."""
+    import json as _json
+    from codegraph.arch_policy import (
+        add_policy, evaluate_policies, init_default_policies,
+        load_policies, remove_policy,
+    )
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    if do_init:
+        policies = init_default_policies(root)
+        click.echo(f"Initialized {len(policies)} default policies.")
+        return
+
+    if add_name:
+        p = add_policy(root, add_name, policy_type, rule, action, threshold)
+        click.echo(f"Added policy {p.policy_id}: {p.name}")
+        return
+
+    if remove_id:
+        if remove_policy(root, remove_id):
+            click.echo(f"Removed policy {remove_id}")
+        else:
+            click.echo(f"Policy {remove_id} not found", err=True)
+            sys.exit(EXIT_ERROR)
+        return
+
+    if do_check:
+        report = evaluate_policies(root)
+        if json_output:
+            click.echo(_json.dumps(report.to_dict(), indent=2))
+        else:
+            click.echo(report.format())
+        if not report.passed:
+            sys.exit(EXIT_WARNING)
+        return
+
+    # Default: list policies
+    policies = load_policies(root)
+    if not policies:
+        click.echo("No policies defined. Use --init to create defaults.")
+        return
+
+    if json_output:
+        click.echo(_json.dumps(
+            {"policies": [p.to_dict() for p in policies]}, indent=2,
+        ))
+    else:
+        click.echo(f"Architecture Policies ({len(policies)}):")
+        for p in policies:
+            status = "✓" if p.enabled else "○"
+            click.echo(f"  {status} [{p.policy_id}] {p.name} "
+                        f"({p.policy_type}, {p.action})")
+            click.echo(f"    {p.rule}")
+
+
+# ── Architecture Evolution Engine ──────────────────────────────────────
+
+
+@main.command("evolution")
+@click.option("--max-cycles", type=int, default=3,
+              help="Maximum evolution cycles (default: 3).")
+@click.option("--dry-run", is_flag=True,
+              help="Simulate evolution without recording.")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.option("--save", is_flag=True,
+              help="Save report to .codegraph/planning/evolution_report.json.")
+@click.pass_context
+def evolution_cmd(ctx: click.Context, max_cycles: int, dry_run: bool,
+                  json_output: bool, save: bool) -> None:
+    """Run the architecture evolution engine.
+
+    Closed-loop pipeline: detect → memory → mutate → policy →
+    simulate → select → record.
+    """
+    import json as _json
+    from codegraph.arch_evolution import (
+        EvolutionReport, run_evolution, save_evolution_report,
+    )
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    results = run_evolution(root, max_cycles=max_cycles, dry_run=dry_run)
+    report = EvolutionReport.from_results(results)
+
+    if json_output:
+        click.echo(_json.dumps(report.to_dict(), indent=2))
+    else:
+        click.echo(report.format())
+
+    if save:
+        path = save_evolution_report(root, report)
+        click.echo(f"Evolution report saved to {path}")

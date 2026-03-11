@@ -1745,6 +1745,203 @@
       "intent_body_hash": "ea1ee"
     },
     {
+      "id": "codegraph/arch_evolution",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::EvolutionReport",
+      "intent": "summary of multi-cycle evolution with total improvement, strategies used, and convergence status",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "4b3bf"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::EvolutionReport::format",
+      "intent": "format multi-cycle evolution report as human-readable text",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "a1b4c"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::EvolutionReport::from_results",
+      "intent": "construct EvolutionReport from a list of EvolutionResults, computing totals and convergence",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "15964"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::EvolutionReport::to_dict",
+      "intent": "serialize EvolutionReport to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "dd8ae"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::EvolutionResult",
+      "intent": "complete result of one evolution cycle with 7-stage pipeline outcome, scores, and recommendations",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "a9f47"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::EvolutionResult::format",
+      "intent": "format evolution result as human-readable text with stage status icons and recommendations",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "f05e3"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::EvolutionResult::to_dict",
+      "intent": "serialize EvolutionResult to dictionary with rounded scores",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "89573"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::EvolutionStage",
+      "intent": "a named stage in the evolution pipeline with status tracking and metrics",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "0fdd9"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::EvolutionStage::to_dict",
+      "intent": "serialize EvolutionStage to dictionary, omitting empty details and metrics",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "46f3e"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::_apply_memory_boost",
+      "intent": "boost candidate selection when its strategy has greater than 60% historical effectiveness",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "e1d01"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::_check_policies",
+      "intent": "check architecture policies and return report as dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "96d7e"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::_generate_evolution_recommendations",
+      "intent": "generate recommendations based on evolution outcome and historical strategy effectiveness",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "61fed"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::_get_strategy_ranking",
+      "intent": "get strategy ranking from memory intelligence as list of dictionaries",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "09179"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::_record_metrics_snapshot",
+      "intent": "record current architecture metrics to memory intelligence history",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "bd631"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::_record_to_memory",
+      "intent": "record evolution decision to architecture memory with strategy and evolution tags",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "3b1cc"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::_run_advisor",
+      "intent": "run architecture advisor and return advice as dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "e1a27"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::_run_arch_search",
+      "intent": "run multi-candidate architecture search and return results as dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "993dc"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::_skip_remaining",
+      "intent": "mark all pending stages after the named stage as skipped",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "2f1ee"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::run_evolution",
+      "intent": "run multiple evolution cycles until convergence, policy block, or max_cycles reached",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "57770"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "intent": "run one full 7-stage evolution cycle: detect, memory, mutate, policy, simulate, select, record",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "7fd1d"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::save_evolution_report",
+      "intent": "save multi-cycle evolution report to planning directory as JSON",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "0ddc0"
+    },
+    {
       "id": "codegraph/arch_health",
       "intent": "architecture health scoring engine aggregating risk metrics, cycle detection, coupling analysis, and subsystem cohesion into unified health reports",
       "layer": 3,
@@ -1987,6 +2184,203 @@
       "intent_body_hash": "eb07b"
     },
     {
+      "id": "codegraph/arch_memory_intelligence",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::ArchPattern",
+      "intent": "mined architecture pattern with frequency, average impact, and confidence score",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "99487"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::ArchPattern::from_dict",
+      "intent": "deserialize ArchPattern from dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "0998e"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::ArchPattern::to_dict",
+      "intent": "serialize ArchPattern to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "c0d05"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport",
+      "intent": "full memory intelligence report containing strategy scores, patterns, metrics trend, and recommendations",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "d6630"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::format",
+      "intent": "format memory intelligence report as human-readable text with strategy rankings and trend analysis",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "9e0b8"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::to_dict",
+      "intent": "serialize MemoryIntelligenceReport to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "42969"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::MetricsSnapshot",
+      "intent": "point-in-time architecture metrics snapshot with score, grade, modularity, coupling, cycle count, and trigger event",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "a7da6"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::from_dict",
+      "intent": "deserialize MetricsSnapshot from dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "a08b6"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::to_dict",
+      "intent": "serialize MetricsSnapshot to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "9adb3"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::StrategyScore",
+      "intent": "effectiveness score for an architecture strategy based on historical success rate and score improvement",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "1caee"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::StrategyScore::from_dict",
+      "intent": "deserialize StrategyScore from dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "1bda6"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::StrategyScore::to_dict",
+      "intent": "serialize StrategyScore to dictionary with rounded effectiveness",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "5dfc7"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::_save_metrics_history",
+      "intent": "save metrics history list to disk as JSON, truncating to max 200 entries",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "e7632"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::analyze_memory",
+      "intent": "full memory intelligence pipeline: mine patterns, score strategies, generate recommendations",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "d5c75"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::generate_recommendations",
+      "intent": "generate actionable recommendations from memory data including trend analysis and effective strategy suggestions",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "25f63"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::get_strategy_ranking",
+      "intent": "aPI for evolution engine to retrieve strategy effectiveness ranking sorted by score",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "65eba"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::load_metrics_history",
+      "intent": "load metrics history from disk",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "79342"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::mine_patterns",
+      "intent": "discover successful architecture patterns by grouping decisions by tags and analyzing experiment outcomes",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "4ddaa"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+      "intent": "record a point-in-time architecture metrics snapshot to history file, keeping last 200 entries",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "37a3c"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::save_strategy_scores",
+      "intent": "persist strategy effectiveness scores to disk for cross-session use",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "9f1b0"
+    },
+    {
+      "id": "codegraph/arch_memory_intelligence.py::score_strategies",
+      "intent": "rank architecture strategies by historical effectiveness using composite score: success_rate * 0.5 + impact_factor * 0.5",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "7a13d"
+    },
+    {
       "id": "codegraph/arch_planner",
       "intent": "architecture decomposition engine comparing definitions to code generating executable tasks",
       "layer": 3,
@@ -2156,6 +2550,212 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-10T10:53:12Z",
       "intent_body_hash": "4f597"
+    },
+    {
+      "id": "codegraph/arch_policy",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "codegraph/arch_policy.py::ArchPolicy",
+      "intent": "architecture policy definition with type, rule, action (warn/block/suggest), threshold, and target scope",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "8474b"
+    },
+    {
+      "id": "codegraph/arch_policy.py::ArchPolicy::from_dict",
+      "intent": "deserialize ArchPolicy from dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "44daf"
+    },
+    {
+      "id": "codegraph/arch_policy.py::ArchPolicy::to_dict",
+      "intent": "serialize ArchPolicy to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "dcfdf"
+    },
+    {
+      "id": "codegraph/arch_policy.py::PolicyReport",
+      "intent": "policy evaluation result with pass/fail status, violation list, and blocking/warning counts",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "5e401"
+    },
+    {
+      "id": "codegraph/arch_policy.py::PolicyReport::format",
+      "intent": "format policy report as human-readable text with PASSED/BLOCKED status and violation details",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "3f21a"
+    },
+    {
+      "id": "codegraph/arch_policy.py::PolicyReport::to_dict",
+      "intent": "serialize PolicyReport to dictionary with summary counts",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "50cf9"
+    },
+    {
+      "id": "codegraph/arch_policy.py::PolicyViolation",
+      "intent": "record of a policy violation with action type (warn/block) and details",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "c53d2"
+    },
+    {
+      "id": "codegraph/arch_policy.py::PolicyViolation::to_dict",
+      "intent": "serialize PolicyViolation to dictionary",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "f74da"
+    },
+    {
+      "id": "codegraph/arch_policy.py::_check_coupling_limit",
+      "intent": "check that system coupling does not exceed threshold",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "63887"
+    },
+    {
+      "id": "codegraph/arch_policy.py::_check_frontend_backend_boundary",
+      "intent": "check that frontend and backend modules have no direct dependencies",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "b7d00"
+    },
+    {
+      "id": "codegraph/arch_policy.py::_check_max_subsystem_size",
+      "intent": "check that no subsystem exceeds the component count threshold",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "16c52"
+    },
+    {
+      "id": "codegraph/arch_policy.py::_check_no_apply_without_plan",
+      "intent": "check that an architecture plan exists before allowing apply operations",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "9eab6"
+    },
+    {
+      "id": "codegraph/arch_policy.py::_check_no_large_modules",
+      "intent": "check that no file exceeds the node count threshold",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "f9d30"
+    },
+    {
+      "id": "codegraph/arch_policy.py::_check_policy",
+      "intent": "dispatch a single policy to its type-specific handler",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "ca71f"
+    },
+    {
+      "id": "codegraph/arch_policy.py::_check_score_gate",
+      "intent": "check that architecture health score meets minimum threshold",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "72ff0"
+    },
+    {
+      "id": "codegraph/arch_policy.py::_load_json",
+      "intent": "load a JSON file safely, returning empty dict if file does not exist",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "c527b"
+    },
+    {
+      "id": "codegraph/arch_policy.py::add_policy",
+      "intent": "add a new architecture policy with auto-generated ID, validating type and action",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "d9f93"
+    },
+    {
+      "id": "codegraph/arch_policy.py::evaluate_policies",
+      "intent": "evaluate all enabled architecture policies against current graph, architecture, and health data",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "f6f03"
+    },
+    {
+      "id": "codegraph/arch_policy.py::init_default_policies",
+      "intent": "initialize default architecture policies (no_large_modules, max_subsystem_size, score_gate, coupling_limit)",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "8a66e"
+    },
+    {
+      "id": "codegraph/arch_policy.py::load_policies",
+      "intent": "load architecture policies from disk, returning empty list if none exist",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "4e3a3"
+    },
+    {
+      "id": "codegraph/arch_policy.py::remove_policy",
+      "intent": "remove an architecture policy by ID",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "4c7a8"
+    },
+    {
+      "id": "codegraph/arch_policy.py::save_policies",
+      "intent": "persist architecture policies list to disk as JSON",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
+      "intent_body_hash": "d1e1b"
     },
     {
       "id": "codegraph/arch_schema",
@@ -4238,15 +4838,15 @@
     },
     {
       "id": "codegraph/cli",
-      "intent": "cLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest, architect, compile, code-plan, repair-plan, arch-plan, arch-search, arch-simulate, api-link, viewer, drift, lock, and copilot-context",
+      "intent": "cLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest, architect, compile, code-plan, repair-plan, arch-plan, arch-search, arch-simulate, api-link, memory-intel, metrics-snapshot, policy, evolution, viewer, drift, lock, and copilot-context",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 13,
-      "intent_timestamp": "2026-03-11T18:06:11Z",
+      "intent_version": 14,
+      "intent_timestamp": "2026-03-11T18:56:59Z",
       "tags": [
         "entry_point"
       ],
-      "intent_body_hash": "678e8"
+      "intent_body_hash": "214e2"
     },
     {
       "id": "codegraph/cli.py::analyze_cmd",
@@ -4545,6 +5145,14 @@
       "intent_body_hash": "4516f"
     },
     {
+      "id": "codegraph/cli.py::evolution_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
       "id": "codegraph/cli.py::evolve_cmd",
       "intent": "run full architecture evolution loop: advisor, target delta, task generation. Uses project_root-aware advisor for memory-enriched suggestions",
       "layer": 3,
@@ -4730,6 +5338,14 @@
       "intent_body_hash": "4ef34"
     },
     {
+      "id": "codegraph/cli.py::memory_intel_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
       "id": "codegraph/cli.py::metrics_cmd",
       "intent": "cLI command displaying risk metrics dashboard with fan-in fan-out and betweenness",
       "layer": 3,
@@ -4737,6 +5353,14 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T13:56:31Z",
       "intent_body_hash": "e39f5"
+    },
+    {
+      "id": "codegraph/cli.py::metrics_snapshot_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
     },
     {
       "id": "codegraph/cli.py::multilevel_cmd",
@@ -4773,6 +5397,14 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-10T10:53:12Z",
       "intent_body_hash": "1ed35"
+    },
+    {
+      "id": "codegraph/cli.py::policy_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
     },
     {
       "id": "codegraph/cli.py::prune",
@@ -16741,6 +17373,358 @@
       "intent_body_hash": "f6162"
     },
     {
+      "id": "tests/test_arch_evolution",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_boost_applied",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_boost_different_strategy",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_boost_low_effectiveness",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_ranking",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestEvolutionReport",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_format",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_from_results_converged",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_from_results_empty",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_to_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestEvolutionResult",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_defaults",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_format_blocked",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_format_improved",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_to_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestEvolutionStage",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestEvolutionStage::test_basic",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestEvolutionStage::test_with_details",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_blocked_recommendation",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_no_duplicate_current_strategy",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_significant_improvement",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_suggests_effective_strategy",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRunEvolution",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRunEvolution::test_multiple_cycles",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRunEvolution::test_respects_max_cycles",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRunEvolution::test_stops_on_no_change",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_search_result",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_advisor_failure",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_dry_run_skips_record",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_full_success",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_safe_candidate",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_smells",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_policy_blocks",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_score_degradation_rejected",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_simulation_unsafe",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestSaveEvolutionReport",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestSaveEvolutionReport::test_save_and_load",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestSkipRemaining",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestSkipRemaining::test_does_not_skip_already_set",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestSkipRemaining::test_skips_after_named_stage",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
       "id": "tests/test_arch_health",
       "intent": "test suite for architecture health scoring engine verifying health computation, grading, and metric aggregation",
       "layer": 4,
@@ -17100,6 +18084,270 @@
       "intent_timestamp": "2026-03-10T16:15:33Z"
     },
     {
+      "id": "tests/test_arch_memory_intelligence",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_empty_project",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_with_data",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot::test_defaults",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot::test_round_trip",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestMinePatterns",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_empty_memory",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_mines_experiment_patterns",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_mines_tag_patterns",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestRecommendations",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_effective_strategy",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_empty_data",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_down",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_up",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestRecordMetrics",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_append_multiple",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_record_and_load",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestReportFormatting",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestReportFormatting::test_format_empty",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestReportFormatting::test_to_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores::test_save_and_verify",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestScoreStrategies",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_empty_memory",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_scores_from_decisions",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_scores_from_experiments",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestStrategyScore",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestStrategyScore::test_round_trip",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::TestStrategyScore::test_to_dict_rounding",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::_make_codegraph_dirs",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_memory_intelligence.py::_setup_memory",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
       "id": "tests/test_arch_planner",
       "intent": "test suite for architecture planner decomposition engine and task generation",
       "layer": 4,
@@ -17329,6 +18577,246 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-10T10:53:12Z",
       "intent_body_hash": "536ac"
+    },
+    {
+      "id": "tests/test_arch_policy",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestArchPolicy",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestArchPolicy::test_defaults",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestArchPolicy::test_round_trip",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestEvaluatePolicies",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_coupling_limit_pass",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_disabled_policy_skipped",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_pass",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_violation",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_policies",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_block",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_pass",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestInitDefaults",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestInitDefaults::test_creates_defaults",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestInitDefaults::test_idempotent",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestPolicyReport",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestPolicyReport::test_format_blocked",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestPolicyReport::test_format_passed",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestPolicyReport::test_to_dict_summary",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestPolicyStore",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestPolicyStore::test_add_invalid_action",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestPolicyStore::test_add_invalid_type",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestPolicyStore::test_add_policy",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestPolicyStore::test_load_empty",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestPolicyStore::test_remove_nonexistent",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestPolicyStore::test_remove_policy",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestPolicyStore::test_save_and_load",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestPolicyViolation",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestPolicyViolation::test_to_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::_setup_codegraph",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T18:53:31Z"
     },
     {
       "id": "tests/test_arch_schema",

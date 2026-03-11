@@ -1,38 +1,266 @@
 {
-  "cycle": 9,
-  "graph_version": 57,
+  "cycle": 10,
+  "graph_version": 58,
   "intents": [
     {
+      "node": "codegraph/arch_memory_intelligence.py::MetricsSnapshot",
+      "intent": "Point-in-time architecture metrics snapshot with score, grade, modularity, coupling, cycle count, and trigger event"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::to_dict",
+      "intent": "Serialize MetricsSnapshot to dictionary"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::from_dict",
+      "intent": "Deserialize MetricsSnapshot from dictionary"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::StrategyScore",
+      "intent": "Effectiveness score for an architecture strategy based on historical success rate and score improvement"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::StrategyScore::to_dict",
+      "intent": "Serialize StrategyScore to dictionary with rounded effectiveness"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::StrategyScore::from_dict",
+      "intent": "Deserialize StrategyScore from dictionary"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::ArchPattern",
+      "intent": "Mined architecture pattern with frequency, average impact, and confidence score"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::ArchPattern::to_dict",
+      "intent": "Serialize ArchPattern to dictionary"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::ArchPattern::from_dict",
+      "intent": "Deserialize ArchPattern from dictionary"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport",
+      "intent": "Full memory intelligence report containing strategy scores, patterns, metrics trend, and recommendations"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::format",
+      "intent": "Format memory intelligence report as human-readable text with strategy rankings and trend analysis"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::to_dict",
+      "intent": "Serialize MemoryIntelligenceReport to dictionary"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+      "intent": "Record a point-in-time architecture metrics snapshot to history file, keeping last 200 entries"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::load_metrics_history",
+      "intent": "Load metrics history from disk"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::_save_metrics_history",
+      "intent": "Save metrics history list to disk as JSON, truncating to max 200 entries"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::mine_patterns",
+      "intent": "Discover successful architecture patterns by grouping decisions by tags and analyzing experiment outcomes"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::score_strategies",
+      "intent": "Rank architecture strategies by historical effectiveness using composite score: success_rate * 0.5 + impact_factor * 0.5"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::generate_recommendations",
+      "intent": "Generate actionable recommendations from memory data including trend analysis and effective strategy suggestions"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::analyze_memory",
+      "intent": "Full memory intelligence pipeline: mine patterns, score strategies, generate recommendations"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::get_strategy_ranking",
+      "intent": "API for evolution engine to retrieve strategy effectiveness ranking sorted by score"
+    },
+    {
+      "node": "codegraph/arch_memory_intelligence.py::save_strategy_scores",
+      "intent": "Persist strategy effectiveness scores to disk for cross-session use"
+    },
+    {
+      "node": "codegraph/arch_policy.py::ArchPolicy",
+      "intent": "Architecture policy definition with type, rule, action (warn/block/suggest), threshold, and target scope"
+    },
+    {
+      "node": "codegraph/arch_policy.py::ArchPolicy::to_dict",
+      "intent": "Serialize ArchPolicy to dictionary"
+    },
+    {
+      "node": "codegraph/arch_policy.py::ArchPolicy::from_dict",
+      "intent": "Deserialize ArchPolicy from dictionary"
+    },
+    {
+      "node": "codegraph/arch_policy.py::PolicyViolation",
+      "intent": "Record of a policy violation with action type (warn/block) and details"
+    },
+    {
+      "node": "codegraph/arch_policy.py::PolicyViolation::to_dict",
+      "intent": "Serialize PolicyViolation to dictionary"
+    },
+    {
+      "node": "codegraph/arch_policy.py::PolicyReport",
+      "intent": "Policy evaluation result with pass/fail status, violation list, and blocking/warning counts"
+    },
+    {
+      "node": "codegraph/arch_policy.py::PolicyReport::format",
+      "intent": "Format policy report as human-readable text with PASSED/BLOCKED status and violation details"
+    },
+    {
+      "node": "codegraph/arch_policy.py::PolicyReport::to_dict",
+      "intent": "Serialize PolicyReport to dictionary with summary counts"
+    },
+    {
+      "node": "codegraph/arch_policy.py::load_policies",
+      "intent": "Load architecture policies from disk, returning empty list if none exist"
+    },
+    {
+      "node": "codegraph/arch_policy.py::save_policies",
+      "intent": "Persist architecture policies list to disk as JSON"
+    },
+    {
+      "node": "codegraph/arch_policy.py::add_policy",
+      "intent": "Add a new architecture policy with auto-generated ID, validating type and action"
+    },
+    {
+      "node": "codegraph/arch_policy.py::remove_policy",
+      "intent": "Remove an architecture policy by ID"
+    },
+    {
+      "node": "codegraph/arch_policy.py::init_default_policies",
+      "intent": "Initialize default architecture policies (no_large_modules, max_subsystem_size, score_gate, coupling_limit)"
+    },
+    {
+      "node": "codegraph/arch_policy.py::evaluate_policies",
+      "intent": "Evaluate all enabled architecture policies against current graph, architecture, and health data"
+    },
+    {
+      "node": "codegraph/arch_policy.py::_check_policy",
+      "intent": "Dispatch a single policy to its type-specific handler"
+    },
+    {
+      "node": "codegraph/arch_policy.py::_check_no_large_modules",
+      "intent": "Check that no file exceeds the node count threshold"
+    },
+    {
+      "node": "codegraph/arch_policy.py::_check_max_subsystem_size",
+      "intent": "Check that no subsystem exceeds the component count threshold"
+    },
+    {
+      "node": "codegraph/arch_policy.py::_check_score_gate",
+      "intent": "Check that architecture health score meets minimum threshold"
+    },
+    {
+      "node": "codegraph/arch_policy.py::_check_coupling_limit",
+      "intent": "Check that system coupling does not exceed threshold"
+    },
+    {
+      "node": "codegraph/arch_policy.py::_check_frontend_backend_boundary",
+      "intent": "Check that frontend and backend modules have no direct dependencies"
+    },
+    {
+      "node": "codegraph/arch_policy.py::_check_no_apply_without_plan",
+      "intent": "Check that an architecture plan exists before allowing apply operations"
+    },
+    {
+      "node": "codegraph/arch_policy.py::_load_json",
+      "intent": "Load a JSON file safely, returning empty dict if file does not exist"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::EvolutionStage",
+      "intent": "A named stage in the evolution pipeline with status tracking and metrics"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::EvolutionStage::to_dict",
+      "intent": "Serialize EvolutionStage to dictionary, omitting empty details and metrics"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::EvolutionResult",
+      "intent": "Complete result of one evolution cycle with 7-stage pipeline outcome, scores, and recommendations"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::EvolutionResult::to_dict",
+      "intent": "Serialize EvolutionResult to dictionary with rounded scores"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::EvolutionResult::format",
+      "intent": "Format evolution result as human-readable text with stage status icons and recommendations"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "intent": "Run one full 7-stage evolution cycle: detect, memory, mutate, policy, simulate, select, record"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::run_evolution",
+      "intent": "Run multiple evolution cycles until convergence, policy block, or max_cycles reached"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::EvolutionReport",
+      "intent": "Summary of multi-cycle evolution with total improvement, strategies used, and convergence status"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::EvolutionReport::to_dict",
+      "intent": "Serialize EvolutionReport to dictionary"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::EvolutionReport::format",
+      "intent": "Format multi-cycle evolution report as human-readable text"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::EvolutionReport::from_results",
+      "intent": "Construct EvolutionReport from a list of EvolutionResults, computing totals and convergence"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::_run_advisor",
+      "intent": "Run architecture advisor and return advice as dictionary"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::_run_arch_search",
+      "intent": "Run multi-candidate architecture search and return results as dictionary"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::_check_policies",
+      "intent": "Check architecture policies and return report as dictionary"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::_get_strategy_ranking",
+      "intent": "Get strategy ranking from memory intelligence as list of dictionaries"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::_apply_memory_boost",
+      "intent": "Boost candidate selection when its strategy has greater than 60% historical effectiveness"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::_record_to_memory",
+      "intent": "Record evolution decision to architecture memory with strategy and evolution tags"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::_record_metrics_snapshot",
+      "intent": "Record current architecture metrics to memory intelligence history"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::_skip_remaining",
+      "intent": "Mark all pending stages after the named stage as skipped"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::_generate_evolution_recommendations",
+      "intent": "Generate recommendations based on evolution outcome and historical strategy effectiveness"
+    },
+    {
+      "node": "codegraph/arch_evolution.py::save_evolution_report",
+      "intent": "Save multi-cycle evolution report to planning directory as JSON"
+    },
+    {
       "node": "codegraph/cli",
-      "intent": "CLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest, architect, compile, code-plan, repair-plan, arch-plan, arch-search, arch-simulate, api-link, viewer, drift, lock, and copilot-context."
-    },
-    {
-      "node": "codegraph/extractors/api_routes",
-      "intent": "Cross-language API endpoint linker. Detects backend HTTP endpoints and frontend API calls, creates workflow edges between them."
-    },
-    {
-      "node": "codegraph/extractors/api_routes.py::extract_python_endpoints",
-      "intent": "Extract HTTP endpoint definitions from Python source files. Detects FastAPI, Flask, and Django route decorators."
-    },
-    {
-      "node": "codegraph/extractors/api_routes.py::extract_js_api_calls",
-      "intent": "Extract HTTP API calls from JavaScript/TypeScript source files. Detects fetch() and axios patterns."
-    },
-    {
-      "node": "codegraph/extractors/api_routes.py::link_api_routes",
-      "intent": "Scan project files for API endpoints and calls, match them by path patterns, and create cross-language workflow edges."
-    },
-    {
-      "node": "codegraph/extractors/api_routes.py::ApiEndpoint",
-      "intent": "Data class representing a backend HTTP endpoint definition with path, method, handler node, and framework."
-    },
-    {
-      "node": "codegraph/extractors/api_routes.py::ApiCall",
-      "intent": "Data class representing a frontend HTTP API call with path, method, caller node, and library."
-    },
-    {
-      "node": "codegraph/extractors/api_routes.py::ApiLinkReport",
-      "intent": "Result container for cross-language API linking with endpoints, calls, linked edges, and unlinked items."
+      "intent": "CLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest, architect, compile, code-plan, repair-plan, arch-plan, arch-search, arch-simulate, api-link, memory-intel, metrics-snapshot, policy, evolution, viewer, drift, lock, and copilot-context."
     }
   ],
   "repairs": []

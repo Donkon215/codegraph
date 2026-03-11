@@ -891,11 +891,11 @@
     ]
   },
   "codegraph/cli.py": {
-    "content_hash": "cbaf039853d6",
+    "content_hash": "4a37a663aa07",
     "nodes": [
       {
         "id": "codegraph/cli",
-        "body_hash": "678e8",
+        "body_hash": "214e2",
         "file": "codegraph/cli.py",
         "type": "module",
         "line": 1
@@ -1508,6 +1508,34 @@
         "file": "codegraph/cli.py",
         "type": "function",
         "line": 3067
+      },
+      {
+        "id": "codegraph/cli.py::memory_intel_cmd",
+        "body_hash": "150d2",
+        "file": "codegraph/cli.py",
+        "type": "function",
+        "line": 3104
+      },
+      {
+        "id": "codegraph/cli.py::metrics_snapshot_cmd",
+        "body_hash": "5daea",
+        "file": "codegraph/cli.py",
+        "type": "function",
+        "line": 3134
+      },
+      {
+        "id": "codegraph/cli.py::policy_cmd",
+        "body_hash": "994c7",
+        "file": "codegraph/cli.py",
+        "type": "function",
+        "line": 3185
+      },
+      {
+        "id": "codegraph/cli.py::evolution_cmd",
+        "body_hash": "c4b7a",
+        "file": "codegraph/cli.py",
+        "type": "function",
+        "line": 3261
       }
     ]
   },
@@ -21652,6 +21680,1254 @@
         "file": "tests/test_api_routes.py",
         "type": "method",
         "line": 471
+      }
+    ]
+  },
+  "codegraph/arch_evolution.py": {
+    "content_hash": "31c87a9a8d33",
+    "nodes": [
+      {
+        "id": "codegraph/arch_evolution",
+        "body_hash": "4e8a4",
+        "file": "codegraph/arch_evolution.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/arch_evolution.py::EvolutionStage",
+        "body_hash": "0fdd9",
+        "file": "codegraph/arch_evolution.py",
+        "type": "class",
+        "line": 38
+      },
+      {
+        "id": "codegraph/arch_evolution.py::EvolutionStage::to_dict",
+        "body_hash": "46f3e",
+        "file": "codegraph/arch_evolution.py",
+        "type": "method",
+        "line": 46
+      },
+      {
+        "id": "codegraph/arch_evolution.py::EvolutionResult",
+        "body_hash": "a9f47",
+        "file": "codegraph/arch_evolution.py",
+        "type": "class",
+        "line": 64
+      },
+      {
+        "id": "codegraph/arch_evolution.py::EvolutionResult::to_dict",
+        "body_hash": "89573",
+        "file": "codegraph/arch_evolution.py",
+        "type": "method",
+        "line": 79
+      },
+      {
+        "id": "codegraph/arch_evolution.py::EvolutionResult::format",
+        "body_hash": "f05e3",
+        "file": "codegraph/arch_evolution.py",
+        "type": "method",
+        "line": 94
+      },
+      {
+        "id": "codegraph/arch_evolution.py::run_evolution_cycle",
+        "body_hash": "7fd1d",
+        "file": "codegraph/arch_evolution.py",
+        "type": "function",
+        "line": 134
+      },
+      {
+        "id": "codegraph/arch_evolution.py::run_evolution",
+        "body_hash": "57770",
+        "file": "codegraph/arch_evolution.py",
+        "type": "function",
+        "line": 363
+      },
+      {
+        "id": "codegraph/arch_evolution.py::EvolutionReport",
+        "body_hash": "4b3bf",
+        "file": "codegraph/arch_evolution.py",
+        "type": "class",
+        "line": 395
+      },
+      {
+        "id": "codegraph/arch_evolution.py::EvolutionReport::to_dict",
+        "body_hash": "dd8ae",
+        "file": "codegraph/arch_evolution.py",
+        "type": "method",
+        "line": 403
+      },
+      {
+        "id": "codegraph/arch_evolution.py::EvolutionReport::format",
+        "body_hash": "a1b4c",
+        "file": "codegraph/arch_evolution.py",
+        "type": "method",
+        "line": 412
+      },
+      {
+        "id": "codegraph/arch_evolution.py::EvolutionReport::from_results",
+        "body_hash": "15964",
+        "file": "codegraph/arch_evolution.py",
+        "type": "method",
+        "line": 427
+      },
+      {
+        "id": "codegraph/arch_evolution.py::_run_advisor",
+        "body_hash": "e1a27",
+        "file": "codegraph/arch_evolution.py",
+        "type": "function",
+        "line": 445
+      },
+      {
+        "id": "codegraph/arch_evolution.py::_run_arch_search",
+        "body_hash": "993dc",
+        "file": "codegraph/arch_evolution.py",
+        "type": "function",
+        "line": 459
+      },
+      {
+        "id": "codegraph/arch_evolution.py::_check_policies",
+        "body_hash": "96d7e",
+        "file": "codegraph/arch_evolution.py",
+        "type": "function",
+        "line": 474
+      },
+      {
+        "id": "codegraph/arch_evolution.py::_get_strategy_ranking",
+        "body_hash": "09179",
+        "file": "codegraph/arch_evolution.py",
+        "type": "function",
+        "line": 481
+      },
+      {
+        "id": "codegraph/arch_evolution.py::_apply_memory_boost",
+        "body_hash": "e1d01",
+        "file": "codegraph/arch_evolution.py",
+        "type": "function",
+        "line": 488
+      },
+      {
+        "id": "codegraph/arch_evolution.py::_record_to_memory",
+        "body_hash": "3b1cc",
+        "file": "codegraph/arch_evolution.py",
+        "type": "function",
+        "line": 507
+      },
+      {
+        "id": "codegraph/arch_evolution.py::_record_metrics_snapshot",
+        "body_hash": "bd631",
+        "file": "codegraph/arch_evolution.py",
+        "type": "function",
+        "line": 524
+      },
+      {
+        "id": "codegraph/arch_evolution.py::_skip_remaining",
+        "body_hash": "2f1ee",
+        "file": "codegraph/arch_evolution.py",
+        "type": "function",
+        "line": 545
+      },
+      {
+        "id": "codegraph/arch_evolution.py::_generate_evolution_recommendations",
+        "body_hash": "61fed",
+        "file": "codegraph/arch_evolution.py",
+        "type": "function",
+        "line": 555
+      },
+      {
+        "id": "codegraph/arch_evolution.py::save_evolution_report",
+        "body_hash": "0ddc0",
+        "file": "codegraph/arch_evolution.py",
+        "type": "function",
+        "line": 587
+      }
+    ]
+  },
+  "codegraph/arch_memory_intelligence.py": {
+    "content_hash": "7340a693a5d3",
+    "nodes": [
+      {
+        "id": "codegraph/arch_memory_intelligence",
+        "body_hash": "1c0dd",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::MetricsSnapshot",
+        "body_hash": "a7da6",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "class",
+        "line": 44
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::to_dict",
+        "body_hash": "9adb3",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "method",
+        "line": 60
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::from_dict",
+        "body_hash": "a08b6",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "method",
+        "line": 77
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::StrategyScore",
+        "body_hash": "1caee",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "class",
+        "line": 100
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::StrategyScore::to_dict",
+        "body_hash": "5dfc7",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "method",
+        "line": 112
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::StrategyScore::from_dict",
+        "body_hash": "1bda6",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "method",
+        "line": 125
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::ArchPattern",
+        "body_hash": "99487",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "class",
+        "line": 144
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::ArchPattern::to_dict",
+        "body_hash": "c0d05",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "method",
+        "line": 155
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::ArchPattern::from_dict",
+        "body_hash": "0998e",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "method",
+        "line": 167
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport",
+        "body_hash": "d6630",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "class",
+        "line": 185
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::to_dict",
+        "body_hash": "42969",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "method",
+        "line": 193
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::format",
+        "body_hash": "9e0b8",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "method",
+        "line": 206
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+        "body_hash": "37a3c",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "function",
+        "line": 254
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::load_metrics_history",
+        "body_hash": "79342",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "function",
+        "line": 293
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::_save_metrics_history",
+        "body_hash": "e7632",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "function",
+        "line": 302
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::mine_patterns",
+        "body_hash": "4ddaa",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "function",
+        "line": 320
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::score_strategies",
+        "body_hash": "7a13d",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "function",
+        "line": 404
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::generate_recommendations",
+        "body_hash": "25f63",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "function",
+        "line": 470
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::analyze_memory",
+        "body_hash": "d5c75",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "function",
+        "line": 543
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::get_strategy_ranking",
+        "body_hash": "65eba",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "function",
+        "line": 568
+      },
+      {
+        "id": "codegraph/arch_memory_intelligence.py::save_strategy_scores",
+        "body_hash": "9f1b0",
+        "file": "codegraph/arch_memory_intelligence.py",
+        "type": "function",
+        "line": 577
+      }
+    ]
+  },
+  "codegraph/arch_policy.py": {
+    "content_hash": "ba8fc5002d79",
+    "nodes": [
+      {
+        "id": "codegraph/arch_policy",
+        "body_hash": "3aa72",
+        "file": "codegraph/arch_policy.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/arch_policy.py::ArchPolicy",
+        "body_hash": "8474b",
+        "file": "codegraph/arch_policy.py",
+        "type": "class",
+        "line": 57
+      },
+      {
+        "id": "codegraph/arch_policy.py::ArchPolicy::to_dict",
+        "body_hash": "dcfdf",
+        "file": "codegraph/arch_policy.py",
+        "type": "method",
+        "line": 69
+      },
+      {
+        "id": "codegraph/arch_policy.py::ArchPolicy::from_dict",
+        "body_hash": "44daf",
+        "file": "codegraph/arch_policy.py",
+        "type": "method",
+        "line": 85
+      },
+      {
+        "id": "codegraph/arch_policy.py::PolicyViolation",
+        "body_hash": "c53d2",
+        "file": "codegraph/arch_policy.py",
+        "type": "class",
+        "line": 104
+      },
+      {
+        "id": "codegraph/arch_policy.py::PolicyViolation::to_dict",
+        "body_hash": "f74da",
+        "file": "codegraph/arch_policy.py",
+        "type": "method",
+        "line": 113
+      },
+      {
+        "id": "codegraph/arch_policy.py::PolicyReport",
+        "body_hash": "5e401",
+        "file": "codegraph/arch_policy.py",
+        "type": "class",
+        "line": 129
+      },
+      {
+        "id": "codegraph/arch_policy.py::PolicyReport::to_dict",
+        "body_hash": "50cf9",
+        "file": "codegraph/arch_policy.py",
+        "type": "method",
+        "line": 136
+      },
+      {
+        "id": "codegraph/arch_policy.py::PolicyReport::format",
+        "body_hash": "3f21a",
+        "file": "codegraph/arch_policy.py",
+        "type": "method",
+        "line": 148
+      },
+      {
+        "id": "codegraph/arch_policy.py::load_policies",
+        "body_hash": "4e3a3",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 175
+      },
+      {
+        "id": "codegraph/arch_policy.py::save_policies",
+        "body_hash": "d1e1b",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 184
+      },
+      {
+        "id": "codegraph/arch_policy.py::add_policy",
+        "body_hash": "d9f93",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 200
+      },
+      {
+        "id": "codegraph/arch_policy.py::remove_policy",
+        "body_hash": "4c7a8",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 235
+      },
+      {
+        "id": "codegraph/arch_policy.py::evaluate_policies",
+        "body_hash": "f6f03",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 252
+      },
+      {
+        "id": "codegraph/arch_policy.py::_check_policy",
+        "body_hash": "ca71f",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 292
+      },
+      {
+        "id": "codegraph/arch_policy.py::_check_no_large_modules",
+        "body_hash": "f9d30",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 308
+      },
+      {
+        "id": "codegraph/arch_policy.py::_check_max_subsystem_size",
+        "body_hash": "16c52",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 338
+      },
+      {
+        "id": "codegraph/arch_policy.py::_check_score_gate",
+        "body_hash": "72ff0",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 364
+      },
+      {
+        "id": "codegraph/arch_policy.py::_check_coupling_limit",
+        "body_hash": "63887",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 388
+      },
+      {
+        "id": "codegraph/arch_policy.py::_check_frontend_backend_boundary",
+        "body_hash": "b7d00",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 413
+      },
+      {
+        "id": "codegraph/arch_policy.py::_check_no_apply_without_plan",
+        "body_hash": "9eab6",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 443
+      },
+      {
+        "id": "codegraph/arch_policy.py::init_default_policies",
+        "body_hash": "8a66e",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 507
+      },
+      {
+        "id": "codegraph/arch_policy.py::_load_json",
+        "body_hash": "c527b",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 522
+      }
+    ]
+  },
+  "tests/test_arch_evolution.py": {
+    "content_hash": "b61d24a58626",
+    "nodes": [
+      {
+        "id": "tests/test_arch_evolution",
+        "body_hash": "263f1",
+        "file": "tests/test_arch_evolution.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestEvolutionStage",
+        "body_hash": "6cbb2",
+        "file": "tests/test_arch_evolution.py",
+        "type": "class",
+        "line": 27
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestEvolutionStage::test_basic",
+        "body_hash": "96fd4",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 28
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestEvolutionStage::test_with_details",
+        "body_hash": "9f32a",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 35
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestEvolutionResult",
+        "body_hash": "c459e",
+        "file": "tests/test_arch_evolution.py",
+        "type": "class",
+        "line": 43
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_defaults",
+        "body_hash": "3600c",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 44
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_to_dict",
+        "body_hash": "43008",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 50
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_format_improved",
+        "body_hash": "10e29",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 63
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_format_blocked",
+        "body_hash": "61ee7",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 78
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestEvolutionReport",
+        "body_hash": "f150b",
+        "file": "tests/test_arch_evolution.py",
+        "type": "class",
+        "line": 89
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_from_results_empty",
+        "body_hash": "e5788",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 90
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_from_results_converged",
+        "body_hash": "c09e7",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 95
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_to_dict",
+        "body_hash": "d41b5",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 106
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_format",
+        "body_hash": "19d0f",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 115
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestSkipRemaining",
+        "body_hash": "bb78d",
+        "file": "tests/test_arch_evolution.py",
+        "type": "class",
+        "line": 129
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestSkipRemaining::test_skips_after_named_stage",
+        "body_hash": "c1a40",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 130
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestSkipRemaining::test_does_not_skip_already_set",
+        "body_hash": "b3cce",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 141
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost",
+        "body_hash": "7b069",
+        "file": "tests/test_arch_evolution.py",
+        "type": "class",
+        "line": 152
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_ranking",
+        "body_hash": "c5c29",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 153
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_boost_applied",
+        "body_hash": "cd475",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 157
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_boost_low_effectiveness",
+        "body_hash": "727ff",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 162
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_boost_different_strategy",
+        "body_hash": "49ebf",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 167
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations",
+        "body_hash": "5fe9f",
+        "file": "tests/test_arch_evolution.py",
+        "type": "class",
+        "line": 173
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_significant_improvement",
+        "body_hash": "6c4a9",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 174
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_blocked_recommendation",
+        "body_hash": "e2561",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 180
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_suggests_effective_strategy",
+        "body_hash": "8ca9e",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 185
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_no_duplicate_current_strategy",
+        "body_hash": "9062e",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 194
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked",
+        "body_hash": "6f333",
+        "file": "tests/test_arch_evolution.py",
+        "type": "class",
+        "line": 208
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
+        "body_hash": "f508f",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 211
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_search_result",
+        "body_hash": "7f7fe",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 221
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_full_success",
+        "body_hash": "5b52d",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 241
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_smells",
+        "body_hash": "53fac",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 257
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_advisor_failure",
+        "body_hash": "2c2a1",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 265
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_safe_candidate",
+        "body_hash": "46b5a",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 275
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_policy_blocks",
+        "body_hash": "2a749",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 289
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_score_degradation_rejected",
+        "body_hash": "665a6",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 306
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_dry_run_skips_record",
+        "body_hash": "a67a1",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 323
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_simulation_unsafe",
+        "body_hash": "cb161",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 340
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRunEvolution",
+        "body_hash": "5024e",
+        "file": "tests/test_arch_evolution.py",
+        "type": "class",
+        "line": 352
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRunEvolution::test_stops_on_no_change",
+        "body_hash": "a9829",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 354
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRunEvolution::test_multiple_cycles",
+        "body_hash": "569c8",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 363
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRunEvolution::test_respects_max_cycles",
+        "body_hash": "f5897",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 372
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestSaveEvolutionReport",
+        "body_hash": "3eeff",
+        "file": "tests/test_arch_evolution.py",
+        "type": "class",
+        "line": 383
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestSaveEvolutionReport::test_save_and_load",
+        "body_hash": "8ecf6",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 384
+      }
+    ]
+  },
+  "tests/test_arch_memory_intelligence.py": {
+    "content_hash": "526fe58dcc30",
+    "nodes": [
+      {
+        "id": "tests/test_arch_memory_intelligence",
+        "body_hash": "7865e",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::_setup_memory",
+        "body_hash": "5b4bc",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "function",
+        "line": 36
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::_make_codegraph_dirs",
+        "body_hash": "40526",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "function",
+        "line": 50
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot",
+        "body_hash": "425c5",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "class",
+        "line": 57
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot::test_round_trip",
+        "body_hash": "62659",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 58
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot::test_defaults",
+        "body_hash": "2d658",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 68
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestStrategyScore",
+        "body_hash": "39f76",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "class",
+        "line": 77
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestStrategyScore::test_round_trip",
+        "body_hash": "eba3a",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 78
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestStrategyScore::test_to_dict_rounding",
+        "body_hash": "d0f59",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 88
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestMinePatterns",
+        "body_hash": "24e79",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "class",
+        "line": 99
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_empty_memory",
+        "body_hash": "631e5",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 100
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_mines_tag_patterns",
+        "body_hash": "3f724",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 105
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_mines_experiment_patterns",
+        "body_hash": "df2c2",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 121
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestScoreStrategies",
+        "body_hash": "858f1",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "class",
+        "line": 138
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_empty_memory",
+        "body_hash": "e695c",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 139
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_scores_from_decisions",
+        "body_hash": "00eb0",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 144
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_scores_from_experiments",
+        "body_hash": "ba28c",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 160
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestRecordMetrics",
+        "body_hash": "f78f2",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "class",
+        "line": 178
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_record_and_load",
+        "body_hash": "c9460",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 179
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_append_multiple",
+        "body_hash": "b8124",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 191
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestRecommendations",
+        "body_hash": "57724",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "class",
+        "line": 205
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_empty_data",
+        "body_hash": "30f11",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 206
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_up",
+        "body_hash": "bcc14",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 210
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_down",
+        "body_hash": "b72c2",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 219
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_effective_strategy",
+        "body_hash": "aa4bf",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 228
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory",
+        "body_hash": "311fd",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "class",
+        "line": 240
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_empty_project",
+        "body_hash": "ed531",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 241
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_with_data",
+        "body_hash": "4830e",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 248
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestReportFormatting",
+        "body_hash": "bbfaf",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "class",
+        "line": 266
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestReportFormatting::test_format_empty",
+        "body_hash": "64133",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 267
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestReportFormatting::test_to_dict",
+        "body_hash": "62551",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 272
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores",
+        "body_hash": "2efd6",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "class",
+        "line": 282
+      },
+      {
+        "id": "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores::test_save_and_verify",
+        "body_hash": "8d8d8",
+        "file": "tests/test_arch_memory_intelligence.py",
+        "type": "method",
+        "line": 283
+      }
+    ]
+  },
+  "tests/test_arch_policy.py": {
+    "content_hash": "b2d633806947",
+    "nodes": [
+      {
+        "id": "tests/test_arch_policy",
+        "body_hash": "4cc51",
+        "file": "tests/test_arch_policy.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "tests/test_arch_policy.py::_setup_codegraph",
+        "body_hash": "dd01f",
+        "file": "tests/test_arch_policy.py",
+        "type": "function",
+        "line": 28
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestArchPolicy",
+        "body_hash": "4a16c",
+        "file": "tests/test_arch_policy.py",
+        "type": "class",
+        "line": 70
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestArchPolicy::test_round_trip",
+        "body_hash": "01f1a",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 71
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestArchPolicy::test_defaults",
+        "body_hash": "0c896",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 82
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestPolicyViolation",
+        "body_hash": "d225c",
+        "file": "tests/test_arch_policy.py",
+        "type": "class",
+        "line": 91
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestPolicyViolation::test_to_dict",
+        "body_hash": "c6e21",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 92
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestPolicyReport",
+        "body_hash": "3b1d1",
+        "file": "tests/test_arch_policy.py",
+        "type": "class",
+        "line": 101
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestPolicyReport::test_format_passed",
+        "body_hash": "e31ca",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 102
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestPolicyReport::test_format_blocked",
+        "body_hash": "358b7",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 107
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestPolicyReport::test_to_dict_summary",
+        "body_hash": "c745f",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 120
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestPolicyStore",
+        "body_hash": "56bdd",
+        "file": "tests/test_arch_policy.py",
+        "type": "class",
+        "line": 133
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestPolicyStore::test_save_and_load",
+        "body_hash": "e9731",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 134
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestPolicyStore::test_load_empty",
+        "body_hash": "4a0e2",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 144
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestPolicyStore::test_add_policy",
+        "body_hash": "7a158",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 148
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestPolicyStore::test_add_invalid_type",
+        "body_hash": "b3ff5",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 156
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestPolicyStore::test_add_invalid_action",
+        "body_hash": "8a08b",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 161
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestPolicyStore::test_remove_policy",
+        "body_hash": "b1a94",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 166
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestPolicyStore::test_remove_nonexistent",
+        "body_hash": "7284e",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 172
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestInitDefaults",
+        "body_hash": "57fb4",
+        "file": "tests/test_arch_policy.py",
+        "type": "class",
+        "line": 180
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestInitDefaults::test_creates_defaults",
+        "body_hash": "3ad3d",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 181
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestInitDefaults::test_idempotent",
+        "body_hash": "42e5f",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 189
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestEvaluatePolicies",
+        "body_hash": "85d78",
+        "file": "tests/test_arch_policy.py",
+        "type": "class",
+        "line": 199
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_policies",
+        "body_hash": "8959d",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 200
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_pass",
+        "body_hash": "f7420",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 206
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_violation",
+        "body_hash": "7334c",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 214
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_pass",
+        "body_hash": "9ff7c",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 223
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_block",
+        "body_hash": "56538",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 230
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_coupling_limit_pass",
+        "body_hash": "346df",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 238
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_disabled_policy_skipped",
+        "body_hash": "8a91a",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 245
       }
     ]
   }

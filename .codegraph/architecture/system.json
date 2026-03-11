@@ -394,6 +394,39 @@
             "score_candidates"
           ],
           "description": "Multi-candidate architecture search engine. Generates, simulates, scores, and ranks architecture improvement candidates."
+        },
+        {
+          "name": "arch_memory_intelligence",
+          "module": "codegraph/arch_memory_intelligence.py",
+          "functions": [
+            "analyze_memory",
+            "mine_patterns",
+            "score_strategies",
+            "record_metrics_snapshot",
+            "get_strategy_ranking"
+          ],
+          "description": "Memory intelligence layer. Pattern mining, metrics history, strategy effectiveness scoring, feedback loop."
+        },
+        {
+          "name": "arch_policy",
+          "module": "codegraph/arch_policy.py",
+          "functions": [
+            "evaluate_policies",
+            "init_default_policies",
+            "add_policy",
+            "remove_policy"
+          ],
+          "description": "Architecture policy engine. Higher-level policies with evaluation gates, merge blocking, size/score/coupling limits."
+        },
+        {
+          "name": "arch_evolution",
+          "module": "codegraph/arch_evolution.py",
+          "functions": [
+            "run_evolution_cycle",
+            "run_evolution",
+            "save_evolution_report"
+          ],
+          "description": "Closed-loop architecture evolution engine. Detect-mutate-evaluate-simulate-select-record-learn pipeline."
         }
       ],
       "edges": [
@@ -428,6 +461,26 @@
         {
           "source": "arch_search",
           "target": "arch_schema"
+        },
+        {
+          "source": "arch_evolution",
+          "target": "architecture_advisor"
+        },
+        {
+          "source": "arch_evolution",
+          "target": "arch_search"
+        },
+        {
+          "source": "arch_evolution",
+          "target": "arch_policy"
+        },
+        {
+          "source": "arch_evolution",
+          "target": "arch_memory_intelligence"
+        },
+        {
+          "source": "arch_memory_intelligence",
+          "target": "arch_health"
         }
       ]
     },

@@ -271,6 +271,60 @@
       "target": "codegraph/apply.py::*",
       "added_by": "human",
       "added_at": "2026-03-11T18:04:51Z"
+    },
+    {
+      "id": "rule_032",
+      "type": "forbidden_call",
+      "reason": "Memory intelligence is a data layer. Must not trigger analysis.",
+      "source": "codegraph/arch_memory_intelligence.py::*",
+      "target": "codegraph/analyzer.py::*",
+      "added_by": "human",
+      "added_at": "2026-03-11T18:52:30Z"
+    },
+    {
+      "id": "rule_033",
+      "type": "forbidden_call",
+      "reason": "Memory intelligence must not invoke repairs.",
+      "source": "codegraph/arch_memory_intelligence.py::*",
+      "target": "codegraph/apply.py::*",
+      "added_by": "human",
+      "added_at": "2026-03-11T18:52:38Z"
+    },
+    {
+      "id": "rule_034",
+      "type": "forbidden_call",
+      "reason": "Policy engine must not import analyzer.",
+      "source": "codegraph/arch_policy.py::*",
+      "target": "codegraph/analyzer.py::*",
+      "added_by": "human",
+      "added_at": "2026-03-11T18:52:39Z"
+    },
+    {
+      "id": "rule_035",
+      "type": "forbidden_call",
+      "reason": "Policy engine must not invoke repairs.",
+      "source": "codegraph/arch_policy.py::*",
+      "target": "codegraph/apply.py::*",
+      "added_by": "human",
+      "added_at": "2026-03-11T18:52:39Z"
+    },
+    {
+      "id": "rule_036",
+      "type": "forbidden_call",
+      "reason": "Evolution engine must not directly apply repairs.",
+      "source": "codegraph/arch_evolution.py::*",
+      "target": "codegraph/apply.py::*",
+      "added_by": "human",
+      "added_at": "2026-03-11T18:52:39Z"
+    },
+    {
+      "id": "rule_037",
+      "type": "dependency_limit",
+      "reason": "Evolution engine orchestrates other modules. Cap fan-out.",
+      "source": "codegraph/arch_evolution.py::*",
+      "target": "(any)",
+      "added_by": "human",
+      "added_at": "2026-03-11T18:52:40Z"
     }
   ]
 }

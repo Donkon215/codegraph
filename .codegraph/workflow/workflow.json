@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-11T18:05:16Z",
+    "built_at": "2026-03-11T18:57:14Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -9,12 +9,12 @@
       "stdlib",
       "test_harness"
     ],
-    "edge_count": 3144,
-    "node_count": 1894,
-    "build_time_s": 9.31
+    "edge_count": 3383,
+    "node_count": 2022,
+    "build_time_s": 9.33
   },
   "format_version": 1,
-  "built_at": "2026-03-11T18:05:16Z",
+  "built_at": "2026-03-11T18:57:14Z",
   "level": "function",
   "edges": [
     {
@@ -1320,6 +1320,126 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/arch_evolution.py::_check_policies",
+      "target": "codegraph/arch_policy.py::evaluate_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_get_strategy_ranking",
+      "target": "codegraph/arch_memory_intelligence.py::get_strategy_ranking",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_record_metrics_snapshot",
+      "target": "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_record_to_memory",
+      "target": "codegraph/arch_memory.py::record_decision",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_advisor",
+      "target": "codegraph/architecture_advisor.py::advise_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_advisor",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_advisor",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_arch_search",
+      "target": "codegraph/arch_search.py::run_arch_search",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution",
+      "target": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/arch_evolution.py::EvolutionStage",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/arch_evolution.py::_apply_memory_boost",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/arch_evolution.py::_check_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/arch_evolution.py::_generate_evolution_recommendations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/arch_evolution.py::_get_strategy_ranking",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/arch_evolution.py::_record_metrics_snapshot",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/arch_evolution.py::_record_to_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/arch_evolution.py::_run_advisor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/arch_evolution.py::_run_arch_search",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/arch_evolution.py::_skip_remaining",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/arch_health.py::ArchHealthReport::format",
       "target": "codegraph/arch_health.py::ArchHealthReport::_grade",
       "edge_type": "call",
@@ -1446,6 +1566,90 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/arch_memory_intelligence.py::analyze_memory",
+      "target": "codegraph/arch_memory.py::load_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_memory_intelligence.py::analyze_memory",
+      "target": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_memory_intelligence.py::analyze_memory",
+      "target": "codegraph/arch_memory_intelligence.py::generate_recommendations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_memory_intelligence.py::analyze_memory",
+      "target": "codegraph/arch_memory_intelligence.py::load_metrics_history",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_memory_intelligence.py::analyze_memory",
+      "target": "codegraph/arch_memory_intelligence.py::mine_patterns",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_memory_intelligence.py::analyze_memory",
+      "target": "codegraph/arch_memory_intelligence.py::score_strategies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_memory_intelligence.py::get_strategy_ranking",
+      "target": "codegraph/arch_memory.py::load_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_memory_intelligence.py::get_strategy_ranking",
+      "target": "codegraph/arch_memory_intelligence.py::score_strategies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_memory_intelligence.py::mine_patterns",
+      "target": "codegraph/arch_memory_intelligence.py::ArchPattern",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+      "target": "codegraph/arch_memory_intelligence.py::MetricsSnapshot",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+      "target": "codegraph/arch_memory_intelligence.py::_save_metrics_history",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+      "target": "codegraph/arch_memory_intelligence.py::load_metrics_history",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_memory_intelligence.py::score_strategies",
+      "target": "codegraph/arch_memory.py::ArchDecision",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_memory_intelligence.py::score_strategies",
+      "target": "codegraph/arch_memory_intelligence.py::StrategyScore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/arch_planner.py::_check_arch_edges",
       "target": "codegraph/arch_planner.py::PlannedTask",
       "edge_type": "call",
@@ -1496,6 +1700,96 @@
     {
       "source": "codegraph/arch_planner.py::plan_architecture",
       "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::_check_coupling_limit",
+      "target": "codegraph/arch_policy.py::PolicyViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::_check_max_subsystem_size",
+      "target": "codegraph/arch_policy.py::PolicyViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::_check_no_large_modules",
+      "target": "codegraph/arch_policy.py::PolicyViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::_check_score_gate",
+      "target": "codegraph/arch_policy.py::PolicyViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::add_policy",
+      "target": "codegraph/arch_policy.py::ArchPolicy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::add_policy",
+      "target": "codegraph/arch_policy.py::load_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::add_policy",
+      "target": "codegraph/arch_policy.py::save_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::evaluate_policies",
+      "target": "codegraph/arch_policy.py::PolicyReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::evaluate_policies",
+      "target": "codegraph/arch_policy.py::_check_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::evaluate_policies",
+      "target": "codegraph/arch_policy.py::_load_json",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::evaluate_policies",
+      "target": "codegraph/arch_policy.py::load_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::init_default_policies",
+      "target": "codegraph/arch_policy.py::load_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::init_default_policies",
+      "target": "codegraph/arch_policy.py::save_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::remove_policy",
+      "target": "codegraph/arch_policy.py::load_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::remove_policy",
+      "target": "codegraph/arch_policy.py::save_policies",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3534,6 +3828,36 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/cli.py::evolution_cmd",
+      "target": "codegraph/arch_evolution.py::EvolutionReport::from_results",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::evolution_cmd",
+      "target": "codegraph/arch_evolution.py::run_evolution",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::evolution_cmd",
+      "target": "codegraph/arch_evolution.py::save_evolution_report",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::evolution_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::evolution_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/cli.py::evolve_cmd",
       "target": "codegraph/architecture_advisor.py::advise_architecture",
       "edge_type": "call",
@@ -3894,6 +4218,30 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/cli.py::memory_intel_cmd",
+      "target": "codegraph/arch_memory_intelligence.py::analyze_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::memory_intel_cmd",
+      "target": "codegraph/arch_memory_intelligence.py::save_strategy_scores",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::memory_intel_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::memory_intel_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/cli.py::metrics_cmd",
       "target": "codegraph/config.py::find_project_root",
       "edge_type": "call",
@@ -3914,6 +4262,42 @@
     {
       "source": "codegraph/cli.py::metrics_cmd",
       "target": "codegraph/risk_metrics.py::get_node_risk",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::metrics_snapshot_cmd",
+      "target": "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::metrics_snapshot_cmd",
+      "target": "codegraph/architecture_advisor.py::advise_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::metrics_snapshot_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::metrics_snapshot_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::metrics_snapshot_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::metrics_snapshot_cmd",
+      "target": "codegraph/index.py::IndexStore",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3968,6 +4352,48 @@
     {
       "source": "codegraph/cli.py::path_cmd",
       "target": "codegraph/path_query.py::find_pattern_paths",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::policy_cmd",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::policy_cmd",
+      "target": "codegraph/arch_policy.py::evaluate_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::policy_cmd",
+      "target": "codegraph/arch_policy.py::init_default_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::policy_cmd",
+      "target": "codegraph/arch_policy.py::load_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::policy_cmd",
+      "target": "codegraph/arch_policy.py::remove_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::policy_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::policy_cmd",
+      "target": "codegraph/config.py::find_project_root",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -9996,6 +10422,396 @@
       "confidence": "static"
     },
     {
+      "source": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_boost_applied",
+      "target": "codegraph/arch_evolution.py::_apply_memory_boost",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_boost_different_strategy",
+      "target": "codegraph/arch_evolution.py::_apply_memory_boost",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_boost_low_effectiveness",
+      "target": "codegraph/arch_evolution.py::_apply_memory_boost",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_ranking",
+      "target": "codegraph/arch_evolution.py::_apply_memory_boost",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionReport::test_format",
+      "target": "codegraph/arch_evolution.py::EvolutionReport::from_results",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionReport::test_format",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionReport::test_format",
+      "target": "codegraph/arch_evolution.py::EvolutionStage",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionReport::test_from_results_converged",
+      "target": "codegraph/arch_evolution.py::EvolutionReport::from_results",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionReport::test_from_results_converged",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionReport::test_from_results_empty",
+      "target": "codegraph/arch_evolution.py::EvolutionReport::from_results",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionReport::test_to_dict",
+      "target": "codegraph/arch_evolution.py::EvolutionReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionReport::test_to_dict",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionResult::test_defaults",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionResult::test_format_blocked",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionResult::test_format_blocked",
+      "target": "codegraph/arch_evolution.py::EvolutionStage",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionResult::test_format_improved",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionResult::test_format_improved",
+      "target": "codegraph/arch_evolution.py::EvolutionStage",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionResult::test_to_dict",
+      "target": "codegraph/arch_evolution.py::EvolutionReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionResult::test_to_dict",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionStage::test_basic",
+      "target": "codegraph/arch_evolution.py::EvolutionStage",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestEvolutionStage::test_with_details",
+      "target": "codegraph/arch_evolution.py::EvolutionStage",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_blocked_recommendation",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_blocked_recommendation",
+      "target": "codegraph/arch_evolution.py::_generate_evolution_recommendations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_no_duplicate_current_strategy",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_no_duplicate_current_strategy",
+      "target": "codegraph/arch_evolution.py::_generate_evolution_recommendations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_significant_improvement",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_significant_improvement",
+      "target": "codegraph/arch_evolution.py::_generate_evolution_recommendations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_suggests_effective_strategy",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_suggests_effective_strategy",
+      "target": "codegraph/arch_evolution.py::_generate_evolution_recommendations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolution::test_multiple_cycles",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolution::test_multiple_cycles",
+      "target": "codegraph/arch_evolution.py::run_evolution",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolution::test_respects_max_cycles",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolution::test_respects_max_cycles",
+      "target": "codegraph/arch_evolution.py::run_evolution",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolution::test_stops_on_no_change",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolution::test_stops_on_no_change",
+      "target": "codegraph/arch_evolution.py::run_evolution",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_advisor_failure",
+      "target": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_dry_run_skips_record",
+      "target": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_dry_run_skips_record",
+      "target": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_dry_run_skips_record",
+      "target": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_search_result",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_full_success",
+      "target": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_full_success",
+      "target": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_full_success",
+      "target": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_search_result",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_safe_candidate",
+      "target": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_safe_candidate",
+      "target": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_smells",
+      "target": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_smells",
+      "target": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_policy_blocks",
+      "target": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_policy_blocks",
+      "target": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_policy_blocks",
+      "target": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_search_result",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_score_degradation_rejected",
+      "target": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_score_degradation_rejected",
+      "target": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_score_degradation_rejected",
+      "target": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_search_result",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_simulation_unsafe",
+      "target": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_simulation_unsafe",
+      "target": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_simulation_unsafe",
+      "target": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_search_result",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestSaveEvolutionReport::test_save_and_load",
+      "target": "codegraph/arch_evolution.py::EvolutionReport::from_results",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestSaveEvolutionReport::test_save_and_load",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestSaveEvolutionReport::test_save_and_load",
+      "target": "codegraph/arch_evolution.py::EvolutionStage",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestSaveEvolutionReport::test_save_and_load",
+      "target": "codegraph/arch_evolution.py::save_evolution_report",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestSkipRemaining::test_does_not_skip_already_set",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestSkipRemaining::test_does_not_skip_already_set",
+      "target": "codegraph/arch_evolution.py::EvolutionStage",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestSkipRemaining::test_does_not_skip_already_set",
+      "target": "codegraph/arch_evolution.py::_skip_remaining",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestSkipRemaining::test_skips_after_named_stage",
+      "target": "codegraph/arch_evolution.py::EvolutionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestSkipRemaining::test_skips_after_named_stage",
+      "target": "codegraph/arch_evolution.py::EvolutionStage",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestSkipRemaining::test_skips_after_named_stage",
+      "target": "codegraph/arch_evolution.py::_skip_remaining",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "tests/test_arch_health.py::TestArchHealthReport::test_format",
       "target": "codegraph/arch_health.py::ArchHealthReport",
       "edge_type": "call",
@@ -10262,6 +11078,312 @@
     {
       "source": "tests/test_arch_memory.py::TestRecordExperiment::test_records_and_persists",
       "target": "codegraph/arch_memory.py::record_experiment",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_empty_project",
+      "target": "codegraph/arch_memory_intelligence.py::analyze_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_empty_project",
+      "target": "tests/test_arch_memory_intelligence.py::_make_codegraph_dirs",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_empty_project",
+      "target": "tests/test_arch_memory_intelligence.py::_setup_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_with_data",
+      "target": "codegraph/arch_memory.py::ArchDecision",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_with_data",
+      "target": "codegraph/arch_memory_intelligence.py::analyze_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_with_data",
+      "target": "tests/test_arch_memory_intelligence.py::_make_codegraph_dirs",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory::test_with_data",
+      "target": "tests/test_arch_memory_intelligence.py::_setup_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot::test_defaults",
+      "target": "codegraph/arch_memory_intelligence.py::MetricsSnapshot",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot::test_round_trip",
+      "target": "codegraph/arch_memory_intelligence.py::StrategyScore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_empty_memory",
+      "target": "codegraph/arch_memory.py::ArchMemory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_empty_memory",
+      "target": "codegraph/arch_memory_intelligence.py::score_strategies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_mines_experiment_patterns",
+      "target": "codegraph/arch_memory.py::ArchExperiment",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_mines_experiment_patterns",
+      "target": "codegraph/arch_memory.py::ArchMemory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_mines_experiment_patterns",
+      "target": "codegraph/arch_memory_intelligence.py::mine_patterns",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_mines_tag_patterns",
+      "target": "codegraph/arch_memory.py::ArchDecision",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_mines_tag_patterns",
+      "target": "codegraph/arch_memory.py::ArchMemory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestMinePatterns::test_mines_tag_patterns",
+      "target": "codegraph/arch_memory_intelligence.py::mine_patterns",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_effective_strategy",
+      "target": "codegraph/arch_memory.py::ArchMemory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_effective_strategy",
+      "target": "codegraph/arch_memory_intelligence.py::StrategyScore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_effective_strategy",
+      "target": "codegraph/arch_memory_intelligence.py::generate_recommendations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_empty_data",
+      "target": "codegraph/arch_memory.py::ArchMemory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_empty_data",
+      "target": "codegraph/arch_memory_intelligence.py::generate_recommendations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_down",
+      "target": "codegraph/arch_memory.py::ArchMemory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_down",
+      "target": "codegraph/arch_memory_intelligence.py::MetricsSnapshot",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_down",
+      "target": "codegraph/arch_memory_intelligence.py::generate_recommendations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_up",
+      "target": "codegraph/arch_memory.py::ArchMemory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_up",
+      "target": "codegraph/arch_memory_intelligence.py::MetricsSnapshot",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecommendations::test_trend_up",
+      "target": "codegraph/arch_memory_intelligence.py::generate_recommendations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_append_multiple",
+      "target": "codegraph/arch_memory_intelligence.py::load_metrics_history",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_append_multiple",
+      "target": "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_append_multiple",
+      "target": "tests/test_arch_memory_intelligence.py::_make_codegraph_dirs",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_record_and_load",
+      "target": "codegraph/arch_memory_intelligence.py::load_metrics_history",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_record_and_load",
+      "target": "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestRecordMetrics::test_record_and_load",
+      "target": "tests/test_arch_memory_intelligence.py::_make_codegraph_dirs",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestReportFormatting::test_format_empty",
+      "target": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestReportFormatting::test_to_dict",
+      "target": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores::test_save_and_verify",
+      "target": "codegraph/arch_memory_intelligence.py::StrategyScore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores::test_save_and_verify",
+      "target": "codegraph/arch_memory_intelligence.py::save_strategy_scores",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores::test_save_and_verify",
+      "target": "tests/test_arch_memory_intelligence.py::_make_codegraph_dirs",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_empty_memory",
+      "target": "codegraph/arch_memory.py::ArchMemory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_empty_memory",
+      "target": "codegraph/arch_memory_intelligence.py::score_strategies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_scores_from_decisions",
+      "target": "codegraph/arch_memory.py::ArchDecision",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_scores_from_decisions",
+      "target": "codegraph/arch_memory.py::ArchMemory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_scores_from_decisions",
+      "target": "codegraph/arch_memory_intelligence.py::score_strategies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_scores_from_experiments",
+      "target": "codegraph/arch_memory.py::ArchExperiment",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_scores_from_experiments",
+      "target": "codegraph/arch_memory.py::ArchMemory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestScoreStrategies::test_scores_from_experiments",
+      "target": "codegraph/arch_memory_intelligence.py::score_strategies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestStrategyScore::test_round_trip",
+      "target": "codegraph/arch_memory_intelligence.py::StrategyScore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::TestStrategyScore::test_to_dict_rounding",
+      "target": "codegraph/arch_memory_intelligence.py::StrategyScore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::_setup_memory",
+      "target": "codegraph/arch_memory.py::ArchMemory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_memory_intelligence.py::_setup_memory",
+      "target": "codegraph/arch_memory.py::save_memory",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -10580,6 +11702,318 @@
     {
       "source": "tests/test_arch_planner.py::_make_graph0",
       "target": "codegraph/models/graph0.py::Graph0Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestArchPolicy::test_defaults",
+      "target": "codegraph/arch_policy.py::ArchPolicy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestArchPolicy::test_round_trip",
+      "target": "codegraph/arch_policy.py::ArchPolicy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_coupling_limit_pass",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_coupling_limit_pass",
+      "target": "codegraph/arch_policy.py::evaluate_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_coupling_limit_pass",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_disabled_policy_skipped",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_disabled_policy_skipped",
+      "target": "codegraph/arch_policy.py::evaluate_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_disabled_policy_skipped",
+      "target": "codegraph/arch_policy.py::load_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_disabled_policy_skipped",
+      "target": "codegraph/arch_policy.py::save_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_disabled_policy_skipped",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_pass",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_pass",
+      "target": "codegraph/arch_policy.py::evaluate_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_pass",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_violation",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_violation",
+      "target": "codegraph/arch_policy.py::evaluate_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_violation",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_policies",
+      "target": "codegraph/arch_policy.py::evaluate_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_policies",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_block",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_block",
+      "target": "codegraph/arch_policy.py::evaluate_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_block",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_pass",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_pass",
+      "target": "codegraph/arch_policy.py::evaluate_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_score_gate_pass",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestInitDefaults::test_creates_defaults",
+      "target": "codegraph/arch_policy.py::init_default_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestInitDefaults::test_creates_defaults",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestInitDefaults::test_idempotent",
+      "target": "codegraph/arch_policy.py::init_default_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestInitDefaults::test_idempotent",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyReport::test_format_blocked",
+      "target": "codegraph/arch_policy.py::PolicyReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyReport::test_format_blocked",
+      "target": "codegraph/arch_policy.py::PolicyViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyReport::test_format_passed",
+      "target": "codegraph/arch_policy.py::PolicyReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyReport::test_to_dict_summary",
+      "target": "codegraph/arch_policy.py::PolicyReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyReport::test_to_dict_summary",
+      "target": "codegraph/arch_policy.py::PolicyViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_add_invalid_action",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_add_invalid_action",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_add_invalid_type",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_add_invalid_type",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_add_policy",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_add_policy",
+      "target": "codegraph/arch_policy.py::load_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_add_policy",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_load_empty",
+      "target": "codegraph/arch_policy.py::load_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_remove_nonexistent",
+      "target": "codegraph/arch_policy.py::remove_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_remove_nonexistent",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_remove_policy",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_remove_policy",
+      "target": "codegraph/arch_policy.py::load_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_remove_policy",
+      "target": "codegraph/arch_policy.py::remove_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_remove_policy",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_save_and_load",
+      "target": "codegraph/arch_policy.py::ArchPolicy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_save_and_load",
+      "target": "codegraph/arch_policy.py::load_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_save_and_load",
+      "target": "codegraph/arch_policy.py::save_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyStore::test_save_and_load",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestPolicyViolation::test_to_dict",
+      "target": "codegraph/arch_policy.py::PolicyViolation",
       "edge_type": "call",
       "confidence": "static"
     },
