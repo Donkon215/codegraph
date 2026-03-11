@@ -188,6 +188,7 @@ def advise_architecture(
     graph0: Graph0,
     index: IndexStore,
     *,
+    project_root: Optional[Path] = None,
     god_module_threshold: int = 30,
     fan_in_threshold: int = 20,
     fan_out_threshold: int = 15,
@@ -207,6 +208,7 @@ def advise_architecture(
     - God module detection
     - Dependency depth analysis
     - Cross-subsystem hidden coupling
+    - Past architecture decisions (when *project_root* is given)
     """
     advice = ArchAdvice()
     advice.total_nodes = len(graph0.nodes)
@@ -386,12 +388,58 @@ def advise_architecture(
     severity_order = {"error": 0, "warning": 1, "info": 2}
     advice.smells.sort(key=lambda s: severity_order.get(s.severity, 3))
 
+    # 8. Architecture memory integration — load past decisions to add context
+    if project_root is not None:
+        _enrich_with_memory(advice, project_root)
+
     logger.info(
         "Architecture advice: %s (%s) — %d smells, %d suggestions",
         advice.grade, f"{advice.score:.0%}",
         len(advice.smells), len(advice.suggestions),
     )
     return advice
+
+
+# ── Architecture memory enrichment ────────────────────────────────────
+
+
+def _enrich_with_memory(advice: ArchAdvice, project_root: Path) -> None:
+    """Annotate suggestions with relevant past architecture decisions.
+
+    If a previous decision addressed the same module or smell type,
+    the suggestion gains a ``past_decision`` note so agents can
+    avoid repeating failed strategies.
+    """
+    try:
+        from codegraph.architecture_memory import load_decisions, load_advice_history
+    except ImportError:
+        return
+
+    past_decisions = load_decisions(project_root, limit=100)
+    if not past_decisions:
+        return
+
+    # Build a lookup: tag → decision summaries
+    decision_by_tag: Dict[str, List[str]] = defaultdict(list)
+    for dec in past_decisions:
+        for tag in dec.tags:
+            summary = f"[{dec.result}] {dec.decision}"
+            decision_by_tag[tag].append(summary)
+
+    # Annotate suggestions whose target matches a past decision tag
+    for sug in advice.suggestions:
+        target_parts = sug.target.replace("\\", "/").split("/")
+        for part in target_parts:
+            cleaned = part.replace(".py", "")
+            if cleaned in decision_by_tag:
+                relevant = decision_by_tag[cleaned][:3]
+                sug.reason += f" (past decisions on '{cleaned}': {'; '.join(relevant)})"
+                break
+
+        # Also match by smell type
+        if sug.source_smell in decision_by_tag:
+            relevant = decision_by_tag[sug.source_smell][:2]
+            sug.reason += f" (past '{sug.source_smell}' decisions: {'; '.join(relevant)})"
 
 
 # ── Hidden coupling detection ─────────────────────────────────────────

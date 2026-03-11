@@ -267,6 +267,8 @@ def add_rule(
     target_layer: Optional[int] = None,
     source_arch_layer: Optional[str] = None,
     target_arch_layer: Optional[str] = None,
+    max_fan_in: Optional[int] = None,
+    max_fan_out: Optional[int] = None,
     reason: str = "",
     author: str = "human",
     severity: str = "error",
@@ -288,6 +290,8 @@ def add_rule(
         target_layer=target_layer,
         source_arch_layer=source_arch_layer,
         target_arch_layer=target_arch_layer,
+        max_fan_in=max_fan_in,
+        max_fan_out=max_fan_out,
         reason=reason,
         added_by=author,
     )

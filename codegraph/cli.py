@@ -438,20 +438,25 @@ def suggest_group() -> None:
 
 @suggest_group.command("add")
 @click.option("--type", "rule_type", required=True,
-              type=click.Choice(["required_call", "forbidden_call"]))
+              type=click.Choice(["required_call", "forbidden_call",
+                                 "forbidden_path", "layer_boundary",
+                                 "dependency_limit"]))
 @click.option("--source", default=None, help="Source scope pattern.")
 @click.option("--target", default=None, help="Target scope pattern.")
 @click.option("--source-layer", type=int, default=None, help="Source layer number.")
 @click.option("--target-layer", type=int, default=None, help="Target layer number.")
 @click.option("--source-arch-layer", default=None, help="Source arch layer.")
 @click.option("--target-arch-layer", default=None, help="Target arch layer.")
+@click.option("--max-fan-in", type=int, default=None, help="Max fan-in (dependency_limit).")
+@click.option("--max-fan-out", type=int, default=None, help="Max fan-out (dependency_limit).")
 @click.option("--reason", required=True, help="Reason for the rule.")
 @click.option("--author", default="human", help="Author of the rule.")
 @click.pass_context
 def suggest_add(ctx: click.Context, rule_type: str, source: str | None,
                 target: str | None, source_layer: int | None,
                 target_layer: int | None, source_arch_layer: str | None,
-                target_arch_layer: str | None, reason: str, author: str) -> None:
+                target_arch_layer: str | None, max_fan_in: int | None,
+                max_fan_out: int | None, reason: str, author: str) -> None:
     """Add a new architecture policy rule."""
     from codegraph.suggest import add_rule
     try:
@@ -465,6 +470,7 @@ def suggest_add(ctx: click.Context, rule_type: str, source: str | None,
         source=source, target=target,
         source_layer=source_layer, target_layer=target_layer,
         source_arch_layer=source_arch_layer, target_arch_layer=target_arch_layer,
+        max_fan_in=max_fan_in, max_fan_out=max_fan_out,
     )
     click.echo(f"Added rule {rule_id}")
 
@@ -2198,6 +2204,7 @@ def architect_cmd(
     with IndexStore(root) as index:
         advice = advise_architecture(
             graph0, index,
+            project_root=root,
             god_module_threshold=god_module_threshold,
             fan_in_threshold=fan_in_threshold,
             fan_out_threshold=fan_out_threshold,
@@ -2283,7 +2290,7 @@ def evolve_cmd(ctx: click.Context, max_cycles: int, dry_run: bool,
 
     # 2. Run advisor
     with IndexStore(root) as index:
-        advice = advise_architecture(graph0, index)
+        advice = advise_architecture(graph0, index, project_root=root)
 
     click.echo(f"=== Architecture Evolution ===")
     click.echo(f"Advisor findings: {len(advice.smells)} smells")

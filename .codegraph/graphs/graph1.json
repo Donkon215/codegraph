@@ -2501,12 +2501,15 @@
     },
     {
       "id": "codegraph/architecture_advisor",
-      "intent": "architecture reasoning engine detecting smells and producing actionable improvement suggestions",
+      "intent": "architecture reasoning engine detecting smells and producing actionable improvement advice. Integrates with architecture_memory to contextualize suggestions with past decisions",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T12:31:20Z",
-      "intent_body_hash": "1f147"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T03:28:25Z",
+      "tags": [
+        "intelligence"
+      ],
+      "intent_body_hash": "8c8b3"
     },
     {
       "id": "codegraph/architecture_advisor.py::ArchAdvice",
@@ -2608,13 +2611,24 @@
       "intent_body_hash": "a6fa5"
     },
     {
+      "id": "codegraph/architecture_advisor.py::_enrich_with_memory",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T03:17:45Z"
+    },
+    {
       "id": "codegraph/architecture_advisor.py::advise_architecture",
-      "intent": "run full architecture analysis aggregating risk cycles subsystems into advice",
+      "intent": "run full architecture analysis aggregating risk metrics, cycle detection, subsystem analysis, god module detection, and dependency depth into structured advice. Optionally loads past decisions from architecture_memory to enrich suggestions",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T12:31:20Z",
-      "intent_body_hash": "2425a"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T03:28:25Z",
+      "tags": [
+        "intelligence"
+      ],
+      "intent_body_hash": "27e08"
     },
     {
       "id": "codegraph/architecture_advisor.py::enrich_workflow_with_intents",
@@ -3075,6 +3089,14 @@
         "internal"
       ],
       "intent_body_hash": "17d2d"
+    },
+    {
+      "id": "codegraph/architecture_memory.py::load_advice_history",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T03:17:45Z"
     },
     {
       "id": "codegraph/architecture_memory.py::load_decisions",
@@ -3881,15 +3903,15 @@
     },
     {
       "id": "codegraph/cli",
-      "intent": "cLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest, delta, diff, validate, status, cas, semantic, plan, architecture, viewer, architect, enrich, compile, code-plan, lock, drift, copilot-context, arch-simulate, arch-diff, arch-memory, archi-test, context, evolve, health, intent-apply, intent-missing, memory, metrics, multilevel, path, refactor, repair, simulate, subsystems, test-impact, version, and visualize",
+      "intent": "cLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest (with support for all rule types: required_call, forbidden_call, forbidden_path, layer_boundary, dependency_limit), delta, diff, validate, status, cas, semantic, plan, architecture, viewer, architect, enrich, compile, code-plan, lock, drift, copilot-context, arch-simulate, arch-diff, arch-memory, archi-test, context, evolve, health, intent-apply, intent-missing, memory, metrics, multilevel, path, refactor, repair, simulate, subsystems, test-impact, version, and visualize",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 10,
-      "intent_timestamp": "2026-03-10T18:47:46Z",
+      "intent_version": 11,
+      "intent_timestamp": "2026-03-11T03:28:25Z",
       "tags": [
         "entry_point"
       ],
-      "intent_body_hash": "c6492"
+      "intent_body_hash": "b5fcd"
     },
     {
       "id": "codegraph/cli.py::analyze_cmd",
@@ -3955,12 +3977,15 @@
     },
     {
       "id": "codegraph/cli.py::architect_cmd",
-      "intent": "run architecture advisor detecting smells and suggesting improvements, with options for JSON output and saving to file",
+      "intent": "run architecture advisor detecting smells and suggesting improvements, with optional JSON output and save. Passes project_root for architecture_memory integration",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-10T16:23:14Z",
-      "intent_body_hash": "7d184"
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-11T03:28:25Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "3b81b"
     },
     {
       "id": "codegraph/cli.py::architecture_cmd",
@@ -4162,12 +4187,15 @@
     },
     {
       "id": "codegraph/cli.py::evolve_cmd",
-      "intent": "run full architecture evolution loop: advisor, target delta, task generation",
+      "intent": "run full architecture evolution loop: advisor, target delta, task generation. Uses project_root-aware advisor for memory-enriched suggestions",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T16:23:14Z",
-      "intent_body_hash": "679fa"
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T03:28:25Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "b6580"
     },
     {
       "id": "codegraph/cli.py::explain_cmd",
@@ -6000,12 +6028,15 @@
     },
     {
       "id": "codegraph/extractor",
-      "intent": "codegraph.extractor — AST extraction engine (Graph_0)",
+      "intent": "aST extraction engine (Graph_0). Parses Python source files to extract nodes (functions, classes, modules), call sites, imports, and resolve call targets. Includes ambiguous method name filtering to prevent false positive fan-in from common builtins (get, append, add, etc.)",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "a151e"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T03:28:25Z",
+      "tags": [
+        "core_engine"
+      ],
+      "intent_body_hash": "55969"
     },
     {
       "id": "codegraph/extractor.py::CallSite",
@@ -12102,12 +12133,15 @@
     },
     {
       "id": "codegraph/suggest",
-      "intent": "codegraph.suggest — Suggested workflow / architecture policy manager",
+      "intent": "suggested workflow and architecture policy manager. Manages rules (required_call, forbidden_call, forbidden_path, layer_boundary, dependency_limit), detects violations, and provides CLI-backed add/remove/list/validate/diff/stats/import operations",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "6f45e"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T03:28:25Z",
+      "tags": [
+        "governance"
+      ],
+      "intent_body_hash": "4478c"
     },
     {
       "id": "codegraph/suggest.py::DanglingRule",
