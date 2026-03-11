@@ -225,10 +225,21 @@
           "module": "codegraph/apply.py",
           "functions": [
             "apply_response",
-            "apply_repairs",
-            "apply_intents"
+            "run_apply",
+            "format_apply_result"
           ],
-          "description": "Repair executor. Applies agent_response.json repairs and intents to codebase."
+          "description": "Repair orchestrator. Coordinates lock, backup, conflict detection, action dispatch, and validation."
+        },
+        {
+          "name": "apply_handlers",
+          "module": "codegraph/apply_handlers.py",
+          "functions": [
+            "handle_connect_call",
+            "handle_add_import",
+            "handle_remove_dead_code",
+            "handle_flag_for_review"
+          ],
+          "description": "AST code manipulation helpers and repair action handlers. Extracted from apply.py."
         },
         {
           "name": "delta",
@@ -252,6 +263,10 @@
         {
           "source": "apply",
           "target": "analyzer"
+        },
+        {
+          "source": "apply",
+          "target": "apply_handlers"
         },
         {
           "source": "delta",

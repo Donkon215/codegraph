@@ -189,6 +189,16 @@
       "target_arch_layer": "governance",
       "added_by": "human",
       "added_at": "2026-03-11T03:27:43Z"
+    },
+    {
+      "id": "rule_022",
+      "type": "dependency_limit",
+      "reason": "Apply handlers should stay focused on code manipulation. Cap outgoing dependencies.",
+      "source": "codegraph/apply_handlers.py::*",
+      "target": "(any)",
+      "max_fan_out": 20,
+      "added_by": "human",
+      "added_at": "2026-03-11T11:43:25Z"
     }
   ]
 }

@@ -966,12 +966,15 @@
     },
     {
       "id": "codegraph/apply",
-      "intent": "codegraph.apply — Repair action execution (apply system)",
+      "intent": "repair action orchestrator. Coordinates lock, backup, conflict detection, action dispatch via apply_handlers, graph update, and validation",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "902bc"
+      "intent_author": "agent",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-11T11:47:48Z",
+      "tags": [
+        "governance"
+      ],
+      "intent_body_hash": "3d01a"
     },
     {
       "id": "codegraph/apply.py::ActionResult",
@@ -1350,6 +1353,174 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "20249"
+    },
+    {
+      "id": "codegraph/apply_handlers",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_check_dead_code_signals",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_cleanup_unused_imports",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_detect_indentation",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_find_function_in_ast",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_find_import_block_end",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_first_executable_line",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_get_class_method",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_get_function_node",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_has_import",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_insert_line",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_is_already_connected",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_load_baseline_hashes",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_parse_file_ast",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_remove_function_from_file",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_remove_lines",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::handle_add_import",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::handle_connect_call",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::handle_flag_for_review",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::handle_remove_dead_code",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::save_baseline_hashes",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T11:40:31Z"
     },
     {
       "id": "codegraph/arch_diff",
@@ -4534,12 +4705,15 @@
     },
     {
       "id": "codegraph/cli.py::suggest_add",
-      "intent": "add a new architecture policy rule",
+      "intent": "cLI command that delegates to add_rule with rule_type, source/target, layer, fan-in/out limits, reason, and author; prints the new rule ID",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "f15ce"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T11:43:14Z",
+      "tags": [
+        "cli"
+      ],
+      "intent_body_hash": "2d11b"
     },
     {
       "id": "codegraph/cli.py::suggest_diff",
@@ -6571,12 +6745,15 @@
     },
     {
       "id": "codegraph/extractor.py::resolve_call_target",
-      "intent": "attempt to resolve a call site to a Graph_0 node ID",
+      "intent": "resolve a CallSite to a graph node ID via self/scope/same-file/import lookup and fuzzy method matching, skipping ambiguous builtin method names",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "c3703"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T11:43:14Z",
+      "tags": [
+        "core_engine"
+      ],
+      "intent_body_hash": "3c092"
     },
     {
       "id": "codegraph/extractor.py::save_graph0",
@@ -12298,12 +12475,15 @@
     },
     {
       "id": "codegraph/suggest.py::add_rule",
-      "intent": "add a new rule to suggested_workflow.json (H-011). Returns rule id",
+      "intent": "validate rule_type against RuleType enum, build a SuggestedWorkflowRule with optional fan-in/out limits, append it to suggested_workflow.json, and return the rule ID",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "97f82"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T11:43:14Z",
+      "tags": [
+        "governance"
+      ],
+      "intent_body_hash": "7ea69"
     },
     {
       "id": "codegraph/suggest.py::available_templates",

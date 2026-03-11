@@ -1,7 +1,7 @@
 {
   "format_version": 1,
-  "graph_version": 38,
-  "extracted_at": "2026-03-11T03:28:32Z",
+  "graph_version": 42,
+  "extracted_at": "2026-03-11T11:46:41Z",
   "source_files": [
     "benchmarks/benchmark_build.py",
     "benchmarks/benchmark_query.py",
@@ -12,6 +12,7 @@
     "codegraph/analyzer.py",
     "codegraph/annotator.py",
     "codegraph/apply.py",
+    "codegraph/apply_handlers.py",
     "codegraph/arch_diff.py",
     "codegraph/arch_health.py",
     "codegraph/arch_memory.py",
@@ -915,7 +916,7 @@
     },
     {
       "id": "codegraph/apply",
-      "body_hash": "902bc",
+      "body_hash": "3d01a",
       "file": "codegraph/apply.py",
       "type": "module",
       "line": 1
@@ -967,7 +968,7 @@
       "body_hash": "9527c",
       "file": "codegraph/apply.py",
       "type": "function",
-      "line": 868
+      "line": 256
     },
     {
       "id": "codegraph/apply.py::_backup_dir",
@@ -984,25 +985,11 @@
       "line": 207
     },
     {
-      "id": "codegraph/apply.py::_check_dead_code_signals",
-      "body_hash": "2f7ea",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 616
-    },
-    {
       "id": "codegraph/apply.py::_cleanup_backups",
       "body_hash": "e6a82",
       "file": "codegraph/apply.py",
       "type": "function",
       "line": 149
-    },
-    {
-      "id": "codegraph/apply.py::_cleanup_unused_imports",
-      "body_hash": "efca3",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 696
     },
     {
       "id": "codegraph/apply.py::_create_backups",
@@ -1012,81 +999,11 @@
       "line": 129
     },
     {
-      "id": "codegraph/apply.py::_detect_indentation",
-      "body_hash": "dbf0e",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 321
-    },
-    {
-      "id": "codegraph/apply.py::_find_function_in_ast",
-      "body_hash": "f0eac",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 289
-    },
-    {
-      "id": "codegraph/apply.py::_find_import_block_end",
-      "body_hash": "41699",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 346
-    },
-    {
-      "id": "codegraph/apply.py::_first_executable_line",
-      "body_hash": "f3734",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 305
-    },
-    {
       "id": "codegraph/apply.py::_format_file",
       "body_hash": "2a179",
       "file": "codegraph/apply.py",
       "type": "function",
-      "line": 897
-    },
-    {
-      "id": "codegraph/apply.py::_get_class_method",
-      "body_hash": "fbd95",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 276
-    },
-    {
-      "id": "codegraph/apply.py::_get_function_node",
-      "body_hash": "26e7e",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 265
-    },
-    {
-      "id": "codegraph/apply.py::_has_import",
-      "body_hash": "bd154",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 335
-    },
-    {
-      "id": "codegraph/apply.py::_insert_line",
-      "body_hash": "c04b6",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 374
-    },
-    {
-      "id": "codegraph/apply.py::_is_already_connected",
-      "body_hash": "75559",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 420
-    },
-    {
-      "id": "codegraph/apply.py::_load_baseline_hashes",
-      "body_hash": "04e55",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 600
+      "line": 285
     },
     {
       "id": "codegraph/apply.py::_lock_path",
@@ -1096,32 +1013,11 @@
       "line": 86
     },
     {
-      "id": "codegraph/apply.py::_parse_file_ast",
-      "body_hash": "f9c6a",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 256
-    },
-    {
       "id": "codegraph/apply.py::_release_lock",
       "body_hash": "e4df5",
       "file": "codegraph/apply.py",
       "type": "function",
       "line": 116
-    },
-    {
-      "id": "codegraph/apply.py::_remove_function_from_file",
-      "body_hash": "fe760",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 679
-    },
-    {
-      "id": "codegraph/apply.py::_remove_lines",
-      "body_hash": "0e7ad",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 395
     },
     {
       "id": "codegraph/apply.py::_restore_backups",
@@ -1142,70 +1038,35 @@
       "body_hash": "f2ddf",
       "file": "codegraph/apply.py",
       "type": "function",
-      "line": 920
+      "line": 308
     },
     {
       "id": "codegraph/apply.py::_validate_modified_files",
       "body_hash": "aac41",
       "file": "codegraph/apply.py",
       "type": "function",
-      "line": 963
+      "line": 351
     },
     {
       "id": "codegraph/apply.py::apply_response",
       "body_hash": "5bb3b",
       "file": "codegraph/apply.py",
       "type": "function",
-      "line": 1045
+      "line": 433
     },
     {
       "id": "codegraph/apply.py::format_apply_result",
       "body_hash": "c70e4",
       "file": "codegraph/apply.py",
       "type": "function",
-      "line": 984
-    },
-    {
-      "id": "codegraph/apply.py::handle_add_import",
-      "body_hash": "32125",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 535
-    },
-    {
-      "id": "codegraph/apply.py::handle_connect_call",
-      "body_hash": "670a6",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 435
-    },
-    {
-      "id": "codegraph/apply.py::handle_flag_for_review",
-      "body_hash": "587d6",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 831
-    },
-    {
-      "id": "codegraph/apply.py::handle_remove_dead_code",
-      "body_hash": "9d8be",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 755
+      "line": 372
     },
     {
       "id": "codegraph/apply.py::run_apply",
       "body_hash": "c6922",
       "file": "codegraph/apply.py",
       "type": "function",
-      "line": 1198
-    },
-    {
-      "id": "codegraph/apply.py::save_baseline_hashes",
-      "body_hash": "baedb",
-      "file": "codegraph/apply.py",
-      "type": "function",
-      "line": 608
+      "line": 586
     },
     {
       "id": "codegraph/apply.py::undo_last_apply",
@@ -1213,6 +1074,153 @@
       "file": "codegraph/apply.py",
       "type": "function",
       "line": 181
+    },
+    {
+      "id": "codegraph/apply_handlers",
+      "body_hash": "537bf",
+      "file": "codegraph/apply_handlers.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_check_dead_code_signals",
+      "body_hash": "2f7ea",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 392
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_cleanup_unused_imports",
+      "body_hash": "efca3",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 472
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_detect_indentation",
+      "body_hash": "dbf0e",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 93
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_find_function_in_ast",
+      "body_hash": "f0eac",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 62
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_find_import_block_end",
+      "body_hash": "41699",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 118
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_first_executable_line",
+      "body_hash": "f3734",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 77
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_get_class_method",
+      "body_hash": "fbd95",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 49
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_get_function_node",
+      "body_hash": "26e7e",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 38
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_has_import",
+      "body_hash": "bd154",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 107
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_insert_line",
+      "body_hash": "c04b6",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 146
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_is_already_connected",
+      "body_hash": "75559",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 192
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_load_baseline_hashes",
+      "body_hash": "04e55",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 376
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_parse_file_ast",
+      "body_hash": "f9c6a",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 29
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_remove_function_from_file",
+      "body_hash": "fe760",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 455
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_remove_lines",
+      "body_hash": "0e7ad",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 167
+    },
+    {
+      "id": "codegraph/apply_handlers.py::handle_add_import",
+      "body_hash": "e4720",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 309
+    },
+    {
+      "id": "codegraph/apply_handlers.py::handle_connect_call",
+      "body_hash": "20971",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 207
+    },
+    {
+      "id": "codegraph/apply_handlers.py::handle_flag_for_review",
+      "body_hash": "41458",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 609
+    },
+    {
+      "id": "codegraph/apply_handlers.py::handle_remove_dead_code",
+      "body_hash": "4ab49",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 531
+    },
+    {
+      "id": "codegraph/apply_handlers.py::save_baseline_hashes",
+      "body_hash": "baedb",
+      "file": "codegraph/apply_handlers.py",
+      "type": "function",
+      "line": 384
     },
     {
       "id": "codegraph/arch_diff",
