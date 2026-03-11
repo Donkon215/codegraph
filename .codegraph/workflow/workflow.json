@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-11T11:46:47Z",
+    "built_at": "2026-03-11T13:22:28Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -9,12 +9,12 @@
       "stdlib",
       "test_harness"
     ],
-    "edge_count": 3006,
-    "node_count": 1793,
-    "build_time_s": 6.08
+    "edge_count": 3025,
+    "node_count": 1806,
+    "build_time_s": 6.44
   },
   "format_version": 1,
-  "built_at": "2026-03-11T11:46:47Z",
+  "built_at": "2026-03-11T13:22:28Z",
   "level": "function",
   "edges": [
     {
@@ -1506,6 +1506,102 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/arch_search.py::ArchSearchResult::save",
+      "target": "codegraph/arch_search.py::ArchSearchResult::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_search.py::_record_search_to_memory",
+      "target": "codegraph/architecture_memory.py::save_decision",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_search.py::_strategy_to_changes",
+      "target": "codegraph/arch_search.py::_find_subsystem_for_module",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_search.py::_strategy_to_changes",
+      "target": "codegraph/arch_search.py::_module_name",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_search.py::_strategy_to_changes",
+      "target": "codegraph/architecture_simulator.py::ArchChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_search.py::generate_candidates",
+      "target": "codegraph/arch_search.py::ArchCandidate",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_search.py::generate_candidates",
+      "target": "codegraph/arch_search.py::_module_name",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_search.py::run_arch_search",
+      "target": "codegraph/arch_search.py::ArchSearchResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_search.py::run_arch_search",
+      "target": "codegraph/arch_search.py::_record_search_to_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_search.py::run_arch_search",
+      "target": "codegraph/arch_search.py::generate_candidates",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_search.py::run_arch_search",
+      "target": "codegraph/arch_search.py::score_candidates",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_search.py::run_arch_search",
+      "target": "codegraph/arch_search.py::simulate_candidates",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_search.py::run_arch_search",
+      "target": "codegraph/architecture_simulator.py::_compute_arch_metrics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_search.py::simulate_candidates",
+      "target": "codegraph/arch_search.py::_strategy_to_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_search.py::simulate_candidates",
+      "target": "codegraph/architecture_simulator.py::_compute_arch_metrics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_search.py::simulate_candidates",
+      "target": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/arch_viewer.py::_render_html",
       "target": "codegraph/arch_viewer.py::_escape_html",
       "edge_type": "call",
@@ -2587,6 +2683,24 @@
     },
     {
       "source": "codegraph/cli.py::arch_memory_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_search_cmd",
+      "target": "codegraph/arch_search.py::run_arch_search",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_search_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_search_cmd",
       "target": "codegraph/config.py::find_project_root",
       "edge_type": "call",
       "confidence": "static"

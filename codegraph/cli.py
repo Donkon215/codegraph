@@ -2967,6 +2967,47 @@ def copilot_context_cmd(ctx: click.Context, json_output: bool,
         click.echo(f"\nCopilot context saved.")
 
 
+# ── Multi-Candidate Architecture Search ───────────────────────────────
+
+
+@main.command("arch-search")
+@click.option("--max-candidates", type=int, default=5,
+              help="Maximum number of candidates to generate (default: 5).")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.option("--save", is_flag=True,
+              help="Save results to .codegraph/planning/arch_search.json.")
+@click.pass_context
+def arch_search_cmd(ctx: click.Context, max_candidates: int,
+                    json_output: bool, save: bool) -> None:
+    """Run multi-candidate architecture search.
+
+    Generates multiple architecture improvement candidates from advisor
+    findings, simulates each, scores them, and selects the best one.
+
+    Requires 'codegraph architect --save' to have been run first.
+    """
+    import json as _json
+    from codegraph.arch_search import run_arch_search
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    result = run_arch_search(
+        root, max_candidates=max_candidates, save_results=save,
+    )
+
+    if json_output:
+        click.echo(_json.dumps(result.to_dict(), indent=2))
+    else:
+        click.echo(result.format())
+
+    if result.status == "no_safe_candidate":
+        sys.exit(EXIT_WARNING)
+
+
 # ── Architecture Simulator Commands ────────────────────────────────────
 
 

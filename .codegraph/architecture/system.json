@@ -360,6 +360,17 @@
             "SubsystemReport"
           ],
           "description": "Community detection via Louvain algorithm. Groups nodes into subsystems."
+        },
+        {
+          "name": "arch_search",
+          "module": "codegraph/arch_search.py",
+          "functions": [
+            "run_arch_search",
+            "generate_candidates",
+            "simulate_candidates",
+            "score_candidates"
+          ],
+          "description": "Multi-candidate architecture search engine. Generates, simulates, scores, and ranks architecture improvement candidates."
         }
       ],
       "edges": [
@@ -386,6 +397,14 @@
         {
           "source": "arch_health",
           "target": "risk_metrics"
+        },
+        {
+          "source": "arch_search",
+          "target": "architecture_advisor"
+        },
+        {
+          "source": "arch_search",
+          "target": "arch_schema"
         }
       ]
     },

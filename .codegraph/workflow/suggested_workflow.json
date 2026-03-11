@@ -199,6 +199,15 @@
       "max_fan_out": 20,
       "added_by": "human",
       "added_at": "2026-03-11T11:43:25Z"
+    },
+    {
+      "id": "rule_023",
+      "type": "dependency_limit",
+      "reason": "Cap fan-out for architecture search module",
+      "source": "codegraph/arch_search.py::*",
+      "max_fan_out": 20,
+      "added_by": "human",
+      "added_at": "2026-03-11T13:23:04Z"
     }
   ]
 }

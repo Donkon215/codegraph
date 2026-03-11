@@ -1,0 +1,139 @@
+{
+  "status": "selected",
+  "baseline": {
+    "score": 0.7,
+    "modularity": 0.44,
+    "god_modules": 22,
+    "cycles": 0,
+    "coupling": 0.4306
+  },
+  "candidates": [
+    {
+      "candidate_id": "reduce_fanout_apply_response",
+      "strategy": "fan_out_reduction",
+      "description": "Reduce fan-out of codegraph/apply.py::apply_response (25) by introducing dispatcher or facade",
+      "target_modules": [
+        "codegraph/apply.py::apply_response"
+      ],
+      "expected_impact": "Lower fan-out of codegraph/apply.py::apply_response below threshold",
+      "risk_level": "medium",
+      "predicted_score": 0.0,
+      "predicted_modularity": 0.0,
+      "predicted_coupling": 0.0,
+      "predicted_fan_out_delta": 0.0,
+      "predicted_god_module_delta": 0,
+      "predicted_cycle_delta": 0,
+      "has_violations": false,
+      "simulation_safe": true,
+      "simulation_recommendation": "accept",
+      "rank": 1,
+      "composite_score": 0.475
+    },
+    {
+      "candidate_id": "split_cli",
+      "strategy": "module_split",
+      "description": "Split god module codegraph/cli.py (86 nodes) into focused sub-modules",
+      "target_modules": [
+        "codegraph/cli.py"
+      ],
+      "expected_impact": "Reduce god_module count by 1, lower fan-out for codegraph/cli.py",
+      "risk_level": "medium",
+      "predicted_score": 0.0,
+      "predicted_modularity": 0.0,
+      "predicted_coupling": 0.4444,
+      "predicted_fan_out_delta": 1,
+      "predicted_god_module_delta": 0,
+      "predicted_cycle_delta": 0,
+      "has_violations": false,
+      "simulation_safe": true,
+      "simulation_recommendation": "accept",
+      "rank": 2,
+      "composite_score": 0.4576
+    },
+    {
+      "candidate_id": "decompose_codegraph",
+      "strategy": "subsystem_boundary",
+      "description": "Decompose large subsystem codegraph (604 nodes) into focused sub-subsystems",
+      "target_modules": [
+        "codegraph"
+      ],
+      "expected_impact": "Improve cohesion, reduce subsystem size",
+      "risk_level": "high",
+      "predicted_score": 0.0,
+      "predicted_modularity": 0.0,
+      "predicted_coupling": 0.0,
+      "predicted_fan_out_delta": 0.0,
+      "predicted_god_module_delta": 0,
+      "predicted_cycle_delta": 0,
+      "has_violations": false,
+      "simulation_safe": true,
+      "simulation_recommendation": "accept",
+      "rank": 3,
+      "composite_score": 0.425
+    },
+    {
+      "candidate_id": "reduce_fanin_find_project_root",
+      "strategy": "fan_in_reduction",
+      "description": "Reduce fan-in of codegraph/config.py::find_project_root (70) by introducing abstraction layer or splitting interface",
+      "target_modules": [
+        "codegraph/config.py::find_project_root"
+      ],
+      "expected_impact": "Lower fan-in of codegraph/config.py::find_project_root, reduce blast radius",
+      "risk_level": "low",
+      "predicted_score": 0.4306,
+      "predicted_modularity": 0.0,
+      "predicted_coupling": 0.0,
+      "predicted_fan_out_delta": 0.0,
+      "predicted_god_module_delta": 0,
+      "predicted_cycle_delta": 0,
+      "has_violations": false,
+      "simulation_safe": true,
+      "simulation_recommendation": "review",
+      "rank": 4,
+      "composite_score": 0.325
+    },
+    {
+      "candidate_id": "extract_tests",
+      "strategy": "component_extraction",
+      "description": "Extract loosely coupled components from tests (cohesion=0.18) into dedicated modules",
+      "target_modules": [
+        "tests"
+      ],
+      "expected_impact": "Improve subsystem cohesion above 0.3 threshold",
+      "risk_level": "medium",
+      "predicted_score": 0.4306,
+      "predicted_modularity": 0.0,
+      "predicted_coupling": 0.0,
+      "predicted_fan_out_delta": 0.0,
+      "predicted_god_module_delta": 0,
+      "predicted_cycle_delta": 0,
+      "has_violations": false,
+      "simulation_safe": true,
+      "simulation_recommendation": "review",
+      "rank": 5,
+      "composite_score": 0.275
+    }
+  ],
+  "discard_reasons": {},
+  "selected": {
+    "candidate_id": "reduce_fanout_apply_response",
+    "strategy": "fan_out_reduction",
+    "description": "Reduce fan-out of codegraph/apply.py::apply_response (25) by introducing dispatcher or facade",
+    "target_modules": [
+      "codegraph/apply.py::apply_response"
+    ],
+    "expected_impact": "Lower fan-out of codegraph/apply.py::apply_response below threshold",
+    "risk_level": "medium",
+    "predicted_score": 0.0,
+    "predicted_modularity": 0.0,
+    "predicted_coupling": 0.0,
+    "predicted_fan_out_delta": 0.0,
+    "predicted_god_module_delta": 0,
+    "predicted_cycle_delta": 0,
+    "has_violations": false,
+    "simulation_safe": true,
+    "simulation_recommendation": "accept",
+    "rank": 1,
+    "composite_score": 0.475
+  }
+}

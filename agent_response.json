@@ -1,11 +1,50 @@
 {
-  "cycle": 6,
-  "graph_version": 42,
+  "cycle": 7,
+  "graph_version": 43,
   "intents": [
     {
-      "node": "codegraph/apply",
-      "intent": "Repair action orchestrator. Coordinates lock, backup, conflict detection, action dispatch via apply_handlers, graph update, and validation.",
-      "tags": ["governance"]
+      "node": "codegraph/cli",
+      "intent": "CLI entry point with commands for build, analyze, tasks, apply, query, architect, arch-search, and all other codegraph operations"
+    },
+    {
+      "node": "codegraph/arch_search",
+      "intent": "Multi-candidate architecture search engine module. Generates, simulates, scores, and ranks architecture improvement candidates."
+    },
+    {
+      "node": "codegraph/arch_search::generate_candidates",
+      "intent": "Generate architecture improvement candidates from advisor findings. Reads architecture_advice.json and produces candidates representing different refactoring strategies."
+    },
+    {
+      "node": "codegraph/arch_search::simulate_candidates",
+      "intent": "Simulate each candidate using architecture_simulator to predict impact on metrics without modifying code."
+    },
+    {
+      "node": "codegraph/arch_search::score_candidates",
+      "intent": "Score and rank candidates using weighted architecture metrics: score improvement, coupling, fan-out, violations, and risk level."
+    },
+    {
+      "node": "codegraph/arch_search::run_arch_search",
+      "intent": "Orchestrate the full multi-candidate architecture search: generate, simulate, score, rank, select best candidate or report no safe change."
+    },
+    {
+      "node": "codegraph/arch_search::_strategy_to_changes",
+      "intent": "Convert a candidate refactoring strategy into simulatable ArchChange objects for the architecture simulator."
+    },
+    {
+      "node": "codegraph/arch_search::_record_search_to_memory",
+      "intent": "Record the architecture search decision to persistent architecture memory for future learning."
+    },
+    {
+      "node": "codegraph/arch_search::_module_name",
+      "intent": "Extract a short module name from a file path or node ID for use in candidate IDs."
+    },
+    {
+      "node": "codegraph/arch_search::_find_subsystem_for_module",
+      "intent": "Find which subsystem a module belongs to by searching architecture component definitions."
+    },
+    {
+      "node": "codegraph/cli::arch_search_cmd",
+      "intent": "CLI command for multi-candidate architecture search. Runs arch-search with optional JSON output and save."
     }
   ],
   "repairs": []
