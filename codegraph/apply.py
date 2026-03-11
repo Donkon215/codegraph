@@ -79,6 +79,32 @@ class ApplyResult:
 
 
 # ═══════════════════════════════════════════════════════════════════════
+# Planning Gate — require architecture plan before applying repairs
+# ═══════════════════════════════════════════════════════════════════════
+
+_PLAN_PATHS = [
+    "planning/.plan.json",
+    "planning/architecture_plan.json",
+]
+
+
+def _check_plan_exists(project_root: Path) -> None:
+    """Ensure an architecture plan exists before applying repairs.
+
+    Raises CodegraphError if no plan is found. This enforces the
+    intent → plan → tasks → apply pipeline.
+    """
+    codegraph_dir = project_root / CODEGRAPH_DIR
+    for rel in _PLAN_PATHS:
+        if (codegraph_dir / rel).exists():
+            return
+    raise CodegraphError(
+        "No architecture plan found. Run 'codegraph compile' or "
+        "'codegraph code-plan' first, or use --skip-plan-check to bypass."
+    )
+
+
+# ═══════════════════════════════════════════════════════════════════════
 # J-010 — Apply Lock File
 # ═══════════════════════════════════════════════════════════════════════
 
@@ -436,6 +462,7 @@ def _prepare_apply(
     graph0: Graph0,
     *,
     dry_run: bool = False,
+    skip_plan_check: bool = False,
 ) -> Tuple[Set[Path], Dict[Path, Path]]:
     """Validate version, acquire lock, collect files, check conflicts, create backups."""
     from codegraph.storage import get_graph_version
@@ -444,6 +471,10 @@ def _prepare_apply(
     ok, msg = response.validate_version(current_version)
     if not ok:
         raise VersionMismatchError(current_version, response.graph_version)
+
+    # Planning gate: require an architecture plan before applying repairs
+    if response.repairs and not dry_run and not skip_plan_check:
+        _check_plan_exists(project_root)
 
     if not dry_run:
         _acquire_lock(project_root)
@@ -585,6 +616,7 @@ def apply_response(
     *,
     index: Any = None,
     dry_run: bool = False,
+    skip_plan_check: bool = False,
 ) -> ApplyResult:
     """Apply an agent response to the codebase (J-001).
 
@@ -595,6 +627,7 @@ def apply_response(
 
     _files_to_modify, backups = _prepare_apply(
         response, project_root, graph0, dry_run=dry_run,
+        skip_plan_check=skip_plan_check,
     )
 
     try:
@@ -625,6 +658,7 @@ def run_apply(
     project_root: Path,
     *,
     dry_run: bool = False,
+    skip_plan_check: bool = False,
 ) -> ApplyResult:
     """Load agent response and apply it (CLI entry point)."""
     from codegraph.extractor import load_graph0
@@ -648,6 +682,7 @@ def run_apply(
     result = apply_response(
         response, project_root, graph0, graph1, workflow,
         index=index, dry_run=dry_run,
+        skip_plan_check=skip_plan_check,
     )
 
     if index is not None:

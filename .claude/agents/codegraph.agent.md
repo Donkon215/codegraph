@@ -555,6 +555,10 @@ Pattern: `relative/path.py::ClassName::method_name`
 | `planning/arch_search.json` | Multi-candidate search results | Yes | Via `codegraph arch-search --save` |
 | `architecture/drift_report.json` | Code vs architecture drift | Yes | Via `codegraph drift --save` |
 | `context/copilot_context.json` | Complete Copilot context | Yes | Via `codegraph copilot-context --save` |
+| `architecture/versions/manifest.json` | Architecture version history | Yes | Via `codegraph arch-version --save` |
+| `baselines/metrics_baseline.json` | Pre-commit metrics baseline | Yes | Via `codegraph pre-commit --save-baseline` |
+| `runtime/runtime_graph.json` | Runtime edges (HTTP, DB, MQ, env) | Yes | Via `codegraph runtime-graph --save` |
+| `policies/architecture_policies.json` | Global architecture policies | Yes | Via `codegraph arch-policy` |
 | `tasks/tasks.json` | Task queue | Yes | No |
 | `agent_response.json` | Your repair response | No | **Yes** |
 | `codegraph.db` | SQLite index | Via query | No |
@@ -603,6 +607,34 @@ Builds a complete context package from all .codegraph data for informed decision
 codegraph arch-simulate API --depends-on core --depends-on models
 ```
 Predicts impact of adding a subsystem before implementing: cycles, fan-out, coupling, constraint violations. Returns accept/review/reject recommendation.
+
+### Pre-Commit Simulation Gate
+```bash
+codegraph pre-commit                      # check metrics against baseline
+codegraph pre-commit --strict             # treat warnings as errors
+codegraph pre-commit --json               # JSON output
+codegraph pre-commit --save-baseline      # save current metrics as baseline
+```
+Blocks merges when architecture metrics degrade beyond thresholds. Compares current metrics against a saved baseline in `.codegraph/baselines/metrics_baseline.json`. Checks: score regression (>5% = block), coupling increase (>10% = warn), modularity drop (>10% = warn), fan-out spike (>5 = warn), new cycles (= block), new god modules (= warn).
+
+### Runtime Graph Extraction
+```bash
+codegraph runtime-graph                   # extract runtime edges
+codegraph runtime-graph --json            # JSON output
+codegraph runtime-graph --save            # save to runtime/runtime_graph.json
+```
+Extracts dynamic/runtime behaviour from Python AST: HTTP calls (requests.get/post/put/delete), DB queries (cursor.execute with SQL table extraction), message queue patterns (publish/subscribe), environment variable access (os.getenv/os.environ.get). Complements the static call graph with runtime dependencies.
+
+### Architecture Versioning
+```bash
+codegraph arch-version --save             # save current architecture as a version
+codegraph arch-version --save --description "Added API subsystem"  # with description
+codegraph arch-version --list             # list all saved versions
+codegraph arch-version --diff v1 v3       # diff two versions
+codegraph arch-version --rollback v2      # rollback to a previous version
+codegraph arch-version --json             # JSON output
+```
+Tracks architecture evolution over time. Each version captures a snapshot of `system.json` with metadata (timestamp, score, grade, subsystem/edge/constraint counts). Rollback creates a pre-rollback snapshot before overwriting. Versions stored in `.codegraph/architecture/versions/`.
 
 ---
 
@@ -714,7 +746,142 @@ codegraph copilot-context [--save]# generate complete Copilot context
 codegraph arch-simulate NAME      # simulate adding a subsystem
 codegraph arch-search             # multi-candidate architecture search
 codegraph arch-search --json --save  # search with JSON output, save results
+codegraph pre-commit              # pre-merge simulation gate
+codegraph pre-commit --strict     # treat warnings as errors
+codegraph pre-commit --save-baseline  # save current metrics as baseline
+codegraph runtime-graph           # extract runtime edges (HTTP, DB, MQ, env)
+codegraph runtime-graph --save    # save runtime graph
+codegraph arch-version --save     # save architecture version snapshot
+codegraph arch-version --list     # list version history
+codegraph arch-version --diff v1 v3  # compare versions
+codegraph arch-version --rollback v2  # rollback to version
 ```
+
+---
+
+## Control Flow Pipeline
+
+**The enforced pipeline for architecture changes:**
+
+```
+intent → compile → plan → simulate → implement → pre-commit → merge
+```
+
+### Planning Gate
+
+`codegraph apply` now **requires an architecture plan** before applying repairs that modify code.
+If no plan exists at `planning/.plan.json` or `planning/architecture_plan.json`, apply will refuse to execute.
+
+```bash
+# 1. Compile your intent into an architecture plan
+codegraph compile "refactor query module" --save
+
+# 2. Generate ordered code tasks
+codegraph code-plan
+
+# 3. Now apply will work (plan exists)
+codegraph apply agent_response.json
+
+# Emergency bypass (use sparingly):
+codegraph apply agent_response.json --skip-plan-check
+```
+
+### Pre-Commit Gate
+
+Before merging any branch, run the simulation gate to ensure metrics haven't degraded:
+
+```bash
+# Check architecture metrics against baseline
+codegraph pre-commit
+
+# On first run, save the baseline
+codegraph pre-commit --save-baseline
+
+# Strict mode — warnings become errors
+codegraph pre-commit --strict
+```
+
+**Blocking checks** (exit code 1): score regression > 5%, new cycles
+**Warning checks** (exit code 0): coupling increase > 10%, modularity drop, fan-out spike, new god modules
+
+### Memory-Influenced Selection
+
+After `codegraph arch-search` selects a candidate, the memory layer checks historical strategy effectiveness.
+If a different strategy has >15% higher effectiveness than the selected one, candidates are reranked.
+This prevents repeatedly choosing strategies that have failed in the past.
+
+---
+
+## Mutation Safety Tiers
+
+Every architecture mutation strategy has a safety tier:
+
+| Tier | Strategies | Behavior |
+|------|-----------|----------|
+| **safe** | `module_split`, `fan_out_reduction`, `fan_in_reduction`, `component_extraction` | Auto-approved, executed normally |
+| **medium** | `deep_chain_reduction`, `dependency_inversion`, `subsystem_boundary`, `cycle_break` | Executed with extra validation |
+| **dangerous** | `subsystem_merge`, `subsystem_delete`, `rewrite` | **Blocked automatically** — requires human approval |
+
+Unknown strategies default to **medium**.
+
+When `codegraph arch-search` selects a dangerous-tier strategy, the evolution engine blocks it and reports:
+> "Dangerous mutation blocked — human approval required"
+
+This prevents destructive architecture changes from being applied without review.
+
+---
+
+## Architecture Policy Types
+
+The policy engine supports these policy types:
+
+| Type | Purpose | Target format |
+|------|---------|---------------|
+| `forbidden_call` | Ban a specific function call | `source_node → target_node` |
+| `required_call` | Require a call to exist | `source_node → target_node` |
+| `dependency_limit` | Cap fan-out for a module | `module_pattern`, max_fan_out |
+| `forbidden_path` | Ban transitive dependency | `source → ... → target` |
+| `layer_boundary` | Enforce layer separation | `source_layer → target_layer` |
+| `layer_isolation` | Forbid cross-layer dependencies | `source_layer->target_layer` |
+| `forbidden_subsystem_dep` | Ban subsystem-to-subsystem dependency | `source_subsystem->target_subsystem` |
+
+### Global constraint examples:
+
+```bash
+# Prevent models from ever depending on the engine
+codegraph suggest add --type forbidden_subsystem_dep \
+  --target "models->core_engine" \
+  --reason "Models must never import engine modules"
+
+# Isolate test layer from production
+codegraph suggest add --type layer_isolation \
+  --target "production->test" \
+  --reason "Production code must not depend on test utilities"
+```
+
+---
+
+## Architecture Versioning Workflow
+
+Save architecture snapshots before major changes to enable rollback:
+
+```bash
+# 1. Save current state before refactoring
+codegraph arch-version --save --description "Before query module refactor"
+
+# 2. Make changes...
+# 3. If things go wrong, rollback:
+codegraph arch-version --rollback v1
+
+# 4. Review version history
+codegraph arch-version --list
+
+# 5. Compare two versions
+codegraph arch-version --diff v1 v3
+```
+
+Each version stores: timestamp, architecture score/grade, subsystem/edge/constraint counts, and full `system.json` snapshot.
+Rollback automatically creates a pre-rollback snapshot for safety.
 
 ---
 
@@ -731,24 +898,34 @@ code changes → codegraph build → codegraph architect
                   arch-search                 converged ✓
                   (generate candidates)
                           │
-                  simulate + rank
+                  memory reranking
+                  (historical effectiveness)
+                          │
+                  tier check
+                  (safe/medium/dangerous)
                           │
                   candidate selected?
                           │
                   ┌───────┴───────┐
-                  │ yes           │ no
+                  │ yes           │ no / dangerous
                   ▼               ▼
-              propose rules   NO_SAFE_CHANGE
-              (suggest add)   (skip to repair)
+              compile plan    NO_SAFE_CHANGE
+              (codegraph compile)  (report to human)
+                  │
+                  ▼
+              generate code tasks
+              (codegraph code-plan)
                   │
                   ▼
               implement on branch
                   │
                   ▼
-              codegraph analyze
+              codegraph apply
+              (planning gate enforced)
                   │
                   ▼
-              stability tests
+              codegraph pre-commit
+              (simulation gate)
                   │
                   ▼
               merge or discard
@@ -757,34 +934,42 @@ code changes → codegraph build → codegraph architect
 This loop enables controlled architecture evolution:
 1. **Codegraph observes** — builds graph, detects smells
 2. **Copilot explores** — `codegraph arch-search` generates multiple candidates
-3. **Copilot simulates** — each candidate is simulated and scored
-4. **Copilot selects** — best candidate chosen by architecture metrics
-5. **Copilot compiles** — `codegraph compile` translates intent to architecture changes
-6. **Copilot plans** — `codegraph code-plan` creates ordered implementation tasks
-7. **Copilot proposes** — `codegraph suggest add` prevents bad patterns
-8. **Copilot fixes** — implements repairs for violations
-9. **Codegraph locks** — `codegraph lock` enforces boundaries, `codegraph drift` detects divergence
-10. **Codegraph verifies** — rebuilds graph, checks convergence
-11. **Human reviews** — approves or adjusts rules
+3. **Memory reranks** — historical strategy effectiveness reorders candidates (>15% threshold)
+4. **Tier check** — dangerous strategies are blocked, requiring human approval
+5. **Copilot simulates** — each candidate is simulated and scored
+6. **Copilot selects** — best candidate chosen by architecture metrics
+7. **Copilot compiles** — `codegraph compile` translates intent to architecture changes
+8. **Copilot plans** — `codegraph code-plan` creates ordered implementation tasks
+9. **Planning gate** — `codegraph apply` requires a plan before executing repairs
+10. **Copilot proposes** — `codegraph suggest add` prevents bad patterns
+11. **Copilot fixes** — implements repairs for violations
+12. **Pre-commit gate** — `codegraph pre-commit` blocks merges with degraded metrics
+13. **Codegraph locks** — `codegraph lock` enforces boundaries, `codegraph drift` detects divergence
+14. **Codegraph verifies** — rebuilds graph, checks convergence
+15. **Human reviews** — approves or adjusts rules
 
 ### Full Orchestrated Pipeline
 
 ```
-advisor → search → simulate → select → plan → execute → lock → drift → verify → evolve
+advisor → search → rerank → tier-check → simulate → select → compile → plan → execute → pre-commit → lock → drift → verify → evolve
 ```
 
 | Step | Command | Output |
 |------|---------|--------|
 | 1. Detect smells | `codegraph architect --save` | architecture_advice.json |
 | 2. Explore candidates | `codegraph arch-search --save` | arch_search.json |
-| 3. Simulate impact | `codegraph arch-simulate X` | accept/review/reject |
-| 4. Capture intent | `codegraph compile "add X"` | architecture_plan.json |
-| 5. Plan implementation | `codegraph code-plan` | .plan.json |
-| 6. Execute changes | `codegraph apply` | code modifications |
-| 7. Check boundaries | `codegraph lock` | lock report |
-| 8. Detect drift | `codegraph drift` | drift report |
-| 9. Validate | `codegraph analyze` | tasks/violations |
-| 10. Generate context | `codegraph copilot-context` | copilot_context.json |
+| 3. Memory rerank | (automatic in arch-search) | reranked candidates |
+| 4. Tier check | (automatic in arch-search) | dangerous = blocked |
+| 5. Simulate impact | `codegraph arch-simulate X` | accept/review/reject |
+| 6. Capture intent | `codegraph compile "add X"` | architecture_plan.json |
+| 7. Plan implementation | `codegraph code-plan` | .plan.json |
+| 8. Save version | `codegraph arch-version --save` | versions/v{N}.json |
+| 9. Execute changes | `codegraph apply` | code modifications |
+| 10. Pre-commit check | `codegraph pre-commit` | pass/warn/block |
+| 11. Check boundaries | `codegraph lock` | lock report |
+| 12. Detect drift | `codegraph drift` | drift report |
+| 13. Validate | `codegraph analyze` | tasks/violations |
+| 14. Generate context | `codegraph copilot-context` | copilot_context.json |
 
 ---
 
@@ -808,3 +993,8 @@ advisor → search → simulate → select → plan → execute → lock → dri
 16. **Use `codegraph arch-search`** to explore multiple candidates before implementing architecture improvements.
 17. **Never implement the first suggestion.** When multiple smells exist, generate candidates and pick the best.
 18. **If `arch-search` returns `NO_SAFE_ARCHITECTURE_CHANGE`**, do not force changes — report to human.
+19. **Planning gate is mandatory.** `codegraph apply` requires a plan (compile + code-plan) before executing repairs. Only use `--skip-plan-check` for emergency intent-only cycles.
+20. **Run `codegraph pre-commit`** before merging any branch. If it blocks, fix regressions first.
+21. **Dangerous mutations require human approval.** Never force-apply strategies in the dangerous tier (subsystem_merge, subsystem_delete, rewrite).
+22. **Save architecture versions** before major refactors. Use `codegraph arch-version --save` so rollback is possible.
+23. **Use runtime graph** for complete dependency analysis. Static call graph misses HTTP, DB, MQ, and env var dependencies.

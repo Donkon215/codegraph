@@ -252,3 +252,92 @@ class TestEvaluatePolicies:
         save_policies(tmp_path, policies)
         report = evaluate_policies(tmp_path)
         assert report.policies_checked == 0
+
+    def test_layer_isolation_violation(self, tmp_path: Path):
+        _setup_codegraph(tmp_path)
+        # Add a second subsystem and an edge to architecture
+        arch = {
+            "subsystems": [
+                {"name": "core", "components": [{"name": "a", "module": "a.py"}]},
+                {"name": "utils", "components": [{"name": "b", "module": "b.py"}]},
+            ],
+            "edges": [{"from": "core", "to": "utils"}],
+            "constraints": [],
+        }
+        (tmp_path / ".codegraph" / "architecture" / "system.json").write_text(
+            json.dumps(arch))
+        add_policy(tmp_path, "layer_iso", "layer_isolation",
+                    "Core must not depend on utils", "block",
+                    target="core->utils")
+        report = evaluate_policies(tmp_path)
+        assert report.passed is False
+        assert any(v.policy_name == "layer_iso" for v in report.violations)
+
+    def test_layer_isolation_pass(self, tmp_path: Path):
+        _setup_codegraph(tmp_path)
+        arch = {
+            "subsystems": [
+                {"name": "core", "components": [{"name": "a", "module": "a.py"}]},
+                {"name": "utils", "components": [{"name": "b", "module": "b.py"}]},
+            ],
+            "edges": [{"from": "core", "to": "utils"}],
+            "constraints": [],
+        }
+        (tmp_path / ".codegraph" / "architecture" / "system.json").write_text(
+            json.dumps(arch))
+        # Forbid a direction that doesn't exist
+        add_policy(tmp_path, "layer_iso", "layer_isolation",
+                    "Utils must not depend on core", "block",
+                    target="utils->core")
+        report = evaluate_policies(tmp_path)
+        assert report.passed is True
+
+    def test_layer_isolation_invalid_target(self, tmp_path: Path):
+        _setup_codegraph(tmp_path)
+        # No arrow in target
+        add_policy(tmp_path, "bad", "layer_isolation",
+                    "Invalid target", "warn", target="core")
+        report = evaluate_policies(tmp_path)
+        assert len(report.violations) == 0
+
+    def test_forbidden_subsystem_dep_violation(self, tmp_path: Path):
+        _setup_codegraph(tmp_path)
+        arch = {
+            "subsystems": [
+                {"name": "core", "components": [{"name": "a", "module": "a.py"}]},
+                {"name": "utils", "components": [{"name": "b", "module": "b.py"}]},
+            ],
+            "edges": [{"from": "core", "to": "utils"}],
+            "constraints": [],
+        }
+        (tmp_path / ".codegraph" / "architecture" / "system.json").write_text(
+            json.dumps(arch))
+        # core -> utils edge exists
+        add_policy(tmp_path, "no_dep", "forbidden_subsystem_dep",
+                    "Core must not depend on utils", "block",
+                    target="core->utils")
+        report = evaluate_policies(tmp_path)
+        assert report.passed is False
+
+    def test_forbidden_subsystem_dep_pass(self, tmp_path: Path):
+        _setup_codegraph(tmp_path)
+        arch = {
+            "subsystems": [
+                {"name": "core", "components": [{"name": "a", "module": "a.py"}]},
+                {"name": "utils", "components": [{"name": "b", "module": "b.py"}]},
+            ],
+            "edges": [{"from": "core", "to": "utils"}],
+            "constraints": [],
+        }
+        (tmp_path / ".codegraph" / "architecture" / "system.json").write_text(
+            json.dumps(arch))
+        # This edge doesn't exist
+        add_policy(tmp_path, "ok_dep", "forbidden_subsystem_dep",
+                    "Utils must not depend on core", "warn",
+                    target="utils->core")
+        report = evaluate_policies(tmp_path)
+        assert len(report.violations) == 0
+
+    def test_valid_policy_types_updated(self):
+        assert "layer_isolation" in VALID_POLICY_TYPES
+        assert "forbidden_subsystem_dep" in VALID_POLICY_TYPES

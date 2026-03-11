@@ -714,8 +714,9 @@ def tasks(ctx: click.Context, as_json: bool, filter_type: str | None, max_priori
 @click.argument("response_file", type=click.Path(exists=True))
 @click.option("--dry-run", is_flag=True, help="Preview changes without modifying files.")
 @click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.option("--skip-plan-check", is_flag=True, help="Bypass planning gate (not recommended).")
 @click.pass_context
-def apply(ctx: click.Context, response_file: str, dry_run: bool, json_output: bool) -> None:
+def apply(ctx: click.Context, response_file: str, dry_run: bool, json_output: bool, skip_plan_check: bool) -> None:
     """Apply agent response to the codebase."""
     from codegraph.apply import run_apply, format_apply_result
 
@@ -726,7 +727,10 @@ def apply(ctx: click.Context, response_file: str, dry_run: bool, json_output: bo
         sys.exit(1)
 
     config = load_config(root)
-    result = run_apply(Path(response_file).resolve(), root, dry_run=dry_run)
+    result = run_apply(
+        Path(response_file).resolve(), root,
+        dry_run=dry_run, skip_plan_check=skip_plan_check,
+    )
     output = format_apply_result(result, as_json=json_output)
     click.echo(output)
 
@@ -3287,3 +3291,152 @@ def evolution_cmd(ctx: click.Context, max_cycles: int, dry_run: bool,
     if save:
         path = save_evolution_report(root, report)
         click.echo(f"Evolution report saved to {path}")
+
+
+# ── pre-commit ─────────────────────────────────────────────────────────
+@main.command("pre-commit")
+@click.option("--strict", is_flag=True,
+              help="Treat warnings as failures.")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.option("--save-baseline", is_flag=True,
+              help="Save current metrics as the new baseline.")
+@click.pass_context
+def pre_commit_cmd(ctx: click.Context, strict: bool, json_output: bool,
+                   save_baseline: bool) -> None:
+    """Run pre-commit simulation gate.
+
+    Compares current architecture metrics against baseline to
+    detect regressions before committing.
+    """
+    import json as _json
+    from codegraph.precommit import (
+        run_pre_commit_check, _save_baseline, _compute_current_metrics,
+    )
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    if save_baseline:
+        metrics = _compute_current_metrics(root)
+        _save_baseline(root, metrics)
+        click.echo("Baseline metrics saved.")
+        return
+
+    report = run_pre_commit_check(root, strict=strict)
+
+    if json_output:
+        click.echo(_json.dumps(report.to_dict(), indent=2))
+    else:
+        click.echo(report.format())
+
+    if report.blocked:
+        sys.exit(EXIT_VALIDATION_FAIL)
+
+
+# ── runtime-graph ──────────────────────────────────────────────────────
+@main.command("runtime-graph")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.option("--save", is_flag=True,
+              help="Save runtime graph to .codegraph/graphs/.")
+@click.pass_context
+def runtime_graph_cmd(ctx: click.Context, json_output: bool,
+                      save: bool) -> None:
+    """Extract runtime dependency edges (HTTP, DB, MQ, env vars)."""
+    import json as _json
+    from codegraph.runtime_graph import (
+        extract_runtime_edges, save_runtime_graph,
+    )
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    graph = extract_runtime_edges(root)
+
+    if json_output:
+        click.echo(_json.dumps(graph.to_dict(), indent=2))
+    else:
+        click.echo(graph.format())
+
+    if save:
+        path = save_runtime_graph(root, graph)
+        click.echo(f"Runtime graph saved to {path}")
+
+
+# ── arch-version ───────────────────────────────────────────────────────
+@main.command("arch-version")
+@click.option("--save", "do_save", is_flag=True,
+              help="Save current architecture as a new version.")
+@click.option("--list", "do_list", is_flag=True,
+              help="List all architecture versions.")
+@click.option("--diff", "diff_versions_opt", nargs=2, type=int, default=None,
+              help="Diff two versions: --diff FROM TO")
+@click.option("--rollback", type=int, default=None,
+              help="Rollback architecture to a specific version.")
+@click.option("--description", "-d", default="",
+              help="Version description (for --save).")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.pass_context
+def arch_version_cmd(ctx: click.Context, do_save: bool, do_list: bool,
+                     diff_versions_opt: tuple | None, rollback: int | None,
+                     description: str, json_output: bool) -> None:
+    """Architecture version management.
+
+    Track, diff, and rollback architecture snapshots.
+    """
+    import json as _json
+    from codegraph.arch_versioning import (
+        save_version, list_versions, diff_versions,
+        rollback_version, format_version_history,
+    )
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    if do_save:
+        version = save_version(root, description=description)
+        click.echo(f"Saved architecture version v{version.version}")
+        return
+
+    if do_list:
+        versions = list_versions(root)
+        if json_output:
+            click.echo(_json.dumps([v.to_dict() for v in versions], indent=2))
+        else:
+            click.echo(format_version_history(versions))
+        return
+
+    if diff_versions_opt:
+        from_v, to_v = diff_versions_opt
+        result = diff_versions(root, from_v, to_v)
+        if result is None:
+            click.echo("One or both versions not found.", err=True)
+            sys.exit(EXIT_ERROR)
+        if json_output:
+            click.echo(_json.dumps(result.to_dict(), indent=2))
+        else:
+            click.echo(result.format())
+        return
+
+    if rollback is not None:
+        if rollback_version(root, rollback):
+            click.echo(f"Rolled back architecture to v{rollback}")
+        else:
+            click.echo(f"Version v{rollback} not found.", err=True)
+            sys.exit(EXIT_ERROR)
+        return
+
+    # Default: show version list
+    versions = list_versions(root)
+    if json_output:
+        click.echo(_json.dumps([v.to_dict() for v in versions], indent=2))
+    else:
+        click.echo(format_version_history(versions))

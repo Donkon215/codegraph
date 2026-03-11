@@ -17,7 +17,13 @@ from codegraph.arch_evolution import (
     save_evolution_report,
     _skip_remaining,
     _apply_memory_boost,
+    _rerank_with_memory,
     _generate_evolution_recommendations,
+    get_mutation_tier,
+    TIER_SAFE,
+    TIER_MEDIUM,
+    TIER_DANGEROUS,
+    STRATEGY_TIERS,
 )
 
 
@@ -168,6 +174,80 @@ class TestApplyMemoryBoost:
         selected = {"strategy": "fan_out_reduction"}
         ranking = [{"strategy": "module_split", "effectiveness": 0.9}]
         assert _apply_memory_boost(selected, ranking) is False
+
+
+class TestRerankWithMemory:
+    def test_no_change_without_ranking(self):
+        selected = {"strategy": "module_split"}
+        result = _rerank_with_memory(selected, [], [])
+        assert result == selected
+
+    def test_no_change_below_threshold(self):
+        selected = {"strategy": "module_split"}
+        candidates = [
+            {"strategy": "module_split"},
+            {"strategy": "fan_out_reduction"},
+        ]
+        ranking = [
+            {"strategy": "module_split", "effectiveness": 0.7},
+            {"strategy": "fan_out_reduction", "effectiveness": 0.8},
+        ]
+        # Difference is only 0.1, threshold is 0.15
+        result = _rerank_with_memory(selected, candidates, ranking)
+        assert result["strategy"] == "module_split"
+
+    def test_reranks_higher_effectiveness(self):
+        selected = {"strategy": "module_split"}
+        candidates = [
+            {"strategy": "module_split"},
+            {"strategy": "fan_out_reduction"},
+        ]
+        ranking = [
+            {"strategy": "module_split", "effectiveness": 0.3},
+            {"strategy": "fan_out_reduction", "effectiveness": 0.9},
+        ]
+        # Difference is 0.6 > 0.15 threshold
+        result = _rerank_with_memory(selected, candidates, ranking)
+        assert result["strategy"] == "fan_out_reduction"
+
+    def test_keeps_selected_when_best(self):
+        selected = {"strategy": "module_split"}
+        candidates = [
+            {"strategy": "module_split"},
+            {"strategy": "cycle_break"},
+        ]
+        ranking = [
+            {"strategy": "module_split", "effectiveness": 0.9},
+            {"strategy": "cycle_break", "effectiveness": 0.5},
+        ]
+        result = _rerank_with_memory(selected, candidates, ranking)
+        assert result["strategy"] == "module_split"
+
+
+class TestMutationSafetyTiers:
+    def test_safe_strategies(self):
+        assert get_mutation_tier("module_split") == TIER_SAFE
+        assert get_mutation_tier("fan_out_reduction") == TIER_SAFE
+        assert get_mutation_tier("fan_in_reduction") == TIER_SAFE
+
+    def test_medium_strategies(self):
+        assert get_mutation_tier("cycle_break") == TIER_MEDIUM
+        assert get_mutation_tier("subsystem_boundary") == TIER_MEDIUM
+        assert get_mutation_tier("dependency_inversion") == TIER_MEDIUM
+
+    def test_dangerous_strategies(self):
+        assert get_mutation_tier("subsystem_merge") == TIER_DANGEROUS
+        assert get_mutation_tier("subsystem_delete") == TIER_DANGEROUS
+        assert get_mutation_tier("rewrite") == TIER_DANGEROUS
+
+    def test_unknown_defaults_to_medium(self):
+        assert get_mutation_tier("unknown_strategy") == TIER_MEDIUM
+
+    def test_strategy_tiers_complete(self):
+        # All defined strategies have valid tiers
+        valid_tiers = {TIER_SAFE, TIER_MEDIUM, TIER_DANGEROUS}
+        for strategy, tier in STRATEGY_TIERS.items():
+            assert tier in valid_tiers, f"{strategy} has invalid tier {tier}"
 
 
 class TestGenerateEvolutionRecommendations:

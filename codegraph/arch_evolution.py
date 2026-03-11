@@ -30,6 +30,34 @@ logger = get_logger("arch_evolution")
 
 
 # ═══════════════════════════════════════════════════════════════════════
+# Mutation Safety Tiers
+# ═══════════════════════════════════════════════════════════════════════
+
+TIER_SAFE = "safe"          # auto-apply: split module, reduce fan-out
+TIER_MEDIUM = "medium"      # review: move function, refactor API
+TIER_DANGEROUS = "dangerous"  # human-only: delete subsystem, rewrite
+
+STRATEGY_TIERS: Dict[str, str] = {
+    "module_split": TIER_SAFE,
+    "fan_out_reduction": TIER_SAFE,
+    "fan_in_reduction": TIER_SAFE,
+    "component_extraction": TIER_SAFE,
+    "deep_chain_reduction": TIER_MEDIUM,
+    "dependency_inversion": TIER_MEDIUM,
+    "subsystem_boundary": TIER_MEDIUM,
+    "cycle_break": TIER_MEDIUM,
+    "subsystem_merge": TIER_DANGEROUS,
+    "subsystem_delete": TIER_DANGEROUS,
+    "rewrite": TIER_DANGEROUS,
+}
+
+
+def get_mutation_tier(strategy: str) -> str:
+    """Return the safety tier for a given strategy name."""
+    return STRATEGY_TIERS.get(strategy, TIER_MEDIUM)
+
+
+# ═══════════════════════════════════════════════════════════════════════
 # Evolution Stage
 # ═══════════════════════════════════════════════════════════════════════
 
@@ -201,7 +229,15 @@ def run_evolution_cycle(
     try:
         strategy_ranking = _get_strategy_ranking(project_root)
         memory_stage.status = "passed"
-        memory_stage.details = f"{len(strategy_ranking)} strategies scored"
+        if strategy_ranking:
+            top = strategy_ranking[0]
+            memory_stage.details = (
+                f"{len(strategy_ranking)} strategies scored, "
+                f"best: {top.get('strategy', '?')} "
+                f"({top.get('effectiveness', 0):.0%})"
+            )
+        else:
+            memory_stage.details = "No historical strategy data yet"
     except Exception as exc:
         memory_stage.status = "passed"
         memory_stage.details = f"No memory data yet: {exc}"
@@ -223,6 +259,12 @@ def run_evolution_cycle(
     candidates = search_result.get("candidates", [])
     selected = search_result.get("selected")
 
+    # Rerank candidates using memory intelligence
+    if selected and strategy_ranking:
+        selected = _rerank_with_memory(
+            selected, candidates, strategy_ranking,
+        )
+
     if not selected:
         mutate_stage.status = "passed"
         mutate_stage.details = (
@@ -241,10 +283,25 @@ def run_evolution_cycle(
         f"{len(candidates)} candidates, selected: "
         f"{selected.get('strategy', '?')}"
     )
+
+    # Check mutation safety tier
+    tier = get_mutation_tier(selected.get("strategy", ""))
+    if tier == TIER_DANGEROUS:
+        mutate_stage.details += f" [BLOCKED: {tier} tier]"
+        result.status = "blocked"
+        result.score_after = score
+        result.recommendations.append(
+            f"Strategy '{selected.get('strategy')}' is {tier}-tier — "
+            f"requires human approval"
+        )
+        _skip_remaining(result, "mutate")
+        return result
+
     mutate_stage.metrics = {
         "candidates": len(candidates),
         "selected_strategy": selected.get("strategy", ""),
         "predicted_score": selected.get("predicted_score", 0.0),
+        "safety_tier": tier,
     }
 
     result.selected_strategy = selected.get("strategy", "")
@@ -483,6 +540,42 @@ def _get_strategy_ranking(project_root: Path) -> List[Dict[str, Any]]:
     from codegraph.arch_memory_intelligence import get_strategy_ranking
     scores = get_strategy_ranking(project_root)
     return [s.to_dict() for s in scores]
+
+
+def _rerank_with_memory(
+    selected: Dict[str, Any],
+    candidates: List[Dict[str, Any]],
+    strategy_ranking: List[Dict[str, Any]],
+) -> Dict[str, Any]:
+    """Rerank candidates using historical strategy effectiveness.
+
+    If a higher-ranked strategy exists among candidates, prefer it
+    over the arch-search selection.  Returns the (possibly different)
+    selected candidate.
+    """
+    if not candidates or not strategy_ranking:
+        return selected
+
+    # Build effectiveness lookup  {strategy_name: effectiveness}
+    eff_map: Dict[str, float] = {
+        r["strategy"]: r.get("effectiveness", 0.0)
+        for r in strategy_ranking
+    }
+
+    selected_eff = eff_map.get(selected.get("strategy", ""), 0.0)
+
+    best_candidate = selected
+    best_eff = selected_eff
+
+    for cand in candidates:
+        cand_strategy = cand.get("strategy", "")
+        cand_eff = eff_map.get(cand_strategy, 0.0)
+        # Only override if effectiveness is substantially higher
+        if cand_eff > best_eff + 0.15:
+            best_candidate = cand
+            best_eff = cand_eff
+
+    return best_candidate
 
 
 def _apply_memory_boost(

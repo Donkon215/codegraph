@@ -73,6 +73,12 @@ class CopilotContext:
     target_summary: Dict[str, Any] = field(default_factory=dict)
     drift_summary: Dict[str, Any] = field(default_factory=dict)
     recent_decisions: List[Dict[str, Any]] = field(default_factory=list)
+    architecture_smells: List[Dict[str, Any]] = field(default_factory=list)
+    architecture_score: float = 0.0
+    architecture_grade: str = ""
+    active_policies: List[Dict[str, Any]] = field(default_factory=list)
+    recommended_refactors: List[Dict[str, Any]] = field(default_factory=list)
+    strategy_rankings: List[Dict[str, Any]] = field(default_factory=list)
     graph_version: int = 0
     node_count: int = 0
     edge_count: int = 0
@@ -87,13 +93,19 @@ class CopilotContext:
             "architecture": {
                 "subsystems": [s.to_dict() for s in self.subsystems],
                 "constraints": self.constraints,
+                "score": self.architecture_score,
+                "grade": self.architecture_grade,
             },
+            "architecture_smells": self.architecture_smells,
+            "active_policies": self.active_policies,
             "policy_rules": self.policy_rules,
             "active_tasks": self.active_tasks,
             "health": self.health_summary,
             "target": self.target_summary,
             "drift": self.drift_summary,
             "recent_decisions": self.recent_decisions,
+            "recommended_refactors": self.recommended_refactors,
+            "strategy_rankings": self.strategy_rankings,
         }
 
     @classmethod
@@ -120,6 +132,12 @@ class CopilotContext:
             target_summary=d.get("target", {}),
             drift_summary=d.get("drift", {}),
             recent_decisions=d.get("recent_decisions", []),
+            architecture_smells=d.get("architecture_smells", []),
+            architecture_score=arch.get("score", 0.0),
+            architecture_grade=arch.get("grade", ""),
+            active_policies=d.get("active_policies", []),
+            recommended_refactors=d.get("recommended_refactors", []),
+            strategy_rankings=d.get("strategy_rankings", []),
             graph_version=d.get("graph_version", 0),
             node_count=stats.get("nodes", 0),
             edge_count=stats.get("edges", 0),
@@ -151,6 +169,9 @@ class CopilotContext:
         lines.append(f"  Constraints: {len(self.constraints)}")
         lines.append(f"  Policy rules: {len(self.policy_rules)}")
         lines.append(f"  Active tasks: {len(self.active_tasks)}")
+        if self.architecture_grade:
+            lines.append(f"  Architecture: {self.architecture_grade}"
+                         f"({self.architecture_score:.0%})")
         if self.health_summary:
             score = self.health_summary.get("score", "?")
             lines.append(f"  Health score: {score}")
@@ -161,6 +182,30 @@ class CopilotContext:
             lines.append(f"  Drift: {drift:.1%}")
         if self.recent_decisions:
             lines.append(f"  Recent decisions: {len(self.recent_decisions)}")
+
+        if self.architecture_smells:
+            lines.append(f"\nArchitecture Smells ({len(self.architecture_smells)}):")
+            for s in self.architecture_smells[:10]:
+                lines.append(f"  ⚠ {s.get('smell_type', '?')}: "
+                             f"{s.get('description', '')}")
+
+        if self.active_policies:
+            lines.append(f"\nActive Policies ({len(self.active_policies)}):")
+            for p in self.active_policies:
+                lines.append(f"  [{p.get('policy_id', '?')}] {p.get('name', '')}"
+                             f" ({p.get('action', 'warn')})")
+
+        if self.recommended_refactors:
+            lines.append(f"\nRecommended Refactors ({len(self.recommended_refactors)}):")
+            for r in self.recommended_refactors[:5]:
+                lines.append(f"  → {r.get('strategy', '?')}: "
+                             f"{', '.join(r.get('target_modules', []))}")
+
+        if self.strategy_rankings:
+            lines.append(f"\nStrategy Rankings:")
+            for sr in self.strategy_rankings[:5]:
+                lines.append(f"  {sr.get('strategy', '?')}: "
+                             f"{sr.get('effectiveness', 0):.0%} effective")
 
         lines.append("\nSubsystem Map:")
         for s in self.subsystems:
@@ -223,6 +268,18 @@ def build_copilot_context(
     # 8. Recent decisions
     if include_decisions:
         _populate_decisions(ctx, project_root, max_decisions)
+
+    # 9. Architecture smells
+    _populate_smells(ctx, project_root)
+
+    # 10. Active architecture policies
+    _populate_arch_policies(ctx, project_root)
+
+    # 11. Recommended refactors from arch-search
+    _populate_refactors(ctx, project_root)
+
+    # 12. Strategy rankings from memory intelligence
+    _populate_strategy_rankings(ctx, project_root)
 
     return ctx
 
@@ -407,4 +464,88 @@ def _populate_decisions(
                 "result": d.get("result", ""),
             })
     except (json.JSONDecodeError, OSError):
+        pass
+
+
+def _populate_smells(
+    ctx: CopilotContext,
+    project_root: Path,
+) -> None:
+    """Populate architecture smells from advisor data."""
+    advice_path = (project_root / ".codegraph" / "architecture"
+                   / "architecture_advice.json")
+    if not advice_path.exists():
+        return
+    try:
+        data = json.loads(advice_path.read_text(encoding="utf-8"))
+        ctx.architecture_score = data.get("score", 0.0)
+        ctx.architecture_grade = data.get("grade", "")
+        for smell in data.get("smells", []):
+            ctx.architecture_smells.append({
+                "smell_type": smell.get("smell_type", ""),
+                "severity": smell.get("severity", "info"),
+                "description": smell.get("description", ""),
+                "target": smell.get("target", ""),
+            })
+    except (json.JSONDecodeError, OSError):
+        pass
+
+
+def _populate_arch_policies(
+    ctx: CopilotContext,
+    project_root: Path,
+) -> None:
+    """Populate active architecture policies."""
+    policy_path = (project_root / ".codegraph" / "policies"
+                   / "architecture_policies.json")
+    if not policy_path.exists():
+        return
+    try:
+        data = json.loads(policy_path.read_text(encoding="utf-8"))
+        for p in data.get("policies", []):
+            if p.get("enabled", True):
+                ctx.active_policies.append({
+                    "policy_id": p.get("policy_id", ""),
+                    "name": p.get("name", ""),
+                    "policy_type": p.get("policy_type", ""),
+                    "action": p.get("action", "warn"),
+                    "rule": p.get("rule", ""),
+                })
+    except (json.JSONDecodeError, OSError):
+        pass
+
+
+def _populate_refactors(
+    ctx: CopilotContext,
+    project_root: Path,
+) -> None:
+    """Populate recommended refactors from arch-search results."""
+    search_path = (project_root / ".codegraph" / "planning"
+                   / "arch_search.json")
+    if not search_path.exists():
+        return
+    try:
+        data = json.loads(search_path.read_text(encoding="utf-8"))
+        for cand in data.get("candidates", []):
+            ctx.recommended_refactors.append({
+                "strategy": cand.get("strategy", ""),
+                "target_modules": cand.get("target_modules", []),
+                "predicted_score": cand.get("predicted_score", 0.0),
+                "discard_reason": cand.get("discard_reason", ""),
+            })
+    except (json.JSONDecodeError, OSError):
+        pass
+
+
+def _populate_strategy_rankings(
+    ctx: CopilotContext,
+    project_root: Path,
+) -> None:
+    """Populate strategy effectiveness rankings from memory intelligence."""
+    try:
+        from codegraph.arch_memory_intelligence import get_strategy_ranking
+        scores = get_strategy_ranking(project_root)
+        for s in scores[:10]:
+            ctx.strategy_rankings.append(s.to_dict())
+    except (ImportError, Exception):
         pass

@@ -43,6 +43,8 @@ VALID_POLICY_TYPES = {
     "max_subsystem_size",
     "score_gate",
     "coupling_limit",
+    "layer_isolation",
+    "forbidden_subsystem_dep",
     "custom",
 }
 
@@ -453,6 +455,104 @@ def _check_no_apply_without_plan(
     return []  # Enforcement is in the CLI pipeline, not in static analysis
 
 
+def _check_layer_isolation(
+    policy: ArchPolicy,
+    graph_data: Dict[str, Any],
+    architecture_data: Dict[str, Any],
+    health_data: Dict[str, Any],
+) -> List[PolicyViolation]:
+    """Enforce layer isolation — prevent cross-layer dependencies.
+
+    Uses the ``target`` field as ``source_layer->target_layer`` to
+    declare a forbidden direction.  Example: ``domain->infrastructure``.
+    Layers are matched against subsystem names in the architecture.
+    """
+    violations: List[PolicyViolation] = []
+    if "->" not in (policy.target or ""):
+        return violations
+
+    src_layer, tgt_layer = policy.target.split("->", 1)
+    src_layer = src_layer.strip()
+    tgt_layer = tgt_layer.strip()
+
+    # Build subsystem lookup
+    subsystems = {s["name"]: s for s in architecture_data.get("subsystems", [])}
+    src_sub = subsystems.get(src_layer)
+    tgt_sub = subsystems.get(tgt_layer)
+    if not src_sub or not tgt_sub:
+        return violations
+
+    # Collect module paths belonging to each layer
+    src_modules = {
+        c.get("module", c.get("name", ""))
+        for c in src_sub.get("components", [])
+    }
+    tgt_modules = {
+        c.get("module", c.get("name", ""))
+        for c in tgt_sub.get("components", [])
+    }
+
+    # Check edges in architecture
+    for edge in architecture_data.get("edges", []):
+        if edge.get("from") == src_layer and edge.get("to") == tgt_layer:
+            violations.append(PolicyViolation(
+                policy_id=policy.policy_id,
+                policy_name=policy.name,
+                description=(
+                    f"Layer isolation violated: {src_layer} -> {tgt_layer} "
+                    f"edge exists in architecture"
+                ),
+                action=policy.action,
+                details={
+                    "source_layer": src_layer,
+                    "target_layer": tgt_layer,
+                    "source_modules": sorted(src_modules)[:5],
+                    "target_modules": sorted(tgt_modules)[:5],
+                },
+            ))
+
+    return violations
+
+
+def _check_forbidden_subsystem_dep(
+    policy: ArchPolicy,
+    graph_data: Dict[str, Any],
+    architecture_data: Dict[str, Any],
+    health_data: Dict[str, Any],
+) -> List[PolicyViolation]:
+    """Forbid a specific subsystem-to-subsystem dependency.
+
+    Uses ``target`` as ``source->target`` to declare a forbidden edge.
+    Checks both declared architecture edges and actual call graph edges.
+    """
+    violations: List[PolicyViolation] = []
+    if "->" not in (policy.target or ""):
+        return violations
+
+    src_name, tgt_name = policy.target.split("->", 1)
+    src_name = src_name.strip()
+    tgt_name = tgt_name.strip()
+
+    # Check declared edges
+    for edge in architecture_data.get("edges", []):
+        if edge.get("from") == src_name and edge.get("to") == tgt_name:
+            violations.append(PolicyViolation(
+                policy_id=policy.policy_id,
+                policy_name=policy.name,
+                description=(
+                    f"Forbidden subsystem dependency: {src_name} -> {tgt_name}"
+                ),
+                action=policy.action,
+                details={
+                    "source": src_name,
+                    "target": tgt_name,
+                    "edge_type": "declared",
+                },
+            ))
+
+    return violations
+
+
 _POLICY_HANDLERS = {
     "no_large_modules": _check_no_large_modules,
     "max_subsystem_size": _check_max_subsystem_size,
@@ -460,6 +560,8 @@ _POLICY_HANDLERS = {
     "coupling_limit": _check_coupling_limit,
     "frontend_backend_boundary": _check_frontend_backend_boundary,
     "no_apply_without_plan": _check_no_apply_without_plan,
+    "layer_isolation": _check_layer_isolation,
+    "forbidden_subsystem_dep": _check_forbidden_subsystem_dep,
 }
 
 
