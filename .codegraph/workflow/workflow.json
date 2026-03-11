@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-11T15:52:49Z",
+    "built_at": "2026-03-11T17:40:51Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -9,12 +9,12 @@
       "stdlib",
       "test_harness"
     ],
-    "edge_count": 3039,
-    "node_count": 1817,
-    "build_time_s": 5.91
+    "edge_count": 3078,
+    "node_count": 1839,
+    "build_time_s": 8.47
   },
   "format_version": 1,
-  "built_at": "2026-03-11T15:52:49Z",
+  "built_at": "2026-03-11T17:40:51Z",
   "level": "function",
   "edges": [
     {
@@ -786,8 +786,152 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/apply.py::_dispatch_repairs",
+      "target": "codegraph/apply.py::ActionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_dispatch_repairs",
+      "target": "codegraph/apply_handlers.py::handle_add_import",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_dispatch_repairs",
+      "target": "codegraph/apply_handlers.py::handle_connect_call",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_dispatch_repairs",
+      "target": "codegraph/apply_handlers.py::handle_flag_for_review",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_dispatch_repairs",
+      "target": "codegraph/apply_handlers.py::handle_remove_dead_code",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_dispatch_repairs",
+      "target": "codegraph/models/agent_response.py::RepairActionType",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_finalize_apply",
+      "target": "codegraph/annotator.py::apply_intents_batch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_finalize_apply",
+      "target": "codegraph/annotator.py::save_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_finalize_apply",
+      "target": "codegraph/apply.py::_apply_workflow_suggestions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_finalize_apply",
+      "target": "codegraph/apply.py::_cleanup_backups",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_finalize_apply",
+      "target": "codegraph/apply.py::_format_file",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_finalize_apply",
+      "target": "codegraph/apply.py::_restore_backups",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_finalize_apply",
+      "target": "codegraph/apply.py::_save_undo",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_finalize_apply",
+      "target": "codegraph/apply.py::_update_graph1_after_apply",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_finalize_apply",
+      "target": "codegraph/apply.py::_validate_modified_files",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/apply.py::_lock_path",
       "target": "codegraph/storage.py::resolve_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_prepare_apply",
+      "target": "codegraph/apply.py::_acquire_lock",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_prepare_apply",
+      "target": "codegraph/apply.py::_check_conflicts",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_prepare_apply",
+      "target": "codegraph/apply.py::_create_backups",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_prepare_apply",
+      "target": "codegraph/exceptions.py::VersionMismatchError",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_prepare_apply",
+      "target": "codegraph/index.py::IndexStore::get_node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_prepare_apply",
+      "target": "codegraph/models/agent_response.py::AgentResponse::validate_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_prepare_apply",
+      "target": "codegraph/models/agent_response.py::RepairActionType",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_prepare_apply",
+      "target": "codegraph/models/agent_response.py::RepairActionType::modifies_code",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_prepare_apply",
+      "target": "codegraph/storage.py::get_graph_version",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -829,151 +973,31 @@
     },
     {
       "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/annotator.py::apply_intents_batch",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/annotator.py::save_graph1",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::ActionResult",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
       "target": "codegraph/apply.py::ApplyResult",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::_acquire_lock",
+      "target": "codegraph/apply.py::_dispatch_repairs",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::_apply_workflow_suggestions",
+      "target": "codegraph/apply.py::_finalize_apply",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::_check_conflicts",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::_cleanup_backups",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::_create_backups",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::_format_file",
+      "target": "codegraph/apply.py::_prepare_apply",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/apply.py::apply_response",
       "target": "codegraph/apply.py::_release_lock",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::_restore_backups",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::_save_undo",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::_update_graph1_after_apply",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::_validate_modified_files",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply_handlers.py::handle_add_import",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply_handlers.py::handle_connect_call",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply_handlers.py::handle_flag_for_review",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply_handlers.py::handle_remove_dead_code",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/exceptions.py::VersionMismatchError",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/index.py::IndexStore::get_node",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/models/agent_response.py::AgentResponse::validate_version",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/models/agent_response.py::RepairActionType",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/models/agent_response.py::RepairActionType::modifies_code",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/storage.py::get_graph_version",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -5659,6 +5683,12 @@
     },
     {
       "source": "codegraph/extractor.py::extract_project",
+      "target": "codegraph/extractor.py::ExtractionWarning",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::extract_project",
       "target": "codegraph/extractor.py::FileExtractionResult",
       "edge_type": "call",
       "confidence": "static"
@@ -5666,6 +5696,12 @@
     {
       "source": "codegraph/extractor.py::extract_project",
       "target": "codegraph/extractor.py::_safe_extract_file",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::extract_project",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -5809,6 +5845,12 @@
     },
     {
       "source": "codegraph/extractors/javascript.py::_extract_js_edges",
+      "target": "codegraph/extractors/javascript.py::_resolve_js_import",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/javascript.py::_extract_js_edges",
       "target": "codegraph/types.py::WorkflowEdge",
       "edge_type": "call",
       "confidence": "static"
@@ -5845,12 +5887,30 @@
     },
     {
       "source": "codegraph/extractors/javascript.py::_extract_js_file",
+      "target": "codegraph/extractors/javascript.py::_resolve_js_import",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/javascript.py::_extract_js_file",
       "target": "codegraph/models/graph0.py::Graph0Node",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/extractors/javascript.py::_extract_js_file",
+      "target": "codegraph/utils/ids.py::normalize_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/javascript.py::_resolve_js_import",
+      "target": "codegraph/extractors/javascript.py::_import_candidates",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/javascript.py::_resolve_js_import",
       "target": "codegraph/utils/ids.py::normalize_path",
       "edge_type": "call",
       "confidence": "static"
@@ -8786,6 +8846,12 @@
     {
       "source": "codegraph/workflow.py::_collect_call_sites_and_imports",
       "target": "codegraph/extractor.py::extract_file",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_collect_call_sites_and_imports",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -14690,6 +14756,174 @@
     {
       "source": "tests/test_graph2.py::TestSideEffect::test_roundtrip_dict",
       "target": "codegraph/models/graph2.py::SideEffect",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_body_hash_is_populated",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_body_hash_is_populated",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_class_declaration",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_class_declaration",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_all_returns_result",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_all_returns_result",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_edges_imports",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_edges_imports",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_edges_imports",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_arrow_function",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_arrow_function",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_hook",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_hook",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_react_component",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_react_component",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_missing_file_returns_empty",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_missing_file_returns_empty",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_node_types",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_node_types",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_supported_extensions",
+      "target": "codegraph/extractors/__init__.py::supported_extensions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_supported_extensions",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestLineOf::test_first_line",
+      "target": "codegraph/extractors/javascript.py::_line_of",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestLineOf::test_second_line",
+      "target": "codegraph/extractors/javascript.py::_line_of",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestLineOf::test_third_line",
+      "target": "codegraph/extractors/javascript.py::_line_of",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestResolveJsImport::test_keeps_npm_packages",
+      "target": "codegraph/extractors/javascript.py::_resolve_js_import",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestResolveJsImport::test_keeps_scoped_packages",
+      "target": "codegraph/extractors/javascript.py::_resolve_js_import",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestResolveJsImport::test_resolves_relative_ts",
+      "target": "codegraph/extractors/javascript.py::_resolve_js_import",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestResolveJsImport::test_resolves_relative_tsx",
+      "target": "codegraph/extractors/javascript.py::_resolve_js_import",
       "edge_type": "call",
       "confidence": "static"
     },

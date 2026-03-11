@@ -2,8 +2,8 @@
   "status": "selected",
   "baseline": {
     "score": 0.7,
-    "modularity": 0.44,
-    "god_modules": 22,
+    "modularity": 0.41,
+    "god_modules": 21,
     "cycles": 0,
     "coupling": 0.4306
   },
@@ -32,7 +32,7 @@
     {
       "candidate_id": "split_cli",
       "strategy": "module_split",
-      "description": "Split god module codegraph/cli.py (86 nodes) into focused sub-modules",
+      "description": "Split god module codegraph/cli.py (87 nodes) into focused sub-modules",
       "target_modules": [
         "codegraph/cli.py"
       ],
@@ -53,7 +53,7 @@
     {
       "candidate_id": "decompose_codegraph",
       "strategy": "subsystem_boundary",
-      "description": "Decompose large subsystem codegraph (604 nodes) into focused sub-subsystems",
+      "description": "Decompose large subsystem codegraph (666 nodes) into focused sub-subsystems",
       "target_modules": [
         "codegraph"
       ],
@@ -74,7 +74,7 @@
     {
       "candidate_id": "reduce_fanin_find_project_root",
       "strategy": "fan_in_reduction",
-      "description": "Reduce fan-in of codegraph/config.py::find_project_root (70) by introducing abstraction layer or splitting interface",
+      "description": "Reduce fan-in of codegraph/config.py::find_project_root (71) by introducing abstraction layer or splitting interface",
       "target_modules": [
         "codegraph/config.py::find_project_root"
       ],
@@ -93,11 +93,11 @@
       "composite_score": 0.325
     },
     {
-      "candidate_id": "extract_tests",
+      "candidate_id": "extract_codegraph",
       "strategy": "component_extraction",
-      "description": "Extract loosely coupled components from tests (cohesion=0.18) into dedicated modules",
+      "description": "Extract loosely coupled components from codegraph (cohesion=0.15) into dedicated modules",
       "target_modules": [
-        "tests"
+        "codegraph"
       ],
       "expected_impact": "Improve subsystem cohesion above 0.3 threshold",
       "risk_level": "medium",

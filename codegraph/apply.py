@@ -430,6 +430,152 @@ def format_apply_result(result: ApplyResult, *, as_json: bool = False) -> str:
 # ═══════════════════════════════════════════════════════════════════════
 
 
+def _prepare_apply(
+    response: AgentResponse,
+    project_root: Path,
+    graph0: Graph0,
+    *,
+    dry_run: bool = False,
+) -> Tuple[Set[Path], Dict[Path, Path]]:
+    """Validate version, acquire lock, collect files, check conflicts, create backups."""
+    from codegraph.storage import get_graph_version
+
+    current_version = get_graph_version(project_root)
+    ok, msg = response.validate_version(current_version)
+    if not ok:
+        raise VersionMismatchError(current_version, response.graph_version)
+
+    if not dry_run:
+        _acquire_lock(project_root)
+
+    files_to_modify: Set[Path] = set()
+    for repair in response.repairs:
+        action_type = RepairActionType(repair.action)
+        if action_type.modifies_code():
+            g0_node = graph0.get_node(repair.node)
+            if g0_node:
+                files_to_modify.add(project_root / g0_node.file)
+
+    if not dry_run and files_to_modify:
+        conflicts = _check_conflicts(files_to_modify, project_root)
+        if conflicts:
+            logger.warning(
+                "Uncommitted changes in: %s", ", ".join(conflicts),
+            )
+
+    backups: Dict[Path, Path] = {}
+    if not dry_run and files_to_modify:
+        backups = _create_backups(files_to_modify, project_root)
+
+    return files_to_modify, backups
+
+
+def _dispatch_repairs(
+    response: AgentResponse,
+    project_root: Path,
+    graph0: Graph0,
+    graph1: Graph1,
+    workflow: Workflow,
+    result: ApplyResult,
+    *,
+    index: Any = None,
+    dry_run: bool = False,
+) -> None:
+    """Dispatch each repair action to its handler and populate result."""
+    for repair in response.repairs:
+        action_type = RepairActionType(repair.action)
+        ar: ActionResult
+
+        try:
+            if action_type == RepairActionType.CONNECT_CALL:
+                ar = handle_connect_call(
+                    repair, project_root, graph0, workflow, dry_run=dry_run,
+                )
+            elif action_type == RepairActionType.ADD_IMPORT:
+                ar = handle_add_import(
+                    repair, project_root, graph0, dry_run=dry_run,
+                )
+            elif action_type == RepairActionType.REMOVE_DEAD_CODE:
+                ar = handle_remove_dead_code(
+                    repair, project_root, graph0, graph1, workflow,
+                    index=index, dry_run=dry_run,
+                )
+            elif action_type == RepairActionType.FLAG_FOR_HUMAN_REVIEW:
+                ar = handle_flag_for_review(repair, project_root)
+            else:
+                ar = ActionResult(
+                    action=repair.action, node=repair.node,
+                    status="skipped", message=f"Unknown action: {repair.action}",
+                )
+        except Exception as exc:
+            ar = ActionResult(
+                action=repair.action, node=repair.node,
+                status="failed", message=str(exc),
+            )
+
+        result.actions.append(ar)
+        if ar.file_modified:
+            result.files_modified.add(ar.file_modified)
+
+
+def _finalize_apply(
+    result: ApplyResult,
+    response: AgentResponse,
+    project_root: Path,
+    graph0: Graph0,
+    graph1: Graph1,
+    backups: Dict[Path, Path],
+    *,
+    dry_run: bool = False,
+) -> None:
+    """Format files, apply intents/suggestions, update graph1, validate, save undo."""
+    from codegraph.annotator import apply_intents_batch, save_graph1
+
+    if not dry_run:
+        for f in result.files_modified:
+            _format_file(project_root / f)
+
+    if response.intents and not dry_run:
+        try:
+            batch_result = apply_intents_batch(
+                graph1, response.intents, "agent",
+                graph0=graph0,
+            )
+            result.intents_applied = batch_result.applied
+        except Exception as exc:
+            logger.warning("Failed to apply intents: %s", exc)
+
+    if response.workflow_suggestions and not dry_run:
+        result.suggestions_added = _apply_workflow_suggestions(
+            response.workflow_suggestions, project_root,
+        )
+
+    if not dry_run:
+        _update_graph1_after_apply(result, project_root, graph0, graph1)
+        save_graph1(graph1, project_root)
+
+    if not dry_run and result.files_modified:
+        validation_errors = _validate_modified_files(
+            result.files_modified, project_root,
+        )
+        if validation_errors:
+            logger.warning("Post-apply validation errors:")
+            for err in validation_errors:
+                logger.warning("  %s", err)
+            if backups:
+                logger.warning("Restoring backups due to validation errors")
+                _restore_backups(backups)
+                for ar in result.actions:
+                    if ar.status == "success":
+                        ar.status = "failed"
+                        ar.message += " (reverted due to validation error)"
+                return
+
+    if not dry_run and backups:
+        _save_undo(project_root, backups, result)
+        _cleanup_backups(backups)
+
+
 def apply_response(
     response: AgentResponse,
     project_root: Path,
@@ -445,131 +591,22 @@ def apply_response(
     Dispatches each repair action to its handler.  Supports dry_run (J-011).
     Uses transaction management (J-009) and lock file (J-010).
     """
-    from codegraph.annotator import apply_intents_batch, save_graph1
-    from codegraph.storage import get_graph_version
-
     result = ApplyResult(dry_run=dry_run)
 
-    # Validate version (J-001)
-    current_version = get_graph_version(project_root)
-    ok, msg = response.validate_version(current_version)
-    if not ok:
-        raise VersionMismatchError(current_version, response.graph_version)
-
-    if not dry_run:
-        _acquire_lock(project_root)
+    _files_to_modify, backups = _prepare_apply(
+        response, project_root, graph0, dry_run=dry_run,
+    )
 
     try:
-        # Collect files that will be modified for conflict check / backup
-        files_to_modify: Set[Path] = set()
-        for repair in response.repairs:
-            action_type = RepairActionType(repair.action)
-            if action_type.modifies_code():
-                g0_node = graph0.get_node(repair.node)
-                if g0_node:
-                    files_to_modify.add(project_root / g0_node.file)
+        _dispatch_repairs(
+            response, project_root, graph0, graph1, workflow, result,
+            index=index, dry_run=dry_run,
+        )
 
-        # J-013 — Conflict detection
-        if not dry_run and files_to_modify:
-            conflicts = _check_conflicts(files_to_modify, project_root)
-            if conflicts:
-                logger.warning(
-                    "Uncommitted changes in: %s", ", ".join(conflicts),
-                )
-
-        # J-009 — Create backups
-        backups: Dict[Path, Path] = {}
-        if not dry_run and files_to_modify:
-            backups = _create_backups(files_to_modify, project_root)
-
-        # Dispatch repair actions
-        had_failure = False
-        for repair in response.repairs:
-            action_type = RepairActionType(repair.action)
-            ar: ActionResult
-
-            try:
-                if action_type == RepairActionType.CONNECT_CALL:
-                    ar = handle_connect_call(
-                        repair, project_root, graph0, workflow, dry_run=dry_run,
-                    )
-                elif action_type == RepairActionType.ADD_IMPORT:
-                    ar = handle_add_import(
-                        repair, project_root, graph0, dry_run=dry_run,
-                    )
-                elif action_type == RepairActionType.REMOVE_DEAD_CODE:
-                    ar = handle_remove_dead_code(
-                        repair, project_root, graph0, graph1, workflow,
-                        index=index, dry_run=dry_run,
-                    )
-                elif action_type == RepairActionType.FLAG_FOR_HUMAN_REVIEW:
-                    ar = handle_flag_for_review(repair, project_root)
-                else:
-                    ar = ActionResult(
-                        action=repair.action, node=repair.node,
-                        status="skipped", message=f"Unknown action: {repair.action}",
-                    )
-            except Exception as exc:
-                ar = ActionResult(
-                    action=repair.action, node=repair.node,
-                    status="failed", message=str(exc),
-                )
-                had_failure = True
-
-            result.actions.append(ar)
-            if ar.file_modified:
-                result.files_modified.add(ar.file_modified)
-
-        # J-008 — Format modified files
-        if not dry_run:
-            for f in result.files_modified:
-                _format_file(project_root / f)
-
-        # Apply intents from response
-        if response.intents and not dry_run:
-            try:
-                batch_result = apply_intents_batch(
-                    graph1, response.intents, "agent",
-                    graph0=graph0,
-                )
-                result.intents_applied = batch_result.applied
-            except Exception as exc:
-                logger.warning("Failed to apply intents: %s", exc)
-
-        # J-006 — Workflow suggestions
-        if response.workflow_suggestions and not dry_run:
-            result.suggestions_added = _apply_workflow_suggestions(
-                response.workflow_suggestions, project_root,
-            )
-
-        # J-007 — Update Graph_1
-        if not dry_run:
-            _update_graph1_after_apply(result, project_root, graph0, graph1)
-            save_graph1(graph1, project_root)
-
-        # J-020 — Validate modified files
-        if not dry_run and result.files_modified:
-            validation_errors = _validate_modified_files(
-                result.files_modified, project_root,
-            )
-            if validation_errors:
-                logger.warning("Post-apply validation errors:")
-                for err in validation_errors:
-                    logger.warning("  %s", err)
-                # Restore backups on validation failure
-                if backups:
-                    logger.warning("Restoring backups due to validation errors")
-                    _restore_backups(backups)
-                    for ar in result.actions:
-                        if ar.status == "success":
-                            ar.status = "failed"
-                            ar.message += " (reverted due to validation error)"
-                    return result
-
-        # J-019 — Save undo info
-        if not dry_run and backups:
-            _save_undo(project_root, backups, result)
-            _cleanup_backups(backups)
+        _finalize_apply(
+            result, response, project_root, graph0, graph1, backups,
+            dry_run=dry_run,
+        )
 
     finally:
         if not dry_run:

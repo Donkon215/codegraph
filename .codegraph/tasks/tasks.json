@@ -1,7 +1,7 @@
 {
   "cycle": 1,
-  "graph_version": 47,
-  "generated_at": "2026-03-11T15:52:54Z",
+  "graph_version": 55,
+  "generated_at": "2026-03-11T17:37:03Z",
   "tasks": [
     {
       "task_id": "orphan_nodes",
@@ -1597,6 +1597,38 @@
           "reason": "Orphan (entry_point)"
         },
         {
+          "id": "tests/test_js_extractor.py::TestJavaScriptExtractor",
+          "file": "tests/test_js_extractor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestLineOf",
+          "file": "tests/test_js_extractor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestResolveJsImport",
+          "file": "tests/test_js_extractor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_js_extractor.py::project",
+          "file": "tests/test_js_extractor.py",
+          "type": "function",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
           "id": "tests/test_multilevel.py::TestAnalyzeMultilevel",
           "file": "tests/test_multilevel.py",
           "type": "class",
@@ -1823,6 +1855,89 @@
       ]
     },
     {
+      "task_id": "stale_intent",
+      "priority": 4,
+      "nodes": [
+        {
+          "id": "codegraph/apply",
+          "file": "codegraph/apply.py",
+          "type": "module",
+          "suggested_fix": "Review and update intent to match current implementation",
+          "previous_intent": "repair action orchestrator. Coordinates lock, backup, conflict detection, action dispatch via apply_handlers, graph update, and validation",
+          "body_hash_changed": true
+        },
+        {
+          "id": "codegraph/extractor",
+          "file": "codegraph/extractor.py",
+          "type": "module",
+          "suggested_fix": "Review and update intent to match current implementation",
+          "previous_intent": "aST extraction engine (Graph_0). Parses Python source files to extract nodes (functions, classes, modules), call sites, imports, and resolve call targets. Includes ambiguous method name filtering to prevent false positive fan-in from common builtins (get, append, add, etc.)",
+          "body_hash_changed": true
+        },
+        {
+          "id": "codegraph/extractors/javascript",
+          "file": "codegraph/extractors/javascript.py",
+          "type": "module",
+          "suggested_fix": "Review and update intent to match current implementation",
+          "previous_intent": "javaScript/TypeScript/React extractor. Regex-based analysis for .js, .jsx, .ts, .tsx, .mjs, .cjs files. No external AST parser required",
+          "body_hash_changed": true
+        },
+        {
+          "id": "codegraph/extractors/javascript.py::_extract_js_edges",
+          "file": "codegraph/extractors/javascript.py",
+          "type": "function",
+          "calls": [
+            "codegraph/extractors/javascript.py::_resolve_js_import",
+            "codegraph/types.py::WorkflowEdge",
+            "codegraph/utils/ids.py::normalize_path"
+          ],
+          "called_by": [
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_edges"
+          ],
+          "suggested_fix": "Review and update intent to match current implementation",
+          "previous_intent": "return import-type WorkflowEdge objects for every unique import/require statement in a JS/TS file",
+          "body_hash_changed": true
+        },
+        {
+          "id": "codegraph/extractors/javascript.py::_extract_js_file",
+          "file": "codegraph/extractors/javascript.py",
+          "type": "function",
+          "calls": [
+            "codegraph/extractor.py::FileExtractionResult",
+            "codegraph/extractor.py::ImportInfo",
+            "codegraph/extractors/javascript.py::_body_hash",
+            "codegraph/extractors/javascript.py::_line_of",
+            "codegraph/extractors/javascript.py::_resolve_js_import",
+            "codegraph/models/graph0.py::Graph0Node",
+            "codegraph/utils/ids.py::normalize_path"
+          ],
+          "called_by": [
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes"
+          ],
+          "suggested_fix": "Review and update intent to match current implementation",
+          "previous_intent": "parse a JS/TS source file using regex to produce Graph0Node list and ImportInfo list wrapped in FileExtractionResult",
+          "body_hash_changed": true
+        },
+        {
+          "id": "codegraph/utils/file_discovery",
+          "file": "codegraph/utils/file_discovery.py",
+          "type": "module",
+          "suggested_fix": "Review and update intent to match current implementation",
+          "previous_intent": "codegraph.utils.file_discovery — Source-file discovery and exclusion",
+          "body_hash_changed": true
+        },
+        {
+          "id": "codegraph/workflow",
+          "file": "codegraph/workflow.py",
+          "type": "module",
+          "suggested_fix": "Review and update intent to match current implementation",
+          "previous_intent": "codegraph.workflow — Workflow builder (execution graph)",
+          "body_hash_changed": true
+        }
+      ]
+    },
+    {
       "task_id": "missing_test_coverage",
       "priority": 5,
       "nodes": [
@@ -1867,6 +1982,66 @@
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "get",
           "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/apply.py::_dispatch_repairs",
+          "file": "codegraph/apply.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply.py::ActionResult",
+            "codegraph/apply_handlers.py::handle_add_import",
+            "codegraph/apply_handlers.py::handle_connect_call",
+            "codegraph/apply_handlers.py::handle_flag_for_review",
+            "codegraph/apply_handlers.py::handle_remove_dead_code",
+            "codegraph/models/agent_response.py::RepairActionType"
+          ],
+          "called_by": [
+            "codegraph/apply.py::apply_response"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply.py::_finalize_apply",
+          "file": "codegraph/apply.py",
+          "type": "function",
+          "calls": [
+            "codegraph/annotator.py::apply_intents_batch",
+            "codegraph/annotator.py::save_graph1",
+            "codegraph/apply.py::_apply_workflow_suggestions",
+            "codegraph/apply.py::_cleanup_backups",
+            "codegraph/apply.py::_format_file",
+            "codegraph/apply.py::_restore_backups",
+            "codegraph/apply.py::_save_undo",
+            "codegraph/apply.py::_update_graph1_after_apply",
+            "codegraph/apply.py::_validate_modified_files"
+          ],
+          "called_by": [
+            "codegraph/apply.py::apply_response"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply.py::_prepare_apply",
+          "file": "codegraph/apply.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply.py::_acquire_lock",
+            "codegraph/apply.py::_check_conflicts",
+            "codegraph/apply.py::_create_backups",
+            "codegraph/exceptions.py::VersionMismatchError",
+            "codegraph/index.py::IndexStore::get_node",
+            "codegraph/models/agent_response.py::AgentResponse::validate_version",
+            "codegraph/models/agent_response.py::RepairActionType",
+            "codegraph/models/agent_response.py::RepairActionType::modifies_code",
+            "codegraph/storage.py::get_graph_version"
+          ],
+          "called_by": [
+            "codegraph/apply.py::apply_response"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
         },
         {
           "id": "codegraph/apply_handlers.py::_check_dead_code_signals",
@@ -2055,7 +2230,7 @@
             "codegraph/index.py::IndexStore::get_node"
           ],
           "called_by": [
-            "codegraph/apply.py::apply_response"
+            "codegraph/apply.py::_dispatch_repairs"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -2077,7 +2252,7 @@
             "codegraph/index.py::IndexStore::get_node"
           ],
           "called_by": [
-            "codegraph/apply.py::apply_response"
+            "codegraph/apply.py::_dispatch_repairs"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -2092,7 +2267,7 @@
             "codegraph/utils/formatting.py::iso_now"
           ],
           "called_by": [
-            "codegraph/apply.py::apply_response"
+            "codegraph/apply.py::_dispatch_repairs"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -2111,7 +2286,7 @@
             "codegraph/index.py::IndexStore::get_node"
           ],
           "called_by": [
-            "codegraph/apply.py::apply_response"
+            "codegraph/apply.py::_dispatch_repairs"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -4519,39 +4694,6 @@
           "body_hash_changed": false
         },
         {
-          "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
-          "file": "codegraph/extractors/javascript.py",
-          "type": "method",
-          "calls": [
-            "codegraph/extractors/javascript.py::_extract_js_file"
-          ],
-          "suggested_fix": "Create a test function covering this production code",
-          "previous_intent": "extract nodes and import metadata from a JS/TS file and return a FileExtractionResult",
-          "body_hash_changed": false
-        },
-        {
-          "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_edges",
-          "file": "codegraph/extractors/javascript.py",
-          "type": "method",
-          "calls": [
-            "codegraph/extractors/javascript.py::_extract_js_edges"
-          ],
-          "suggested_fix": "Create a test function covering this production code",
-          "previous_intent": "extract import edges from a JS/TS file as WorkflowEdge objects (one per unique import/require)",
-          "body_hash_changed": false
-        },
-        {
-          "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
-          "file": "codegraph/extractors/javascript.py",
-          "type": "method",
-          "calls": [
-            "codegraph/extractors/javascript.py::_extract_js_file"
-          ],
-          "suggested_fix": "Create a test function covering this production code",
-          "previous_intent": "extract all function, class, module and interface nodes from a JS/TS file",
-          "body_hash_changed": false
-        },
-        {
           "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::supported_extensions",
           "file": "codegraph/extractors/javascript.py",
           "type": "method",
@@ -4576,15 +4718,16 @@
           "file": "codegraph/extractors/javascript.py",
           "type": "function",
           "calls": [
+            "codegraph/extractors/javascript.py::_resolve_js_import",
             "codegraph/types.py::WorkflowEdge",
             "codegraph/utils/ids.py::normalize_path"
           ],
           "called_by": [
             "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_edges"
           ],
-          "suggested_fix": "Create a test function covering this production code",
+          "suggested_fix": "Review and update intent to match current implementation",
           "previous_intent": "return import-type WorkflowEdge objects for every unique import/require statement in a JS/TS file",
-          "body_hash_changed": false
+          "body_hash_changed": true
         },
         {
           "id": "codegraph/extractors/javascript.py::_extract_js_file",
@@ -4595,6 +4738,7 @@
             "codegraph/extractor.py::ImportInfo",
             "codegraph/extractors/javascript.py::_body_hash",
             "codegraph/extractors/javascript.py::_line_of",
+            "codegraph/extractors/javascript.py::_resolve_js_import",
             "codegraph/models/graph0.py::Graph0Node",
             "codegraph/utils/ids.py::normalize_path"
           ],
@@ -4602,20 +4746,19 @@
             "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
             "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes"
           ],
-          "suggested_fix": "Create a test function covering this production code",
+          "suggested_fix": "Review and update intent to match current implementation",
           "previous_intent": "parse a JS/TS source file using regex to produce Graph0Node list and ImportInfo list wrapped in FileExtractionResult",
-          "body_hash_changed": false
+          "body_hash_changed": true
         },
         {
-          "id": "codegraph/extractors/javascript.py::_line_of",
+          "id": "codegraph/extractors/javascript.py::_import_candidates",
           "file": "codegraph/extractors/javascript.py",
           "type": "function",
           "called_by": [
-            "codegraph/extractors/javascript.py::_extract_js_file"
+            "codegraph/extractors/javascript.py::_resolve_js_import"
           ],
-          "suggested_fix": "Create a test function covering this production code",
-          "previous_intent": "return the 1-based line number of the character at match_start within text",
-          "body_hash_changed": false
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
         },
         {
           "id": "codegraph/filters.py::FilterPipeline::add",
@@ -5063,6 +5206,66 @@
       "priority": 5,
       "nodes": [
         {
+          "id": "codegraph/apply.py::_dispatch_repairs",
+          "file": "codegraph/apply.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply.py::ActionResult",
+            "codegraph/apply_handlers.py::handle_add_import",
+            "codegraph/apply_handlers.py::handle_connect_call",
+            "codegraph/apply_handlers.py::handle_flag_for_review",
+            "codegraph/apply_handlers.py::handle_remove_dead_code",
+            "codegraph/models/agent_response.py::RepairActionType"
+          ],
+          "called_by": [
+            "codegraph/apply.py::apply_response"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply.py::_finalize_apply",
+          "file": "codegraph/apply.py",
+          "type": "function",
+          "calls": [
+            "codegraph/annotator.py::apply_intents_batch",
+            "codegraph/annotator.py::save_graph1",
+            "codegraph/apply.py::_apply_workflow_suggestions",
+            "codegraph/apply.py::_cleanup_backups",
+            "codegraph/apply.py::_format_file",
+            "codegraph/apply.py::_restore_backups",
+            "codegraph/apply.py::_save_undo",
+            "codegraph/apply.py::_update_graph1_after_apply",
+            "codegraph/apply.py::_validate_modified_files"
+          ],
+          "called_by": [
+            "codegraph/apply.py::apply_response"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply.py::_prepare_apply",
+          "file": "codegraph/apply.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply.py::_acquire_lock",
+            "codegraph/apply.py::_check_conflicts",
+            "codegraph/apply.py::_create_backups",
+            "codegraph/exceptions.py::VersionMismatchError",
+            "codegraph/index.py::IndexStore::get_node",
+            "codegraph/models/agent_response.py::AgentResponse::validate_version",
+            "codegraph/models/agent_response.py::RepairActionType",
+            "codegraph/models/agent_response.py::RepairActionType::modifies_code",
+            "codegraph/storage.py::get_graph_version"
+          ],
+          "called_by": [
+            "codegraph/apply.py::apply_response"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/apply_handlers",
           "file": "codegraph/apply_handlers.py",
           "type": "module",
@@ -5256,7 +5459,7 @@
             "codegraph/index.py::IndexStore::get_node"
           ],
           "called_by": [
-            "codegraph/apply.py::apply_response"
+            "codegraph/apply.py::_dispatch_repairs"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -5278,7 +5481,7 @@
             "codegraph/index.py::IndexStore::get_node"
           ],
           "called_by": [
-            "codegraph/apply.py::apply_response"
+            "codegraph/apply.py::_dispatch_repairs"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -5293,7 +5496,7 @@
             "codegraph/utils/formatting.py::iso_now"
           ],
           "called_by": [
-            "codegraph/apply.py::apply_response"
+            "codegraph/apply.py::_dispatch_repairs"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -5312,7 +5515,7 @@
             "codegraph/index.py::IndexStore::get_node"
           ],
           "called_by": [
-            "codegraph/apply.py::apply_response"
+            "codegraph/apply.py::_dispatch_repairs"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -5651,6 +5854,35 @@
             "codegraph/architecture_lock.py::check_lock",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/javascript.py::_import_candidates",
+          "file": "codegraph/extractors/javascript.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/extractors/javascript.py::_resolve_js_import"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/extractors/javascript.py::_resolve_js_import",
+          "file": "codegraph/extractors/javascript.py",
+          "type": "function",
+          "calls": [
+            "codegraph/extractors/javascript.py::_import_candidates",
+            "codegraph/utils/ids.py::normalize_path"
+          ],
+          "called_by": [
+            "codegraph/extractors/javascript.py::_extract_js_edges",
+            "codegraph/extractors/javascript.py::_extract_js_file",
+            "tests/test_js_extractor.py::TestResolveJsImport::test_keeps_npm_packages",
+            "tests/test_js_extractor.py::TestResolveJsImport::test_keeps_scoped_packages",
+            "tests/test_js_extractor.py::TestResolveJsImport::test_resolves_relative_ts",
+            "tests/test_js_extractor.py::TestResolveJsImport::test_resolves_relative_tsx"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -7846,6 +8078,226 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor",
+          "file": "tests/test_js_extractor.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestJavaScriptExtractor",
+          "file": "tests/test_js_extractor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_body_hash_is_populated",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::JavaScriptExtractor",
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_class_declaration",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::JavaScriptExtractor",
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_all_returns_result",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::JavaScriptExtractor",
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_edges_imports",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::JavaScriptExtractor",
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_edges",
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_arrow_function",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::JavaScriptExtractor",
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_hook",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::JavaScriptExtractor",
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_react_component",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::JavaScriptExtractor",
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_missing_file_returns_empty",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::JavaScriptExtractor",
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_node_types",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::JavaScriptExtractor",
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_supported_extensions",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/__init__.py::supported_extensions",
+            "codegraph/extractors/javascript.py::JavaScriptExtractor"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestLineOf",
+          "file": "tests/test_js_extractor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestLineOf::test_first_line",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::_line_of"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestLineOf::test_second_line",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::_line_of"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestLineOf::test_third_line",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::_line_of"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestResolveJsImport",
+          "file": "tests/test_js_extractor.py",
+          "type": "class",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestResolveJsImport::test_keeps_npm_packages",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::_resolve_js_import"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestResolveJsImport::test_keeps_scoped_packages",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::_resolve_js_import"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestResolveJsImport::test_resolves_relative_ts",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::_resolve_js_import"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::TestResolveJsImport::test_resolves_relative_tsx",
+          "file": "tests/test_js_extractor.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::_resolve_js_import"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "tests/test_js_extractor.py::project",
+          "file": "tests/test_js_extractor.py",
+          "type": "function",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
         },
         {
           "id": "tests/test_multilevel",

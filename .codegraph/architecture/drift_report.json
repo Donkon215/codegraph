@@ -1,0 +1,137 @@
+{
+  "has_drift": true,
+  "drift_score": 0.005,
+  "summary": {
+    "declared_modules": 49,
+    "actual_modules": 163,
+    "total_findings": 16,
+    "errors": 0,
+    "warnings": 10,
+    "by_type": {
+      "undeclared_module": 10,
+      "missing_dependency": 6
+    }
+  },
+  "findings": [
+    {
+      "drift_type": "undeclared_module",
+      "severity": "warning",
+      "description": "Module sample_project/main.py exists in code but not in architecture",
+      "module": "sample_project/main.py"
+    },
+    {
+      "drift_type": "undeclared_module",
+      "severity": "warning",
+      "description": "Module sample_project/services/__init__.py exists in code but not in architecture",
+      "module": "sample_project/services/__init__.py"
+    },
+    {
+      "drift_type": "undeclared_module",
+      "severity": "warning",
+      "description": "Module sample_project/services/order_service.py exists in code but not in architecture",
+      "module": "sample_project/services/order_service.py"
+    },
+    {
+      "drift_type": "undeclared_module",
+      "severity": "warning",
+      "description": "Module sample_project/services/user_service.py exists in code but not in architecture",
+      "module": "sample_project/services/user_service.py"
+    },
+    {
+      "drift_type": "undeclared_module",
+      "severity": "warning",
+      "description": "Module sample_project/tests/__init__.py exists in code but not in architecture",
+      "module": "sample_project/tests/__init__.py"
+    },
+    {
+      "drift_type": "undeclared_module",
+      "severity": "warning",
+      "description": "Module sample_project/tests/test_order_service.py exists in code but not in architecture",
+      "module": "sample_project/tests/test_order_service.py"
+    },
+    {
+      "drift_type": "undeclared_module",
+      "severity": "warning",
+      "description": "Module sample_project/tests/test_user_service.py exists in code but not in architecture",
+      "module": "sample_project/tests/test_user_service.py"
+    },
+    {
+      "drift_type": "undeclared_module",
+      "severity": "warning",
+      "description": "Module sample_project/utils/__init__.py exists in code but not in architecture",
+      "module": "sample_project/utils/__init__.py"
+    },
+    {
+      "drift_type": "undeclared_module",
+      "severity": "warning",
+      "description": "Module sample_project/utils/hashing.py exists in code but not in architecture",
+      "module": "sample_project/utils/hashing.py"
+    },
+    {
+      "drift_type": "undeclared_module",
+      "severity": "warning",
+      "description": "Module sample_project/utils/validators.py exists in code but not in architecture",
+      "module": "sample_project/utils/validators.py"
+    },
+    {
+      "drift_type": "missing_dependency",
+      "severity": "info",
+      "description": "Declared edge intelligence → core_engine has no actual cross-subsystem calls",
+      "subsystem": "intelligence",
+      "details": {
+        "source_subsystem": "intelligence",
+        "target_subsystem": "core_engine"
+      }
+    },
+    {
+      "drift_type": "missing_dependency",
+      "severity": "info",
+      "description": "Declared edge intelligence → governance has no actual cross-subsystem calls",
+      "subsystem": "intelligence",
+      "details": {
+        "source_subsystem": "intelligence",
+        "target_subsystem": "governance"
+      }
+    },
+    {
+      "drift_type": "missing_dependency",
+      "severity": "info",
+      "description": "Declared edge query → models has no actual cross-subsystem calls",
+      "subsystem": "query",
+      "details": {
+        "source_subsystem": "query",
+        "target_subsystem": "models"
+      }
+    },
+    {
+      "drift_type": "missing_dependency",
+      "severity": "info",
+      "description": "Declared edge architecture_memory → models has no actual cross-subsystem calls",
+      "subsystem": "architecture_memory",
+      "details": {
+        "source_subsystem": "architecture_memory",
+        "target_subsystem": "models"
+      }
+    },
+    {
+      "drift_type": "missing_dependency",
+      "severity": "info",
+      "description": "Declared edge architecture_memory → infrastructure has no actual cross-subsystem calls",
+      "subsystem": "architecture_memory",
+      "details": {
+        "source_subsystem": "architecture_memory",
+        "target_subsystem": "infrastructure"
+      }
+    },
+    {
+      "drift_type": "missing_dependency",
+      "severity": "info",
+      "description": "Declared edge cli → architecture_memory has no actual cross-subsystem calls",
+      "subsystem": "cli",
+      "details": {
+        "source_subsystem": "cli",
+        "target_subsystem": "architecture_memory"
+      }
+    }
+  ]
+}

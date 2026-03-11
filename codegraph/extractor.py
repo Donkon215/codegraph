@@ -1060,7 +1060,9 @@ def extract_project(
 
     report = ExtractionReport()
 
-    # Discover source files
+    # Discover source files (multi-language: use extractor registry)
+    from codegraph.extractors import setup as _setup_extractors, get_extractor
+    _setup_extractors(project_root)
     source_files = discover_source_files(project_root)
     if not source_files:
         logger.info("No source files found in %s", project_root)
@@ -1135,7 +1137,20 @@ def extract_project(
                         prog.update()
                     continue
 
-            result, warning = _safe_extract_file(fp, project_root, include_stubs)
+            # Multi-language: delegate to extractor registry for non-Python files
+            _ext = get_extractor(fp)
+            if _ext is not None and fp.suffix != ".py":
+                try:
+                    result = _ext.extract_all(fp)
+                    warning = None
+                except Exception as exc:
+                    logger.warning("Skipping %s: %s", fp, exc)
+                    result = FileExtractionResult()
+                    warning = ExtractionWarning(
+                        file=str(fp), message=str(exc)
+                    )
+            else:
+                result, warning = _safe_extract_file(fp, project_root, include_stubs)
             _process_result(fp, result, warning)
 
             # Populate cache

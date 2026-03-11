@@ -30,6 +30,19 @@
           "description": "Language-specific extractor for Python files."
         },
         {
+          "name": "javascript_extractor",
+          "module": "codegraph/extractors/javascript.py",
+          "functions": [
+            "JavaScriptExtractor::extract_nodes",
+            "JavaScriptExtractor::extract_edges",
+            "JavaScriptExtractor::extract_all",
+            "_extract_js_file",
+            "_extract_js_edges",
+            "_resolve_js_import"
+          ],
+          "description": "Language-specific extractor for JavaScript, TypeScript, and React files. Uses regex-based parsing."
+        },
+        {
           "name": "workflow_builder",
           "module": "codegraph/workflow.py",
           "functions": [

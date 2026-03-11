@@ -1003,7 +1003,14 @@ def build_import_dependencies(
             module = getattr(imp, "module", str(imp)) if not isinstance(imp, str) else imp
             if not module:
                 continue
-            target_module = module.replace(".", "/")
+            # For JS/TS imports the module is already a path; only convert
+            # Python dotted modules (no path separators and no file extension).
+            if "/" in module or any(module.endswith(ext) for ext in (
+                ".py", ".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs",
+            )):
+                target_module = module
+            else:
+                target_module = module.replace(".", "/")
             key = (source_file, target_module)
             if key not in seen:
                 seen.add(key)
@@ -1068,6 +1075,7 @@ def _collect_call_sites_and_imports(
         extract_file,
         CallSite,
     )
+    from codegraph.extractors import get_extractor
     from codegraph.utils.ids import normalize_path
 
     call_sites: Dict[str, List[Any]] = {}
@@ -1080,7 +1088,12 @@ def _collect_call_sites_and_imports(
         if not abs_path.exists():
             continue
         try:
-            result = extract_file(abs_path, project_root)
+            # Multi-language: use extractor registry for non-Python files
+            extractor = get_extractor(abs_path)
+            if extractor is not None and abs_path.suffix != ".py":
+                result = extractor.extract_all(abs_path)
+            else:
+                result = extract_file(abs_path, project_root)
         except Exception:
             continue
 

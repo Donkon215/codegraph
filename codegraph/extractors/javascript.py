@@ -78,6 +78,56 @@ _RE_REQUIRE = re.compile(
 # Internal helpers
 # ---------------------------------------------------------------------------
 
+# JS/TS file extensions used for resolving bare imports
+_JS_EXTENSIONS = (".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs")
+
+
+def _resolve_js_import(
+    import_path: str,
+    importing_file: Path,
+    project_root: Path,
+) -> str:
+    """Resolve a JS/TS import specifier to a project-relative module path.
+
+    Relative imports (e.g. ``./components/Login``) are resolved against the
+    importing file's directory.  The function tries common extensions and
+    ``/index`` patterns.  Non-relative imports (npm packages) are returned
+    as-is.
+    """
+    if not import_path.startswith("."):
+        return import_path  # npm / bare package — keep original
+
+    base_dir = importing_file.parent
+    resolved = (base_dir / import_path).resolve()
+
+    # Try exact match, then with extensions, then /index variants
+    for candidate in _import_candidates(resolved):
+        if candidate.exists():
+            return normalize_path(candidate, project_root)
+
+    # Fallback: return the normalised relative path even if file doesn't exist
+    try:
+        rel = resolved.relative_to(project_root.resolve())
+        return str(rel).replace("\\", "/")
+    except ValueError:
+        return import_path
+
+
+def _import_candidates(base: Path) -> List[Path]:
+    """Yield candidate file paths for a resolved import base path."""
+    candidates: List[Path] = []
+    # Direct match (already has extension)
+    if base.suffix in _JS_EXTENSIONS:
+        candidates.append(base)
+        return candidates
+    # Try extensions
+    for ext in _JS_EXTENSIONS:
+        candidates.append(base.with_suffix(ext))
+    # Try /index variants
+    for ext in _JS_EXTENSIONS:
+        candidates.append(base / f"index{ext}")
+    return candidates
+
 def _line_of(text: str, match_start: int) -> int:
     """Return 1-based line number for the character at *match_start*."""
     return text.count("\n", 0, match_start) + 1
@@ -189,36 +239,36 @@ def _extract_js_file(file_path: Path, project_root: Path) -> FileExtractionResul
     import_seen: set = set()
 
     for m in _RE_IMPORT_FROM.finditer(source):
-        module = m.group(1)
+        module = _resolve_js_import(m.group(1), file_path, project_root)
         if module in import_seen:
             continue
         import_seen.add(module)
         imports.append(ImportInfo(
             module=module,
             line=_line_of(source, m.start()),
-            is_relative=module.startswith("."),
+            is_relative=m.group(1).startswith("."),
         ))
 
     for m in _RE_IMPORT_BARE.finditer(source):
-        module = m.group(1)
+        module = _resolve_js_import(m.group(1), file_path, project_root)
         if module in import_seen:
             continue
         import_seen.add(module)
         imports.append(ImportInfo(
             module=module,
             line=_line_of(source, m.start()),
-            is_relative=module.startswith("."),
+            is_relative=m.group(1).startswith("."),
         ))
 
     for m in _RE_REQUIRE.finditer(source):
-        module = m.group(1)
+        module = _resolve_js_import(m.group(1), file_path, project_root)
         if module in import_seen:
             continue
         import_seen.add(module)
         imports.append(ImportInfo(
             module=module,
             line=_line_of(source, m.start()),
-            is_relative=module.startswith("."),
+            is_relative=m.group(1).startswith("."),
         ))
 
     return FileExtractionResult(nodes=nodes, imports=imports)
@@ -248,7 +298,7 @@ def _extract_js_edges(
 
     for pattern in (_RE_IMPORT_FROM, _RE_IMPORT_BARE, _RE_REQUIRE):
         for m in pattern.finditer(source):
-            module = m.group(1)
+            module = _resolve_js_import(m.group(1), file_path, project_root)
             key = (source_node, module)
             if key in seen:
                 continue

@@ -52,7 +52,8 @@ def discover_source_files(
     project_root:
         The root directory to search.
     extensions:
-        File extensions to include (default: ``[".py"]``).
+        File extensions to include.  When ``None``, uses all extensions
+        registered in the extractor registry (falls back to ``[".py"]``).
     gitignore_patterns:
         Extra patterns from .gitignore to exclude.
 
@@ -62,7 +63,11 @@ def discover_source_files(
         Sorted list of absolute paths.
     """
     if extensions is None:
-        extensions = [".py"]
+        try:
+            from codegraph.extractors import supported_extensions as _reg_exts
+            extensions = _reg_exts() or [".py"]
+        except Exception:
+            extensions = [".py"]
     ext_set = set(extensions)
 
     results: List[Path] = []

@@ -966,15 +966,15 @@
     },
     {
       "id": "codegraph/apply",
-      "intent": "repair action orchestrator. Coordinates lock, backup, conflict detection, action dispatch via apply_handlers, graph update, and validation",
+      "intent": "repair action execution system. Coordinates lock, backup, dispatch, and finalization phases for applying agent responses to the codebase. Delegates to _prepare_apply, _dispatch_repairs, and _finalize_apply",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 3,
-      "intent_timestamp": "2026-03-11T11:47:48Z",
+      "intent_version": 5,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
       "tags": [
         "governance"
       ],
-      "intent_body_hash": "3d01a"
+      "intent_body_hash": "677f3"
     },
     {
       "id": "codegraph/apply.py::ActionResult",
@@ -1103,6 +1103,24 @@
       "intent_body_hash": "dbf0e"
     },
     {
+      "id": "codegraph/apply.py::_dispatch_repairs",
+      "intent": "iterate over repair actions in the agent response and dispatch each to the appropriate handler (connect_call, add_import, remove_dead_code, flag_for_review)",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
+      "intent_body_hash": "b57c7"
+    },
+    {
+      "id": "codegraph/apply.py::_finalize_apply",
+      "intent": "format modified files, apply intents and workflow suggestions, update graph1, validate modified files, and save undo information",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
+      "intent_body_hash": "6a76d"
+    },
+    {
       "id": "codegraph/apply.py::_find_function_in_ast",
       "intent": "find a function by its codegraph node ID (file::QualName)",
       "layer": 3,
@@ -1211,6 +1229,15 @@
       "intent_body_hash": "f9c6a"
     },
     {
+      "id": "codegraph/apply.py::_prepare_apply",
+      "intent": "validate graph version, acquire lock, collect files to modify, check for conflicts, and create backups before applying repairs",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
+      "intent_body_hash": "a474c"
+    },
+    {
       "id": "codegraph/apply.py::_release_lock",
       "intent": "release lock (internal)",
       "layer": 3,
@@ -1275,12 +1302,12 @@
     },
     {
       "id": "codegraph/apply.py::apply_response",
-      "intent": "apply an agent response to the codebase (J-001)",
+      "intent": "orchestrate applying an agent response by delegating to preparation, dispatch, and finalization phases. Manages lock lifecycle",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "5bb3b"
+      "intent_author": "agent",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
+      "intent_body_hash": "5e87c"
     },
     {
       "id": "codegraph/apply.py::format_apply_result",
@@ -6347,15 +6374,15 @@
     },
     {
       "id": "codegraph/extractor",
-      "intent": "aST extraction engine (Graph_0). Parses Python source files to extract nodes (functions, classes, modules), call sites, imports, and resolve call targets. Includes ambiguous method name filtering to prevent false positive fan-in from common builtins (get, append, add, etc.)",
+      "intent": "aST extraction engine (Graph_0). Parses Python source files and delegates to language-specific extractors via the registry for JS/TS/React files",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-11T03:28:25Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
       "tags": [
         "core_engine"
       ],
-      "intent_body_hash": "55969"
+      "intent_body_hash": "c50ad"
     },
     {
       "id": "codegraph/extractor.py::CallSite",
@@ -6854,12 +6881,12 @@
     },
     {
       "id": "codegraph/extractor.py::extract_project",
-      "intent": "extract the complete Graph_0 for a project. (C-009, C-025, C-029, C-034)",
+      "intent": "extract the complete Graph_0 for a project. Initializes extractor registry, discovers source files across all supported languages, and delegates non-Python files to registered language extractors",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "0baff"
+      "intent_author": "agent",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
+      "intent_body_hash": "0084b"
     },
     {
       "id": "codegraph/extractor.py::extract_project::_process_result",
@@ -6959,12 +6986,12 @@
     },
     {
       "id": "codegraph/extractors/javascript",
-      "intent": "javaScript/TypeScript/React extractor. Regex-based analysis for .js, .jsx, .ts, .tsx, .mjs, .cjs files. No external AST parser required",
+      "intent": "javaScript/TypeScript/React extractor. Regex-based parser that extracts function declarations, arrow functions, React components, class methods, hooks, and import edges from JS/TS/JSX/TSX source files",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-11T15:52:36Z",
-      "intent_body_hash": "f2565"
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
+      "intent_body_hash": "cdc48"
     },
     {
       "id": "codegraph/extractors/javascript.py::JavaScriptExtractor",
@@ -7034,21 +7061,30 @@
     },
     {
       "id": "codegraph/extractors/javascript.py::_extract_js_edges",
-      "intent": "return import-type WorkflowEdge objects for every unique import/require statement in a JS/TS file",
+      "intent": "extract import-type WorkflowEdge objects from JS/TS source by parsing import/require statements and resolving relative import paths to actual file locations",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-11T15:52:36Z",
-      "intent_body_hash": "34afa"
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
+      "intent_body_hash": "52164"
     },
     {
       "id": "codegraph/extractors/javascript.py::_extract_js_file",
-      "intent": "parse a JS/TS source file using regex to produce Graph0Node list and ImportInfo list wrapped in FileExtractionResult",
+      "intent": "parse a JS/TS source file using regex patterns to produce Graph0Node objects for functions, arrow functions, React components, class methods, and hooks",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-11T15:52:36Z",
-      "intent_body_hash": "33c16"
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
+      "intent_body_hash": "dfd6b"
+    },
+    {
+      "id": "codegraph/extractors/javascript.py::_import_candidates",
+      "intent": "generate candidate file paths for a JS import by appending common extensions (.ts, .tsx, .js, .jsx, .mjs, .cjs) and checking for index files in directories",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
+      "intent_body_hash": "ca886"
     },
     {
       "id": "codegraph/extractors/javascript.py::_line_of",
@@ -7058,6 +7094,15 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-11T15:52:36Z",
       "intent_body_hash": "084de"
+    },
+    {
+      "id": "codegraph/extractors/javascript.py::_resolve_js_import",
+      "intent": "resolve a JS import specifier (relative path like ./components/Button) to a project-relative file path by trying common extensions (.ts, .tsx, .js, .jsx) and index file variants",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
+      "intent_body_hash": "c2690"
     },
     {
       "id": "codegraph/extractors/python",
@@ -13952,12 +13997,12 @@
     },
     {
       "id": "codegraph/utils/file_discovery",
-      "intent": "codegraph.utils.file_discovery — Source-file discovery and exclusion",
+      "intent": "source-file discovery utilities. Discovers source files under a project root using extensions from the extractor registry, supporting Python, JavaScript, TypeScript, and React file types",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "c5614"
+      "intent_author": "agent",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
+      "intent_body_hash": "66197"
     },
     {
       "id": "codegraph/utils/file_discovery.py::_is_excluded_dir",
@@ -13970,12 +14015,12 @@
     },
     {
       "id": "codegraph/utils/file_discovery.py::discover_source_files",
-      "intent": "find all source files under *project_root*",
+      "intent": "find all source files under a project root by walking the directory tree. Automatically detects supported extensions from the extractor registry, falling back to .py only",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "a7f1e"
+      "intent_author": "agent",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
+      "intent_body_hash": "b394d"
     },
     {
       "id": "codegraph/utils/formatting",
@@ -14285,12 +14330,12 @@
     },
     {
       "id": "codegraph/workflow",
-      "intent": "codegraph.workflow — Workflow builder (execution graph)",
+      "intent": "workflow builder (execution graph). Builds function-level call graph from extracted AST data, supporting both Python and JS/TS files via the extractor registry",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "1bdd4"
+      "intent_author": "agent",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
+      "intent_body_hash": "a10ca"
     },
     {
       "id": "codegraph/workflow.py::EdgeStats",
@@ -14384,12 +14429,12 @@
     },
     {
       "id": "codegraph/workflow.py::_collect_call_sites_and_imports",
-      "intent": "re-extract call sites and imports from source files for edge building",
+      "intent": "re-extract call sites and imports from a source file using the appropriate language extractor (Python AST or JS/TS regex) via the extractor registry",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "f041a"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
+      "intent_body_hash": "b9404"
     },
     {
       "id": "codegraph/workflow.py::_coverage_config",
@@ -14438,12 +14483,12 @@
     },
     {
       "id": "codegraph/workflow.py::build_import_dependencies",
-      "intent": "build module-to-module import relationships (F-031)",
+      "intent": "build module-to-module import relationships from extracted imports. Handles both Python dot-notation and JS/TS path-based imports without corrupting file extensions",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "f3081"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
+      "intent_body_hash": "532ce"
     },
     {
       "id": "codegraph/workflow.py::build_import_edges",
@@ -14474,11 +14519,11 @@
     },
     {
       "id": "codegraph/workflow.py::build_workflow",
-      "intent": "top-level workflow build orchestrator (F-018, F-026, F-032, F-034, F-035)",
+      "intent": "build the complete function-level call graph (Workflow) by combining static edges, dynamic edges, and import dependencies from all supported source languages",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
+      "intent_author": "agent",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-11T17:41:28Z",
       "intent_body_hash": "38130"
     },
     {
@@ -15182,6 +15227,214 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "ba6fb"
+    },
+    {
+      "id": "test_multilang/backend/api",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/backend/api.py::get_users",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/backend/api.py::login",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/backend/service",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/backend/service.py::UserService",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/backend/service.py::UserService::authenticate",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/backend/service.py::UserService::list_users",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/App.tsx",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/App.tsx::App",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/api.ts",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/api.ts::fetchUsers",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/api.ts::loginRequest",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/components/Button.tsx",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/components/Button.tsx::Button",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/components/Button.tsx::ButtonProps",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/components/Dashboard.tsx",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/components/Dashboard.tsx::Dashboard",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/components/Dashboard.tsx::DashboardProps",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/components/Dashboard.tsx::handleLogout",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/components/Login.tsx",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/components/Login.tsx::Login",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/components/Login.tsx::LoginProps",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/components/Login.tsx::handleSubmit",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/hooks/useAuth.ts",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/hooks/useAuth.ts::User",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
+    },
+    {
+      "id": "test_multilang/frontend/src/hooks/useAuth.ts::useAuth",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:21:04Z"
     },
     {
       "id": "tests",
@@ -21554,6 +21807,182 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "1fd5f"
+    },
+    {
+      "id": "tests/test_js_extractor",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_body_hash_is_populated",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_class_declaration",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_all_returns_result",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_edges_imports",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_arrow_function",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_hook",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_react_component",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_missing_file_returns_empty",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_node_types",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_supported_extensions",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestLineOf",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestLineOf::test_first_line",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestLineOf::test_second_line",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestLineOf::test_third_line",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestResolveJsImport",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestResolveJsImport::test_keeps_npm_packages",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestResolveJsImport::test_keeps_scoped_packages",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestResolveJsImport::test_resolves_relative_ts",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestResolveJsImport::test_resolves_relative_tsx",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
+    },
+    {
+      "id": "tests/test_js_extractor.py::project",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T17:26:39Z"
     },
     {
       "id": "tests/test_known_libraries",

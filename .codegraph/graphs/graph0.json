@@ -1,7 +1,7 @@
 {
   "format_version": 1,
-  "graph_version": 47,
-  "extracted_at": "2026-03-11T15:52:42Z",
+  "graph_version": 56,
+  "extracted_at": "2026-03-11T17:40:42Z",
   "source_files": [
     "benchmarks/benchmark_build.py",
     "benchmarks/benchmark_query.py",
@@ -145,6 +145,7 @@
     "tests/test_group_c_smoke.py",
     "tests/test_index.py",
     "tests/test_integration.py",
+    "tests/test_js_extractor.py",
     "tests/test_known_libraries.py",
     "tests/test_layers.py",
     "tests/test_models.py",
@@ -918,7 +919,7 @@
     },
     {
       "id": "codegraph/apply",
-      "body_hash": "3d01a",
+      "body_hash": "677f3",
       "file": "codegraph/apply.py",
       "type": "module",
       "line": 1
@@ -1001,6 +1002,20 @@
       "line": 129
     },
     {
+      "id": "codegraph/apply.py::_dispatch_repairs",
+      "body_hash": "b57c7",
+      "file": "codegraph/apply.py",
+      "type": "function",
+      "line": 473
+    },
+    {
+      "id": "codegraph/apply.py::_finalize_apply",
+      "body_hash": "6a76d",
+      "file": "codegraph/apply.py",
+      "type": "function",
+      "line": 521
+    },
+    {
       "id": "codegraph/apply.py::_format_file",
       "body_hash": "2a179",
       "file": "codegraph/apply.py",
@@ -1013,6 +1028,13 @@
       "file": "codegraph/apply.py",
       "type": "function",
       "line": 86
+    },
+    {
+      "id": "codegraph/apply.py::_prepare_apply",
+      "body_hash": "a474c",
+      "file": "codegraph/apply.py",
+      "type": "function",
+      "line": 433
     },
     {
       "id": "codegraph/apply.py::_release_lock",
@@ -1051,10 +1073,10 @@
     },
     {
       "id": "codegraph/apply.py::apply_response",
-      "body_hash": "5bb3b",
+      "body_hash": "5e87c",
       "file": "codegraph/apply.py",
       "type": "function",
-      "line": 433
+      "line": 579
     },
     {
       "id": "codegraph/apply.py::format_apply_result",
@@ -1068,7 +1090,7 @@
       "body_hash": "c6922",
       "file": "codegraph/apply.py",
       "type": "function",
-      "line": 586
+      "line": 623
     },
     {
       "id": "codegraph/apply.py::undo_last_apply",
@@ -4936,7 +4958,7 @@
     },
     {
       "id": "codegraph/extractor",
-      "body_hash": "55969",
+      "body_hash": "c50ad",
       "file": "codegraph/extractor.py",
       "type": "module",
       "line": 1
@@ -5282,7 +5304,7 @@
       "body_hash": "f940e",
       "file": "codegraph/extractor.py",
       "type": "function",
-      "line": 1231
+      "line": 1246
     },
     {
       "id": "codegraph/extractor.py::detect_dynamic_calls",
@@ -5328,7 +5350,7 @@
     },
     {
       "id": "codegraph/extractor.py::extract_project",
-      "body_hash": "0baff",
+      "body_hash": "0084b",
       "file": "codegraph/extractor.py",
       "type": "function",
       "line": 1040
@@ -5338,14 +5360,14 @@
       "body_hash": "cd5c4",
       "file": "codegraph/extractor.py",
       "type": "function",
-      "line": 1086
+      "line": 1088
     },
     {
       "id": "codegraph/extractor.py::load_graph0",
       "body_hash": "69cd0",
       "file": "codegraph/extractor.py",
       "type": "function",
-      "line": 1208
+      "line": 1223
     },
     {
       "id": "codegraph/extractor.py::parse_file",
@@ -5366,7 +5388,7 @@
       "body_hash": "19edc",
       "file": "codegraph/extractor.py",
       "type": "function",
-      "line": 1198
+      "line": 1213
     },
     {
       "id": "codegraph/extractors",
@@ -5405,7 +5427,7 @@
     },
     {
       "id": "codegraph/extractors/javascript",
-      "body_hash": "f2565",
+      "body_hash": "cdc48",
       "file": "codegraph/extractors/javascript.py",
       "type": "module",
       "line": 1
@@ -5415,70 +5437,84 @@
       "body_hash": "b1551",
       "file": "codegraph/extractors/javascript.py",
       "type": "class",
-      "line": 270
+      "line": 320
     },
     {
       "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::__init__",
       "body_hash": "d1d23",
       "file": "codegraph/extractors/javascript.py",
       "type": "method",
-      "line": 279
+      "line": 329
     },
     {
       "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
       "body_hash": "549ff",
       "file": "codegraph/extractors/javascript.py",
       "type": "method",
-      "line": 289
+      "line": 339
     },
     {
       "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_edges",
       "body_hash": "bc6ee",
       "file": "codegraph/extractors/javascript.py",
       "type": "method",
-      "line": 293
+      "line": 343
     },
     {
       "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
       "body_hash": "c22c2",
       "file": "codegraph/extractors/javascript.py",
       "type": "method",
-      "line": 285
+      "line": 335
     },
     {
       "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::supported_extensions",
       "body_hash": "75a6e",
       "file": "codegraph/extractors/javascript.py",
       "type": "method",
-      "line": 282
+      "line": 332
     },
     {
       "id": "codegraph/extractors/javascript.py::_body_hash",
       "body_hash": "3bb63",
       "file": "codegraph/extractors/javascript.py",
       "type": "function",
-      "line": 86
+      "line": 136
     },
     {
       "id": "codegraph/extractors/javascript.py::_extract_js_edges",
-      "body_hash": "34afa",
+      "body_hash": "52164",
       "file": "codegraph/extractors/javascript.py",
       "type": "function",
-      "line": 227
+      "line": 277
     },
     {
       "id": "codegraph/extractors/javascript.py::_extract_js_file",
-      "body_hash": "33c16",
+      "body_hash": "dfd6b",
       "file": "codegraph/extractors/javascript.py",
       "type": "function",
-      "line": 96
+      "line": 146
+    },
+    {
+      "id": "codegraph/extractors/javascript.py::_import_candidates",
+      "body_hash": "ca886",
+      "file": "codegraph/extractors/javascript.py",
+      "type": "function",
+      "line": 116
     },
     {
       "id": "codegraph/extractors/javascript.py::_line_of",
       "body_hash": "084de",
       "file": "codegraph/extractors/javascript.py",
       "type": "function",
-      "line": 81
+      "line": 131
+    },
+    {
+      "id": "codegraph/extractors/javascript.py::_resolve_js_import",
+      "body_hash": "c2690",
+      "file": "codegraph/extractors/javascript.py",
+      "type": "function",
+      "line": 85
     },
     {
       "id": "codegraph/extractors/python",
@@ -10837,7 +10873,7 @@
     },
     {
       "id": "codegraph/utils/file_discovery",
-      "body_hash": "c5614",
+      "body_hash": "66197",
       "file": "codegraph/utils/file_discovery.py",
       "type": "module",
       "line": 1
@@ -10851,7 +10887,7 @@
     },
     {
       "id": "codegraph/utils/file_discovery.py::discover_source_files",
-      "body_hash": "a7f1e",
+      "body_hash": "b394d",
       "file": "codegraph/utils/file_discovery.py",
       "type": "function",
       "line": 43
@@ -11096,7 +11132,7 @@
     },
     {
       "id": "codegraph/workflow",
-      "body_hash": "1bdd4",
+      "body_hash": "a10ca",
       "file": "codegraph/workflow.py",
       "type": "module",
       "line": 1
@@ -11173,10 +11209,10 @@
     },
     {
       "id": "codegraph/workflow.py::_collect_call_sites_and_imports",
-      "body_hash": "f041a",
+      "body_hash": "b9404",
       "file": "codegraph/workflow.py",
       "type": "function",
-      "line": 1062
+      "line": 1069
     },
     {
       "id": "codegraph/workflow.py::_coverage_config",
@@ -11215,7 +11251,7 @@
     },
     {
       "id": "codegraph/workflow.py::build_import_dependencies",
-      "body_hash": "f3081",
+      "body_hash": "532ce",
       "file": "codegraph/workflow.py",
       "type": "function",
       "line": 993
@@ -11246,7 +11282,7 @@
       "body_hash": "38130",
       "file": "codegraph/workflow.py",
       "type": "function",
-      "line": 1097
+      "line": 1110
     },
     {
       "id": "codegraph/workflow.py::compress_to_class",
@@ -11295,7 +11331,7 @@
       "body_hash": "a0aad",
       "file": "codegraph/workflow.py",
       "type": "function",
-      "line": 1028
+      "line": 1035
     },
     {
       "id": "codegraph/workflow.py::load_workflow",
@@ -11330,7 +11366,7 @@
       "body_hash": "d87f2",
       "file": "codegraph/workflow.py",
       "type": "function",
-      "line": 1020
+      "line": 1027
     },
     {
       "id": "codegraph/workflow.py::update_workflow_incremental",
@@ -11351,7 +11387,7 @@
       "body_hash": "c6042",
       "file": "codegraph/workflow.py",
       "type": "function",
-      "line": 1047
+      "line": 1054
     },
     {
       "id": "codegraph/workflow.py::validate_workflow",
@@ -16742,6 +16778,160 @@
       "file": "tests/test_integration.py",
       "type": "function",
       "line": 25
+    },
+    {
+      "id": "tests/test_js_extractor",
+      "body_hash": "7df76",
+      "file": "tests/test_js_extractor.py",
+      "type": "module",
+      "line": 1
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor",
+      "body_hash": "4c242",
+      "file": "tests/test_js_extractor.py",
+      "type": "class",
+      "line": 71
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_body_hash_is_populated",
+      "body_hash": "d2443",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 122
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_class_declaration",
+      "body_hash": "2f0bd",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 142
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_all_returns_result",
+      "body_hash": "033ab",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 115
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_edges_imports",
+      "body_hash": "60ee0",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 104
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_arrow_function",
+      "body_hash": "de5f1",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 89
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_hook",
+      "body_hash": "8ab85",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 97
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_react_component",
+      "body_hash": "c42ef",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 81
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_missing_file_returns_empty",
+      "body_hash": "1f6e4",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 137
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_node_types",
+      "body_hash": "57a48",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 129
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_supported_extensions",
+      "body_hash": "3c47f",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 74
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestLineOf",
+      "body_hash": "e47f4",
+      "file": "tests/test_js_extractor.py",
+      "type": "class",
+      "line": 192
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestLineOf::test_first_line",
+      "body_hash": "2a47e",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 195
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestLineOf::test_second_line",
+      "body_hash": "e7d2b",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 198
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestLineOf::test_third_line",
+      "body_hash": "c901e",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 201
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestResolveJsImport",
+      "body_hash": "0edea",
+      "file": "tests/test_js_extractor.py",
+      "type": "class",
+      "line": 156
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestResolveJsImport::test_keeps_npm_packages",
+      "body_hash": "dc6e3",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 175
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestResolveJsImport::test_keeps_scoped_packages",
+      "body_hash": "a7e76",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 183
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestResolveJsImport::test_resolves_relative_ts",
+      "body_hash": "8626b",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 167
+    },
+    {
+      "id": "tests/test_js_extractor.py::TestResolveJsImport::test_resolves_relative_tsx",
+      "body_hash": "f01d9",
+      "file": "tests/test_js_extractor.py",
+      "type": "method",
+      "line": 159
+    },
+    {
+      "id": "tests/test_js_extractor.py::project",
+      "body_hash": "dd194",
+      "file": "tests/test_js_extractor.py",
+      "type": "function",
+      "line": 20
     },
     {
       "id": "tests/test_known_libraries",

@@ -164,15 +164,6 @@
       "added_at": "2026-03-10T18:44:22Z"
     },
     {
-      "id": "rule_019",
-      "type": "dependency_limit",
-      "reason": "apply_response currently has fan-out=28. Cap at 30 to prevent further growth of this governance orchestrator.",
-      "source": "codegraph/apply.py::apply_response",
-      "max_fan_out": 30,
-      "added_by": "human",
-      "added_at": "2026-03-10T18:44:58Z"
-    },
-    {
       "id": "rule_020",
       "type": "dependency_limit",
       "reason": "CLI is a top-level dispatcher. Cap total fan-out to prevent unbounded growth.",
@@ -208,6 +199,60 @@
       "max_fan_out": 20,
       "added_by": "human",
       "added_at": "2026-03-11T13:23:04Z"
+    },
+    {
+      "id": "rule_024",
+      "type": "forbidden_call",
+      "reason": "Language extractors must not depend on the analysis engine. Extractors produce data; analyzers consume it.",
+      "source": "codegraph/extractors/javascript.py::*",
+      "target": "codegraph/analyzer.py::analyze",
+      "added_by": "human",
+      "added_at": "2026-03-11T17:36:05Z"
+    },
+    {
+      "id": "rule_025",
+      "type": "forbidden_call",
+      "reason": "Language extractors must not invoke the repair engine. Extraction is read-only.",
+      "source": "codegraph/extractors/javascript.py::*",
+      "target": "codegraph/apply.py::apply_response",
+      "added_by": "human",
+      "added_at": "2026-03-11T17:36:10Z"
+    },
+    {
+      "id": "rule_026",
+      "type": "forbidden_call",
+      "reason": "Language extractors must not depend on task generation. Extractors produce graph data only.",
+      "source": "codegraph/extractors/javascript.py::*",
+      "target": "codegraph/tasks.py::generate_tasks",
+      "added_by": "human",
+      "added_at": "2026-03-11T17:36:14Z"
+    },
+    {
+      "id": "rule_027",
+      "type": "dependency_limit",
+      "reason": "JS extractor should stay focused on extraction only. Cap outgoing dependencies.",
+      "source": "codegraph/extractors/javascript.py::*",
+      "max_fan_out": 10,
+      "added_by": "human",
+      "added_at": "2026-03-11T17:36:19Z"
+    },
+    {
+      "id": "rule_028",
+      "type": "forbidden_call",
+      "reason": "Models layer must not depend on language extractors. Models are pure data containers.",
+      "source": "codegraph/models/graph0.py::Graph0Node",
+      "target": "codegraph/extractors/javascript.py::_extract_js_file",
+      "added_by": "human",
+      "added_at": "2026-03-11T17:36:35Z"
+    },
+    {
+      "id": "rule_029",
+      "type": "dependency_limit",
+      "reason": "apply_response was refactored to delegate to _prepare_apply, _dispatch_repairs, _finalize_apply. Cap at 10 to prevent regression.",
+      "source": "codegraph/apply.py::apply_response",
+      "max_fan_out": 10,
+      "added_by": "human",
+      "added_at": "2026-03-11T17:36:46Z"
     }
   ]
 }
