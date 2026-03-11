@@ -13,7 +13,7 @@ from codegraph.types import Graph0Node, LanguageExtractor, WorkflowEdge
 
 logger = get_logger("extractors")
 
-# Global registry mapping file extensions → extractor classes.
+# Global registry mapping file extensions → extractor instances.
 _registry: Dict[str, "LanguageExtractor"] = {}
 
 
@@ -32,3 +32,20 @@ def get_extractor(file_path: Path) -> Optional["LanguageExtractor"]:
 def supported_extensions() -> List[str]:
     """Return all extensions that have a registered extractor."""
     return sorted(_registry.keys())
+
+
+def setup(project_root: Path) -> None:
+    """Register all built-in language extractors for *project_root*.
+
+    Call this once at build time to make :func:`get_extractor` return the
+    correct extractor for every supported file extension:
+
+    - ``.py``                       → :class:`~codegraph.extractors.python.PythonExtractor`
+    - ``.js / .jsx / .ts / .tsx``   → :class:`~codegraph.extractors.javascript.JavaScriptExtractor`
+    - ``.mjs / .cjs``               → :class:`~codegraph.extractors.javascript.JavaScriptExtractor`
+    """
+    from codegraph.extractors.javascript import JavaScriptExtractor
+    from codegraph.extractors.python import PythonExtractor
+
+    register_extractor(PythonExtractor(project_root))
+    register_extractor(JavaScriptExtractor(project_root))

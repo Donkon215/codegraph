@@ -1,51 +1,71 @@
 {
-  "cycle": 7,
-  "graph_version": 43,
+  "cycle": 8,
+  "graph_version": 46,
   "intents": [
     {
-      "node": "codegraph/cli",
-      "intent": "CLI entry point with commands for build, analyze, tasks, apply, query, architect, arch-search, and all other codegraph operations"
+      "node": "codegraph/extractors",
+      "intent": "Plugin registry for language-specific extractors. Provides register_extractor, get_extractor, supported_extensions, and setup helpers for Python and JavaScript/TypeScript extractors."
     },
     {
-      "node": "codegraph/arch_search",
-      "intent": "Multi-candidate architecture search engine module. Generates, simulates, scores, and ranks architecture improvement candidates."
+      "node": "codegraph/extractors/__init__.py::setup",
+      "intent": "Instantiate and register all built-in language extractors (PythonExtractor, JavaScriptExtractor) for the given project root",
+      "tags": [
+        "entry_point"
+      ]
     },
     {
-      "node": "codegraph/arch_search::generate_candidates",
-      "intent": "Generate architecture improvement candidates from advisor findings. Reads architecture_advice.json and produces candidates representing different refactoring strategies."
+      "node": "codegraph/extractors/javascript",
+      "intent": "JavaScript/TypeScript/React extractor. Regex-based analysis for .js, .jsx, .ts, .tsx, .mjs, .cjs files. No external AST parser required."
     },
     {
-      "node": "codegraph/arch_search::simulate_candidates",
-      "intent": "Simulate each candidate using architecture_simulator to predict impact on metrics without modifying code."
+      "node": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "intent": "Language extractor plugin for JavaScript, TypeScript and React source files"
     },
     {
-      "node": "codegraph/arch_search::score_candidates",
-      "intent": "Score and rank candidates using weighted architecture metrics: score improvement, coupling, fan-out, violations, and risk level."
+      "node": "codegraph/extractors/javascript.py::JavaScriptExtractor::__init__",
+      "intent": "Initialize JavaScriptExtractor with the project root path",
+      "tags": [
+        "entry_point"
+      ]
     },
     {
-      "node": "codegraph/arch_search::run_arch_search",
-      "intent": "Orchestrate the full multi-candidate architecture search: generate, simulate, score, rank, select best candidate or report no safe change."
+      "node": "codegraph/extractors/javascript.py::JavaScriptExtractor::supported_extensions",
+      "intent": "Return the list of file extensions handled by this extractor (.js .jsx .ts .tsx .mjs .cjs)"
     },
     {
-      "node": "codegraph/arch_search::_strategy_to_changes",
-      "intent": "Convert a candidate refactoring strategy into simulatable ArchChange objects for the architecture simulator."
+      "node": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "intent": "Extract all function, class, module and interface nodes from a JS/TS file"
     },
     {
-      "node": "codegraph/arch_search::_record_search_to_memory",
-      "intent": "Record the architecture search decision to persistent architecture memory for future learning."
+      "node": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
+      "intent": "Extract nodes and import metadata from a JS/TS file and return a FileExtractionResult"
     },
     {
-      "node": "codegraph/arch_search::_module_name",
-      "intent": "Extract a short module name from a file path or node ID for use in candidate IDs."
+      "node": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_edges",
+      "intent": "Extract import edges from a JS/TS file as WorkflowEdge objects (one per unique import/require)"
     },
     {
-      "node": "codegraph/arch_search::_find_subsystem_for_module",
-      "intent": "Find which subsystem a module belongs to by searching architecture component definitions."
+      "node": "codegraph/extractors/javascript.py::_extract_js_file",
+      "intent": "Parse a JS/TS source file using regex to produce Graph0Node list and ImportInfo list wrapped in FileExtractionResult"
     },
     {
-      "node": "codegraph/cli::arch_search_cmd",
-      "intent": "CLI command for multi-candidate architecture search. Runs arch-search with optional JSON output and save."
+      "node": "codegraph/extractors/javascript.py::_extract_js_edges",
+      "intent": "Return import-type WorkflowEdge objects for every unique import/require statement in a JS/TS file"
+    },
+    {
+      "node": "codegraph/extractors/javascript.py::_body_hash",
+      "intent": "Compute a short SHA-256 hash over a 500-character window of source text starting at match_start"
+    },
+    {
+      "node": "codegraph/extractors/javascript.py::_line_of",
+      "intent": "Return the 1-based line number of the character at match_start within text"
     }
   ],
-  "repairs": []
+  "repairs": [
+    {
+      "node": "codegraph/extractors/javascript.py::JavaScriptExtractor::__init__",
+      "action": "flag_for_human_review",
+      "reason": "__init__ appears as orphan because Python class instantiation does not produce an explicit call edge; it is invoked indirectly by setup() when registering the extractor"
+    }
+  ]
 }

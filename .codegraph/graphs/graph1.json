@@ -6911,12 +6911,12 @@
     },
     {
       "id": "codegraph/extractors",
-      "intent": "codegraph.extractors — Plugin registry for language-specific extractors",
+      "intent": "plugin registry for language-specific extractors. Provides register_extractor, get_extractor, supported_extensions, and setup helpers for Python and JavaScript/TypeScript extractors",
       "layer": 3,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
-      "intent_body_hash": "17f39"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-11T15:52:36Z",
+      "intent_body_hash": "7918f"
     },
     {
       "id": "codegraph/extractors/__init__.py::get_extractor",
@@ -6937,6 +6937,18 @@
       "intent_body_hash": "756f3"
     },
     {
+      "id": "codegraph/extractors/__init__.py::setup",
+      "intent": "instantiate and register all built-in language extractors (PythonExtractor, JavaScriptExtractor) for the given project root",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T15:52:36Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "b739d"
+    },
+    {
       "id": "codegraph/extractors/__init__.py::supported_extensions",
       "intent": "return all extensions that have a registered extractor",
       "layer": 3,
@@ -6944,6 +6956,108 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "d2828"
+    },
+    {
+      "id": "codegraph/extractors/javascript",
+      "intent": "javaScript/TypeScript/React extractor. Regex-based analysis for .js, .jsx, .ts, .tsx, .mjs, .cjs files. No external AST parser required",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T15:52:36Z",
+      "intent_body_hash": "f2565"
+    },
+    {
+      "id": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "intent": "language extractor plugin for JavaScript, TypeScript and React source files",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T15:52:36Z",
+      "intent_body_hash": "b1551"
+    },
+    {
+      "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::__init__",
+      "intent": "initialize JavaScriptExtractor with the project root path",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T15:52:36Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "d1d23"
+    },
+    {
+      "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
+      "intent": "extract nodes and import metadata from a JS/TS file and return a FileExtractionResult",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T15:52:36Z",
+      "intent_body_hash": "549ff"
+    },
+    {
+      "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_edges",
+      "intent": "extract import edges from a JS/TS file as WorkflowEdge objects (one per unique import/require)",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T15:52:36Z",
+      "intent_body_hash": "bc6ee"
+    },
+    {
+      "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "intent": "extract all function, class, module and interface nodes from a JS/TS file",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T15:52:36Z",
+      "intent_body_hash": "c22c2"
+    },
+    {
+      "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::supported_extensions",
+      "intent": "return the list of file extensions handled by this extractor (.js .jsx .ts .tsx .mjs .cjs)",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T15:52:36Z",
+      "intent_body_hash": "75a6e"
+    },
+    {
+      "id": "codegraph/extractors/javascript.py::_body_hash",
+      "intent": "compute a short SHA-256 hash over a 500-character window of source text starting at match_start",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T15:52:36Z",
+      "intent_body_hash": "3bb63"
+    },
+    {
+      "id": "codegraph/extractors/javascript.py::_extract_js_edges",
+      "intent": "return import-type WorkflowEdge objects for every unique import/require statement in a JS/TS file",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T15:52:36Z",
+      "intent_body_hash": "34afa"
+    },
+    {
+      "id": "codegraph/extractors/javascript.py::_extract_js_file",
+      "intent": "parse a JS/TS source file using regex to produce Graph0Node list and ImportInfo list wrapped in FileExtractionResult",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T15:52:36Z",
+      "intent_body_hash": "33c16"
+    },
+    {
+      "id": "codegraph/extractors/javascript.py::_line_of",
+      "intent": "return the 1-based line number of the character at match_start within text",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T15:52:36Z",
+      "intent_body_hash": "084de"
     },
     {
       "id": "codegraph/extractors/python",

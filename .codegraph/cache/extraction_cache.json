@@ -2489,11 +2489,11 @@
     ]
   },
   "codegraph/extractors/__init__.py": {
-    "content_hash": "30308027ab5b",
+    "content_hash": "b120df8b1d57",
     "nodes": [
       {
         "id": "codegraph/extractors",
-        "body_hash": "17f39",
+        "body_hash": "7918f",
         "file": "codegraph/extractors/__init__.py",
         "type": "module",
         "line": 1
@@ -2518,6 +2518,13 @@
         "file": "codegraph/extractors/__init__.py",
         "type": "function",
         "line": 32
+      },
+      {
+        "id": "codegraph/extractors/__init__.py::setup",
+        "body_hash": "b739d",
+        "file": "codegraph/extractors/__init__.py",
+        "type": "function",
+        "line": 37
       }
     ]
   },
@@ -20633,6 +20640,88 @@
         "file": "codegraph/arch_search.py",
         "type": "function",
         "line": 790
+      }
+    ]
+  },
+  "codegraph/extractors/javascript.py": {
+    "content_hash": "c1271228b4a9",
+    "nodes": [
+      {
+        "id": "codegraph/extractors/javascript",
+        "body_hash": "f2565",
+        "file": "codegraph/extractors/javascript.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/extractors/javascript.py::_line_of",
+        "body_hash": "084de",
+        "file": "codegraph/extractors/javascript.py",
+        "type": "function",
+        "line": 81
+      },
+      {
+        "id": "codegraph/extractors/javascript.py::_body_hash",
+        "body_hash": "3bb63",
+        "file": "codegraph/extractors/javascript.py",
+        "type": "function",
+        "line": 86
+      },
+      {
+        "id": "codegraph/extractors/javascript.py::_extract_js_file",
+        "body_hash": "33c16",
+        "file": "codegraph/extractors/javascript.py",
+        "type": "function",
+        "line": 96
+      },
+      {
+        "id": "codegraph/extractors/javascript.py::_extract_js_edges",
+        "body_hash": "34afa",
+        "file": "codegraph/extractors/javascript.py",
+        "type": "function",
+        "line": 227
+      },
+      {
+        "id": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+        "body_hash": "b1551",
+        "file": "codegraph/extractors/javascript.py",
+        "type": "class",
+        "line": 270
+      },
+      {
+        "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::__init__",
+        "body_hash": "d1d23",
+        "file": "codegraph/extractors/javascript.py",
+        "type": "method",
+        "line": 279
+      },
+      {
+        "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::supported_extensions",
+        "body_hash": "75a6e",
+        "file": "codegraph/extractors/javascript.py",
+        "type": "method",
+        "line": 282
+      },
+      {
+        "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+        "body_hash": "c22c2",
+        "file": "codegraph/extractors/javascript.py",
+        "type": "method",
+        "line": 285
+      },
+      {
+        "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
+        "body_hash": "549ff",
+        "file": "codegraph/extractors/javascript.py",
+        "type": "method",
+        "line": 289
+      },
+      {
+        "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_edges",
+        "body_hash": "bc6ee",
+        "file": "codegraph/extractors/javascript.py",
+        "type": "method",
+        "line": 293
       }
     ]
   }

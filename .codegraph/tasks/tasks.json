@@ -1,7 +1,7 @@
 {
   "cycle": 1,
-  "graph_version": 39,
-  "generated_at": "2026-03-11T11:30:54Z",
+  "graph_version": 47,
+  "generated_at": "2026-03-11T15:52:54Z",
   "tasks": [
     {
       "task_id": "orphan_nodes",
@@ -276,6 +276,38 @@
           "previous_intent": "load architecture definition from project codegraph directory",
           "body_hash_changed": false,
           "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchCandidate::from_dict",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchCandidate::to_dict",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchSearchResult::format",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchSearchResult::load",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/architecture_advisor.py::ArchAdvice::format",
@@ -778,6 +810,15 @@
           "type": "method",
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "resolve *name* using LEGB lookup, returning a node ID or None",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::supported_extensions",
+          "file": "codegraph/extractors/javascript.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "return the list of file extensions handled by this extractor (.js .jsx .ts .tsx .mjs .cjs)",
           "body_hash_changed": false,
           "reason": "Orphan (disconnected)"
         },
@@ -1828,6 +1869,265 @@
           "body_hash_changed": false
         },
         {
+          "id": "codegraph/apply_handlers.py::_check_dead_code_signals",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply_handlers.py::_load_baseline_hashes",
+            "codegraph/index.py::IndexStore::get_node",
+            "codegraph/index.py::IndexStore::get_tests_for_node",
+            "codegraph/models/workflow.py::Workflow::get_edges_from",
+            "codegraph/models/workflow.py::Workflow::get_edges_to"
+          ],
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_remove_dead_code"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_cleanup_unused_imports",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_remove_dead_code"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_detect_indentation",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_connect_call"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_find_function_in_ast",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply_handlers.py::_get_class_method",
+            "codegraph/apply_handlers.py::_get_function_node"
+          ],
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_connect_call",
+            "codegraph/apply_handlers.py::handle_remove_dead_code"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_find_import_block_end",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_add_import",
+            "codegraph/apply_handlers.py::handle_connect_call"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_first_executable_line",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_connect_call"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_get_class_method",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::_find_function_in_ast"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_get_function_node",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::_find_function_in_ast"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_has_import",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_add_import",
+            "codegraph/apply_handlers.py::handle_connect_call"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_insert_line",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_add_import",
+            "codegraph/apply_handlers.py::handle_connect_call"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_is_already_connected",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/models/workflow.py::Workflow::get_edges_from"
+          ],
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_connect_call"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_load_baseline_hashes",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/storage.py::resolve_path"
+          ],
+          "called_by": [
+            "codegraph/apply_handlers.py::_check_dead_code_signals"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_parse_file_ast",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_connect_call",
+            "codegraph/apply_handlers.py::handle_remove_dead_code"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_remove_function_from_file",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply_handlers.py::_remove_lines"
+          ],
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_remove_dead_code"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_remove_lines",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::_remove_function_from_file"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::handle_add_import",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply.py::ActionResult",
+            "codegraph/apply_handlers.py::_find_import_block_end",
+            "codegraph/apply_handlers.py::_has_import",
+            "codegraph/apply_handlers.py::_insert_line",
+            "codegraph/index.py::IndexStore::get_node"
+          ],
+          "called_by": [
+            "codegraph/apply.py::apply_response"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::handle_connect_call",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply.py::ActionResult",
+            "codegraph/apply_handlers.py::_detect_indentation",
+            "codegraph/apply_handlers.py::_find_function_in_ast",
+            "codegraph/apply_handlers.py::_find_import_block_end",
+            "codegraph/apply_handlers.py::_first_executable_line",
+            "codegraph/apply_handlers.py::_has_import",
+            "codegraph/apply_handlers.py::_insert_line",
+            "codegraph/apply_handlers.py::_is_already_connected",
+            "codegraph/apply_handlers.py::_parse_file_ast",
+            "codegraph/index.py::IndexStore::get_node"
+          ],
+          "called_by": [
+            "codegraph/apply.py::apply_response"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::handle_flag_for_review",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply.py::ActionResult",
+            "codegraph/storage.py::resolve_path",
+            "codegraph/utils/formatting.py::iso_now"
+          ],
+          "called_by": [
+            "codegraph/apply.py::apply_response"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::handle_remove_dead_code",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply.py::ActionResult",
+            "codegraph/apply_handlers.py::_check_dead_code_signals",
+            "codegraph/apply_handlers.py::_cleanup_unused_imports",
+            "codegraph/apply_handlers.py::_find_function_in_ast",
+            "codegraph/apply_handlers.py::_parse_file_ast",
+            "codegraph/apply_handlers.py::_remove_function_from_file",
+            "codegraph/index.py::IndexStore::get_node"
+          ],
+          "called_by": [
+            "codegraph/apply.py::apply_response"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::save_baseline_hashes",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/storage.py::atomic_write",
+            "codegraph/storage.py::resolve_path"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/arch_diff.py::ArchDiffReport::format",
           "file": "codegraph/arch_diff.py",
           "type": "method",
@@ -2312,6 +2612,164 @@
           "body_hash_changed": false
         },
         {
+          "id": "codegraph/arch_search.py::ArchCandidate::from_dict",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchCandidate::to_dict",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchSearchResult::format",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchSearchResult::load",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchSearchResult::save",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_search.py::ArchSearchResult::to_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchSearchResult::to_dict",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "called_by": [
+            "codegraph/arch_search.py::ArchSearchResult::save"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::_find_subsystem_for_module",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_search.py::_strategy_to_changes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::_module_name",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_search.py::_strategy_to_changes",
+            "codegraph/arch_search.py::generate_candidates"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::_record_search_to_memory",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "calls": [
+            "codegraph/architecture_memory.py::save_decision"
+          ],
+          "called_by": [
+            "codegraph/arch_search.py::run_arch_search"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::_strategy_to_changes",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_search.py::_find_subsystem_for_module",
+            "codegraph/arch_search.py::_module_name",
+            "codegraph/architecture_simulator.py::ArchChange"
+          ],
+          "called_by": [
+            "codegraph/arch_search.py::simulate_candidates"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::generate_candidates",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_search.py::ArchCandidate",
+            "codegraph/arch_search.py::_module_name"
+          ],
+          "called_by": [
+            "codegraph/arch_search.py::run_arch_search"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::run_arch_search",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_search.py::ArchSearchResult",
+            "codegraph/arch_search.py::_record_search_to_memory",
+            "codegraph/arch_search.py::generate_candidates",
+            "codegraph/arch_search.py::score_candidates",
+            "codegraph/arch_search.py::simulate_candidates",
+            "codegraph/architecture_simulator.py::_compute_arch_metrics"
+          ],
+          "called_by": [
+            "codegraph/cli.py::arch_search_cmd"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::score_candidates",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_search.py::run_arch_search"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::simulate_candidates",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_search.py::_strategy_to_changes",
+            "codegraph/architecture_simulator.py::_compute_arch_metrics",
+            "codegraph/architecture_simulator.py::simulate_architecture_changes"
+          ],
+          "called_by": [
+            "codegraph/arch_search.py::run_arch_search"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/arch_viewer.py::_build_system_data",
           "file": "codegraph/arch_viewer.py",
           "type": "function",
@@ -2785,6 +3243,9 @@
             "codegraph/architecture_memory.py::_load_json_list",
             "codegraph/architecture_memory.py::_save_json_list"
           ],
+          "called_by": [
+            "codegraph/arch_search.py::_record_search_to_memory"
+          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "persist a new architecture decision record (decision text, reason, result, tags) to .codegraph/memory/decisions.json",
           "body_hash_changed": false
@@ -2871,6 +3332,8 @@
             "codegraph/architecture_simulator.py::_count_subsystem_cycles"
           ],
           "called_by": [
+            "codegraph/arch_search.py::run_arch_search",
+            "codegraph/arch_search.py::simulate_candidates",
             "codegraph/architecture_simulator.py::simulate_architecture_changes"
           ],
           "suggested_fix": "Create a test function covering this production code",
@@ -3125,6 +3588,18 @@
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "cLI command to view architecture decision memory with filtering",
           "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/cli.py::arch_search_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_search.py::run_arch_search",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
         },
         {
           "id": "codegraph/cli.py::arch_simulate_cmd",
@@ -4031,6 +4506,118 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "codegraph/extractors/__init__.py::setup",
+          "file": "codegraph/extractors/__init__.py",
+          "type": "function",
+          "calls": [
+            "codegraph/extractors/__init__.py::register_extractor",
+            "codegraph/extractors/javascript.py::JavaScriptExtractor",
+            "codegraph/extractors/python.py::PythonExtractor"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "instantiate and register all built-in language extractors (PythonExtractor, JavaScriptExtractor) for the given project root",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
+          "file": "codegraph/extractors/javascript.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::_extract_js_file"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "extract nodes and import metadata from a JS/TS file and return a FileExtractionResult",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_edges",
+          "file": "codegraph/extractors/javascript.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::_extract_js_edges"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "extract import edges from a JS/TS file as WorkflowEdge objects (one per unique import/require)",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+          "file": "codegraph/extractors/javascript.py",
+          "type": "method",
+          "calls": [
+            "codegraph/extractors/javascript.py::_extract_js_file"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "extract all function, class, module and interface nodes from a JS/TS file",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::supported_extensions",
+          "file": "codegraph/extractors/javascript.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "return the list of file extensions handled by this extractor (.js .jsx .ts .tsx .mjs .cjs)",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/extractors/javascript.py::_body_hash",
+          "file": "codegraph/extractors/javascript.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/extractors/javascript.py::_extract_js_file"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "compute a short SHA-256 hash over a 500-character window of source text starting at match_start",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/extractors/javascript.py::_extract_js_edges",
+          "file": "codegraph/extractors/javascript.py",
+          "type": "function",
+          "calls": [
+            "codegraph/types.py::WorkflowEdge",
+            "codegraph/utils/ids.py::normalize_path"
+          ],
+          "called_by": [
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_edges"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "return import-type WorkflowEdge objects for every unique import/require statement in a JS/TS file",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/extractors/javascript.py::_extract_js_file",
+          "file": "codegraph/extractors/javascript.py",
+          "type": "function",
+          "calls": [
+            "codegraph/extractor.py::FileExtractionResult",
+            "codegraph/extractor.py::ImportInfo",
+            "codegraph/extractors/javascript.py::_body_hash",
+            "codegraph/extractors/javascript.py::_line_of",
+            "codegraph/models/graph0.py::Graph0Node",
+            "codegraph/utils/ids.py::normalize_path"
+          ],
+          "called_by": [
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
+            "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "parse a JS/TS source file using regex to produce Graph0Node list and ImportInfo list wrapped in FileExtractionResult",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/extractors/javascript.py::_line_of",
+          "file": "codegraph/extractors/javascript.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/extractors/javascript.py::_extract_js_file"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "return the 1-based line number of the character at match_start within text",
+          "body_hash_changed": false
+        },
+        {
           "id": "codegraph/filters.py::FilterPipeline::add",
           "file": "codegraph/filters.py",
           "type": "method",
@@ -4476,6 +5063,272 @@
       "priority": 5,
       "nodes": [
         {
+          "id": "codegraph/apply_handlers",
+          "file": "codegraph/apply_handlers.py",
+          "type": "module",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_check_dead_code_signals",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply_handlers.py::_load_baseline_hashes",
+            "codegraph/index.py::IndexStore::get_node",
+            "codegraph/index.py::IndexStore::get_tests_for_node",
+            "codegraph/models/workflow.py::Workflow::get_edges_from",
+            "codegraph/models/workflow.py::Workflow::get_edges_to"
+          ],
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_remove_dead_code"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_cleanup_unused_imports",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_remove_dead_code"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_detect_indentation",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_connect_call"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_find_function_in_ast",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply_handlers.py::_get_class_method",
+            "codegraph/apply_handlers.py::_get_function_node"
+          ],
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_connect_call",
+            "codegraph/apply_handlers.py::handle_remove_dead_code"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_find_import_block_end",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_add_import",
+            "codegraph/apply_handlers.py::handle_connect_call"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_first_executable_line",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_connect_call"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_get_class_method",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::_find_function_in_ast"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_get_function_node",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::_find_function_in_ast"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_has_import",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_add_import",
+            "codegraph/apply_handlers.py::handle_connect_call"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_insert_line",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_add_import",
+            "codegraph/apply_handlers.py::handle_connect_call"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_is_already_connected",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/models/workflow.py::Workflow::get_edges_from"
+          ],
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_connect_call"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_load_baseline_hashes",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/storage.py::resolve_path"
+          ],
+          "called_by": [
+            "codegraph/apply_handlers.py::_check_dead_code_signals"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_parse_file_ast",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_connect_call",
+            "codegraph/apply_handlers.py::handle_remove_dead_code"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_remove_function_from_file",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply_handlers.py::_remove_lines"
+          ],
+          "called_by": [
+            "codegraph/apply_handlers.py::handle_remove_dead_code"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::_remove_lines",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/apply_handlers.py::_remove_function_from_file"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::handle_add_import",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply.py::ActionResult",
+            "codegraph/apply_handlers.py::_find_import_block_end",
+            "codegraph/apply_handlers.py::_has_import",
+            "codegraph/apply_handlers.py::_insert_line",
+            "codegraph/index.py::IndexStore::get_node"
+          ],
+          "called_by": [
+            "codegraph/apply.py::apply_response"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::handle_connect_call",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply.py::ActionResult",
+            "codegraph/apply_handlers.py::_detect_indentation",
+            "codegraph/apply_handlers.py::_find_function_in_ast",
+            "codegraph/apply_handlers.py::_find_import_block_end",
+            "codegraph/apply_handlers.py::_first_executable_line",
+            "codegraph/apply_handlers.py::_has_import",
+            "codegraph/apply_handlers.py::_insert_line",
+            "codegraph/apply_handlers.py::_is_already_connected",
+            "codegraph/apply_handlers.py::_parse_file_ast",
+            "codegraph/index.py::IndexStore::get_node"
+          ],
+          "called_by": [
+            "codegraph/apply.py::apply_response"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::handle_flag_for_review",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply.py::ActionResult",
+            "codegraph/storage.py::resolve_path",
+            "codegraph/utils/formatting.py::iso_now"
+          ],
+          "called_by": [
+            "codegraph/apply.py::apply_response"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::handle_remove_dead_code",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/apply.py::ActionResult",
+            "codegraph/apply_handlers.py::_check_dead_code_signals",
+            "codegraph/apply_handlers.py::_cleanup_unused_imports",
+            "codegraph/apply_handlers.py::_find_function_in_ast",
+            "codegraph/apply_handlers.py::_parse_file_ast",
+            "codegraph/apply_handlers.py::_remove_function_from_file",
+            "codegraph/index.py::IndexStore::get_node"
+          ],
+          "called_by": [
+            "codegraph/apply.py::apply_response"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/apply_handlers.py::save_baseline_hashes",
+          "file": "codegraph/apply_handlers.py",
+          "type": "function",
+          "calls": [
+            "codegraph/storage.py::atomic_write",
+            "codegraph/storage.py::resolve_path"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/arch_memory.py::get_experiment_success_rate",
           "file": "codegraph/arch_memory.py",
           "type": "function",
@@ -4484,6 +5337,184 @@
           ],
           "called_by": [
             "codegraph/cli.py::arch_memory_cmd"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchCandidate",
+          "file": "codegraph/arch_search.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/arch_search.py::generate_candidates"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchCandidate::from_dict",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchCandidate::to_dict",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchSearchResult",
+          "file": "codegraph/arch_search.py",
+          "type": "class",
+          "called_by": [
+            "codegraph/arch_search.py::run_arch_search"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchSearchResult::format",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchSearchResult::load",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (new_code)"
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchSearchResult::save",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_search.py::ArchSearchResult::to_dict"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::ArchSearchResult::to_dict",
+          "file": "codegraph/arch_search.py",
+          "type": "method",
+          "called_by": [
+            "codegraph/arch_search.py::ArchSearchResult::save"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::_find_subsystem_for_module",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_search.py::_strategy_to_changes"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::_module_name",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_search.py::_strategy_to_changes",
+            "codegraph/arch_search.py::generate_candidates"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::_record_search_to_memory",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "calls": [
+            "codegraph/architecture_memory.py::save_decision"
+          ],
+          "called_by": [
+            "codegraph/arch_search.py::run_arch_search"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::_strategy_to_changes",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_search.py::_find_subsystem_for_module",
+            "codegraph/arch_search.py::_module_name",
+            "codegraph/architecture_simulator.py::ArchChange"
+          ],
+          "called_by": [
+            "codegraph/arch_search.py::simulate_candidates"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::generate_candidates",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_search.py::ArchCandidate",
+            "codegraph/arch_search.py::_module_name"
+          ],
+          "called_by": [
+            "codegraph/arch_search.py::run_arch_search"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::run_arch_search",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_search.py::ArchSearchResult",
+            "codegraph/arch_search.py::_record_search_to_memory",
+            "codegraph/arch_search.py::generate_candidates",
+            "codegraph/arch_search.py::score_candidates",
+            "codegraph/arch_search.py::simulate_candidates",
+            "codegraph/architecture_simulator.py::_compute_arch_metrics"
+          ],
+          "called_by": [
+            "codegraph/cli.py::arch_search_cmd"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::score_candidates",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "called_by": [
+            "codegraph/arch_search.py::run_arch_search"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/arch_search.py::simulate_candidates",
+          "file": "codegraph/arch_search.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_search.py::_strategy_to_changes",
+            "codegraph/architecture_simulator.py::_compute_arch_metrics",
+            "codegraph/architecture_simulator.py::simulate_architecture_changes"
+          ],
+          "called_by": [
+            "codegraph/arch_search.py::run_arch_search"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -4544,6 +5575,18 @@
           "type": "function",
           "calls": [
             "codegraph/architecture_memory.py::_load_json_list"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/cli.py::arch_search_cmd",
+          "file": "codegraph/cli.py",
+          "type": "function",
+          "calls": [
+            "codegraph/arch_search.py::run_arch_search",
+            "codegraph/cli.py::handle_error",
+            "codegraph/config.py::find_project_root"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""

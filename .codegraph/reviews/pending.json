@@ -16786,5 +16786,17 @@
     "reason": "Test class entry point invoked by pytest runner",
     "timestamp": "2026-03-10T12:31:20Z",
     "target": null
+  },
+  {
+    "node": "codegraph/extractors/javascript.py::JavaScriptExtractor::__init__",
+    "reason": "__init__ appears as orphan because Python class instantiation does not produce an explicit call edge; it is invoked indirectly by setup() when registering the extractor",
+    "timestamp": "2026-03-11T15:52:31Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractors/javascript.py::JavaScriptExtractor::__init__",
+    "reason": "__init__ appears as orphan because Python class instantiation does not produce an explicit call edge; it is invoked indirectly by setup() when registering the extractor",
+    "timestamp": "2026-03-11T15:52:36Z",
+    "target": null
   }
 ]

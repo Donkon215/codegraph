@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-11T13:22:28Z",
+    "built_at": "2026-03-11T15:52:49Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -9,12 +9,12 @@
       "stdlib",
       "test_harness"
     ],
-    "edge_count": 3025,
-    "node_count": 1806,
-    "build_time_s": 6.44
+    "edge_count": 3039,
+    "node_count": 1817,
+    "build_time_s": 5.91
   },
   "format_version": 1,
-  "built_at": "2026-03-11T13:22:28Z",
+  "built_at": "2026-03-11T15:52:49Z",
   "level": "function",
   "edges": [
     {
@@ -5768,6 +5768,90 @@
     {
       "source": "codegraph/extractors/__init__.py::register_extractor",
       "target": "codegraph/extractors/__init__.py::supported_extensions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/__init__.py::setup",
+      "target": "codegraph/extractors/__init__.py::register_extractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/__init__.py::setup",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/__init__.py::setup",
+      "target": "codegraph/extractors/python.py::PythonExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
+      "target": "codegraph/extractors/javascript.py::_extract_js_file",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_edges",
+      "target": "codegraph/extractors/javascript.py::_extract_js_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "target": "codegraph/extractors/javascript.py::_extract_js_file",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/javascript.py::_extract_js_edges",
+      "target": "codegraph/types.py::WorkflowEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/javascript.py::_extract_js_edges",
+      "target": "codegraph/utils/ids.py::normalize_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/javascript.py::_extract_js_file",
+      "target": "codegraph/extractor.py::FileExtractionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/javascript.py::_extract_js_file",
+      "target": "codegraph/extractor.py::ImportInfo",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/javascript.py::_extract_js_file",
+      "target": "codegraph/extractors/javascript.py::_body_hash",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/javascript.py::_extract_js_file",
+      "target": "codegraph/extractors/javascript.py::_line_of",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/javascript.py::_extract_js_file",
+      "target": "codegraph/models/graph0.py::Graph0Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/javascript.py::_extract_js_file",
+      "target": "codegraph/utils/ids.py::normalize_path",
       "edge_type": "call",
       "confidence": "static"
     },
