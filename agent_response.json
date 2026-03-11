@@ -1,55 +1,11 @@
 {
-  "cycle": 4,
-  "graph_version": 37,
+  "cycle": 6,
+  "graph_version": 42,
   "intents": [
     {
-      "node": "codegraph/architecture_advisor",
-      "intent": "Architecture reasoning engine detecting smells and producing actionable improvement advice. Integrates with architecture_memory to contextualize suggestions with past decisions.",
-      "tags": [
-        "intelligence"
-      ]
-    },
-    {
-      "node": "codegraph/architecture_advisor.py::advise_architecture",
-      "intent": "Run full architecture analysis aggregating risk metrics, cycle detection, subsystem analysis, god module detection, and dependency depth into structured advice. Optionally loads past decisions from architecture_memory to enrich suggestions.",
-      "tags": [
-        "intelligence"
-      ]
-    },
-    {
-      "node": "codegraph/cli",
-      "intent": "CLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest (with support for all rule types: required_call, forbidden_call, forbidden_path, layer_boundary, dependency_limit), delta, diff, validate, status, cas, semantic, plan, architecture, viewer, architect, enrich, compile, code-plan, lock, drift, copilot-context, arch-simulate, arch-diff, arch-memory, archi-test, context, evolve, health, intent-apply, intent-missing, memory, metrics, multilevel, path, refactor, repair, simulate, subsystems, test-impact, version, and visualize",
-      "tags": [
-        "entry_point"
-      ]
-    },
-    {
-      "node": "codegraph/cli.py::architect_cmd",
-      "intent": "Run architecture advisor detecting smells and suggesting improvements, with optional JSON output and save. Passes project_root for architecture_memory integration.",
-      "tags": [
-        "entry_point"
-      ]
-    },
-    {
-      "node": "codegraph/cli.py::evolve_cmd",
-      "intent": "Run full architecture evolution loop: advisor, target delta, task generation. Uses project_root-aware advisor for memory-enriched suggestions.",
-      "tags": [
-        "entry_point"
-      ]
-    },
-    {
-      "node": "codegraph/extractor",
-      "intent": "AST extraction engine (Graph_0). Parses Python source files to extract nodes (functions, classes, modules), call sites, imports, and resolve call targets. Includes ambiguous method name filtering to prevent false positive fan-in from common builtins (get, append, add, etc.).",
-      "tags": [
-        "core_engine"
-      ]
-    },
-    {
-      "node": "codegraph/suggest",
-      "intent": "Suggested workflow and architecture policy manager. Manages rules (required_call, forbidden_call, forbidden_path, layer_boundary, dependency_limit), detects violations, and provides CLI-backed add/remove/list/validate/diff/stats/import operations.",
-      "tags": [
-        "governance"
-      ]
+      "node": "codegraph/apply",
+      "intent": "Repair action orchestrator. Coordinates lock, backup, conflict detection, action dispatch via apply_handlers, graph update, and validation.",
+      "tags": ["governance"]
     }
   ],
   "repairs": []

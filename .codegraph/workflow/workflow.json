@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-11T03:28:38Z",
+    "built_at": "2026-03-11T11:46:47Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -11,10 +11,10 @@
     ],
     "edge_count": 3006,
     "node_count": 1793,
-    "build_time_s": 6.11
+    "build_time_s": 6.08
   },
   "format_version": 1,
-  "built_at": "2026-03-11T03:28:38Z",
+  "built_at": "2026-03-11T11:46:47Z",
   "level": "function",
   "edges": [
     {
@@ -780,62 +780,8 @@
       "confidence": "static"
     },
     {
-      "source": "codegraph/apply.py::_check_dead_code_signals",
-      "target": "codegraph/apply.py::_load_baseline_hashes",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::_check_dead_code_signals",
-      "target": "codegraph/index.py::IndexStore::get_node",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::_check_dead_code_signals",
-      "target": "codegraph/index.py::IndexStore::get_tests_for_node",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::_check_dead_code_signals",
-      "target": "codegraph/models/workflow.py::Workflow::get_edges_from",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::_check_dead_code_signals",
-      "target": "codegraph/models/workflow.py::Workflow::get_edges_to",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
       "source": "codegraph/apply.py::_create_backups",
       "target": "codegraph/apply.py::_backup_dir",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::_find_function_in_ast",
-      "target": "codegraph/apply.py::_get_class_method",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::_find_function_in_ast",
-      "target": "codegraph/apply.py::_get_function_node",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::_is_already_connected",
-      "target": "codegraph/models/workflow.py::Workflow::get_edges_from",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::_load_baseline_hashes",
-      "target": "codegraph/storage.py::resolve_path",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -848,12 +794,6 @@
     {
       "source": "codegraph/apply.py::_release_lock",
       "target": "codegraph/apply.py::_lock_path",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::_remove_function_from_file",
-      "target": "codegraph/apply.py::_remove_lines",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -979,25 +919,25 @@
     },
     {
       "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::handle_add_import",
+      "target": "codegraph/apply_handlers.py::handle_add_import",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::handle_connect_call",
+      "target": "codegraph/apply_handlers.py::handle_connect_call",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::handle_flag_for_review",
+      "target": "codegraph/apply_handlers.py::handle_flag_for_review",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::handle_remove_dead_code",
+      "target": "codegraph/apply_handlers.py::handle_remove_dead_code",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -1038,156 +978,6 @@
       "confidence": "static"
     },
     {
-      "source": "codegraph/apply.py::handle_add_import",
-      "target": "codegraph/apply.py::ActionResult",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_add_import",
-      "target": "codegraph/apply.py::_find_import_block_end",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_add_import",
-      "target": "codegraph/apply.py::_has_import",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_add_import",
-      "target": "codegraph/apply.py::_insert_line",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_add_import",
-      "target": "codegraph/index.py::IndexStore::get_node",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_connect_call",
-      "target": "codegraph/apply.py::ActionResult",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_connect_call",
-      "target": "codegraph/apply.py::_detect_indentation",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_connect_call",
-      "target": "codegraph/apply.py::_find_function_in_ast",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_connect_call",
-      "target": "codegraph/apply.py::_find_import_block_end",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_connect_call",
-      "target": "codegraph/apply.py::_first_executable_line",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_connect_call",
-      "target": "codegraph/apply.py::_has_import",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_connect_call",
-      "target": "codegraph/apply.py::_insert_line",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_connect_call",
-      "target": "codegraph/apply.py::_is_already_connected",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_connect_call",
-      "target": "codegraph/apply.py::_parse_file_ast",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_connect_call",
-      "target": "codegraph/index.py::IndexStore::get_node",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_flag_for_review",
-      "target": "codegraph/apply.py::ActionResult",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_flag_for_review",
-      "target": "codegraph/storage.py::resolve_path",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_flag_for_review",
-      "target": "codegraph/utils/formatting.py::iso_now",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_remove_dead_code",
-      "target": "codegraph/apply.py::ActionResult",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_remove_dead_code",
-      "target": "codegraph/apply.py::_check_dead_code_signals",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_remove_dead_code",
-      "target": "codegraph/apply.py::_cleanup_unused_imports",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_remove_dead_code",
-      "target": "codegraph/apply.py::_find_function_in_ast",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_remove_dead_code",
-      "target": "codegraph/apply.py::_parse_file_ast",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_remove_dead_code",
-      "target": "codegraph/apply.py::_remove_function_from_file",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::handle_remove_dead_code",
-      "target": "codegraph/index.py::IndexStore::get_node",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
       "source": "codegraph/apply.py::run_apply",
       "target": "codegraph/annotator.py::load_graph1",
       "edge_type": "call",
@@ -1218,19 +1008,229 @@
       "confidence": "static"
     },
     {
-      "source": "codegraph/apply.py::save_baseline_hashes",
-      "target": "codegraph/storage.py::atomic_write",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::save_baseline_hashes",
+      "source": "codegraph/apply.py::undo_last_apply",
       "target": "codegraph/storage.py::resolve_path",
       "edge_type": "call",
       "confidence": "static"
     },
     {
-      "source": "codegraph/apply.py::undo_last_apply",
+      "source": "codegraph/apply_handlers.py::_check_dead_code_signals",
+      "target": "codegraph/apply_handlers.py::_load_baseline_hashes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::_check_dead_code_signals",
+      "target": "codegraph/index.py::IndexStore::get_node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::_check_dead_code_signals",
+      "target": "codegraph/index.py::IndexStore::get_tests_for_node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::_check_dead_code_signals",
+      "target": "codegraph/models/workflow.py::Workflow::get_edges_from",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::_check_dead_code_signals",
+      "target": "codegraph/models/workflow.py::Workflow::get_edges_to",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::_find_function_in_ast",
+      "target": "codegraph/apply_handlers.py::_get_class_method",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::_find_function_in_ast",
+      "target": "codegraph/apply_handlers.py::_get_function_node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::_is_already_connected",
+      "target": "codegraph/models/workflow.py::Workflow::get_edges_from",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::_load_baseline_hashes",
+      "target": "codegraph/storage.py::resolve_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::_remove_function_from_file",
+      "target": "codegraph/apply_handlers.py::_remove_lines",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_add_import",
+      "target": "codegraph/apply.py::ActionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_add_import",
+      "target": "codegraph/apply_handlers.py::_find_import_block_end",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_add_import",
+      "target": "codegraph/apply_handlers.py::_has_import",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_add_import",
+      "target": "codegraph/apply_handlers.py::_insert_line",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_add_import",
+      "target": "codegraph/index.py::IndexStore::get_node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_connect_call",
+      "target": "codegraph/apply.py::ActionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_connect_call",
+      "target": "codegraph/apply_handlers.py::_detect_indentation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_connect_call",
+      "target": "codegraph/apply_handlers.py::_find_function_in_ast",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_connect_call",
+      "target": "codegraph/apply_handlers.py::_find_import_block_end",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_connect_call",
+      "target": "codegraph/apply_handlers.py::_first_executable_line",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_connect_call",
+      "target": "codegraph/apply_handlers.py::_has_import",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_connect_call",
+      "target": "codegraph/apply_handlers.py::_insert_line",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_connect_call",
+      "target": "codegraph/apply_handlers.py::_is_already_connected",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_connect_call",
+      "target": "codegraph/apply_handlers.py::_parse_file_ast",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_connect_call",
+      "target": "codegraph/index.py::IndexStore::get_node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_flag_for_review",
+      "target": "codegraph/apply.py::ActionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_flag_for_review",
+      "target": "codegraph/storage.py::resolve_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_flag_for_review",
+      "target": "codegraph/utils/formatting.py::iso_now",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_remove_dead_code",
+      "target": "codegraph/apply.py::ActionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_remove_dead_code",
+      "target": "codegraph/apply_handlers.py::_check_dead_code_signals",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_remove_dead_code",
+      "target": "codegraph/apply_handlers.py::_cleanup_unused_imports",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_remove_dead_code",
+      "target": "codegraph/apply_handlers.py::_find_function_in_ast",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_remove_dead_code",
+      "target": "codegraph/apply_handlers.py::_parse_file_ast",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_remove_dead_code",
+      "target": "codegraph/apply_handlers.py::_remove_function_from_file",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_remove_dead_code",
+      "target": "codegraph/index.py::IndexStore::get_node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::save_baseline_hashes",
+      "target": "codegraph/storage.py::atomic_write",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::save_baseline_hashes",
       "target": "codegraph/storage.py::resolve_path",
       "edge_type": "call",
       "confidence": "static"
