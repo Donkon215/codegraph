@@ -1,46 +1,15 @@
 {
-  "intent": "add architecture_memory subsystem to the intelligence layer to persist architecture decisions, simulation results, and advisor findings",
+  "intent": "Improve method resolution in extractor to skip ambiguous common method names (get, append, add, format, to_dict, from_dict, warning) and reduce false positive fan-in. Extend suggest CLI to support all RuleType values including dependency_limit, layer_boundary, forbidden_path. Integrate architecture_memory into architecture_advisor so past decisions inform current advice.",
   "summary": {
-    "changes": 5,
+    "changes": 0,
     "target_edges": 0,
     "target_nodes": 0,
-    "warnings": 0
+    "warnings": 1
   },
-  "changes": [
-    {
-      "change_type": "add_subsystem",
-      "subsystem": "architecture_memory",
-      "description": "New subsystem from intent: add architecture_memory subsystem to the intelligence layer to persist architecture decisions, simulation results, and advisor findings",
-      "reason": "add architecture_memory subsystem to the intelligence layer to persist architecture decisions, simulation results, and advisor findings"
-    },
-    {
-      "change_type": "add_edge",
-      "subsystem": "architecture_memory",
-      "target_subsystem": "models",
-      "reason": "architecture_memory depends on models"
-    },
-    {
-      "change_type": "add_edge",
-      "subsystem": "architecture_memory",
-      "target_subsystem": "infrastructure",
-      "reason": "architecture_memory depends on infrastructure"
-    },
-    {
-      "change_type": "add_constraint",
-      "subsystem": "models",
-      "target_subsystem": "architecture_memory",
-      "constraint_type": "forbidden",
-      "reason": "Models must not depend on architecture_memory."
-    },
-    {
-      "change_type": "add_constraint",
-      "subsystem": "infrastructure",
-      "target_subsystem": "architecture_memory",
-      "constraint_type": "forbidden",
-      "reason": "Infrastructure must not depend on architecture_memory."
-    }
-  ],
+  "changes": [],
   "target_edges": [],
   "target_nodes": [],
-  "warnings": []
+  "warnings": [
+    "Could not determine subsystem from intent: Improve method resolution in extractor to skip ambiguous common method names (get, append, add, format, to_dict, from_dict, warning) and reduce false positive fan-in. Extend suggest CLI to support all RuleType values including dependency_limit, layer_boundary, forbidden_path. Integrate architecture_memory into architecture_advisor so past decisions inform current advice."
+  ]
 }

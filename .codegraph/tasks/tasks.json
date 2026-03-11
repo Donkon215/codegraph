@@ -1,18 +1,360 @@
 {
   "cycle": 1,
-  "graph_version": 33,
-  "generated_at": "2026-03-10T18:48:07Z",
+  "graph_version": 38,
+  "generated_at": "2026-03-11T03:28:45Z",
   "tasks": [
     {
       "task_id": "orphan_nodes",
       "priority": 3,
       "nodes": [
         {
+          "id": "codegraph/agent_memory.py::AgentMemory::format",
+          "file": "codegraph/agent_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format agent memory as human-readable summary with top patterns",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_diff.py::ArchDiffReport::format",
+          "file": "codegraph/arch_diff.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format diff report as human-readable text with changes and recommendations",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_diff.py::ArchDiffReport::to_dict",
+          "file": "codegraph/arch_diff.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert full diff report to dictionary with summary and detailed changes",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_diff.py::EdgeChange::to_dict",
+          "file": "codegraph/arch_diff.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert edge change to dictionary representation for JSON serialization",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_diff.py::MetricDelta::to_dict",
+          "file": "codegraph/arch_diff.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert metric delta to dictionary with regression flag for reporting",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_diff.py::NodeChange::to_dict",
+          "file": "codegraph/arch_diff.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert node change to dictionary representation for JSON serialization",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_diff.py::_find_sccs::strongconnect",
+          "file": "codegraph/arch_diff.py",
+          "type": "function",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "iterative Tarjan inner function processing node stack",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_memory.py::ArchDecision::from_dict",
+          "file": "codegraph/arch_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize architecture decision from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_memory.py::ArchDecision::to_dict",
+          "file": "codegraph/arch_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize architecture decision to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_memory.py::ArchExperiment::from_dict",
+          "file": "codegraph/arch_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize experiment from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_memory.py::ArchExperiment::to_dict",
+          "file": "codegraph/arch_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize experiment to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_memory.py::ArchMemory::format",
+          "file": "codegraph/arch_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format architecture memory as human-readable summary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_memory.py::ArchMemory::to_dict",
+          "file": "codegraph/arch_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize architecture memory with summary counts",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_planner.py::ArchPlan::format",
+          "file": "codegraph/arch_planner.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format architecture plan as human-readable text with coverage and task summary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_planner.py::ArchPlan::to_dict",
+          "file": "codegraph/arch_planner.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize architecture plan to dictionary for JSON serialization",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_planner.py::CoverageResult::overall_coverage",
+          "file": "codegraph/arch_planner.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "compute overall coverage as average of module function and edge coverage",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_planner.py::CoverageResult::to_dict",
+          "file": "codegraph/arch_planner.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize coverage metrics to dictionary with rounded percentages",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_planner.py::PlannedTask::from_dict",
+          "file": "codegraph/arch_planner.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize planned task from dictionary representation",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_planner.py::PlannedTask::to_dict",
+          "file": "codegraph/arch_planner.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize planned task to dictionary with only non-empty fields",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_schema.py::ArchComponent::from_dict",
+          "file": "codegraph/arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize architecture component from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_schema.py::ArchComponent::to_dict",
+          "file": "codegraph/arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize architecture component to dictionary omitting empty fields",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_schema.py::ArchConstraint::from_dict",
+          "file": "codegraph/arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize constraint from dictionary with optional reason field",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_schema.py::ArchConstraint::to_dict",
+          "file": "codegraph/arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize constraint to dictionary with optional reason field",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_schema.py::ArchEdge::from_dict",
+          "file": "codegraph/arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "parse edge from list or object format supporting backward compatibility",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_schema.py::ArchEdge::to_dict",
+          "file": "codegraph/arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize edge to dictionary omitting default edge_type",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_schema.py::SubsystemDef::all_functions",
+          "file": "codegraph/arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "extract all functions from subsystem components as fully qualified ids",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_schema.py::SubsystemDef::from_dict",
+          "file": "codegraph/arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize subsystem with components and edges from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_schema.py::SubsystemDef::to_dict",
+          "file": "codegraph/arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize subsystem to dictionary omitting empty collections",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_schema.py::SystemArchitecture::from_dict",
+          "file": "codegraph/arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize complete system architecture from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_schema.py::SystemArchitecture::load",
+          "file": "codegraph/arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "load architecture definition from project codegraph directory",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::ArchAdvice::format",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format architecture advice as human-readable text report",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::ArchSmell::to_dict",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize architecture smell to dictionary omitting empty fields",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::ArchSuggestion::to_dict",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize architecture suggestion to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_compiler.py::ArchitecturePlan::format",
+          "file": "codegraph/architecture_compiler.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format architecture plan as human-readable text",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_compiler.py::ArchitecturePlan::from_dict",
+          "file": "codegraph/architecture_compiler.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize ArchitecturePlan from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
           "id": "codegraph/architecture_compiler.py::ArchitecturePlan::has_changes",
           "file": "codegraph/architecture_compiler.py",
           "type": "method",
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "check whether the plan contains any changes",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_compiler.py::ArchitecturePlan::load",
+          "file": "codegraph/architecture_compiler.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "load architecture plan from .codegraph/planning/architecture_plan.json",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_compiler.py::CompiledChange::from_dict",
+          "file": "codegraph/architecture_compiler.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize CompiledChange from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_compiler.py::CompiledChange::to_dict",
+          "file": "codegraph/architecture_compiler.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize CompiledChange to dictionary",
           "body_hash_changed": false,
           "reason": "Orphan (disconnected)"
         },
@@ -26,11 +368,29 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "codegraph/architecture_lock.py::LockReport::format",
+          "file": "codegraph/architecture_lock.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format lock report as human-readable text",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
           "id": "codegraph/architecture_lock.py::LockReport::is_locked",
           "file": "codegraph/architecture_lock.py",
           "type": "method",
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "check if no error-level violations found",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_lock.py::LockReport::to_dict",
+          "file": "codegraph/architecture_lock.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize LockReport to dictionary",
           "body_hash_changed": false,
           "reason": "Orphan (disconnected)"
         },
@@ -44,11 +404,38 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "codegraph/architecture_lock.py::LockViolation::to_dict",
+          "file": "codegraph/architecture_lock.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize LockViolation to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_memory.py::AdviceRecord::from_dict",
+          "file": "codegraph/architecture_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize an AdviceRecord from a plain dict loaded from JSON",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
           "id": "codegraph/architecture_memory.py::AdviceRecord::to_dict",
           "file": "codegraph/architecture_memory.py",
           "type": "method",
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize an AdviceRecord to a plain dict for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_memory.py::DecisionRecord::from_dict",
+          "file": "codegraph/architecture_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize a DecisionRecord from a plain dict loaded from JSON",
           "body_hash_changed": false,
           "reason": "Orphan (disconnected)"
         },
@@ -62,11 +449,83 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "codegraph/architecture_memory.py::SimulationRecord::from_dict",
+          "file": "codegraph/architecture_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize a SimulationRecord from a plain dict loaded from JSON",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
           "id": "codegraph/architecture_memory.py::SimulationRecord::to_dict",
           "file": "codegraph/architecture_memory.py",
           "type": "method",
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize a SimulationRecord to a plain dict for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_simulator.py::ArchChange::from_dict",
+          "file": "codegraph/architecture_simulator.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize ArchChange from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_simulator.py::ArchChange::to_dict",
+          "file": "codegraph/architecture_simulator.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ArchChange to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_simulator.py::ArchPrediction::to_dict",
+          "file": "codegraph/architecture_simulator.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ArchPrediction to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_simulator.py::ArchSimulationResult::format",
+          "file": "codegraph/architecture_simulator.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format simulation result as human-readable text",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_simulator.py::ArchSimulationResult::to_dict",
+          "file": "codegraph/architecture_simulator.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize simulation result to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/architecture_simulator.py::_count_subsystem_cycles::strongconnect",
+          "file": "codegraph/architecture_simulator.py",
+          "type": "function",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "tarjan strongconnect recursive helper",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/branch_executor.py::BranchComparison::format",
+          "file": "codegraph/branch_executor.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format branch comparison as human-readable text",
           "body_hash_changed": false,
           "reason": "Orphan (disconnected)"
         },
@@ -80,11 +539,29 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "codegraph/branch_executor.py::BranchMetrics::from_dict",
+          "file": "codegraph/branch_executor.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize branch metrics from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
           "id": "codegraph/branch_executor.py::BranchMetrics::to_dict",
           "file": "codegraph/branch_executor.py",
           "type": "method",
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize branch metrics to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/branch_executor.py::BranchState::from_dict",
+          "file": "codegraph/branch_executor.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize branch state from dictionary",
           "body_hash_changed": false,
           "reason": "Orphan (disconnected)"
         },
@@ -116,6 +593,42 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "codegraph/code_planner.py::CodePlan::format",
+          "file": "codegraph/code_planner.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format code plan as human-readable text",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/code_planner.py::CodePlan::from_dict",
+          "file": "codegraph/code_planner.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize CodePlan from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/code_planner.py::CodePlan::load",
+          "file": "codegraph/code_planner.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "load code plan from .codegraph/planning/.plan.json",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/code_planner.py::CodePlan::ordered_tasks::_visit",
+          "file": "codegraph/code_planner.py",
+          "type": "function",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "helper for topological sort of tasks by dependencies",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
           "id": "codegraph/code_planner.py::CodePlan::task_count",
           "file": "codegraph/code_planner.py",
           "type": "method",
@@ -125,11 +638,119 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "codegraph/code_planner.py::CodePlan::tasks_by_type",
+          "file": "codegraph/code_planner.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "return task counts grouped by type",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/code_planner.py::PlanTask::from_dict",
+          "file": "codegraph/code_planner.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize PlanTask from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/code_planner.py::PlanTask::to_dict",
+          "file": "codegraph/code_planner.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize PlanTask to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/config.py::CodegraphConfig::from_dict",
+          "file": "codegraph/config.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "from dict",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/context_builder.py::NodeContext::to_dict",
+          "file": "codegraph/context_builder.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert node context to dictionary with optional intent and layer info",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/context_builder.py::PromptContext::to_dict",
+          "file": "codegraph/context_builder.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert prompt context to dictionary for JSON serialization",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/copilot_context.py::CopilotContext::format",
+          "file": "codegraph/copilot_context.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format copilot context as human-readable text",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/copilot_context.py::CopilotContext::load",
+          "file": "codegraph/copilot_context.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "load copilot context from .codegraph/context/copilot_context.json",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/copilot_context.py::SubsystemSummary::to_dict",
+          "file": "codegraph/copilot_context.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize SubsystemSummary to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/drift_detector.py::DriftFinding::to_dict",
+          "file": "codegraph/drift_detector.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize DriftFinding to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
           "id": "codegraph/drift_detector.py::DriftReport::error_count",
           "file": "codegraph/drift_detector.py",
           "type": "method",
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "count error-level drift findings",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/drift_detector.py::DriftReport::findings_by_type",
+          "file": "codegraph/drift_detector.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "group finding counts by drift type",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/drift_detector.py::DriftReport::format",
+          "file": "codegraph/drift_detector.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format drift report as human-readable text",
           "body_hash_changed": false,
           "reason": "Orphan (disconnected)"
         },
@@ -148,6 +769,213 @@
           "type": "method",
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "count warning-level drift findings",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/extractor.py::ScopeTree::resolve",
+          "file": "codegraph/extractor.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "resolve *name* using LEGB lookup, returning a node ID or None",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/filters.py::FilterPipeline::add",
+          "file": "codegraph/filters.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "add",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/models/agent_response.py::AgentResponse::from_json",
+          "file": "codegraph/models/agent_response.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "from json",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/multilevel.py::ModuleEdge::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize module edge to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/multilevel.py::ModuleGraph::format",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format module graph as human-readable text with top modules by fan-out",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/multilevel.py::ModuleGraph::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize module graph with summary statistics",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/multilevel.py::ModuleNode::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize module node to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/multilevel.py::MultiLevelReport::format",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format multi-level report as human-readable text",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/multilevel.py::MultiLevelReport::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize report with smells grouped by level",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/multilevel.py::MultiLevelSmell::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize smell to dictionary with level name mapping",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/multilevel.py::SubsystemEdge::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize subsystem edge to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/multilevel.py::SubsystemGraph::format",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format subsystem graph as human-readable text with cohesion and cross-edges",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/multilevel.py::SubsystemGraph::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize subsystem graph with summary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/multilevel.py::SubsystemNode::to_dict",
+          "file": "codegraph/multilevel.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize subsystem node to dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/simulator.py::SimViolation::to_dict",
+          "file": "codegraph/simulator.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert violation to dictionary with limited affected nodes list",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/simulator.py::SimulatedChange::to_dict",
+          "file": "codegraph/simulator.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert simulated change to dictionary representation for JSON output",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/simulator.py::SimulationResult::format",
+          "file": "codegraph/simulator.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format simulation result as human-readable text with status and violations",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/simulator.py::SimulationResult::to_dict",
+          "file": "codegraph/simulator.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert simulation result to dictionary for JSON reporting",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/simulator.py::_find_cycles_in_adj::strongconnect",
+          "file": "codegraph/simulator.py",
+          "type": "function",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "iterative Tarjan inner function for cycle detection in simulator",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/subsystem.py::Subsystem::to_dict",
+          "file": "codegraph/subsystem.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert subsystem data to dictionary with node and file counts",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/subsystem.py::SubsystemCoupling::to_dict",
+          "file": "codegraph/subsystem.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert coupling data to dictionary with strength metric",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/subsystem.py::SubsystemReport::format",
+          "file": "codegraph/subsystem.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format subsystem report as human-readable text with details and coupling",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/subsystem.py::SubsystemReport::to_dict",
+          "file": "codegraph/subsystem.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "convert subsystem report to dictionary for JSON serialization",
           "body_hash_changed": false,
           "reason": "Orphan (disconnected)"
         },
@@ -179,6 +1007,15 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "codegraph/target_architecture.py::ArchitectureDelta::format",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format delta as human-readable text report",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
           "id": "codegraph/target_architecture.py::ArchitectureDelta::has_changes",
           "file": "codegraph/target_architecture.py",
           "type": "method",
@@ -197,11 +1034,29 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "codegraph/target_architecture.py::TargetEdge::from_dict",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize target edge from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
           "id": "codegraph/target_architecture.py::TargetEdge::to_dict",
           "file": "codegraph/target_architecture.py",
           "type": "method",
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize target edge to dictionary for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/target_architecture.py::TargetNode::from_dict",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize target node from dictionary",
           "body_hash_changed": false,
           "reason": "Orphan (disconnected)"
         },
@@ -215,12 +1070,38 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "codegraph/target_architecture.py::TargetWorkflow::from_dict",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize target workflow from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/target_architecture.py::TargetWorkflow::load",
+          "file": "codegraph/target_architecture.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "load target workflow from disk, returns None if not found",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
           "id": "tests/test_arch_memory.py::TestArchDecision",
           "file": "tests/test_arch_memory.py",
           "type": "class",
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": "",
           "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_arch_memory.py::TestArchDecision::test_defaults",
+          "file": "tests/test_arch_memory.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_arch_memory.py::TestArchExperiment",
@@ -271,6 +1152,78 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "tests/test_arch_planner.py::TestPlannedTask::test_from_dict",
+          "file": "tests/test_arch_planner.py",
+          "type": "method",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "test deserialize planned task from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (entry_point)"
+        },
+        {
+          "id": "tests/test_arch_schema.py::TestArchComponent::test_from_dict",
+          "file": "tests/test_arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "test deserialize component from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (entry_point)"
+        },
+        {
+          "id": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict",
+          "file": "tests/test_arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "test deserialize constraint from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (entry_point)"
+        },
+        {
+          "id": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict_no_reason",
+          "file": "tests/test_arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "test deserialize constraint without optional reason field",
+          "body_hash_changed": false,
+          "reason": "Orphan (entry_point)"
+        },
+        {
+          "id": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_list",
+          "file": "tests/test_arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "test deserialize edge from list format backward compatibility",
+          "body_hash_changed": false,
+          "reason": "Orphan (entry_point)"
+        },
+        {
+          "id": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_object",
+          "file": "tests/test_arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "test deserialize edge from object format with custom type",
+          "body_hash_changed": false,
+          "reason": "Orphan (entry_point)"
+        },
+        {
+          "id": "tests/test_arch_schema.py::TestSubsystemDef::test_from_dict",
+          "file": "tests/test_arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "test deserialize subsystem with components and edges",
+          "body_hash_changed": false,
+          "reason": "Orphan (entry_point)"
+        },
+        {
+          "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_load_missing",
+          "file": "tests/test_arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "test load returns None when architecture file missing",
+          "body_hash_changed": false,
+          "reason": "Orphan (entry_point)"
+        },
+        {
           "id": "tests/test_architecture_compiler.py::TestApplyPlan",
           "file": "tests/test_architecture_compiler.py",
           "type": "class",
@@ -285,6 +1238,14 @@
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": "",
           "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_load_missing",
+          "file": "tests/test_architecture_compiler.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_architecture_compiler.py::TestCompileIntent",
@@ -415,6 +1376,14 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "tests/test_branch_executor.py::TestBranchMetrics::test_from_dict_defaults",
+          "file": "tests/test_branch_executor.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
+        },
+        {
           "id": "tests/test_branch_executor.py::TestBranchState",
           "file": "tests/test_branch_executor.py",
           "type": "class",
@@ -463,6 +1432,14 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "tests/test_code_planner.py::TestCodePlan::test_load_missing",
+          "file": "tests/test_code_planner.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
+        },
+        {
           "id": "tests/test_code_planner.py::TestGeneratePlan",
           "file": "tests/test_code_planner.py",
           "type": "class",
@@ -487,6 +1464,15 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "tests/test_context_builder.py::_make_graph1::get_node",
+          "file": "tests/test_context_builder.py",
+          "type": "function",
+          "suggested_fix": "Review disconnected node and connect to workflow",
+          "previous_intent": "inner function returning graph1 node by ID from lookup map",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
           "id": "tests/test_copilot_context.py::TestBuildCopilotContext",
           "file": "tests/test_copilot_context.py",
           "type": "class",
@@ -501,6 +1487,14 @@
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": "",
           "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_copilot_context.py::TestCopilotContext::test_load_missing",
+          "file": "tests/test_copilot_context.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_copilot_context.py::TestSubsystemSummary",
@@ -533,6 +1527,33 @@
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": "",
           "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_fuzz.py::TestJsonLoaderFuzz::test_graph0_no_crash",
+          "file": "tests/test_fuzz.py",
+          "type": "method",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "test graph0 no crash",
+          "body_hash_changed": false,
+          "reason": "Orphan (entry_point)"
+        },
+        {
+          "id": "tests/test_fuzz.py::TestJsonLoaderFuzz::test_graph1_no_crash",
+          "file": "tests/test_fuzz.py",
+          "type": "method",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "test graph1 no crash",
+          "body_hash_changed": false,
+          "reason": "Orphan (entry_point)"
+        },
+        {
+          "id": "tests/test_fuzz.py::TestJsonLoaderFuzz::test_workflow_no_crash",
+          "file": "tests/test_fuzz.py",
+          "type": "method",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "test workflow no crash",
+          "body_hash_changed": false,
+          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_multilevel.py::TestAnalyzeMultilevel",
@@ -727,6 +1748,14 @@
           "reason": "Orphan (disconnected)"
         },
         {
+          "id": "tests/test_target_architecture.py::TestTargetEdge::test_from_dict_defaults",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
+        },
+        {
           "id": "tests/test_target_architecture.py::TestTargetNode",
           "file": "tests/test_target_architecture.py",
           "type": "class",
@@ -741,6 +1770,14 @@
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": "",
           "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_load_nonexistent",
+          "file": "tests/test_target_architecture.py",
+          "type": "method",
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
         }
       ]
     },
@@ -749,68 +1786,96 @@
       "priority": 5,
       "nodes": [
         {
+          "id": "codegraph/agent_memory.py::AgentMemory::format",
+          "file": "codegraph/agent_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format agent memory as human-readable summary with top patterns",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/agent_memory.py::AgentMemory::to_dict",
+          "file": "codegraph/agent_memory.py",
+          "type": "method",
+          "called_by": [
+            "codegraph/agent_memory.py::AgentMemory::to_json"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize AgentMemory to dictionary keeping last 20 notes",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/agent_memory.py::AgentMemory::to_json",
+          "file": "codegraph/agent_memory.py",
+          "type": "method",
+          "calls": [
+            "codegraph/agent_memory.py::AgentMemory::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize AgentMemory to JSON string",
+          "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/analyzer.py::AnalysisCache::get",
+          "file": "codegraph/analyzer.py",
+          "type": "method",
+          "calls": [
+            "codegraph/analyzer.py::AnalysisCache::_cache_path"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "get",
+          "body_hash_changed": false
+        },
+        {
           "id": "codegraph/arch_diff.py::ArchDiffReport::format",
           "file": "codegraph/arch_diff.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format diff report as human-readable text with changes and recommendations",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_diff.py::ArchDiffReport::to_dict",
           "file": "codegraph/arch_diff.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "convert full diff report to dictionary with summary and detailed changes",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_diff.py::EdgeChange::to_dict",
           "file": "codegraph/arch_diff.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "convert edge change to dictionary representation for JSON serialization",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_diff.py::MetricDelta::to_dict",
           "file": "codegraph/arch_diff.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "convert metric delta to dictionary with regression flag for reporting",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_diff.py::NodeChange::to_dict",
           "file": "codegraph/arch_diff.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "convert node change to dictionary representation for JSON serialization",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_diff.py::_build_adj",
           "file": "codegraph/arch_diff.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/filters.py::FilterPipeline::add"
-          ],
           "called_by": [
             "codegraph/arch_diff.py::diff_graphs"
           ],
@@ -822,13 +1887,6 @@
           "id": "codegraph/arch_diff.py::_find_sccs",
           "file": "codegraph/arch_diff.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/extractor.py::ScopeTree::pop",
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/tasks.py::TaskHistory::append",
-            "codegraph/utils/progress.py::ProgressReporter::update"
-          ],
           "called_by": [
             "codegraph/arch_diff.py::diff_graphs"
           ],
@@ -840,23 +1898,15 @@
           "id": "codegraph/arch_diff.py::_find_sccs::strongconnect",
           "file": "codegraph/arch_diff.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/extractor.py::ScopeTree::pop",
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "iterative Tarjan inner function processing node stack",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_diff.py::_max_fan_in",
           "file": "codegraph/arch_diff.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
           "called_by": [
             "codegraph/arch_diff.py::diff_graphs"
           ],
@@ -868,9 +1918,6 @@
           "id": "codegraph/arch_diff.py::_max_fan_out",
           "file": "codegraph/arch_diff.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
           "called_by": [
             "codegraph/arch_diff.py::diff_graphs"
           ],
@@ -897,8 +1944,7 @@
           "file": "codegraph/arch_health.py",
           "type": "method",
           "calls": [
-            "codegraph/arch_health.py::ArchHealthReport::_grade",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/arch_health.py::ArchHealthReport::_grade"
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format health report as human-readable text with smells and recommendations",
@@ -909,7 +1955,6 @@
           "file": "codegraph/arch_health.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/arch_health.py::ArchHealthReport::_grade"
           ],
           "suggested_fix": "Create a test function covering this production code",
@@ -921,7 +1966,6 @@
           "file": "codegraph/arch_health.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/arch_health.py::ArchHealthReport::_grade"
           ],
           "suggested_fix": "Create a test function covering this production code",
@@ -935,7 +1979,6 @@
           "calls": [
             "codegraph/arch_health.py::ArchHealthReport::_grade",
             "codegraph/arch_health.py::load_health_history",
-            "codegraph/tasks.py::TaskHistory::append",
             "codegraph/utils/formatting.py::iso_now"
           ],
           "called_by": [
@@ -960,9 +2003,6 @@
           "id": "codegraph/arch_health.py::save_health_report",
           "file": "codegraph/arch_health.py",
           "type": "function",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "called_by": [
             "codegraph/cli.py::health_cmd"
           ],
@@ -971,59 +2011,58 @@
           "body_hash_changed": false
         },
         {
+          "id": "codegraph/arch_memory.py::ArchDecision::from_dict",
+          "file": "codegraph/arch_memory.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize architecture decision from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
           "id": "codegraph/arch_memory.py::ArchDecision::to_dict",
           "file": "codegraph/arch_memory.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize architecture decision to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_memory.py::ArchExperiment::from_dict",
           "file": "codegraph/arch_memory.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize experiment from dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_memory.py::ArchExperiment::to_dict",
           "file": "codegraph/arch_memory.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize experiment to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_memory.py::ArchMemory::format",
           "file": "codegraph/arch_memory.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format architecture memory as human-readable summary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_memory.py::ArchMemory::to_dict",
           "file": "codegraph/arch_memory.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize architecture memory with summary counts",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_memory.py::get_experiment_success_rate",
@@ -1042,77 +2081,63 @@
           "id": "codegraph/arch_planner.py::ArchPlan::format",
           "file": "codegraph/arch_planner.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format architecture plan as human-readable text with coverage and task summary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_planner.py::ArchPlan::to_dict",
           "file": "codegraph/arch_planner.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize architecture plan to dictionary for JSON serialization",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_planner.py::CoverageResult::overall_coverage",
           "file": "codegraph/arch_planner.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "compute overall coverage as average of module function and edge coverage",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_planner.py::CoverageResult::to_dict",
           "file": "codegraph/arch_planner.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize coverage metrics to dictionary with rounded percentages",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_planner.py::PlannedTask::from_dict",
           "file": "codegraph/arch_planner.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize planned task from dictionary representation",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_planner.py::PlannedTask::to_dict",
           "file": "codegraph/arch_planner.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize planned task to dictionary with only non-empty fields",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_planner.py::_check_arch_edges",
           "file": "codegraph/arch_planner.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/arch_planner.py::PlannedTask",
-            "codegraph/arch_planner.py::_resolve_target_files",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/arch_planner.py::_resolve_target_files"
           ],
           "called_by": [
             "codegraph/arch_planner.py::plan_architecture"
@@ -1158,124 +2183,116 @@
           "id": "codegraph/arch_schema.py::ArchComponent::from_dict",
           "file": "codegraph/arch_schema.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize architecture component from dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_schema.py::ArchComponent::to_dict",
           "file": "codegraph/arch_schema.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize architecture component to dictionary omitting empty fields",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_schema.py::ArchConstraint::from_dict",
           "file": "codegraph/arch_schema.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize constraint from dictionary with optional reason field",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_schema.py::ArchConstraint::to_dict",
           "file": "codegraph/arch_schema.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize constraint to dictionary with optional reason field",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_schema.py::ArchEdge::from_dict",
           "file": "codegraph/arch_schema.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "parse edge from list or object format supporting backward compatibility",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_schema.py::ArchEdge::to_dict",
           "file": "codegraph/arch_schema.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize edge to dictionary omitting default edge_type",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_schema.py::SubsystemDef::all_functions",
           "file": "codegraph/arch_schema.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "extract all functions from subsystem components as fully qualified ids",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_schema.py::SubsystemDef::from_dict",
           "file": "codegraph/arch_schema.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize subsystem with components and edges from dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_schema.py::SubsystemDef::to_dict",
           "file": "codegraph/arch_schema.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize subsystem to dictionary omitting empty collections",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_schema.py::SystemArchitecture::from_dict",
           "file": "codegraph/arch_schema.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize complete system architecture from dictionary",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_schema.py::SystemArchitecture::load",
+          "file": "codegraph/arch_schema.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "load architecture definition from project codegraph directory",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/arch_schema.py::SystemArchitecture::save",
+          "file": "codegraph/arch_schema.py",
+          "type": "method",
+          "calls": [
+            "codegraph/arch_schema.py::SystemArchitecture::to_dict"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "save architecture definition to project codegraph architecture directory",
           "body_hash_changed": false
         },
         {
           "id": "codegraph/arch_schema.py::SystemArchitecture::to_dict",
           "file": "codegraph/arch_schema.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "called_by": [
             "codegraph/arch_schema.py::SystemArchitecture::save"
           ],
@@ -1298,10 +2315,6 @@
           "id": "codegraph/arch_viewer.py::_build_system_data",
           "file": "codegraph/arch_viewer.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "called_by": [
             "codegraph/arch_viewer.py::generate_viewer"
           ],
@@ -1327,12 +2340,10 @@
           "id": "codegraph/architecture_advisor.py::ArchAdvice::format",
           "file": "codegraph/architecture_advisor.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format architecture advice as human-readable text report",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_advisor.py::ArchAdvice::save",
@@ -1349,9 +2360,6 @@
           "id": "codegraph/architecture_advisor.py::ArchAdvice::to_dict",
           "file": "codegraph/architecture_advisor.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "called_by": [
             "codegraph/architecture_advisor.py::ArchAdvice::save"
           ],
@@ -1363,33 +2371,27 @@
           "id": "codegraph/architecture_advisor.py::ArchSmell::to_dict",
           "file": "codegraph/architecture_advisor.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize architecture smell to dictionary omitting empty fields",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_advisor.py::ArchSuggestion::to_dict",
           "file": "codegraph/architecture_advisor.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize architecture suggestion to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_advisor.py::_detect_hidden_coupling",
           "file": "codegraph/architecture_advisor.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/architecture_advisor.py::ArchSmell",
-            "codegraph/index.py::IndexStore::_get_conn",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/index.py::IndexStore::_get_conn"
           ],
           "called_by": [
             "codegraph/architecture_advisor.py::advise_architecture"
@@ -1399,27 +2401,35 @@
           "body_hash_changed": false
         },
         {
+          "id": "codegraph/architecture_advisor.py::_enrich_with_memory",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/architecture_memory.py::load_decisions"
+          ],
+          "called_by": [
+            "codegraph/architecture_advisor.py::advise_architecture"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/architecture_compiler.py::ArchitecturePlan::format",
           "file": "codegraph/architecture_compiler.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format architecture plan as human-readable text",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_compiler.py::ArchitecturePlan::from_dict",
           "file": "codegraph/architecture_compiler.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize ArchitecturePlan from dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_compiler.py::ArchitecturePlan::has_changes",
@@ -1434,12 +2444,10 @@
           "id": "codegraph/architecture_compiler.py::ArchitecturePlan::load",
           "file": "codegraph/architecture_compiler.py",
           "type": "method",
-          "calls": [
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "load architecture plan from .codegraph/planning/architecture_plan.json",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_compiler.py::ArchitecturePlan::save",
@@ -1456,9 +2464,6 @@
           "id": "codegraph/architecture_compiler.py::ArchitecturePlan::to_dict",
           "file": "codegraph/architecture_compiler.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "called_by": [
             "codegraph/architecture_compiler.py::ArchitecturePlan::save"
           ],
@@ -1470,32 +2475,26 @@
           "id": "codegraph/architecture_compiler.py::CompiledChange::from_dict",
           "file": "codegraph/architecture_compiler.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize CompiledChange from dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_compiler.py::CompiledChange::to_dict",
           "file": "codegraph/architecture_compiler.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize CompiledChange to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_compiler.py::_add_default_constraints",
           "file": "codegraph/architecture_compiler.py",
           "type": "function",
           "calls": [
-            "codegraph/architecture_compiler.py::CompiledChange",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/architecture_compiler.py::CompiledChange"
           ],
           "called_by": [
             "codegraph/architecture_compiler.py::compile_intent"
@@ -1539,12 +2538,10 @@
           "id": "codegraph/architecture_lock.py::LockReport::format",
           "file": "codegraph/architecture_lock.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format lock report as human-readable text",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_lock.py::LockReport::is_locked",
@@ -1559,12 +2556,10 @@
           "id": "codegraph/architecture_lock.py::LockReport::to_dict",
           "file": "codegraph/architecture_lock.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize LockReport to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_lock.py::LockReport::warning_count",
@@ -1579,12 +2574,10 @@
           "id": "codegraph/architecture_lock.py::LockViolation::to_dict",
           "file": "codegraph/architecture_lock.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize LockViolation to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_lock.py::_build_reverse_module_map",
@@ -1614,9 +2607,7 @@
           "file": "codegraph/architecture_lock.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/architecture_lock.py::LockViolation",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/architecture_lock.py::LockViolation"
           ],
           "called_by": [
             "codegraph/architecture_lock.py::check_lock"
@@ -1630,10 +2621,7 @@
           "file": "codegraph/architecture_lock.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/architecture_lock.py::LockViolation",
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/architecture_lock.py::LockViolation"
           ],
           "called_by": [
             "codegraph/architecture_lock.py::check_lock"
@@ -1647,9 +2635,7 @@
           "file": "codegraph/architecture_lock.py",
           "type": "function",
           "calls": [
-            "codegraph/architecture_lock.py::LockViolation",
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/architecture_lock.py::LockViolation"
           ],
           "called_by": [
             "codegraph/architecture_lock.py::check_lock"
@@ -1662,12 +2648,10 @@
           "id": "codegraph/architecture_memory.py::AdviceRecord::from_dict",
           "file": "codegraph/architecture_memory.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize an AdviceRecord from a plain dict loaded from JSON",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_memory.py::AdviceRecord::to_dict",
@@ -1682,12 +2666,10 @@
           "id": "codegraph/architecture_memory.py::DecisionRecord::from_dict",
           "file": "codegraph/architecture_memory.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize a DecisionRecord from a plain dict loaded from JSON",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_memory.py::DecisionRecord::to_dict",
@@ -1702,12 +2684,10 @@
           "id": "codegraph/architecture_memory.py::SimulationRecord::from_dict",
           "file": "codegraph/architecture_memory.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize a SimulationRecord from a plain dict loaded from JSON",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_memory.py::SimulationRecord::to_dict",
@@ -1722,10 +2702,8 @@
           "id": "codegraph/architecture_memory.py::_load_json_list",
           "file": "codegraph/architecture_memory.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
           "called_by": [
+            "codegraph/architecture_memory.py::load_advice_history",
             "codegraph/architecture_memory.py::load_decisions",
             "codegraph/architecture_memory.py::record_advice",
             "codegraph/architecture_memory.py::record_simulation",
@@ -1749,12 +2727,24 @@
           "body_hash_changed": false
         },
         {
+          "id": "codegraph/architecture_memory.py::load_advice_history",
+          "file": "codegraph/architecture_memory.py",
+          "type": "function",
+          "calls": [
+            "codegraph/architecture_memory.py::_load_json_list"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/architecture_memory.py::load_decisions",
           "file": "codegraph/architecture_memory.py",
           "type": "function",
           "calls": [
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/architecture_memory.py::_load_json_list"
+          ],
+          "called_by": [
+            "codegraph/architecture_advisor.py::_enrich_with_memory"
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "load persisted architecture decisions from .codegraph/memory/decisions.json with optional filtering by result status or tags",
@@ -1765,12 +2755,9 @@
           "file": "codegraph/architecture_memory.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/architecture_memory.py::AdviceRecord",
             "codegraph/architecture_memory.py::_load_json_list",
-            "codegraph/architecture_memory.py::_save_json_list",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/architecture_memory.py::_save_json_list"
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "record an architecture advisor snapshot (grade, score, smells, suggestions) to .codegraph/memory/advice.json",
@@ -1781,12 +2768,9 @@
           "file": "codegraph/architecture_memory.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/architecture_memory.py::SimulationRecord",
             "codegraph/architecture_memory.py::_load_json_list",
-            "codegraph/architecture_memory.py::_save_json_list",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/architecture_memory.py::_save_json_list"
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "record an architecture simulation result (subsystem, recommendation, safety, predictions) to .codegraph/memory/simulations.json",
@@ -1797,12 +2781,9 @@
           "file": "codegraph/architecture_memory.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/architecture_memory.py::DecisionRecord",
             "codegraph/architecture_memory.py::_load_json_list",
-            "codegraph/architecture_memory.py::_save_json_list",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/architecture_memory.py::_save_json_list"
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "persist a new architecture decision record (decision text, reason, result, tags) to .codegraph/memory/decisions.json",
@@ -1812,56 +2793,46 @@
           "id": "codegraph/architecture_simulator.py::ArchChange::from_dict",
           "file": "codegraph/architecture_simulator.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize ArchChange from dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_simulator.py::ArchChange::to_dict",
           "file": "codegraph/architecture_simulator.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize ArchChange to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_simulator.py::ArchPrediction::to_dict",
           "file": "codegraph/architecture_simulator.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize ArchPrediction to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_simulator.py::ArchSimulationResult::format",
           "file": "codegraph/architecture_simulator.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format simulation result as human-readable text",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_simulator.py::ArchSimulationResult::to_dict",
           "file": "codegraph/architecture_simulator.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize simulation result to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_simulator.py::_apply_changes",
@@ -1872,8 +2843,7 @@
             "codegraph/arch_schema.py::ArchConstraint",
             "codegraph/arch_schema.py::ArchEdge",
             "codegraph/arch_schema.py::SubsystemDef",
-            "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/arch_schema.py::SystemArchitecture::get_subsystem"
           ],
           "called_by": [
             "codegraph/architecture_simulator.py::simulate_architecture_changes"
@@ -1886,9 +2856,6 @@
           "id": "codegraph/architecture_simulator.py::_check_constraints",
           "file": "codegraph/architecture_simulator.py",
           "type": "function",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "called_by": [
             "codegraph/architecture_simulator.py::simulate_architecture_changes"
           ],
@@ -1901,9 +2868,7 @@
           "file": "codegraph/architecture_simulator.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/architecture_simulator.py::_count_subsystem_cycles",
-            "codegraph/filters.py::FilterPipeline::add"
+            "codegraph/architecture_simulator.py::_count_subsystem_cycles"
           ],
           "called_by": [
             "codegraph/architecture_simulator.py::simulate_architecture_changes"
@@ -1916,13 +2881,6 @@
           "id": "codegraph/architecture_simulator.py::_count_subsystem_cycles",
           "file": "codegraph/architecture_simulator.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/extractor.py::ScopeTree::pop",
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/tasks.py::TaskHistory::append",
-            "codegraph/utils/progress.py::ProgressReporter::update"
-          ],
           "called_by": [
             "codegraph/architecture_simulator.py::_compute_arch_metrics"
           ],
@@ -1934,23 +2892,15 @@
           "id": "codegraph/architecture_simulator.py::_count_subsystem_cycles::strongconnect",
           "file": "codegraph/architecture_simulator.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/extractor.py::ScopeTree::pop",
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "tarjan strongconnect recursive helper",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_simulator.py::_determine_recommendation",
           "file": "codegraph/architecture_simulator.py",
           "type": "function",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "called_by": [
             "codegraph/architecture_simulator.py::simulate_architecture_changes"
           ],
@@ -1963,9 +2913,7 @@
           "file": "codegraph/architecture_simulator.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/architecture_simulator.py::ArchPrediction",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/architecture_simulator.py::ArchPrediction"
           ],
           "called_by": [
             "codegraph/architecture_simulator.py::simulate_architecture_changes"
@@ -1978,12 +2926,10 @@
           "id": "codegraph/branch_executor.py::BranchComparison::format",
           "file": "codegraph/branch_executor.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format branch comparison as human-readable text",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/branch_executor.py::BranchComparison::to_dict",
@@ -1998,13 +2944,10 @@
           "id": "codegraph/branch_executor.py::BranchMetrics::from_dict",
           "file": "codegraph/branch_executor.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize branch metrics from dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/branch_executor.py::BranchMetrics::to_dict",
@@ -2019,13 +2962,10 @@
           "id": "codegraph/branch_executor.py::BranchState::from_dict",
           "file": "codegraph/branch_executor.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize branch state from dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/branch_executor.py::BranchState::to_dict",
@@ -2055,9 +2995,6 @@
           "id": "codegraph/branch_executor.py::_save_branch_state",
           "file": "codegraph/branch_executor.py",
           "type": "function",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "called_by": [
             "codegraph/branch_executor.py::create_branch",
             "codegraph/branch_executor.py::merge_branch",
@@ -2120,8 +3057,7 @@
           "file": "codegraph/branch_executor.py",
           "type": "function",
           "calls": [
-            "codegraph/branch_executor.py::_run_git",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/branch_executor.py::_run_git"
           ],
           "called_by": [
             "codegraph/cli.py::branch_list"
@@ -2138,8 +3074,7 @@
             "codegraph/branch_executor.py::_run_git",
             "codegraph/branch_executor.py::_save_branch_state",
             "codegraph/branch_executor.py::get_current_branch",
-            "codegraph/branch_executor.py::load_branch_state",
-            "codegraph/formatters.py::OutputFormatter::error"
+            "codegraph/branch_executor.py::load_branch_state"
           ],
           "called_by": [
             "codegraph/cli.py::branch_merge"
@@ -2153,7 +3088,6 @@
           "file": "codegraph/branch_executor.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/branch_executor.py::BranchMetrics",
             "codegraph/branch_executor.py::_save_branch_state",
             "codegraph/branch_executor.py::capture_metrics",
@@ -2169,9 +3103,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/arch_diff.py::diff_snapshots",
             "codegraph/arch_diff.py::save_snapshot",
             "codegraph/cli.py::handle_error",
@@ -2186,9 +3117,7 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/agent_memory.py::load_memory",
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/arch_memory.py::get_experiment_success_rate",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root"
@@ -2202,10 +3131,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
             "codegraph/architecture_simulator.py::simulate_subsystem_addition",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root"
@@ -2218,10 +3143,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/architecture_advisor.py::advise_architecture",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
@@ -2229,7 +3150,7 @@
             "codegraph/index.py::IndexStore"
           ],
           "suggested_fix": "Create a test function covering this production code",
-          "previous_intent": "run architecture advisor detecting smells and suggesting improvements, with options for JSON output and saving to file",
+          "previous_intent": "run architecture advisor detecting smells and suggesting improvements, with optional JSON output and save. Passes project_root for architecture_memory integration",
           "body_hash_changed": false
         },
         {
@@ -2237,10 +3158,7 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/arch_planner.py::plan_architecture",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
             "codegraph/arch_schema.py::init_architecture",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
@@ -2257,7 +3175,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/branch_executor.py::compare_branches",
             "codegraph/branch_executor.py::load_branch_state",
             "codegraph/cli.py::handle_error",
@@ -2272,7 +3189,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/branch_executor.py::create_branch",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root"
@@ -2286,7 +3202,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/branch_executor.py::discard_branch",
             "codegraph/branch_executor.py::load_branch_state",
             "codegraph/cli.py::handle_error",
@@ -2310,7 +3225,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/branch_executor.py::list_architecture_branches",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root"
@@ -2324,7 +3238,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/branch_executor.py::load_branch_state",
             "codegraph/branch_executor.py::merge_branch",
             "codegraph/cli.py::handle_error",
@@ -2339,7 +3252,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/branch_executor.py::capture_metrics",
             "codegraph/branch_executor.py::load_branch_state",
             "codegraph/branch_executor.py::update_branch_status",
@@ -2355,17 +3267,11 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
             "codegraph/planning.py::generate_plan",
             "codegraph/planning.py::validate_plan",
-            "codegraph/target_architecture.py::ArchitectureDelta",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/target_architecture.py::ArchitectureDelta"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -2375,11 +3281,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/architecture_compiler.py::apply_plan",
             "codegraph/architecture_compiler.py::compile_intent",
             "codegraph/architecture_compiler.py::plan_to_target_workflow",
@@ -2394,8 +3295,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/annotator.py::load_graph1",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
@@ -2415,10 +3314,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
             "codegraph/copilot_context.py::build_copilot_context"
@@ -2432,16 +3327,9 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
-            "codegraph/drift_detector.py::detect_drift",
-            "codegraph/models/agent_response.py::AgentResponse::from_json",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/drift_detector.py::detect_drift"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -2451,7 +3339,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/annotator.py::load_graph1",
             "codegraph/architecture_advisor.py::save_enriched_workflow",
             "codegraph/cli.py::handle_error",
@@ -2467,10 +3354,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/architecture_advisor.py::advise_architecture",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
@@ -2482,7 +3365,7 @@
             "codegraph/workflow.py::load_workflow"
           ],
           "suggested_fix": "Create a test function covering this production code",
-          "previous_intent": "run full architecture evolution loop: advisor, target delta, task generation",
+          "previous_intent": "run full architecture evolution loop: advisor, target delta, task generation. Uses project_root-aware advisor for memory-enriched suggestions",
           "body_hash_changed": false
         },
         {
@@ -2490,8 +3373,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/arch_health.py::append_health_history",
             "codegraph/arch_health.py::compute_health",
             "codegraph/arch_health.py::save_health_report",
@@ -2509,9 +3390,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
             "codegraph/subsystem_lifecycle.py::create_subsystem"
@@ -2525,8 +3403,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
             "codegraph/subsystem_lifecycle.py::generate_subsystem_files"
@@ -2549,9 +3425,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
             "codegraph/subsystem_lifecycle.py::merge_subsystems"
@@ -2565,9 +3438,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
             "codegraph/subsystem_lifecycle.py::move_component"
@@ -2581,9 +3451,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
             "codegraph/subsystem_lifecycle.py::split_subsystem"
@@ -2597,15 +3464,9 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
             "codegraph/architecture_lock.py::check_lock",
             "codegraph/cli.py::handle_error",
-            "codegraph/config.py::find_project_root",
-            "codegraph/models/agent_response.py::AgentResponse::from_json",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/config.py::find_project_root"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -2615,9 +3476,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
             "codegraph/extractor.py::load_graph0",
@@ -2633,11 +3491,8 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
-            "codegraph/extractor.py::ScopeTree::resolve",
             "codegraph/index.py::IndexStore",
             "codegraph/simulator.py::simulate_agent_response"
           ],
@@ -2650,8 +3505,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
             "codegraph/extractor.py::load_graph0",
@@ -2667,9 +3520,7 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/annotator.py::load_graph1",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
             "codegraph/arch_viewer.py::generate_viewer",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
@@ -2685,47 +3536,37 @@
           "id": "codegraph/code_planner.py::CodePlan::format",
           "file": "codegraph/code_planner.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format code plan as human-readable text",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/code_planner.py::CodePlan::from_dict",
           "file": "codegraph/code_planner.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize CodePlan from dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/code_planner.py::CodePlan::load",
           "file": "codegraph/code_planner.py",
           "type": "method",
-          "calls": [
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "load code plan from .codegraph/planning/.plan.json",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/code_planner.py::CodePlan::ordered_tasks::_visit",
           "file": "codegraph/code_planner.py",
           "type": "function",
-          "calls": [
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "helper for topological sort of tasks by dependencies",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/code_planner.py::CodePlan::save",
@@ -2751,20 +3592,15 @@
           "id": "codegraph/code_planner.py::CodePlan::tasks_by_type",
           "file": "codegraph/code_planner.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "return task counts grouped by type",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/code_planner.py::CodePlan::to_dict",
           "file": "codegraph/code_planner.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "called_by": [
             "codegraph/code_planner.py::CodePlan::save"
           ],
@@ -2776,24 +3612,19 @@
           "id": "codegraph/code_planner.py::PlanTask::from_dict",
           "file": "codegraph/code_planner.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize PlanTask from dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/code_planner.py::PlanTask::to_dict",
           "file": "codegraph/code_planner.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize PlanTask to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/code_planner.py::_build_module_mapping",
@@ -2821,41 +3652,34 @@
           "id": "codegraph/config.py::CodegraphConfig::from_dict",
           "file": "codegraph/config.py",
           "type": "method",
-          "calls": [
-            "codegraph/formatters.py::OutputFormatter::warning"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "from dict",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/context_builder.py::NodeContext::to_dict",
           "file": "codegraph/context_builder.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "convert node context to dictionary with optional intent and layer info",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/context_builder.py::PromptContext::to_dict",
           "file": "codegraph/context_builder.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "convert prompt context to dictionary for JSON serialization",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/context_builder.py::_build_node_context",
           "file": "codegraph/context_builder.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/context_builder.py::NodeContext",
             "codegraph/index.py::IndexStore::get_callees",
             "codegraph/index.py::IndexStore::get_callers"
@@ -2875,9 +3699,7 @@
           "calls": [
             "codegraph/context_builder.py::PromptContext",
             "codegraph/context_builder.py::PromptContext::token_estimate",
-            "codegraph/context_builder.py::_build_node_context",
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/context_builder.py::_build_node_context"
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "build context for entire subsystem/module pattern with cross-boundary edges",
@@ -2888,9 +3710,7 @@
           "file": "codegraph/context_builder.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/context_builder.py::build_context",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/context_builder.py::build_context"
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "build context for specific task from tasks.json with affected nodes",
@@ -2900,20 +3720,16 @@
           "id": "codegraph/copilot_context.py::CopilotContext::format",
           "file": "codegraph/copilot_context.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format copilot context as human-readable text",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/copilot_context.py::CopilotContext::from_dict",
           "file": "codegraph/copilot_context.py",
           "type": "method",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/copilot_context.py::SubsystemSummary"
           ],
           "suggested_fix": "Create a test function covering this production code",
@@ -2924,12 +3740,10 @@
           "id": "codegraph/copilot_context.py::CopilotContext::load",
           "file": "codegraph/copilot_context.py",
           "type": "method",
-          "calls": [
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "load copilot context from .codegraph/context/copilot_context.json",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/copilot_context.py::CopilotContext::save",
@@ -2946,9 +3760,6 @@
           "id": "codegraph/copilot_context.py::CopilotContext::to_dict",
           "file": "codegraph/copilot_context.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "called_by": [
             "codegraph/copilot_context.py::CopilotContext::save"
           ],
@@ -2960,22 +3771,17 @@
           "id": "codegraph/copilot_context.py::SubsystemSummary::to_dict",
           "file": "codegraph/copilot_context.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize SubsystemSummary to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/copilot_context.py::_populate_architecture",
           "file": "codegraph/copilot_context.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/copilot_context.py::SubsystemSummary",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/copilot_context.py::SubsystemSummary"
           ],
           "called_by": [
             "codegraph/copilot_context.py::build_copilot_context"
@@ -2988,10 +3794,6 @@
           "id": "codegraph/copilot_context.py::_populate_decisions",
           "file": "codegraph/copilot_context.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "called_by": [
             "codegraph/copilot_context.py::build_copilot_context"
           ],
@@ -3003,9 +3805,6 @@
           "id": "codegraph/copilot_context.py::_populate_drift",
           "file": "codegraph/copilot_context.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
           "called_by": [
             "codegraph/copilot_context.py::build_copilot_context"
           ],
@@ -3017,9 +3816,6 @@
           "id": "codegraph/copilot_context.py::_populate_graph_stats",
           "file": "codegraph/copilot_context.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
           "called_by": [
             "codegraph/copilot_context.py::build_copilot_context"
           ],
@@ -3031,9 +3827,6 @@
           "id": "codegraph/copilot_context.py::_populate_health",
           "file": "codegraph/copilot_context.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
           "called_by": [
             "codegraph/copilot_context.py::build_copilot_context"
           ],
@@ -3045,10 +3838,6 @@
           "id": "codegraph/copilot_context.py::_populate_policy_rules",
           "file": "codegraph/copilot_context.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "called_by": [
             "codegraph/copilot_context.py::build_copilot_context"
           ],
@@ -3060,9 +3849,6 @@
           "id": "codegraph/copilot_context.py::_populate_target",
           "file": "codegraph/copilot_context.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
           "called_by": [
             "codegraph/copilot_context.py::build_copilot_context"
           ],
@@ -3074,10 +3860,6 @@
           "id": "codegraph/copilot_context.py::_populate_tasks",
           "file": "codegraph/copilot_context.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "called_by": [
             "codegraph/copilot_context.py::build_copilot_context"
           ],
@@ -3089,12 +3871,10 @@
           "id": "codegraph/drift_detector.py::DriftFinding::to_dict",
           "file": "codegraph/drift_detector.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize DriftFinding to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/drift_detector.py::DriftReport::error_count",
@@ -3109,23 +3889,19 @@
           "id": "codegraph/drift_detector.py::DriftReport::findings_by_type",
           "file": "codegraph/drift_detector.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "group finding counts by drift type",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/drift_detector.py::DriftReport::format",
           "file": "codegraph/drift_detector.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format drift report as human-readable text",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/drift_detector.py::DriftReport::has_drift",
@@ -3151,9 +3927,6 @@
           "id": "codegraph/drift_detector.py::DriftReport::to_dict",
           "file": "codegraph/drift_detector.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "called_by": [
             "codegraph/drift_detector.py::DriftReport::save"
           ],
@@ -3197,10 +3970,7 @@
           "file": "codegraph/drift_detector.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/drift_detector.py::DriftFinding",
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/drift_detector.py::DriftFinding"
           ],
           "called_by": [
             "codegraph/drift_detector.py::detect_drift"
@@ -3214,8 +3984,7 @@
           "file": "codegraph/drift_detector.py",
           "type": "function",
           "calls": [
-            "codegraph/drift_detector.py::DriftFinding",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/drift_detector.py::DriftFinding"
           ],
           "called_by": [
             "codegraph/drift_detector.py::detect_drift"
@@ -3229,10 +3998,7 @@
           "file": "codegraph/drift_detector.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/drift_detector.py::DriftFinding",
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/drift_detector.py::DriftFinding"
           ],
           "called_by": [
             "codegraph/drift_detector.py::detect_drift"
@@ -3246,9 +4012,7 @@
           "file": "codegraph/drift_detector.py",
           "type": "function",
           "calls": [
-            "codegraph/drift_detector.py::DriftFinding",
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/drift_detector.py::DriftFinding"
           ],
           "called_by": [
             "codegraph/drift_detector.py::detect_drift"
@@ -3258,146 +4022,140 @@
           "body_hash_changed": false
         },
         {
+          "id": "codegraph/extractor.py::ScopeTree::resolve",
+          "file": "codegraph/extractor.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "resolve *name* using LEGB lookup, returning a node ID or None",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/filters.py::FilterPipeline::add",
+          "file": "codegraph/filters.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "add",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
+          "id": "codegraph/models/agent_response.py::AgentResponse::from_json",
+          "file": "codegraph/models/agent_response.py",
+          "type": "method",
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "from json",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
+        },
+        {
           "id": "codegraph/multilevel.py::ModuleEdge::to_dict",
           "file": "codegraph/multilevel.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize module edge to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/multilevel.py::ModuleGraph::format",
           "file": "codegraph/multilevel.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format module graph as human-readable text with top modules by fan-out",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/multilevel.py::ModuleGraph::to_dict",
           "file": "codegraph/multilevel.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize module graph with summary statistics",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/multilevel.py::ModuleNode::to_dict",
           "file": "codegraph/multilevel.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize module node to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/multilevel.py::MultiLevelReport::format",
           "file": "codegraph/multilevel.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format multi-level report as human-readable text",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/multilevel.py::MultiLevelReport::to_dict",
           "file": "codegraph/multilevel.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize report with smells grouped by level",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/multilevel.py::MultiLevelSmell::to_dict",
           "file": "codegraph/multilevel.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize smell to dictionary with level name mapping",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/multilevel.py::SubsystemEdge::to_dict",
           "file": "codegraph/multilevel.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize subsystem edge to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/multilevel.py::SubsystemGraph::format",
           "file": "codegraph/multilevel.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format subsystem graph as human-readable text with cohesion and cross-edges",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/multilevel.py::SubsystemGraph::to_dict",
           "file": "codegraph/multilevel.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize subsystem graph with summary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/multilevel.py::SubsystemNode::to_dict",
           "file": "codegraph/multilevel.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize subsystem node to dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/multilevel.py::build_subsystem_graph",
           "file": "codegraph/multilevel.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/filters.py::FilterPipeline::add",
             "codegraph/index.py::IndexStore::_get_conn",
             "codegraph/multilevel.py::SubsystemEdge",
             "codegraph/multilevel.py::SubsystemGraph",
-            "codegraph/multilevel.py::SubsystemNode",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/multilevel.py::SubsystemNode"
           ],
           "called_by": [
             "codegraph/multilevel.py::analyze_multilevel"
@@ -3410,45 +4168,37 @@
           "id": "codegraph/simulator.py::SimViolation::to_dict",
           "file": "codegraph/simulator.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "convert violation to dictionary with limited affected nodes list",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/simulator.py::SimulatedChange::to_dict",
           "file": "codegraph/simulator.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "convert simulated change to dictionary representation for JSON output",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/simulator.py::SimulationResult::format",
           "file": "codegraph/simulator.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format simulation result as human-readable text with status and violations",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/simulator.py::SimulationResult::to_dict",
           "file": "codegraph/simulator.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "convert simulation result to dictionary for JSON reporting",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/simulator.py::_compute_module_coupling",
@@ -3465,13 +4215,6 @@
           "id": "codegraph/simulator.py::_find_cycles_in_adj",
           "file": "codegraph/simulator.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/extractor.py::ScopeTree::pop",
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/tasks.py::TaskHistory::append",
-            "codegraph/utils/progress.py::ProgressReporter::update"
-          ],
           "called_by": [
             "codegraph/simulator.py::simulate_changes"
           ],
@@ -3483,22 +4226,16 @@
           "id": "codegraph/simulator.py::_find_cycles_in_adj::strongconnect",
           "file": "codegraph/simulator.py",
           "type": "function",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/extractor.py::ScopeTree::pop",
-            "codegraph/filters.py::FilterPipeline::add",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "iterative Tarjan inner function for cycle detection in simulator",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/simulator.py::_original_adj",
           "file": "codegraph/simulator.py",
           "type": "function",
           "calls": [
-            "codegraph/filters.py::FilterPipeline::add",
             "codegraph/index.py::IndexStore::_get_conn"
           ],
           "called_by": [
@@ -3512,45 +4249,37 @@
           "id": "codegraph/subsystem.py::Subsystem::to_dict",
           "file": "codegraph/subsystem.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "convert subsystem data to dictionary with node and file counts",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/subsystem.py::SubsystemCoupling::to_dict",
           "file": "codegraph/subsystem.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "convert coupling data to dictionary with strength metric",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/subsystem.py::SubsystemReport::format",
           "file": "codegraph/subsystem.py",
           "type": "method",
-          "calls": [
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format subsystem report as human-readable text with details and coupling",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/subsystem.py::SubsystemReport::to_dict",
           "file": "codegraph/subsystem.py",
           "type": "method",
-          "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "convert subsystem report to dictionary for JSON serialization",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/subsystem.py::_derive_name",
@@ -3586,13 +4315,10 @@
           "id": "codegraph/target_architecture.py::ArchitectureDelta::format",
           "file": "codegraph/target_architecture.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/tasks.py::TaskHistory::append"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "format delta as human-readable text report",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/target_architecture.py::ArchitectureDelta::has_changes",
@@ -3638,13 +4364,10 @@
           "id": "codegraph/target_architecture.py::TargetEdge::from_dict",
           "file": "codegraph/target_architecture.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize target edge from dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/target_architecture.py::TargetEdge::to_dict",
@@ -3659,13 +4382,10 @@
           "id": "codegraph/target_architecture.py::TargetNode::from_dict",
           "file": "codegraph/target_architecture.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize target node from dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/target_architecture.py::TargetNode::to_dict",
@@ -3681,8 +4401,7 @@
           "file": "codegraph/target_architecture.py",
           "type": "method",
           "calls": [
-            "codegraph/target_architecture.py::TargetEdge",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/target_architecture.py::TargetEdge"
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "add a desired edge to the target workflow",
@@ -3693,8 +4412,7 @@
           "file": "codegraph/target_architecture.py",
           "type": "method",
           "calls": [
-            "codegraph/target_architecture.py::TargetNode",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/target_architecture.py::TargetNode"
           ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "add a desired node to the target workflow",
@@ -3704,24 +4422,19 @@
           "id": "codegraph/target_architecture.py::TargetWorkflow::from_dict",
           "file": "codegraph/target_architecture.py",
           "type": "method",
-          "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "deserialize target workflow from dictionary",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/target_architecture.py::TargetWorkflow::load",
           "file": "codegraph/target_architecture.py",
           "type": "method",
-          "calls": [
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "load target workflow from disk, returns None if not found",
-          "body_hash_changed": false
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/target_architecture.py::TargetWorkflow::save",
@@ -3744,6 +4457,17 @@
           "suggested_fix": "Create a test function covering this production code",
           "previous_intent": "serialize target workflow to dictionary",
           "body_hash_changed": false
+        },
+        {
+          "id": "codegraph/tasks.py::TaskHistory::append",
+          "file": "codegraph/tasks.py",
+          "type": "method",
+          "calls": [
+            "codegraph/tasks.py::TaskHistory::save"
+          ],
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "append",
+          "body_hash_changed": false
         }
       ]
     },
@@ -3760,6 +4484,19 @@
           ],
           "called_by": [
             "codegraph/cli.py::arch_memory_cmd"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
+          "id": "codegraph/architecture_advisor.py::_enrich_with_memory",
+          "file": "codegraph/architecture_advisor.py",
+          "type": "function",
+          "calls": [
+            "codegraph/architecture_memory.py::load_decisions"
+          ],
+          "called_by": [
+            "codegraph/architecture_advisor.py::advise_architecture"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -3802,14 +4539,20 @@
           "previous_intent": ""
         },
         {
+          "id": "codegraph/architecture_memory.py::load_advice_history",
+          "file": "codegraph/architecture_memory.py",
+          "type": "function",
+          "calls": [
+            "codegraph/architecture_memory.py::_load_json_list"
+          ],
+          "suggested_fix": "Add intent annotation describing this node's purpose",
+          "previous_intent": ""
+        },
+        {
           "id": "codegraph/cli.py::arch_simulate_cmd",
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
             "codegraph/architecture_simulator.py::simulate_subsystem_addition",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root"
@@ -3822,17 +4565,11 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
             "codegraph/planning.py::generate_plan",
             "codegraph/planning.py::validate_plan",
-            "codegraph/target_architecture.py::ArchitectureDelta",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/target_architecture.py::ArchitectureDelta"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -3842,11 +4579,6 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/architecture_compiler.py::apply_plan",
             "codegraph/architecture_compiler.py::compile_intent",
             "codegraph/architecture_compiler.py::plan_to_target_workflow",
@@ -3861,16 +4593,9 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/cli.py::handle_error",
             "codegraph/config.py::find_project_root",
-            "codegraph/drift_detector.py::detect_drift",
-            "codegraph/models/agent_response.py::AgentResponse::from_json",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/drift_detector.py::detect_drift"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -3880,15 +4605,9 @@
           "file": "codegraph/cli.py",
           "type": "function",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/analyzer.py::AnalysisCache::get",
-            "codegraph/arch_schema.py::SystemArchitecture::load",
             "codegraph/architecture_lock.py::check_lock",
             "codegraph/cli.py::handle_error",
-            "codegraph/config.py::find_project_root",
-            "codegraph/models/agent_response.py::AgentResponse::from_json",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/config.py::find_project_root"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -3912,18 +4631,15 @@
           "id": "tests/test_arch_memory.py::TestArchDecision::test_defaults",
           "file": "tests/test_arch_memory.py",
           "type": "method",
-          "calls": [
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_arch_memory.py::TestArchDecision::test_minimal_to_dict",
           "file": "tests/test_arch_memory.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/arch_memory.py::ArchDecision"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -3934,8 +4650,6 @@
           "file": "tests/test_arch_memory.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/arch_memory.py::ArchExperiment"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -3954,8 +4668,6 @@
           "file": "tests/test_arch_memory.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/arch_memory.py::ArchExperiment"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -3974,7 +4686,6 @@
           "file": "tests/test_arch_memory.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/arch_memory.py::ArchMemory"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -3985,7 +4696,6 @@
           "file": "tests/test_arch_memory.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
             "codegraph/arch_memory.py::ArchDecision",
             "codegraph/arch_memory.py::ArchMemory"
           ],
@@ -4008,7 +4718,6 @@
           "file": "tests/test_arch_memory.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/arch_memory.py::ArchMemory"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -4019,7 +4728,6 @@
           "file": "tests/test_arch_memory.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/arch_memory.py::ArchDecision",
             "codegraph/arch_memory.py::ArchExperiment",
             "codegraph/arch_memory.py::ArchMemory"
@@ -4256,7 +4964,6 @@
           "file": "tests/test_architecture_compiler.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
             "codegraph/architecture_compiler.py::ArchitecturePlan",
             "codegraph/architecture_compiler.py::CompiledChange"
           ],
@@ -4288,19 +4995,15 @@
           "id": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_load_missing",
           "file": "tests/test_architecture_compiler.py",
           "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::SystemArchitecture::load"
-          ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_roundtrip",
           "file": "tests/test_architecture_compiler.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/architecture_compiler.py::ArchitecturePlan",
             "codegraph/architecture_compiler.py::CompiledChange",
             "codegraph/target_architecture.py::TargetNode"
@@ -4313,8 +5016,6 @@
           "file": "tests/test_architecture_compiler.py",
           "type": "method",
           "calls": [
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/architecture_compiler.py::ArchitecturePlan",
             "codegraph/architecture_compiler.py::CompiledChange"
           ],
@@ -4419,8 +5120,6 @@
           "file": "tests/test_architecture_compiler.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/architecture_compiler.py::ArchitecturePlan",
             "codegraph/architecture_compiler.py::CompiledChange",
             "codegraph/target_architecture.py::TargetNode"
@@ -4433,7 +5132,6 @@
           "file": "tests/test_architecture_compiler.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/architecture_compiler.py::CompiledChange"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -4455,8 +5153,7 @@
             "codegraph/architecture_compiler.py::ArchitecturePlan",
             "codegraph/architecture_compiler.py::plan_to_target_workflow",
             "codegraph/target_architecture.py::TargetEdge",
-            "codegraph/target_architecture.py::TargetWorkflow",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/target_architecture.py::TargetWorkflow"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
@@ -4711,7 +5408,6 @@
           "file": "tests/test_architecture_lock.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
             "codegraph/architecture_lock.py::LockReport",
             "codegraph/architecture_lock.py::LockViolation"
           ],
@@ -4723,7 +5419,6 @@
           "file": "tests/test_architecture_lock.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/architecture_lock.py::LockReport"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -4764,7 +5459,6 @@
           "file": "tests/test_architecture_lock.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/architecture_lock.py::LockReport"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -4775,7 +5469,6 @@
           "file": "tests/test_architecture_lock.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/architecture_lock.py::LockViolation"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -4831,8 +5524,6 @@
           "file": "tests/test_architecture_simulator.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/architecture_simulator.py::ArchChange"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -4843,7 +5534,6 @@
           "file": "tests/test_architecture_simulator.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/architecture_simulator.py::ArchChange",
             "codegraph/architecture_simulator.py::ArchPrediction",
             "codegraph/architecture_simulator.py::ArchSimulationResult"
@@ -4856,8 +5546,6 @@
           "file": "tests/test_architecture_simulator.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/architecture_simulator.py::ArchChange"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -4876,7 +5564,6 @@
           "file": "tests/test_architecture_simulator.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/architecture_simulator.py::ArchChange",
             "codegraph/architecture_simulator.py::ArchPrediction",
             "codegraph/architecture_simulator.py::ArchSimulationResult"
@@ -4907,7 +5594,6 @@
           "file": "tests/test_architecture_simulator.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
             "codegraph/architecture_simulator.py::ArchPrediction",
             "codegraph/architecture_simulator.py::ArchSimulationResult"
           ],
@@ -4919,7 +5605,6 @@
           "file": "tests/test_architecture_simulator.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/architecture_simulator.py::ArchChange",
             "codegraph/architecture_simulator.py::ArchPrediction",
             "codegraph/architecture_simulator.py::ArchSimulationResult"
@@ -5085,7 +5770,6 @@
             "codegraph/arch_schema.py::SystemArchitecture::get_subsystem",
             "codegraph/architecture_simulator.py::ArchChange",
             "codegraph/architecture_simulator.py::simulate_architecture_changes",
-            "codegraph/tasks.py::TaskHistory::append",
             "tests/test_architecture_simulator.py::_make_arch"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -5182,7 +5866,6 @@
           "file": "tests/test_branch_executor.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
             "codegraph/branch_executor.py::BranchComparison"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -5193,7 +5876,6 @@
           "file": "tests/test_branch_executor.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/branch_executor.py::BranchComparison"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -5221,19 +5903,15 @@
           "id": "tests/test_branch_executor.py::TestBranchMetrics::test_from_dict_defaults",
           "file": "tests/test_branch_executor.py",
           "type": "method",
-          "calls": [
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_branch_executor.py::TestBranchMetrics::test_roundtrip",
           "file": "tests/test_branch_executor.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/branch_executor.py::BranchMetrics",
             "codegraph/branch_executor.py::BranchState"
           ],
@@ -5263,8 +5941,6 @@
           "file": "tests/test_branch_executor.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/branch_executor.py::BranchMetrics",
             "codegraph/branch_executor.py::BranchState"
           ],
@@ -5276,8 +5952,6 @@
           "file": "tests/test_branch_executor.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/branch_executor.py::BranchState"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -5441,7 +6115,6 @@
           "file": "tests/test_code_planner.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
             "codegraph/code_planner.py::CodePlan",
             "codegraph/code_planner.py::PlanTask"
           ],
@@ -5452,11 +6125,9 @@
           "id": "tests/test_code_planner.py::TestCodePlan::test_load_missing",
           "file": "tests/test_code_planner.py",
           "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::SystemArchitecture::load"
-          ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_code_planner.py::TestCodePlan::test_ordered_tasks_by_dependency",
@@ -5487,8 +6158,6 @@
           "file": "tests/test_code_planner.py",
           "type": "method",
           "calls": [
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/code_planner.py::CodePlan",
             "codegraph/code_planner.py::PlanTask"
           ],
@@ -5610,8 +6279,6 @@
           "file": "tests/test_code_planner.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/code_planner.py::PlanTask"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -5622,7 +6289,6 @@
           "file": "tests/test_code_planner.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/code_planner.py::PlanTask"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -5814,7 +6480,6 @@
           "file": "tests/test_copilot_context.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
             "codegraph/copilot_context.py::CopilotContext",
             "codegraph/copilot_context.py::SubsystemSummary"
           ],
@@ -5825,19 +6490,15 @@
           "id": "tests/test_copilot_context.py::TestCopilotContext::test_load_missing",
           "file": "tests/test_copilot_context.py",
           "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::SystemArchitecture::load"
-          ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_copilot_context.py::TestCopilotContext::test_roundtrip",
           "file": "tests/test_copilot_context.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/copilot_context.py::CopilotContext",
             "codegraph/copilot_context.py::SubsystemSummary"
           ],
@@ -5849,8 +6510,6 @@
           "file": "tests/test_copilot_context.py",
           "type": "method",
           "calls": [
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/copilot_context.py::CopilotContext"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -5861,7 +6520,6 @@
           "file": "tests/test_copilot_context.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/copilot_context.py::CopilotContext",
             "codegraph/copilot_context.py::SubsystemSummary"
           ],
@@ -5881,7 +6539,6 @@
           "file": "tests/test_copilot_context.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/copilot_context.py::CopilotContext",
             "codegraph/copilot_context.py::SubsystemSummary"
           ],
@@ -6012,7 +6669,6 @@
           "file": "tests/test_drift_detector.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/drift_detector.py::DriftFinding"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6023,7 +6679,6 @@
           "file": "tests/test_drift_detector.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/drift_detector.py::DriftFinding"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6053,7 +6708,6 @@
           "file": "tests/test_drift_detector.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
             "codegraph/drift_detector.py::DriftFinding",
             "codegraph/drift_detector.py::DriftReport"
           ],
@@ -6065,7 +6719,6 @@
           "file": "tests/test_drift_detector.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
             "codegraph/drift_detector.py::DriftReport"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6088,7 +6741,6 @@
           "file": "tests/test_drift_detector.py",
           "type": "method",
           "calls": [
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/drift_detector.py::DriftFinding",
             "codegraph/drift_detector.py::DriftReport"
           ],
@@ -6136,8 +6788,7 @@
           "type": "function",
           "calls": [
             "codegraph/models/graph0.py::Graph0",
-            "codegraph/models/graph0.py::Graph0Node",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/models/graph0.py::Graph0Node"
           ],
           "called_by": [
             "tests/test_drift_detector.py::TestDetectDrift::test_drift_score",
@@ -6173,7 +6824,6 @@
           "file": "tests/test_multilevel.py",
           "type": "method",
           "calls": [
-            "codegraph/tasks.py::TaskHistory::append",
             "tests/test_multilevel.py::_make_graph0",
             "tests/test_multilevel.py::_make_index"
           ],
@@ -6212,7 +6862,6 @@
           "file": "tests/test_multilevel.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/multilevel.py::analyze_multilevel",
             "tests/test_multilevel.py::TestAnalyzeMultilevel::_make_data"
           ],
@@ -6312,7 +6961,6 @@
           "file": "tests/test_multilevel.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/multilevel.py::ModuleGraph"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6323,7 +6971,6 @@
           "file": "tests/test_multilevel.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
             "codegraph/multilevel.py::MultiLevelReport",
             "codegraph/multilevel.py::MultiLevelSmell"
           ],
@@ -6335,7 +6982,6 @@
           "file": "tests/test_multilevel.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/multilevel.py::MultiLevelSmell"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6354,7 +7000,6 @@
           "file": "tests/test_multilevel.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/multilevel.py::MultiLevelSmell"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6373,7 +7018,6 @@
           "file": "tests/test_multilevel.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/multilevel.py::MultiLevelReport"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6384,7 +7028,6 @@
           "file": "tests/test_multilevel.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
             "codegraph/multilevel.py::MultiLevelReport",
             "codegraph/multilevel.py::MultiLevelSmell"
           ],
@@ -6396,7 +7039,6 @@
           "file": "tests/test_multilevel.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/multilevel.py::MultiLevelReport",
             "codegraph/multilevel.py::MultiLevelSmell"
           ],
@@ -6416,7 +7058,6 @@
           "file": "tests/test_multilevel.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/multilevel.py::MultiLevelSmell"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6435,7 +7076,6 @@
           "file": "tests/test_multilevel.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
             "codegraph/multilevel.py::MultiLevelReport",
             "codegraph/multilevel.py::MultiLevelSmell"
           ],
@@ -6447,7 +7087,6 @@
           "file": "tests/test_multilevel.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/multilevel.py::MultiLevelSmell"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6466,7 +7105,6 @@
           "file": "tests/test_multilevel.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/multilevel.py::MultiLevelSmell"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6477,10 +7115,8 @@
           "file": "tests/test_multilevel.py",
           "type": "function",
           "calls": [
-            "codegraph/analyzer.py::AnalysisCache::get",
             "codegraph/models/graph0.py::Graph0",
-            "codegraph/models/graph0.py::Graph0Node",
-            "codegraph/tasks.py::TaskHistory::append"
+            "codegraph/models/graph0.py::Graph0Node"
           ],
           "called_by": [
             "tests/test_multilevel.py::TestAnalyzeMultilevel::_make_data",
@@ -6841,7 +7477,6 @@
           "file": "tests/test_subsystem_lifecycle.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/subsystem_lifecycle.py::SubsystemFile"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6852,7 +7487,6 @@
           "file": "tests/test_subsystem_lifecycle.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/subsystem_lifecycle.py::SubsystemFile"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6871,7 +7505,6 @@
           "file": "tests/test_subsystem_lifecycle.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/subsystem_lifecycle.py::SubsystemFile"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6882,7 +7515,6 @@
           "file": "tests/test_subsystem_lifecycle.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/subsystem_lifecycle.py::SubsystemFile"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6956,7 +7588,6 @@
           "file": "tests/test_target_architecture.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::format",
             "codegraph/target_architecture.py::ArchitectureDelta"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6977,7 +7608,6 @@
           "file": "tests/test_target_architecture.py",
           "type": "method",
           "calls": [
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/target_architecture.py::ArchitectureDelta"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -6988,7 +7618,6 @@
           "file": "tests/test_target_architecture.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/target_architecture.py::ArchitectureDelta"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -7207,19 +7836,15 @@
           "id": "tests/test_target_architecture.py::TestTargetEdge::test_from_dict_defaults",
           "file": "tests/test_target_architecture.py",
           "type": "method",
-          "calls": [
-            "codegraph/arch_memory.py::ArchDecision::from_dict"
-          ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_target_architecture.py::TestTargetEdge::test_roundtrip",
           "file": "tests/test_target_architecture.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/models/graph0.py::Graph0::add_node",
             "codegraph/models/workflow.py::Workflow::add_edge",
             "codegraph/target_architecture.py::TargetWorkflow"
@@ -7232,7 +7857,6 @@
           "file": "tests/test_target_architecture.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/target_architecture.py::TargetNode"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -7243,7 +7867,6 @@
           "file": "tests/test_target_architecture.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/target_architecture.py::TargetNode"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -7262,8 +7885,6 @@
           "file": "tests/test_target_architecture.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/models/graph0.py::Graph0::add_node",
             "codegraph/models/workflow.py::Workflow::add_edge",
             "codegraph/target_architecture.py::TargetWorkflow"
@@ -7276,7 +7897,6 @@
           "file": "tests/test_target_architecture.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/target_architecture.py::TargetNode"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -7287,7 +7907,6 @@
           "file": "tests/test_target_architecture.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/target_architecture.py::TargetNode"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -7328,7 +7947,6 @@
           "file": "tests/test_target_architecture.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
             "codegraph/target_architecture.py::TargetWorkflow"
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
@@ -7338,19 +7956,15 @@
           "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_load_nonexistent",
           "file": "tests/test_target_architecture.py",
           "type": "method",
-          "calls": [
-            "codegraph/arch_schema.py::SystemArchitecture::load"
-          ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": ""
+          "previous_intent": "",
+          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_roundtrip",
           "file": "tests/test_target_architecture.py",
           "type": "method",
           "calls": [
-            "codegraph/agent_memory.py::AgentMemory::to_dict",
-            "codegraph/arch_memory.py::ArchDecision::from_dict",
             "codegraph/models/graph0.py::Graph0::add_node",
             "codegraph/models/workflow.py::Workflow::add_edge",
             "codegraph/target_architecture.py::TargetWorkflow"
@@ -7363,8 +7977,6 @@
           "file": "tests/test_target_architecture.py",
           "type": "method",
           "calls": [
-            "codegraph/arch_schema.py::SystemArchitecture::load",
-            "codegraph/arch_schema.py::SystemArchitecture::save",
             "codegraph/models/workflow.py::Workflow::add_edge",
             "codegraph/target_architecture.py::TargetWorkflow"
           ],

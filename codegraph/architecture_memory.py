@@ -320,3 +320,21 @@ def record_advice(
         len(resolved_smells),
     )
     return record
+
+
+def load_advice_history(
+    project_root: Path,
+    limit: int = 20,
+) -> List[AdviceRecord]:
+    """Load persisted architecture advisor snapshots.
+
+    Args:
+        project_root: Project root directory.
+        limit: Maximum number of records to return (most recent first).
+
+    Returns:
+        List of :class:`AdviceRecord`, up to *limit* items.
+    """
+    path = project_root / ".codegraph" / MEMORY_DIR / ADVICE_FILE
+    records = [AdviceRecord.from_dict(d) for d in _load_json_list(path, "advice")]
+    return records[-limit:]

@@ -658,13 +658,38 @@ def resolve_call_target(
                     return candidate
 
     # Method call: obj.method() — fuzzy match
+    # Skip common builtin method names that produce false positive resolutions
     if call.is_method_call and "." in name:
         method_name = name.split(".")[-1]
-        for nid in sorted(all_node_ids):
-            if nid.endswith(f"::{method_name}"):
-                return nid
+        if method_name not in _AMBIGUOUS_METHOD_NAMES:
+            for nid in sorted(all_node_ids):
+                if nid.endswith(f"::{method_name}"):
+                    return nid
 
     return None
+
+
+# Names that are common on builtins/stdlib types.  Fuzzy-matching these
+# to the first class that defines them creates massive false-positive
+# fan-in (e.g. every ``list.append()`` resolves to TaskHistory::append).
+_AMBIGUOUS_METHOD_NAMES: frozenset[str] = frozenset({
+    # list / set / dict builtins
+    "append", "extend", "insert", "remove", "pop", "clear",
+    "get", "keys", "values", "items", "update", "setdefault",
+    "add", "discard", "put",
+    # str builtins
+    "format", "join", "split", "strip", "replace", "startswith", "endswith",
+    "lower", "upper", "encode", "decode",
+    # common dunder-like / generic names
+    "to_dict", "from_dict", "to_json", "from_json",
+    "copy", "sort", "reverse", "count", "index",
+    # logging / formatting
+    "info", "debug", "warning", "error", "critical",
+    "write", "read", "close", "flush", "seek",
+    # pathlib / common object methods
+    "resolve", "exists", "save", "load", "apply",
+    "validate", "run", "execute", "start", "stop",
+})
 
 
 # ═══════════════════════════════════════════════════════════════════════

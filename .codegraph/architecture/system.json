@@ -602,6 +602,18 @@
       "target": "infrastructure"
     },
     {
+      "source": "governance",
+      "target": "query"
+    },
+    {
+      "source": "governance",
+      "target": "intelligence"
+    },
+    {
+      "source": "governance",
+      "target": "semantics"
+    },
+    {
       "source": "intelligence",
       "target": "models"
     },
@@ -618,12 +630,20 @@
       "target": "governance"
     },
     {
+      "source": "intelligence",
+      "target": "architecture_memory"
+    },
+    {
       "source": "query",
       "target": "models"
     },
     {
       "source": "query",
       "target": "infrastructure"
+    },
+    {
+      "source": "query",
+      "target": "core_engine"
     },
     {
       "source": "semantics",
@@ -634,12 +654,20 @@
       "target": "infrastructure"
     },
     {
+      "source": "semantics",
+      "target": "core_engine"
+    },
+    {
       "source": "architecture_memory",
       "target": "models"
     },
     {
       "source": "architecture_memory",
       "target": "infrastructure"
+    },
+    {
+      "source": "infrastructure",
+      "target": "core_engine"
     },
     {
       "source": "models",

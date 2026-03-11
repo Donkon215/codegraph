@@ -157,7 +157,7 @@
     {
       "id": "rule_018",
       "type": "forbidden_call",
-      "reason": "Delta computation must not trigger architecture analysis. run_delta has fan-out=24; coupling it to the advisor would create a governance\u00e2\u2020\u2019intelligence cycle risk.",
+      "reason": "Delta computation must not trigger architecture analysis. run_delta has fan-out=24; coupling it to the advisor would create a governanceâ†’intelligence cycle risk.",
       "source": "codegraph/delta.py::run_delta",
       "target": "codegraph/architecture_advisor.py::advise_architecture",
       "added_by": "human",
@@ -171,6 +171,24 @@
       "max_fan_out": 30,
       "added_by": "human",
       "added_at": "2026-03-10T18:44:58Z"
+    },
+    {
+      "id": "rule_020",
+      "type": "dependency_limit",
+      "reason": "CLI is a top-level dispatcher. Cap total fan-out to prevent unbounded growth.",
+      "source": "codegraph/cli.py::*",
+      "max_fan_out": 90,
+      "added_by": "human",
+      "added_at": "2026-03-11T03:27:38Z"
+    },
+    {
+      "id": "rule_021",
+      "type": "layer_boundary",
+      "reason": "Models layer must not depend on governance layer.",
+      "source_arch_layer": "models",
+      "target_arch_layer": "governance",
+      "added_by": "human",
+      "added_at": "2026-03-11T03:27:43Z"
     }
   ]
 }
