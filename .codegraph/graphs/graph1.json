@@ -2383,6 +2383,143 @@
       "intent_body_hash": "02f18"
     },
     {
+      "id": "codegraph/arch_search",
+      "intent": "multi-candidate architecture search engine module. Generates, simulates, scores, and ranks architecture improvement candidates",
+      "layer": 3,
+      "intent_author": "agent",
+      "intent_version": 1,
+      "intent_timestamp": "2026-03-11T13:23:56Z",
+      "intent_body_hash": "063e5"
+    },
+    {
+      "id": "codegraph/arch_search.py::ArchCandidate",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_search.py::ArchCandidate::from_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_search.py::ArchCandidate::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_search.py::ArchSearchResult",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_search.py::ArchSearchResult::format",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_search.py::ArchSearchResult::load",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_search.py::ArchSearchResult::save",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_search.py::ArchSearchResult::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_search.py::_find_subsystem_for_module",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_search.py::_module_name",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_search.py::_record_search_to_memory",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_search.py::_strategy_to_changes",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_search.py::generate_candidates",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_search.py::run_arch_search",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_search.py::score_candidates",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_search.py::simulate_candidates",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
       "id": "codegraph/arch_viewer",
       "intent": "interactive HTML architecture dashboard generator with Cytoscape visualization",
       "layer": 3,
@@ -4074,15 +4211,15 @@
     },
     {
       "id": "codegraph/cli",
-      "intent": "cLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest (with support for all rule types: required_call, forbidden_call, forbidden_path, layer_boundary, dependency_limit), delta, diff, validate, status, cas, semantic, plan, architecture, viewer, architect, enrich, compile, code-plan, lock, drift, copilot-context, arch-simulate, arch-diff, arch-memory, archi-test, context, evolve, health, intent-apply, intent-missing, memory, metrics, multilevel, path, refactor, repair, simulate, subsystems, test-impact, version, and visualize",
+      "intent": "cLI entry point with commands for build, analyze, tasks, apply, query, architect, arch-search, and all other codegraph operations",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 11,
-      "intent_timestamp": "2026-03-11T03:28:25Z",
+      "intent_version": 12,
+      "intent_timestamp": "2026-03-11T13:23:56Z",
       "tags": [
         "entry_point"
       ],
-      "intent_body_hash": "b5fcd"
+      "intent_body_hash": "c3672"
     },
     {
       "id": "codegraph/cli.py::analyze_cmd",
@@ -4128,6 +4265,14 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-10T16:23:14Z",
       "intent_body_hash": "be848"
+    },
+    {
+      "id": "codegraph/cli.py::arch_search_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-11T13:22:22Z"
     },
     {
       "id": "codegraph/cli.py::arch_simulate_cmd",

@@ -250,6 +250,71 @@ codegraph suggest add --type dependency_limit \
   --reason "CLI is growing too large. Cap outgoing dependencies."
 ```
 
+### Phase 4 — Multi-Candidate Architecture Search (exploration loop)
+
+Instead of immediately implementing the first improvement identified by the advisor,
+**explore multiple candidates and select the best one**.
+
+This phase sits between the architecture advisor and implementation planning:
+
+```
+advisor → generate 3-5 candidates → simulate each → score → rank → select best → implement
+```
+
+#### When to use this phase:
+
+- When `codegraph architect` reports multiple smells
+- When there are competing refactoring strategies
+- When the architecture score is below B (80%)
+- When you want data-driven architecture decisions
+
+#### How to run:
+
+```bash
+# 1. Ensure advisor data exists
+codegraph architect --json --save
+
+# 2. Run multi-candidate search
+codegraph arch-search --save
+
+# 3. Review selected candidate
+cat .codegraph/planning/arch_search.json
+
+# 4. If selected, continue to implementation
+# If NO_SAFE_ARCHITECTURE_CHANGE, skip to repair loop
+```
+
+#### Candidate strategies:
+
+| Strategy | When generated | Example |
+|----------|---------------|----------|
+| `module_split` | God module detected | Split cli.py into cli.py + cli_commands.py |
+| `fan_out_reduction` | High fan-out node | Add dispatcher to reduce apply_response fan-out |
+| `fan_in_reduction` | High fan-in node | Introduce abstraction for find_project_root |
+| `cycle_break` | Cycle detected | Remove edge to break SCC |
+| `subsystem_boundary` | Large subsystem | Decompose oversized subsystem |
+| `component_extraction` | Low cohesion | Extract loosely coupled components |
+| `deep_chain_reduction` | Deep dependency chain | Flatten call chains |
+| `dependency_inversion` | Tight coupling | Introduce interface/abstraction |
+
+#### Candidate ranking priorities:
+
+1. Highest architecture score improvement
+2. Lowest coupling increase
+3. Lowest fan-out growth
+4. No policy violations
+5. Minimal subsystem disruption
+
+#### Output:
+
+The search produces `.codegraph/planning/arch_search.json` containing:
+- All candidates with simulated metrics
+- Selected candidate (if any)
+- Discard reasons for rejected candidates
+- Baseline metrics for comparison
+
+The selected candidate's `candidate_id`, `strategy`, and `target_modules` inform the planning stage.
+
 ---
 
 ## The Pipeline (step by step)
@@ -295,6 +360,20 @@ codegraph architect --save        # save to architecture_advice.json
 
 Use this to understand system health before making decisions.
 **After reviewing advice, propose rules to enforce improvements.**
+
+### 5b. Multi-candidate architecture search (optional)
+```bash
+codegraph arch-search             # text report
+codegraph arch-search --json      # JSON output
+codegraph arch-search --save      # save to .codegraph/planning/arch_search.json
+codegraph arch-search --max-candidates 3  # limit candidates
+```
+
+Run this **after** `codegraph architect --save` when planning architecture improvements.
+It generates multiple candidates, simulates each, and selects the best one.
+
+If the result is `NO_SAFE_ARCHITECTURE_CHANGE`, skip to the repair loop.
+Otherwise, use the selected candidate to guide implementation.
 
 ### 6. Enrich workflow
 ```bash
@@ -473,6 +552,7 @@ Pattern: `relative/path.py::ClassName::method_name`
 | `architecture/architecture_advice.json` | Advisor suggestions | Yes | Via `codegraph architect --save` |
 | `planning/architecture_plan.json` | Compiled architecture plan | Yes | Via `codegraph compile --save` |
 | `planning/.plan.json` | Code implementation plan | Yes | Via `codegraph code-plan` |
+| `planning/arch_search.json` | Multi-candidate search results | Yes | Via `codegraph arch-search --save` |
 | `architecture/drift_report.json` | Code vs architecture drift | Yes | Via `codegraph drift --save` |
 | `context/copilot_context.json` | Complete Copilot context | Yes | Via `codegraph copilot-context --save` |
 | `tasks/tasks.json` | Task queue | Yes | No |
@@ -632,6 +712,8 @@ codegraph lock [--strict]         # check architecture boundary enforcement
 codegraph drift [--save]          # detect code vs architecture drift
 codegraph copilot-context [--save]# generate complete Copilot context
 codegraph arch-simulate NAME      # simulate adding a subsystem
+codegraph arch-search             # multi-candidate architecture search
+codegraph arch-search --json --save  # search with JSON output, save results
 ```
 
 ---
@@ -646,54 +728,63 @@ code changes → codegraph build → codegraph architect
                           ┌───────────┴───────────┐
                           │ yes                    │ no
                           ▼                        ▼
-                  propose rules              converged ✓
-                  (suggest add)
+                  arch-search                 converged ✓
+                  (generate candidates)
                           │
-                          ▼
-                  codegraph analyze
+                  simulate + rank
                           │
-                  violations found?
+                  candidate selected?
                           │
                   ┌───────┴───────┐
                   │ yes           │ no
                   ▼               ▼
-              fix code        converged ✓
-              (agent_response)
+              propose rules   NO_SAFE_CHANGE
+              (suggest add)   (skip to repair)
                   │
                   ▼
-              codegraph apply
+              implement on branch
                   │
                   ▼
-              rebuild + verify
+              codegraph analyze
+                  │
+                  ▼
+              stability tests
+                  │
+                  ▼
+              merge or discard
 ```
 
 This loop enables controlled architecture evolution:
 1. **Codegraph observes** — builds graph, detects smells
-2. **Copilot simulates** — `codegraph arch-simulate` predicts impact before changing
-3. **Copilot compiles** — `codegraph compile` translates intent to architecture changes
-4. **Copilot plans** — `codegraph code-plan` creates ordered implementation tasks
-5. **Copilot proposes** — `codegraph suggest add` prevents bad patterns
-6. **Copilot fixes** — implements repairs for violations
-7. **Codegraph locks** — `codegraph lock` enforces boundaries, `codegraph drift` detects divergence
-8. **Codegraph verifies** — rebuilds graph, checks convergence
-9. **Human reviews** — approves or adjusts rules
+2. **Copilot explores** — `codegraph arch-search` generates multiple candidates
+3. **Copilot simulates** — each candidate is simulated and scored
+4. **Copilot selects** — best candidate chosen by architecture metrics
+5. **Copilot compiles** — `codegraph compile` translates intent to architecture changes
+6. **Copilot plans** — `codegraph code-plan` creates ordered implementation tasks
+7. **Copilot proposes** — `codegraph suggest add` prevents bad patterns
+8. **Copilot fixes** — implements repairs for violations
+9. **Codegraph locks** — `codegraph lock` enforces boundaries, `codegraph drift` detects divergence
+10. **Codegraph verifies** — rebuilds graph, checks convergence
+11. **Human reviews** — approves or adjusts rules
 
 ### Full Orchestrated Pipeline
 
 ```
-intent → compile → simulate → plan → execute → lock → drift → verify → evolve
+advisor → search → simulate → select → plan → execute → lock → drift → verify → evolve
 ```
 
 | Step | Command | Output |
 |------|---------|--------|
-| 1. Capture intent | `codegraph compile "add X"` | architecture_plan.json |
-| 2. Simulate impact | `codegraph arch-simulate X` | accept/review/reject |
-| 3. Plan implementation | `codegraph code-plan` | .plan.json |
-| 4. Execute changes | `codegraph apply` | code modifications |
-| 5. Check boundaries | `codegraph lock` | lock report |
-| 6. Detect drift | `codegraph drift` | drift report |
-| 7. Validate | `codegraph analyze` | tasks/violations |
-| 8. Generate context | `codegraph copilot-context` | copilot_context.json |
+| 1. Detect smells | `codegraph architect --save` | architecture_advice.json |
+| 2. Explore candidates | `codegraph arch-search --save` | arch_search.json |
+| 3. Simulate impact | `codegraph arch-simulate X` | accept/review/reject |
+| 4. Capture intent | `codegraph compile "add X"` | architecture_plan.json |
+| 5. Plan implementation | `codegraph code-plan` | .plan.json |
+| 6. Execute changes | `codegraph apply` | code modifications |
+| 7. Check boundaries | `codegraph lock` | lock report |
+| 8. Detect drift | `codegraph drift` | drift report |
+| 9. Validate | `codegraph analyze` | tasks/violations |
+| 10. Generate context | `codegraph copilot-context` | copilot_context.json |
 
 ---
 
@@ -714,3 +805,6 @@ intent → compile → simulate → plan → execute → lock → drift → veri
 13. **Simulate before implementing.** Use `codegraph arch-simulate` to predict impact of architecture changes.
 14. **Use `codegraph lock`** after changes to verify boundary enforcement.
 15. **Use `codegraph drift`** to detect code vs architecture divergence.
+16. **Use `codegraph arch-search`** to explore multiple candidates before implementing architecture improvements.
+17. **Never implement the first suggestion.** When multiple smells exist, generate candidates and pick the best.
+18. **If `arch-search` returns `NO_SAFE_ARCHITECTURE_CHANGE`**, do not force changes — report to human.

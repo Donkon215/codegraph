@@ -870,11 +870,11 @@
     ]
   },
   "codegraph/cli.py": {
-    "content_hash": "99417a85346a",
+    "content_hash": "61dcf131096c",
     "nodes": [
       {
         "id": "codegraph/cli",
-        "body_hash": "b5fcd",
+        "body_hash": "c3672",
         "file": "codegraph/cli.py",
         "type": "module",
         "line": 1
@@ -1468,11 +1468,18 @@
         "line": 2947
       },
       {
+        "id": "codegraph/cli.py::arch_search_cmd",
+        "body_hash": "d0f39",
+        "file": "codegraph/cli.py",
+        "type": "function",
+        "line": 2980
+      },
+      {
         "id": "codegraph/cli.py::arch_simulate_cmd",
         "body_hash": "00197",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2979
+        "line": 3020
       }
     ]
   },
@@ -20502,6 +20509,130 @@
         "file": "codegraph/apply_handlers.py",
         "type": "function",
         "line": 609
+      }
+    ]
+  },
+  "codegraph/arch_search.py": {
+    "content_hash": "a4ed997497f5",
+    "nodes": [
+      {
+        "id": "codegraph/arch_search",
+        "body_hash": "063e5",
+        "file": "codegraph/arch_search.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/arch_search.py::ArchCandidate",
+        "body_hash": "296dc",
+        "file": "codegraph/arch_search.py",
+        "type": "class",
+        "line": 51
+      },
+      {
+        "id": "codegraph/arch_search.py::ArchCandidate::to_dict",
+        "body_hash": "0c085",
+        "file": "codegraph/arch_search.py",
+        "type": "method",
+        "line": 76
+      },
+      {
+        "id": "codegraph/arch_search.py::ArchCandidate::from_dict",
+        "body_hash": "6ef5f",
+        "file": "codegraph/arch_search.py",
+        "type": "method",
+        "line": 98
+      },
+      {
+        "id": "codegraph/arch_search.py::ArchSearchResult",
+        "body_hash": "c54bd",
+        "file": "codegraph/arch_search.py",
+        "type": "class",
+        "line": 121
+      },
+      {
+        "id": "codegraph/arch_search.py::ArchSearchResult::to_dict",
+        "body_hash": "7e0f9",
+        "file": "codegraph/arch_search.py",
+        "type": "method",
+        "line": 134
+      },
+      {
+        "id": "codegraph/arch_search.py::ArchSearchResult::save",
+        "body_hash": "a577f",
+        "file": "codegraph/arch_search.py",
+        "type": "method",
+        "line": 151
+      },
+      {
+        "id": "codegraph/arch_search.py::ArchSearchResult::load",
+        "body_hash": "560ad",
+        "file": "codegraph/arch_search.py",
+        "type": "method",
+        "line": 163
+      },
+      {
+        "id": "codegraph/arch_search.py::ArchSearchResult::format",
+        "body_hash": "0882a",
+        "file": "codegraph/arch_search.py",
+        "type": "method",
+        "line": 185
+      },
+      {
+        "id": "codegraph/arch_search.py::generate_candidates",
+        "body_hash": "b30bb",
+        "file": "codegraph/arch_search.py",
+        "type": "function",
+        "line": 226
+      },
+      {
+        "id": "codegraph/arch_search.py::simulate_candidates",
+        "body_hash": "e36b2",
+        "file": "codegraph/arch_search.py",
+        "type": "function",
+        "line": 426
+      },
+      {
+        "id": "codegraph/arch_search.py::_strategy_to_changes",
+        "body_hash": "9b3e6",
+        "file": "codegraph/arch_search.py",
+        "type": "function",
+        "line": 481
+      },
+      {
+        "id": "codegraph/arch_search.py::score_candidates",
+        "body_hash": "4d4c0",
+        "file": "codegraph/arch_search.py",
+        "type": "function",
+        "line": 563
+      },
+      {
+        "id": "codegraph/arch_search.py::run_arch_search",
+        "body_hash": "6e8af",
+        "file": "codegraph/arch_search.py",
+        "type": "function",
+        "line": 636
+      },
+      {
+        "id": "codegraph/arch_search.py::_record_search_to_memory",
+        "body_hash": "d1251",
+        "file": "codegraph/arch_search.py",
+        "type": "function",
+        "line": 744
+      },
+      {
+        "id": "codegraph/arch_search.py::_module_name",
+        "body_hash": "fc400",
+        "file": "codegraph/arch_search.py",
+        "type": "function",
+        "line": 782
+      },
+      {
+        "id": "codegraph/arch_search.py::_find_subsystem_for_module",
+        "body_hash": "7330a",
+        "file": "codegraph/arch_search.py",
+        "type": "function",
+        "line": 790
       }
     ]
   }
