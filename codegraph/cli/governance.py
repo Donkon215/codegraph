@@ -222,33 +222,16 @@ def analyze_cmd(ctx: click.Context, as_json: bool) -> None:
     click.echo(report)
 
 
-# ── tasks ──────────────────────────────────────────────────────────────
-@click.command()
-@click.option("--json", "as_json", is_flag=True, help="Output as JSON.")
-@click.option("--filter-type", default=None, help="Filter tasks by task_id type.")
-@click.option("--max-priority", type=int, default=None, help="Max priority level to show.")
-@click.pass_context
-def tasks(ctx: click.Context, as_json: bool, filter_type: str | None, max_priority: int | None) -> None:
-    """Generate the agent work queue."""
+def _tasks_load_data(root):
+    """Load all data needed for task generation."""
     from codegraph.analyzer import run_analyze
-    from codegraph.tasks import (
-        generate_tasks, write_tasks, task_statistics, filter_tasks,
-    )
     from codegraph.storage import get_graph_version
-
-    try:
-        root = find_project_root()
-    except FileNotFoundError as exc:
-        click.echo(str(exc), err=True)
-        sys.exit(1)
-
-    analysis = run_analyze(root)
-    gv = get_graph_version(root)
-
     from codegraph.extractor import load_graph0
     from codegraph.annotator import load_graph1
     from codegraph.workflow import load_workflow
 
+    analysis = run_analyze(root)
+    gv = get_graph_version(root)
     graph0 = load_graph0(root)
     graph1 = load_graph1(root)
     workflow = load_workflow(root)
@@ -259,6 +242,29 @@ def tasks(ctx: click.Context, as_json: bool, filter_type: str | None, max_priori
         index = IndexStore(root)
     except FileNotFoundError:
         pass
+
+    return analysis, gv, graph0, graph1, workflow, index
+
+
+# ── tasks ──────────────────────────────────────────────────────────────
+@click.command()
+@click.option("--json", "as_json", is_flag=True, help="Output as JSON.")
+@click.option("--filter-type", default=None, help="Filter tasks by task_id type.")
+@click.option("--max-priority", type=int, default=None, help="Max priority level to show.")
+@click.pass_context
+def tasks(ctx: click.Context, as_json: bool, filter_type: str | None, max_priority: int | None) -> None:
+    """Generate the agent work queue."""
+    from codegraph.tasks import (
+        generate_tasks, write_tasks, task_statistics, filter_tasks,
+    )
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        click.echo(str(exc), err=True)
+        sys.exit(1)
+
+    analysis, gv, graph0, graph1, workflow, index = _tasks_load_data(root)
 
     batch = generate_tasks(
         analysis, graph0, graph1, workflow,
@@ -579,12 +585,7 @@ def repair_cmd(ctx: click.Context, max_cycles: int, dry_run: bool,
 def repair_plan_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
     """Generate a repair plan from current analysis."""
     import json as _json
-    from codegraph.analyzer import run_analyze
     from codegraph.tasks import generate_tasks
-    from codegraph.extractor import load_graph0
-    from codegraph.annotator import load_graph1
-    from codegraph.workflow import load_workflow
-    from codegraph.storage import get_graph_version
 
     try:
         root = find_project_root()
@@ -592,18 +593,7 @@ def repair_plan_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
         handle_error(exc, ctx.obj.get("verbose", False))
         sys.exit(EXIT_ERROR)
 
-    analysis = run_analyze(root)
-    graph0 = load_graph0(root)
-    graph1 = load_graph1(root)
-    workflow = load_workflow(root)
-    gv = get_graph_version(root)
-
-    index = None
-    try:
-        from codegraph.index import IndexStore
-        index = IndexStore(root)
-    except FileNotFoundError:
-        pass
+    analysis, gv, graph0, graph1, workflow, index = _tasks_load_data(root)
 
     batch = generate_tasks(
         analysis, graph0, graph1, workflow,

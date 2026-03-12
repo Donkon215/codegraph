@@ -29,6 +29,7 @@ from codegraph.models.workflow import Workflow
 from codegraph.storage import resolve_path
 from codegraph.utils.formatting import iso_now
 from codegraph.apply_handlers import (
+    ActionResult,
     handle_connect_call,
     handle_add_import,
     handle_remove_dead_code,
@@ -41,18 +42,6 @@ logger = get_logger("apply")
 # ═══════════════════════════════════════════════════════════════════════
 # Data classes
 # ═══════════════════════════════════════════════════════════════════════
-
-
-@dataclass
-class ActionResult:
-    """Outcome of a single repair action (J-001)."""
-
-    action: str
-    node: str
-    status: str  # "success" | "failed" | "skipped"
-    message: str = ""
-    file_modified: Optional[str] = None
-    diff: str = ""
 
 
 @dataclass
@@ -456,6 +445,17 @@ def format_apply_result(result: ApplyResult, *, as_json: bool = False) -> str:
 # ═══════════════════════════════════════════════════════════════════════
 
 
+def _validate_and_gate(response, project_root, dry_run, skip_plan_check):
+    """Validate graph version and check planning gate."""
+    from codegraph.storage import get_graph_version
+    current_version = get_graph_version(project_root)
+    ok, msg = response.validate_version(current_version)
+    if not ok:
+        raise VersionMismatchError(current_version, response.graph_version)
+    if response.repairs and not dry_run and not skip_plan_check:
+        _check_plan_exists(project_root)
+
+
 def _prepare_apply(
     response: AgentResponse,
     project_root: Path,
@@ -465,16 +465,7 @@ def _prepare_apply(
     skip_plan_check: bool = False,
 ) -> Tuple[Set[Path], Dict[Path, Path]]:
     """Validate version, acquire lock, collect files, check conflicts, create backups."""
-    from codegraph.storage import get_graph_version
-
-    current_version = get_graph_version(project_root)
-    ok, msg = response.validate_version(current_version)
-    if not ok:
-        raise VersionMismatchError(current_version, response.graph_version)
-
-    # Planning gate: require an architecture plan before applying repairs
-    if response.repairs and not dry_run and not skip_plan_check:
-        _check_plan_exists(project_root)
+    _validate_and_gate(response, project_root, dry_run, skip_plan_check)
 
     if not dry_run:
         _acquire_lock(project_root)

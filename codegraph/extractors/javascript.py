@@ -22,7 +22,7 @@ from pathlib import Path
 from typing import List, Optional, Tuple
 
 from codegraph.constants import BODY_HASH_LENGTH
-from codegraph.extractor import FileExtractionResult, ImportInfo
+from codegraph.extraction_types import FileExtractionResult, ImportInfo
 from codegraph.models.graph0 import Graph0Node, NodeType
 from codegraph.types import WorkflowEdge
 from codegraph.utils.ids import normalize_path

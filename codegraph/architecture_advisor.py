@@ -184,6 +184,153 @@ def _compute_grade(score: float) -> str:
 # ── Main advisor function ────────────────────────────────────────────
 
 
+def _detect_structural_smells(
+    advice, graph0, index, god_module_threshold, subsystem_size_threshold, depth_threshold,
+):
+    """Detect god modules, cycles, subsystem issues, and deep chains."""
+    # God modules
+    file_nodes: Dict[str, List[str]] = defaultdict(list)
+    for node in graph0.nodes:
+        file_nodes[node.file].append(node.id)
+
+    for filepath, node_ids in file_nodes.items():
+        if len(node_ids) > god_module_threshold:
+            advice.god_module_count += 1
+            advice.smells.append(ArchSmell(
+                smell_type="god_module",
+                severity="warning",
+                node=filepath,
+                metric_value=len(node_ids),
+                threshold=god_module_threshold,
+                description=f"{filepath} has {len(node_ids)} nodes (threshold: {god_module_threshold})",
+                suggestion=f"Split {filepath} into smaller focused modules",
+            ))
+            advice.suggestions.append(ArchSuggestion(
+                action="split_module",
+                target=filepath,
+                reason=f"Module has {len(node_ids)} nodes, exceeding threshold of {god_module_threshold}",
+                priority=3,
+                source_smell="god_module",
+            ))
+
+    # Cycles
+    cycles = detect_cycles(index)
+    advice.cycle_count = len(cycles)
+    for cycle in cycles:
+        sev = "error" if cycle.size >= 5 else "warning"
+        advice.smells.append(ArchSmell(
+            smell_type="cycle",
+            severity=sev,
+            nodes=cycle.nodes,
+            metric_value=cycle.size,
+            description=(
+                f"Cycle of {cycle.size} nodes across "
+                f"{len(cycle.files_involved)} file(s)"
+            ),
+            suggestion="Break cycle by introducing an interface or inverting a dependency",
+        ))
+        advice.suggestions.append(ArchSuggestion(
+            action="break_cycle",
+            target=", ".join(cycle.files_involved[:3]),
+            reason=f"Cycle of {cycle.size} nodes across {len(cycle.files_involved)} files",
+            priority=2,
+            source_smell="cycle",
+        ))
+
+    # Subsystem analysis
+    sub_report = detect_subsystems(graph0, index)
+    advice.modularity = sub_report.modularity_score
+
+    for sub in sub_report.subsystems:
+        if len(sub.nodes) > subsystem_size_threshold:
+            advice.large_subsystem_count += 1
+            advice.smells.append(ArchSmell(
+                smell_type="large_subsystem",
+                severity="warning",
+                node=sub.name,
+                metric_value=len(sub.nodes),
+                threshold=subsystem_size_threshold,
+                description=(
+                    f"Subsystem '{sub.name}' has {len(sub.nodes)} nodes "
+                    f"(threshold: {subsystem_size_threshold})"
+                ),
+                suggestion=f"Split subsystem '{sub.name}' into smaller cohesive units",
+            ))
+            advice.suggestions.append(ArchSuggestion(
+                action="extract_subsystem",
+                target=sub.name,
+                reason=f"Subsystem has {len(sub.nodes)} nodes, exceeding threshold of {subsystem_size_threshold}",
+                priority=4,
+                source_smell="large_subsystem",
+            ))
+
+        if sub.cohesion < 0.3 and len(sub.nodes) > 5:
+            advice.smells.append(ArchSmell(
+                smell_type="low_cohesion",
+                severity="info",
+                node=sub.name,
+                metric_value=sub.cohesion,
+                threshold=0.3,
+                description=(
+                    f"Subsystem '{sub.name}' has low cohesion "
+                    f"({sub.cohesion:.2f})"
+                ),
+                suggestion=f"Review boundaries of '{sub.name}' — may contain unrelated modules",
+            ))
+
+    # Dependency depth
+    advice.max_dependency_depth = _compute_max_depth(index)
+    if advice.max_dependency_depth > depth_threshold:
+        advice.smells.append(ArchSmell(
+            smell_type="deep_chain",
+            severity="warning",
+            metric_value=advice.max_dependency_depth,
+            threshold=depth_threshold,
+            description=(
+                f"Maximum dependency chain depth is {advice.max_dependency_depth} "
+                f"(threshold: {depth_threshold})"
+            ),
+            suggestion="Flatten deep call chains to reduce latency and debugging complexity",
+        ))
+
+
+def _analyze_node_risks(advice, risk, fan_in_threshold, fan_out_threshold):
+    """Analyze fan-in, fan-out, and critical nodes from risk metrics."""
+    for m in risk.node_metrics:
+        if m.fan_in >= fan_in_threshold:
+            advice.smells.append(ArchSmell(
+                smell_type="high_fan_in",
+                severity="warning" if m.fan_in < fan_in_threshold * 2 else "error",
+                node=m.node_id,
+                metric_value=m.fan_in,
+                threshold=fan_in_threshold,
+                description=f"{m.node_id} has fan-in={m.fan_in} (threshold: {fan_in_threshold})",
+                suggestion=f"Consider introducing an interface or facade for {m.node_id}",
+            ))
+        if m.fan_out >= fan_out_threshold:
+            advice.smells.append(ArchSmell(
+                smell_type="high_fan_out",
+                severity="warning",
+                node=m.node_id,
+                metric_value=m.fan_out,
+                threshold=fan_out_threshold,
+                description=f"{m.node_id} has fan-out={m.fan_out} (threshold: {fan_out_threshold})",
+                suggestion=f"Reduce dependencies of {m.node_id} by extracting helper modules",
+            ))
+        if m.risk_level == RiskLevel.CRITICAL:
+            advice.smells.append(ArchSmell(
+                smell_type="critical_node",
+                severity="error",
+                node=m.node_id,
+                metric_value=m.betweenness,
+                description=(
+                    f"{m.node_id} is critical: fan-in={m.fan_in} "
+                    f"fan-out={m.fan_out} betweenness={m.betweenness:.4f}"
+                ),
+                suggestion=f"Reduce centrality of {m.node_id} — high blast radius if changed",
+            ))
+
+
 def advise_architecture(
     graph0: Graph0,
     index: IndexStore,
@@ -230,148 +377,16 @@ def advise_architecture(
 
     risk_map = {m.node_id: m for m in risk.node_metrics}
 
-    # 2. Detect god modules
-    file_nodes: Dict[str, List[str]] = defaultdict(list)
-    for node in graph0.nodes:
-        file_nodes[node.file].append(node.id)
+    # 2-5. Structural smell detection
+    _detect_structural_smells(
+        advice, graph0, index, god_module_threshold, subsystem_size_threshold, depth_threshold,
+    )
 
-    for filepath, node_ids in file_nodes.items():
-        if len(node_ids) > god_module_threshold:
-            advice.god_module_count += 1
-            advice.smells.append(ArchSmell(
-                smell_type="god_module",
-                severity="warning",
-                node=filepath,
-                metric_value=len(node_ids),
-                threshold=god_module_threshold,
-                description=f"{filepath} has {len(node_ids)} nodes (threshold: {god_module_threshold})",
-                suggestion=f"Split {filepath} into smaller focused modules",
-            ))
-            advice.suggestions.append(ArchSuggestion(
-                action="split_module",
-                target=filepath,
-                reason=f"Module has {len(node_ids)} nodes, exceeding threshold of {god_module_threshold}",
-                priority=3,
-                source_smell="god_module",
-            ))
-
-    # 3. Critical/high fan-in nodes
-    for m in risk.node_metrics:
-        if m.fan_in >= fan_in_threshold:
-            advice.smells.append(ArchSmell(
-                smell_type="high_fan_in",
-                severity="warning" if m.fan_in < fan_in_threshold * 2 else "error",
-                node=m.node_id,
-                metric_value=m.fan_in,
-                threshold=fan_in_threshold,
-                description=f"{m.node_id} has fan-in={m.fan_in} (threshold: {fan_in_threshold})",
-                suggestion=f"Consider introducing an interface or facade for {m.node_id}",
-            ))
-        if m.fan_out >= fan_out_threshold:
-            advice.smells.append(ArchSmell(
-                smell_type="high_fan_out",
-                severity="warning",
-                node=m.node_id,
-                metric_value=m.fan_out,
-                threshold=fan_out_threshold,
-                description=f"{m.node_id} has fan-out={m.fan_out} (threshold: {fan_out_threshold})",
-                suggestion=f"Reduce dependencies of {m.node_id} by extracting helper modules",
-            ))
-        if m.risk_level == RiskLevel.CRITICAL:
-            advice.smells.append(ArchSmell(
-                smell_type="critical_node",
-                severity="error",
-                node=m.node_id,
-                metric_value=m.betweenness,
-                description=(
-                    f"{m.node_id} is critical: fan-in={m.fan_in} "
-                    f"fan-out={m.fan_out} betweenness={m.betweenness:.4f}"
-                ),
-                suggestion=f"Reduce centrality of {m.node_id} — high blast radius if changed",
-            ))
-
-    # 4. Cycle detection
-    cycles = detect_cycles(index)
-    advice.cycle_count = len(cycles)
-    for cycle in cycles:
-        sev = "error" if cycle.size >= 5 else "warning"
-        advice.smells.append(ArchSmell(
-            smell_type="cycle",
-            severity=sev,
-            nodes=cycle.nodes,
-            metric_value=cycle.size,
-            description=(
-                f"Cycle of {cycle.size} nodes across "
-                f"{len(cycle.files_involved)} file(s)"
-            ),
-            suggestion="Break cycle by introducing an interface or inverting a dependency",
-        ))
-        advice.suggestions.append(ArchSuggestion(
-            action="break_cycle",
-            target=", ".join(cycle.files_involved[:3]),
-            reason=f"Cycle of {cycle.size} nodes across {len(cycle.files_involved)} files",
-            priority=2,
-            source_smell="cycle",
-        ))
-
-    # 5. Subsystem analysis
-    sub_report = detect_subsystems(graph0, index)
-    advice.modularity = sub_report.modularity_score
-
-    for sub in sub_report.subsystems:
-        if len(sub.nodes) > subsystem_size_threshold:
-            advice.large_subsystem_count += 1
-            advice.smells.append(ArchSmell(
-                smell_type="large_subsystem",
-                severity="warning",
-                node=sub.name,
-                metric_value=len(sub.nodes),
-                threshold=subsystem_size_threshold,
-                description=(
-                    f"Subsystem '{sub.name}' has {len(sub.nodes)} nodes "
-                    f"(threshold: {subsystem_size_threshold})"
-                ),
-                suggestion=f"Split subsystem '{sub.name}' into smaller cohesive units",
-            ))
-            advice.suggestions.append(ArchSuggestion(
-                action="extract_subsystem",
-                target=sub.name,
-                reason=f"Subsystem has {len(sub.nodes)} nodes, exceeding threshold of {subsystem_size_threshold}",
-                priority=4,
-                source_smell="large_subsystem",
-            ))
-
-        if sub.cohesion < 0.3 and len(sub.nodes) > 5:
-            advice.smells.append(ArchSmell(
-                smell_type="low_cohesion",
-                severity="info",
-                node=sub.name,
-                metric_value=sub.cohesion,
-                threshold=0.3,
-                description=(
-                    f"Subsystem '{sub.name}' has low cohesion "
-                    f"({sub.cohesion:.2f})"
-                ),
-                suggestion=f"Review boundaries of '{sub.name}' — may contain unrelated modules",
-            ))
+    # 3. Critical/high fan-in/fan-out nodes
+    _analyze_node_risks(advice, risk, fan_in_threshold, fan_out_threshold)
 
     # 6. Hidden coupling: cross-layer edges
     _detect_hidden_coupling(graph0, index, advice)
-
-    # 7. Dependency depth
-    advice.max_dependency_depth = _compute_max_depth(index)
-    if advice.max_dependency_depth > depth_threshold:
-        advice.smells.append(ArchSmell(
-            smell_type="deep_chain",
-            severity="warning",
-            metric_value=advice.max_dependency_depth,
-            threshold=depth_threshold,
-            description=(
-                f"Maximum dependency chain depth is {advice.max_dependency_depth} "
-                f"(threshold: {depth_threshold})"
-            ),
-            suggestion="Flatten deep call chains to reduce latency and debugging complexity",
-        ))
 
     # Compute overall score
     score = 1.0

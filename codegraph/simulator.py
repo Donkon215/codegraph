@@ -240,27 +240,8 @@ def simulate_changes(
     if check_subsystems and system_json_path:
         _check_subsystem_constraints(adj, system_json_path, changes, result)
 
-    # Check coupling changes
-    old_coupling = _compute_module_coupling({k: v for k, v in _original_adj(index).items()})
-    new_coupling = _compute_module_coupling(adj)
-    result.coupling_delta = new_coupling - old_coupling
-    if result.coupling_delta > 0.1:
-        result.violations.append(
-            SimViolation(
-                violation_type="coupling_increase",
-                severity="warning",
-                description=f"Coupling increased by {result.coupling_delta:.3f}",
-            )
-        )
-
-    # Detect structural improvements
-    _detect_improvements(adj, existing_cycles, result)
-
-    # Compute blast radius
-    result.blast_radius = _compute_blast_radius(changes, adj, reverse_adj)
-
-    # Classify risk
-    result.risk_level = _classify_risk(result)
+    # Compute impact metrics
+    _compute_impact_metrics(adj, index, changes, reverse_adj, existing_cycles, result)
 
     # Summary
     if result.risk_level == RISK_BLOCKED:
@@ -410,6 +391,24 @@ def _compute_module_coupling(adj: Dict[str, Set[str]]) -> float:
             if src_mod != tgt_mod:
                 cross_module += 1
     return cross_module / total if total > 0 else 0.0
+
+
+def _compute_impact_metrics(adj, index, changes, reverse_adj, existing_cycles, result):
+    """Compute coupling, improvements, blast radius, and risk classification."""
+    old_coupling = _compute_module_coupling({k: v for k, v in _original_adj(index).items()})
+    new_coupling = _compute_module_coupling(adj)
+    result.coupling_delta = new_coupling - old_coupling
+    if result.coupling_delta > 0.1:
+        result.violations.append(
+            SimViolation(
+                violation_type="coupling_increase",
+                severity="warning",
+                description=f"Coupling increased by {result.coupling_delta:.3f}",
+            )
+        )
+    _detect_improvements(adj, existing_cycles, result)
+    result.blast_radius = _compute_blast_radius(changes, adj, reverse_adj)
+    result.risk_level = _classify_risk(result)
 
 
 # ═══════════════════════════════════════════════════════════════════════

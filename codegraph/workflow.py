@@ -1107,46 +1107,70 @@ def _collect_call_sites_and_imports(
     return call_sites, imports
 
 
-def build_workflow(
+# ═══════════════════════════════════════════════════════════════════════
+# Workflow Build Helpers (reduce fan-out)
+# ═══════════════════════════════════════════════════════════════════════
+
+
+def _prepare_source_data(
     project_root: Path,
-    config: Optional[CodegraphConfig] = None,
-    *,
-    trace: bool = False,
-    archi: bool = False,
-    trace_all: bool = False,
-    include_imports: bool = False,
-    level: str = "function",
-) -> Workflow:
-    """Top-level workflow build orchestrator (F-018, F-026, F-032, F-034, F-035).
+    config: Optional[CodegraphConfig],
+    level: str,
+) -> Tuple[CodegraphConfig, Graph0, Dict[str, List[Any]], Dict[str, List[Any]], str]:
+    """Prepare source data: validate, load config, and extract graph0.
 
-    Coordinates static analysis, optional tracing, filtering, and output.
+    Returns
+    -------
+    (config, graph0, call_sites, imports_data, level)
     """
-    t0 = time.monotonic()
-
     # F-034 — validate level
     level = validate_level(level)
 
     if config is None:
         config = load_config(project_root)
 
-    # a. Load Graph_0
+    # Load Graph_0
     from codegraph.extractor import load_graph0
     graph0 = load_graph0(project_root)
-    if not graph0.nodes:
-        logger.warning("Empty Graph_0 — nothing to build")
-        return Workflow(level=level)
 
-    # b. Collect call sites and imports from source
+    # Collect call sites and imports from source
     call_sites, imports_data = _collect_call_sites_and_imports(graph0, project_root)
 
-    # b. Build static edges (F-001)
+    return config, graph0, call_sites, imports_data, level
+
+
+def _build_all_edge_sources(
+    project_root: Path,
+    graph0: Graph0,
+    call_sites: Dict[str, List[Any]],
+    imports_data: Dict[str, List[Any]],
+    *,
+    trace: bool = False,
+    archi: bool = False,
+    trace_all: bool = False,
+    include_imports: bool = False,
+) -> Tuple[
+    List[WorkflowEdge],
+    List[WorkflowEdge],
+    List[WorkflowEdge],
+    List[WorkflowEdge],
+    str,
+    Optional[List[WorkflowEdge]],
+]:
+    """Build all edge sources: static, dynamic, traced, imported.
+
+    Returns
+    -------
+    (static_edges, dynamic_edges, trace_edges, test_edges, trace_mode, import_edges)
+    """
+    # Build static edges (F-001)
     static_edges, unresolved = build_static_edges(graph0, call_sites, imports_data)
     logger.info("Static edges: %d, unresolved calls: %d", len(static_edges), len(unresolved))
 
     # Build dynamic edges (F-012)
     dynamic_edges = build_dynamic_edges(unresolved)
 
-    # c/d/e. Run traces if requested (F-009, F-026, F-027)
+    # Run traces if requested (F-009, F-026, F-027)
     trace_edges: List[WorkflowEdge] = []
     test_edges: List[WorkflowEdge] = []
     trace_mode = "static_only"
@@ -1175,7 +1199,29 @@ def build_workflow(
     if include_imports:
         import_edges = build_import_edges(imports_data, graph0)
 
-    # g. Merge all edges (F-013)
+    return static_edges, dynamic_edges, trace_edges, test_edges, trace_mode, import_edges
+
+
+def _finalize_and_save_workflow(
+    project_root: Path,
+    graph0: Graph0,
+    imports_data: Dict[str, List[Any]],
+    static_edges: List[WorkflowEdge],
+    dynamic_edges: List[WorkflowEdge],
+    trace_edges: List[WorkflowEdge],
+    test_edges: List[WorkflowEdge],
+    import_edges: Optional[List[WorkflowEdge]],
+    level: str,
+    trace_mode: str,
+    t0: float,
+) -> Tuple[Workflow, float]:
+    """Merge, filter, compress, and save workflow.
+
+    Returns
+    -------
+    (workflow, elapsed_seconds)
+    """
+    # Merge all edges (F-013)
     all_edges_list = merge_edges(
         static_edges,
         trace=trace_edges or None,
@@ -1185,7 +1231,7 @@ def build_workflow(
     if import_edges:
         all_edges_list = merge_edges(all_edges_list, trace=import_edges)
 
-    # h. Apply filters (F-007)
+    # Apply filters (F-007)
     from codegraph.filters import FilterPipeline
     pipeline = FilterPipeline.from_config(
         ["dunder", "logging", "stdlib", "test_harness"],
@@ -1198,7 +1244,7 @@ def build_workflow(
         filter_result.input_count - filter_result.output_count,
     )
 
-    # i. Compress if needed (F-015, F-016)
+    # Compress if needed (F-015, F-016)
     if level == "module":
         filtered_edges = compress_to_module(filtered_edges)
     elif level == "class":
@@ -1219,12 +1265,68 @@ def build_workflow(
         "build_time_s": round(elapsed, 2),
     }
 
-    # j. Write workflow.json (F-014)
+    # Write workflow.json (F-014)
     write_workflow(workflow, project_root, metadata=metadata)
 
     # F-031 — always build import dependencies separately
     ig = build_import_dependencies(graph0, imports_data)
     save_import_graph(ig, project_root)
 
-    logger.info("Workflow built in %.2fs: %d edges", elapsed, len(filtered_edges))
+    return workflow, elapsed
+
+
+def build_workflow(
+    project_root: Path,
+    config: Optional[CodegraphConfig] = None,
+    *,
+    trace: bool = False,
+    archi: bool = False,
+    trace_all: bool = False,
+    include_imports: bool = False,
+    level: str = "function",
+) -> Workflow:
+    """Top-level workflow build orchestrator (F-018, F-026, F-032, F-034, F-035).
+
+    Coordinates static analysis, optional tracing, filtering, and output.
+    """
+    t0 = time.monotonic()
+
+    # a. Prepare source data (F-034, load graph)
+    config, graph0, call_sites, imports_data, level = _prepare_source_data(
+        project_root, config, level
+    )
+    if not graph0.nodes:
+        logger.warning("Empty Graph_0 — nothing to build")
+        return Workflow(level=level)
+
+    # b/c/d/e. Build all edge sources (static, dynamic, traced)
+    (
+        static_edges,
+        dynamic_edges,
+        trace_edges,
+        test_edges,
+        trace_mode,
+        import_edges,
+    ) = _build_all_edge_sources(
+        project_root, graph0, call_sites, imports_data,
+        trace=trace, archi=archi, trace_all=trace_all,
+        include_imports=include_imports,
+    )
+
+    # f-i. Merge, filter, compress, and write workflow
+    workflow, elapsed = _finalize_and_save_workflow(
+        project_root,
+        graph0,
+        imports_data,
+        static_edges,
+        dynamic_edges,
+        trace_edges,
+        test_edges,
+        import_edges,
+        level,
+        trace_mode,
+        t0,
+    )
+
+    logger.info("Workflow built in %.2fs: %d edges", elapsed, len(workflow.edges))
     return workflow

@@ -36,7 +36,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
-from codegraph.constants import CODEGRAPH_DIR, INDEX_DIR
+from codegraph.constants import CODEGRAPH_DIR, GRAPHS_DIR, INDEX_DIR
 from codegraph.logging_config import get_logger
 from codegraph.storage import resolve_path
 
@@ -472,12 +472,18 @@ def update_index_delta(
 def rebuild_index(project_root: Path) -> Dict[str, int]:
     """Rebuild index from committed graph files without re-extraction (G-009)."""
     from codegraph.extractor import load_graph0
-    from codegraph.annotator import load_graph1
     from codegraph.workflow import load_workflow
 
     graph0 = load_graph0(project_root)
-    graph1 = load_graph1(project_root)
     workflow = load_workflow(project_root)
+
+    # Load graph1 directly to avoid circular import with annotator
+    from codegraph.models.graph1 import Graph1
+    graph1_path = resolve_path(project_root, GRAPHS_DIR, "graph1.json")
+    if graph1_path.exists():
+        graph1 = Graph1.from_json(graph1_path.read_text(encoding="utf-8"))
+    else:
+        graph1 = Graph1()
 
     return build_all_indexes(graph0, graph1, workflow, project_root)
 
@@ -498,7 +504,6 @@ class ConsistencyIssue:
 def check_index_consistency(project_root: Path) -> List[ConsistencyIssue]:
     """Verify index data matches current graph files (G-010)."""
     from codegraph.extractor import load_graph0
-    from codegraph.annotator import load_graph1
     from codegraph.workflow import load_workflow
 
     issues: List[ConsistencyIssue] = []
@@ -517,7 +522,15 @@ def check_index_consistency(project_root: Path) -> List[ConsistencyIssue]:
         return issues
 
     graph0 = load_graph0(project_root)
-    graph1 = load_graph1(project_root)
+
+    # Load graph1 directly to avoid circular import with annotator
+    from codegraph.models.graph1 import Graph1
+    graph1_path = resolve_path(project_root, GRAPHS_DIR, "graph1.json")
+    if graph1_path.exists():
+        graph1 = Graph1.from_json(graph1_path.read_text(encoding="utf-8"))
+    else:
+        graph1 = Graph1()
+
     workflow = load_workflow(project_root)
 
     # Check nodes table

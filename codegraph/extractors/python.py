@@ -9,7 +9,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import List
 
-from codegraph.extractor import FileExtractionResult, extract_file
+from codegraph.extraction_types import FileExtractionResult
+from codegraph.extractor import extract_file
 from codegraph.models.graph0 import Graph0Node
 
 

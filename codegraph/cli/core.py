@@ -109,6 +109,8 @@ def init(path: str) -> None:
 
 # ── status ─────────────────────────────────────────────────────────────
 # ── status ─────────────────────────────────────────────────────────────
+# ── status ─────────────────────────────────────────────────────────────
+# ── status ─────────────────────────────────────────────────────────────
 @main.command()
 @click.pass_context
 def status(ctx: click.Context) -> None:
@@ -122,9 +124,25 @@ def status(ctx: click.Context) -> None:
     click.echo(f"Project root: {root}")
     click.echo(f"Config: {config}")
 
+    # Report system graphs and statistics
+    _report_system_statistics(root)
+
+    # Report configuration and policy state
+    _report_configuration_state(root, config)
+
+
+# ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+# Status Reporting Helpers (reduce fan-out)
+# ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+def _report_system_statistics(root: Path) -> None:
+    """Report layer, workflow, and index statistics."""
+    from codegraph.storage import resolve_path as _rp
+    from codegraph.constants import WORKFLOW_DIR, WORKFLOW_FILE, INDEX_DIR
+
     # D-014 — Layer statistics if graph1 exists
-    from codegraph.storage import resolve_path
-    g1_path = resolve_path(root, "graphs", "graph1.json")
+    g1_path = _rp(root, "graphs", "graph1.json")
     if g1_path.exists():
         from codegraph.models.graph1 import Graph1
         from codegraph.layers import layer_statistics, format_layer_stats
@@ -133,7 +151,7 @@ def status(ctx: click.Context) -> None:
         click.echo(format_layer_stats(stats))
 
         # E-024 — Annotation statistics
-        g0_path = resolve_path(root, "graphs", "graph0.json")
+        g0_path = _rp(root, "graphs", "graph0.json")
         if g0_path.exists():
             from codegraph.annotator import graph1_statistics
             from codegraph.models.graph0 import Graph0
@@ -141,16 +159,7 @@ def status(ctx: click.Context) -> None:
             astats = graph1_statistics(g0, g1)
             click.echo(astats.format())
 
-    # D-018 — Config change detection
-    from codegraph.config import compute_config_hash, config_changed_since_build
-    from codegraph.storage import get_stored_config_hash
-    stored = get_stored_config_hash(root)
-    if stored and config_changed_since_build(root, stored):
-        click.echo("⚠  config.yaml has changed since last build — run 'codegraph build'.")
-
     # F — Workflow statistics
-    from codegraph.storage import resolve_path as _rp
-    from codegraph.constants import WORKFLOW_DIR, WORKFLOW_FILE
     wf_path = _rp(root, WORKFLOW_DIR, WORKFLOW_FILE)
     if wf_path.exists():
         from codegraph.workflow import load_workflow, edge_statistics
@@ -161,15 +170,25 @@ def status(ctx: click.Context) -> None:
                         f"({', '.join(f'{k}={v}' for k,v in sorted(es.by_type.items()))})")
 
     # G — Index statistics
-    from codegraph.constants import INDEX_DIR
     idx_path = _rp(root, INDEX_DIR, "codegraph.db")
     if idx_path.exists():
         from codegraph.index import index_statistics
         istats = index_statistics(root)
         click.echo(istats.format())
 
+
+def _report_configuration_state(root: Path, config: Any) -> None:
+    """Report configuration, policy, and task state."""
+    from codegraph.storage import resolve_path as _rp, get_stored_config_hash
+    from codegraph.config import compute_config_hash, config_changed_since_build
+    from codegraph.constants import WORKFLOW_DIR, WORKFLOW_FILE, SUGGESTED_WORKFLOW_FILE, TASKS_DIR, TASKS_FILE
+
+    # D-018 — Config change detection
+    stored = get_stored_config_hash(root)
+    if stored and config_changed_since_build(root, stored):
+        click.echo("⚠  config.yaml has changed since last build — run 'codegraph build'.")
+
     # H — Suggested workflow statistics
-    from codegraph.constants import SUGGESTED_WORKFLOW_FILE
     sw_path = _rp(root, WORKFLOW_DIR, SUGGESTED_WORKFLOW_FILE)
     if sw_path.exists():
         from codegraph.suggest import load_suggested_workflow
@@ -177,7 +196,6 @@ def status(ctx: click.Context) -> None:
         click.echo(f"Policy rules: {len(sw.rules)}")
 
     # I — Task statistics
-    from codegraph.constants import TASKS_DIR, TASKS_FILE
     tasks_path = _rp(root, TASKS_DIR, TASKS_FILE)
     if tasks_path.exists():
         from codegraph.tasks import load_tasks, task_statistics
@@ -185,6 +203,12 @@ def status(ctx: click.Context) -> None:
         if tb.tasks:
             tstats = task_statistics(tb)
             click.echo(tstats.format())
+
+
+def _build_init(root):
+    """Initialize codegraph directory and load config."""
+    ensure_codegraph_dir(root)
+    return load_config(root)
 
 
 # ── build ──────────────────────────────────────────────────────────────
@@ -199,19 +223,30 @@ def status(ctx: click.Context) -> None:
 @click.pass_context
 def build(ctx: click.Context, no_cache: bool, parallel: bool, layer_overrides: tuple[str, ...]) -> None:
     """Extract structure and build all graphs."""
-    from codegraph.extractor import extract_project, save_graph0
-
     try:
         root = find_project_root()
     except FileNotFoundError as exc:
         click.echo(str(exc), err=True)
         sys.exit(1)
 
-    ensure_codegraph_dir(root)
-    config = load_config(root)
+    config = _build_init(root)
     quiet = ctx.obj.get("quiet", False)
 
-    # D-013 — parse layer overrides
+    click.echo(f"Building graphs for {root} …")
+
+    graph0, report, overrides = _build_extract(root, config, no_cache, parallel, quiet, layer_overrides)
+    layers = _build_layers(root, graph0, config, overrides, quiet)
+    _build_store_config(root)
+    click.echo(report.summary())
+    g1 = _build_annotate(root, graph0, layers, quiet)
+    _build_workflow_and_index(root, config, graph0, g1, quiet)
+    _build_track_commit(root)
+
+
+def _build_extract(root, config, no_cache, parallel, quiet, layer_overrides):
+    """Extract graph0 and save it."""
+    from codegraph.extractor import extract_project, save_graph0
+
     overrides: dict[str, int] = {}
     if layer_overrides:
         from codegraph.layers import parse_layer_overrides
@@ -221,45 +256,45 @@ def build(ctx: click.Context, no_cache: bool, parallel: bool, layer_overrides: t
             click.echo(f"Error: {exc}", err=True)
             sys.exit(1)
 
-    click.echo(f"Building graphs for {root} …")
     graph0, report = extract_project(
-        root,
-        config,
-        use_cache=not no_cache,
-        parallel=parallel,
-        progress=not quiet,
+        root, config, use_cache=not no_cache, parallel=parallel, progress=not quiet,
     )
     save_graph0(graph0, root)
+    return graph0, report, overrides
 
-    # D-007 — assign layers
-    from codegraph.layers import assign_layers, layer_statistics, format_layer_stats
+
+def _build_layers(root, graph0, config, overrides, quiet):
+    """Assign layers and report."""
+    from codegraph.layers import assign_layers
     layers = assign_layers(
-        graph0.nodes, config,
-        project_root=str(root),
-        overrides=overrides or None,
+        graph0.nodes, config, project_root=str(root), overrides=overrides or None,
     )
+    if not quiet:
+        click.echo(f"Layer assignments: {len(layers)} nodes classified")
+    return layers
 
-    # D-018 — store config hash
+
+def _build_store_config(root):
+    """Store config hash for change detection."""
     from codegraph.config import compute_config_hash
     from codegraph.storage import store_config_hash
     store_config_hash(root, compute_config_hash(root))
 
-    click.echo(report.summary())
-    if not quiet:
-        click.echo(f"Layer assignments: {len(layers)} nodes classified")
 
-    # E-001/E-013 — initialize or merge Graph_1
+def _build_annotate(root, graph0, layers, quiet):
+    """Initialize or merge Graph_1, check for stale intents."""
     from codegraph.annotator import (
         load_graph1, save_graph1, initialize_graph1, merge_graph1,
         detect_stale_intents, format_stale_warnings,
     )
+    from codegraph.models.graph1 import Graph1
+
     existing_g1 = load_graph1(root)
     if not existing_g1.nodes:
         g1 = initialize_graph1(graph0, layers)
     else:
         g1 = merge_graph1(existing_g1, graph0, layers)
 
-    # E-021 — stale intent warnings
     stale = detect_stale_intents(graph0, g1)
     g0_ids = frozenset(n.id for n in graph0.nodes)
     ghosts = g1.get_stale_nodes(g0_ids)
@@ -268,20 +303,26 @@ def build(ctx: click.Context, no_cache: bool, parallel: bool, layer_overrides: t
         click.echo(warning_text)
 
     save_graph1(g1, root)
+    return g1
 
-    # F/G — Build workflow (static only) and indexes
+
+def _build_workflow_and_index(root, config, graph0, g1, quiet):
+    """Build workflow edges and search indexes."""
     from codegraph.workflow import build_workflow, workflow_summary
+    from codegraph.index import build_all_indexes
+
     wf = build_workflow(root, config, trace=False, level="function")
     if not quiet:
         click.echo(workflow_summary(wf, graph0))
 
-    from codegraph.index import build_all_indexes
     idx_result = build_all_indexes(graph0, g1, wf, root)
     if not quiet:
         total = sum(idx_result.values())
         click.echo(f"Index built: {total} rows across {len(idx_result)} tables")
 
-    # Store build commit for delta tracking
+
+def _build_track_commit(root):
+    """Store build commit for delta tracking."""
     from codegraph.git_utils import get_current_commit
     from codegraph.delta import _store_build_commit
     commit = get_current_commit(root)

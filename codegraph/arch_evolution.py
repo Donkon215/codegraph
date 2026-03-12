@@ -66,6 +66,290 @@ def get_mutation_tier(strategy: str) -> str:
 
 
 # ═══════════════════════════════════════════════════════════════════════
+# Stage Grouping Helpers (reduce fan-out)
+# ═══════════════════════════════════════════════════════════════════════
+
+
+def _run_detection_and_memory_stages(
+    project_root: Path,
+    result: EvolutionResult,
+) -> Tuple[Dict[str, Any], List[Dict[str, Any]], bool]:
+    """Run Stages 1-2: Detect architectural smells and consult memory.
+
+    Returns
+    -------
+    (advice, strategy_ranking, early_exit)
+        - advice: advisor result with smells and score
+        - strategy_ranking: historical strategy effectiveness
+        - early_exit: True if should return early (no smells or advisor failed)
+    """
+    # Stage 1: Detect
+    detect_stage = EvolutionStage(name="detect", status="running")
+    result.stages.append(detect_stage)
+
+    try:
+        advice = _run_advisor(project_root)
+    except Exception as exc:
+        detect_stage.status = "failed"
+        detect_stage.details = str(exc)
+        result.status = "failed"
+        return {}, [], True
+
+    smell_count = len(advice.get("smells", []))
+    score = advice.get("score", 0.0)
+
+    detect_stage.status = "passed"
+    detect_stage.details = f"{smell_count} smells, score={score:.3f}"
+    detect_stage.metrics = {
+        "smells": smell_count,
+        "score": score,
+        "grade": advice.get("grade", "?"),
+    }
+
+    if smell_count == 0:
+        detect_stage.details += " — architecture is clean"
+        result.status = "no_change"
+        result.score_after = score
+        result.recommendations.append("No architectural smells detected")
+        _skip_remaining(result, "detect")
+        return advice, [], True
+
+    # Stage 2: Memory
+    memory_stage = EvolutionStage(name="memory", status="running")
+    result.stages.append(memory_stage)
+
+    try:
+        strategy_ranking = _get_strategy_ranking(project_root)
+        memory_stage.status = "passed"
+        if strategy_ranking:
+            top = strategy_ranking[0]
+            memory_stage.details = (
+                f"{len(strategy_ranking)} strategies scored, "
+                f"best: {top.get('strategy', '?')} "
+                f"({top.get('effectiveness', 0):.0%})"
+            )
+        else:
+            memory_stage.details = "No historical strategy data yet"
+    except Exception as exc:
+        memory_stage.status = "passed"
+        memory_stage.details = f"No memory data yet: {exc}"
+        strategy_ranking = []
+
+    return advice, strategy_ranking, False
+
+
+def _run_mutate_and_policy_stages(
+    project_root: Path,
+    result: EvolutionResult,
+    max_candidates: int,
+    strategy_ranking: List[Dict[str, Any]],
+) -> Tuple[List[Dict[str, Any]], Dict[str, Any], bool]:
+    """Run Stages 3-4: Generate candidates and check policies.
+
+    Returns
+    -------
+    (candidates, selected, early_exit)
+        - candidates: all generated candidates
+        - selected: best safe candidate
+        - early_exit: True if should return early (no candidates, blocked, or policy violations)
+    """
+    score = result.score_before
+
+    # Stage 3: Mutate
+    mutate_stage = EvolutionStage(name="mutate", status="running")
+    result.stages.append(mutate_stage)
+
+    try:
+        search_result = _run_arch_search(project_root, max_candidates)
+    except Exception as exc:
+        mutate_stage.status = "failed"
+        mutate_stage.details = str(exc)
+        result.status = "failed"
+        _skip_remaining(result, "mutate")
+        return [], {}, True
+
+    candidates = search_result.get("candidates", [])
+    selected = search_result.get("selected")
+
+    # Rerank candidates using memory intelligence
+    if selected and strategy_ranking:
+        selected = _rerank_with_memory(
+            selected, candidates, strategy_ranking,
+        )
+
+    if not selected:
+        mutate_stage.status = "passed"
+        mutate_stage.details = (
+            f"{len(candidates)} candidates generated, none safe"
+        )
+        result.status = "no_change"
+        result.score_after = score
+        result.recommendations.append(
+            "No safe architecture change found — manual review needed"
+        )
+        _skip_remaining(result, "mutate")
+        return candidates, {}, True
+
+    mutate_stage.status = "passed"
+    mutate_stage.details = (
+        f"{len(candidates)} candidates, selected: "
+        f"{selected.get('strategy', '?')}"
+    )
+
+    # Check mutation safety tier
+    tier = get_mutation_tier(selected.get("strategy", ""))
+    if tier == TIER_DANGEROUS:
+        mutate_stage.details += f" [BLOCKED: {tier} tier]"
+        result.status = "blocked"
+        result.score_after = score
+        result.recommendations.append(
+            f"Strategy '{selected.get('strategy')}' is {tier}-tier — "
+            f"requires human approval"
+        )
+        _skip_remaining(result, "mutate")
+        return candidates, {}, True
+
+    mutate_stage.metrics = {
+        "candidates": len(candidates),
+        "selected_strategy": selected.get("strategy", ""),
+        "predicted_score": selected.get("predicted_score", 0.0),
+        "safety_tier": tier,
+    }
+
+    # Stage 4: Policy
+    policy_stage = EvolutionStage(name="policy", status="running")
+    result.stages.append(policy_stage)
+
+    try:
+        policy_report = _check_policies(project_root)
+        blocking = sum(1 for v in policy_report.get("violations", [])
+                       if v.get("action") == "block")
+        result.policy_violations = len(policy_report.get("violations", []))
+
+        if blocking > 0:
+            policy_stage.status = "failed"
+            policy_stage.details = f"{blocking} blocking violations"
+            result.status = "blocked"
+            result.score_after = score
+            result.recommendations.append(
+                f"Evolution blocked by {blocking} policy violations"
+            )
+            _skip_remaining(result, "policy")
+            return candidates, selected, True
+
+        policy_stage.status = "passed"
+        warnings = result.policy_violations - blocking
+        policy_stage.details = f"0 blocking, {warnings} warnings"
+    except Exception as exc:
+        policy_stage.status = "passed"
+        policy_stage.details = f"No policies defined: {exc}"
+
+    return candidates, selected, False
+
+
+def _record_evolution_results(project_root, result, advice):
+    """Record evolution decision, metrics, and proposal to memory."""
+    _record_to_memory(project_root, result)
+    _record_metrics_snapshot(project_root, advice, "evolution")
+    _save_evolution_proposal(project_root, result)
+
+
+def _run_select_and_record_stages(
+    project_root: Path,
+    result: EvolutionResult,
+    advice: Dict[str, Any],
+    candidates: List[Dict[str, Any]],
+    selected: Dict[str, Any],
+    strategy_ranking: List[Dict[str, Any]],
+    predicted_score: float,
+    score: float,
+    dry_run: bool,
+) -> float:
+    """Run Stages 6-7: Score objectives and record decision.
+
+    Returns
+    -------
+    obj_score : float
+        The objective score for the selected candidate.
+    """
+    # Stage 6: Select (objective-scored)
+    select_stage = EvolutionStage(name="select", status="running")
+    result.stages.append(select_stage)
+
+    # Compute objective-based scoring
+    weights = ObjectiveWeights()
+    if strategy_ranking:
+        weights = adjust_weights_from_memory(weights, strategy_ranking)
+
+    raw_cycles = advice.get("cycles", 0)
+    n_cycles = len(raw_cycles) if isinstance(raw_cycles, list) else int(raw_cycles)
+    baseline_metrics = {
+        "score": score,
+        "coupling": advice.get("coupling", 0.0),
+        "cycles": n_cycles,
+    }
+    scored = score_candidates(candidates, baseline_metrics, weights)
+    scored = reject_degrading_candidates(scored, score)
+
+    obj_score = 0.0
+    if scored:
+        # Use objective score from the best candidate matching selection
+        for sc in scored:
+            if sc.strategy == selected.get("strategy", ""):
+                obj_score = sc.objective_score
+                select_stage.metrics = sc.to_dict()
+                break
+        else:
+            obj_score = scored[0].objective_score
+            select_stage.metrics = scored[0].to_dict()
+
+    # Boost candidates that match historically effective strategies
+    boosted = _apply_memory_boost(selected, strategy_ranking)
+
+    result.score_after = predicted_score
+    result.score_delta = predicted_score - score
+
+    if result.score_delta < -0.02:
+        select_stage.status = "failed"
+        select_stage.details = (
+            f"Predicted degradation ({result.score_delta:+.3f}) — rejected"
+        )
+        result.status = "blocked"
+        result.recommendations.append(
+            f"Strategy '{result.selected_strategy}' rejected: "
+            f"predicted score drop of {abs(result.score_delta):.3f}"
+        )
+        _skip_remaining(result, "select")
+        return obj_score
+
+    select_stage.status = "passed"
+    select_stage.details = (
+        f"Accepted: {result.selected_strategy} "
+        f"(Δ={result.score_delta:+.3f}, obj={obj_score:.3f})"
+    )
+    if boosted:
+        select_stage.details += " [memory-boosted]"
+
+    # Stage 7: Record
+    record_stage = EvolutionStage(name="record", status="running")
+    result.stages.append(record_stage)
+
+    if not dry_run:
+        try:
+            _record_evolution_results(project_root, result, advice)
+            record_stage.status = "passed"
+            record_stage.details = "Decision + metrics + proposal recorded"
+        except Exception as exc:
+            record_stage.status = "failed"
+            record_stage.details = str(exc)
+    else:
+        record_stage.status = "skipped"
+        record_stage.details = "Dry run — not recorded"
+
+    return obj_score
+
+
+# ═══════════════════════════════════════════════════════════════════════
 # Evolution Stage
 # ═══════════════════════════════════════════════════════════════════════
 
@@ -198,150 +482,22 @@ def run_evolution_cycle(
         timestamp=datetime.now(timezone.utc).isoformat(),
     )
 
-    # ── Stage 1: Detect ──────────────────────────────────────────
-    detect_stage = EvolutionStage(name="detect", status="running")
-    result.stages.append(detect_stage)
-
-    try:
-        advice = _run_advisor(project_root)
-    except Exception as exc:
-        detect_stage.status = "failed"
-        detect_stage.details = str(exc)
-        result.status = "failed"
+    # ── Stage 1-2: Detect & Memory ──────────────────────────────────
+    advice, strategy_ranking, early_exit = _run_detection_and_memory_stages(project_root, result)
+    if early_exit:
         return result
-
-    smell_count = len(advice.get("smells", []))
     score = advice.get("score", 0.0)
     result.score_before = score
 
-    detect_stage.status = "passed"
-    detect_stage.details = f"{smell_count} smells, score={score:.3f}"
-    detect_stage.metrics = {
-        "smells": smell_count,
-        "score": score,
-        "grade": advice.get("grade", "?"),
-    }
-
-    if smell_count == 0:
-        detect_stage.details += " — architecture is clean"
-        result.status = "no_change"
-        result.score_after = score
-        result.recommendations.append("No architectural smells detected")
-        _skip_remaining(result, "detect")
-        return result
-
-    # ── Stage 2: Memory ──────────────────────────────────────────
-    memory_stage = EvolutionStage(name="memory", status="running")
-    result.stages.append(memory_stage)
-
-    try:
-        strategy_ranking = _get_strategy_ranking(project_root)
-        memory_stage.status = "passed"
-        if strategy_ranking:
-            top = strategy_ranking[0]
-            memory_stage.details = (
-                f"{len(strategy_ranking)} strategies scored, "
-                f"best: {top.get('strategy', '?')} "
-                f"({top.get('effectiveness', 0):.0%})"
-            )
-        else:
-            memory_stage.details = "No historical strategy data yet"
-    except Exception as exc:
-        memory_stage.status = "passed"
-        memory_stage.details = f"No memory data yet: {exc}"
-        strategy_ranking = []
-
-    # ── Stage 3: Mutate ──────────────────────────────────────────
-    mutate_stage = EvolutionStage(name="mutate", status="running")
-    result.stages.append(mutate_stage)
-
-    try:
-        search_result = _run_arch_search(project_root, max_candidates)
-    except Exception as exc:
-        mutate_stage.status = "failed"
-        mutate_stage.details = str(exc)
-        result.status = "failed"
-        _skip_remaining(result, "mutate")
-        return result
-
-    candidates = search_result.get("candidates", [])
-    selected = search_result.get("selected")
-
-    # Rerank candidates using memory intelligence
-    if selected and strategy_ranking:
-        selected = _rerank_with_memory(
-            selected, candidates, strategy_ranking,
-        )
-
-    if not selected:
-        mutate_stage.status = "passed"
-        mutate_stage.details = (
-            f"{len(candidates)} candidates generated, none safe"
-        )
-        result.status = "no_change"
-        result.score_after = score
-        result.recommendations.append(
-            "No safe architecture change found — manual review needed"
-        )
-        _skip_remaining(result, "mutate")
-        return result
-
-    mutate_stage.status = "passed"
-    mutate_stage.details = (
-        f"{len(candidates)} candidates, selected: "
-        f"{selected.get('strategy', '?')}"
+    # ── Stage 3-4: Mutate & Policy ──────────────────────────────────
+    candidates, selected, early_exit = _run_mutate_and_policy_stages(
+        project_root, result, max_candidates, strategy_ranking
     )
-
-    # Check mutation safety tier
-    tier = get_mutation_tier(selected.get("strategy", ""))
-    if tier == TIER_DANGEROUS:
-        mutate_stage.details += f" [BLOCKED: {tier} tier]"
-        result.status = "blocked"
-        result.score_after = score
-        result.recommendations.append(
-            f"Strategy '{selected.get('strategy')}' is {tier}-tier — "
-            f"requires human approval"
-        )
-        _skip_remaining(result, "mutate")
+    if early_exit:
         return result
-
-    mutate_stage.metrics = {
-        "candidates": len(candidates),
-        "selected_strategy": selected.get("strategy", ""),
-        "predicted_score": selected.get("predicted_score", 0.0),
-        "safety_tier": tier,
-    }
 
     result.selected_strategy = selected.get("strategy", "")
     result.selected_target = ", ".join(selected.get("target_modules", []))
-
-    # ── Stage 4: Policy ──────────────────────────────────────────
-    policy_stage = EvolutionStage(name="policy", status="running")
-    result.stages.append(policy_stage)
-
-    try:
-        policy_report = _check_policies(project_root)
-        blocking = sum(1 for v in policy_report.get("violations", [])
-                       if v.get("action") == "block")
-        result.policy_violations = len(policy_report.get("violations", []))
-
-        if blocking > 0:
-            policy_stage.status = "failed"
-            policy_stage.details = f"{blocking} blocking violations"
-            result.status = "blocked"
-            result.score_after = score
-            result.recommendations.append(
-                f"Evolution blocked by {blocking} policy violations"
-            )
-            _skip_remaining(result, "policy")
-            return result
-
-        policy_stage.status = "passed"
-        warnings = result.policy_violations - blocking
-        policy_stage.details = f"0 blocking, {warnings} warnings"
-    except Exception as exc:
-        policy_stage.status = "passed"
-        policy_stage.details = f"No policies defined: {exc}"
 
     # ── Stage 5: Simulate ────────────────────────────────────────
     simulate_stage = EvolutionStage(name="simulate", status="running")
@@ -362,83 +518,13 @@ def run_evolution_cycle(
     simulate_stage.details = f"Predicted score: {predicted_score:.3f}"
     simulate_stage.metrics = {"predicted_score": predicted_score}
 
-    # ── Stage 6: Select (objective-scored) ────────────────────────
-    select_stage = EvolutionStage(name="select", status="running")
-    result.stages.append(select_stage)
-
-    # Compute objective-based scoring
-    weights = ObjectiveWeights()
-    if strategy_ranking:
-        weights = adjust_weights_from_memory(weights, strategy_ranking)
-
-    raw_cycles = advice.get("cycles", 0)
-    n_cycles = len(raw_cycles) if isinstance(raw_cycles, list) else int(raw_cycles)
-    baseline_metrics = {
-        "score": score,
-        "coupling": advice.get("coupling", 0.0),
-        "cycles": n_cycles,
-    }
-    scored = score_candidates(candidates, baseline_metrics, weights)
-    scored = reject_degrading_candidates(scored, score)
-
-    obj_score = 0.0
-    if scored:
-        # Use objective score from the best candidate matching selection
-        for sc in scored:
-            if sc.strategy == selected.get("strategy", ""):
-                obj_score = sc.objective_score
-                select_stage.metrics = sc.to_dict()
-                break
-        else:
-            obj_score = scored[0].objective_score
-            select_stage.metrics = scored[0].to_dict()
-
-    # Boost candidates that match historically effective strategies
-    boosted = _apply_memory_boost(selected, strategy_ranking)
-
-    result.score_after = predicted_score
-    result.score_delta = predicted_score - score
-
-    if result.score_delta < -0.02:
-        select_stage.status = "failed"
-        select_stage.details = (
-            f"Predicted degradation ({result.score_delta:+.3f}) — rejected"
-        )
-        result.status = "blocked"
-        result.recommendations.append(
-            f"Strategy '{result.selected_strategy}' rejected: "
-            f"predicted score drop of {abs(result.score_delta):.3f}"
-        )
-        _skip_remaining(result, "select")
-        return result
-
-    select_stage.status = "passed"
-    select_stage.details = (
-        f"Accepted: {result.selected_strategy} "
-        f"(Δ={result.score_delta:+.3f}, obj={obj_score:.3f})"
+    # ── Stage 6-7: Select & Record ──────────────────────────────────
+    obj_score = _run_select_and_record_stages(
+        project_root, result, advice, candidates, selected, strategy_ranking, predicted_score, score, dry_run
     )
-    if boosted:
-        select_stage.details += " [memory-boosted]"
 
-    # ── Stage 7: Record ──────────────────────────────────────────
-    record_stage = EvolutionStage(name="record", status="running")
-    result.stages.append(record_stage)
-
-    if not dry_run:
-        try:
-            _record_to_memory(project_root, result)
-            _record_metrics_snapshot(project_root, advice, "evolution")
-            _save_evolution_proposal(project_root, result)
-            record_stage.status = "passed"
-            record_stage.details = "Decision + metrics + proposal recorded"
-        except Exception as exc:
-            record_stage.status = "failed"
-            record_stage.details = str(exc)
-    else:
-        record_stage.status = "skipped"
-        record_stage.details = "Dry run — not recorded"
-
-    result.status = "improved" if result.score_delta > 0 else "no_change"
+    if result.status != "blocked":
+        result.status = "improved" if result.score_delta > 0 else "no_change"
 
     # Generate recommendations from memory
     result.recommendations.extend(

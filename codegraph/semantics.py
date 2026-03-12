@@ -481,6 +481,13 @@ _DEFAULT_KNOWN_LIBRARIES: Set[str] = {
 # ═══════════════════════════════════════════════════════════════════════
 
 
+def _extract_external_semantics(func_node, known_libraries):
+    """Extract SQL operations and library calls."""
+    sql_ops = classify_sql_operations(func_node)
+    lib_calls = detect_library_calls(func_node, known_libraries)
+    return sql_ops, lib_calls
+
+
 def extract_semantics_for_node(
     func_node: ast.AST,
     node_id: str,
@@ -494,8 +501,7 @@ def extract_semantics_for_node(
     side_effects = extract_side_effects(func_node)
     data_flow = extract_data_flow(func_node)
     domain_tags = infer_domain_tags(func_name, file_path)
-    sql_ops = classify_sql_operations(func_node)
-    lib_calls = detect_library_calls(func_node, known_libraries)
+    sql_ops, lib_calls = _extract_external_semantics(func_node, known_libraries)
 
     g2node = Graph2Node(
         id=node_id,

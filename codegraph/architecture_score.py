@@ -143,25 +143,36 @@ class ArchitectureScore:
 # ═══════════════════════════════════════════════════════════════════════
 
 
+def _load_score_data(project_root: Path):
+    """Load all graph data needed for score computation."""
+    nodes, node_types = _load_nodes(project_root)
+    edges = _load_edges(project_root)
+    mod_to_sub = _load_subsystem_mapping(project_root)
+    return nodes, node_types, edges, mod_to_sub
+
+
+def _compute_raw_metrics(edges, mod_to_sub, total_edges):
+    """Compute all raw architecture metrics from edges."""
+    modularity = _compute_modularity(edges, total_edges)
+    isolation = _compute_subsystem_isolation(edges, mod_to_sub, total_edges)
+    coupling = _compute_coupling(edges, total_edges)
+    max_fo = _compute_max_fan_out(edges)
+    cycle_count = _count_cycles(edges)
+    return modularity, isolation, coupling, max_fo, cycle_count
+
+
 def compute_score(project_root: Path) -> ArchitectureScore:
     """Compute the architecture score from current graph data.
 
     Reads graph0.json (nodes), workflow.json (edges), system.json (subsystems).
     Returns an :class:`ArchitectureScore` with component metrics.
     """
-    # Load graph data
-    nodes, node_types = _load_nodes(project_root)
-    edges = _load_edges(project_root)
-    mod_to_sub = _load_subsystem_mapping(project_root)
-
+    nodes, node_types, edges, mod_to_sub = _load_score_data(project_root)
     total_edges = len(edges)
 
-    # Compute raw metrics
-    modularity = _compute_modularity(edges, total_edges)
-    isolation = _compute_subsystem_isolation(edges, mod_to_sub, total_edges)
-    coupling = _compute_coupling(edges, total_edges)
-    max_fo = _compute_max_fan_out(edges)
-    cycle_count = _count_cycles(edges)
+    modularity, isolation, coupling, max_fo, cycle_count = _compute_raw_metrics(
+        edges, mod_to_sub, total_edges
+    )
 
     # Transform to 0..1 scale
     fanout_penalty = max(0.0, 1.0 - min(1.0, max_fo / 50.0))

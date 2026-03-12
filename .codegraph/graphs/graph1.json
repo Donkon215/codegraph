@@ -569,6 +569,30 @@
       "intent_body_hash": "529d9"
     },
     {
+      "id": "codegraph/analyzer.py::_analyze_basic",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
+    },
+    {
+      "id": "codegraph/analyzer.py::_analyze_policies",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
+    },
+    {
+      "id": "codegraph/analyzer.py::_load_repair_data",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
+    },
+    {
       "id": "codegraph/analyzer.py::analyze",
       "intent": "run all architecture analyses (orphans, stale intents, coverage gaps, missing intents, policy violations, missing edges) scoped to affected_nodes if provided, and return combined AnalysisResult",
       "layer": 3,
@@ -1300,6 +1324,14 @@
       "intent_body_hash": "f2ddf"
     },
     {
+      "id": "codegraph/apply.py::_validate_and_gate",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
+    },
+    {
       "id": "codegraph/apply.py::_validate_modified_files",
       "intent": "re-parse modified files to ensure they're still valid Python (J-020)",
       "layer": 3,
@@ -1398,6 +1430,14 @@
       "intent_timestamp": "2026-03-11T11:40:31Z"
     },
     {
+      "id": "codegraph/apply_handlers.py::ActionResult",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:11:14Z"
+    },
+    {
       "id": "codegraph/apply_handlers.py::_check_dead_code_signals",
       "intent": "",
       "layer": 3,
@@ -1492,6 +1532,14 @@
       "intent_author": "",
       "intent_version": 0,
       "intent_timestamp": "2026-03-11T11:40:31Z"
+    },
+    {
+      "id": "codegraph/apply_handlers.py::_maybe_insert_import",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
     },
     {
       "id": "codegraph/apply_handlers.py::_parse_file_ast",
@@ -1878,6 +1926,14 @@
       "intent_body_hash": "09179"
     },
     {
+      "id": "codegraph/arch_evolution.py::_record_evolution_results",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
+    },
+    {
       "id": "codegraph/arch_evolution.py::_record_metrics_snapshot",
       "intent": "record current architecture metrics to memory intelligence history",
       "layer": 3,
@@ -1920,6 +1976,30 @@
       "intent_version": 4,
       "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "993dc"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::_run_detection_and_memory_stages",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:45:56Z"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::_run_mutate_and_policy_stages",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:45:56Z"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::_run_select_and_record_stages",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:45:56Z"
     },
     {
       "id": "codegraph/arch_evolution.py::_save_evolution_proposal",
@@ -3703,6 +3783,14 @@
       "intent_body_hash": "c942b"
     },
     {
+      "id": "codegraph/architecture_advisor.py::_analyze_node_risks",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
+    },
+    {
       "id": "codegraph/architecture_advisor.py::_compute_grade",
       "intent": "convert numeric score to letter grade A through F",
       "layer": 3,
@@ -3728,6 +3816,14 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-10T12:31:20Z",
       "intent_body_hash": "a6fa5"
+    },
+    {
+      "id": "codegraph/architecture_advisor.py::_detect_structural_smells",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T19:02:50Z"
     },
     {
       "id": "codegraph/architecture_advisor.py::_enrich_with_memory",
@@ -4784,6 +4880,14 @@
       "intent_timestamp": "2026-03-12T16:34:34Z"
     },
     {
+      "id": "codegraph/architecture_score.py::_compute_raw_metrics",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
+    },
+    {
       "id": "codegraph/architecture_score.py::_compute_subsystem_isolation",
       "intent": "",
       "layer": 3,
@@ -4830,6 +4934,14 @@
       "intent_author": "",
       "intent_version": 0,
       "intent_timestamp": "2026-03-12T16:34:34Z"
+    },
+    {
+      "id": "codegraph/architecture_score.py::_load_score_data",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
     },
     {
       "id": "codegraph/architecture_score.py::_load_subsystem_mapping",
@@ -6606,6 +6718,78 @@
       "intent_timestamp": "2026-03-12T04:54:14Z"
     },
     {
+      "id": "codegraph/cli/core.py::_build_annotate",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:30:25Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::_build_extract",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:30:25Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::_build_init",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::_build_layers",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:30:25Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::_build_store_config",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:30:25Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::_build_track_commit",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:30:25Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::_build_workflow_and_index",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:30:25Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::_report_configuration_state",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:45:56Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::_report_system_statistics",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:45:56Z"
+    },
+    {
       "id": "codegraph/cli/core.py::annotate",
       "intent": "",
       "layer": 3,
@@ -6914,6 +7098,14 @@
       "intent_author": "",
       "intent_version": 0,
       "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::_tasks_load_data",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
     },
     {
       "id": "codegraph/cli/governance.py::analyze_cmd",
@@ -7913,6 +8105,14 @@
       "intent_body_hash": "0bfc4"
     },
     {
+      "id": "codegraph/copilot_context.py::_populate_analysis_data",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
+    },
+    {
       "id": "codegraph/copilot_context.py::_populate_arch_policies",
       "intent": "",
       "layer": 3,
@@ -7928,6 +8128,14 @@
       "intent_version": 2,
       "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "c2c1c"
+    },
+    {
+      "id": "codegraph/copilot_context.py::_populate_core_data",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
     },
     {
       "id": "codegraph/copilot_context.py::_populate_decisions",
@@ -7964,6 +8172,14 @@
       "intent_version": 2,
       "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "ad2a2"
+    },
+    {
+      "id": "codegraph/copilot_context.py::_populate_optional_data",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
     },
     {
       "id": "codegraph/copilot_context.py::_populate_policy_rules",
@@ -8223,6 +8439,30 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "27e9f"
+    },
+    {
+      "id": "codegraph/delta.py::_delta_load_state",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:30:25Z"
+    },
+    {
+      "id": "codegraph/delta.py::_delta_persist",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:30:25Z"
+    },
+    {
+      "id": "codegraph/delta.py::_delta_update_graphs",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:30:25Z"
     },
     {
       "id": "codegraph/delta.py::_detect_uncommitted",
@@ -9095,6 +9335,38 @@
       "intent_body_hash": "68ae8"
     },
     {
+      "id": "codegraph/extraction_types",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:11:14Z"
+    },
+    {
+      "id": "codegraph/extraction_types.py::FileExtractionResult",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:11:14Z"
+    },
+    {
+      "id": "codegraph/extraction_types.py::ImportInfo",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:11:14Z"
+    },
+    {
+      "id": "codegraph/extraction_types.py::ImportInfo::resolved_name",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:11:14Z"
+    },
+    {
       "id": "codegraph/extractor",
       "intent": "aST extraction engine (Graph_0). Parses Python source files and delegates to language-specific extractors via the registry for JS/TS/React files",
       "layer": 3,
@@ -9458,6 +9730,14 @@
       "intent_body_hash": "bcc06"
     },
     {
+      "id": "codegraph/extractor.py::_extract_call_data",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
+    },
+    {
       "id": "codegraph/extractor.py::_extract_decorators",
       "intent": "return a list of decorator name strings for a function/class AST node",
       "layer": 3,
@@ -9512,6 +9792,22 @@
       "intent_body_hash": "d8478"
     },
     {
+      "id": "codegraph/extractor.py::_finalize_graph0",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:45:56Z"
+    },
+    {
+      "id": "codegraph/extractor.py::_initialize_extraction",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:45:56Z"
+    },
+    {
       "id": "codegraph/extractor.py::_is_method_context",
       "intent": "return True if the body belongs to a class (making functions methods)",
       "layer": 3,
@@ -9519,6 +9815,22 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "507b5"
+    },
+    {
+      "id": "codegraph/extractor.py::_run_file_extraction",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:45:56Z"
+    },
+    {
+      "id": "codegraph/extractor.py::_run_file_extraction::_process_result",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:45:56Z"
     },
     {
       "id": "codegraph/extractor.py::_safe_extract_file",
@@ -14510,6 +14822,22 @@
       "intent_body_hash": "9472e"
     },
     {
+      "id": "codegraph/query.py::_dispatch_extended_query",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
+    },
+    {
+      "id": "codegraph/query.py::_dispatch_graph_query",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
+    },
+    {
       "id": "codegraph/query.py::_suggest_nodes",
       "intent": "find similar node IDs when exact match not found (L-014)",
       "layer": 3,
@@ -15335,6 +15663,14 @@
       "intent_body_hash": "6d73a"
     },
     {
+      "id": "codegraph/semantics.py::_extract_external_semantics",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
+    },
+    {
       "id": "codegraph/semantics.py::_get_attribute_root",
       "intent": "get the root name of an attribute chain (a.b.c → a)",
       "layer": 3,
@@ -15666,6 +16002,14 @@
       "intent_author": "",
       "intent_version": 0,
       "intent_timestamp": "2026-03-12T14:36:18Z"
+    },
+    {
+      "id": "codegraph/simulator.py::_compute_impact_metrics",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:59:28Z"
     },
     {
       "id": "codegraph/simulator.py::_compute_module_coupling",
@@ -17928,6 +18272,14 @@
       "intent_body_hash": "e4cd4"
     },
     {
+      "id": "codegraph/workflow.py::_build_all_edge_sources",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:45:56Z"
+    },
+    {
       "id": "codegraph/workflow.py::_collect_call_sites_and_imports",
       "intent": "re-extract call sites and imports from a source file using the appropriate language extractor (Python AST or JS/TS regex) via the extractor registry",
       "layer": 3,
@@ -17962,6 +18314,22 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "daef5"
+    },
+    {
+      "id": "codegraph/workflow.py::_finalize_and_save_workflow",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:45:56Z"
+    },
+    {
+      "id": "codegraph/workflow.py::_prepare_source_data",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T18:45:56Z"
     },
     {
       "id": "codegraph/workflow.py::_trace_env",

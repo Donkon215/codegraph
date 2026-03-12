@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-12T17:50:57Z",
+    "built_at": "2026-03-12T19:03:03Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -9,12 +9,12 @@
       "stdlib",
       "test_harness"
     ],
-    "edge_count": 3749,
-    "node_count": 2269,
-    "build_time_s": 8.47
+    "edge_count": 3800,
+    "node_count": 2309,
+    "build_time_s": 12.38
   },
   "format_version": 1,
-  "built_at": "2026-03-12T17:50:57Z",
+  "built_at": "2026-03-12T19:03:03Z",
   "level": "function",
   "edges": [
     {
@@ -186,6 +186,102 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/analyzer.py::_analyze_basic",
+      "target": "codegraph/analyzer.py::Finding",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::_analyze_basic",
+      "target": "codegraph/analyzer.py::classify_orphans",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::_analyze_basic",
+      "target": "codegraph/analyzer.py::find_coverage_gaps",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::_analyze_basic",
+      "target": "codegraph/analyzer.py::find_missing_intents",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::_analyze_basic",
+      "target": "codegraph/analyzer.py::find_stale_intents",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::_analyze_basic",
+      "target": "codegraph/workflow.py::find_orphans",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::_analyze_policies",
+      "target": "codegraph/analyzer.py::Finding",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::_analyze_policies",
+      "target": "codegraph/analyzer.py::detect_cycle_mismatches",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::_analyze_policies",
+      "target": "codegraph/path_query.py::check_forbidden_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::_analyze_policies",
+      "target": "codegraph/risk_metrics.py::check_dependency_limits",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::_analyze_policies",
+      "target": "codegraph/suggest.py::detect_violations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::_load_repair_data",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::_load_repair_data",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::_load_repair_data",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::_load_repair_data",
+      "target": "codegraph/suggest.py::load_suggested_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::_load_repair_data",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/analyzer.py::analyze",
       "target": "codegraph/analyzer.py::AnalysisResult",
       "edge_type": "call",
@@ -199,61 +295,19 @@
     },
     {
       "source": "codegraph/analyzer.py::analyze",
-      "target": "codegraph/analyzer.py::classify_orphans",
+      "target": "codegraph/analyzer.py::_analyze_basic",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/analyzer.py::analyze",
-      "target": "codegraph/analyzer.py::detect_cycle_mismatches",
+      "target": "codegraph/analyzer.py::_analyze_policies",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/analyzer.py::analyze",
       "target": "codegraph/analyzer.py::detect_missing_edges",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/analyzer.py::analyze",
-      "target": "codegraph/analyzer.py::find_coverage_gaps",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/analyzer.py::analyze",
-      "target": "codegraph/analyzer.py::find_missing_intents",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/analyzer.py::analyze",
-      "target": "codegraph/analyzer.py::find_stale_intents",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/analyzer.py::analyze",
-      "target": "codegraph/path_query.py::check_forbidden_path",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/analyzer.py::analyze",
-      "target": "codegraph/risk_metrics.py::check_dependency_limits",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/analyzer.py::analyze",
-      "target": "codegraph/suggest.py::detect_violations",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/analyzer.py::analyze",
-      "target": "codegraph/workflow.py::find_orphans",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -397,43 +451,19 @@
     },
     {
       "source": "codegraph/analyzer.py::repair_loop",
+      "target": "codegraph/analyzer.py::_load_repair_data",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/analyzer.py::repair_loop",
       "target": "codegraph/analyzer.py::analyze",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/analyzer.py::repair_loop",
-      "target": "codegraph/annotator.py::load_graph1",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/analyzer.py::repair_loop",
-      "target": "codegraph/extractor.py::load_graph0",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/analyzer.py::repair_loop",
-      "target": "codegraph/index.py::IndexStore",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/analyzer.py::repair_loop",
-      "target": "codegraph/suggest.py::load_suggested_workflow",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/analyzer.py::repair_loop",
       "target": "codegraph/workflow.py::find_orphans",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/analyzer.py::repair_loop",
-      "target": "codegraph/workflow.py::load_workflow",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -793,7 +823,7 @@
     },
     {
       "source": "codegraph/apply.py::_dispatch_repairs",
-      "target": "codegraph/apply.py::ActionResult",
+      "target": "codegraph/apply_handlers.py::ActionResult",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -901,31 +931,19 @@
     },
     {
       "source": "codegraph/apply.py::_prepare_apply",
-      "target": "codegraph/apply.py::_check_plan_exists",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::_prepare_apply",
       "target": "codegraph/apply.py::_create_backups",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/apply.py::_prepare_apply",
-      "target": "codegraph/exceptions.py::VersionMismatchError",
+      "target": "codegraph/apply.py::_validate_and_gate",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/apply.py::_prepare_apply",
       "target": "codegraph/index.py::IndexStore::get_node",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::_prepare_apply",
-      "target": "codegraph/models/agent_response.py::AgentResponse::validate_version",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -938,12 +956,6 @@
     {
       "source": "codegraph/apply.py::_prepare_apply",
       "target": "codegraph/models/agent_response.py::RepairActionType::modifies_code",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::_prepare_apply",
-      "target": "codegraph/storage.py::get_graph_version",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -980,6 +992,30 @@
     {
       "source": "codegraph/apply.py::_update_graph1_after_apply",
       "target": "codegraph/models/graph0.py::Graph0::remove_node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_validate_and_gate",
+      "target": "codegraph/apply.py::_check_plan_exists",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_validate_and_gate",
+      "target": "codegraph/exceptions.py::VersionMismatchError",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_validate_and_gate",
+      "target": "codegraph/models/agent_response.py::AgentResponse::validate_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_validate_and_gate",
+      "target": "codegraph/storage.py::get_graph_version",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -1104,6 +1140,24 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/apply_handlers.py::_maybe_insert_import",
+      "target": "codegraph/apply_handlers.py::_find_import_block_end",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::_maybe_insert_import",
+      "target": "codegraph/apply_handlers.py::_has_import",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::_maybe_insert_import",
+      "target": "codegraph/apply_handlers.py::_insert_line",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/apply_handlers.py::_remove_function_from_file",
       "target": "codegraph/apply_handlers.py::_remove_lines",
       "edge_type": "call",
@@ -1111,7 +1165,7 @@
     },
     {
       "source": "codegraph/apply_handlers.py::handle_add_import",
-      "target": "codegraph/apply.py::ActionResult",
+      "target": "codegraph/apply_handlers.py::ActionResult",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -1141,7 +1195,7 @@
     },
     {
       "source": "codegraph/apply_handlers.py::handle_connect_call",
-      "target": "codegraph/apply.py::ActionResult",
+      "target": "codegraph/apply_handlers.py::ActionResult",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -1159,19 +1213,7 @@
     },
     {
       "source": "codegraph/apply_handlers.py::handle_connect_call",
-      "target": "codegraph/apply_handlers.py::_find_import_block_end",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply_handlers.py::handle_connect_call",
       "target": "codegraph/apply_handlers.py::_first_executable_line",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply_handlers.py::handle_connect_call",
-      "target": "codegraph/apply_handlers.py::_has_import",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -1189,6 +1231,12 @@
     },
     {
       "source": "codegraph/apply_handlers.py::handle_connect_call",
+      "target": "codegraph/apply_handlers.py::_maybe_insert_import",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply_handlers.py::handle_connect_call",
       "target": "codegraph/apply_handlers.py::_parse_file_ast",
       "edge_type": "call",
       "confidence": "static"
@@ -1201,7 +1249,7 @@
     },
     {
       "source": "codegraph/apply_handlers.py::handle_flag_for_review",
-      "target": "codegraph/apply.py::ActionResult",
+      "target": "codegraph/apply_handlers.py::ActionResult",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -1219,7 +1267,7 @@
     },
     {
       "source": "codegraph/apply_handlers.py::handle_remove_dead_code",
-      "target": "codegraph/apply.py::ActionResult",
+      "target": "codegraph/apply_handlers.py::ActionResult",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -1344,6 +1392,24 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/arch_evolution.py::_record_evolution_results",
+      "target": "codegraph/arch_evolution.py::_record_metrics_snapshot",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_record_evolution_results",
+      "target": "codegraph/arch_evolution.py::_record_to_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_record_evolution_results",
+      "target": "codegraph/arch_evolution.py::_save_evolution_proposal",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/arch_evolution.py::_record_metrics_snapshot",
       "target": "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
       "edge_type": "call",
@@ -1376,6 +1442,114 @@
     {
       "source": "codegraph/arch_evolution.py::_run_arch_search",
       "target": "codegraph/arch_search.py::run_arch_search",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_detection_and_memory_stages",
+      "target": "codegraph/arch_evolution.py::EvolutionStage",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_detection_and_memory_stages",
+      "target": "codegraph/arch_evolution.py::_get_strategy_ranking",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_detection_and_memory_stages",
+      "target": "codegraph/arch_evolution.py::_run_advisor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_detection_and_memory_stages",
+      "target": "codegraph/arch_evolution.py::_skip_remaining",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_mutate_and_policy_stages",
+      "target": "codegraph/arch_evolution.py::EvolutionStage",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_mutate_and_policy_stages",
+      "target": "codegraph/arch_evolution.py::_check_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_mutate_and_policy_stages",
+      "target": "codegraph/arch_evolution.py::_rerank_with_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_mutate_and_policy_stages",
+      "target": "codegraph/arch_evolution.py::_run_arch_search",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_mutate_and_policy_stages",
+      "target": "codegraph/arch_evolution.py::_skip_remaining",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_mutate_and_policy_stages",
+      "target": "codegraph/arch_evolution.py::get_mutation_tier",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_select_and_record_stages",
+      "target": "codegraph/arch_evolution.py::EvolutionStage",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_select_and_record_stages",
+      "target": "codegraph/arch_evolution.py::_apply_memory_boost",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_select_and_record_stages",
+      "target": "codegraph/arch_evolution.py::_record_evolution_results",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_select_and_record_stages",
+      "target": "codegraph/arch_evolution.py::_skip_remaining",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_select_and_record_stages",
+      "target": "codegraph/architecture_objectives.py::ObjectiveWeights",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_select_and_record_stages",
+      "target": "codegraph/architecture_objectives.py::adjust_weights_from_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_select_and_record_stages",
+      "target": "codegraph/architecture_objectives.py::reject_degrading_candidates",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_run_select_and_record_stages",
+      "target": "codegraph/architecture_objectives.py::score_candidates",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -1417,97 +1591,31 @@
     },
     {
       "source": "codegraph/arch_evolution.py::run_evolution_cycle",
-      "target": "codegraph/arch_evolution.py::_apply_memory_boost",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
-      "target": "codegraph/arch_evolution.py::_check_policies",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
       "target": "codegraph/arch_evolution.py::_generate_evolution_recommendations",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/arch_evolution.py::run_evolution_cycle",
-      "target": "codegraph/arch_evolution.py::_get_strategy_ranking",
+      "target": "codegraph/arch_evolution.py::_run_detection_and_memory_stages",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/arch_evolution.py::run_evolution_cycle",
-      "target": "codegraph/arch_evolution.py::_record_metrics_snapshot",
+      "target": "codegraph/arch_evolution.py::_run_mutate_and_policy_stages",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/arch_evolution.py::run_evolution_cycle",
-      "target": "codegraph/arch_evolution.py::_record_to_memory",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
-      "target": "codegraph/arch_evolution.py::_rerank_with_memory",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
-      "target": "codegraph/arch_evolution.py::_run_advisor",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
-      "target": "codegraph/arch_evolution.py::_run_arch_search",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
-      "target": "codegraph/arch_evolution.py::_save_evolution_proposal",
+      "target": "codegraph/arch_evolution.py::_run_select_and_record_stages",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/arch_evolution.py::run_evolution_cycle",
       "target": "codegraph/arch_evolution.py::_skip_remaining",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
-      "target": "codegraph/arch_evolution.py::get_mutation_tier",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
-      "target": "codegraph/architecture_objectives.py::ObjectiveWeights",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
-      "target": "codegraph/architecture_objectives.py::adjust_weights_from_memory",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
-      "target": "codegraph/architecture_objectives.py::reject_degrading_candidates",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
-      "target": "codegraph/architecture_objectives.py::score_candidates",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -2268,6 +2376,12 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/architecture_advisor.py::_analyze_node_risks",
+      "target": "codegraph/architecture_advisor.py::ArchSmell",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/architecture_advisor.py::_compute_max_depth",
       "target": "codegraph/index.py::IndexStore::_get_conn",
       "edge_type": "call",
@@ -2286,6 +2400,36 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/architecture_advisor.py::_detect_structural_smells",
+      "target": "codegraph/architecture_advisor.py::ArchSmell",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::_detect_structural_smells",
+      "target": "codegraph/architecture_advisor.py::ArchSuggestion",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::_detect_structural_smells",
+      "target": "codegraph/architecture_advisor.py::_compute_max_depth",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::_detect_structural_smells",
+      "target": "codegraph/refactor.py::detect_cycles",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::_detect_structural_smells",
+      "target": "codegraph/subsystem.py::detect_subsystems",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/architecture_advisor.py::_enrich_with_memory",
       "target": "codegraph/architecture_memory.py::load_decisions",
       "edge_type": "call",
@@ -2299,13 +2443,7 @@
     },
     {
       "source": "codegraph/architecture_advisor.py::advise_architecture",
-      "target": "codegraph/architecture_advisor.py::ArchSmell",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/architecture_advisor.py::advise_architecture",
-      "target": "codegraph/architecture_advisor.py::ArchSuggestion",
+      "target": "codegraph/architecture_advisor.py::_analyze_node_risks",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -2317,13 +2455,13 @@
     },
     {
       "source": "codegraph/architecture_advisor.py::advise_architecture",
-      "target": "codegraph/architecture_advisor.py::_compute_max_depth",
+      "target": "codegraph/architecture_advisor.py::_detect_hidden_coupling",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/architecture_advisor.py::advise_architecture",
-      "target": "codegraph/architecture_advisor.py::_detect_hidden_coupling",
+      "target": "codegraph/architecture_advisor.py::_detect_structural_smells",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -2341,19 +2479,7 @@
     },
     {
       "source": "codegraph/architecture_advisor.py::advise_architecture",
-      "target": "codegraph/refactor.py::detect_cycles",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/architecture_advisor.py::advise_architecture",
       "target": "codegraph/risk_metrics.py::compute_risk_metrics",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/architecture_advisor.py::advise_architecture",
-      "target": "codegraph/subsystem.py::detect_subsystems",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -2904,6 +3030,36 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/architecture_score.py::_compute_raw_metrics",
+      "target": "codegraph/architecture_score.py::_compute_coupling",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_score.py::_compute_raw_metrics",
+      "target": "codegraph/architecture_score.py::_compute_max_fan_out",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_score.py::_compute_raw_metrics",
+      "target": "codegraph/architecture_score.py::_compute_modularity",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_score.py::_compute_raw_metrics",
+      "target": "codegraph/architecture_score.py::_compute_subsystem_isolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_score.py::_compute_raw_metrics",
+      "target": "codegraph/architecture_score.py::_count_cycles",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/architecture_score.py::_compute_subsystem_isolation",
       "target": "codegraph/architecture_score.py::_node_module",
       "edge_type": "call",
@@ -2922,6 +3078,24 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/architecture_score.py::_load_score_data",
+      "target": "codegraph/architecture_score.py::_load_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_score.py::_load_score_data",
+      "target": "codegraph/architecture_score.py::_load_nodes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_score.py::_load_score_data",
+      "target": "codegraph/architecture_score.py::_load_subsystem_mapping",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/architecture_score.py::compute_score",
       "target": "codegraph/architecture_score.py::ArchitectureScore",
       "edge_type": "call",
@@ -2929,25 +3103,7 @@
     },
     {
       "source": "codegraph/architecture_score.py::compute_score",
-      "target": "codegraph/architecture_score.py::_compute_coupling",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/architecture_score.py::compute_score",
-      "target": "codegraph/architecture_score.py::_compute_max_fan_out",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/architecture_score.py::compute_score",
-      "target": "codegraph/architecture_score.py::_compute_modularity",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/architecture_score.py::compute_score",
-      "target": "codegraph/architecture_score.py::_compute_subsystem_isolation",
+      "target": "codegraph/architecture_score.py::_compute_raw_metrics",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -2959,25 +3115,7 @@
     },
     {
       "source": "codegraph/architecture_score.py::compute_score",
-      "target": "codegraph/architecture_score.py::_count_cycles",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/architecture_score.py::compute_score",
-      "target": "codegraph/architecture_score.py::_load_edges",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/architecture_score.py::compute_score",
-      "target": "codegraph/architecture_score.py::_load_nodes",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/architecture_score.py::compute_score",
-      "target": "codegraph/architecture_score.py::_load_subsystem_mapping",
+      "target": "codegraph/architecture_score.py::_load_score_data",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3756,6 +3894,192 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/cli/core.py::_build_annotate",
+      "target": "codegraph/annotator.py::detect_stale_intents",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_annotate",
+      "target": "codegraph/annotator.py::format_stale_warnings",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_annotate",
+      "target": "codegraph/annotator.py::initialize_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_annotate",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_annotate",
+      "target": "codegraph/annotator.py::merge_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_annotate",
+      "target": "codegraph/annotator.py::save_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_annotate",
+      "target": "codegraph/models/graph1.py::Graph1::get_stale_nodes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_extract",
+      "target": "codegraph/extractor.py::extract_project",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_extract",
+      "target": "codegraph/extractor.py::save_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_extract",
+      "target": "codegraph/layers.py::parse_layer_overrides",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_init",
+      "target": "codegraph/config.py::load_config",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_init",
+      "target": "codegraph/storage.py::ensure_codegraph_dir",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_layers",
+      "target": "codegraph/layers.py::assign_layers",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_store_config",
+      "target": "codegraph/config.py::compute_config_hash",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_store_config",
+      "target": "codegraph/storage.py::store_config_hash",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_track_commit",
+      "target": "codegraph/delta.py::_store_build_commit",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_track_commit",
+      "target": "codegraph/git_utils.py::get_current_commit",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_workflow_and_index",
+      "target": "codegraph/index.py::build_all_indexes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_workflow_and_index",
+      "target": "codegraph/workflow.py::build_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_build_workflow_and_index",
+      "target": "codegraph/workflow.py::workflow_summary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_report_configuration_state",
+      "target": "codegraph/config.py::config_changed_since_build",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_report_configuration_state",
+      "target": "codegraph/storage.py::get_stored_config_hash",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_report_configuration_state",
+      "target": "codegraph/suggest.py::load_suggested_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_report_configuration_state",
+      "target": "codegraph/tasks.py::load_tasks",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_report_configuration_state",
+      "target": "codegraph/tasks.py::task_statistics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_report_system_statistics",
+      "target": "codegraph/annotator.py::graph1_statistics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_report_system_statistics",
+      "target": "codegraph/index.py::index_statistics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_report_system_statistics",
+      "target": "codegraph/layers.py::format_layer_stats",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_report_system_statistics",
+      "target": "codegraph/layers.py::layer_statistics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_report_system_statistics",
+      "target": "codegraph/workflow.py::edge_statistics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::_report_system_statistics",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/cli/core.py::annotate",
       "target": "codegraph/annotator.py::add_tags",
       "edge_type": "call",
@@ -3799,43 +4123,43 @@
     },
     {
       "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/annotator.py::detect_stale_intents",
+      "target": "codegraph/cli/core.py::_build_annotate",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/annotator.py::format_stale_warnings",
+      "target": "codegraph/cli/core.py::_build_extract",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/annotator.py::initialize_graph1",
+      "target": "codegraph/cli/core.py::_build_init",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/annotator.py::load_graph1",
+      "target": "codegraph/cli/core.py::_build_layers",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/annotator.py::merge_graph1",
+      "target": "codegraph/cli/core.py::_build_store_config",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/annotator.py::save_graph1",
+      "target": "codegraph/cli/core.py::_build_track_commit",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/config.py::compute_config_hash",
+      "target": "codegraph/cli/core.py::_build_workflow_and_index",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3847,85 +4171,7 @@
     },
     {
       "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/config.py::load_config",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/delta.py::_store_build_commit",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::build",
       "target": "codegraph/extractor.py::ExtractionReport::summary",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/extractor.py::extract_project",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/extractor.py::save_graph0",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/git_utils.py::get_current_commit",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/index.py::build_all_indexes",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/layers.py::assign_layers",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/layers.py::parse_layer_overrides",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/models/graph1.py::Graph1::get_stale_nodes",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/storage.py::ensure_codegraph_dir",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/storage.py::store_config_hash",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/workflow.py::build_workflow",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::build",
-      "target": "codegraph/workflow.py::workflow_summary",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -4147,13 +4393,13 @@
     },
     {
       "source": "codegraph/cli/core.py::status",
-      "target": "codegraph/annotator.py::graph1_statistics",
+      "target": "codegraph/cli/core.py::_report_configuration_state",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/cli/core.py::status",
-      "target": "codegraph/config.py::config_changed_since_build",
+      "target": "codegraph/cli/core.py::_report_system_statistics",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -4166,66 +4412,6 @@
     {
       "source": "codegraph/cli/core.py::status",
       "target": "codegraph/config.py::load_config",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::status",
-      "target": "codegraph/index.py::index_statistics",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::status",
-      "target": "codegraph/layers.py::format_layer_stats",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::status",
-      "target": "codegraph/layers.py::layer_statistics",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::status",
-      "target": "codegraph/storage.py::get_stored_config_hash",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::status",
-      "target": "codegraph/storage.py::resolve_path",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::status",
-      "target": "codegraph/suggest.py::load_suggested_workflow",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::status",
-      "target": "codegraph/tasks.py::load_tasks",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::status",
-      "target": "codegraph/tasks.py::task_statistics",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::status",
-      "target": "codegraph/workflow.py::edge_statistics",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/core.py::status",
-      "target": "codegraph/workflow.py::load_workflow",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -4292,6 +4478,42 @@
     {
       "source": "codegraph/cli/core.py::workflow",
       "target": "codegraph/workflow.py::workflow_summary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::_tasks_load_data",
+      "target": "codegraph/analyzer.py::run_analyze",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::_tasks_load_data",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::_tasks_load_data",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::_tasks_load_data",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::_tasks_load_data",
+      "target": "codegraph/storage.py::get_graph_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::_tasks_load_data",
+      "target": "codegraph/workflow.py::load_workflow",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -4537,43 +4759,19 @@
     },
     {
       "source": "codegraph/cli/governance.py::repair_plan_cmd",
-      "target": "codegraph/analyzer.py::run_analyze",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/governance.py::repair_plan_cmd",
-      "target": "codegraph/annotator.py::load_graph1",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/governance.py::repair_plan_cmd",
       "target": "codegraph/cli/core.py::handle_error",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/cli/governance.py::repair_plan_cmd",
+      "target": "codegraph/cli/governance.py::_tasks_load_data",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_plan_cmd",
       "target": "codegraph/config.py::find_project_root",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/governance.py::repair_plan_cmd",
-      "target": "codegraph/extractor.py::load_graph0",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/governance.py::repair_plan_cmd",
-      "target": "codegraph/index.py::IndexStore",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/governance.py::repair_plan_cmd",
-      "target": "codegraph/storage.py::get_graph_version",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -4586,12 +4784,6 @@
     {
       "source": "codegraph/cli/governance.py::repair_plan_cmd",
       "target": "codegraph/tasks.py::write_tasks",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/governance.py::repair_plan_cmd",
-      "target": "codegraph/workflow.py::load_workflow",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -4789,37 +4981,13 @@
     },
     {
       "source": "codegraph/cli/governance.py::tasks",
-      "target": "codegraph/analyzer.py::run_analyze",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/governance.py::tasks",
-      "target": "codegraph/annotator.py::load_graph1",
+      "target": "codegraph/cli/governance.py::_tasks_load_data",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/cli/governance.py::tasks",
       "target": "codegraph/config.py::find_project_root",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/governance.py::tasks",
-      "target": "codegraph/extractor.py::load_graph0",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/governance.py::tasks",
-      "target": "codegraph/index.py::IndexStore",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/governance.py::tasks",
-      "target": "codegraph/storage.py::get_graph_version",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -4844,12 +5012,6 @@
     {
       "source": "codegraph/cli/governance.py::tasks",
       "target": "codegraph/tasks.py::write_tasks",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/governance.py::tasks",
-      "target": "codegraph/workflow.py::load_workflow",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -6090,8 +6252,80 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/copilot_context.py::_populate_analysis_data",
+      "target": "codegraph/copilot_context.py::_populate_arch_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_analysis_data",
+      "target": "codegraph/copilot_context.py::_populate_refactors",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_analysis_data",
+      "target": "codegraph/copilot_context.py::_populate_smells",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_analysis_data",
+      "target": "codegraph/copilot_context.py::_populate_strategy_rankings",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/copilot_context.py::_populate_architecture",
       "target": "codegraph/copilot_context.py::SubsystemSummary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_core_data",
+      "target": "codegraph/copilot_context.py::_populate_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_core_data",
+      "target": "codegraph/copilot_context.py::_populate_graph_stats",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_core_data",
+      "target": "codegraph/copilot_context.py::_populate_policy_rules",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_optional_data",
+      "target": "codegraph/copilot_context.py::_populate_decisions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_optional_data",
+      "target": "codegraph/copilot_context.py::_populate_drift",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_optional_data",
+      "target": "codegraph/copilot_context.py::_populate_health",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_optional_data",
+      "target": "codegraph/copilot_context.py::_populate_target",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::_populate_optional_data",
+      "target": "codegraph/copilot_context.py::_populate_tasks",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -6109,73 +6343,19 @@
     },
     {
       "source": "codegraph/copilot_context.py::build_copilot_context",
-      "target": "codegraph/copilot_context.py::_populate_arch_policies",
+      "target": "codegraph/copilot_context.py::_populate_analysis_data",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/copilot_context.py::build_copilot_context",
-      "target": "codegraph/copilot_context.py::_populate_architecture",
+      "target": "codegraph/copilot_context.py::_populate_core_data",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/copilot_context.py::build_copilot_context",
-      "target": "codegraph/copilot_context.py::_populate_decisions",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/copilot_context.py::build_copilot_context",
-      "target": "codegraph/copilot_context.py::_populate_drift",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/copilot_context.py::build_copilot_context",
-      "target": "codegraph/copilot_context.py::_populate_graph_stats",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/copilot_context.py::build_copilot_context",
-      "target": "codegraph/copilot_context.py::_populate_health",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/copilot_context.py::build_copilot_context",
-      "target": "codegraph/copilot_context.py::_populate_policy_rules",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/copilot_context.py::build_copilot_context",
-      "target": "codegraph/copilot_context.py::_populate_refactors",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/copilot_context.py::build_copilot_context",
-      "target": "codegraph/copilot_context.py::_populate_smells",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/copilot_context.py::build_copilot_context",
-      "target": "codegraph/copilot_context.py::_populate_strategy_rankings",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/copilot_context.py::build_copilot_context",
-      "target": "codegraph/copilot_context.py::_populate_target",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/copilot_context.py::build_copilot_context",
-      "target": "codegraph/copilot_context.py::_populate_tasks",
+      "target": "codegraph/copilot_context.py::_populate_optional_data",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -6236,6 +6416,114 @@
     {
       "source": "codegraph/delta.py::_delta_dir",
       "target": "codegraph/storage.py::resolve_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_load_state",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_load_state",
+      "target": "codegraph/git_utils.py::get_current_commit",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_load_state",
+      "target": "codegraph/storage.py::get_graph_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_persist",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_persist",
+      "target": "codegraph/annotator.py::save_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_persist",
+      "target": "codegraph/delta.py::_append_history",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_persist",
+      "target": "codegraph/delta.py::_increment_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_persist",
+      "target": "codegraph/delta.py::_store_build_commit",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_persist",
+      "target": "codegraph/delta.py::update_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_persist",
+      "target": "codegraph/delta.py::write_delta_result",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_persist",
+      "target": "codegraph/extractor.py::save_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_persist",
+      "target": "codegraph/workflow.py::write_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_update_graphs",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_update_graphs",
+      "target": "codegraph/delta.py::_migrate_renames",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_update_graphs",
+      "target": "codegraph/delta.py::_try_cas_pipeline",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_update_graphs",
+      "target": "codegraph/delta.py::flag_stale_intents",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_update_graphs",
+      "target": "codegraph/delta.py::recompute_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/delta.py::_delta_update_graphs",
+      "target": "codegraph/workflow.py::load_workflow",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -6421,55 +6709,25 @@
     },
     {
       "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/annotator.py::load_graph1",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/annotator.py::save_graph1",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/delta.py::_append_history",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/delta.py::run_delta",
       "target": "codegraph/delta.py::_check_pending_apply",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/delta.py::_increment_version",
+      "target": "codegraph/delta.py::_delta_load_state",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/delta.py::_migrate_renames",
+      "target": "codegraph/delta.py::_delta_persist",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/delta.py::_store_build_commit",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/delta.py::_try_cas_pipeline",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/delta.py::flag_stale_intents",
+      "target": "codegraph/delta.py::_delta_update_graphs",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -6487,67 +6745,13 @@
     },
     {
       "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/delta.py::recompute_edges",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/delta.py::run_delta",
       "target": "codegraph/delta.py::reextract_changed",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/delta.py::update_index",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/delta.py::write_delta_result",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/extractor.py::load_graph0",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/extractor.py::save_graph0",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/git_utils.py::get_current_commit",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/delta.py::run_delta",
       "target": "codegraph/models/delta.py::DeltaResult",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/storage.py::get_graph_version",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/workflow.py::load_workflow",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/delta.py::run_delta",
-      "target": "codegraph/workflow.py::write_workflow",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -6756,6 +6960,18 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/extractor.py::_extract_call_data",
+      "target": "codegraph/extractor.py::detect_dynamic_calls",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::_extract_call_data",
+      "target": "codegraph/extractor.py::extract_call_sites",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/extractor.py::_extract_file_worker",
       "target": "codegraph/extractor.py::_safe_extract_file",
       "edge_type": "call",
@@ -6846,14 +7062,104 @@
       "confidence": "static"
     },
     {
-      "source": "codegraph/extractor.py::_safe_extract_file",
+      "source": "codegraph/extractor.py::_finalize_graph0",
+      "target": "codegraph/models/graph0.py::Graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::_finalize_graph0",
+      "target": "codegraph/storage.py::increment_graph_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::_finalize_graph0",
+      "target": "codegraph/utils/formatting.py::iso_now",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::_finalize_graph0",
+      "target": "codegraph/utils/ids.py::normalize_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::_initialize_extraction",
+      "target": "codegraph/extractor.py::ExtractionCache",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::_initialize_extraction",
+      "target": "codegraph/extractor.py::ExtractionReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::_initialize_extraction",
+      "target": "codegraph/models/graph0.py::CollisionResolver",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::_initialize_extraction",
+      "target": "codegraph/utils/progress.py::ProgressReporter",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::_run_file_extraction",
+      "target": "codegraph/extraction_types.py::FileExtractionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::_run_file_extraction",
       "target": "codegraph/extractor.py::ExtractionWarning",
       "edge_type": "call",
       "confidence": "static"
     },
     {
+      "source": "codegraph/extractor.py::_run_file_extraction",
+      "target": "codegraph/extractor.py::_safe_extract_file",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::_run_file_extraction",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::_run_file_extraction",
+      "target": "codegraph/models/graph0.py::Graph0Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::_run_file_extraction",
+      "target": "codegraph/utils/hashing.py::hash_file",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::_run_file_extraction::_process_result",
+      "target": "codegraph/models/graph0.py::Graph0Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/extractor.py::_safe_extract_file",
-      "target": "codegraph/extractor.py::FileExtractionResult",
+      "target": "codegraph/extraction_types.py::FileExtractionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::_safe_extract_file",
+      "target": "codegraph/extractor.py::ExtractionWarning",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -6889,13 +7195,19 @@
     },
     {
       "source": "codegraph/extractor.py::extract_file",
+      "target": "codegraph/extraction_types.py::FileExtractionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::extract_file",
       "target": "codegraph/extractor.py::ExtractionWarning",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/extractor.py::extract_file",
-      "target": "codegraph/extractor.py::FileExtractionResult",
+      "target": "codegraph/extractor.py::_extract_call_data",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -6908,18 +7220,6 @@
     {
       "source": "codegraph/extractor.py::extract_file",
       "target": "codegraph/extractor.py::_extract_nodes_recursive",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/extractor.py::extract_file",
-      "target": "codegraph/extractor.py::detect_dynamic_calls",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/extractor.py::extract_file",
-      "target": "codegraph/extractor.py::extract_call_sites",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -6967,7 +7267,7 @@
     },
     {
       "source": "codegraph/extractor.py::extract_imports",
-      "target": "codegraph/extractor.py::ImportInfo",
+      "target": "codegraph/extraction_types.py::ImportInfo",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -6979,43 +7279,25 @@
     },
     {
       "source": "codegraph/extractor.py::extract_project",
-      "target": "codegraph/extractor.py::ExtractionCache",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/extractor.py::extract_project",
       "target": "codegraph/extractor.py::ExtractionReport",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/extractor.py::extract_project",
-      "target": "codegraph/extractor.py::ExtractionWarning",
+      "target": "codegraph/extractor.py::_finalize_graph0",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/extractor.py::extract_project",
-      "target": "codegraph/extractor.py::FileExtractionResult",
+      "target": "codegraph/extractor.py::_initialize_extraction",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/extractor.py::extract_project",
-      "target": "codegraph/extractor.py::_safe_extract_file",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/extractor.py::extract_project",
-      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/extractor.py::extract_project",
-      "target": "codegraph/models/graph0.py::CollisionResolver",
+      "target": "codegraph/extractor.py::_run_file_extraction",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7027,55 +7309,13 @@
     },
     {
       "source": "codegraph/extractor.py::extract_project",
-      "target": "codegraph/models/graph0.py::Graph0Node",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/extractor.py::extract_project",
-      "target": "codegraph/storage.py::increment_graph_version",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/extractor.py::extract_project",
       "target": "codegraph/utils/file_discovery.py::discover_source_files",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/extractor.py::extract_project",
-      "target": "codegraph/utils/formatting.py::iso_now",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/extractor.py::extract_project",
-      "target": "codegraph/utils/hashing.py::hash_file",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/extractor.py::extract_project",
-      "target": "codegraph/utils/ids.py::normalize_path",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/extractor.py::extract_project",
-      "target": "codegraph/utils/progress.py::ProgressReporter",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/extractor.py::extract_project",
       "target": "codegraph/utils/progress.py::ProgressReporter::finish",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/extractor.py::extract_project::_process_result",
-      "target": "codegraph/models/graph0.py::Graph0Node",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7345,13 +7585,13 @@
     },
     {
       "source": "codegraph/extractors/javascript.py::_extract_js_file",
-      "target": "codegraph/extractor.py::FileExtractionResult",
+      "target": "codegraph/extraction_types.py::FileExtractionResult",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/extractors/javascript.py::_extract_js_file",
-      "target": "codegraph/extractor.py::ImportInfo",
+      "target": "codegraph/extraction_types.py::ImportInfo",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7675,12 +7915,6 @@
     },
     {
       "source": "codegraph/index.py::check_index_consistency",
-      "target": "codegraph/annotator.py::load_graph1",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/index.py::check_index_consistency",
       "target": "codegraph/extractor.py::load_graph0",
       "edge_type": "call",
       "confidence": "static"
@@ -7706,6 +7940,18 @@
     {
       "source": "codegraph/index.py::check_index_consistency",
       "target": "codegraph/index.py::_index_dir",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/index.py::check_index_consistency",
+      "target": "codegraph/models/graph1.py::Graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/index.py::check_index_consistency",
+      "target": "codegraph/storage.py::resolve_path",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7747,12 +7993,6 @@
     },
     {
       "source": "codegraph/index.py::rebuild_index",
-      "target": "codegraph/annotator.py::load_graph1",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/index.py::rebuild_index",
       "target": "codegraph/extractor.py::load_graph0",
       "edge_type": "call",
       "confidence": "static"
@@ -7760,6 +8000,18 @@
     {
       "source": "codegraph/index.py::rebuild_index",
       "target": "codegraph/index.py::build_all_indexes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/index.py::rebuild_index",
+      "target": "codegraph/models/graph1.py::Graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/index.py::rebuild_index",
+      "target": "codegraph/storage.py::resolve_path",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -8766,6 +9018,72 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/query.py::_dispatch_extended_query",
+      "target": "codegraph/index.py::IndexStore::get_tests_for_node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/query.py::_dispatch_extended_query",
+      "target": "codegraph/query.py::QueryResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/query.py::_dispatch_extended_query",
+      "target": "codegraph/query.py::explain_node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/query.py::_dispatch_extended_query",
+      "target": "codegraph/query.py::query_import_dependencies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/query.py::_dispatch_graph_query",
+      "target": "codegraph/query.py::query_callees",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/query.py::_dispatch_graph_query",
+      "target": "codegraph/query.py::query_callers",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/query.py::_dispatch_graph_query",
+      "target": "codegraph/query.py::query_dependencies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/query.py::_dispatch_graph_query",
+      "target": "codegraph/query.py::query_dependents",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/query.py::_dispatch_graph_query",
+      "target": "codegraph/query.py::query_layer",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/query.py::_dispatch_graph_query",
+      "target": "codegraph/query.py::query_orphans",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/query.py::_dispatch_graph_query",
+      "target": "codegraph/query.py::query_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/query.py::_suggest_nodes",
       "target": "codegraph/index.py::IndexStore::search_nodes",
       "edge_type": "call",
@@ -8827,73 +9145,19 @@
     },
     {
       "source": "codegraph/query.py::execute_query",
-      "target": "codegraph/index.py::IndexStore::get_tests_for_node",
+      "target": "codegraph/query.py::_dispatch_extended_query",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/query.py::execute_query",
-      "target": "codegraph/query.py::QueryResult",
+      "target": "codegraph/query.py::_dispatch_graph_query",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/query.py::execute_query",
       "target": "codegraph/query.py::_suggest_nodes",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/query.py::execute_query",
-      "target": "codegraph/query.py::explain_node",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/query.py::execute_query",
-      "target": "codegraph/query.py::query_callees",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/query.py::execute_query",
-      "target": "codegraph/query.py::query_callers",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/query.py::execute_query",
-      "target": "codegraph/query.py::query_dependencies",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/query.py::execute_query",
-      "target": "codegraph/query.py::query_dependents",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/query.py::execute_query",
-      "target": "codegraph/query.py::query_import_dependencies",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/query.py::execute_query",
-      "target": "codegraph/query.py::query_layer",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/query.py::execute_query",
-      "target": "codegraph/query.py::query_orphans",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/query.py::execute_query",
-      "target": "codegraph/query.py::query_path",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -9348,6 +9612,18 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/semantics.py::_extract_external_semantics",
+      "target": "codegraph/semantics.py::classify_sql_operations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/semantics.py::_extract_external_semantics",
+      "target": "codegraph/semantics.py::detect_library_calls",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/semantics.py::_get_raise_type",
       "target": "codegraph/semantics.py::_unparse_safe",
       "edge_type": "call",
@@ -9469,13 +9745,7 @@
     },
     {
       "source": "codegraph/semantics.py::extract_semantics_for_node",
-      "target": "codegraph/semantics.py::classify_sql_operations",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/semantics.py::extract_semantics_for_node",
-      "target": "codegraph/semantics.py::detect_library_calls",
+      "target": "codegraph/semantics.py::_extract_external_semantics",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -9612,6 +9882,42 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/simulator.py::_compute_impact_metrics",
+      "target": "codegraph/simulator.py::SimViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::_compute_impact_metrics",
+      "target": "codegraph/simulator.py::_classify_risk",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::_compute_impact_metrics",
+      "target": "codegraph/simulator.py::_compute_blast_radius",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::_compute_impact_metrics",
+      "target": "codegraph/simulator.py::_compute_module_coupling",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::_compute_impact_metrics",
+      "target": "codegraph/simulator.py::_detect_improvements",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::_compute_impact_metrics",
+      "target": "codegraph/simulator.py::_original_adj",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/simulator.py::_detect_improvements",
       "target": "codegraph/simulator.py::_find_cycles_in_adj",
       "edge_type": "call",
@@ -9697,37 +10003,13 @@
     },
     {
       "source": "codegraph/simulator.py::simulate_changes",
-      "target": "codegraph/simulator.py::_classify_risk",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/simulator.py::simulate_changes",
-      "target": "codegraph/simulator.py::_compute_blast_radius",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/simulator.py::simulate_changes",
-      "target": "codegraph/simulator.py::_compute_module_coupling",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/simulator.py::simulate_changes",
-      "target": "codegraph/simulator.py::_detect_improvements",
+      "target": "codegraph/simulator.py::_compute_impact_metrics",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/simulator.py::simulate_changes",
       "target": "codegraph/simulator.py::_find_cycles_in_adj",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/simulator.py::simulate_changes",
-      "target": "codegraph/simulator.py::_original_adj",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -10722,6 +11004,42 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/workflow.py::_build_all_edge_sources",
+      "target": "codegraph/workflow.py::build_dynamic_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_build_all_edge_sources",
+      "target": "codegraph/workflow.py::build_import_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_build_all_edge_sources",
+      "target": "codegraph/workflow.py::build_static_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_build_all_edge_sources",
+      "target": "codegraph/workflow.py::build_test_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_build_all_edge_sources",
+      "target": "codegraph/workflow.py::parse_trace_data",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_build_all_edge_sources",
+      "target": "codegraph/workflow.py::run_trace",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/workflow.py::_collect_call_sites_and_imports",
       "target": "codegraph/extractor.py::extract_file",
       "edge_type": "call",
@@ -10730,6 +11048,78 @@
     {
       "source": "codegraph/workflow.py::_collect_call_sites_and_imports",
       "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_finalize_and_save_workflow",
+      "target": "codegraph/filters.py::FilterPipeline::from_config",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_finalize_and_save_workflow",
+      "target": "codegraph/models/workflow.py::Workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_finalize_and_save_workflow",
+      "target": "codegraph/workflow.py::build_import_dependencies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_finalize_and_save_workflow",
+      "target": "codegraph/workflow.py::compress_to_class",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_finalize_and_save_workflow",
+      "target": "codegraph/workflow.py::compress_to_module",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_finalize_and_save_workflow",
+      "target": "codegraph/workflow.py::merge_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_finalize_and_save_workflow",
+      "target": "codegraph/workflow.py::save_import_graph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_finalize_and_save_workflow",
+      "target": "codegraph/workflow.py::write_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_prepare_source_data",
+      "target": "codegraph/config.py::load_config",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_prepare_source_data",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_prepare_source_data",
+      "target": "codegraph/workflow.py::_collect_call_sites_and_imports",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/workflow.py::_prepare_source_data",
+      "target": "codegraph/workflow.py::validate_level",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -10777,109 +11167,25 @@
     },
     {
       "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/config.py::load_config",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/extractor.py::load_graph0",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/filters.py::FilterPipeline::from_config",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/workflow.py::build_workflow",
       "target": "codegraph/models/workflow.py::Workflow",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/workflow.py::_collect_call_sites_and_imports",
+      "target": "codegraph/workflow.py::_build_all_edge_sources",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/workflow.py::build_dynamic_edges",
+      "target": "codegraph/workflow.py::_finalize_and_save_workflow",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/workflow.py::build_import_dependencies",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/workflow.py::build_import_edges",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/workflow.py::build_static_edges",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/workflow.py::build_test_edges",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/workflow.py::compress_to_class",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/workflow.py::compress_to_module",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/workflow.py::merge_edges",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/workflow.py::parse_trace_data",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/workflow.py::run_trace",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/workflow.py::save_import_graph",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/workflow.py::validate_level",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/workflow.py::build_workflow",
-      "target": "codegraph/workflow.py::write_workflow",
+      "target": "codegraph/workflow.py::_prepare_source_data",
       "edge_type": "call",
       "confidence": "static"
     },

@@ -123,6 +123,109 @@ class AnalysisResult:
 # ═══════════════════════════════════════════════════════════════════════
 
 
+def _analyze_basic(result, graph0, graph1, workflow, layer_map, affected_nodes, index):
+    """Run basic analyses: orphans, stale intents, coverage gaps, missing intents."""
+    from codegraph.workflow import find_orphans
+    orphan_ids = find_orphans(workflow, graph0, layer_map)
+    if affected_nodes is not None:
+        orphan_ids = [o for o in orphan_ids if o in affected_nodes]
+    result.orphans = classify_orphans(orphan_ids, graph0, graph1)
+    for orph in result.orphans:
+        result.findings.append(Finding(
+            finding_type="orphan",
+            severity="warning",
+            node_id=orph.node_id,
+            message=f"Orphan ({orph.classification}): {orph.node_id}",
+            details={"classification": orph.classification, "reason": orph.reason},
+        ))
+
+    result.stale_intents = find_stale_intents(graph0, graph1, affected_nodes)
+    for si in result.stale_intents:
+        result.findings.append(Finding(
+            finding_type="stale_intent",
+            severity="warning",
+            node_id=si.node_id,
+            message=f"Stale intent: {si.node_id} (hash changed {si.old_hash} → {si.new_hash})",
+        ))
+
+    result.coverage_gaps = find_coverage_gaps(graph0, graph1, workflow, index, affected_nodes)
+    for cg in result.coverage_gaps:
+        result.findings.append(Finding(
+            finding_type="coverage_gap",
+            severity="warning",
+            node_id=cg.node_id,
+            message=f"No test coverage: {cg.node_id}",
+        ))
+
+    result.missing_intents = find_missing_intents(graph0, graph1, layer_map, affected_nodes)
+    for nid in result.missing_intents:
+        result.findings.append(Finding(
+            finding_type="missing_intent",
+            severity="info",
+            node_id=nid,
+            message=f"Missing intent: {nid}",
+        ))
+
+
+def _analyze_policies(result, graph0, graph1, workflow, suggested_workflow, index, affected_nodes):
+    """Run policy-related analyses: violations, forbidden paths, dep limits, cycle mismatches."""
+    if not (suggested_workflow and suggested_workflow.rules):
+        return
+    from codegraph.suggest import detect_violations, policy_diff
+    violations = detect_violations(suggested_workflow, workflow, graph0, graph1)
+    result.violations = violations
+    for v in violations:
+        result.findings.append(Finding(
+            finding_type="policy_violation",
+            severity=v.severity,
+            node_id=v.source,
+            message=f"Policy violation [{v.rule_id}]: {v.source} → {v.target} ({v.rule_type})",
+            details={"rule_id": v.rule_id, "rule_type": v.rule_type, "reason": v.reason},
+        ))
+
+    forbidden_path_rules = [r for r in suggested_workflow.rules if r.type == "forbidden_path"]
+    if forbidden_path_rules and index is not None:
+        from codegraph.path_query import check_forbidden_path
+        for rule in forbidden_path_rules:
+            if rule.source and rule.target:
+                fp_result = check_forbidden_path(rule.source, rule.target, index)
+                if fp_result.violation:
+                    for path in fp_result.paths_found:
+                        result.findings.append(Finding(
+                            finding_type="policy_violation",
+                            severity="error",
+                            node_id=path[0] if path else "",
+                            message=f"Forbidden path [{rule.id}]: {rule.source} -> {rule.target}",
+                            details={"rule_id": rule.id, "rule_type": "forbidden_path",
+                                     "reason": rule.reason, "path": path},
+                        ))
+
+    dep_limit_rules = [r for r in suggested_workflow.rules if r.type == "dependency_limit"]
+    if dep_limit_rules and index is not None:
+        from codegraph.risk_metrics import check_dependency_limits
+        dep_violations = check_dependency_limits(index, dep_limit_rules)
+        for dv in dep_violations:
+            result.findings.append(Finding(
+                finding_type="policy_violation",
+                severity="warning",
+                node_id=dv["node_id"],
+                message=f"Dependency limit [{dv['rule_id']}]: {dv['reason']}",
+                details={"rule_id": dv["rule_id"], "rule_type": "dependency_limit",
+                         "reason": dv["reason"]},
+            ))
+
+    result.cycle_mismatches = detect_cycle_mismatches(
+        workflow, suggested_workflow, graph0, graph1,
+    )
+    for cm in result.cycle_mismatches:
+        result.findings.append(Finding(
+            finding_type="cycle_mismatch",
+            severity="warning",
+            message=f"Cycle involving rule nodes: {' → '.join(cm.cycle_nodes)}",
+            details={"rules": cm.involved_rules},
+        ))
+
+
 def analyze(
     project_root: Path,
     graph0: Graph0,
@@ -140,102 +243,12 @@ def analyze(
     """
     result = AnalysisResult()
 
-    # Build layer map from graph1
     layer_map: Dict[str, int] = {}
     for g1n in graph1.nodes:
         layer_map[g1n.id] = g1n.layer
 
-    # I-002 — Orphan analysis
-    from codegraph.workflow import find_orphans
-    orphan_ids = find_orphans(workflow, graph0, layer_map)
-    if affected_nodes is not None:
-        orphan_ids = [o for o in orphan_ids if o in affected_nodes]
-    result.orphans = classify_orphans(orphan_ids, graph0, graph1)
-    for orph in result.orphans:
-        result.findings.append(Finding(
-            finding_type="orphan",
-            severity="warning",
-            node_id=orph.node_id,
-            message=f"Orphan ({orph.classification}): {orph.node_id}",
-            details={"classification": orph.classification, "reason": orph.reason},
-        ))
-
-    # I-003 — Stale intent detection
-    result.stale_intents = find_stale_intents(graph0, graph1, affected_nodes)
-    for si in result.stale_intents:
-        result.findings.append(Finding(
-            finding_type="stale_intent",
-            severity="warning",
-            node_id=si.node_id,
-            message=f"Stale intent: {si.node_id} (hash changed {si.old_hash} → {si.new_hash})",
-        ))
-
-    # I-004 — Coverage gaps
-    result.coverage_gaps = find_coverage_gaps(graph0, graph1, workflow, index, affected_nodes)
-    for cg in result.coverage_gaps:
-        result.findings.append(Finding(
-            finding_type="coverage_gap",
-            severity="warning",
-            node_id=cg.node_id,
-            message=f"No test coverage: {cg.node_id}",
-        ))
-
-    # I-005 — Missing intents
-    result.missing_intents = find_missing_intents(graph0, graph1, layer_map, affected_nodes)
-    for nid in result.missing_intents:
-        result.findings.append(Finding(
-            finding_type="missing_intent",
-            severity="info",
-            node_id=nid,
-            message=f"Missing intent: {nid}",
-        ))
-
-    # I-006 — Policy violations
-    if suggested_workflow and suggested_workflow.rules:
-        from codegraph.suggest import detect_violations, policy_diff
-        violations = detect_violations(suggested_workflow, workflow, graph0, graph1)
-        result.violations = violations
-        for v in violations:
-            result.findings.append(Finding(
-                finding_type="policy_violation",
-                severity=v.severity,
-                node_id=v.source,
-                message=f"Policy violation [{v.rule_id}]: {v.source} → {v.target} ({v.rule_type})",
-                details={"rule_id": v.rule_id, "rule_type": v.rule_type, "reason": v.reason},
-            ))
-
-        # Forbidden path checking
-        forbidden_path_rules = [r for r in suggested_workflow.rules if r.type == "forbidden_path"]
-        if forbidden_path_rules and index is not None:
-            from codegraph.path_query import check_forbidden_path
-            for rule in forbidden_path_rules:
-                if rule.source and rule.target:
-                    fp_result = check_forbidden_path(rule.source, rule.target, index)
-                    if fp_result.violation:
-                        for path in fp_result.paths_found:
-                            result.findings.append(Finding(
-                                finding_type="policy_violation",
-                                severity="error",
-                                node_id=path[0] if path else "",
-                                message=f"Forbidden path [{rule.id}]: {rule.source} -> {rule.target}",
-                                details={"rule_id": rule.id, "rule_type": "forbidden_path",
-                                         "reason": rule.reason, "path": path},
-                            ))
-
-        # Dependency limit checking
-        dep_limit_rules = [r for r in suggested_workflow.rules if r.type == "dependency_limit"]
-        if dep_limit_rules and index is not None:
-            from codegraph.risk_metrics import check_dependency_limits
-            dep_violations = check_dependency_limits(index, dep_limit_rules)
-            for dv in dep_violations:
-                result.findings.append(Finding(
-                    finding_type="policy_violation",
-                    severity="warning",
-                    node_id=dv["node_id"],
-                    message=f"Dependency limit [{dv['rule_id']}]: {dv['reason']}",
-                    details={"rule_id": dv["rule_id"], "rule_type": "dependency_limit",
-                             "reason": dv["reason"]},
-                ))
+    _analyze_basic(result, graph0, graph1, workflow, layer_map, affected_nodes, index)
+    _analyze_policies(result, graph0, graph1, workflow, suggested_workflow, index, affected_nodes)
 
     # I-026 — Heuristic missing edges
     result.missing_edges = detect_missing_edges(workflow, graph0, affected_nodes)
@@ -247,19 +260,6 @@ def analyze(
             message=f"Possible missing edge: {me.source} → {me.target}",
             details={"reason": me.reason},
         ))
-
-    # I-023 — Cycle mismatch detection
-    if suggested_workflow and suggested_workflow.rules:
-        result.cycle_mismatches = detect_cycle_mismatches(
-            workflow, suggested_workflow, graph0, graph1,
-        )
-        for cm in result.cycle_mismatches:
-            result.findings.append(Finding(
-                finding_type="cycle_mismatch",
-                severity="warning",
-                message=f"Cycle involving rule nodes: {' → '.join(cm.cycle_nodes)}",
-                details={"rules": cm.involved_rules},
-            ))
 
     # Sort findings by severity (error > warning > info)
     sev_order = {"error": 0, "warning": 1, "info": 2}
@@ -511,6 +511,28 @@ class RepairResult:
     final_findings: int = 0
 
 
+def _load_repair_data(project_root):
+    """Load all data needed for one repair iteration."""
+    from codegraph.extractor import load_graph0
+    from codegraph.annotator import load_graph1
+    from codegraph.workflow import load_workflow
+    from codegraph.suggest import load_suggested_workflow
+
+    graph0 = load_graph0(project_root)
+    graph1 = load_graph1(project_root)
+    workflow = load_workflow(project_root)
+    suggested = load_suggested_workflow(project_root)
+
+    index = None
+    try:
+        from codegraph.index import IndexStore
+        index = IndexStore(project_root)
+    except FileNotFoundError:
+        pass
+
+    return graph0, graph1, workflow, suggested, index
+
+
 def repair_loop(
     project_root: Path,
     *,
@@ -525,23 +547,8 @@ def repair_loop(
     tracker = ConvergenceTracker(max_iterations=max_iterations)
     result = RepairResult()
 
-    from codegraph.extractor import load_graph0
-    from codegraph.annotator import load_graph1
-    from codegraph.workflow import load_workflow
-    from codegraph.suggest import load_suggested_workflow
-
     for iteration in range(1, max_iterations + 1):
-        graph0 = load_graph0(project_root)
-        graph1 = load_graph1(project_root)
-        workflow = load_workflow(project_root)
-        suggested = load_suggested_workflow(project_root)
-
-        index = None
-        try:
-            from codegraph.index import IndexStore
-            index = IndexStore(project_root)
-        except FileNotFoundError:
-            pass
+        graph0, graph1, workflow, suggested, index = _load_repair_data(project_root)
 
         analysis = analyze(
             project_root, graph0, graph1, workflow, suggested, index,

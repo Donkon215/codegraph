@@ -1,29 +1,29 @@
 {
-  "score": 0.435,
+  "score": 0.446,
   "grade": "F",
   "metrics": {
-    "modularity": 0.3341,
+    "modularity": 0.3561,
     "subsystem_isolation": 0.5758,
-    "coupling": 0.6659,
+    "coupling": 0.6439,
     "fanout_penalty": 0.56,
     "cycle_penalty": 0.4,
     "max_fan_out": 22.0,
     "cycle_count": 3.0
   },
   "subsystem_scores": {
-    "core_engine": 0.6185,
-    "semantics": 0.6377,
+    "governance": 0.5436,
     "query": 0.729,
     "infrastructure": 0.9101,
-    "models": 0.7377,
-    "architecture_memory": 1.0,
-    "intelligence": 0.8571,
+    "core_engine": 0.6185,
     "cli": 0.1333,
-    "governance": 0.5436
+    "semantics": 0.6377,
+    "architecture_memory": 1.0,
+    "models": 0.7377,
+    "intelligence": 0.8571
   },
   "metadata": {
-    "total_nodes": 3570,
-    "total_edges": 4157,
+    "total_nodes": 3474,
+    "total_edges": 3749,
     "subsystem_count": 9
   }
 }

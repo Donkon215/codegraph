@@ -58,6 +58,7 @@ from codegraph.constants import (
     CURRENT_FORMAT_VERSION,
     GRAPHS_DIR,
 )
+from codegraph.extraction_types import FileExtractionResult, ImportInfo
 from codegraph.logging_config import get_logger
 from codegraph.models.graph0 import CollisionResolver, Graph0, Graph0Node
 from codegraph.storage import (
@@ -79,31 +80,8 @@ logger = get_logger("extractor")
 # Helper data structures
 # ═══════════════════════════════════════════════════════════════════════
 
-
-@dataclass
-class ImportInfo:
-    """A single import statement extracted from a source file.  (C-016)"""
-
-    module: str
-    names: List[str] = field(default_factory=list)
-    alias: Optional[str] = None
-    is_relative: bool = False
-    level: int = 0
-    line: int = 0
-
-    def resolved_name(self, current_package: str = "") -> str:
-        """Return the fully-qualified module name, resolving relative imports."""
-        if not self.is_relative or not current_package:
-            return self.module
-        parts = current_package.split(".")
-        up = self.level - 1
-        if up < len(parts):
-            base = ".".join(parts[: len(parts) - up])
-        else:
-            base = ""
-        if self.module:
-            return f"{base}.{self.module}" if base else self.module
-        return base
+# ImportInfo and FileExtractionResult are defined in codegraph.extraction_types
+# and re-exported here for backward compatibility.
 
 
 @dataclass
@@ -849,19 +827,6 @@ def _extract_module_node(
 # ═══════════════════════════════════════════════════════════════════════
 
 
-@dataclass
-class FileExtractionResult:
-    """All data extracted from a single file."""
-
-    nodes: List[Graph0Node] = field(default_factory=list)
-    imports: List[ImportInfo] = field(default_factory=list)
-    globals: List[GlobalDef] = field(default_factory=list)
-    class_infos: List[ClassInfo] = field(default_factory=list)
-    call_sites: Dict[str, List[CallSite]] = field(default_factory=dict)
-    dynamic_calls: List[DynamicCall] = field(default_factory=list)
-    warnings: List[ExtractionWarning] = field(default_factory=list)
-
-
 def extract_file(
     file_path: Path,
     project_root: Path,
@@ -906,14 +871,19 @@ def extract_file(
     )
 
     # C-017, C-019 — call sites for functions/methods
+    _extract_call_data(tree, rel, result)
+
+    return result
+
+
+def _extract_call_data(tree, rel, result):
+    """Extract call sites and dynamic calls from AST."""
     for node in ast.walk(tree):
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
             calls = extract_call_sites(node)
             dynamics = detect_dynamic_calls(node, scope=rel)
             result.call_sites[node.name] = calls
             result.dynamic_calls.extend(dynamics)
-
-    return result
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -1036,37 +1006,24 @@ def _extract_file_worker(
 # C-009 — Full project extraction pipeline
 # ═══════════════════════════════════════════════════════════════════════
 
+# ───────────────────────────────────────────────────────────────────────
+# Extraction Helpers (reduce fan-out)
+# ───────────────────────────────────────────────────────────────────────
 
-def extract_project(
+
+def _initialize_extraction(
     project_root: Path,
-    config: Optional[CodegraphConfig] = None,
-    *,
-    use_cache: bool = True,
-    parallel: bool = False,
-    max_workers: Optional[int] = None,
-    include_stubs: bool = False,
-    progress: bool = True,
-) -> Tuple[Graph0, ExtractionReport]:
-    """Extract the complete Graph_0 for a project.  (C-009, C-025, C-029, C-034)
+    use_cache: bool,
+    progress: bool,
+    num_files: int,
+) -> Tuple[Optional[ExtractionCache], Optional[ProgressReporter], CollisionResolver, ExtractionReport]:
+    """Initialize extraction infrastructure: cache, progress, collision resolver, report.
 
     Returns
     -------
-    (Graph0, ExtractionReport)
-        The assembled graph and a summary report.
+    (cache, prog, resolver, report)
     """
-    t0 = time.monotonic()
-    if config is None:
-        config = load_config(project_root)
-
     report = ExtractionReport()
-
-    # Discover source files (multi-language: use extractor registry)
-    from codegraph.extractors import setup as _setup_extractors, get_extractor
-    _setup_extractors(project_root)
-    source_files = discover_source_files(project_root)
-    if not source_files:
-        logger.info("No source files found in %s", project_root)
-        return Graph0(source_files=[]), report
 
     # Cache setup (C-021)
     cache: Optional[ExtractionCache] = None
@@ -1078,15 +1035,33 @@ def extract_project(
 
     # Progress (A-030)
     prog: Optional[ProgressReporter] = None
-    if progress and len(source_files) > 5:
-        prog = ProgressReporter(total=len(source_files), label="Extracting")
+    if progress and num_files > 5:
+        prog = ProgressReporter(total=num_files, label="Extracting")
 
     resolver = CollisionResolver()
-    all_nodes: List[Graph0Node] = []
-    node_counts: Dict[str, int] = {}
+
+    return cache, prog, resolver, report
+
+
+def _run_file_extraction(
+    source_files: List[Path],
+    project_root: Path,
+    include_stubs: bool,
+    use_cache: bool,
+    cache: Optional[ExtractionCache],
+    prog: Optional[ProgressReporter],
+    resolver: CollisionResolver,
+    report: ExtractionReport,
+    all_nodes: List[Graph0Node],
+    node_counts: Dict[str, int],
+) -> None:
+    """Run file extraction in parallel or serial mode.
+
+    Mutates: all_nodes, node_counts, report
+    """
+    from codegraph.extractors import get_extractor
 
     def _process_result(
-        fp: Path,
         result: FileExtractionResult,
         warning: Optional[ExtractionWarning],
     ) -> None:
@@ -1112,15 +1087,15 @@ def extract_project(
                     )
                 all_nodes.append(n)
 
-    # C-025 — parallel extraction for large projects
-    if parallel and len(source_files) > 50:
-        workers = max_workers or min(os.cpu_count() or 4, 8)
+    # C-025 â parallel extraction for large projects
+    if len(source_files) > 50:
+        workers = os.cpu_count() or 4
         tasks = [(fp, project_root, include_stubs) for fp in source_files]
-        with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as pool:
+        with concurrent.futures.ProcessPoolExecutor(max_workers=min(8, workers)) as pool:
             for fp, (result, warning) in zip(
                 source_files, pool.map(_extract_file_worker, tasks)
             ):
-                _process_result(fp, result, warning)
+                _process_result(result, warning)
                 if prog:
                     prog.update()
     else:
@@ -1132,7 +1107,7 @@ def extract_project(
                     result = FileExtractionResult(
                         nodes=[Graph0Node.from_dict(d) for d in cached]
                     )
-                    _process_result(fp, result, None)
+                    _process_result(result, None)
                     if prog:
                         prog.update()
                     continue
@@ -1151,7 +1126,7 @@ def extract_project(
                     )
             else:
                 result, warning = _safe_extract_file(fp, project_root, include_stubs)
-            _process_result(fp, result, warning)
+            _process_result(result, warning)
 
             # Populate cache
             if cache is not None and result.nodes:
@@ -1164,21 +1139,27 @@ def extract_project(
             if prog:
                 prog.update()
 
-    if prog:
-        prog.finish()
 
-    # Save cache (C-021)
-    if cache is not None:
-        try:
-            cache.save()
-        except Exception:
-            logger.warning("Could not save extraction cache")
+def _finalize_graph0(
+    project_root: Path,
+    report: ExtractionReport,
+    source_files: List[Path],
+    all_nodes: List[Graph0Node],
+    node_counts: Dict[str, int],
+    resolver: CollisionResolver,
+    t0: float,
+) -> Tuple[Graph0, float]:
+    """Finalize and assemble Graph_0.
 
+    Returns
+    -------
+    (graph0, duration_seconds)
+    """
     # Collision report
-    report.collisions = [f"{orig} → {res}" for orig, res in resolver.collisions]
+    report.collisions = [f"{orig} â {res}" for orig, res in resolver.collisions]
     report.nodes_extracted = node_counts
 
-    # C-034 — determinism: sort nodes by ID
+    # C-034 â determinism: sort nodes by ID
     all_nodes.sort(key=lambda n: n.id)
 
     # Assemble Graph_0
@@ -1193,13 +1174,74 @@ def extract_project(
         nodes=all_nodes,
     )
 
-    report.duration_seconds = round(time.monotonic() - t0, 3)
+    duration = round(time.monotonic() - t0, 3)
+    report.duration_seconds = duration
+
+    return graph0, duration
+
+
+def extract_project(
+    project_root: Path,
+    config: Optional[CodegraphConfig] = None,
+    *,
+    use_cache: bool = True,
+    parallel: bool = False,
+    max_workers: Optional[int] = None,
+    include_stubs: bool = False,
+    progress: bool = True,
+) -> Tuple[Graph0, ExtractionReport]:
+    """Extract the complete Graph_0 for a project.  (C-009, C-025, C-029, C-034)
+
+    Returns
+    -------
+    (Graph0, ExtractionReport)
+        The assembled graph and a summary report.
+    """
+    t0 = time.monotonic()
+    if config is None:
+        config = load_config(project_root)
+
+    # Discover source files (multi-language: use extractor registry)
+    from codegraph.extractors import setup as _setup_extractors
+    _setup_extractors(project_root)
+    source_files = discover_source_files(project_root)
+    if not source_files:
+        logger.info("No source files found in %s", project_root)
+        report = ExtractionReport()
+        return Graph0(source_files=[]), report
+
+    # Initialize extraction infrastructure
+    cache, prog, resolver, report = _initialize_extraction(
+        project_root, use_cache, progress, len(source_files)
+    )
+    all_nodes, node_counts = [], {}
+
+    # Run extraction (serial or parallel)
+    _run_file_extraction(
+        source_files, project_root, include_stubs, use_cache,
+        cache, prog, resolver, report, all_nodes, node_counts,
+    )
+
+    if prog:
+        prog.finish()
+
+    # Save cache
+    if cache is not None:
+        try:
+            cache.save()
+        except Exception:
+            logger.warning("Could not save extraction cache")
+
+    # Finalize and assemble Graph_0
+    graph0, duration = _finalize_graph0(
+        project_root, report, source_files, all_nodes, node_counts, resolver, t0
+    )
 
     logger.info(
         "Extracted %d nodes from %d files (%.2fs)",
         len(all_nodes),
         report.files_processed,
-        report.duration_seconds,
+        duration,
     )
 
     return graph0, report

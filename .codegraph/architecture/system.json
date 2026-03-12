@@ -93,6 +93,84 @@
             "link_api_routes"
           ],
           "description": "Cross-language API endpoint linker. Detects backend HTTP endpoints and frontend API calls, creates workflow edges between them."
+        },
+        {
+          "name": "extractor_registry",
+          "module": "codegraph/extractors/__init__.py",
+          "description": "Plugin registry for language-specific extractors."
+        },
+        {
+          "name": "extraction_types",
+          "module": "codegraph/extraction_types.py",
+          "description": "Shared extraction data types (ImportInfo, FileExtractionResult)."
+        },
+        {
+          "name": "tests_test_api_routes",
+          "module": "tests/test_api_routes.py",
+          "description": "Test module for core_engine subsystem."
+        },
+        {
+          "name": "tests_test_extractor",
+          "module": "tests/test_extractor.py",
+          "description": "Test module for core_engine subsystem."
+        },
+        {
+          "name": "tests_test_js_extractor",
+          "module": "tests/test_js_extractor.py",
+          "description": "Test module for core_engine subsystem."
+        },
+        {
+          "name": "tests_test_layers",
+          "module": "tests/test_layers.py",
+          "description": "Test module for core_engine subsystem."
+        },
+        {
+          "name": "cli_core",
+          "module": "codegraph/cli/core.py",
+          "functions": [
+            "main",
+            "build",
+            "query",
+            "status",
+            "init_cmd",
+            "delta"
+          ],
+          "description": "CLI entry point and foundation commands. Registers all sub-module commands."
+        },
+        {
+          "name": "benchmark_build",
+          "module": "benchmarks/benchmark_build.py",
+          "description": "Build performance benchmark."
+        },
+        {
+          "name": "sample_user_service",
+          "module": "sample_project/services/user_service.py",
+          "description": "Sample project user service."
+        },
+        {
+          "name": "sample_order_service",
+          "module": "sample_project/services/order_service.py",
+          "description": "Sample project order service."
+        },
+        {
+          "name": "sample_test_user",
+          "module": "sample_project/tests/test_user_service.py",
+          "description": "Sample project user test."
+        },
+        {
+          "name": "sample_test_order",
+          "module": "sample_project/tests/test_order_service.py",
+          "description": "Sample project order test."
+        },
+        {
+          "name": "sample_main",
+          "module": "sample_project/main.py",
+          "description": "Sample project entry point."
+        },
+        {
+          "name": "example_trade",
+          "module": "examples/trading/src/trade.py",
+          "description": "Trading example module."
         }
       ],
       "edges": [
@@ -116,7 +194,7 @@
     },
     {
       "name": "models",
-      "description": "Pure data models. Dataclasses with serialization only — no business logic, no engine imports. Other subsystems depend on models, never the reverse.",
+      "description": "Pure data models. Dataclasses with serialization only \u2014 no business logic, no engine imports. Other subsystems depend on models, never the reverse.",
       "components": [
         {
           "name": "graph0_model",
@@ -204,6 +282,96 @@
             "make_rule"
           ],
           "description": "Factory functions for creating model instances with defaults."
+        },
+        {
+          "name": "models_init",
+          "module": "codegraph/models/__init__.py",
+          "description": "Models package initialization and exports."
+        },
+        {
+          "name": "alignment_model",
+          "module": "codegraph/models/alignment.py",
+          "description": "Alignment data model."
+        },
+        {
+          "name": "convergence_model",
+          "module": "codegraph/models/convergence.py",
+          "description": "Convergence tracking data model."
+        },
+        {
+          "name": "dead_code_model",
+          "module": "codegraph/models/dead_code.py",
+          "description": "Dead code detection data model."
+        },
+        {
+          "name": "delta_model",
+          "module": "codegraph/models/delta.py",
+          "description": "Delta change data model."
+        },
+        {
+          "name": "diff_model",
+          "module": "codegraph/models/diff.py",
+          "description": "Diff comparison data model."
+        },
+        {
+          "name": "explain_model",
+          "module": "codegraph/models/explain.py",
+          "description": "Node explanation data model."
+        },
+        {
+          "name": "history_model",
+          "module": "codegraph/models/history.py",
+          "description": "History tracking data model."
+        },
+        {
+          "name": "status_model",
+          "module": "codegraph/models/status.py",
+          "description": "Status report data model."
+        },
+        {
+          "name": "tests_test_delta",
+          "module": "tests/test_delta.py",
+          "description": "Test module for models subsystem."
+        },
+        {
+          "name": "tests_test_filters",
+          "module": "tests/test_filters.py",
+          "description": "Test module for models subsystem."
+        },
+        {
+          "name": "tests_test_graph2",
+          "module": "tests/test_graph2.py",
+          "description": "Test module for models subsystem."
+        },
+        {
+          "name": "tests_test_models",
+          "module": "tests/test_models.py",
+          "description": "Test module for models subsystem."
+        },
+        {
+          "name": "tests_test_properties",
+          "module": "tests/test_properties.py",
+          "description": "Test module for models subsystem."
+        },
+        {
+          "name": "tests_test_snapshots",
+          "module": "tests/test_snapshots.py",
+          "description": "Test module for models subsystem."
+        },
+        {
+          "name": "tests_test_suggest",
+          "module": "tests/test_suggest.py",
+          "description": "Test module for models subsystem."
+        },
+        {
+          "name": "tests_test_tasks",
+          "module": "tests/test_tasks.py",
+          "description": "Test module for models subsystem."
+        },
+        {
+          "name": "tests_test_workflow",
+          "module": "tests/test_workflow.py",
+          "description": "Test module for models subsystem."
         }
       ]
     },
@@ -272,6 +440,54 @@
             "apply_delta"
           ],
           "description": "Incremental graph updates. Detects changed files via git and updates graph/workflow."
+        },
+        {
+          "name": "drift_detector",
+          "module": "codegraph/drift_detector.py",
+          "description": "Architecture drift detection."
+        },
+        {
+          "name": "precommit",
+          "module": "codegraph/precommit.py",
+          "description": "Pre-commit and pre-merge gate checks."
+        },
+        {
+          "name": "pipeline_orchestrator",
+          "module": "codegraph/pipeline_orchestrator.py",
+          "description": "Full pipeline orchestration."
+        },
+        {
+          "name": "architecture_lock",
+          "module": "codegraph/architecture_lock.py",
+          "description": "Boundary lock enforcement."
+        },
+        {
+          "name": "tests_test_architecture_lock",
+          "module": "tests/test_architecture_lock.py",
+          "description": "Test module for governance subsystem."
+        },
+        {
+          "name": "tests_test_drift_detector",
+          "module": "tests/test_drift_detector.py",
+          "description": "Test module for governance subsystem."
+        },
+        {
+          "name": "tests_test_precommit",
+          "module": "tests/test_precommit.py",
+          "description": "Test module for governance subsystem."
+        },
+        {
+          "name": "cli_governance",
+          "module": "codegraph/cli/governance.py",
+          "functions": [
+            "analyze_cmd",
+            "tasks",
+            "apply",
+            "lock_cmd",
+            "drift_cmd",
+            "suggest_group"
+          ],
+          "description": "Governance enforcement CLI commands: analyze, apply, policy, suggest."
         }
       ],
       "edges": [
@@ -447,6 +663,257 @@
             "adjust_weights_from_memory"
           ],
           "description": "Goal-directed architecture scoring. Composite objective function for ranking evolution candidates."
+        },
+        {
+          "name": "architecture_compiler",
+          "module": "codegraph/architecture_compiler.py",
+          "description": "Compiles intent into architecture plan."
+        },
+        {
+          "name": "architecture_delta",
+          "module": "codegraph/architecture_delta.py",
+          "description": "Architecture delta generation."
+        },
+        {
+          "name": "architecture_proof",
+          "module": "codegraph/architecture_proof.py",
+          "description": "Proof gate for architecture changes."
+        },
+        {
+          "name": "architecture_score",
+          "module": "codegraph/architecture_score.py",
+          "description": "Architecture score computation."
+        },
+        {
+          "name": "architecture_simulator",
+          "module": "codegraph/architecture_simulator.py",
+          "description": "Architecture simulation engine."
+        },
+        {
+          "name": "copilot_context",
+          "module": "codegraph/copilot_context.py",
+          "description": "Copilot context generation."
+        },
+        {
+          "name": "copilot_context_builder",
+          "module": "codegraph/copilot_context_builder.py",
+          "description": "Copilot context builder."
+        },
+        {
+          "name": "code_planner",
+          "module": "codegraph/code_planner.py",
+          "description": "Code-level task planning from architecture."
+        },
+        {
+          "name": "planning",
+          "module": "codegraph/planning.py",
+          "description": "Architecture planning utilities."
+        },
+        {
+          "name": "target_architecture",
+          "module": "codegraph/target_architecture.py",
+          "description": "Target architecture definition and validation."
+        },
+        {
+          "name": "metrics",
+          "module": "codegraph/metrics.py",
+          "description": "Graph metrics computation."
+        },
+        {
+          "name": "visualization",
+          "module": "codegraph/visualization.py",
+          "description": "Graph visualization and diagram generation."
+        },
+        {
+          "name": "multilevel",
+          "module": "codegraph/multilevel.py",
+          "description": "Multi-level graph coarsening for subsystem detection."
+        },
+        {
+          "name": "archi_test",
+          "module": "codegraph/archi_test.py",
+          "description": "Architecture test generation and execution."
+        },
+        {
+          "name": "test_impact",
+          "module": "codegraph/test_impact.py",
+          "description": "Test impact analysis."
+        },
+        {
+          "name": "branch_executor",
+          "module": "codegraph/branch_executor.py",
+          "description": "Branch-based change execution."
+        },
+        {
+          "name": "subsystem_lifecycle",
+          "module": "codegraph/subsystem_lifecycle.py",
+          "description": "Subsystem lifecycle management."
+        },
+        {
+          "name": "runtime_graph",
+          "module": "codegraph/runtime_graph.py",
+          "description": "Runtime edge detection (HTTP, DB, MQ)."
+        },
+        {
+          "name": "tests_test_arch_diff",
+          "module": "tests/test_arch_diff.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_arch_evolution",
+          "module": "tests/test_arch_evolution.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_arch_health",
+          "module": "tests/test_arch_health.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_arch_memory_intelligence",
+          "module": "tests/test_arch_memory_intelligence.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_arch_planner",
+          "module": "tests/test_arch_planner.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_arch_policy",
+          "module": "tests/test_arch_policy.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_arch_schema",
+          "module": "tests/test_arch_schema.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_arch_viewer",
+          "module": "tests/test_arch_viewer.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_architecture_advisor",
+          "module": "tests/test_architecture_advisor.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_architecture_compiler",
+          "module": "tests/test_architecture_compiler.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_architecture_objectives",
+          "module": "tests/test_architecture_objectives.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_architecture_simulator",
+          "module": "tests/test_architecture_simulator.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_branch_executor",
+          "module": "tests/test_branch_executor.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_code_planner",
+          "module": "tests/test_code_planner.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_copilot_context",
+          "module": "tests/test_copilot_context.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_evolution_proposals",
+          "module": "tests/test_evolution_proposals.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_multilevel",
+          "module": "tests/test_multilevel.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_planning",
+          "module": "tests/test_planning.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_refactor",
+          "module": "tests/test_refactor.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_risk_metrics",
+          "module": "tests/test_risk_metrics.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_runtime_graph",
+          "module": "tests/test_runtime_graph.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_subsystem",
+          "module": "tests/test_subsystem.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_subsystem_lifecycle",
+          "module": "tests/test_subsystem_lifecycle.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_target_architecture",
+          "module": "tests/test_target_architecture.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "tests_test_visualization",
+          "module": "tests/test_visualization.py",
+          "description": "Test module for intelligence subsystem."
+        },
+        {
+          "name": "cli_architecture",
+          "module": "codegraph/cli/architecture.py",
+          "functions": [
+            "architect_cmd",
+            "architecture_cmd",
+            "compile_cmd",
+            "arch_search_cmd",
+            "arch_simulate_cmd"
+          ],
+          "description": "Architecture analysis and planning CLI commands."
+        },
+        {
+          "name": "cli_intelligence",
+          "module": "codegraph/cli/intelligence.py",
+          "functions": [
+            "evolution_cmd",
+            "evolve_cmd",
+            "health_cmd",
+            "memory_intel_cmd",
+            "metrics_cmd"
+          ],
+          "description": "Intelligence layer CLI commands: evolution, health, memory, metrics."
+        },
+        {
+          "name": "cli_runtime",
+          "module": "codegraph/cli/runtime.py",
+          "functions": [
+            "simulate_cmd",
+            "pre_commit_cmd",
+            "runtime_graph_cmd",
+            "branch_group",
+            "lifecycle_group"
+          ],
+          "description": "Runtime and lifecycle CLI commands: simulate, pre-commit, branch, lifecycle."
         }
       ],
       "edges": [
@@ -549,6 +1016,36 @@
             "simulate_impact"
           ],
           "description": "Impact simulation. Predicts blast radius of changes to a node."
+        },
+        {
+          "name": "tests_test_context_builder",
+          "module": "tests/test_context_builder.py",
+          "description": "Test module for query subsystem."
+        },
+        {
+          "name": "tests_test_fuzz",
+          "module": "tests/test_fuzz.py",
+          "description": "Test module for query subsystem."
+        },
+        {
+          "name": "tests_test_path_query",
+          "module": "tests/test_path_query.py",
+          "description": "Test module for query subsystem."
+        },
+        {
+          "name": "tests_test_query",
+          "module": "tests/test_query.py",
+          "description": "Test module for query subsystem."
+        },
+        {
+          "name": "tests_test_simulator",
+          "module": "tests/test_simulator.py",
+          "description": "Test module for query subsystem."
+        },
+        {
+          "name": "benchmark_query",
+          "module": "benchmarks/benchmark_query.py",
+          "description": "Query performance benchmark."
         }
       ],
       "edges": [
@@ -583,6 +1080,16 @@
             "verify_cas"
           ],
           "description": "Content-addressable storage. Computes and verifies file hashes for integrity."
+        },
+        {
+          "name": "tests_test_cas",
+          "module": "tests/test_cas.py",
+          "description": "Test module for semantics subsystem."
+        },
+        {
+          "name": "tests_test_semantics",
+          "module": "tests/test_semantics.py",
+          "description": "Test module for semantics subsystem."
         }
       ],
       "edges": [
@@ -682,6 +1189,116 @@
           "name": "utils",
           "module": "codegraph/utils/",
           "description": "Utility functions: formatting, hashing, file discovery, ID generation, progress reporting."
+        },
+        {
+          "name": "error_codes",
+          "module": "codegraph/error_codes.py",
+          "description": "Error code definitions."
+        },
+        {
+          "name": "exceptions",
+          "module": "codegraph/exceptions.py",
+          "description": "Custom exception classes for error handling."
+        },
+        {
+          "name": "formatters",
+          "module": "codegraph/formatters.py",
+          "description": "Output formatting utilities."
+        },
+        {
+          "name": "known_libraries",
+          "module": "codegraph/known_libraries.py",
+          "description": "Library classification for layer detection."
+        },
+        {
+          "name": "utils_init",
+          "module": "codegraph/utils/__init__.py",
+          "description": "Utilities package initialization."
+        },
+        {
+          "name": "file_discovery",
+          "module": "codegraph/utils/file_discovery.py",
+          "description": "Source file discovery utilities."
+        },
+        {
+          "name": "formatting_utils",
+          "module": "codegraph/utils/formatting.py",
+          "description": "Timestamp and formatting helpers."
+        },
+        {
+          "name": "hashing_utils",
+          "module": "codegraph/utils/hashing.py",
+          "description": "File and body hash utilities."
+        },
+        {
+          "name": "id_utils",
+          "module": "codegraph/utils/ids.py",
+          "description": "Path normalization and ID generation."
+        },
+        {
+          "name": "progress_utils",
+          "module": "codegraph/utils/progress.py",
+          "description": "Progress reporting utilities."
+        },
+        {
+          "name": "schemas_init",
+          "module": "codegraph/schemas/__init__.py",
+          "description": "Schema package initialization."
+        },
+        {
+          "name": "pytest_plugin",
+          "module": "codegraph/pytest_plugin.py",
+          "description": "Pytest plugin for test collection."
+        },
+        {
+          "name": "tests_conftest",
+          "module": "tests/conftest.py",
+          "description": "Test module for infrastructure subsystem."
+        },
+        {
+          "name": "tests_test_failure_modes",
+          "module": "tests/test_failure_modes.py",
+          "description": "Test module for infrastructure subsystem."
+        },
+        {
+          "name": "tests_test_formatters",
+          "module": "tests/test_formatters.py",
+          "description": "Test module for infrastructure subsystem."
+        },
+        {
+          "name": "tests_test_known_libraries",
+          "module": "tests/test_known_libraries.py",
+          "description": "Test module for infrastructure subsystem."
+        },
+        {
+          "name": "cli_init",
+          "module": "codegraph/cli/__init__.py",
+          "description": "CLI package initialization."
+        },
+        {
+          "name": "cli_groups_init",
+          "module": "codegraph/cli_groups/__init__.py",
+          "description": "CLI groups package initialization."
+        },
+        {
+          "name": "benchmark_index",
+          "module": "benchmarks/index_benchmark.py",
+          "description": "Index performance benchmark."
+        },
+        {
+          "name": "sample_hashing",
+          "module": "sample_project/utils/hashing.py",
+          "description": "Sample project hashing utils."
+        },
+        {
+          "name": "codegraph_init",
+          "module": "codegraph/__init__.py",
+          "description": "Package initialization."
+        },
+        {
+          "name": "codegraph_main",
+          "module": "codegraph/__main__.py",
+          "description": "Package main entry point."
         }
       ]
     },
@@ -699,76 +1316,43 @@
             "record_advice"
           ],
           "description": "Stores and retrieves architecture decisions, simulation recordings, and advisor advice findings."
+        },
+        {
+          "name": "arch_memory",
+          "module": "codegraph/arch_memory.py",
+          "description": "Architecture memory persistence."
+        },
+        {
+          "name": "agent_memory",
+          "module": "codegraph/agent_memory.py",
+          "description": "Agent-level memory persistence."
+        },
+        {
+          "name": "arch_versioning",
+          "module": "codegraph/arch_versioning.py",
+          "description": "Architecture version snapshots and rollback."
+        },
+        {
+          "name": "tests_test_agent_memory",
+          "module": "tests/test_agent_memory.py",
+          "description": "Test module for architecture_memory subsystem."
+        },
+        {
+          "name": "tests_test_arch_memory",
+          "module": "tests/test_arch_memory.py",
+          "description": "Test module for architecture_memory subsystem."
+        },
+        {
+          "name": "tests_test_arch_versioning",
+          "module": "tests/test_arch_versioning.py",
+          "description": "Test module for architecture_memory subsystem."
         }
       ]
     },
     {
       "name": "cli",
       "description": "Top-level CLI orchestrator. Dispatches all user commands to appropriate subsystems via lazy imports. The only module permitted to depend on all other subsystems.",
-      "components": [
-        {
-          "name": "cli_core",
-          "module": "codegraph/cli/core.py",
-          "functions": [
-            "main",
-            "build",
-            "query",
-            "status",
-            "init_cmd",
-            "delta"
-          ],
-          "description": "CLI entry point and foundation commands. Registers all sub-module commands."
-        },
-        {
-          "name": "cli_architecture",
-          "module": "codegraph/cli/architecture.py",
-          "functions": [
-            "architect_cmd",
-            "architecture_cmd",
-            "compile_cmd",
-            "arch_search_cmd",
-            "arch_simulate_cmd"
-          ],
-          "description": "Architecture analysis and planning CLI commands."
-        },
-        {
-          "name": "cli_governance",
-          "module": "codegraph/cli/governance.py",
-          "functions": [
-            "analyze_cmd",
-            "tasks",
-            "apply",
-            "lock_cmd",
-            "drift_cmd",
-            "suggest_group"
-          ],
-          "description": "Governance enforcement CLI commands: analyze, apply, policy, suggest."
-        },
-        {
-          "name": "cli_intelligence",
-          "module": "codegraph/cli/intelligence.py",
-          "functions": [
-            "evolution_cmd",
-            "evolve_cmd",
-            "health_cmd",
-            "memory_intel_cmd",
-            "metrics_cmd"
-          ],
-          "description": "Intelligence layer CLI commands: evolution, health, memory, metrics."
-        },
-        {
-          "name": "cli_runtime",
-          "module": "codegraph/cli/runtime.py",
-          "functions": [
-            "simulate_cmd",
-            "pre_commit_cmd",
-            "runtime_graph_cmd",
-            "branch_group",
-            "lifecycle_group"
-          ],
-          "description": "Runtime and lifecycle CLI commands: simulate, pre-commit, branch, lifecycle."
-        }
-      ],
+      "components": [],
       "edges": [
         {
           "source": "cli_core",

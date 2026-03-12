@@ -10,6 +10,8 @@ import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
+from dataclasses import dataclass
+
 from codegraph.logging_config import get_logger
 from codegraph.models.agent_response import RepairAction
 from codegraph.models.graph0 import Graph0
@@ -19,6 +21,23 @@ from codegraph.storage import atomic_write, resolve_path
 from codegraph.utils.formatting import iso_now
 
 logger = get_logger("apply_handlers")
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# Data classes (shared with apply.py)
+# ═══════════════════════════════════════════════════════════════════════
+
+
+@dataclass
+class ActionResult:
+    """Outcome of a single repair action (J-001)."""
+
+    action: str
+    node: str
+    status: str  # "success" | "failed" | "skipped"
+    message: str = ""
+    file_modified: Optional[str] = None
+    diff: str = ""
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -204,6 +223,15 @@ def _is_already_connected(
 # ═══════════════════════════════════════════════════════════════════════
 
 
+def _maybe_insert_import(source_file, lines, target_module, target_func, dry_run):
+    """Insert import statement if needed. Returns diff string or empty."""
+    if target_module and not _has_import(lines, target_module.split(".")[-1]):
+        import_line = f"from {target_module} import {target_func}\n"
+        import_end = _find_import_block_end(lines)
+        return _insert_line(source_file, import_end + 1, import_line, dry_run=dry_run)
+    return ""
+
+
 def handle_connect_call(
     action: RepairAction,
     project_root: Path,
@@ -213,7 +241,6 @@ def handle_connect_call(
     dry_run: bool = False,
 ) -> "ActionResult":
     """Insert a function call at the first executable statement (J-002)."""
-    from codegraph.apply import ActionResult
 
     source_id = action.node
     target_id = action.target or ""
@@ -265,12 +292,10 @@ def handle_connect_call(
     target_module = target_parts[0].replace("/", ".").replace(".py", "") if len(target_parts) > 1 else ""
 
     # Check if import needed
-    import_diff = ""
-    if target_module and not _has_import(lines, target_module.split(".")[-1]):
-        import_line = f"from {target_module} import {target_func}\n"
-        import_end = _find_import_block_end(lines)
-        import_diff = _insert_line(source_file, import_end + 1, import_line, dry_run=dry_run)
-        if not dry_run:
+    import_diff = _maybe_insert_import(
+        source_file, lines, target_module, target_func, dry_run,
+    )
+    if import_diff and not dry_run:
             # Re-read lines after import insertion
             lines = source_file.read_text(encoding="utf-8").splitlines(keepends=True)
             tree = _parse_file_ast(source_file)
@@ -314,7 +339,6 @@ def handle_add_import(
     dry_run: bool = False,
 ) -> "ActionResult":
     """Append an import statement to the import block (J-003)."""
-    from codegraph.apply import ActionResult
 
     node_id = action.node
     target = action.target or ""
@@ -539,7 +563,6 @@ def handle_remove_dead_code(
     dry_run: bool = False,
 ) -> "ActionResult":
     """Remove dead code with 4-signal verification (J-004)."""
-    from codegraph.apply import ActionResult
 
     node_id = action.node
 
@@ -611,7 +634,6 @@ def handle_flag_for_review(
     project_root: Path,
 ) -> "ActionResult":
     """Record a review flag without modifying code (J-005)."""
-    from codegraph.apply import ActionResult
 
     review_dir = resolve_path(project_root, "reviews")
     review_dir.mkdir(parents=True, exist_ok=True)

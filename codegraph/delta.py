@@ -705,14 +705,8 @@ def run_delta(
     force_full_rebuild: bool = False,
 ) -> DeltaResult:
     """Run incremental delta: detect changes, update graphs (K-001)."""
-    from codegraph.extractor import load_graph0, save_graph0
-    from codegraph.annotator import load_graph1, save_graph1
-    from codegraph.workflow import load_workflow, write_workflow
-    from codegraph.git_utils import get_current_commit
-    from codegraph.storage import get_graph_version
-
-    current_version = get_graph_version(project_root)
-    current_commit = get_current_commit(project_root)
+    state = _delta_load_state(project_root)
+    graph0, current_version, current_commit = state
 
     result = DeltaResult(
         previous_graph_version=current_version,
@@ -728,7 +722,6 @@ def run_delta(
         return result
 
     # K-016 — Full rebuild if too many files changed
-    graph0 = load_graph0(project_root)
     total_files = len(set(n.file for n in graph0.nodes))
     if total_files > 0 and len(result.files_changed) > total_files * 0.5:
         logger.info(
@@ -737,7 +730,6 @@ def run_delta(
         )
         if force_full_rebuild:
             logger.info("Forcing full rebuild via flag")
-            # Let build command handle this
             return result
 
     # K-017 — Check pending apply
@@ -754,67 +746,86 @@ def run_delta(
     updates = reextract_changed(changed, graph0, project_root, parallel=parallel)
 
     if dry_run:
-        # K-013 — Report changes without modifying anything
         result.nodes_added = [n.id for n in updates.added_nodes]
         result.nodes_removed = updates.removed_node_ids
         result.nodes_modified = [n.id for n in updates.modified_nodes]
         result.stale_intents = [lc.node_id for lc in updates.logic_changes]
         return result
 
-    # K-005 — Merge into Graph_0
+    # K-005 — Merge and update
     new_graph0 = merge_graph0(graph0, updates)
-
-    # K-006 — Logic change detection (already done in reextract_changed)
     result.nodes_added = [n.id for n in updates.added_nodes]
     result.nodes_removed = updates.removed_node_ids
     result.nodes_modified = [n.id for n in updates.modified_nodes]
 
-    # K-021 / Q-010 — Try CAS pipeline
+    new_graph0, new_workflow, result = _delta_update_graphs(
+        project_root, changed, updates, graph0, new_graph0, result,
+    )
+
+    _delta_persist(project_root, new_graph0, new_workflow, updates, result, current_commit)
+
+    return result
+
+
+def _delta_load_state(project_root: Path):
+    """Load current graph state for delta computation."""
+    from codegraph.extractor import load_graph0
+    from codegraph.git_utils import get_current_commit
+    from codegraph.storage import get_graph_version
+
+    graph0 = load_graph0(project_root)
+    current_version = get_graph_version(project_root)
+    current_commit = get_current_commit(project_root)
+    return graph0, current_version, current_commit
+
+
+def _delta_update_graphs(project_root, changed, updates, graph0, new_graph0, result):
+    """Update workflow edges and graph1 intents."""
+    from codegraph.annotator import load_graph1
+    from codegraph.workflow import load_workflow
+
     workflow = load_workflow(project_root)
     affected_set = _try_cas_pipeline(
         updates, graph0, new_graph0, workflow, result, project_root,
     )
 
-    # K-007 — Flag stale intents
     graph1 = load_graph1(project_root)
-
-    # K-015 — Migrate renames in Graph_1
     if changed.renamed:
         _migrate_renames(changed.renamed, graph1)
 
     stale = flag_stale_intents(updates.logic_changes, graph1)
     result.stale_intents = stale
 
-    # K-008 — Recompute workflow edges
     new_workflow, edges_added, edges_removed = recompute_edges(
         changed, new_graph0, workflow, updates.call_sites, updates.imports,
     )
     result.workflow_edges_added = edges_added
     result.workflow_edges_removed = edges_removed
 
-    # Save updated artifacts
+    return new_graph0, new_workflow, result
+
+
+def _delta_persist(project_root, new_graph0, new_workflow, updates, result, current_commit):
+    """Save all delta artifacts to disk."""
+    from codegraph.extractor import save_graph0
+    from codegraph.annotator import load_graph1, save_graph1
+    from codegraph.workflow import write_workflow
+
+    graph1 = load_graph1(project_root)
     save_graph0(new_graph0, project_root)
     save_graph1(graph1, project_root)
     write_workflow(new_workflow, project_root)
 
-    # K-009 — Update index incrementally
     update_index(updates, new_graph0, graph1, new_workflow, project_root)
 
-    # K-010 — Increment version
     new_version = _increment_version(project_root)
     result.current_graph_version = new_version
 
-    # K-014 — Store current commit
     if current_commit:
         _store_build_commit(project_root, current_commit)
 
-    # K-011 — Write delta.json
     write_delta_result(result, project_root)
-
-    # K-012 — Append to history
     _append_history(result, project_root)
-
-    return result
 
 
 # ═══════════════════════════════════════════════════════════════════════

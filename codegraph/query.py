@@ -625,6 +625,93 @@ def query_import_dependencies(
 # ═══════════════════════════════════════════════════════════════════════
 
 
+def _dispatch_graph_query(func, query, index, depth, limit):
+    """Dispatch core graph traversal queries."""
+    if func == "callers":
+        if not query.args:
+            raise ValueError("callers() requires a node ID argument")
+        return query_callers(query.args[0], index, depth=depth or 1, limit=limit)
+
+    if func == "callees":
+        if not query.args:
+            raise ValueError("callees() requires a node ID argument")
+        return query_callees(query.args[0], index, depth=depth or 1, limit=limit)
+
+    if func == "dependencies":
+        if not query.args:
+            raise ValueError("dependencies() requires a node ID argument")
+        return query_dependencies(query.args[0], index, depth=depth, limit=limit)
+
+    if func == "dependents":
+        if not query.args:
+            raise ValueError("dependents() requires a node ID argument")
+        return query_dependents(query.args[0], index, depth=depth, limit=limit)
+
+    if func == "path":
+        if len(query.args) < 2:
+            raise ValueError('path() requires two arguments: path("source", "target")')
+        return query_path(query.args[0], query.args[1], index, depth=depth)
+
+    if func == "orphans":
+        layer_arg = int(query.args[0]) if query.args else None
+        return query_orphans(index, layer=layer_arg, limit=limit)
+
+    if func == "layer":
+        if not query.args:
+            raise ValueError("layer() requires a layer number")
+        return query_layer(int(query.args[0]), index, limit=limit)
+
+    return None
+
+
+def _dispatch_extended_query(func, query, index, depth, limit, project_root, graph0, graph1):
+    """Dispatch extended queries: tests, explain, imports, semantic."""
+    if func == "tests":
+        if not query.args:
+            raise ValueError("tests() requires a node ID argument")
+        node_id = query.args[0]
+        tests = index.get_tests_for_node(node_id)
+        result = QueryResult(function="tests", query=f'tests("{node_id}")')
+        result.nodes = tests
+        result.total = len(tests)
+        if limit and len(result.nodes) > limit:
+            result.nodes = result.nodes[:limit]
+            result.truncated = True
+        return result
+
+    if func == "explain":
+        if not query.args:
+            raise ValueError("explain() requires a node ID argument")
+        er = explain_node(query.args[0], index, graph0=graph0, graph1=graph1)
+        result = QueryResult(function="explain", query=f'explain("{query.args[0]}")')
+        result.metadata["explain"] = er
+        if er.found:
+            result.nodes = [er.node_id]
+            result.total = 1
+        else:
+            result.message = f"Node not found: {query.args[0]}"
+        return result
+
+    if func == "imports":
+        if not query.args:
+            raise ValueError("imports() requires a module path argument")
+        if project_root is None:
+            raise ValueError("imports() requires project_root")
+        return query_import_dependencies(
+            query.args[0], project_root, depth=depth, limit=limit,
+        )
+
+    if func in ("effects", "actions", "guards", "domain", "pure", "unguarded", "risky"):
+        result = QueryResult(function=func, query=f'{func}({", ".join(query.args)})')
+        result.message = (
+            f"Semantic query '{func}' requires Graph_2 (Group R). "
+            f"Run 'codegraph build --semantic' first."
+        )
+        return result
+
+    return None
+
+
 def execute_query(
     query: ParsedQuery,
     index: IndexStore,
@@ -651,85 +738,13 @@ def execute_query(
     t0 = time.perf_counter()
 
     func = query.function
-    result: QueryResult
 
-    if func == "callers":
-        if not query.args:
-            raise ValueError("callers() requires a node ID argument")
-        result = query_callers(query.args[0], index, depth=depth or 1, limit=limit)
-
-    elif func == "callees":
-        if not query.args:
-            raise ValueError("callees() requires a node ID argument")
-        result = query_callees(query.args[0], index, depth=depth or 1, limit=limit)
-
-    elif func == "dependencies":
-        if not query.args:
-            raise ValueError("dependencies() requires a node ID argument")
-        result = query_dependencies(query.args[0], index, depth=depth, limit=limit)
-
-    elif func == "dependents":
-        if not query.args:
-            raise ValueError("dependents() requires a node ID argument")
-        result = query_dependents(query.args[0], index, depth=depth, limit=limit)
-
-    elif func == "path":
-        if len(query.args) < 2:
-            raise ValueError('path() requires two arguments: path("source", "target")')
-        result = query_path(query.args[0], query.args[1], index, depth=depth)
-
-    elif func == "orphans":
-        layer_arg = int(query.args[0]) if query.args else None
-        result = query_orphans(index, layer=layer_arg, limit=limit)
-
-    elif func == "layer":
-        if not query.args:
-            raise ValueError("layer() requires a layer number")
-        result = query_layer(int(query.args[0]), index, limit=limit)
-
-    elif func == "tests":
-        if not query.args:
-            raise ValueError("tests() requires a node ID argument")
-        node_id = query.args[0]
-        tests = index.get_tests_for_node(node_id)
-        result = QueryResult(function="tests", query=f'tests("{node_id}")')
-        result.nodes = tests
-        result.total = len(tests)
-        if limit and len(result.nodes) > limit:
-            result.nodes = result.nodes[:limit]
-            result.truncated = True
-
-    elif func == "explain":
-        if not query.args:
-            raise ValueError("explain() requires a node ID argument")
-        # Returns explain result formatted as QueryResult
-        er = explain_node(query.args[0], index, graph0=graph0, graph1=graph1)
-        result = QueryResult(function="explain", query=f'explain("{query.args[0]}")')
-        result.metadata["explain"] = er
-        if er.found:
-            result.nodes = [er.node_id]
-            result.total = 1
-        else:
-            result.message = f"Node not found: {query.args[0]}"
-
-    elif func == "imports":
-        if not query.args:
-            raise ValueError("imports() requires a module path argument")
-        if project_root is None:
-            raise ValueError("imports() requires project_root")
-        result = query_import_dependencies(
-            query.args[0], project_root, depth=depth, limit=limit,
+    result = _dispatch_graph_query(func, query, index, depth, limit)
+    if result is None:
+        result = _dispatch_extended_query(
+            func, query, index, depth, limit, project_root, graph0, graph1,
         )
-
-    elif func in ("effects", "actions", "guards", "domain", "pure", "unguarded", "risky"):
-        # L-021 / L-022 — Semantic queries (stub for Group R)
-        result = QueryResult(function=func, query=f'{func}({", ".join(query.args)})')
-        result.message = (
-            f"Semantic query '{func}' requires Graph_2 (Group R). "
-            f"Run 'codegraph build --semantic' first."
-        )
-
-    else:
+    if result is None:
         raise ValueError(f"Unknown query function: {func}")
 
     elapsed = (time.perf_counter() - t0) * 1000

@@ -221,6 +221,41 @@ class CopilotContext:
 # ── Context Building ──────────────────────────────────────────────────
 
 
+def _populate_core_data(ctx: CopilotContext, arch, project_root: Path) -> None:
+    """Populate architecture, graph stats, and policy rules."""
+    if arch:
+        _populate_architecture(ctx, arch)
+    _populate_graph_stats(ctx, project_root)
+    _populate_policy_rules(ctx, project_root)
+
+
+def _populate_optional_data(
+    ctx: CopilotContext, project_root: Path,
+    include_tasks: bool, include_health: bool,
+    include_target: bool, include_drift: bool,
+    include_decisions: bool, max_decisions: int,
+) -> None:
+    """Populate optional context sections based on flags."""
+    if include_tasks:
+        _populate_tasks(ctx, project_root)
+    if include_health:
+        _populate_health(ctx, project_root)
+    if include_target:
+        _populate_target(ctx, project_root)
+    if include_drift:
+        _populate_drift(ctx, project_root)
+    if include_decisions:
+        _populate_decisions(ctx, project_root, max_decisions)
+
+
+def _populate_analysis_data(ctx: CopilotContext, project_root: Path) -> None:
+    """Populate smells, policies, refactors, and strategy rankings."""
+    _populate_smells(ctx, project_root)
+    _populate_arch_policies(ctx, project_root)
+    _populate_refactors(ctx, project_root)
+    _populate_strategy_rankings(ctx, project_root)
+
+
 def build_copilot_context(
     project_root: Path,
     *,
@@ -238,48 +273,14 @@ def build_copilot_context(
     """
     ctx = CopilotContext()
 
-    # 1. Architecture definition
     arch = SystemArchitecture.load(project_root)
-    if arch:
-        _populate_architecture(ctx, arch)
-
-    # 2. Graph stats
-    _populate_graph_stats(ctx, project_root)
-
-    # 3. Policy rules
-    _populate_policy_rules(ctx, project_root)
-
-    # 4. Active tasks
-    if include_tasks:
-        _populate_tasks(ctx, project_root)
-
-    # 5. Health summary
-    if include_health:
-        _populate_health(ctx, project_root)
-
-    # 6. Target architecture
-    if include_target:
-        _populate_target(ctx, project_root)
-
-    # 7. Drift status
-    if include_drift:
-        _populate_drift(ctx, project_root)
-
-    # 8. Recent decisions
-    if include_decisions:
-        _populate_decisions(ctx, project_root, max_decisions)
-
-    # 9. Architecture smells
-    _populate_smells(ctx, project_root)
-
-    # 10. Active architecture policies
-    _populate_arch_policies(ctx, project_root)
-
-    # 11. Recommended refactors from arch-search
-    _populate_refactors(ctx, project_root)
-
-    # 12. Strategy rankings from memory intelligence
-    _populate_strategy_rankings(ctx, project_root)
+    _populate_core_data(ctx, arch, project_root)
+    _populate_optional_data(
+        ctx, project_root,
+        include_tasks, include_health, include_target,
+        include_drift, include_decisions, max_decisions,
+    )
+    _populate_analysis_data(ctx, project_root)
 
     return ctx
 
