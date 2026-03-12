@@ -1,0 +1,894 @@
+{
+  "version_meta": {
+    "version": 1,
+    "timestamp": "2026-03-12T03:32:43.425713+00:00",
+    "description": "Before structural fixes: CLI split, two-brain, evolution scoring",
+    "author": "codegraph",
+    "score": 0.0,
+    "grade": "",
+    "subsystem_count": 9,
+    "component_count": 54,
+    "edge_count": 31,
+    "constraint_count": 9
+  },
+  "system": {
+    "name": "codegraph",
+    "version": 1,
+    "description": "AI-aware architecture analysis engine for Python. Extracts structural graphs, annotates intent, detects violations, and advises on architecture evolution.",
+    "subsystems": [
+      {
+        "name": "core_engine",
+        "description": "Graph extraction and construction pipeline. Parses Python AST, builds structural graph (graph0), classifies layers, filters edges, builds call-graph workflow.",
+        "components": [
+          {
+            "name": "extractor",
+            "module": "codegraph/extractor.py",
+            "functions": [
+              "extract_project",
+              "extract_files",
+              "extract_file",
+              "extract_call_sites",
+              "extract_imports",
+              "resolve_call_target"
+            ],
+            "description": "AST parser. Extracts nodes (functions, classes, modules) from Python source files."
+          },
+          {
+            "name": "python_extractor",
+            "module": "codegraph/extractors/python.py",
+            "functions": [
+              "PythonExtractor::extract_nodes",
+              "PythonExtractor::extract_edges"
+            ],
+            "description": "Language-specific extractor for Python files."
+          },
+          {
+            "name": "javascript_extractor",
+            "module": "codegraph/extractors/javascript.py",
+            "functions": [
+              "JavaScriptExtractor::extract_nodes",
+              "JavaScriptExtractor::extract_edges",
+              "JavaScriptExtractor::extract_all",
+              "_extract_js_file",
+              "_extract_js_edges",
+              "_resolve_js_import"
+            ],
+            "description": "Language-specific extractor for JavaScript, TypeScript, and React files. Uses regex-based parsing."
+          },
+          {
+            "name": "workflow_builder",
+            "module": "codegraph/workflow.py",
+            "functions": [
+              "build_workflow",
+              "build_static_edges",
+              "build_dynamic_edges",
+              "build_import_edges",
+              "find_orphans"
+            ],
+            "description": "Builds function-level call graph (workflow.json) from extracted AST data."
+          },
+          {
+            "name": "layers",
+            "module": "codegraph/layers.py",
+            "functions": [
+              "assign_layers",
+              "detect_layer",
+              "filter_by_layer"
+            ],
+            "description": "Classifies nodes into layers: stdlib, external, internal_lib, project, test."
+          },
+          {
+            "name": "filters",
+            "module": "codegraph/filters.py",
+            "functions": [
+              "FilterPipeline::apply",
+              "EdgeFilter::should_filter"
+            ],
+            "description": "Edge filtering pipeline removing stdlib, dunder, test-harness, and logging edges."
+          },
+          {
+            "name": "annotator",
+            "module": "codegraph/annotator.py",
+            "functions": [
+              "initialize_graph1",
+              "apply_intent",
+              "detect_stale_intents",
+              "get_missing_intents"
+            ],
+            "description": "Manages intent annotations (graph1). Tracks body hashes to detect stale intents."
+          },
+          {
+            "name": "api_linker",
+            "module": "codegraph/extractors/api_routes.py",
+            "functions": [
+              "extract_python_endpoints",
+              "extract_js_api_calls",
+              "link_api_routes"
+            ],
+            "description": "Cross-language API endpoint linker. Detects backend HTTP endpoints and frontend API calls, creates workflow edges between them."
+          }
+        ],
+        "edges": [
+          {
+            "source": "workflow_builder",
+            "target": "extractor"
+          },
+          {
+            "source": "workflow_builder",
+            "target": "layers"
+          },
+          {
+            "source": "workflow_builder",
+            "target": "filters"
+          },
+          {
+            "source": "annotator",
+            "target": "extractor"
+          }
+        ]
+      },
+      {
+        "name": "models",
+        "description": "Pure data models. Dataclasses with serialization only — no business logic, no engine imports. Other subsystems depend on models, never the reverse.",
+        "components": [
+          {
+            "name": "graph0_model",
+            "module": "codegraph/models/graph0.py",
+            "functions": [
+              "Graph0::add_node",
+              "Graph0::from_json",
+              "Graph0::to_json",
+              "Graph0Node::from_dict"
+            ],
+            "description": "Structural graph model. Nodes represent functions, classes, modules."
+          },
+          {
+            "name": "graph1_model",
+            "module": "codegraph/models/graph1.py",
+            "functions": [
+              "Graph1::from_json",
+              "Graph1::get_stale_nodes",
+              "Graph1Node::update_intent"
+            ],
+            "description": "Intent annotation model. Semantic layer over graph0."
+          },
+          {
+            "name": "graph2_model",
+            "module": "codegraph/models/graph2.py",
+            "functions": [
+              "Graph2::from_json",
+              "Graph2Node::from_dict"
+            ],
+            "description": "Semantic behavior model. Actions, side effects, data flow."
+          },
+          {
+            "name": "workflow_model",
+            "module": "codegraph/models/workflow.py",
+            "functions": [
+              "Workflow::add_edge",
+              "WorkflowEdge::from_dict"
+            ],
+            "description": "Call graph edge model with confidence and type metadata."
+          },
+          {
+            "name": "suggested_workflow_model",
+            "module": "codegraph/models/suggested_workflow.py",
+            "functions": [
+              "SuggestedWorkflow::add_rule",
+              "SuggestedWorkflowRule::from_dict",
+              "RuleType::is_violation"
+            ],
+            "description": "Architecture policy rule model. Rule types: required_call, forbidden_call, forbidden_path, layer_boundary, dependency_limit."
+          },
+          {
+            "name": "tasks_model",
+            "module": "codegraph/models/tasks.py",
+            "functions": [
+              "TaskBatch::from_json",
+              "TaskItem::from_dict"
+            ],
+            "description": "Task queue model for agent work items."
+          },
+          {
+            "name": "agent_response_model",
+            "module": "codegraph/models/agent_response.py",
+            "functions": [
+              "AgentResponse::from_json",
+              "RepairAction::from_dict",
+              "IntentProposal::from_dict"
+            ],
+            "description": "Agent response model for repair actions and intent proposals."
+          },
+          {
+            "name": "validation",
+            "module": "codegraph/models/validation.py",
+            "functions": [
+              "validate"
+            ],
+            "description": "JSON schema validation for all model types."
+          },
+          {
+            "name": "factories",
+            "module": "codegraph/models/factories.py",
+            "functions": [
+              "make_graph0_node",
+              "make_workflow_edge",
+              "make_task",
+              "make_rule"
+            ],
+            "description": "Factory functions for creating model instances with defaults."
+          }
+        ]
+      },
+      {
+        "name": "governance",
+        "description": "Architecture enforcement. Analyzes graphs for violations, generates task queues, applies repairs, manages policy rules.",
+        "components": [
+          {
+            "name": "analyzer",
+            "module": "codegraph/analyzer.py",
+            "functions": [
+              "analyze",
+              "run_analysis",
+              "detect_coverage_gaps"
+            ],
+            "description": "Main analysis engine. Detects orphans, missing imports, policy violations, stale intents, coverage gaps."
+          },
+          {
+            "name": "suggest",
+            "module": "codegraph/suggest.py",
+            "functions": [
+              "load_suggested_workflow",
+              "save_suggested_workflow",
+              "detect_violations",
+              "add_rule",
+              "remove_rule"
+            ],
+            "description": "Policy rule manager. Loads/saves rules, detects violations against actual workflow."
+          },
+          {
+            "name": "tasks",
+            "module": "codegraph/tasks.py",
+            "functions": [
+              "generate_tasks",
+              "load_tasks",
+              "save_tasks"
+            ],
+            "description": "Task generator. Converts analysis findings into prioritized agent work items."
+          },
+          {
+            "name": "apply",
+            "module": "codegraph/apply.py",
+            "functions": [
+              "apply_response",
+              "run_apply",
+              "format_apply_result"
+            ],
+            "description": "Repair orchestrator. Coordinates lock, backup, conflict detection, action dispatch, and validation."
+          },
+          {
+            "name": "apply_handlers",
+            "module": "codegraph/apply_handlers.py",
+            "functions": [
+              "handle_connect_call",
+              "handle_add_import",
+              "handle_remove_dead_code",
+              "handle_flag_for_review"
+            ],
+            "description": "AST code manipulation helpers and repair action handlers. Extracted from apply.py."
+          },
+          {
+            "name": "delta",
+            "module": "codegraph/delta.py",
+            "functions": [
+              "compute_delta",
+              "apply_delta"
+            ],
+            "description": "Incremental graph updates. Detects changed files via git and updates graph/workflow."
+          }
+        ],
+        "edges": [
+          {
+            "source": "analyzer",
+            "target": "suggest"
+          },
+          {
+            "source": "tasks",
+            "target": "analyzer"
+          },
+          {
+            "source": "apply",
+            "target": "analyzer"
+          },
+          {
+            "source": "apply",
+            "target": "apply_handlers"
+          },
+          {
+            "source": "delta",
+            "target": "analyzer"
+          }
+        ]
+      },
+      {
+        "name": "intelligence",
+        "description": "Architecture analysis and advisory. Detects smells, computes metrics, plans improvements, generates dashboards.",
+        "components": [
+          {
+            "name": "architecture_advisor",
+            "module": "codegraph/architecture_advisor.py",
+            "functions": [
+              "advise_architecture",
+              "enrich_workflow_with_intents",
+              "save_enriched_workflow"
+            ],
+            "description": "Detects architecture smells: god modules, cycles, high fan-in/out, hidden coupling, deep dependencies."
+          },
+          {
+            "name": "arch_schema",
+            "module": "codegraph/arch_schema.py",
+            "functions": [
+              "SystemArchitecture::load",
+              "SystemArchitecture::save",
+              "init_architecture"
+            ],
+            "description": "Architecture definition models. Subsystems, components, edges, constraints."
+          },
+          {
+            "name": "arch_planner",
+            "module": "codegraph/arch_planner.py",
+            "functions": [
+              "plan_architecture",
+              "plan_to_agent_response"
+            ],
+            "description": "Decomposes architecture definition into granular agent-executable tasks."
+          },
+          {
+            "name": "arch_viewer",
+            "module": "codegraph/arch_viewer.py",
+            "functions": [
+              "generate_viewer"
+            ],
+            "description": "Generates interactive HTML architecture dashboard."
+          },
+          {
+            "name": "arch_health",
+            "module": "codegraph/arch_health.py",
+            "functions": [
+              "compute_health"
+            ],
+            "description": "Architecture health scoring with per-module health grades."
+          },
+          {
+            "name": "arch_diff",
+            "module": "codegraph/arch_diff.py",
+            "functions": [
+              "compare_architectures"
+            ],
+            "description": "Compares two architecture snapshots to detect drift."
+          },
+          {
+            "name": "risk_metrics",
+            "module": "codegraph/risk_metrics.py",
+            "functions": [
+              "compute_risk_metrics",
+              "fan_in",
+              "fan_out",
+              "betweenness_centrality"
+            ],
+            "description": "Graph-theoretic risk metrics: fan-in, fan-out, betweenness centrality."
+          },
+          {
+            "name": "refactor",
+            "module": "codegraph/refactor.py",
+            "functions": [
+              "detect_cycles",
+              "find_god_modules",
+              "compute_coupling"
+            ],
+            "description": "Structural analysis: Tarjan SCC cycle detection, god module detection, coupling metrics."
+          },
+          {
+            "name": "subsystem",
+            "module": "codegraph/subsystem.py",
+            "functions": [
+              "detect_subsystems",
+              "SubsystemReport"
+            ],
+            "description": "Community detection via Louvain algorithm. Groups nodes into subsystems."
+          },
+          {
+            "name": "arch_search",
+            "module": "codegraph/arch_search.py",
+            "functions": [
+              "run_arch_search",
+              "generate_candidates",
+              "simulate_candidates",
+              "score_candidates"
+            ],
+            "description": "Multi-candidate architecture search engine. Generates, simulates, scores, and ranks architecture improvement candidates."
+          },
+          {
+            "name": "arch_memory_intelligence",
+            "module": "codegraph/arch_memory_intelligence.py",
+            "functions": [
+              "analyze_memory",
+              "mine_patterns",
+              "score_strategies",
+              "record_metrics_snapshot",
+              "get_strategy_ranking"
+            ],
+            "description": "Memory intelligence layer. Pattern mining, metrics history, strategy effectiveness scoring, feedback loop."
+          },
+          {
+            "name": "arch_policy",
+            "module": "codegraph/arch_policy.py",
+            "functions": [
+              "evaluate_policies",
+              "init_default_policies",
+              "add_policy",
+              "remove_policy"
+            ],
+            "description": "Architecture policy engine. Higher-level policies with evaluation gates, merge blocking, size/score/coupling limits."
+          },
+          {
+            "name": "arch_evolution",
+            "module": "codegraph/arch_evolution.py",
+            "functions": [
+              "run_evolution_cycle",
+              "run_evolution",
+              "save_evolution_report"
+            ],
+            "description": "Closed-loop architecture evolution engine. Detect-mutate-evaluate-simulate-select-record-learn pipeline."
+          }
+        ],
+        "edges": [
+          {
+            "source": "architecture_advisor",
+            "target": "risk_metrics"
+          },
+          {
+            "source": "architecture_advisor",
+            "target": "refactor"
+          },
+          {
+            "source": "architecture_advisor",
+            "target": "subsystem"
+          },
+          {
+            "source": "arch_planner",
+            "target": "arch_schema"
+          },
+          {
+            "source": "arch_viewer",
+            "target": "arch_schema"
+          },
+          {
+            "source": "arch_health",
+            "target": "risk_metrics"
+          },
+          {
+            "source": "arch_search",
+            "target": "architecture_advisor"
+          },
+          {
+            "source": "arch_search",
+            "target": "arch_schema"
+          },
+          {
+            "source": "arch_evolution",
+            "target": "architecture_advisor"
+          },
+          {
+            "source": "arch_evolution",
+            "target": "arch_search"
+          },
+          {
+            "source": "arch_evolution",
+            "target": "arch_policy"
+          },
+          {
+            "source": "arch_evolution",
+            "target": "arch_memory_intelligence"
+          },
+          {
+            "source": "arch_memory_intelligence",
+            "target": "arch_health"
+          }
+        ]
+      },
+      {
+        "name": "query",
+        "description": "Graph query and context assembly. Enables structured queries, path finding, impact simulation, and LLM context building.",
+        "components": [
+          {
+            "name": "query_engine",
+            "module": "codegraph/query.py",
+            "functions": [
+              "execute_query",
+              "parse_query"
+            ],
+            "description": "Graph query language. Supports callees(), callers(), depends(), explain()."
+          },
+          {
+            "name": "path_query",
+            "module": "codegraph/path_query.py",
+            "functions": [
+              "find_paths",
+              "shortest_path"
+            ],
+            "description": "Path finding between nodes. BFS shortest path and all-paths enumeration."
+          },
+          {
+            "name": "context_builder",
+            "module": "codegraph/context_builder.py",
+            "functions": [
+              "build_context"
+            ],
+            "description": "Assembles rich context for LLM consumption. Gathers node, callers, callees, intent."
+          },
+          {
+            "name": "simulator",
+            "module": "codegraph/simulator.py",
+            "functions": [
+              "simulate_impact"
+            ],
+            "description": "Impact simulation. Predicts blast radius of changes to a node."
+          }
+        ],
+        "edges": [
+          {
+            "source": "context_builder",
+            "target": "query_engine"
+          },
+          {
+            "source": "simulator",
+            "target": "query_engine"
+          }
+        ]
+      },
+      {
+        "name": "semantics",
+        "description": "Semantic behavior extraction. Analyzes function bodies to detect actions, side effects, and data flow patterns.",
+        "components": [
+          {
+            "name": "semantics_engine",
+            "module": "codegraph/semantics.py",
+            "functions": [
+              "extract_behaviors",
+              "build_graph2"
+            ],
+            "description": "Extracts semantic behaviors from AST. Builds graph2 with actions and side effects."
+          },
+          {
+            "name": "cas",
+            "module": "codegraph/cas.py",
+            "functions": [
+              "build_cas",
+              "verify_cas"
+            ],
+            "description": "Content-addressable storage. Computes and verifies file hashes for integrity."
+          }
+        ],
+        "edges": [
+          {
+            "source": "semantics_engine",
+            "target": "cas"
+          }
+        ]
+      },
+      {
+        "name": "infrastructure",
+        "description": "Core infrastructure: storage, configuration, logging, error handling, git integration. Foundation layer that all other subsystems depend on. Does NOT include the CLI entry point.",
+        "components": [
+          {
+            "name": "storage",
+            "module": "codegraph/storage.py",
+            "functions": [
+              "atomic_write",
+              "atomic_read",
+              "ensure_codegraph_dir",
+              "resolve_path"
+            ],
+            "description": "File I/O with atomic writes. Manages .codegraph directory structure."
+          },
+          {
+            "name": "config",
+            "module": "codegraph/config.py",
+            "functions": [
+              "load_config",
+              "find_project_root"
+            ],
+            "description": "Configuration management. Loads codegraph.toml/pyproject.toml settings."
+          },
+          {
+            "name": "index",
+            "module": "codegraph/index.py",
+            "functions": [
+              "build_all_indexes",
+              "IndexStore::get_callees",
+              "IndexStore::get_callers"
+            ],
+            "description": "SQLite index for fast graph queries. Tables: nodes, callees, callers, layers, tests, dependency_hashes."
+          },
+          {
+            "name": "git_utils",
+            "module": "codegraph/git_utils.py",
+            "functions": [
+              "get_changed_files",
+              "get_current_commit",
+              "is_git_repo"
+            ],
+            "description": "Git integration. Detects changed files, gets commit info."
+          },
+          {
+            "name": "logging",
+            "module": "codegraph/logging_config.py",
+            "functions": [
+              "configure_logging",
+              "get_logger"
+            ],
+            "description": "Structured logging configuration."
+          },
+          {
+            "name": "recovery",
+            "module": "codegraph/recovery.py",
+            "functions": [
+              "attempt_recovery",
+              "recoverable"
+            ],
+            "description": "Error recovery with retry and fallback strategies."
+          },
+          {
+            "name": "schemas",
+            "module": "codegraph/schemas.py",
+            "functions": [
+              "validate_graph0",
+              "validate_workflow",
+              "validate_agent_response"
+            ],
+            "description": "JSON schema validation for all data files."
+          },
+          {
+            "name": "constants",
+            "module": "codegraph/constants.py",
+            "description": "Shared constants: directory names, file names, layer values."
+          },
+          {
+            "name": "types",
+            "module": "codegraph/types.py",
+            "functions": [
+              "GraphStore::load_graph0",
+              "GraphStore::save_graph0"
+            ],
+            "description": "Type definitions and GraphStore protocol for graph I/O."
+          },
+          {
+            "name": "utils",
+            "module": "codegraph/utils/",
+            "description": "Utility functions: formatting, hashing, file discovery, ID generation, progress reporting."
+          }
+        ]
+      },
+      {
+        "name": "architecture_memory",
+        "description": "Persists architecture decisions, refactor history, simulation results, and advisor findings so the system can learn from past architecture evolution.",
+        "components": [
+          {
+            "name": "architecture_memory",
+            "module": "codegraph/architecture_memory.py",
+            "functions": [
+              "save_decision",
+              "load_decisions",
+              "record_simulation",
+              "record_advice"
+            ],
+            "description": "Stores and retrieves architecture decisions, simulation recordings, and advisor advice findings."
+          }
+        ]
+      },
+      {
+        "name": "cli",
+        "description": "Top-level CLI orchestrator. Dispatches all user commands to appropriate subsystems via lazy imports. The only module permitted to depend on all other subsystems.",
+        "components": [
+          {
+            "name": "cli",
+            "module": "codegraph/cli.py",
+            "functions": [
+              "main",
+              "build",
+              "analyze",
+              "tasks",
+              "apply",
+              "query",
+              "status"
+            ],
+            "description": "Click CLI entry point. Dispatches to all subsystem commands via lazy imports inside command functions."
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "source": "core_engine",
+        "target": "models"
+      },
+      {
+        "source": "core_engine",
+        "target": "infrastructure"
+      },
+      {
+        "source": "governance",
+        "target": "models"
+      },
+      {
+        "source": "governance",
+        "target": "core_engine"
+      },
+      {
+        "source": "governance",
+        "target": "infrastructure"
+      },
+      {
+        "source": "governance",
+        "target": "query"
+      },
+      {
+        "source": "governance",
+        "target": "intelligence"
+      },
+      {
+        "source": "governance",
+        "target": "semantics"
+      },
+      {
+        "source": "intelligence",
+        "target": "models"
+      },
+      {
+        "source": "intelligence",
+        "target": "core_engine"
+      },
+      {
+        "source": "intelligence",
+        "target": "infrastructure"
+      },
+      {
+        "source": "intelligence",
+        "target": "governance"
+      },
+      {
+        "source": "intelligence",
+        "target": "architecture_memory"
+      },
+      {
+        "source": "query",
+        "target": "models"
+      },
+      {
+        "source": "query",
+        "target": "infrastructure"
+      },
+      {
+        "source": "query",
+        "target": "core_engine"
+      },
+      {
+        "source": "semantics",
+        "target": "models"
+      },
+      {
+        "source": "semantics",
+        "target": "infrastructure"
+      },
+      {
+        "source": "semantics",
+        "target": "core_engine"
+      },
+      {
+        "source": "architecture_memory",
+        "target": "models"
+      },
+      {
+        "source": "architecture_memory",
+        "target": "infrastructure"
+      },
+      {
+        "source": "infrastructure",
+        "target": "core_engine"
+      },
+      {
+        "source": "models",
+        "target": "infrastructure"
+      },
+      {
+        "source": "cli",
+        "target": "core_engine"
+      },
+      {
+        "source": "cli",
+        "target": "models"
+      },
+      {
+        "source": "cli",
+        "target": "governance"
+      },
+      {
+        "source": "cli",
+        "target": "intelligence"
+      },
+      {
+        "source": "cli",
+        "target": "query"
+      },
+      {
+        "source": "cli",
+        "target": "semantics"
+      },
+      {
+        "source": "cli",
+        "target": "infrastructure"
+      },
+      {
+        "source": "cli",
+        "target": "architecture_memory"
+      }
+    ],
+    "constraints": [
+      {
+        "type": "forbidden",
+        "source": "models",
+        "target": "core_engine",
+        "reason": "Models are pure data. They must not import engine modules."
+      },
+      {
+        "type": "forbidden",
+        "source": "models",
+        "target": "governance",
+        "reason": "Models must not depend on governance logic."
+      },
+      {
+        "type": "forbidden",
+        "source": "models",
+        "target": "intelligence",
+        "reason": "Models must not depend on intelligence modules."
+      },
+      {
+        "type": "forbidden",
+        "source": "infrastructure",
+        "target": "governance",
+        "reason": "Infrastructure is a foundation layer. It must not import governance."
+      },
+      {
+        "type": "forbidden",
+        "source": "infrastructure",
+        "target": "intelligence",
+        "reason": "Infrastructure must not import intelligence modules."
+      },
+      {
+        "type": "forbidden",
+        "source": "query",
+        "target": "governance",
+        "reason": "Query subsystem reads graphs. It should not depend on governance."
+      },
+      {
+        "type": "forbidden",
+        "source": "semantics",
+        "target": "governance",
+        "reason": "Semantics is independent of governance enforcement."
+      },
+      {
+        "type": "forbidden",
+        "source": "models",
+        "target": "architecture_memory",
+        "reason": "Models must not depend on architecture_memory."
+      },
+      {
+        "type": "forbidden",
+        "source": "infrastructure",
+        "target": "architecture_memory",
+        "reason": "Infrastructure must not depend on architecture_memory."
+      }
+    ]
+  }
+}

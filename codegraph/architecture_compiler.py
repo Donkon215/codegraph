@@ -458,3 +458,85 @@ def _add_default_constraints(
             constraint_type="forbidden",
             reason=f"Infrastructure must not depend on {subsystem_name}.",
         ))
+
+
+# ── Evolution Proposal Processing ──────────────────────────────────────
+
+
+def process_evolution_proposals(
+    project_root: Path,
+    *,
+    auto_accept_safe: bool = False,
+) -> List[Dict[str, Any]]:
+    """Read pending evolution proposals and validate them.
+
+    The compiler is the sole authority for accepting or rejecting
+    proposals from the evolution engine.
+
+    Args:
+        project_root: Project root directory.
+        auto_accept_safe: If True, auto-accept proposals with ``safe`` tier.
+
+    Returns:
+        List of dicts describing each proposal decision.
+    """
+    from codegraph.evolution_proposals import (
+        load_proposals,
+        save_proposals,
+        STATUS_PENDING,
+    )
+
+    store = load_proposals(project_root)
+    pending = store.pending()
+    if not pending:
+        return []
+
+    arch = SystemArchitecture.load(project_root)
+    decisions: List[Dict[str, Any]] = []
+
+    for proposal in pending:
+        decision: Dict[str, Any] = {
+            "proposal_id": proposal.proposal_id,
+            "strategy": proposal.strategy,
+        }
+
+        # Validate: reject if score would degrade
+        if proposal.predicted_score_delta < -0.02:
+            store.reject(
+                proposal.proposal_id,
+                f"Predicted score degradation: {proposal.predicted_score_delta:+.3f}",
+            )
+            decision["action"] = "rejected"
+            decision["reason"] = "score_degradation"
+            decisions.append(decision)
+            continue
+
+        # Validate: block dangerous tier
+        if proposal.safety_tier == "dangerous":
+            store.reject(
+                proposal.proposal_id,
+                "Dangerous-tier mutation requires human approval",
+            )
+            decision["action"] = "rejected"
+            decision["reason"] = "dangerous_tier"
+            decisions.append(decision)
+            continue
+
+        # Auto-accept safe tier if configured
+        if auto_accept_safe and proposal.safety_tier == "safe":
+            store.accept(proposal.proposal_id)
+            decision["action"] = "accepted"
+            decision["reason"] = "auto_safe"
+            decisions.append(decision)
+            continue
+
+        # Otherwise leave pending for human review
+        decision["action"] = "pending"
+        decision["reason"] = "awaiting_review"
+        decisions.append(decision)
+
+    save_proposals(project_root, store)
+    logger.info("Processed %d proposals: %s",
+                len(decisions),
+                {d["action"] for d in decisions})
+    return decisions

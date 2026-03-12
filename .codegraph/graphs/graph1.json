@@ -1067,6 +1067,14 @@
       "intent_body_hash": "2f7ea"
     },
     {
+      "id": "codegraph/apply.py::_check_plan_exists",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
       "id": "codegraph/apply.py::_cleanup_backups",
       "intent": "cleanup backups (internal)",
       "layer": 3,
@@ -1888,6 +1896,14 @@
       "intent_body_hash": "3b1cc"
     },
     {
+      "id": "codegraph/arch_evolution.py::_rerank_with_memory",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
       "id": "codegraph/arch_evolution.py::_run_advisor",
       "intent": "run architecture advisor and return advice as dictionary",
       "layer": 3,
@@ -1906,6 +1922,14 @@
       "intent_body_hash": "993dc"
     },
     {
+      "id": "codegraph/arch_evolution.py::_save_evolution_proposal",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
       "id": "codegraph/arch_evolution.py::_skip_remaining",
       "intent": "mark all pending stages after the named stage as skipped",
       "layer": 3,
@@ -1913,6 +1937,14 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-11T18:56:59Z",
       "intent_body_hash": "2f1ee"
+    },
+    {
+      "id": "codegraph/arch_evolution.py::get_mutation_tier",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
     },
     {
       "id": "codegraph/arch_evolution.py::run_evolution",
@@ -2641,6 +2673,14 @@
       "intent_body_hash": "63887"
     },
     {
+      "id": "codegraph/arch_policy.py::_check_forbidden_subsystem_dep",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
       "id": "codegraph/arch_policy.py::_check_frontend_backend_boundary",
       "intent": "check that frontend and backend modules have no direct dependencies",
       "layer": 3,
@@ -2648,6 +2688,14 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-11T18:56:59Z",
       "intent_body_hash": "b7d00"
+    },
+    {
+      "id": "codegraph/arch_policy.py::_check_layer_isolation",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
     },
     {
       "id": "codegraph/arch_policy.py::_check_max_subsystem_size",
@@ -3145,6 +3193,134 @@
       "intent_author": "",
       "intent_version": 0,
       "intent_timestamp": "2026-03-11T13:22:22Z"
+    },
+    {
+      "id": "codegraph/arch_versioning",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/arch_versioning.py::ArchVersion",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/arch_versioning.py::ArchVersion::from_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/arch_versioning.py::ArchVersion::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/arch_versioning.py::ArchVersionDiff",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/arch_versioning.py::ArchVersionDiff::format",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/arch_versioning.py::ArchVersionDiff::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/arch_versioning.py::_load_manifest",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/arch_versioning.py::_save_manifest",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/arch_versioning.py::_versions_dir",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/arch_versioning.py::diff_versions",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/arch_versioning.py::format_version_history",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/arch_versioning.py::list_versions",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/arch_versioning.py::load_version",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/arch_versioning.py::rollback_version",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/arch_versioning.py::save_version",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
     },
     {
       "id": "codegraph/arch_viewer",
@@ -3737,6 +3913,14 @@
       "intent_body_hash": "5d345"
     },
     {
+      "id": "codegraph/architecture_compiler.py::process_evolution_proposals",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
       "id": "codegraph/architecture_lock",
       "intent": "architecture boundary enforcement module",
       "layer": 3,
@@ -4088,6 +4272,110 @@
         "decisions"
       ],
       "intent_body_hash": "cbb44"
+    },
+    {
+      "id": "codegraph/architecture_objectives",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/architecture_objectives.py::CandidateMetrics",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/architecture_objectives.py::CandidateMetrics::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/architecture_objectives.py::ObjectiveWeights",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/architecture_objectives.py::ObjectiveWeights::from_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/architecture_objectives.py::ObjectiveWeights::normalize",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/architecture_objectives.py::ObjectiveWeights::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/architecture_objectives.py::ScoredCandidate",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/architecture_objectives.py::ScoredCandidate::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/architecture_objectives.py::adjust_weights_from_memory",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/architecture_objectives.py::compute_objective_score",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/architecture_objectives.py::reject_degrading_candidates",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/architecture_objectives.py::score_candidates",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
     },
     {
       "id": "codegraph/architecture_simulator",
@@ -4926,6 +5214,14 @@
       "intent_timestamp": "2026-03-10T17:53:06Z"
     },
     {
+      "id": "codegraph/cli.py::arch_version_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
       "id": "codegraph/cli.py::archi_test_cmd",
       "intent": "manage architecture tests",
       "layer": 3,
@@ -5407,6 +5703,14 @@
       "intent_timestamp": "2026-03-11T18:53:31Z"
     },
     {
+      "id": "codegraph/cli.py::pre_commit_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
       "id": "codegraph/cli.py::prune",
       "intent": "remove stale Graph_1 entries that no longer exist in Graph_0",
       "layer": 3,
@@ -5449,6 +5753,14 @@
       "intent_author": "",
       "intent_version": 0,
       "intent_timestamp": "2026-03-11T18:05:07Z"
+    },
+    {
+      "id": "codegraph/cli.py::runtime_graph_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
     },
     {
       "id": "codegraph/cli.py::schema",
@@ -5686,6 +5998,814 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "9f68d"
+    },
+    {
+      "id": "codegraph/cli/architecture",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/architecture.py::arch_diff_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/architecture.py::arch_memory_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/architecture.py::arch_plan_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/architecture.py::arch_search_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/architecture.py::arch_simulate_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/architecture.py::arch_version_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/architecture.py::architect_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/architecture.py::architecture_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/architecture.py::code_plan_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/architecture.py::compile_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/architecture.py::enrich_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/architecture.py::viewer_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::annotate",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::build",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::cas_build",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::cas_group",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::cas_impact",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::cas_verify",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::completion",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::context_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::delta",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::diff_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::explain_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::handle_error",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::index_check",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::index_dump",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::index_group",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::index_rebuild",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::init",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::intent_apply",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::intent_missing",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::main",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::path_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::prune",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::query",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::schema",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::semantic_build",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::semantic_check",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::semantic_group",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::semantic_show",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::semantic_summary",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::status",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::timed_command",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::timed_command::wrapper",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::validate",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::version_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::visualize_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/core.py::workflow",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::analyze_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::apply",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::drift_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::lock_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::policy_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::repair_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::repair_plan_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::suggest_add",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::suggest_diff",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::suggest_group",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::suggest_import_template",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::suggest_list",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::suggest_remove",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::suggest_stats",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::suggest_validate",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/governance.py::tasks",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::copilot_context_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::evolution_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::evolve_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::health_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::memory_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::memory_intel_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::metrics_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::metrics_snapshot_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::multilevel_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::refactor_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::subsystems_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::api_link_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::archi_test_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::branch_compare",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::branch_create",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::branch_discard",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::branch_group",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::branch_list",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::branch_merge",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::branch_validate",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::lifecycle_create",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::lifecycle_generate_files",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::lifecycle_group",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::lifecycle_merge",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::lifecycle_move",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::lifecycle_split",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::pre_commit_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::runtime_graph_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::simulate_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::test_impact_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli[2]",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli_groups",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
     },
     {
       "id": "codegraph/code_planner",
@@ -6129,6 +7249,14 @@
       "intent_body_hash": "0bfc4"
     },
     {
+      "id": "codegraph/copilot_context.py::_populate_arch_policies",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
       "id": "codegraph/copilot_context.py::_populate_architecture",
       "intent": "populate context with architecture subsystems and constraints",
       "layer": 3,
@@ -6181,6 +7309,30 @@
       "intent_version": 2,
       "intent_timestamp": "2026-03-10T18:23:09Z",
       "intent_body_hash": "1e9c0"
+    },
+    {
+      "id": "codegraph/copilot_context.py::_populate_refactors",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/copilot_context.py::_populate_smells",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/copilot_context.py::_populate_strategy_rankings",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
     },
     {
       "id": "codegraph/copilot_context.py::_populate_target",
@@ -6685,6 +7837,142 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T12:59:01Z",
       "intent_body_hash": "4fd7f"
+    },
+    {
+      "id": "codegraph/evolution_proposals",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::EvolutionProposal",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::EvolutionProposal::format",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::EvolutionProposal::from_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::EvolutionProposal::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::ProposalStore",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::ProposalStore::accept",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::ProposalStore::add",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::ProposalStore::format",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::ProposalStore::from_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::ProposalStore::pending",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::ProposalStore::reject",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::ProposalStore::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::_proposals_path",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::create_proposal_from_evolution",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::load_proposals",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/evolution_proposals.py::save_proposals",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T04:54:14Z"
     },
     {
       "id": "codegraph/exceptions",
@@ -12003,6 +13291,94 @@
       "intent_body_hash": "e73f6"
     },
     {
+      "id": "codegraph/precommit",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/precommit.py::PreCommitReport",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/precommit.py::PreCommitReport::format",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/precommit.py::PreCommitReport::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/precommit.py::SimulationCheck",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/precommit.py::SimulationCheck::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/precommit.py::_check_metric",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/precommit.py::_compute_current_metrics",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/precommit.py::_load_baseline",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/precommit.py::_save_baseline",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/precommit.py::run_pre_commit_check",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
       "id": "codegraph/pytest_plugin",
       "intent": "codegraph.pytest_plugin — Pytest plugin hook for coverage.py tracing (F-025)",
       "layer": 3,
@@ -12631,6 +14007,158 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-09T13:56:31Z",
       "intent_body_hash": "eccc7"
+    },
+    {
+      "id": "codegraph/runtime_graph",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::RuntimeEdge",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::RuntimeEdge::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::__init__",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_db_call",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_env_var",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_http_call",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_mq_call",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_source_node",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_Call",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_ClassDef",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_FunctionDef",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::RuntimeGraph",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::RuntimeGraph::format",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::RuntimeGraph::to_dict",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::extract_runtime_edges",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::load_runtime_graph",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "codegraph/runtime_graph.py::save_runtime_graph",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
     },
     {
       "id": "codegraph/schemas",
@@ -17565,6 +19093,94 @@
       "intent_timestamp": "2026-03-11T18:53:31Z"
     },
     {
+      "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_dangerous_strategies",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_medium_strategies",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_safe_strategies",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_strategy_tiers_complete",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_unknown_defaults_to_medium",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRerankWithMemory",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRerankWithMemory::test_keeps_selected_when_best",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRerankWithMemory::test_no_change_below_threshold",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRerankWithMemory::test_no_change_without_ranking",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_evolution.py::TestRerankWithMemory::test_reranks_higher_effectiveness",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
       "id": "tests/test_arch_evolution.py::TestRunEvolution",
       "intent": "",
       "layer": 4,
@@ -18635,6 +20251,46 @@
       "intent_timestamp": "2026-03-11T18:53:31Z"
     },
     {
+      "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_forbidden_subsystem_dep_pass",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_forbidden_subsystem_dep_violation",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_layer_isolation_invalid_target",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_layer_isolation_pass",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_layer_isolation_violation",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
       "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_pass",
       "intent": "",
       "layer": 4,
@@ -18673,6 +20329,14 @@
       "intent_author": "",
       "intent_version": 0,
       "intent_timestamp": "2026-03-11T18:53:31Z"
+    },
+    {
+      "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_valid_policy_types_updated",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
     },
     {
       "id": "tests/test_arch_policy.py::TestInitDefaults",
@@ -19150,6 +20814,238 @@
       "intent_version": 1,
       "intent_timestamp": "2026-03-10T10:53:12Z",
       "intent_body_hash": "be25e"
+    },
+    {
+      "id": "tests/test_arch_versioning",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestArchVersion",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestArchVersion::test_basic",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestArchVersion::test_from_dict",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestArchVersionDiff",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestArchVersionDiff::test_empty_diff",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestArchVersionDiff::test_format",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestArchVersionDiff::test_format_no_changes",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestDiffVersions",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestDiffVersions::test_diff_missing_version",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestDiffVersions::test_diff_same",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestDiffVersions::test_diff_with_changes",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestFormatVersionHistory",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestFormatVersionHistory::test_empty",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestFormatVersionHistory::test_with_versions",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestListVersions",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestListVersions::test_after_saves",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestListVersions::test_empty",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestLoadVersion",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestLoadVersion::test_load_existing",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestLoadVersion::test_load_missing",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestRollback",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestRollback::test_rollback_missing",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestRollback::test_rollback_restores",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestSaveVersion",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestSaveVersion::test_save_creates_snapshot",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestSaveVersion::test_save_increments_version",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::TestSaveVersion::test_save_no_system_raises",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_arch_versioning.py::project_with_arch",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
     },
     {
       "id": "tests/test_arch_viewer",
@@ -25452,6 +27348,198 @@
       "intent_body_hash": "0708e"
     },
     {
+      "id": "tests/test_precommit",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestBaseline",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestBaseline::test_load_missing",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestBaseline::test_save_and_load",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestCheckMetric",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestCheckMetric::test_inverted_metric",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestCheckMetric::test_no_change",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestCheckMetric::test_warning",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestCheckMetric::test_within_threshold",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestCheckMetric::test_worsening_blocks",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestDefaultThresholds",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestDefaultThresholds::test_coupling_is_positive",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestDefaultThresholds::test_has_required_metrics",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestDefaultThresholds::test_score_is_negative",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestPreCommitReport",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestPreCommitReport::test_empty_report",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestPreCommitReport::test_format",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestPreCommitReport::test_format_passed",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestPreCommitReport::test_with_checks",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestRunPreCommitCheck",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestRunPreCommitCheck::test_no_baseline_creates_one",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestSimulationCheck",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestSimulationCheck::test_basic",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_precommit.py::TestSimulationCheck::test_pass_status",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
       "id": "tests/test_properties",
       "intent": "property-based tests for core models",
       "layer": 4,
@@ -26035,6 +28123,214 @@
       "intent_version": 2,
       "intent_timestamp": "2026-03-10T13:27:07Z",
       "intent_body_hash": "be33a"
+    },
+    {
+      "id": "tests/test_runtime_graph",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestExtractRuntimeEdges",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestExtractRuntimeEdges::test_basic_extraction",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestExtractRuntimeEdges::test_edge_type_counts",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestExtractRuntimeEdges::test_excludes_pycache",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeEdge",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeEdge::test_basic",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeEdge::test_with_details",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::_visit_source",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_class_method",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_db_execute",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_db_insert",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_dynamic_url",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_env_var_environ_get",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_env_var_getenv",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_http_get",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_http_post",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_mq_publish",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_no_runtime_edges",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeGraph",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeGraph::test_empty",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestRuntimeGraph::test_format",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestSaveLoadRuntimeGraph",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestSaveLoadRuntimeGraph::test_load_missing",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
+    },
+    {
+      "id": "tests/test_runtime_graph.py::TestSaveLoadRuntimeGraph::test_roundtrip",
+      "intent": "",
+      "layer": 4,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T03:29:57Z"
     },
     {
       "id": "tests/test_semantics",

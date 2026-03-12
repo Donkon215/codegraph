@@ -1,15 +1,106 @@
 {
-  "intent": "Improve method resolution in extractor to skip ambiguous common method names (get, append, add, format, to_dict, from_dict, warning) and reduce false positive fan-in. Extend suggest CLI to support all RuleType values including dependency_limit, layer_boundary, forbidden_path. Integrate architecture_memory into architecture_advisor so past decisions inform current advice.",
+  "intent": "Three structural fixes: (1) Split CLI god module into modular package, (2) Resolve two-brain architecture conflict between compiler and evolution, (3) Add architecture scoring objectives to evolution engine",
   "summary": {
-    "changes": 0,
+    "changes": 10,
     "target_edges": 0,
-    "target_nodes": 0,
-    "warnings": 1
+    "target_nodes": 5,
+    "warnings": 0
   },
-  "changes": [],
+  "changes": [
+    {
+      "change_type": "add_component",
+      "subsystem": "cli",
+      "component_name": "cli_core",
+      "module_path": "codegraph/cli/core.py",
+      "description": "CLI entry point, shared utilities, and basic commands",
+      "reason": "Task 1: Split CLI god module"
+    },
+    {
+      "change_type": "add_component",
+      "subsystem": "cli",
+      "component_name": "cli_architecture",
+      "module_path": "codegraph/cli/architecture.py",
+      "description": "Architecture commands: architect, arch-plan, arch-search, arch-simulate, arch-version",
+      "reason": "Task 1: Split CLI god module"
+    },
+    {
+      "change_type": "add_component",
+      "subsystem": "cli",
+      "component_name": "cli_governance",
+      "module_path": "codegraph/cli/governance.py",
+      "description": "Governance commands: analyze, tasks, suggest, policy, lock, drift",
+      "reason": "Task 1: Split CLI god module"
+    },
+    {
+      "change_type": "add_component",
+      "subsystem": "cli",
+      "component_name": "cli_intelligence",
+      "module_path": "codegraph/cli/intelligence.py",
+      "description": "Intelligence commands: evolution, memory-intel, metrics-snapshot",
+      "reason": "Task 1: Split CLI god module"
+    },
+    {
+      "change_type": "add_component",
+      "subsystem": "cli",
+      "component_name": "cli_runtime",
+      "module_path": "codegraph/cli/runtime.py",
+      "description": "Runtime commands: runtime-graph, pre-commit, api-link",
+      "reason": "Task 1: Split CLI god module"
+    },
+    {
+      "change_type": "add_component",
+      "subsystem": "intelligence",
+      "component_name": "evolution_proposals",
+      "module_path": "codegraph/evolution_proposals.py",
+      "description": "Evolution proposal storage. Proposals saved to .codegraph/evolution/proposals.json",
+      "reason": "Task 2: Decouple evolution from compiler"
+    },
+    {
+      "change_type": "add_component",
+      "subsystem": "intelligence",
+      "component_name": "architecture_objectives",
+      "module_path": "codegraph/architecture_objectives.py",
+      "description": "Architecture scoring objectives: modularity, coupling_reduction, cycle_reduction, maintainability",
+      "reason": "Task 3: Goal-directed evolution"
+    }
+  ],
   "target_edges": [],
-  "target_nodes": [],
-  "warnings": [
-    "Could not determine subsystem from intent: Improve method resolution in extractor to skip ambiguous common method names (get, append, add, format, to_dict, from_dict, warning) and reduce false positive fan-in. Extend suggest CLI to support all RuleType values including dependency_limit, layer_boundary, forbidden_path. Integrate architecture_memory into architecture_advisor so past decisions inform current advice."
-  ]
+  "target_nodes": [
+    {
+      "node_id": "codegraph.cli.core",
+      "module": "codegraph/cli/core.py",
+      "subsystem": "cli",
+      "intent": "CLI entry point and basic commands",
+      "reason": "Split from cli.py god module"
+    },
+    {
+      "node_id": "codegraph.cli.architecture",
+      "module": "codegraph/cli/architecture.py",
+      "subsystem": "cli",
+      "intent": "Architecture CLI commands",
+      "reason": "Split from cli.py god module"
+    },
+    {
+      "node_id": "codegraph.cli.governance",
+      "module": "codegraph/cli/governance.py",
+      "subsystem": "cli",
+      "intent": "Governance CLI commands",
+      "reason": "Split from cli.py god module"
+    },
+    {
+      "node_id": "codegraph.evolution_proposals",
+      "module": "codegraph/evolution_proposals.py",
+      "subsystem": "intelligence",
+      "intent": "Proposal storage for evolution engine",
+      "reason": "Decouple evolution from compiler"
+    },
+    {
+      "node_id": "codegraph.architecture_objectives",
+      "module": "codegraph/architecture_objectives.py",
+      "subsystem": "intelligence",
+      "intent": "Architecture scoring objectives for evolution",
+      "reason": "Goal-directed evolution"
+    }
+  ],
+  "warnings": []
 }

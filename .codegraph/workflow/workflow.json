@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-11T18:57:14Z",
+    "built_at": "2026-03-12T04:54:22Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -9,12 +9,12 @@
       "stdlib",
       "test_harness"
     ],
-    "edge_count": 3383,
-    "node_count": 2022,
-    "build_time_s": 9.33
+    "edge_count": 3966,
+    "node_count": 2233,
+    "build_time_s": 8.33
   },
   "format_version": 1,
-  "built_at": "2026-03-11T18:57:14Z",
+  "built_at": "2026-03-12T04:54:22Z",
   "level": "function",
   "edges": [
     {
@@ -780,6 +780,12 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/apply.py::_check_plan_exists",
+      "target": "codegraph/exceptions.py::CodegraphError",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/apply.py::_create_backups",
       "target": "codegraph/apply.py::_backup_dir",
       "edge_type": "call",
@@ -890,6 +896,12 @@
     {
       "source": "codegraph/apply.py::_prepare_apply",
       "target": "codegraph/apply.py::_check_conflicts",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::_prepare_apply",
+      "target": "codegraph/apply.py::_check_plan_exists",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -1368,6 +1380,24 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/arch_evolution.py::_save_evolution_proposal",
+      "target": "codegraph/evolution_proposals.py::create_proposal_from_evolution",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_save_evolution_proposal",
+      "target": "codegraph/evolution_proposals.py::load_proposals",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::_save_evolution_proposal",
+      "target": "codegraph/evolution_proposals.py::save_proposals",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/arch_evolution.py::run_evolution",
       "target": "codegraph/arch_evolution.py::run_evolution_cycle",
       "edge_type": "call",
@@ -1423,6 +1453,12 @@
     },
     {
       "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/arch_evolution.py::_rerank_with_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
       "target": "codegraph/arch_evolution.py::_run_advisor",
       "edge_type": "call",
       "confidence": "static"
@@ -1435,7 +1471,43 @@
     },
     {
       "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/arch_evolution.py::_save_evolution_proposal",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
       "target": "codegraph/arch_evolution.py::_skip_remaining",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/arch_evolution.py::get_mutation_tier",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/architecture_objectives.py::ObjectiveWeights",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/architecture_objectives.py::adjust_weights_from_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/architecture_objectives.py::reject_degrading_candidates",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "target": "codegraph/architecture_objectives.py::score_candidates",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -1710,6 +1782,18 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/arch_policy.py::_check_forbidden_subsystem_dep",
+      "target": "codegraph/arch_policy.py::PolicyViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_policy.py::_check_layer_isolation",
+      "target": "codegraph/arch_policy.py::PolicyViolation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/arch_policy.py::_check_max_subsystem_size",
       "target": "codegraph/arch_policy.py::PolicyViolation",
       "edge_type": "call",
@@ -1916,6 +2000,84 @@
     {
       "source": "codegraph/arch_search.py::simulate_candidates",
       "target": "codegraph/architecture_simulator.py::simulate_architecture_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_versioning.py::_load_manifest",
+      "target": "codegraph/arch_versioning.py::_versions_dir",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_versioning.py::_save_manifest",
+      "target": "codegraph/arch_versioning.py::_versions_dir",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_versioning.py::diff_versions",
+      "target": "codegraph/arch_versioning.py::ArchVersionDiff",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_versioning.py::diff_versions",
+      "target": "codegraph/arch_versioning.py::_load_manifest",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_versioning.py::diff_versions",
+      "target": "codegraph/arch_versioning.py::load_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_versioning.py::list_versions",
+      "target": "codegraph/arch_versioning.py::_load_manifest",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_versioning.py::load_version",
+      "target": "codegraph/arch_versioning.py::_versions_dir",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_versioning.py::rollback_version",
+      "target": "codegraph/arch_versioning.py::load_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_versioning.py::rollback_version",
+      "target": "codegraph/arch_versioning.py::save_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_versioning.py::save_version",
+      "target": "codegraph/arch_versioning.py::ArchVersion",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_versioning.py::save_version",
+      "target": "codegraph/arch_versioning.py::_load_manifest",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_versioning.py::save_version",
+      "target": "codegraph/arch_versioning.py::_save_manifest",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/arch_versioning.py::save_version",
+      "target": "codegraph/arch_versioning.py::_versions_dir",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -2298,6 +2460,36 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/architecture_compiler.py::process_evolution_proposals",
+      "target": "codegraph/evolution_proposals.py::ProposalStore::accept",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::process_evolution_proposals",
+      "target": "codegraph/evolution_proposals.py::ProposalStore::pending",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::process_evolution_proposals",
+      "target": "codegraph/evolution_proposals.py::ProposalStore::reject",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::process_evolution_proposals",
+      "target": "codegraph/evolution_proposals.py::load_proposals",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_compiler.py::process_evolution_proposals",
+      "target": "codegraph/evolution_proposals.py::save_proposals",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/architecture_lock.py::_check_forbidden_dependencies",
       "target": "codegraph/architecture_lock.py::LockViolation",
       "edge_type": "call",
@@ -2432,6 +2624,54 @@
     {
       "source": "codegraph/architecture_memory.py::save_decision",
       "target": "codegraph/architecture_memory.py::_save_json_list",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_objectives.py::ObjectiveWeights::normalize",
+      "target": "codegraph/architecture_objectives.py::ObjectiveWeights",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_objectives.py::adjust_weights_from_memory",
+      "target": "codegraph/architecture_objectives.py::ObjectiveWeights",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_objectives.py::adjust_weights_from_memory",
+      "target": "codegraph/architecture_objectives.py::ObjectiveWeights::normalize",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_objectives.py::compute_objective_score",
+      "target": "codegraph/architecture_objectives.py::ObjectiveWeights",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_objectives.py::compute_objective_score",
+      "target": "codegraph/architecture_objectives.py::ObjectiveWeights::normalize",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_objectives.py::score_candidates",
+      "target": "codegraph/architecture_objectives.py::CandidateMetrics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_objectives.py::score_candidates",
+      "target": "codegraph/architecture_objectives.py::ScoredCandidate",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_objectives.py::score_candidates",
+      "target": "codegraph/architecture_objectives.py::compute_objective_score",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3091,6 +3331,48 @@
     },
     {
       "source": "codegraph/cli.py::arch_simulate_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_version_cmd",
+      "target": "codegraph/arch_versioning.py::diff_versions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_version_cmd",
+      "target": "codegraph/arch_versioning.py::format_version_history",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_version_cmd",
+      "target": "codegraph/arch_versioning.py::list_versions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_version_cmd",
+      "target": "codegraph/arch_versioning.py::rollback_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_version_cmd",
+      "target": "codegraph/arch_versioning.py::save_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_version_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::arch_version_cmd",
       "target": "codegraph/config.py::find_project_root",
       "edge_type": "call",
       "confidence": "static"
@@ -4398,6 +4680,36 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/cli.py::pre_commit_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::pre_commit_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::pre_commit_cmd",
+      "target": "codegraph/precommit.py::_compute_current_metrics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::pre_commit_cmd",
+      "target": "codegraph/precommit.py::_save_baseline",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::pre_commit_cmd",
+      "target": "codegraph/precommit.py::run_pre_commit_check",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/cli.py::prune",
       "target": "codegraph/annotator.py::load_graph1",
       "edge_type": "call",
@@ -4532,6 +4844,30 @@
     {
       "source": "codegraph/cli.py::repair_plan_cmd",
       "target": "codegraph/tasks.py::load_tasks",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::runtime_graph_cmd",
+      "target": "codegraph/cli.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::runtime_graph_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::runtime_graph_cmd",
+      "target": "codegraph/runtime_graph.py::extract_runtime_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli.py::runtime_graph_cmd",
+      "target": "codegraph/runtime_graph.py::save_runtime_graph",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -5226,6 +5562,2430 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/cli/architecture.py::arch_diff_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_diff_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_memory_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_memory_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_plan_cmd",
+      "target": "codegraph/arch_planner.py::plan_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_plan_cmd",
+      "target": "codegraph/arch_planner.py::plan_to_agent_response",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_plan_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_plan_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_plan_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_plan_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_search_cmd",
+      "target": "codegraph/arch_search.py::run_arch_search",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_search_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_search_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_simulate_cmd",
+      "target": "codegraph/architecture_simulator.py::simulate_subsystem_addition",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_simulate_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_simulate_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_version_cmd",
+      "target": "codegraph/arch_versioning.py::diff_versions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_version_cmd",
+      "target": "codegraph/arch_versioning.py::format_version_history",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_version_cmd",
+      "target": "codegraph/arch_versioning.py::list_versions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_version_cmd",
+      "target": "codegraph/arch_versioning.py::rollback_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_version_cmd",
+      "target": "codegraph/arch_versioning.py::save_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_version_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_version_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::architect_cmd",
+      "target": "codegraph/architecture_advisor.py::advise_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::architect_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::architect_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::architect_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::architect_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::architecture_cmd",
+      "target": "codegraph/arch_schema.py::init_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::architecture_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::architecture_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::architecture_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::architecture_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::code_plan_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::code_plan_cmd",
+      "target": "codegraph/code_planner.py::generate_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::code_plan_cmd",
+      "target": "codegraph/code_planner.py::validate_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::code_plan_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::code_plan_cmd",
+      "target": "codegraph/target_architecture.py::ArchitectureDelta",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::compile_cmd",
+      "target": "codegraph/architecture_compiler.py::apply_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::compile_cmd",
+      "target": "codegraph/architecture_compiler.py::compile_intent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::compile_cmd",
+      "target": "codegraph/architecture_compiler.py::plan_to_target_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::compile_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::compile_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::enrich_cmd",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::enrich_cmd",
+      "target": "codegraph/architecture_advisor.py::save_enriched_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::enrich_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::enrich_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::enrich_cmd",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::viewer_cmd",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::viewer_cmd",
+      "target": "codegraph/arch_viewer.py::generate_viewer",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::viewer_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::viewer_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::viewer_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::viewer_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::viewer_cmd",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::annotate",
+      "target": "codegraph/annotator.py::add_tags",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::annotate",
+      "target": "codegraph/annotator.py::apply_intent",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::annotate",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::annotate",
+      "target": "codegraph/annotator.py::save_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::annotate",
+      "target": "codegraph/annotator.py::set_arch_layer",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::annotate",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::annotate",
+      "target": "codegraph/config.py::load_config",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/annotator.py::detect_stale_intents",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/annotator.py::format_stale_warnings",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/annotator.py::initialize_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/annotator.py::merge_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/annotator.py::save_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/config.py::compute_config_hash",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/config.py::load_config",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/delta.py::_store_build_commit",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/extractor.py::ExtractionReport::summary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/extractor.py::extract_project",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/extractor.py::save_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/git_utils.py::get_current_commit",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/index.py::build_all_indexes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/layers.py::assign_layers",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/layers.py::parse_layer_overrides",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/models/graph1.py::Graph1::get_stale_nodes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/storage.py::ensure_codegraph_dir",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/storage.py::store_config_hash",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/workflow.py::build_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::build",
+      "target": "codegraph/workflow.py::workflow_summary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_build",
+      "target": "codegraph/cas.py::build_dependency_hashes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_build",
+      "target": "codegraph/cas.py::save_hash_snapshot",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_build",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_build",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_build",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_build",
+      "target": "codegraph/extractor.py::save_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_build",
+      "target": "codegraph/models/graph0.py::Graph0::update_dependency_hashes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_build",
+      "target": "codegraph/storage.py::get_graph_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_build",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_impact",
+      "target": "codegraph/cas.py::explain_cas",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_impact",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_impact",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_impact",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_impact",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_verify",
+      "target": "codegraph/cas.py::verify_cas_integrity",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_verify",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_verify",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_verify",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::cas_verify",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::completion",
+      "target": "benchmarks/benchmark_build.py::main",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::context_cmd",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::context_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::context_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::context_cmd",
+      "target": "codegraph/context_builder.py::PromptContext::to_prompt",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::context_cmd",
+      "target": "codegraph/context_builder.py::PromptContext::token_estimate",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::context_cmd",
+      "target": "codegraph/context_builder.py::build_context",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::context_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::context_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::context_cmd",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::delta",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::delta",
+      "target": "codegraph/config.py::load_config",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::delta",
+      "target": "codegraph/delta.py::format_delta_history",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::delta",
+      "target": "codegraph/delta.py::format_delta_result",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::delta",
+      "target": "codegraph/delta.py::run_delta",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::diff_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::explain_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::explain_cmd",
+      "target": "codegraph/query.py::run_query",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::index_check",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::index_check",
+      "target": "codegraph/index.py::check_index_consistency",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::index_dump",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::index_dump",
+      "target": "codegraph/index.py::export_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::index_rebuild",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::index_rebuild",
+      "target": "codegraph/index.py::rebuild_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::init",
+      "target": "codegraph/storage.py::ensure_codegraph_dir",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::init",
+      "target": "codegraph/storage.py::generate_gitignore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::intent_apply",
+      "target": "codegraph/annotator.py::apply_intents_batch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::intent_apply",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::intent_apply",
+      "target": "codegraph/annotator.py::load_intent_file",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::intent_apply",
+      "target": "codegraph/annotator.py::save_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::intent_apply",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::intent_apply",
+      "target": "codegraph/config.py::load_config",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::intent_apply",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::intent_missing",
+      "target": "codegraph/annotator.py::get_missing_intents",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::intent_missing",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::intent_missing",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::intent_missing",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::main",
+      "target": "codegraph/logging_config.py::configure_logging",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::path_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::path_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::path_cmd",
+      "target": "codegraph/path_query.py::check_forbidden_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::path_cmd",
+      "target": "codegraph/path_query.py::find_pattern_paths",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::prune",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::prune",
+      "target": "codegraph/annotator.py::prune_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::prune",
+      "target": "codegraph/annotator.py::save_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::prune",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::prune",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::query",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::query",
+      "target": "codegraph/query.py::run_query",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_build",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_build",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_build",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_build",
+      "target": "codegraph/models/graph2.py::Graph2::get_behavior_summary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_build",
+      "target": "codegraph/semantics.py::build_graph2",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_build",
+      "target": "codegraph/semantics.py::save_graph2",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_check",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_check",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_check",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_check",
+      "target": "codegraph/semantics.py::evaluate_semantic_rules_impl",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_check",
+      "target": "codegraph/semantics.py::load_graph2",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_check",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_show",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_show",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_show",
+      "target": "codegraph/index.py::IndexStore::get_node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_show",
+      "target": "codegraph/semantics.py::load_graph2",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_summary",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_summary",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_summary",
+      "target": "codegraph/models/graph2.py::Graph2::get_behavior_summary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::semantic_summary",
+      "target": "codegraph/semantics.py::load_graph2",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::status",
+      "target": "codegraph/annotator.py::graph1_statistics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::status",
+      "target": "codegraph/config.py::config_changed_since_build",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::status",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::status",
+      "target": "codegraph/config.py::load_config",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::status",
+      "target": "codegraph/index.py::index_statistics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::status",
+      "target": "codegraph/layers.py::format_layer_stats",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::status",
+      "target": "codegraph/layers.py::layer_statistics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::status",
+      "target": "codegraph/storage.py::get_stored_config_hash",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::status",
+      "target": "codegraph/storage.py::resolve_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::status",
+      "target": "codegraph/suggest.py::load_suggested_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::status",
+      "target": "codegraph/tasks.py::load_tasks",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::status",
+      "target": "codegraph/tasks.py::task_statistics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::status",
+      "target": "codegraph/workflow.py::edge_statistics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::status",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::validate",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::validate",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::validate",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::validate",
+      "target": "codegraph/workflow.py::validate_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::visualize_cmd",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::visualize_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::visualize_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::visualize_cmd",
+      "target": "codegraph/visualization.py::build_vis_graph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::visualize_cmd",
+      "target": "codegraph/visualization.py::export_html_report",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::visualize_cmd",
+      "target": "codegraph/visualization.py::export_mermaid",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::visualize_cmd",
+      "target": "codegraph/visualization.py::save_visualization",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::visualize_cmd",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::workflow",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::workflow",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::workflow",
+      "target": "codegraph/config.py::load_config",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::workflow",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::workflow",
+      "target": "codegraph/index.py::build_all_indexes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::workflow",
+      "target": "codegraph/workflow.py::build_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/core.py::workflow",
+      "target": "codegraph/workflow.py::workflow_summary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::analyze_cmd",
+      "target": "codegraph/analyzer.py::format_analysis_report",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::analyze_cmd",
+      "target": "codegraph/analyzer.py::run_analyze",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::analyze_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::apply",
+      "target": "codegraph/apply.py::format_apply_result",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::apply",
+      "target": "codegraph/apply.py::run_apply",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::apply",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::drift_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::drift_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::drift_cmd",
+      "target": "codegraph/drift_detector.py::detect_drift",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::lock_cmd",
+      "target": "codegraph/architecture_lock.py::check_lock",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::lock_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::lock_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::policy_cmd",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::policy_cmd",
+      "target": "codegraph/arch_policy.py::evaluate_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::policy_cmd",
+      "target": "codegraph/arch_policy.py::init_default_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::policy_cmd",
+      "target": "codegraph/arch_policy.py::load_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::policy_cmd",
+      "target": "codegraph/arch_policy.py::remove_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::policy_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::policy_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_cmd",
+      "target": "codegraph/analyzer.py::run_analyze",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_cmd",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_cmd",
+      "target": "codegraph/storage.py::get_graph_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_cmd",
+      "target": "codegraph/tasks.py::generate_tasks",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_cmd",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_plan_cmd",
+      "target": "codegraph/analyzer.py::run_analyze",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_plan_cmd",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_plan_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_plan_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_plan_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_plan_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_plan_cmd",
+      "target": "codegraph/storage.py::get_graph_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_plan_cmd",
+      "target": "codegraph/tasks.py::generate_tasks",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_plan_cmd",
+      "target": "codegraph/tasks.py::write_tasks",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::repair_plan_cmd",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_add",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_add",
+      "target": "codegraph/suggest.py::add_rule",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_diff",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_diff",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_diff",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_diff",
+      "target": "codegraph/suggest.py::load_suggested_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_diff",
+      "target": "codegraph/suggest.py::policy_diff",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_diff",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_import_template",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_import_template",
+      "target": "codegraph/suggest.py::available_templates",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_import_template",
+      "target": "codegraph/suggest.py::import_rules_template",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_list",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_list",
+      "target": "codegraph/suggest.py::format_rules_table",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_list",
+      "target": "codegraph/suggest.py::list_rules",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_remove",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_remove",
+      "target": "codegraph/suggest.py::remove_rule",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_stats",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_stats",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_stats",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_stats",
+      "target": "codegraph/suggest.py::load_suggested_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_stats",
+      "target": "codegraph/suggest.py::rule_statistics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_stats",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_validate",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_validate",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_validate",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_validate",
+      "target": "codegraph/suggest.py::find_dangling_rules",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_validate",
+      "target": "codegraph/suggest.py::load_suggested_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::suggest_validate",
+      "target": "codegraph/suggest.py::validate_suggested_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::tasks",
+      "target": "codegraph/analyzer.py::run_analyze",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::tasks",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::tasks",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::tasks",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::tasks",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::tasks",
+      "target": "codegraph/storage.py::get_graph_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::tasks",
+      "target": "codegraph/tasks.py::filter_tasks",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::tasks",
+      "target": "codegraph/tasks.py::generate_tasks",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::tasks",
+      "target": "codegraph/tasks.py::task_statistics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::tasks",
+      "target": "codegraph/tasks.py::write_tasks",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/governance.py::tasks",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::copilot_context_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::copilot_context_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::copilot_context_cmd",
+      "target": "codegraph/copilot_context.py::build_copilot_context",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::evolution_cmd",
+      "target": "codegraph/arch_evolution.py::EvolutionReport::from_results",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::evolution_cmd",
+      "target": "codegraph/arch_evolution.py::run_evolution",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::evolution_cmd",
+      "target": "codegraph/arch_evolution.py::save_evolution_report",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::evolution_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::evolution_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::evolve_cmd",
+      "target": "codegraph/architecture_advisor.py::advise_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::evolve_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::evolve_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::evolve_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::evolve_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::evolve_cmd",
+      "target": "codegraph/target_architecture.py::compute_architecture_delta",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::evolve_cmd",
+      "target": "codegraph/target_architecture.py::delta_to_tasks",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::evolve_cmd",
+      "target": "codegraph/target_architecture.py::generate_target_from_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::evolve_cmd",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::health_cmd",
+      "target": "codegraph/arch_health.py::compute_health",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::health_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::health_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::health_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::health_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::memory_cmd",
+      "target": "codegraph/agent_memory.py::load_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::memory_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::memory_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::memory_intel_cmd",
+      "target": "codegraph/arch_memory_intelligence.py::analyze_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::memory_intel_cmd",
+      "target": "codegraph/arch_memory_intelligence.py::save_strategy_scores",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::memory_intel_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::memory_intel_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::metrics_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::metrics_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::metrics_snapshot_cmd",
+      "target": "codegraph/arch_memory_intelligence.py::record_metrics_snapshot",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::metrics_snapshot_cmd",
+      "target": "codegraph/architecture_advisor.py::advise_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::metrics_snapshot_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::metrics_snapshot_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::metrics_snapshot_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::metrics_snapshot_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::multilevel_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::multilevel_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::multilevel_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::multilevel_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::multilevel_cmd",
+      "target": "codegraph/multilevel.py::analyze_multilevel",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::refactor_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::refactor_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::refactor_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::refactor_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::refactor_cmd",
+      "target": "codegraph/refactor.py::detect_cycles",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::subsystems_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::subsystems_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::subsystems_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::subsystems_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/intelligence.py::subsystems_cmd",
+      "target": "codegraph/subsystem.py::detect_subsystems",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::api_link_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::api_link_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::api_link_cmd",
+      "target": "codegraph/extractors/api_routes.py::link_api_routes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::archi_test_cmd",
+      "target": "codegraph/archi_test.py::archi_test_coverage",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::archi_test_cmd",
+      "target": "codegraph/archi_test.py::cleanup_archi_tests",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::archi_test_cmd",
+      "target": "codegraph/archi_test.py::format_archi_result",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::archi_test_cmd",
+      "target": "codegraph/archi_test.py::generate_archi_tests",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::archi_test_cmd",
+      "target": "codegraph/archi_test.py::run_archi_tests",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::archi_test_cmd",
+      "target": "codegraph/archi_test.py::write_archi_tests",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::archi_test_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::archi_test_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::archi_test_cmd",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_compare",
+      "target": "codegraph/branch_executor.py::compare_branches",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_compare",
+      "target": "codegraph/branch_executor.py::load_branch_state",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_compare",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_compare",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_create",
+      "target": "codegraph/branch_executor.py::create_branch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_create",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_create",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_discard",
+      "target": "codegraph/branch_executor.py::discard_branch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_discard",
+      "target": "codegraph/branch_executor.py::load_branch_state",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_discard",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_discard",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_list",
+      "target": "codegraph/branch_executor.py::list_architecture_branches",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_list",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_list",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_merge",
+      "target": "codegraph/branch_executor.py::load_branch_state",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_merge",
+      "target": "codegraph/branch_executor.py::merge_branch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_merge",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_merge",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_validate",
+      "target": "codegraph/branch_executor.py::capture_metrics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_validate",
+      "target": "codegraph/branch_executor.py::load_branch_state",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_validate",
+      "target": "codegraph/branch_executor.py::update_branch_status",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_validate",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::branch_validate",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::lifecycle_create",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::lifecycle_create",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::lifecycle_create",
+      "target": "codegraph/subsystem_lifecycle.py::create_subsystem",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::lifecycle_generate_files",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::lifecycle_generate_files",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::lifecycle_generate_files",
+      "target": "codegraph/subsystem_lifecycle.py::generate_subsystem_files",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::lifecycle_merge",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::lifecycle_merge",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::lifecycle_merge",
+      "target": "codegraph/subsystem_lifecycle.py::merge_subsystems",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::lifecycle_move",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::lifecycle_move",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::lifecycle_move",
+      "target": "codegraph/subsystem_lifecycle.py::move_component",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::lifecycle_split",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::lifecycle_split",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::lifecycle_split",
+      "target": "codegraph/subsystem_lifecycle.py::split_subsystem",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::pre_commit_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::pre_commit_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::pre_commit_cmd",
+      "target": "codegraph/precommit.py::_compute_current_metrics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::pre_commit_cmd",
+      "target": "codegraph/precommit.py::_save_baseline",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::pre_commit_cmd",
+      "target": "codegraph/precommit.py::run_pre_commit_check",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::runtime_graph_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::runtime_graph_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::runtime_graph_cmd",
+      "target": "codegraph/runtime_graph.py::extract_runtime_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::runtime_graph_cmd",
+      "target": "codegraph/runtime_graph.py::save_runtime_graph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::simulate_cmd",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::simulate_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::simulate_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::simulate_cmd",
+      "target": "codegraph/simulator.py::simulate_agent_response",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::test_impact_cmd",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::test_impact_cmd",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::test_impact_cmd",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::test_impact_cmd",
+      "target": "codegraph/test_impact.py::analyze_test_impact",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::test_impact_cmd",
+      "target": "codegraph/test_impact.py::find_coverage_gaps",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::test_impact_cmd",
+      "target": "codegraph/test_impact.py::format_test_impact",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/runtime.py::test_impact_cmd",
+      "target": "codegraph/test_impact.py::impact_from_delta",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/code_planner.py::CodePlan::save",
       "target": "codegraph/code_planner.py::CodePlan::to_dict",
       "edge_type": "call",
@@ -5376,8 +8136,20 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/copilot_context.py::_populate_strategy_rankings",
+      "target": "codegraph/arch_memory_intelligence.py::get_strategy_ranking",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/copilot_context.py::build_copilot_context",
       "target": "codegraph/copilot_context.py::CopilotContext",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::build_copilot_context",
+      "target": "codegraph/copilot_context.py::_populate_arch_policies",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -5414,6 +8186,24 @@
     {
       "source": "codegraph/copilot_context.py::build_copilot_context",
       "target": "codegraph/copilot_context.py::_populate_policy_rules",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::build_copilot_context",
+      "target": "codegraph/copilot_context.py::_populate_refactors",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::build_copilot_context",
+      "target": "codegraph/copilot_context.py::_populate_smells",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/copilot_context.py::build_copilot_context",
+      "target": "codegraph/copilot_context.py::_populate_strategy_rankings",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -5852,6 +8642,42 @@
     {
       "source": "codegraph/error_codes.py::_register",
       "target": "codegraph/error_codes.py::ErrorCode",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/evolution_proposals.py::EvolutionProposal::format",
+      "target": "codegraph/evolution_proposals.py::ProposalStore::pending",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/evolution_proposals.py::ProposalStore::format",
+      "target": "codegraph/evolution_proposals.py::ProposalStore::pending",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/evolution_proposals.py::create_proposal_from_evolution",
+      "target": "codegraph/evolution_proposals.py::EvolutionProposal",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/evolution_proposals.py::load_proposals",
+      "target": "codegraph/evolution_proposals.py::ProposalStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/evolution_proposals.py::load_proposals",
+      "target": "codegraph/evolution_proposals.py::_proposals_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/evolution_proposals.py::save_proposals",
+      "target": "codegraph/evolution_proposals.py::_proposals_path",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7656,6 +10482,48 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/precommit.py::_check_metric",
+      "target": "codegraph/precommit.py::SimulationCheck",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/precommit.py::run_pre_commit_check",
+      "target": "codegraph/precommit.py::PreCommitReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/precommit.py::run_pre_commit_check",
+      "target": "codegraph/precommit.py::SimulationCheck",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/precommit.py::run_pre_commit_check",
+      "target": "codegraph/precommit.py::_check_metric",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/precommit.py::run_pre_commit_check",
+      "target": "codegraph/precommit.py::_compute_current_metrics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/precommit.py::run_pre_commit_check",
+      "target": "codegraph/precommit.py::_load_baseline",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/precommit.py::run_pre_commit_check",
+      "target": "codegraph/precommit.py::_save_baseline",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/query.py::QueryCache::get",
       "target": "codegraph/query.py::QueryCache::_key",
       "edge_type": "call",
@@ -8114,6 +10982,78 @@
     {
       "source": "codegraph/risk_metrics.py::get_node_risk",
       "target": "codegraph/risk_metrics.py::compute_risk_metrics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_db_call",
+      "target": "codegraph/runtime_graph.py::RuntimeEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_env_var",
+      "target": "codegraph/runtime_graph.py::RuntimeEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_http_call",
+      "target": "codegraph/runtime_graph.py::RuntimeEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_mq_call",
+      "target": "codegraph/runtime_graph.py::RuntimeEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_Call",
+      "target": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_db_call",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_Call",
+      "target": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_env_var",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_Call",
+      "target": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_http_call",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_Call",
+      "target": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_mq_call",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/runtime_graph.py::extract_runtime_edges",
+      "target": "codegraph/runtime_graph.py::RuntimeEdgeVisitor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/runtime_graph.py::extract_runtime_edges",
+      "target": "codegraph/runtime_graph.py::RuntimeGraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/runtime_graph.py::load_runtime_graph",
+      "target": "codegraph/runtime_graph.py::RuntimeEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/runtime_graph.py::load_runtime_graph",
+      "target": "codegraph/runtime_graph.py::RuntimeGraph",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -10596,6 +13536,54 @@
       "confidence": "static"
     },
     {
+      "source": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_dangerous_strategies",
+      "target": "codegraph/arch_evolution.py::get_mutation_tier",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_medium_strategies",
+      "target": "codegraph/arch_evolution.py::get_mutation_tier",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_safe_strategies",
+      "target": "codegraph/arch_evolution.py::get_mutation_tier",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_unknown_defaults_to_medium",
+      "target": "codegraph/arch_evolution.py::get_mutation_tier",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRerankWithMemory::test_keeps_selected_when_best",
+      "target": "codegraph/arch_evolution.py::_rerank_with_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRerankWithMemory::test_no_change_below_threshold",
+      "target": "codegraph/arch_evolution.py::_rerank_with_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRerankWithMemory::test_no_change_without_ranking",
+      "target": "codegraph/arch_evolution.py::_rerank_with_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_evolution.py::TestRerankWithMemory::test_reranks_higher_effectiveness",
+      "target": "codegraph/arch_evolution.py::_rerank_with_memory",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "tests/test_arch_evolution.py::TestRunEvolution::test_multiple_cycles",
       "target": "codegraph/arch_evolution.py::EvolutionResult",
       "edge_type": "call",
@@ -11766,6 +14754,96 @@
       "confidence": "static"
     },
     {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_forbidden_subsystem_dep_pass",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_forbidden_subsystem_dep_pass",
+      "target": "codegraph/arch_policy.py::evaluate_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_forbidden_subsystem_dep_pass",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_forbidden_subsystem_dep_violation",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_forbidden_subsystem_dep_violation",
+      "target": "codegraph/arch_policy.py::evaluate_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_forbidden_subsystem_dep_violation",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_layer_isolation_invalid_target",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_layer_isolation_invalid_target",
+      "target": "codegraph/arch_policy.py::evaluate_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_layer_isolation_invalid_target",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_layer_isolation_pass",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_layer_isolation_pass",
+      "target": "codegraph/arch_policy.py::evaluate_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_layer_isolation_pass",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_layer_isolation_violation",
+      "target": "codegraph/arch_policy.py::add_policy",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_layer_isolation_violation",
+      "target": "codegraph/arch_policy.py::evaluate_policies",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_layer_isolation_violation",
+      "target": "tests/test_arch_policy.py::_setup_codegraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "tests/test_arch_policy.py::TestEvaluatePolicies::test_no_large_modules_pass",
       "target": "codegraph/arch_policy.py::add_policy",
       "edge_type": "call",
@@ -12272,6 +15350,150 @@
     {
       "source": "tests/test_arch_schema.py::TestSystemArchitecture::test_subsystem_names",
       "target": "codegraph/arch_schema.py::SystemArchitecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestArchVersion::test_basic",
+      "target": "codegraph/arch_versioning.py::ArchVersion",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestArchVersionDiff::test_empty_diff",
+      "target": "codegraph/arch_versioning.py::ArchVersionDiff",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestArchVersionDiff::test_format",
+      "target": "codegraph/arch_versioning.py::ArchVersionDiff",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestArchVersionDiff::test_format_no_changes",
+      "target": "codegraph/arch_versioning.py::ArchVersionDiff",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestDiffVersions::test_diff_missing_version",
+      "target": "codegraph/arch_versioning.py::diff_versions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestDiffVersions::test_diff_same",
+      "target": "codegraph/arch_versioning.py::diff_versions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestDiffVersions::test_diff_same",
+      "target": "codegraph/arch_versioning.py::save_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestDiffVersions::test_diff_with_changes",
+      "target": "codegraph/arch_versioning.py::diff_versions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestDiffVersions::test_diff_with_changes",
+      "target": "codegraph/arch_versioning.py::save_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestFormatVersionHistory::test_empty",
+      "target": "codegraph/arch_versioning.py::format_version_history",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestFormatVersionHistory::test_with_versions",
+      "target": "codegraph/arch_versioning.py::ArchVersion",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestFormatVersionHistory::test_with_versions",
+      "target": "codegraph/arch_versioning.py::format_version_history",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestListVersions::test_after_saves",
+      "target": "codegraph/arch_versioning.py::list_versions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestListVersions::test_after_saves",
+      "target": "codegraph/arch_versioning.py::save_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestListVersions::test_empty",
+      "target": "codegraph/arch_versioning.py::format_version_history",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestLoadVersion::test_load_existing",
+      "target": "codegraph/arch_versioning.py::load_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestLoadVersion::test_load_existing",
+      "target": "codegraph/arch_versioning.py::save_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestLoadVersion::test_load_missing",
+      "target": "codegraph/arch_versioning.py::load_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestRollback::test_rollback_missing",
+      "target": "codegraph/arch_versioning.py::rollback_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestRollback::test_rollback_restores",
+      "target": "codegraph/arch_versioning.py::rollback_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestRollback::test_rollback_restores",
+      "target": "codegraph/arch_versioning.py::save_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestSaveVersion::test_save_creates_snapshot",
+      "target": "codegraph/arch_versioning.py::save_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestSaveVersion::test_save_increments_version",
+      "target": "codegraph/arch_versioning.py::save_version",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_arch_versioning.py::TestSaveVersion::test_save_no_system_raises",
+      "target": "codegraph/arch_versioning.py::save_version",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -17820,6 +21042,144 @@
       "confidence": "static"
     },
     {
+      "source": "tests/test_precommit.py::TestBaseline::test_load_missing",
+      "target": "codegraph/precommit.py::_load_baseline",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestBaseline::test_save_and_load",
+      "target": "codegraph/precommit.py::_load_baseline",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestBaseline::test_save_and_load",
+      "target": "codegraph/precommit.py::_save_baseline",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestCheckMetric::test_inverted_metric",
+      "target": "codegraph/precommit.py::PreCommitReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestCheckMetric::test_inverted_metric",
+      "target": "codegraph/precommit.py::_check_metric",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestCheckMetric::test_no_change",
+      "target": "codegraph/precommit.py::PreCommitReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestCheckMetric::test_no_change",
+      "target": "codegraph/precommit.py::_check_metric",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestCheckMetric::test_warning",
+      "target": "codegraph/precommit.py::PreCommitReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestCheckMetric::test_warning",
+      "target": "codegraph/precommit.py::_check_metric",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestCheckMetric::test_within_threshold",
+      "target": "codegraph/precommit.py::PreCommitReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestCheckMetric::test_within_threshold",
+      "target": "codegraph/precommit.py::_check_metric",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestCheckMetric::test_worsening_blocks",
+      "target": "codegraph/precommit.py::PreCommitReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestCheckMetric::test_worsening_blocks",
+      "target": "codegraph/precommit.py::_check_metric",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestPreCommitReport::test_empty_report",
+      "target": "codegraph/precommit.py::PreCommitReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestPreCommitReport::test_format",
+      "target": "codegraph/precommit.py::PreCommitReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestPreCommitReport::test_format",
+      "target": "codegraph/precommit.py::SimulationCheck",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestPreCommitReport::test_format_passed",
+      "target": "codegraph/precommit.py::PreCommitReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestPreCommitReport::test_with_checks",
+      "target": "codegraph/precommit.py::PreCommitReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestPreCommitReport::test_with_checks",
+      "target": "codegraph/precommit.py::SimulationCheck",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestRunPreCommitCheck::test_no_baseline_creates_one",
+      "target": "codegraph/precommit.py::_load_baseline",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestRunPreCommitCheck::test_no_baseline_creates_one",
+      "target": "codegraph/precommit.py::run_pre_commit_check",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestSimulationCheck::test_basic",
+      "target": "codegraph/precommit.py::SimulationCheck",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_precommit.py::TestSimulationCheck::test_pass_status",
+      "target": "codegraph/precommit.py::SimulationCheck",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "tests/test_properties.py::TestGraph0Properties::test_add_remove_identity",
       "target": "codegraph/models/graph0.py::Graph0",
       "edge_type": "call",
@@ -18242,6 +21602,144 @@
     {
       "source": "tests/test_risk_metrics.py::TestRiskReport::test_format",
       "target": "codegraph/risk_metrics.py::RiskReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestExtractRuntimeEdges::test_basic_extraction",
+      "target": "codegraph/runtime_graph.py::extract_runtime_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestExtractRuntimeEdges::test_edge_type_counts",
+      "target": "codegraph/runtime_graph.py::extract_runtime_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestExtractRuntimeEdges::test_excludes_pycache",
+      "target": "codegraph/runtime_graph.py::extract_runtime_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestRuntimeEdge::test_basic",
+      "target": "codegraph/runtime_graph.py::RuntimeEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestRuntimeEdge::test_with_details",
+      "target": "codegraph/runtime_graph.py::RuntimeEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::_visit_source",
+      "target": "codegraph/runtime_graph.py::RuntimeEdgeVisitor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_class_method",
+      "target": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::_visit_source",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_db_execute",
+      "target": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::_visit_source",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_db_insert",
+      "target": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::_visit_source",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_dynamic_url",
+      "target": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::_visit_source",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_env_var_environ_get",
+      "target": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::_visit_source",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_env_var_getenv",
+      "target": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::_visit_source",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_http_get",
+      "target": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::_visit_source",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_http_post",
+      "target": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::_visit_source",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_mq_publish",
+      "target": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::_visit_source",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_no_runtime_edges",
+      "target": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::_visit_source",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestRuntimeGraph::test_empty",
+      "target": "codegraph/runtime_graph.py::RuntimeGraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestRuntimeGraph::test_format",
+      "target": "codegraph/runtime_graph.py::RuntimeGraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestSaveLoadRuntimeGraph::test_load_missing",
+      "target": "codegraph/runtime_graph.py::load_runtime_graph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestSaveLoadRuntimeGraph::test_roundtrip",
+      "target": "codegraph/runtime_graph.py::RuntimeEdge",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestSaveLoadRuntimeGraph::test_roundtrip",
+      "target": "codegraph/runtime_graph.py::RuntimeGraph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestSaveLoadRuntimeGraph::test_roundtrip",
+      "target": "codegraph/runtime_graph.py::load_runtime_graph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_runtime_graph.py::TestSaveLoadRuntimeGraph::test_roundtrip",
+      "target": "codegraph/runtime_graph.py::save_runtime_graph",
       "edge_type": "call",
       "confidence": "static"
     },

@@ -1,27 +1,27 @@
 {
-  "score": 0.65,
-  "grade": "D",
-  "total_nodes": 2865,
-  "total_edges": 3078,
-  "total_files": 163,
+  "score": 0.7,
+  "grade": "C",
+  "total_nodes": 3270,
+  "total_edges": 3535,
+  "total_files": 178,
   "cycle_count": 0,
-  "god_module_count": 21,
+  "god_module_count": 25,
   "critical_node_count": 0,
-  "large_subsystem_count": 6,
-  "avg_fan_in": 1.07,
-  "avg_fan_out": 1.07,
-  "max_fan_in": 71,
+  "large_subsystem_count": 5,
+  "avg_fan_in": 1.08,
+  "avg_fan_out": 1.08,
+  "max_fan_in": 80,
   "max_fan_out": 22,
   "max_dependency_depth": 8,
-  "modularity": 0.243,
+  "modularity": 0.556,
   "smells": [
     {
       "smell_type": "high_fan_in",
       "severity": "error",
-      "description": "codegraph/config.py::find_project_root has fan-in=71 (threshold: 20)",
+      "description": "codegraph/config.py::find_project_root has fan-in=80 (threshold: 20)",
       "suggestion": "Consider introducing an interface or facade for codegraph/config.py::find_project_root",
       "node": "codegraph/config.py::find_project_root",
-      "metric_value": 71,
+      "metric_value": 80,
       "threshold": 20
     },
     {
@@ -40,6 +40,15 @@
       "suggestion": "Consider introducing an interface or facade for codegraph/models/workflow.py::WorkflowEdge",
       "node": "codegraph/models/workflow.py::WorkflowEdge",
       "metric_value": 47,
+      "threshold": 20
+    },
+    {
+      "smell_type": "high_fan_in",
+      "severity": "error",
+      "description": "codegraph/cli.py::handle_error has fan-in=46 (threshold: 20)",
+      "suggestion": "Consider introducing an interface or facade for codegraph/cli.py::handle_error",
+      "node": "codegraph/cli.py::handle_error",
+      "metric_value": 46,
       "threshold": 20
     },
     {
@@ -72,10 +81,10 @@
     {
       "smell_type": "god_module",
       "severity": "warning",
-      "description": "codegraph/cli.py has 87 nodes (threshold: 30)",
+      "description": "codegraph/cli.py has 95 nodes (threshold: 30)",
       "suggestion": "Split codegraph/cli.py into smaller focused modules",
       "node": "codegraph/cli.py",
-      "metric_value": 87,
+      "metric_value": 95,
       "threshold": 30
     },
     {
@@ -148,6 +157,42 @@
       "suggestion": "Split codegraph/workflow.py into smaller focused modules",
       "node": "codegraph/workflow.py",
       "metric_value": 40,
+      "threshold": 30
+    },
+    {
+      "smell_type": "god_module",
+      "severity": "warning",
+      "description": "tests/test_api_routes.py has 49 nodes (threshold: 30)",
+      "suggestion": "Split tests/test_api_routes.py into smaller focused modules",
+      "node": "tests/test_api_routes.py",
+      "metric_value": 49,
+      "threshold": 30
+    },
+    {
+      "smell_type": "god_module",
+      "severity": "warning",
+      "description": "tests/test_arch_evolution.py has 55 nodes (threshold: 30)",
+      "suggestion": "Split tests/test_arch_evolution.py into smaller focused modules",
+      "node": "tests/test_arch_evolution.py",
+      "metric_value": 55,
+      "threshold": 30
+    },
+    {
+      "smell_type": "god_module",
+      "severity": "warning",
+      "description": "tests/test_arch_memory_intelligence.py has 33 nodes (threshold: 30)",
+      "suggestion": "Split tests/test_arch_memory_intelligence.py into smaller focused modules",
+      "node": "tests/test_arch_memory_intelligence.py",
+      "metric_value": 33,
+      "threshold": 30
+    },
+    {
+      "smell_type": "god_module",
+      "severity": "warning",
+      "description": "tests/test_arch_policy.py has 36 nodes (threshold: 30)",
+      "suggestion": "Split tests/test_arch_policy.py into smaller focused modules",
+      "node": "tests/test_arch_policy.py",
+      "metric_value": 36,
       "threshold": 30
     },
     {
@@ -270,28 +315,10 @@
     {
       "smell_type": "high_fan_in",
       "severity": "warning",
-      "description": "codegraph/extractor.py::load_graph0 has fan-in=35 (threshold: 20)",
+      "description": "codegraph/extractor.py::load_graph0 has fan-in=37 (threshold: 20)",
       "suggestion": "Consider introducing an interface or facade for codegraph/extractor.py::load_graph0",
       "node": "codegraph/extractor.py::load_graph0",
-      "metric_value": 35,
-      "threshold": 20
-    },
-    {
-      "smell_type": "high_fan_in",
-      "severity": "warning",
-      "description": "codegraph/cli.py::handle_error has fan-in=38 (threshold: 20)",
-      "suggestion": "Consider introducing an interface or facade for codegraph/cli.py::handle_error",
-      "node": "codegraph/cli.py::handle_error",
-      "metric_value": 38,
-      "threshold": 20
-    },
-    {
-      "smell_type": "high_fan_in",
-      "severity": "warning",
-      "description": "codegraph/storage.py::resolve_path has fan-in=33 (threshold: 20)",
-      "suggestion": "Consider introducing an interface or facade for codegraph/storage.py::resolve_path",
-      "node": "codegraph/storage.py::resolve_path",
-      "metric_value": 33,
+      "metric_value": 37,
       "threshold": 20
     },
     {
@@ -301,6 +328,15 @@
       "suggestion": "Consider introducing an interface or facade for tests/test_subsystem_lifecycle.py::_make_arch",
       "node": "tests/test_subsystem_lifecycle.py::_make_arch",
       "metric_value": 21,
+      "threshold": 20
+    },
+    {
+      "smell_type": "high_fan_in",
+      "severity": "warning",
+      "description": "codegraph/storage.py::resolve_path has fan-in=33 (threshold: 20)",
+      "suggestion": "Consider introducing an interface or facade for codegraph/storage.py::resolve_path",
+      "node": "codegraph/storage.py::resolve_path",
+      "metric_value": 33,
       "threshold": 20
     },
     {
@@ -351,19 +387,19 @@
     {
       "smell_type": "high_fan_in",
       "severity": "warning",
-      "description": "codegraph/annotator.py::load_graph1 has fan-in=21 (threshold: 20)",
-      "suggestion": "Consider introducing an interface or facade for codegraph/annotator.py::load_graph1",
-      "node": "codegraph/annotator.py::load_graph1",
-      "metric_value": 21,
+      "description": "codegraph/models/workflow.py::Workflow::add_edge has fan-in=24 (threshold: 20)",
+      "suggestion": "Consider introducing an interface or facade for codegraph/models/workflow.py::Workflow::add_edge",
+      "node": "codegraph/models/workflow.py::Workflow::add_edge",
+      "metric_value": 24,
       "threshold": 20
     },
     {
       "smell_type": "high_fan_in",
       "severity": "warning",
-      "description": "codegraph/models/workflow.py::Workflow::add_edge has fan-in=24 (threshold: 20)",
-      "suggestion": "Consider introducing an interface or facade for codegraph/models/workflow.py::Workflow::add_edge",
-      "node": "codegraph/models/workflow.py::Workflow::add_edge",
-      "metric_value": 24,
+      "description": "codegraph/annotator.py::load_graph1 has fan-in=21 (threshold: 20)",
+      "suggestion": "Consider introducing an interface or facade for codegraph/annotator.py::load_graph1",
+      "node": "codegraph/annotator.py::load_graph1",
+      "metric_value": 21,
       "threshold": 20
     },
     {
@@ -421,129 +457,67 @@
       "threshold": 20
     },
     {
+      "smell_type": "high_fan_in",
+      "severity": "warning",
+      "description": "codegraph/index.py::IndexStore has fan-in=21 (threshold: 20)",
+      "suggestion": "Consider introducing an interface or facade for codegraph/index.py::IndexStore",
+      "node": "codegraph/index.py::IndexStore",
+      "metric_value": 21,
+      "threshold": 20
+    },
+    {
+      "smell_type": "high_fan_in",
+      "severity": "warning",
+      "description": "tests/test_arch_policy.py::_setup_codegraph has fan-in=20 (threshold: 20)",
+      "suggestion": "Consider introducing an interface or facade for tests/test_arch_policy.py::_setup_codegraph",
+      "node": "tests/test_arch_policy.py::_setup_codegraph",
+      "metric_value": 20,
+      "threshold": 20
+    },
+    {
       "smell_type": "large_subsystem",
       "severity": "warning",
-      "description": "Subsystem 'codegraph' has 609 nodes (threshold: 200)",
+      "description": "Subsystem 'codegraph' has 1004 nodes (threshold: 200)",
       "suggestion": "Split subsystem 'codegraph' into smaller cohesive units",
       "node": "codegraph",
-      "metric_value": 609,
+      "metric_value": 1004,
       "threshold": 200
     },
     {
       "smell_type": "large_subsystem",
       "severity": "warning",
-      "description": "Subsystem 'tests' has 257 nodes (threshold: 200)",
+      "description": "Subsystem 'tests' has 403 nodes (threshold: 200)",
       "suggestion": "Split subsystem 'tests' into smaller cohesive units",
       "node": "tests",
-      "metric_value": 257,
+      "metric_value": 403,
       "threshold": 200
     },
     {
       "smell_type": "large_subsystem",
       "severity": "warning",
-      "description": "Subsystem 'tests' has 258 nodes (threshold: 200)",
-      "suggestion": "Split subsystem 'tests' into smaller cohesive units",
-      "node": "tests",
-      "metric_value": 258,
-      "threshold": 200
-    },
-    {
-      "smell_type": "large_subsystem",
-      "severity": "warning",
-      "description": "Subsystem 'codegraph' has 380 nodes (threshold: 200)",
+      "description": "Subsystem 'codegraph' has 510 nodes (threshold: 200)",
       "suggestion": "Split subsystem 'codegraph' into smaller cohesive units",
       "node": "codegraph",
-      "metric_value": 380,
+      "metric_value": 510,
       "threshold": 200
     },
     {
       "smell_type": "large_subsystem",
       "severity": "warning",
-      "description": "Subsystem 'tests' has 278 nodes (threshold: 200)",
-      "suggestion": "Split subsystem 'tests' into smaller cohesive units",
-      "node": "tests",
-      "metric_value": 278,
-      "threshold": 200
-    },
-    {
-      "smell_type": "large_subsystem",
-      "severity": "warning",
-      "description": "Subsystem 'codegraph' has 211 nodes (threshold: 200)",
+      "description": "Subsystem 'codegraph' has 404 nodes (threshold: 200)",
       "suggestion": "Split subsystem 'codegraph' into smaller cohesive units",
       "node": "codegraph",
-      "metric_value": 211,
+      "metric_value": 404,
       "threshold": 200
     },
     {
-      "smell_type": "low_cohesion",
-      "severity": "info",
-      "description": "Subsystem 'codegraph' has low cohesion (0.20)",
-      "suggestion": "Review boundaries of 'codegraph' \u2014 may contain unrelated modules",
+      "smell_type": "large_subsystem",
+      "severity": "warning",
+      "description": "Subsystem 'codegraph' has 260 nodes (threshold: 200)",
+      "suggestion": "Split subsystem 'codegraph' into smaller cohesive units",
       "node": "codegraph",
-      "metric_value": 0.197,
-      "threshold": 0.3
-    },
-    {
-      "smell_type": "low_cohesion",
-      "severity": "info",
-      "description": "Subsystem 'tests' has low cohesion (0.08)",
-      "suggestion": "Review boundaries of 'tests' \u2014 may contain unrelated modules",
-      "node": "tests",
-      "metric_value": 0.08,
-      "threshold": 0.3
-    },
-    {
-      "smell_type": "low_cohesion",
-      "severity": "info",
-      "description": "Subsystem 'codegraph' has low cohesion (0.17)",
-      "suggestion": "Review boundaries of 'codegraph' \u2014 may contain unrelated modules",
-      "node": "codegraph",
-      "metric_value": 0.173,
-      "threshold": 0.3
-    },
-    {
-      "smell_type": "low_cohesion",
-      "severity": "info",
-      "description": "Subsystem 'tests' has low cohesion (0.09)",
-      "suggestion": "Review boundaries of 'tests' \u2014 may contain unrelated modules",
-      "node": "tests",
-      "metric_value": 0.086,
-      "threshold": 0.3
-    },
-    {
-      "smell_type": "low_cohesion",
-      "severity": "info",
-      "description": "Subsystem 'codegraph' has low cohesion (0.20)",
-      "suggestion": "Review boundaries of 'codegraph' \u2014 may contain unrelated modules",
-      "node": "codegraph",
-      "metric_value": 0.2,
-      "threshold": 0.3
-    },
-    {
-      "smell_type": "low_cohesion",
-      "severity": "info",
-      "description": "Subsystem 'tests' has low cohesion (0.13)",
-      "suggestion": "Review boundaries of 'tests' \u2014 may contain unrelated modules",
-      "node": "tests",
-      "metric_value": 0.134,
-      "threshold": 0.3
-    },
-    {
-      "smell_type": "low_cohesion",
-      "severity": "info",
-      "description": "Subsystem 'tests' has low cohesion (0.20)",
-      "suggestion": "Review boundaries of 'tests' \u2014 may contain unrelated modules",
-      "node": "tests",
-      "metric_value": 0.203,
-      "threshold": 0.3
-    },
-    {
-      "smell_type": "low_cohesion",
-      "severity": "info",
-      "description": "Subsystem 'codegraph' has low cohesion (0.00)",
-      "suggestion": "Review boundaries of 'codegraph' \u2014 may contain unrelated modules",
-      "node": "codegraph",
-      "threshold": 0.3
+      "metric_value": 260,
+      "threshold": 200
     }
   ],
   "suggestions": [
@@ -571,7 +545,7 @@
     {
       "action": "split_module",
       "target": "codegraph/cli.py",
-      "reason": "Module has 87 nodes, exceeding threshold of 30",
+      "reason": "Module has 95 nodes, exceeding threshold of 30",
       "priority": 3,
       "source_smell": "god_module"
     },
@@ -628,6 +602,34 @@
       "action": "split_module",
       "target": "codegraph/workflow.py",
       "reason": "Module has 40 nodes, exceeding threshold of 30",
+      "priority": 3,
+      "source_smell": "god_module"
+    },
+    {
+      "action": "split_module",
+      "target": "tests/test_api_routes.py",
+      "reason": "Module has 49 nodes, exceeding threshold of 30",
+      "priority": 3,
+      "source_smell": "god_module"
+    },
+    {
+      "action": "split_module",
+      "target": "tests/test_arch_evolution.py",
+      "reason": "Module has 55 nodes, exceeding threshold of 30",
+      "priority": 3,
+      "source_smell": "god_module"
+    },
+    {
+      "action": "split_module",
+      "target": "tests/test_arch_memory_intelligence.py",
+      "reason": "Module has 33 nodes, exceeding threshold of 30",
+      "priority": 3,
+      "source_smell": "god_module"
+    },
+    {
+      "action": "split_module",
+      "target": "tests/test_arch_policy.py",
+      "reason": "Module has 36 nodes, exceeding threshold of 30",
       "priority": 3,
       "source_smell": "god_module"
     },
@@ -697,42 +699,35 @@
     {
       "action": "extract_subsystem",
       "target": "codegraph",
-      "reason": "Subsystem has 609 nodes, exceeding threshold of 200",
+      "reason": "Subsystem has 1004 nodes, exceeding threshold of 200",
       "priority": 4,
       "source_smell": "large_subsystem"
     },
     {
       "action": "extract_subsystem",
       "target": "tests",
-      "reason": "Subsystem has 257 nodes, exceeding threshold of 200",
-      "priority": 4,
-      "source_smell": "large_subsystem"
-    },
-    {
-      "action": "extract_subsystem",
-      "target": "tests",
-      "reason": "Subsystem has 258 nodes, exceeding threshold of 200",
+      "reason": "Subsystem has 403 nodes, exceeding threshold of 200",
       "priority": 4,
       "source_smell": "large_subsystem"
     },
     {
       "action": "extract_subsystem",
       "target": "codegraph",
-      "reason": "Subsystem has 380 nodes, exceeding threshold of 200",
-      "priority": 4,
-      "source_smell": "large_subsystem"
-    },
-    {
-      "action": "extract_subsystem",
-      "target": "tests",
-      "reason": "Subsystem has 278 nodes, exceeding threshold of 200",
+      "reason": "Subsystem has 510 nodes, exceeding threshold of 200",
       "priority": 4,
       "source_smell": "large_subsystem"
     },
     {
       "action": "extract_subsystem",
       "target": "codegraph",
-      "reason": "Subsystem has 211 nodes, exceeding threshold of 200",
+      "reason": "Subsystem has 404 nodes, exceeding threshold of 200",
+      "priority": 4,
+      "source_smell": "large_subsystem"
+    },
+    {
+      "action": "extract_subsystem",
+      "target": "codegraph",
+      "reason": "Subsystem has 260 nodes, exceeding threshold of 200",
       "priority": 4,
       "source_smell": "large_subsystem"
     }

@@ -531,11 +531,11 @@
     ]
   },
   "codegraph/apply.py": {
-    "content_hash": "0058fb9d2f9d",
+    "content_hash": "37eb17aa8aa2",
     "nodes": [
       {
         "id": "codegraph/apply",
-        "body_hash": "677f3",
+        "body_hash": "d4081",
         "file": "codegraph/apply.py",
         "type": "module",
         "line": 1
@@ -576,144 +576,151 @@
         "line": 77
       },
       {
+        "id": "codegraph/apply.py::_check_plan_exists",
+        "body_hash": "6c519",
+        "file": "codegraph/apply.py",
+        "type": "function",
+        "line": 91
+      },
+      {
         "id": "codegraph/apply.py::_lock_path",
         "body_hash": "7a8ba",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 86
+        "line": 112
       },
       {
         "id": "codegraph/apply.py::_acquire_lock",
         "body_hash": "a47a4",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 90
+        "line": 116
       },
       {
         "id": "codegraph/apply.py::_release_lock",
         "body_hash": "e4df5",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 116
+        "line": 142
       },
       {
         "id": "codegraph/apply.py::_backup_dir",
         "body_hash": "abced",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 125
+        "line": 151
       },
       {
         "id": "codegraph/apply.py::_create_backups",
         "body_hash": "d622f",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 129
+        "line": 155
       },
       {
         "id": "codegraph/apply.py::_restore_backups",
         "body_hash": "493c0",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 142
+        "line": 168
       },
       {
         "id": "codegraph/apply.py::_cleanup_backups",
         "body_hash": "e6a82",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 149
+        "line": 175
       },
       {
         "id": "codegraph/apply.py::_save_undo",
         "body_hash": "06ff2",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 159
+        "line": 185
       },
       {
         "id": "codegraph/apply.py::undo_last_apply",
         "body_hash": "20249",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 181
+        "line": 207
       },
       {
         "id": "codegraph/apply.py::_check_conflicts",
         "body_hash": "b7016",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 207
+        "line": 233
       },
       {
         "id": "codegraph/apply.py::_apply_workflow_suggestions",
         "body_hash": "9527c",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 256
+        "line": 282
       },
       {
         "id": "codegraph/apply.py::_format_file",
         "body_hash": "2a179",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 285
+        "line": 311
       },
       {
         "id": "codegraph/apply.py::_update_graph1_after_apply",
         "body_hash": "f2ddf",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 308
+        "line": 334
       },
       {
         "id": "codegraph/apply.py::_validate_modified_files",
         "body_hash": "aac41",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 351
+        "line": 377
       },
       {
         "id": "codegraph/apply.py::format_apply_result",
         "body_hash": "c70e4",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 372
+        "line": 398
       },
       {
         "id": "codegraph/apply.py::_prepare_apply",
-        "body_hash": "a474c",
+        "body_hash": "c8e0a",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 433
+        "line": 459
       },
       {
         "id": "codegraph/apply.py::_dispatch_repairs",
         "body_hash": "b57c7",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 473
+        "line": 504
       },
       {
         "id": "codegraph/apply.py::_finalize_apply",
         "body_hash": "6a76d",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 521
+        "line": 552
       },
       {
         "id": "codegraph/apply.py::apply_response",
-        "body_hash": "5e87c",
+        "body_hash": "46d88",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 579
+        "line": 610
       },
       {
         "id": "codegraph/apply.py::run_apply",
-        "body_hash": "c6922",
+        "body_hash": "3ecca",
         "file": "codegraph/apply.py",
         "type": "function",
-        "line": 623
+        "line": 656
       }
     ]
   },
@@ -891,11 +898,11 @@
     ]
   },
   "codegraph/cli.py": {
-    "content_hash": "4a37a663aa07",
+    "content_hash": "740a408bf32a",
     "nodes": [
       {
         "id": "codegraph/cli",
-        "body_hash": "214e2",
+        "body_hash": "2eb6a",
         "file": "codegraph/cli.py",
         "type": "module",
         "line": 1
@@ -1049,493 +1056,514 @@
       },
       {
         "id": "codegraph/cli.py::apply",
-        "body_hash": "b661b",
+        "body_hash": "5be91",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 718
+        "line": 719
       },
       {
         "id": "codegraph/cli.py::delta",
         "body_hash": "92228",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 743
+        "line": 747
       },
       {
         "id": "codegraph/cli.py::query",
         "body_hash": "88207",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 772
+        "line": 776
       },
       {
         "id": "codegraph/cli.py::explain_cmd",
         "body_hash": "df452",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 803
+        "line": 807
       },
       {
         "id": "codegraph/cli.py::archi_test_cmd",
         "body_hash": "eb807",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 825
+        "line": 829
       },
       {
         "id": "codegraph/cli.py::test_impact_cmd",
         "body_hash": "d386a",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 880
+        "line": 884
       },
       {
         "id": "codegraph/cli.py::workflow",
         "body_hash": "9f68d",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 944
+        "line": 948
       },
       {
         "id": "codegraph/cli.py::validate",
         "body_hash": "cd236",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 994
+        "line": 998
       },
       {
         "id": "codegraph/cli.py::index_group",
         "body_hash": "06af9",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1025
+        "line": 1029
       },
       {
         "id": "codegraph/cli.py::index_rebuild",
         "body_hash": "46571",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1032
+        "line": 1036
       },
       {
         "id": "codegraph/cli.py::index_dump",
         "body_hash": "ac38b",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1053
+        "line": 1057
       },
       {
         "id": "codegraph/cli.py::index_check",
         "body_hash": "f9b54",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1070
+        "line": 1074
       },
       {
         "id": "codegraph/cli.py::schema",
         "body_hash": "8f4cb",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1094
+        "line": 1098
       },
       {
         "id": "codegraph/cli.py::diff_cmd",
         "body_hash": "befa5",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1115
+        "line": 1119
       },
       {
         "id": "codegraph/cli.py::repair_cmd",
         "body_hash": "6a4b1",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1180
+        "line": 1184
       },
       {
         "id": "codegraph/cli.py::version_cmd",
         "body_hash": "d6887",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1260
+        "line": 1264
       },
       {
         "id": "codegraph/cli.py::completion",
         "body_hash": "55368",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1280
+        "line": 1284
       },
       {
         "id": "codegraph/cli.py::cas_group",
         "body_hash": "a2571",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1297
+        "line": 1301
       },
       {
         "id": "codegraph/cli.py::cas_build",
         "body_hash": "ffe50",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1304
+        "line": 1308
       },
       {
         "id": "codegraph/cli.py::cas_verify",
         "body_hash": "93abc",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1336
+        "line": 1340
       },
       {
         "id": "codegraph/cli.py::cas_impact",
         "body_hash": "9c1e1",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1369
+        "line": 1373
       },
       {
         "id": "codegraph/cli.py::semantic_group",
         "body_hash": "e8781",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1404
+        "line": 1408
       },
       {
         "id": "codegraph/cli.py::semantic_build",
         "body_hash": "9924e",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1411
+        "line": 1415
       },
       {
         "id": "codegraph/cli.py::semantic_show",
         "body_hash": "2985a",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1448
+        "line": 1452
       },
       {
         "id": "codegraph/cli.py::semantic_summary",
         "body_hash": "41c35",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1494
+        "line": 1498
       },
       {
         "id": "codegraph/cli.py::semantic_check",
         "body_hash": "edd12",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1530
+        "line": 1534
       },
       {
         "id": "codegraph/cli.py::path_cmd",
         "body_hash": "3dc5e",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1569
+        "line": 1573
       },
       {
         "id": "codegraph/cli.py::metrics_cmd",
         "body_hash": "e39f5",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1612
+        "line": 1616
       },
       {
         "id": "codegraph/cli.py::refactor_cmd",
         "body_hash": "8898b",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1657
+        "line": 1661
       },
       {
         "id": "codegraph/cli.py::repair_plan_cmd",
         "body_hash": "cc693",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1691
+        "line": 1695
       },
       {
         "id": "codegraph/cli.py::memory_cmd",
         "body_hash": "4ef34",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1729
+        "line": 1733
       },
       {
         "id": "codegraph/cli.py::visualize_cmd",
         "body_hash": "fa549",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1766
+        "line": 1770
       },
       {
         "id": "codegraph/cli.py::subsystems_cmd",
         "body_hash": "c532d",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1812
+        "line": 1816
       },
       {
         "id": "codegraph/cli.py::health_cmd",
         "body_hash": "7cd44",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1853
+        "line": 1857
       },
       {
         "id": "codegraph/cli.py::context_cmd",
         "body_hash": "7fc35",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1900
+        "line": 1904
       },
       {
         "id": "codegraph/cli.py::simulate_cmd",
         "body_hash": "a10b8",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1936
+        "line": 1940
       },
       {
         "id": "codegraph/cli.py::arch_diff_cmd",
         "body_hash": "d116d",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 1977
+        "line": 1981
       },
       {
         "id": "codegraph/cli.py::architecture_cmd",
         "body_hash": "21ab0",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2017
+        "line": 2021
       },
       {
         "id": "codegraph/cli.py::arch_plan_cmd",
         "body_hash": "b3e6e",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2085
+        "line": 2089
       },
       {
         "id": "codegraph/cli.py::viewer_cmd",
         "body_hash": "019dd",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2142
+        "line": 2146
       },
       {
         "id": "codegraph/cli.py::architect_cmd",
         "body_hash": "3b81b",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2184
+        "line": 2188
       },
       {
         "id": "codegraph/cli.py::enrich_cmd",
         "body_hash": "4516f",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2227
+        "line": 2231
       },
       {
         "id": "codegraph/cli.py::evolve_cmd",
         "body_hash": "b6580",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2254
+        "line": 2258
       },
       {
         "id": "codegraph/cli.py::multilevel_cmd",
         "body_hash": "4d6d4",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2352
+        "line": 2356
       },
       {
         "id": "codegraph/cli.py::branch_group",
         "body_hash": "7250a",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2388
+        "line": 2392
       },
       {
         "id": "codegraph/cli.py::branch_create",
         "body_hash": "6e67a",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2397
+        "line": 2401
       },
       {
         "id": "codegraph/cli.py::branch_validate",
         "body_hash": "d0405",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2415
+        "line": 2419
       },
       {
         "id": "codegraph/cli.py::branch_compare",
         "body_hash": "72818",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2446
+        "line": 2450
       },
       {
         "id": "codegraph/cli.py::branch_merge",
         "body_hash": "e098c",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2473
+        "line": 2477
       },
       {
         "id": "codegraph/cli.py::branch_discard",
         "body_hash": "94154",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2494
+        "line": 2498
       },
       {
         "id": "codegraph/cli.py::branch_list",
         "body_hash": "f9353",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2515
+        "line": 2519
       },
       {
         "id": "codegraph/cli.py::arch_memory_cmd",
         "body_hash": "be848",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2540
+        "line": 2544
       },
       {
         "id": "codegraph/cli.py::lifecycle_group",
         "body_hash": "8e9c3",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2585
+        "line": 2589
       },
       {
         "id": "codegraph/cli.py::lifecycle_create",
         "body_hash": "baa39",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2595
+        "line": 2599
       },
       {
         "id": "codegraph/cli.py::lifecycle_split",
         "body_hash": "8d1e0",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2623
+        "line": 2627
       },
       {
         "id": "codegraph/cli.py::lifecycle_merge",
         "body_hash": "e58f1",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2652
+        "line": 2656
       },
       {
         "id": "codegraph/cli.py::lifecycle_move",
         "body_hash": "10615",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2679
+        "line": 2683
       },
       {
         "id": "codegraph/cli.py::lifecycle_generate_files",
         "body_hash": "b83d8",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2703
+        "line": 2707
       },
       {
         "id": "codegraph/cli.py::compile_cmd",
         "body_hash": "878b6",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2735
+        "line": 2739
       },
       {
         "id": "codegraph/cli.py::code_plan_cmd",
         "body_hash": "d6942",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2779
+        "line": 2783
       },
       {
         "id": "codegraph/cli.py::lock_cmd",
         "body_hash": "23ae8",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2834
+        "line": 2838
       },
       {
         "id": "codegraph/cli.py::drift_cmd",
         "body_hash": "d941f",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2890
+        "line": 2894
       },
       {
         "id": "codegraph/cli.py::copilot_context_cmd",
         "body_hash": "e0d96",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2947
+        "line": 2951
       },
       {
         "id": "codegraph/cli.py::arch_search_cmd",
         "body_hash": "d0f39",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 2980
+        "line": 2984
       },
       {
         "id": "codegraph/cli.py::arch_simulate_cmd",
         "body_hash": "88c12",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 3022
+        "line": 3026
       },
       {
         "id": "codegraph/cli.py::api_link_cmd",
         "body_hash": "ec410",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 3067
+        "line": 3071
       },
       {
         "id": "codegraph/cli.py::memory_intel_cmd",
         "body_hash": "150d2",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 3104
+        "line": 3108
       },
       {
         "id": "codegraph/cli.py::metrics_snapshot_cmd",
         "body_hash": "5daea",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 3134
+        "line": 3138
       },
       {
         "id": "codegraph/cli.py::policy_cmd",
         "body_hash": "994c7",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 3185
+        "line": 3189
       },
       {
         "id": "codegraph/cli.py::evolution_cmd",
         "body_hash": "c4b7a",
         "file": "codegraph/cli.py",
         "type": "function",
-        "line": 3261
+        "line": 3265
+      },
+      {
+        "id": "codegraph/cli.py::pre_commit_cmd",
+        "body_hash": "77af1",
+        "file": "codegraph/cli.py",
+        "type": "function",
+        "line": 3304
+      },
+      {
+        "id": "codegraph/cli.py::runtime_graph_cmd",
+        "body_hash": "2ccd7",
+        "file": "codegraph/cli.py",
+        "type": "function",
+        "line": 3345
+      },
+      {
+        "id": "codegraph/cli.py::arch_version_cmd",
+        "body_hash": "b91e9",
+        "file": "codegraph/cli.py",
+        "type": "function",
+        "line": 3385
       }
     ]
   },
@@ -18427,11 +18455,11 @@
     ]
   },
   "codegraph/architecture_compiler.py": {
-    "content_hash": "0ac61995285c",
+    "content_hash": "0121897175a9",
     "nodes": [
       {
         "id": "codegraph/architecture_compiler",
-        "body_hash": "5a8ef",
+        "body_hash": "bae07",
         "file": "codegraph/architecture_compiler.py",
         "type": "module",
         "line": 1
@@ -18547,6 +18575,13 @@
         "file": "codegraph/architecture_compiler.py",
         "type": "function",
         "line": 435
+      },
+      {
+        "id": "codegraph/architecture_compiler.py::process_evolution_proposals",
+        "body_hash": "ff871",
+        "file": "codegraph/architecture_compiler.py",
+        "type": "function",
+        "line": 466
       }
     ]
   },
@@ -18937,11 +18972,11 @@
     ]
   },
   "codegraph/copilot_context.py": {
-    "content_hash": "baf47c22a83f",
+    "content_hash": "6a36e57528e8",
     "nodes": [
       {
         "id": "codegraph/copilot_context",
-        "body_hash": "a24fb",
+        "body_hash": "c03cd",
         "file": "codegraph/copilot_context.py",
         "type": "module",
         "line": 1
@@ -18962,108 +18997,136 @@
       },
       {
         "id": "codegraph/copilot_context.py::CopilotContext",
-        "body_hash": "a1da9",
+        "body_hash": "49afc",
         "file": "codegraph/copilot_context.py",
         "type": "class",
         "line": 61
       },
       {
         "id": "codegraph/copilot_context.py::CopilotContext::to_dict",
-        "body_hash": "190cd",
+        "body_hash": "03bb0",
         "file": "codegraph/copilot_context.py",
         "type": "method",
-        "line": 80
+        "line": 86
       },
       {
         "id": "codegraph/copilot_context.py::CopilotContext::from_dict",
-        "body_hash": "41e3a",
+        "body_hash": "6d794",
         "file": "codegraph/copilot_context.py",
         "type": "method",
-        "line": 100
+        "line": 112
       },
       {
         "id": "codegraph/copilot_context.py::CopilotContext::save",
         "body_hash": "0796f",
         "file": "codegraph/copilot_context.py",
         "type": "method",
-        "line": 128
+        "line": 146
       },
       {
         "id": "codegraph/copilot_context.py::CopilotContext::load",
         "body_hash": "0b2ec",
         "file": "codegraph/copilot_context.py",
         "type": "method",
-        "line": 139
+        "line": 157
       },
       {
         "id": "codegraph/copilot_context.py::CopilotContext::format",
-        "body_hash": "aa97b",
+        "body_hash": "f2279",
         "file": "codegraph/copilot_context.py",
         "type": "method",
-        "line": 146
+        "line": 164
       },
       {
         "id": "codegraph/copilot_context.py::build_copilot_context",
-        "body_hash": "c6a54",
+        "body_hash": "3f094",
         "file": "codegraph/copilot_context.py",
         "type": "function",
-        "line": 179
+        "line": 224
       },
       {
         "id": "codegraph/copilot_context.py::_populate_architecture",
         "body_hash": "c2c1c",
         "file": "codegraph/copilot_context.py",
         "type": "function",
-        "line": 233
+        "line": 290
       },
       {
         "id": "codegraph/copilot_context.py::_populate_graph_stats",
         "body_hash": "b6b53",
         "file": "codegraph/copilot_context.py",
         "type": "function",
-        "line": 261
+        "line": 318
       },
       {
         "id": "codegraph/copilot_context.py::_populate_policy_rules",
         "body_hash": "1e9c0",
         "file": "codegraph/copilot_context.py",
         "type": "function",
-        "line": 285
+        "line": 342
       },
       {
         "id": "codegraph/copilot_context.py::_populate_tasks",
         "body_hash": "1a081",
         "file": "codegraph/copilot_context.py",
         "type": "function",
-        "line": 310
+        "line": 367
       },
       {
         "id": "codegraph/copilot_context.py::_populate_health",
         "body_hash": "ad2a2",
         "file": "codegraph/copilot_context.py",
         "type": "function",
-        "line": 331
+        "line": 388
       },
       {
         "id": "codegraph/copilot_context.py::_populate_target",
         "body_hash": "a271e",
         "file": "codegraph/copilot_context.py",
         "type": "function",
-        "line": 349
+        "line": 406
       },
       {
         "id": "codegraph/copilot_context.py::_populate_drift",
         "body_hash": "ced2a",
         "file": "codegraph/copilot_context.py",
         "type": "function",
-        "line": 369
+        "line": 426
       },
       {
         "id": "codegraph/copilot_context.py::_populate_decisions",
         "body_hash": "8323b",
         "file": "codegraph/copilot_context.py",
         "type": "function",
-        "line": 389
+        "line": 446
+      },
+      {
+        "id": "codegraph/copilot_context.py::_populate_smells",
+        "body_hash": "9cac5",
+        "file": "codegraph/copilot_context.py",
+        "type": "function",
+        "line": 470
+      },
+      {
+        "id": "codegraph/copilot_context.py::_populate_arch_policies",
+        "body_hash": "e03d1",
+        "file": "codegraph/copilot_context.py",
+        "type": "function",
+        "line": 494
+      },
+      {
+        "id": "codegraph/copilot_context.py::_populate_refactors",
+        "body_hash": "9c916",
+        "file": "codegraph/copilot_context.py",
+        "type": "function",
+        "line": 518
+      },
+      {
+        "id": "codegraph/copilot_context.py::_populate_strategy_rankings",
+        "body_hash": "531e2",
+        "file": "codegraph/copilot_context.py",
+        "type": "function",
+        "line": 540
       }
     ]
   },
@@ -21684,161 +21747,182 @@
     ]
   },
   "codegraph/arch_evolution.py": {
-    "content_hash": "31c87a9a8d33",
+    "content_hash": "83623a08fa98",
     "nodes": [
       {
         "id": "codegraph/arch_evolution",
-        "body_hash": "4e8a4",
+        "body_hash": "5a2f6",
         "file": "codegraph/arch_evolution.py",
         "type": "module",
         "line": 1
+      },
+      {
+        "id": "codegraph/arch_evolution.py::get_mutation_tier",
+        "body_hash": "ae5ad",
+        "file": "codegraph/arch_evolution.py",
+        "type": "function",
+        "line": 63
       },
       {
         "id": "codegraph/arch_evolution.py::EvolutionStage",
         "body_hash": "0fdd9",
         "file": "codegraph/arch_evolution.py",
         "type": "class",
-        "line": 38
+        "line": 74
       },
       {
         "id": "codegraph/arch_evolution.py::EvolutionStage::to_dict",
         "body_hash": "46f3e",
         "file": "codegraph/arch_evolution.py",
         "type": "method",
-        "line": 46
+        "line": 82
       },
       {
         "id": "codegraph/arch_evolution.py::EvolutionResult",
         "body_hash": "a9f47",
         "file": "codegraph/arch_evolution.py",
         "type": "class",
-        "line": 64
+        "line": 100
       },
       {
         "id": "codegraph/arch_evolution.py::EvolutionResult::to_dict",
         "body_hash": "89573",
         "file": "codegraph/arch_evolution.py",
         "type": "method",
-        "line": 79
+        "line": 115
       },
       {
         "id": "codegraph/arch_evolution.py::EvolutionResult::format",
         "body_hash": "f05e3",
         "file": "codegraph/arch_evolution.py",
         "type": "method",
-        "line": 94
+        "line": 130
       },
       {
         "id": "codegraph/arch_evolution.py::run_evolution_cycle",
-        "body_hash": "7fd1d",
+        "body_hash": "67b78",
         "file": "codegraph/arch_evolution.py",
         "type": "function",
-        "line": 134
+        "line": 170
       },
       {
         "id": "codegraph/arch_evolution.py::run_evolution",
         "body_hash": "57770",
         "file": "codegraph/arch_evolution.py",
         "type": "function",
-        "line": 363
+        "line": 454
       },
       {
         "id": "codegraph/arch_evolution.py::EvolutionReport",
         "body_hash": "4b3bf",
         "file": "codegraph/arch_evolution.py",
         "type": "class",
-        "line": 395
+        "line": 486
       },
       {
         "id": "codegraph/arch_evolution.py::EvolutionReport::to_dict",
         "body_hash": "dd8ae",
         "file": "codegraph/arch_evolution.py",
         "type": "method",
-        "line": 403
+        "line": 494
       },
       {
         "id": "codegraph/arch_evolution.py::EvolutionReport::format",
         "body_hash": "a1b4c",
         "file": "codegraph/arch_evolution.py",
         "type": "method",
-        "line": 412
+        "line": 503
       },
       {
         "id": "codegraph/arch_evolution.py::EvolutionReport::from_results",
         "body_hash": "15964",
         "file": "codegraph/arch_evolution.py",
         "type": "method",
-        "line": 427
+        "line": 518
       },
       {
         "id": "codegraph/arch_evolution.py::_run_advisor",
         "body_hash": "e1a27",
         "file": "codegraph/arch_evolution.py",
         "type": "function",
-        "line": 445
+        "line": 536
       },
       {
         "id": "codegraph/arch_evolution.py::_run_arch_search",
         "body_hash": "993dc",
         "file": "codegraph/arch_evolution.py",
         "type": "function",
-        "line": 459
+        "line": 550
       },
       {
         "id": "codegraph/arch_evolution.py::_check_policies",
         "body_hash": "96d7e",
         "file": "codegraph/arch_evolution.py",
         "type": "function",
-        "line": 474
+        "line": 565
       },
       {
         "id": "codegraph/arch_evolution.py::_get_strategy_ranking",
         "body_hash": "09179",
         "file": "codegraph/arch_evolution.py",
         "type": "function",
-        "line": 481
+        "line": 572
+      },
+      {
+        "id": "codegraph/arch_evolution.py::_rerank_with_memory",
+        "body_hash": "3d0e2",
+        "file": "codegraph/arch_evolution.py",
+        "type": "function",
+        "line": 579
       },
       {
         "id": "codegraph/arch_evolution.py::_apply_memory_boost",
         "body_hash": "e1d01",
         "file": "codegraph/arch_evolution.py",
         "type": "function",
-        "line": 488
+        "line": 615
       },
       {
         "id": "codegraph/arch_evolution.py::_record_to_memory",
         "body_hash": "3b1cc",
         "file": "codegraph/arch_evolution.py",
         "type": "function",
-        "line": 507
+        "line": 634
       },
       {
         "id": "codegraph/arch_evolution.py::_record_metrics_snapshot",
         "body_hash": "bd631",
         "file": "codegraph/arch_evolution.py",
         "type": "function",
-        "line": 524
+        "line": 651
       },
       {
         "id": "codegraph/arch_evolution.py::_skip_remaining",
         "body_hash": "2f1ee",
         "file": "codegraph/arch_evolution.py",
         "type": "function",
-        "line": 545
+        "line": 672
       },
       {
         "id": "codegraph/arch_evolution.py::_generate_evolution_recommendations",
         "body_hash": "61fed",
         "file": "codegraph/arch_evolution.py",
         "type": "function",
-        "line": 555
+        "line": 682
       },
       {
         "id": "codegraph/arch_evolution.py::save_evolution_report",
         "body_hash": "0ddc0",
         "file": "codegraph/arch_evolution.py",
         "type": "function",
-        "line": 587
+        "line": 714
+      },
+      {
+        "id": "codegraph/arch_evolution.py::_save_evolution_proposal",
+        "body_hash": "e536a",
+        "file": "codegraph/arch_evolution.py",
+        "type": "function",
+        "line": 730
       }
     ]
   },
@@ -22002,11 +22086,11 @@
     ]
   },
   "codegraph/arch_policy.py": {
-    "content_hash": "ba8fc5002d79",
+    "content_hash": "1998339762e2",
     "nodes": [
       {
         "id": "codegraph/arch_policy",
-        "body_hash": "3aa72",
+        "body_hash": "5da9f",
         "file": "codegraph/arch_policy.py",
         "type": "module",
         "line": 1
@@ -22016,163 +22100,177 @@
         "body_hash": "8474b",
         "file": "codegraph/arch_policy.py",
         "type": "class",
-        "line": 57
+        "line": 59
       },
       {
         "id": "codegraph/arch_policy.py::ArchPolicy::to_dict",
         "body_hash": "dcfdf",
         "file": "codegraph/arch_policy.py",
         "type": "method",
-        "line": 69
+        "line": 71
       },
       {
         "id": "codegraph/arch_policy.py::ArchPolicy::from_dict",
         "body_hash": "44daf",
         "file": "codegraph/arch_policy.py",
         "type": "method",
-        "line": 85
+        "line": 87
       },
       {
         "id": "codegraph/arch_policy.py::PolicyViolation",
         "body_hash": "c53d2",
         "file": "codegraph/arch_policy.py",
         "type": "class",
-        "line": 104
+        "line": 106
       },
       {
         "id": "codegraph/arch_policy.py::PolicyViolation::to_dict",
         "body_hash": "f74da",
         "file": "codegraph/arch_policy.py",
         "type": "method",
-        "line": 113
+        "line": 115
       },
       {
         "id": "codegraph/arch_policy.py::PolicyReport",
         "body_hash": "5e401",
         "file": "codegraph/arch_policy.py",
         "type": "class",
-        "line": 129
+        "line": 131
       },
       {
         "id": "codegraph/arch_policy.py::PolicyReport::to_dict",
         "body_hash": "50cf9",
         "file": "codegraph/arch_policy.py",
         "type": "method",
-        "line": 136
+        "line": 138
       },
       {
         "id": "codegraph/arch_policy.py::PolicyReport::format",
         "body_hash": "3f21a",
         "file": "codegraph/arch_policy.py",
         "type": "method",
-        "line": 148
+        "line": 150
       },
       {
         "id": "codegraph/arch_policy.py::load_policies",
         "body_hash": "4e3a3",
         "file": "codegraph/arch_policy.py",
         "type": "function",
-        "line": 175
+        "line": 177
       },
       {
         "id": "codegraph/arch_policy.py::save_policies",
         "body_hash": "d1e1b",
         "file": "codegraph/arch_policy.py",
         "type": "function",
-        "line": 184
+        "line": 186
       },
       {
         "id": "codegraph/arch_policy.py::add_policy",
         "body_hash": "d9f93",
         "file": "codegraph/arch_policy.py",
         "type": "function",
-        "line": 200
+        "line": 202
       },
       {
         "id": "codegraph/arch_policy.py::remove_policy",
         "body_hash": "4c7a8",
         "file": "codegraph/arch_policy.py",
         "type": "function",
-        "line": 235
+        "line": 237
       },
       {
         "id": "codegraph/arch_policy.py::evaluate_policies",
         "body_hash": "f6f03",
         "file": "codegraph/arch_policy.py",
         "type": "function",
-        "line": 252
+        "line": 254
       },
       {
         "id": "codegraph/arch_policy.py::_check_policy",
         "body_hash": "ca71f",
         "file": "codegraph/arch_policy.py",
         "type": "function",
-        "line": 292
+        "line": 294
       },
       {
         "id": "codegraph/arch_policy.py::_check_no_large_modules",
         "body_hash": "f9d30",
         "file": "codegraph/arch_policy.py",
         "type": "function",
-        "line": 308
+        "line": 310
       },
       {
         "id": "codegraph/arch_policy.py::_check_max_subsystem_size",
         "body_hash": "16c52",
         "file": "codegraph/arch_policy.py",
         "type": "function",
-        "line": 338
+        "line": 340
       },
       {
         "id": "codegraph/arch_policy.py::_check_score_gate",
         "body_hash": "72ff0",
         "file": "codegraph/arch_policy.py",
         "type": "function",
-        "line": 364
+        "line": 366
       },
       {
         "id": "codegraph/arch_policy.py::_check_coupling_limit",
         "body_hash": "63887",
         "file": "codegraph/arch_policy.py",
         "type": "function",
-        "line": 388
+        "line": 390
       },
       {
         "id": "codegraph/arch_policy.py::_check_frontend_backend_boundary",
         "body_hash": "b7d00",
         "file": "codegraph/arch_policy.py",
         "type": "function",
-        "line": 413
+        "line": 415
       },
       {
         "id": "codegraph/arch_policy.py::_check_no_apply_without_plan",
         "body_hash": "9eab6",
         "file": "codegraph/arch_policy.py",
         "type": "function",
-        "line": 443
+        "line": 445
+      },
+      {
+        "id": "codegraph/arch_policy.py::_check_layer_isolation",
+        "body_hash": "a3021",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 458
+      },
+      {
+        "id": "codegraph/arch_policy.py::_check_forbidden_subsystem_dep",
+        "body_hash": "6b0d5",
+        "file": "codegraph/arch_policy.py",
+        "type": "function",
+        "line": 517
       },
       {
         "id": "codegraph/arch_policy.py::init_default_policies",
         "body_hash": "8a66e",
         "file": "codegraph/arch_policy.py",
         "type": "function",
-        "line": 507
+        "line": 609
       },
       {
         "id": "codegraph/arch_policy.py::_load_json",
         "body_hash": "c527b",
         "file": "codegraph/arch_policy.py",
         "type": "function",
-        "line": 522
+        "line": 624
       }
     ]
   },
   "tests/test_arch_evolution.py": {
-    "content_hash": "b61d24a58626",
+    "content_hash": "86a1b824c3b9",
     "nodes": [
       {
         "id": "tests/test_arch_evolution",
-        "body_hash": "263f1",
+        "body_hash": "74c7e",
         "file": "tests/test_arch_evolution.py",
         "type": "module",
         "line": 1
@@ -22182,301 +22280,378 @@
         "body_hash": "6cbb2",
         "file": "tests/test_arch_evolution.py",
         "type": "class",
-        "line": 27
+        "line": 33
       },
       {
         "id": "tests/test_arch_evolution.py::TestEvolutionStage::test_basic",
         "body_hash": "96fd4",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 28
+        "line": 34
       },
       {
         "id": "tests/test_arch_evolution.py::TestEvolutionStage::test_with_details",
         "body_hash": "9f32a",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 35
+        "line": 41
       },
       {
         "id": "tests/test_arch_evolution.py::TestEvolutionResult",
         "body_hash": "c459e",
         "file": "tests/test_arch_evolution.py",
         "type": "class",
-        "line": 43
+        "line": 49
       },
       {
         "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_defaults",
         "body_hash": "3600c",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 44
+        "line": 50
       },
       {
         "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_to_dict",
         "body_hash": "43008",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 50
+        "line": 56
       },
       {
         "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_format_improved",
         "body_hash": "10e29",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 63
+        "line": 69
       },
       {
         "id": "tests/test_arch_evolution.py::TestEvolutionResult::test_format_blocked",
         "body_hash": "61ee7",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 78
+        "line": 84
       },
       {
         "id": "tests/test_arch_evolution.py::TestEvolutionReport",
         "body_hash": "f150b",
         "file": "tests/test_arch_evolution.py",
         "type": "class",
-        "line": 89
+        "line": 95
       },
       {
         "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_from_results_empty",
         "body_hash": "e5788",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 90
+        "line": 96
       },
       {
         "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_from_results_converged",
         "body_hash": "c09e7",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 95
+        "line": 101
       },
       {
         "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_to_dict",
         "body_hash": "d41b5",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 106
+        "line": 112
       },
       {
         "id": "tests/test_arch_evolution.py::TestEvolutionReport::test_format",
         "body_hash": "19d0f",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 115
+        "line": 121
       },
       {
         "id": "tests/test_arch_evolution.py::TestSkipRemaining",
         "body_hash": "bb78d",
         "file": "tests/test_arch_evolution.py",
         "type": "class",
-        "line": 129
+        "line": 135
       },
       {
         "id": "tests/test_arch_evolution.py::TestSkipRemaining::test_skips_after_named_stage",
         "body_hash": "c1a40",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 130
+        "line": 136
       },
       {
         "id": "tests/test_arch_evolution.py::TestSkipRemaining::test_does_not_skip_already_set",
         "body_hash": "b3cce",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 141
+        "line": 147
       },
       {
         "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost",
         "body_hash": "7b069",
         "file": "tests/test_arch_evolution.py",
         "type": "class",
-        "line": 152
+        "line": 158
       },
       {
         "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_ranking",
         "body_hash": "c5c29",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 153
+        "line": 159
       },
       {
         "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_boost_applied",
         "body_hash": "cd475",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 157
+        "line": 163
       },
       {
         "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_boost_low_effectiveness",
         "body_hash": "727ff",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 162
+        "line": 168
       },
       {
         "id": "tests/test_arch_evolution.py::TestApplyMemoryBoost::test_no_boost_different_strategy",
         "body_hash": "49ebf",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 167
+        "line": 173
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRerankWithMemory",
+        "body_hash": "ad1f8",
+        "file": "tests/test_arch_evolution.py",
+        "type": "class",
+        "line": 179
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRerankWithMemory::test_no_change_without_ranking",
+        "body_hash": "9a094",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 180
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRerankWithMemory::test_no_change_below_threshold",
+        "body_hash": "eb2cc",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 185
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRerankWithMemory::test_reranks_higher_effectiveness",
+        "body_hash": "275ea",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 199
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestRerankWithMemory::test_keeps_selected_when_best",
+        "body_hash": "4fe06",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 213
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers",
+        "body_hash": "c90a3",
+        "file": "tests/test_arch_evolution.py",
+        "type": "class",
+        "line": 227
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_safe_strategies",
+        "body_hash": "5a587",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 228
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_medium_strategies",
+        "body_hash": "0f7f8",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 233
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_dangerous_strategies",
+        "body_hash": "08f61",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 238
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_unknown_defaults_to_medium",
+        "body_hash": "959aa",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 243
+      },
+      {
+        "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_strategy_tiers_complete",
+        "body_hash": "378af",
+        "file": "tests/test_arch_evolution.py",
+        "type": "method",
+        "line": 246
       },
       {
         "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations",
         "body_hash": "5fe9f",
         "file": "tests/test_arch_evolution.py",
         "type": "class",
-        "line": 173
+        "line": 253
       },
       {
         "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_significant_improvement",
         "body_hash": "6c4a9",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 174
+        "line": 254
       },
       {
         "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_blocked_recommendation",
         "body_hash": "e2561",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 180
+        "line": 260
       },
       {
         "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_suggests_effective_strategy",
         "body_hash": "8ca9e",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 185
+        "line": 265
       },
       {
         "id": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations::test_no_duplicate_current_strategy",
         "body_hash": "9062e",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 194
+        "line": 274
       },
       {
         "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked",
         "body_hash": "6f333",
         "file": "tests/test_arch_evolution.py",
         "type": "class",
-        "line": 208
+        "line": 288
       },
       {
         "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_advice",
         "body_hash": "f508f",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 211
+        "line": 291
       },
       {
         "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::_make_search_result",
         "body_hash": "7f7fe",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 221
+        "line": 301
       },
       {
         "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_full_success",
         "body_hash": "5b52d",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 241
+        "line": 321
       },
       {
         "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_smells",
         "body_hash": "53fac",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 257
+        "line": 337
       },
       {
         "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_advisor_failure",
         "body_hash": "2c2a1",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 265
+        "line": 345
       },
       {
         "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_no_safe_candidate",
         "body_hash": "46b5a",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 275
+        "line": 355
       },
       {
         "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_policy_blocks",
         "body_hash": "2a749",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 289
+        "line": 369
       },
       {
         "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_score_degradation_rejected",
         "body_hash": "665a6",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 306
+        "line": 386
       },
       {
         "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_dry_run_skips_record",
         "body_hash": "a67a1",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 323
+        "line": 403
       },
       {
         "id": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked::test_simulation_unsafe",
         "body_hash": "cb161",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 340
+        "line": 420
       },
       {
         "id": "tests/test_arch_evolution.py::TestRunEvolution",
         "body_hash": "5024e",
         "file": "tests/test_arch_evolution.py",
         "type": "class",
-        "line": 352
+        "line": 432
       },
       {
         "id": "tests/test_arch_evolution.py::TestRunEvolution::test_stops_on_no_change",
         "body_hash": "a9829",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 354
+        "line": 434
       },
       {
         "id": "tests/test_arch_evolution.py::TestRunEvolution::test_multiple_cycles",
         "body_hash": "569c8",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 363
+        "line": 443
       },
       {
         "id": "tests/test_arch_evolution.py::TestRunEvolution::test_respects_max_cycles",
         "body_hash": "f5897",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 372
+        "line": 452
       },
       {
         "id": "tests/test_arch_evolution.py::TestSaveEvolutionReport",
         "body_hash": "3eeff",
         "file": "tests/test_arch_evolution.py",
         "type": "class",
-        "line": 383
+        "line": 463
       },
       {
         "id": "tests/test_arch_evolution.py::TestSaveEvolutionReport::test_save_and_load",
         "body_hash": "8ecf6",
         "file": "tests/test_arch_evolution.py",
         "type": "method",
-        "line": 384
+        "line": 464
       }
     ]
   },
@@ -22717,11 +22892,11 @@
     ]
   },
   "tests/test_arch_policy.py": {
-    "content_hash": "b2d633806947",
+    "content_hash": "e5a51cc3bb46",
     "nodes": [
       {
         "id": "tests/test_arch_policy",
-        "body_hash": "4cc51",
+        "body_hash": "1ee72",
         "file": "tests/test_arch_policy.py",
         "type": "module",
         "line": 1
@@ -22875,7 +23050,7 @@
       },
       {
         "id": "tests/test_arch_policy.py::TestEvaluatePolicies",
-        "body_hash": "85d78",
+        "body_hash": "6d380",
         "file": "tests/test_arch_policy.py",
         "type": "class",
         "line": 199
@@ -22928,6 +23103,1915 @@
         "file": "tests/test_arch_policy.py",
         "type": "method",
         "line": 245
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_layer_isolation_violation",
+        "body_hash": "73f51",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 256
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_layer_isolation_pass",
+        "body_hash": "bd6ce",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 276
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_layer_isolation_invalid_target",
+        "body_hash": "9e1df",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 295
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_forbidden_subsystem_dep_violation",
+        "body_hash": "0be0c",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 303
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_forbidden_subsystem_dep_pass",
+        "body_hash": "de6ce",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 322
+      },
+      {
+        "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_valid_policy_types_updated",
+        "body_hash": "04917",
+        "file": "tests/test_arch_policy.py",
+        "type": "method",
+        "line": 341
+      }
+    ]
+  },
+  "codegraph/arch_versioning.py": {
+    "content_hash": "46e1369e47d4",
+    "nodes": [
+      {
+        "id": "codegraph/arch_versioning",
+        "body_hash": "8f904",
+        "file": "codegraph/arch_versioning.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/arch_versioning.py::ArchVersion",
+        "body_hash": "61072",
+        "file": "codegraph/arch_versioning.py",
+        "type": "class",
+        "line": 31
+      },
+      {
+        "id": "codegraph/arch_versioning.py::ArchVersion::to_dict",
+        "body_hash": "dff57",
+        "file": "codegraph/arch_versioning.py",
+        "type": "method",
+        "line": 45
+      },
+      {
+        "id": "codegraph/arch_versioning.py::ArchVersion::from_dict",
+        "body_hash": "adb8d",
+        "file": "codegraph/arch_versioning.py",
+        "type": "method",
+        "line": 60
+      },
+      {
+        "id": "codegraph/arch_versioning.py::ArchVersionDiff",
+        "body_hash": "18591",
+        "file": "codegraph/arch_versioning.py",
+        "type": "class",
+        "line": 76
+      },
+      {
+        "id": "codegraph/arch_versioning.py::ArchVersionDiff::to_dict",
+        "body_hash": "afbfe",
+        "file": "codegraph/arch_versioning.py",
+        "type": "method",
+        "line": 89
+      },
+      {
+        "id": "codegraph/arch_versioning.py::ArchVersionDiff::format",
+        "body_hash": "08bee",
+        "file": "codegraph/arch_versioning.py",
+        "type": "method",
+        "line": 102
+      },
+      {
+        "id": "codegraph/arch_versioning.py::_versions_dir",
+        "body_hash": "feb84",
+        "file": "codegraph/arch_versioning.py",
+        "type": "function",
+        "line": 130
+      },
+      {
+        "id": "codegraph/arch_versioning.py::_load_manifest",
+        "body_hash": "eefe0",
+        "file": "codegraph/arch_versioning.py",
+        "type": "function",
+        "line": 134
+      },
+      {
+        "id": "codegraph/arch_versioning.py::_save_manifest",
+        "body_hash": "28e21",
+        "file": "codegraph/arch_versioning.py",
+        "type": "function",
+        "line": 141
+      },
+      {
+        "id": "codegraph/arch_versioning.py::save_version",
+        "body_hash": "26637",
+        "file": "codegraph/arch_versioning.py",
+        "type": "function",
+        "line": 153
+      },
+      {
+        "id": "codegraph/arch_versioning.py::list_versions",
+        "body_hash": "e1444",
+        "file": "codegraph/arch_versioning.py",
+        "type": "function",
+        "line": 206
+      },
+      {
+        "id": "codegraph/arch_versioning.py::load_version",
+        "body_hash": "eb2ec",
+        "file": "codegraph/arch_versioning.py",
+        "type": "function",
+        "line": 212
+      },
+      {
+        "id": "codegraph/arch_versioning.py::diff_versions",
+        "body_hash": "f9884",
+        "file": "codegraph/arch_versioning.py",
+        "type": "function",
+        "line": 223
+      },
+      {
+        "id": "codegraph/arch_versioning.py::rollback_version",
+        "body_hash": "3a4ca",
+        "file": "codegraph/arch_versioning.py",
+        "type": "function",
+        "line": 274
+      },
+      {
+        "id": "codegraph/arch_versioning.py::format_version_history",
+        "body_hash": "7c901",
+        "file": "codegraph/arch_versioning.py",
+        "type": "function",
+        "line": 303
+      }
+    ]
+  },
+  "codegraph/cli_groups/__init__.py": {
+    "content_hash": "4c70e33e8cf7",
+    "nodes": [
+      {
+        "id": "codegraph/cli_groups",
+        "body_hash": "5c045",
+        "file": "codegraph/cli_groups/__init__.py",
+        "type": "module",
+        "line": 1
+      }
+    ]
+  },
+  "codegraph/precommit.py": {
+    "content_hash": "b8fd5c883cfc",
+    "nodes": [
+      {
+        "id": "codegraph/precommit",
+        "body_hash": "30e1b",
+        "file": "codegraph/precommit.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/precommit.py::SimulationCheck",
+        "body_hash": "c2e2e",
+        "file": "codegraph/precommit.py",
+        "type": "class",
+        "line": 33
+      },
+      {
+        "id": "codegraph/precommit.py::SimulationCheck::to_dict",
+        "body_hash": "11e73",
+        "file": "codegraph/precommit.py",
+        "type": "method",
+        "line": 43
+      },
+      {
+        "id": "codegraph/precommit.py::PreCommitReport",
+        "body_hash": "5c5ef",
+        "file": "codegraph/precommit.py",
+        "type": "class",
+        "line": 54
+      },
+      {
+        "id": "codegraph/precommit.py::PreCommitReport::to_dict",
+        "body_hash": "bb183",
+        "file": "codegraph/precommit.py",
+        "type": "method",
+        "line": 62
+      },
+      {
+        "id": "codegraph/precommit.py::PreCommitReport::format",
+        "body_hash": "c6022",
+        "file": "codegraph/precommit.py",
+        "type": "method",
+        "line": 70
+      },
+      {
+        "id": "codegraph/precommit.py::run_pre_commit_check",
+        "body_hash": "39a5d",
+        "file": "codegraph/precommit.py",
+        "type": "function",
+        "line": 109
+      },
+      {
+        "id": "codegraph/precommit.py::_check_metric",
+        "body_hash": "8e923",
+        "file": "codegraph/precommit.py",
+        "type": "function",
+        "line": 171
+      },
+      {
+        "id": "codegraph/precommit.py::_load_baseline",
+        "body_hash": "1727c",
+        "file": "codegraph/precommit.py",
+        "type": "function",
+        "line": 207
+      },
+      {
+        "id": "codegraph/precommit.py::_save_baseline",
+        "body_hash": "2453a",
+        "file": "codegraph/precommit.py",
+        "type": "function",
+        "line": 218
+      },
+      {
+        "id": "codegraph/precommit.py::_compute_current_metrics",
+        "body_hash": "ef82f",
+        "file": "codegraph/precommit.py",
+        "type": "function",
+        "line": 228
+      }
+    ]
+  },
+  "codegraph/runtime_graph.py": {
+    "content_hash": "1cdc3ac4a13e",
+    "nodes": [
+      {
+        "id": "codegraph/runtime_graph",
+        "body_hash": "94db0",
+        "file": "codegraph/runtime_graph.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/runtime_graph.py::RuntimeEdge",
+        "body_hash": "d1c21",
+        "file": "codegraph/runtime_graph.py",
+        "type": "class",
+        "line": 36
+      },
+      {
+        "id": "codegraph/runtime_graph.py::RuntimeEdge::to_dict",
+        "body_hash": "ca40f",
+        "file": "codegraph/runtime_graph.py",
+        "type": "method",
+        "line": 45
+      },
+      {
+        "id": "codegraph/runtime_graph.py::RuntimeGraph",
+        "body_hash": "ca5a9",
+        "file": "codegraph/runtime_graph.py",
+        "type": "class",
+        "line": 58
+      },
+      {
+        "id": "codegraph/runtime_graph.py::RuntimeGraph::to_dict",
+        "body_hash": "20168",
+        "file": "codegraph/runtime_graph.py",
+        "type": "method",
+        "line": 65
+      },
+      {
+        "id": "codegraph/runtime_graph.py::RuntimeGraph::format",
+        "body_hash": "24127",
+        "file": "codegraph/runtime_graph.py",
+        "type": "method",
+        "line": 73
+      },
+      {
+        "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor",
+        "body_hash": "82ec0",
+        "file": "codegraph/runtime_graph.py",
+        "type": "class",
+        "line": 109
+      },
+      {
+        "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::__init__",
+        "body_hash": "c8a3f",
+        "file": "codegraph/runtime_graph.py",
+        "type": "method",
+        "line": 112
+      },
+      {
+        "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_source_node",
+        "body_hash": "957cb",
+        "file": "codegraph/runtime_graph.py",
+        "type": "method",
+        "line": 119
+      },
+      {
+        "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_FunctionDef",
+        "body_hash": "064dc",
+        "file": "codegraph/runtime_graph.py",
+        "type": "method",
+        "line": 126
+      },
+      {
+        "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_ClassDef",
+        "body_hash": "16b4b",
+        "file": "codegraph/runtime_graph.py",
+        "type": "method",
+        "line": 134
+      },
+      {
+        "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_Call",
+        "body_hash": "fbf90",
+        "file": "codegraph/runtime_graph.py",
+        "type": "method",
+        "line": 140
+      },
+      {
+        "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_http_call",
+        "body_hash": "7ed02",
+        "file": "codegraph/runtime_graph.py",
+        "type": "method",
+        "line": 147
+      },
+      {
+        "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_db_call",
+        "body_hash": "711e6",
+        "file": "codegraph/runtime_graph.py",
+        "type": "method",
+        "line": 172
+      },
+      {
+        "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_mq_call",
+        "body_hash": "0bcea",
+        "file": "codegraph/runtime_graph.py",
+        "type": "method",
+        "line": 200
+      },
+      {
+        "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_check_env_var",
+        "body_hash": "09464",
+        "file": "codegraph/runtime_graph.py",
+        "type": "method",
+        "line": 222
+      },
+      {
+        "id": "codegraph/runtime_graph.py::extract_runtime_edges",
+        "body_hash": "ef83a",
+        "file": "codegraph/runtime_graph.py",
+        "type": "function",
+        "line": 257
+      },
+      {
+        "id": "codegraph/runtime_graph.py::save_runtime_graph",
+        "body_hash": "80063",
+        "file": "codegraph/runtime_graph.py",
+        "type": "function",
+        "line": 303
+      },
+      {
+        "id": "codegraph/runtime_graph.py::load_runtime_graph",
+        "body_hash": "f95b0",
+        "file": "codegraph/runtime_graph.py",
+        "type": "function",
+        "line": 318
+      }
+    ]
+  },
+  "tests/test_arch_versioning.py": {
+    "content_hash": "a84910731e06",
+    "nodes": [
+      {
+        "id": "tests/test_arch_versioning",
+        "body_hash": "4e83d",
+        "file": "tests/test_arch_versioning.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "tests/test_arch_versioning.py::project_with_arch",
+        "body_hash": "2aa1a",
+        "file": "tests/test_arch_versioning.py",
+        "type": "function",
+        "line": 37
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestArchVersion",
+        "body_hash": "68eb2",
+        "file": "tests/test_arch_versioning.py",
+        "type": "class",
+        "line": 49
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestArchVersion::test_basic",
+        "body_hash": "5c535",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 50
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestArchVersion::test_from_dict",
+        "body_hash": "a7155",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 56
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestArchVersionDiff",
+        "body_hash": "77c3a",
+        "file": "tests/test_arch_versioning.py",
+        "type": "class",
+        "line": 65
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestArchVersionDiff::test_empty_diff",
+        "body_hash": "a1a41",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 66
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestArchVersionDiff::test_format",
+        "body_hash": "19a3c",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 71
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestArchVersionDiff::test_format_no_changes",
+        "body_hash": "09ad5",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 82
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestSaveVersion",
+        "body_hash": "cfe7f",
+        "file": "tests/test_arch_versioning.py",
+        "type": "class",
+        "line": 91
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestSaveVersion::test_save_creates_snapshot",
+        "body_hash": "e0a9b",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 92
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestSaveVersion::test_save_increments_version",
+        "body_hash": "1a08e",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 100
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestSaveVersion::test_save_no_system_raises",
+        "body_hash": "c50e3",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 106
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestLoadVersion",
+        "body_hash": "c2315",
+        "file": "tests/test_arch_versioning.py",
+        "type": "class",
+        "line": 111
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestLoadVersion::test_load_existing",
+        "body_hash": "1d517",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 112
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestLoadVersion::test_load_missing",
+        "body_hash": "3b297",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 118
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestListVersions",
+        "body_hash": "ce6ab",
+        "file": "tests/test_arch_versioning.py",
+        "type": "class",
+        "line": 122
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestListVersions::test_empty",
+        "body_hash": "4402a",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 123
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestListVersions::test_after_saves",
+        "body_hash": "49ef0",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 127
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestDiffVersions",
+        "body_hash": "9ba6f",
+        "file": "tests/test_arch_versioning.py",
+        "type": "class",
+        "line": 139
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestDiffVersions::test_diff_same",
+        "body_hash": "13131",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 140
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestDiffVersions::test_diff_with_changes",
+        "body_hash": "91528",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 148
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestDiffVersions::test_diff_missing_version",
+        "body_hash": "5a0ef",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 161
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestRollback",
+        "body_hash": "e297a",
+        "file": "tests/test_arch_versioning.py",
+        "type": "class",
+        "line": 168
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestRollback::test_rollback_restores",
+        "body_hash": "3f818",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 169
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestRollback::test_rollback_missing",
+        "body_hash": "4d894",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 184
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestFormatVersionHistory",
+        "body_hash": "d068d",
+        "file": "tests/test_arch_versioning.py",
+        "type": "class",
+        "line": 191
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestFormatVersionHistory::test_empty",
+        "body_hash": "eef5f",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 192
+      },
+      {
+        "id": "tests/test_arch_versioning.py::TestFormatVersionHistory::test_with_versions",
+        "body_hash": "6096a",
+        "file": "tests/test_arch_versioning.py",
+        "type": "method",
+        "line": 196
+      }
+    ]
+  },
+  "tests/test_precommit.py": {
+    "content_hash": "5c6b9329aed6",
+    "nodes": [
+      {
+        "id": "tests/test_precommit",
+        "body_hash": "ef6d7",
+        "file": "tests/test_precommit.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "tests/test_precommit.py::TestSimulationCheck",
+        "body_hash": "2a8dc",
+        "file": "tests/test_precommit.py",
+        "type": "class",
+        "line": 26
+      },
+      {
+        "id": "tests/test_precommit.py::TestSimulationCheck::test_basic",
+        "body_hash": "9a14e",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 27
+      },
+      {
+        "id": "tests/test_precommit.py::TestSimulationCheck::test_pass_status",
+        "body_hash": "d0420",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 37
+      },
+      {
+        "id": "tests/test_precommit.py::TestPreCommitReport",
+        "body_hash": "c1d80",
+        "file": "tests/test_precommit.py",
+        "type": "class",
+        "line": 45
+      },
+      {
+        "id": "tests/test_precommit.py::TestPreCommitReport::test_empty_report",
+        "body_hash": "e90ad",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 46
+      },
+      {
+        "id": "tests/test_precommit.py::TestPreCommitReport::test_with_checks",
+        "body_hash": "06bea",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 54
+      },
+      {
+        "id": "tests/test_precommit.py::TestPreCommitReport::test_format",
+        "body_hash": "dc055",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 71
+      },
+      {
+        "id": "tests/test_precommit.py::TestPreCommitReport::test_format_passed",
+        "body_hash": "29e60",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 83
+      },
+      {
+        "id": "tests/test_precommit.py::TestCheckMetric",
+        "body_hash": "fa706",
+        "file": "tests/test_precommit.py",
+        "type": "class",
+        "line": 92
+      },
+      {
+        "id": "tests/test_precommit.py::TestCheckMetric::test_no_change",
+        "body_hash": "e1a2d",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 93
+      },
+      {
+        "id": "tests/test_precommit.py::TestCheckMetric::test_worsening_blocks",
+        "body_hash": "89723",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 99
+      },
+      {
+        "id": "tests/test_precommit.py::TestCheckMetric::test_warning",
+        "body_hash": "b98d1",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 104
+      },
+      {
+        "id": "tests/test_precommit.py::TestCheckMetric::test_inverted_metric",
+        "body_hash": "02ad1",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 109
+      },
+      {
+        "id": "tests/test_precommit.py::TestCheckMetric::test_within_threshold",
+        "body_hash": "35ede",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 114
+      },
+      {
+        "id": "tests/test_precommit.py::TestBaseline",
+        "body_hash": "17f4d",
+        "file": "tests/test_precommit.py",
+        "type": "class",
+        "line": 123
+      },
+      {
+        "id": "tests/test_precommit.py::TestBaseline::test_save_and_load",
+        "body_hash": "443eb",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 124
+      },
+      {
+        "id": "tests/test_precommit.py::TestBaseline::test_load_missing",
+        "body_hash": "2aac5",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 131
+      },
+      {
+        "id": "tests/test_precommit.py::TestDefaultThresholds",
+        "body_hash": "48f8b",
+        "file": "tests/test_precommit.py",
+        "type": "class",
+        "line": 139
+      },
+      {
+        "id": "tests/test_precommit.py::TestDefaultThresholds::test_has_required_metrics",
+        "body_hash": "c9d94",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 140
+      },
+      {
+        "id": "tests/test_precommit.py::TestDefaultThresholds::test_score_is_negative",
+        "body_hash": "56635",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 145
+      },
+      {
+        "id": "tests/test_precommit.py::TestDefaultThresholds::test_coupling_is_positive",
+        "body_hash": "58765",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 148
+      },
+      {
+        "id": "tests/test_precommit.py::TestRunPreCommitCheck",
+        "body_hash": "28dcf",
+        "file": "tests/test_precommit.py",
+        "type": "class",
+        "line": 155
+      },
+      {
+        "id": "tests/test_precommit.py::TestRunPreCommitCheck::test_no_baseline_creates_one",
+        "body_hash": "3981a",
+        "file": "tests/test_precommit.py",
+        "type": "method",
+        "line": 156
+      }
+    ]
+  },
+  "tests/test_runtime_graph.py": {
+    "content_hash": "301b0ce0734e",
+    "nodes": [
+      {
+        "id": "tests/test_runtime_graph",
+        "body_hash": "36f8e",
+        "file": "tests/test_runtime_graph.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeEdge",
+        "body_hash": "4270e",
+        "file": "tests/test_runtime_graph.py",
+        "type": "class",
+        "line": 24
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeEdge::test_basic",
+        "body_hash": "a5ec8",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 25
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeEdge::test_with_details",
+        "body_hash": "18e4b",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 37
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeGraph",
+        "body_hash": "c6a66",
+        "file": "tests/test_runtime_graph.py",
+        "type": "class",
+        "line": 49
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeGraph::test_empty",
+        "body_hash": "7c2c0",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 50
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeGraph::test_format",
+        "body_hash": "b7a45",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 56
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor",
+        "body_hash": "78f29",
+        "file": "tests/test_runtime_graph.py",
+        "type": "class",
+        "line": 69
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::_visit_source",
+        "body_hash": "d2d42",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 70
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_http_get",
+        "body_hash": "1195a",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 77
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_http_post",
+        "body_hash": "9b4b6",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 88
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_db_execute",
+        "body_hash": "69925",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 96
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_db_insert",
+        "body_hash": "4bbba",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 105
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_mq_publish",
+        "body_hash": "6bd08",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 113
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_env_var_getenv",
+        "body_hash": "f1ebf",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 122
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_env_var_environ_get",
+        "body_hash": "60b72",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 132
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_dynamic_url",
+        "body_hash": "96459",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 142
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_class_method",
+        "body_hash": "4320d",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 150
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor::test_no_runtime_edges",
+        "body_hash": "7e2b7",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 159
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestExtractRuntimeEdges",
+        "body_hash": "7ce9e",
+        "file": "tests/test_runtime_graph.py",
+        "type": "class",
+        "line": 170
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestExtractRuntimeEdges::test_basic_extraction",
+        "body_hash": "55dfd",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 171
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestExtractRuntimeEdges::test_excludes_pycache",
+        "body_hash": "690ce",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 181
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestExtractRuntimeEdges::test_edge_type_counts",
+        "body_hash": "932cc",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 188
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestSaveLoadRuntimeGraph",
+        "body_hash": "94eea",
+        "file": "tests/test_runtime_graph.py",
+        "type": "class",
+        "line": 203
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestSaveLoadRuntimeGraph::test_roundtrip",
+        "body_hash": "e1e0c",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 204
+      },
+      {
+        "id": "tests/test_runtime_graph.py::TestSaveLoadRuntimeGraph::test_load_missing",
+        "body_hash": "9b2e8",
+        "file": "tests/test_runtime_graph.py",
+        "type": "method",
+        "line": 223
+      }
+    ]
+  },
+  "codegraph/architecture_objectives.py": {
+    "content_hash": "e816f3fb897c",
+    "nodes": [
+      {
+        "id": "codegraph/architecture_objectives",
+        "body_hash": "8a5a6",
+        "file": "codegraph/architecture_objectives.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/architecture_objectives.py::ObjectiveWeights",
+        "body_hash": "6ca2e",
+        "file": "codegraph/architecture_objectives.py",
+        "type": "class",
+        "line": 33
+      },
+      {
+        "id": "codegraph/architecture_objectives.py::ObjectiveWeights::to_dict",
+        "body_hash": "d1a01",
+        "file": "codegraph/architecture_objectives.py",
+        "type": "method",
+        "line": 41
+      },
+      {
+        "id": "codegraph/architecture_objectives.py::ObjectiveWeights::from_dict",
+        "body_hash": "1e7f1",
+        "file": "codegraph/architecture_objectives.py",
+        "type": "method",
+        "line": 50
+      },
+      {
+        "id": "codegraph/architecture_objectives.py::ObjectiveWeights::normalize",
+        "body_hash": "b92ab",
+        "file": "codegraph/architecture_objectives.py",
+        "type": "method",
+        "line": 58
+      },
+      {
+        "id": "codegraph/architecture_objectives.py::CandidateMetrics",
+        "body_hash": "0d434",
+        "file": "codegraph/architecture_objectives.py",
+        "type": "class",
+        "line": 73
+      },
+      {
+        "id": "codegraph/architecture_objectives.py::CandidateMetrics::to_dict",
+        "body_hash": "9c9ca",
+        "file": "codegraph/architecture_objectives.py",
+        "type": "method",
+        "line": 81
+      },
+      {
+        "id": "codegraph/architecture_objectives.py::ScoredCandidate",
+        "body_hash": "ccce8",
+        "file": "codegraph/architecture_objectives.py",
+        "type": "class",
+        "line": 91
+      },
+      {
+        "id": "codegraph/architecture_objectives.py::ScoredCandidate::to_dict",
+        "body_hash": "29862",
+        "file": "codegraph/architecture_objectives.py",
+        "type": "method",
+        "line": 101
+      },
+      {
+        "id": "codegraph/architecture_objectives.py::compute_objective_score",
+        "body_hash": "f8b6e",
+        "file": "codegraph/architecture_objectives.py",
+        "type": "function",
+        "line": 113
+      },
+      {
+        "id": "codegraph/architecture_objectives.py::score_candidates",
+        "body_hash": "71552",
+        "file": "codegraph/architecture_objectives.py",
+        "type": "function",
+        "line": 139
+      },
+      {
+        "id": "codegraph/architecture_objectives.py::reject_degrading_candidates",
+        "body_hash": "65583",
+        "file": "codegraph/architecture_objectives.py",
+        "type": "function",
+        "line": 209
+      },
+      {
+        "id": "codegraph/architecture_objectives.py::adjust_weights_from_memory",
+        "body_hash": "3a1dc",
+        "file": "codegraph/architecture_objectives.py",
+        "type": "function",
+        "line": 228
+      }
+    ]
+  },
+  "codegraph/cli/__init__.py": {
+    "content_hash": "a85f7fae5ec8",
+    "nodes": [
+      {
+        "id": "codegraph/cli",
+        "body_hash": "b2add",
+        "file": "codegraph/cli/__init__.py",
+        "type": "module",
+        "line": 1
+      }
+    ]
+  },
+  "codegraph/cli/architecture.py": {
+    "content_hash": "c0d659d97255",
+    "nodes": [
+      {
+        "id": "codegraph/cli/architecture",
+        "body_hash": "c02ec",
+        "file": "codegraph/cli/architecture.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/cli/architecture.py::architect_cmd",
+        "body_hash": "c0221",
+        "file": "codegraph/cli/architecture.py",
+        "type": "function",
+        "line": 31
+      },
+      {
+        "id": "codegraph/cli/architecture.py::architecture_cmd",
+        "body_hash": "672ca",
+        "file": "codegraph/cli/architecture.py",
+        "type": "function",
+        "line": 79
+      },
+      {
+        "id": "codegraph/cli/architecture.py::arch_plan_cmd",
+        "body_hash": "80cbf",
+        "file": "codegraph/cli/architecture.py",
+        "type": "function",
+        "line": 154
+      },
+      {
+        "id": "codegraph/cli/architecture.py::viewer_cmd",
+        "body_hash": "894d4",
+        "file": "codegraph/cli/architecture.py",
+        "type": "function",
+        "line": 210
+      },
+      {
+        "id": "codegraph/cli/architecture.py::compile_cmd",
+        "body_hash": "a5a36",
+        "file": "codegraph/cli/architecture.py",
+        "type": "function",
+        "line": 247
+      },
+      {
+        "id": "codegraph/cli/architecture.py::code_plan_cmd",
+        "body_hash": "c92e2",
+        "file": "codegraph/cli/architecture.py",
+        "type": "function",
+        "line": 292
+      },
+      {
+        "id": "codegraph/cli/architecture.py::arch_diff_cmd",
+        "body_hash": "8d4f5",
+        "file": "codegraph/cli/architecture.py",
+        "type": "function",
+        "line": 347
+      },
+      {
+        "id": "codegraph/cli/architecture.py::arch_memory_cmd",
+        "body_hash": "dc93b",
+        "file": "codegraph/cli/architecture.py",
+        "type": "function",
+        "line": 395
+      },
+      {
+        "id": "codegraph/cli/architecture.py::enrich_cmd",
+        "body_hash": "959f1",
+        "file": "codegraph/cli/architecture.py",
+        "type": "function",
+        "line": 435
+      },
+      {
+        "id": "codegraph/cli/architecture.py::arch_search_cmd",
+        "body_hash": "d2814",
+        "file": "codegraph/cli/architecture.py",
+        "type": "function",
+        "line": 461
+      },
+      {
+        "id": "codegraph/cli/architecture.py::arch_simulate_cmd",
+        "body_hash": "1bb0d",
+        "file": "codegraph/cli/architecture.py",
+        "type": "function",
+        "line": 492
+      },
+      {
+        "id": "codegraph/cli/architecture.py::arch_version_cmd",
+        "body_hash": "71d31",
+        "file": "codegraph/cli/architecture.py",
+        "type": "function",
+        "line": 543
+      }
+    ]
+  },
+  "codegraph/cli/core.py": {
+    "content_hash": "f9d3b61a4e92",
+    "nodes": [
+      {
+        "id": "codegraph/cli/core",
+        "body_hash": "5e736",
+        "file": "codegraph/cli/core.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/cli/core.py::handle_error",
+        "body_hash": "0cc1c",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 37
+      },
+      {
+        "id": "codegraph/cli/core.py::timed_command",
+        "body_hash": "d2587",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 67
+      },
+      {
+        "id": "codegraph/cli/core.py::timed_command::wrapper",
+        "body_hash": "6ee84",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 71
+      },
+      {
+        "id": "codegraph/cli/core.py::main",
+        "body_hash": "ffff0",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 90
+      },
+      {
+        "id": "codegraph/cli/core.py::init",
+        "body_hash": "3c57b",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 102
+      },
+      {
+        "id": "codegraph/cli/core.py::status",
+        "body_hash": "3bb4b",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 114
+      },
+      {
+        "id": "codegraph/cli/core.py::build",
+        "body_hash": "42764",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 200
+      },
+      {
+        "id": "codegraph/cli/core.py::prune",
+        "body_hash": "e64c3",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 296
+      },
+      {
+        "id": "codegraph/cli/core.py::intent_missing",
+        "body_hash": "05dfb",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 321
+      },
+      {
+        "id": "codegraph/cli/core.py::intent_apply",
+        "body_hash": "34466",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 349
+      },
+      {
+        "id": "codegraph/cli/core.py::annotate",
+        "body_hash": "e4c7b",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 394
+      },
+      {
+        "id": "codegraph/cli/core.py::delta",
+        "body_hash": "92228",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 446
+      },
+      {
+        "id": "codegraph/cli/core.py::query",
+        "body_hash": "88207",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 475
+      },
+      {
+        "id": "codegraph/cli/core.py::explain_cmd",
+        "body_hash": "df452",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 506
+      },
+      {
+        "id": "codegraph/cli/core.py::workflow",
+        "body_hash": "9f68d",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 533
+      },
+      {
+        "id": "codegraph/cli/core.py::validate",
+        "body_hash": "cd236",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 584
+      },
+      {
+        "id": "codegraph/cli/core.py::index_group",
+        "body_hash": "06af9",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 616
+      },
+      {
+        "id": "codegraph/cli/core.py::index_rebuild",
+        "body_hash": "46571",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 623
+      },
+      {
+        "id": "codegraph/cli/core.py::index_dump",
+        "body_hash": "ac38b",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 644
+      },
+      {
+        "id": "codegraph/cli/core.py::index_check",
+        "body_hash": "f9b54",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 661
+      },
+      {
+        "id": "codegraph/cli/core.py::schema",
+        "body_hash": "8f4cb",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 685
+      },
+      {
+        "id": "codegraph/cli/core.py::diff_cmd",
+        "body_hash": "befa5",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 707
+      },
+      {
+        "id": "codegraph/cli/core.py::version_cmd",
+        "body_hash": "d6887",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 770
+      },
+      {
+        "id": "codegraph/cli/core.py::completion",
+        "body_hash": "55368",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 791
+      },
+      {
+        "id": "codegraph/cli/core.py::cas_group",
+        "body_hash": "a2571",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 810
+      },
+      {
+        "id": "codegraph/cli/core.py::cas_build",
+        "body_hash": "ffe50",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 817
+      },
+      {
+        "id": "codegraph/cli/core.py::cas_verify",
+        "body_hash": "93abc",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 849
+      },
+      {
+        "id": "codegraph/cli/core.py::cas_impact",
+        "body_hash": "9c1e1",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 882
+      },
+      {
+        "id": "codegraph/cli/core.py::semantic_group",
+        "body_hash": "e8781",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 919
+      },
+      {
+        "id": "codegraph/cli/core.py::semantic_build",
+        "body_hash": "9924e",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 926
+      },
+      {
+        "id": "codegraph/cli/core.py::semantic_show",
+        "body_hash": "2985a",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 963
+      },
+      {
+        "id": "codegraph/cli/core.py::semantic_summary",
+        "body_hash": "41c35",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 1009
+      },
+      {
+        "id": "codegraph/cli/core.py::semantic_check",
+        "body_hash": "edd12",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 1045
+      },
+      {
+        "id": "codegraph/cli/core.py::path_cmd",
+        "body_hash": "3dc5e",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 1085
+      },
+      {
+        "id": "codegraph/cli/core.py::visualize_cmd",
+        "body_hash": "fa549",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 1135
+      },
+      {
+        "id": "codegraph/cli/core.py::context_cmd",
+        "body_hash": "7fc35",
+        "file": "codegraph/cli/core.py",
+        "type": "function",
+        "line": 1181
+      }
+    ]
+  },
+  "codegraph/cli/governance.py": {
+    "content_hash": "2f38754dad8e",
+    "nodes": [
+      {
+        "id": "codegraph/cli/governance",
+        "body_hash": "53d73",
+        "file": "codegraph/cli/governance.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/cli/governance.py::suggest_group",
+        "body_hash": "f389f",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 20
+      },
+      {
+        "id": "codegraph/cli/governance.py::suggest_add",
+        "body_hash": "2d11b",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 41
+      },
+      {
+        "id": "codegraph/cli/governance.py::suggest_remove",
+        "body_hash": "92c31",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 67
+      },
+      {
+        "id": "codegraph/cli/governance.py::suggest_list",
+        "body_hash": "be31c",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 86
+      },
+      {
+        "id": "codegraph/cli/governance.py::suggest_validate",
+        "body_hash": "b201c",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 104
+      },
+      {
+        "id": "codegraph/cli/governance.py::suggest_diff",
+        "body_hash": "739a3",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 138
+      },
+      {
+        "id": "codegraph/cli/governance.py::suggest_stats",
+        "body_hash": "9bf23",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 162
+      },
+      {
+        "id": "codegraph/cli/governance.py::suggest_import_template",
+        "body_hash": "377f3",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 187
+      },
+      {
+        "id": "codegraph/cli/governance.py::analyze_cmd",
+        "body_hash": "63b4c",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 210
+      },
+      {
+        "id": "codegraph/cli/governance.py::tasks",
+        "body_hash": "a23c8",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 231
+      },
+      {
+        "id": "codegraph/cli/governance.py::apply",
+        "body_hash": "0af00",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 301
+      },
+      {
+        "id": "codegraph/cli/governance.py::policy_cmd",
+        "body_hash": "fa733",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 339
+      },
+      {
+        "id": "codegraph/cli/governance.py::lock_cmd",
+        "body_hash": "f5b68",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 408
+      },
+      {
+        "id": "codegraph/cli/governance.py::drift_cmd",
+        "body_hash": "d11ae",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 462
+      },
+      {
+        "id": "codegraph/cli/governance.py::repair_cmd",
+        "body_hash": "72325",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 519
+      },
+      {
+        "id": "codegraph/cli/governance.py::repair_plan_cmd",
+        "body_hash": "1871d",
+        "file": "codegraph/cli/governance.py",
+        "type": "function",
+        "line": 579
+      }
+    ]
+  },
+  "codegraph/cli/intelligence.py": {
+    "content_hash": "02ad9e4b229d",
+    "nodes": [
+      {
+        "id": "codegraph/cli/intelligence",
+        "body_hash": "24077",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::evolution_cmd",
+        "body_hash": "1254e",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 28
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::evolve_cmd",
+        "body_hash": "d3d46",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 68
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::memory_intel_cmd",
+        "body_hash": "fbb1d",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 158
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::metrics_snapshot_cmd",
+        "body_hash": "b568b",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 189
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::copilot_context_cmd",
+        "body_hash": "d524f",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 226
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::health_cmd",
+        "body_hash": "8fb80",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 255
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::multilevel_cmd",
+        "body_hash": "3192a",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 290
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::memory_cmd",
+        "body_hash": "0da66",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 329
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::subsystems_cmd",
+        "body_hash": "01100",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 361
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::metrics_cmd",
+        "body_hash": "f75dd",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 394
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::refactor_cmd",
+        "body_hash": "6740a",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 422
+      }
+    ]
+  },
+  "codegraph/cli/runtime.py": {
+    "content_hash": "b65ad800c4c8",
+    "nodes": [
+      {
+        "id": "codegraph/cli/runtime",
+        "body_hash": "e0ec3",
+        "file": "codegraph/cli/runtime.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/cli/runtime.py::archi_test_cmd",
+        "body_hash": "f5ce6",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 27
+      },
+      {
+        "id": "codegraph/cli/runtime.py::test_impact_cmd",
+        "body_hash": "51176",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 83
+      },
+      {
+        "id": "codegraph/cli/runtime.py::simulate_cmd",
+        "body_hash": "6f1de",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 140
+      },
+      {
+        "id": "codegraph/cli/runtime.py::api_link_cmd",
+        "body_hash": "8b8cb",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 179
+      },
+      {
+        "id": "codegraph/cli/runtime.py::pre_commit_cmd",
+        "body_hash": "1ac43",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 216
+      },
+      {
+        "id": "codegraph/cli/runtime.py::runtime_graph_cmd",
+        "body_hash": "39391",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 257
+      },
+      {
+        "id": "codegraph/cli/runtime.py::branch_group",
+        "body_hash": "5f5cd",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 285
+      },
+      {
+        "id": "codegraph/cli/runtime.py::branch_create",
+        "body_hash": "6e67a",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 294
+      },
+      {
+        "id": "codegraph/cli/runtime.py::branch_validate",
+        "body_hash": "d0405",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 312
+      },
+      {
+        "id": "codegraph/cli/runtime.py::branch_compare",
+        "body_hash": "72818",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 343
+      },
+      {
+        "id": "codegraph/cli/runtime.py::branch_merge",
+        "body_hash": "e098c",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 370
+      },
+      {
+        "id": "codegraph/cli/runtime.py::branch_discard",
+        "body_hash": "94154",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 391
+      },
+      {
+        "id": "codegraph/cli/runtime.py::branch_list",
+        "body_hash": "f9353",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 412
+      },
+      {
+        "id": "codegraph/cli/runtime.py::lifecycle_group",
+        "body_hash": "4ad62",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 432
+      },
+      {
+        "id": "codegraph/cli/runtime.py::lifecycle_create",
+        "body_hash": "baa39",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 442
+      },
+      {
+        "id": "codegraph/cli/runtime.py::lifecycle_split",
+        "body_hash": "8d1e0",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 470
+      },
+      {
+        "id": "codegraph/cli/runtime.py::lifecycle_merge",
+        "body_hash": "e58f1",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 499
+      },
+      {
+        "id": "codegraph/cli/runtime.py::lifecycle_move",
+        "body_hash": "10615",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 526
+      },
+      {
+        "id": "codegraph/cli/runtime.py::lifecycle_generate_files",
+        "body_hash": "b83d8",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 550
+      }
+    ]
+  },
+  "codegraph/evolution_proposals.py": {
+    "content_hash": "03cedbfe76f9",
+    "nodes": [
+      {
+        "id": "codegraph/evolution_proposals",
+        "body_hash": "89e9c",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "module",
+        "line": 1
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::EvolutionProposal",
+        "body_hash": "1ffa0",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "class",
+        "line": 34
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::EvolutionProposal::to_dict",
+        "body_hash": "e1c25",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "method",
+        "line": 48
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::EvolutionProposal::from_dict",
+        "body_hash": "7c427",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "method",
+        "line": 63
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::EvolutionProposal::format",
+        "body_hash": "b3d6f",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "method",
+        "line": 77
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::ProposalStore",
+        "body_hash": "390d8",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "class",
+        "line": 91
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::ProposalStore::pending",
+        "body_hash": "54c42",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "method",
+        "line": 96
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::ProposalStore::add",
+        "body_hash": "e21a6",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "method",
+        "line": 99
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::ProposalStore::accept",
+        "body_hash": "544f7",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "method",
+        "line": 102
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::ProposalStore::reject",
+        "body_hash": "53913",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "method",
+        "line": 109
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::ProposalStore::to_dict",
+        "body_hash": "dd898",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "method",
+        "line": 117
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::ProposalStore::from_dict",
+        "body_hash": "94537",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "method",
+        "line": 123
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::ProposalStore::format",
+        "body_hash": "f163a",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "method",
+        "line": 128
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::_proposals_path",
+        "body_hash": "6291f",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "function",
+        "line": 140
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::load_proposals",
+        "body_hash": "817cb",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "function",
+        "line": 144
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::save_proposals",
+        "body_hash": "e4d2e",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "function",
+        "line": 153
+      },
+      {
+        "id": "codegraph/evolution_proposals.py::create_proposal_from_evolution",
+        "body_hash": "d7121",
+        "file": "codegraph/evolution_proposals.py",
+        "type": "function",
+        "line": 165
       }
     ]
   }

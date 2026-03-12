@@ -24,6 +24,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+from codegraph.architecture_objectives import (
+    ObjectiveWeights,
+    adjust_weights_from_memory,
+    compute_objective_score,
+    CandidateMetrics,
+    score_candidates,
+    reject_degrading_candidates,
+)
 from codegraph.logging_config import get_logger
 
 logger = get_logger("arch_evolution")
@@ -354,9 +362,36 @@ def run_evolution_cycle(
     simulate_stage.details = f"Predicted score: {predicted_score:.3f}"
     simulate_stage.metrics = {"predicted_score": predicted_score}
 
-    # ── Stage 6: Select ──────────────────────────────────────────
+    # ── Stage 6: Select (objective-scored) ────────────────────────
     select_stage = EvolutionStage(name="select", status="running")
     result.stages.append(select_stage)
+
+    # Compute objective-based scoring
+    weights = ObjectiveWeights()
+    if strategy_ranking:
+        weights = adjust_weights_from_memory(weights, strategy_ranking)
+
+    raw_cycles = advice.get("cycles", 0)
+    n_cycles = len(raw_cycles) if isinstance(raw_cycles, list) else int(raw_cycles)
+    baseline_metrics = {
+        "score": score,
+        "coupling": advice.get("coupling", 0.0),
+        "cycles": n_cycles,
+    }
+    scored = score_candidates(candidates, baseline_metrics, weights)
+    scored = reject_degrading_candidates(scored, score)
+
+    obj_score = 0.0
+    if scored:
+        # Use objective score from the best candidate matching selection
+        for sc in scored:
+            if sc.strategy == selected.get("strategy", ""):
+                obj_score = sc.objective_score
+                select_stage.metrics = sc.to_dict()
+                break
+        else:
+            obj_score = scored[0].objective_score
+            select_stage.metrics = scored[0].to_dict()
 
     # Boost candidates that match historically effective strategies
     boosted = _apply_memory_boost(selected, strategy_ranking)
@@ -380,7 +415,7 @@ def run_evolution_cycle(
     select_stage.status = "passed"
     select_stage.details = (
         f"Accepted: {result.selected_strategy} "
-        f"(Δ={result.score_delta:+.3f})"
+        f"(Δ={result.score_delta:+.3f}, obj={obj_score:.3f})"
     )
     if boosted:
         select_stage.details += " [memory-boosted]"
@@ -393,8 +428,9 @@ def run_evolution_cycle(
         try:
             _record_to_memory(project_root, result)
             _record_metrics_snapshot(project_root, advice, "evolution")
+            _save_evolution_proposal(project_root, result)
             record_stage.status = "passed"
-            record_stage.details = "Decision + metrics recorded"
+            record_stage.details = "Decision + metrics + proposal recorded"
         except Exception as exc:
             record_stage.status = "failed"
             record_stage.details = str(exc)
@@ -691,3 +727,24 @@ def save_evolution_report(
     )
     logger.info("Saved evolution report: %d cycles", len(report.cycles))
     return path
+
+
+def _save_evolution_proposal(
+    project_root: Path,
+    result: EvolutionResult,
+) -> None:
+    """Persist selected candidate as a proposal for the compiler to review."""
+    from codegraph.evolution_proposals import (
+        create_proposal_from_evolution,
+        load_proposals,
+        save_proposals,
+    )
+
+    proposal = create_proposal_from_evolution(result.to_dict(), result.cycle)
+    if proposal is None:
+        return
+
+    store = load_proposals(project_root)
+    store.add(proposal)
+    save_proposals(project_root, store)
+    logger.info("Saved evolution proposal: %s", proposal.proposal_id)

@@ -427,6 +427,26 @@
             "save_evolution_report"
           ],
           "description": "Closed-loop architecture evolution engine. Detect-mutate-evaluate-simulate-select-record-learn pipeline."
+        },
+        {
+          "name": "evolution_proposals",
+          "module": "codegraph/evolution_proposals.py",
+          "functions": [
+            "ProposalStore",
+            "create_proposal_from_evolution"
+          ],
+          "description": "Proposal storage layer between evolution engine and architecture compiler."
+        },
+        {
+          "name": "architecture_objectives",
+          "module": "codegraph/architecture_objectives.py",
+          "functions": [
+            "compute_objective_score",
+            "score_candidates",
+            "reject_degrading_candidates",
+            "adjust_weights_from_memory"
+          ],
+          "description": "Goal-directed architecture scoring. Composite objective function for ranking evolution candidates."
         }
       ],
       "edges": [
@@ -481,6 +501,14 @@
         {
           "source": "arch_memory_intelligence",
           "target": "arch_health"
+        },
+        {
+          "source": "arch_evolution",
+          "target": "evolution_proposals"
+        },
+        {
+          "source": "arch_evolution",
+          "target": "architecture_objectives"
         }
       ]
     },
@@ -679,18 +707,84 @@
       "description": "Top-level CLI orchestrator. Dispatches all user commands to appropriate subsystems via lazy imports. The only module permitted to depend on all other subsystems.",
       "components": [
         {
-          "name": "cli",
-          "module": "codegraph/cli.py",
+          "name": "cli_core",
+          "module": "codegraph/cli/core.py",
           "functions": [
             "main",
             "build",
-            "analyze",
+            "query",
+            "status",
+            "init_cmd",
+            "delta"
+          ],
+          "description": "CLI entry point and foundation commands. Registers all sub-module commands."
+        },
+        {
+          "name": "cli_architecture",
+          "module": "codegraph/cli/architecture.py",
+          "functions": [
+            "architect_cmd",
+            "architecture_cmd",
+            "compile_cmd",
+            "arch_search_cmd",
+            "arch_simulate_cmd"
+          ],
+          "description": "Architecture analysis and planning CLI commands."
+        },
+        {
+          "name": "cli_governance",
+          "module": "codegraph/cli/governance.py",
+          "functions": [
+            "analyze_cmd",
             "tasks",
             "apply",
-            "query",
-            "status"
+            "lock_cmd",
+            "drift_cmd",
+            "suggest_group"
           ],
-          "description": "Click CLI entry point. Dispatches to all subsystem commands via lazy imports inside command functions."
+          "description": "Governance enforcement CLI commands: analyze, apply, policy, suggest."
+        },
+        {
+          "name": "cli_intelligence",
+          "module": "codegraph/cli/intelligence.py",
+          "functions": [
+            "evolution_cmd",
+            "evolve_cmd",
+            "health_cmd",
+            "memory_intel_cmd",
+            "metrics_cmd"
+          ],
+          "description": "Intelligence layer CLI commands: evolution, health, memory, metrics."
+        },
+        {
+          "name": "cli_runtime",
+          "module": "codegraph/cli/runtime.py",
+          "functions": [
+            "simulate_cmd",
+            "pre_commit_cmd",
+            "runtime_graph_cmd",
+            "branch_group",
+            "lifecycle_group"
+          ],
+          "description": "Runtime and lifecycle CLI commands: simulate, pre-commit, branch, lifecycle."
+        }
+      ],
+      "edges": [
+        {
+          "source": "cli_core",
+          "target": "cli_architecture"
+        },
+        {
+          "source": "cli_core",
+          "target": "cli_governance"
+        },
+        {
+          "source": "cli_core",
+          "target": "cli_intelligence"
+        },
+        {
+          "source": "cli_core",
+          "target": "cli_runtime"
         }
       ]
     }
