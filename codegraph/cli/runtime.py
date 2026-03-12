@@ -2,7 +2,7 @@
 
 Commands: archi-test, test-impact, simulate, api-link, runtime-graph,
 pre-commit.
-Groups: branch, lifecycle.
+Groups: branch, lifecycle, cas.
 """
 
 from __future__ import annotations
@@ -569,6 +569,113 @@ def lifecycle_generate_files(ctx: click.Context) -> None:
     click.echo(f"Generated {len(paths)} subsystem files.")
 
 
+# ── CAS commands ──────────────────────────────────────────────────────
+
+@click.group("cas")
+def cas_group() -> None:
+    """Manage the Content Addressed Store (CAS) graph."""
+
+
+@cas_group.command("build")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def cas_build(ctx: click.Context, json_output: bool) -> None:
+    """Compute dependency hashes for all nodes."""
+    import json as _json
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    from codegraph.cas import build_dependency_hashes, save_hash_snapshot
+    from codegraph.extractor import load_graph0, save_graph0
+    from codegraph.workflow import load_workflow
+    from codegraph.storage import get_graph_version
+
+    graph0 = load_graph0(root)
+    workflow = load_workflow(root)
+    hashes = build_dependency_hashes(graph0, workflow)
+    graph0.update_dependency_hashes(hashes)
+    save_graph0(graph0, root)
+    version = get_graph_version(root)
+    save_hash_snapshot(hashes, root, version)
+
+    if json_output:
+        click.echo(_json.dumps({"nodes_hashed": len(hashes)}, indent=2))
+    else:
+        click.echo(f"Computed dependency hashes for {len(hashes)} nodes.")
+
+
+@cas_group.command("verify")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def cas_verify(ctx: click.Context, json_output: bool) -> None:
+    """Verify CAS hash integrity."""
+    import json as _json
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    from codegraph.cas import verify_cas_integrity
+    from codegraph.extractor import load_graph0
+    from codegraph.workflow import load_workflow
+
+    graph0 = load_graph0(root)
+    workflow = load_workflow(root)
+    result = verify_cas_integrity(graph0, workflow)
+
+    if json_output:
+        click.echo(_json.dumps(result.to_dict(), indent=2))
+    elif result.passed:
+        click.echo(f"CAS integrity OK \u2014 {result.checked} nodes verified.")
+    else:
+        click.echo(f"CAS integrity FAILED \u2014 {len(result.mismatches)} mismatch(es)")
+        for nid, (stored, computed) in list(result.mismatches.items())[:10]:
+            click.echo(f"  {nid}: stored={stored[:12]}\u2026 computed={computed[:12]}\u2026")
+        sys.exit(EXIT_VALIDATION_FAIL)
+
+
+@cas_group.command("impact")
+@click.argument("node_id")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def cas_impact(ctx: click.Context, node_id: str, json_output: bool) -> None:
+    """Show what would be affected if a node changed."""
+    import json as _json
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    from codegraph.cas import explain_cas
+    from codegraph.extractor import load_graph0
+    from codegraph.workflow import load_workflow
+
+    graph0 = load_graph0(root)
+    workflow = load_workflow(root)
+    info = explain_cas(node_id, graph0, workflow)
+
+    if json_output:
+        click.echo(_json.dumps(info.to_dict(), indent=2))
+    else:
+        click.echo(f"Node: {info.node_id}")
+        click.echo(f"Body hash:       {info.body_hash[:16]}\u2026" if info.body_hash else "Body hash: N/A")
+        click.echo(f"Dependency hash: {info.dependency_hash[:16]}\u2026" if info.dependency_hash else "Dependency hash: not computed")
+        click.echo(f"Direct callees:  {len(info.direct_callees)}")
+        click.echo(f"Direct callers:  {len(info.direct_callers)}")
+        click.echo(f"Would invalidate: {info.transitive_dependents_count} node(s)")
+        if info.would_invalidate:
+            for dep in info.would_invalidate[:10]:
+                click.echo(f"  \u2192 {dep}")
+
+
 # ── Registration ──────────────────────────────────────────────────────
 
 COMMANDS = [
@@ -583,4 +690,5 @@ COMMANDS = [
 GROUPS = [
     branch_group,
     lifecycle_group,
+    cas_group,
 ]

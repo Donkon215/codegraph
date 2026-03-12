@@ -24424,11 +24424,11 @@
     ]
   },
   "codegraph/cli/core.py": {
-    "content_hash": "f9d3b61a4e92",
+    "content_hash": "5a9c83717abb",
     "nodes": [
       {
         "id": "codegraph/cli/core",
-        "body_hash": "5e736",
+        "body_hash": "592dc",
         "file": "codegraph/cli/core.py",
         "type": "module",
         "line": 1
@@ -24600,90 +24600,6 @@
         "file": "codegraph/cli/core.py",
         "type": "function",
         "line": 791
-      },
-      {
-        "id": "codegraph/cli/core.py::cas_group",
-        "body_hash": "a2571",
-        "file": "codegraph/cli/core.py",
-        "type": "function",
-        "line": 810
-      },
-      {
-        "id": "codegraph/cli/core.py::cas_build",
-        "body_hash": "ffe50",
-        "file": "codegraph/cli/core.py",
-        "type": "function",
-        "line": 817
-      },
-      {
-        "id": "codegraph/cli/core.py::cas_verify",
-        "body_hash": "93abc",
-        "file": "codegraph/cli/core.py",
-        "type": "function",
-        "line": 849
-      },
-      {
-        "id": "codegraph/cli/core.py::cas_impact",
-        "body_hash": "9c1e1",
-        "file": "codegraph/cli/core.py",
-        "type": "function",
-        "line": 882
-      },
-      {
-        "id": "codegraph/cli/core.py::semantic_group",
-        "body_hash": "e8781",
-        "file": "codegraph/cli/core.py",
-        "type": "function",
-        "line": 919
-      },
-      {
-        "id": "codegraph/cli/core.py::semantic_build",
-        "body_hash": "9924e",
-        "file": "codegraph/cli/core.py",
-        "type": "function",
-        "line": 926
-      },
-      {
-        "id": "codegraph/cli/core.py::semantic_show",
-        "body_hash": "2985a",
-        "file": "codegraph/cli/core.py",
-        "type": "function",
-        "line": 963
-      },
-      {
-        "id": "codegraph/cli/core.py::semantic_summary",
-        "body_hash": "41c35",
-        "file": "codegraph/cli/core.py",
-        "type": "function",
-        "line": 1009
-      },
-      {
-        "id": "codegraph/cli/core.py::semantic_check",
-        "body_hash": "edd12",
-        "file": "codegraph/cli/core.py",
-        "type": "function",
-        "line": 1045
-      },
-      {
-        "id": "codegraph/cli/core.py::path_cmd",
-        "body_hash": "3dc5e",
-        "file": "codegraph/cli/core.py",
-        "type": "function",
-        "line": 1085
-      },
-      {
-        "id": "codegraph/cli/core.py::visualize_cmd",
-        "body_hash": "fa549",
-        "file": "codegraph/cli/core.py",
-        "type": "function",
-        "line": 1135
-      },
-      {
-        "id": "codegraph/cli/core.py::context_cmd",
-        "body_hash": "7fc35",
-        "file": "codegraph/cli/core.py",
-        "type": "function",
-        "line": 1181
       }
     ]
   },
@@ -24847,11 +24763,11 @@
     ]
   },
   "codegraph/cli/intelligence.py": {
-    "content_hash": "02ad9e4b229d",
+    "content_hash": "d9c52696c7a6",
     "nodes": [
       {
         "id": "codegraph/cli/intelligence",
-        "body_hash": "24077",
+        "body_hash": "55fc2",
         "file": "codegraph/cli/intelligence.py",
         "type": "module",
         "line": 1
@@ -24861,86 +24777,142 @@
         "body_hash": "1254e",
         "file": "codegraph/cli/intelligence.py",
         "type": "function",
-        "line": 28
+        "line": 30
       },
       {
         "id": "codegraph/cli/intelligence.py::evolve_cmd",
         "body_hash": "d3d46",
         "file": "codegraph/cli/intelligence.py",
         "type": "function",
-        "line": 68
+        "line": 70
       },
       {
         "id": "codegraph/cli/intelligence.py::memory_intel_cmd",
         "body_hash": "fbb1d",
         "file": "codegraph/cli/intelligence.py",
         "type": "function",
-        "line": 158
+        "line": 160
       },
       {
         "id": "codegraph/cli/intelligence.py::metrics_snapshot_cmd",
         "body_hash": "b568b",
         "file": "codegraph/cli/intelligence.py",
         "type": "function",
-        "line": 189
+        "line": 191
       },
       {
         "id": "codegraph/cli/intelligence.py::copilot_context_cmd",
         "body_hash": "d524f",
         "file": "codegraph/cli/intelligence.py",
         "type": "function",
-        "line": 226
+        "line": 228
       },
       {
         "id": "codegraph/cli/intelligence.py::health_cmd",
         "body_hash": "8fb80",
         "file": "codegraph/cli/intelligence.py",
         "type": "function",
-        "line": 255
+        "line": 257
       },
       {
         "id": "codegraph/cli/intelligence.py::multilevel_cmd",
         "body_hash": "3192a",
         "file": "codegraph/cli/intelligence.py",
         "type": "function",
-        "line": 290
+        "line": 292
       },
       {
         "id": "codegraph/cli/intelligence.py::memory_cmd",
         "body_hash": "0da66",
         "file": "codegraph/cli/intelligence.py",
         "type": "function",
-        "line": 329
+        "line": 331
       },
       {
         "id": "codegraph/cli/intelligence.py::subsystems_cmd",
         "body_hash": "01100",
         "file": "codegraph/cli/intelligence.py",
         "type": "function",
-        "line": 361
+        "line": 363
       },
       {
         "id": "codegraph/cli/intelligence.py::metrics_cmd",
         "body_hash": "f75dd",
         "file": "codegraph/cli/intelligence.py",
         "type": "function",
-        "line": 394
+        "line": 396
       },
       {
         "id": "codegraph/cli/intelligence.py::refactor_cmd",
         "body_hash": "6740a",
         "file": "codegraph/cli/intelligence.py",
         "type": "function",
-        "line": 422
+        "line": 424
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::semantic_group",
+        "body_hash": "5f097",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 470
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::semantic_build",
+        "body_hash": "9924e",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 477
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::semantic_show",
+        "body_hash": "2985a",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 514
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::semantic_summary",
+        "body_hash": "41c35",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 560
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::semantic_check",
+        "body_hash": "edd12",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 596
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::path_cmd",
+        "body_hash": "e81ad",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 636
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::visualize_cmd",
+        "body_hash": "650e5",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 686
+      },
+      {
+        "id": "codegraph/cli/intelligence.py::context_cmd",
+        "body_hash": "08fe4",
+        "file": "codegraph/cli/intelligence.py",
+        "type": "function",
+        "line": 732
       }
     ]
   },
   "codegraph/cli/runtime.py": {
-    "content_hash": "b65ad800c4c8",
+    "content_hash": "3f8ca96e25bd",
     "nodes": [
       {
         "id": "codegraph/cli/runtime",
-        "body_hash": "e0ec3",
+        "body_hash": "33ce2",
         "file": "codegraph/cli/runtime.py",
         "type": "module",
         "line": 1
@@ -25077,6 +25049,34 @@
         "file": "codegraph/cli/runtime.py",
         "type": "function",
         "line": 550
+      },
+      {
+        "id": "codegraph/cli/runtime.py::cas_group",
+        "body_hash": "ee2b2",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 575
+      },
+      {
+        "id": "codegraph/cli/runtime.py::cas_build",
+        "body_hash": "ffe50",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 582
+      },
+      {
+        "id": "codegraph/cli/runtime.py::cas_verify",
+        "body_hash": "93abc",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 614
+      },
+      {
+        "id": "codegraph/cli/runtime.py::cas_impact",
+        "body_hash": "9c1e1",
+        "file": "codegraph/cli/runtime.py",
+        "type": "function",
+        "line": 647
       }
     ]
   },
