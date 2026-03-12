@@ -452,6 +452,10 @@ def link_api_routes(
             report.endpoints.extend(extract_python_endpoints(fp, project_root))
         elif fp.suffix in (".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs"):
             report.api_calls.extend(extract_js_api_calls(fp, project_root))
+            # Also detect Express.js backend endpoints
+            report.endpoints.extend(
+                _extract_express_api_endpoints(fp, project_root)
+            )
 
     # Build endpoint index: normalized_path → list of endpoints
     endpoint_index: Dict[str, List[ApiEndpoint]] = {}
@@ -589,3 +593,25 @@ def _should_skip(fp: Path, project_root: Path) -> bool:
         "dist", "build", ".tox", ".eggs", "venv", ".venv",
     }
     return bool(skip_dirs.intersection(parts))
+
+
+def _extract_express_api_endpoints(
+    file_path: Path,
+    project_root: Path,
+) -> List[ApiEndpoint]:
+    """Extract Express.js route definitions as ApiEndpoint objects."""
+    from codegraph.extractors.javascript import JavaScriptExtractor
+
+    extractor = JavaScriptExtractor(project_root)
+    raw = extractor.extract_express_endpoints(file_path)
+    return [
+        ApiEndpoint(
+            path=_normalize_path(ep["path"]),
+            method=ep["method"],
+            handler_node=ep["handler_node"],
+            file=ep["file"],
+            line=ep["line"],
+            framework="express",
+        )
+        for ep in raw
+    ]
