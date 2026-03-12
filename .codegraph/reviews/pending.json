@@ -16798,5 +16798,89 @@
     "reason": "__init__ appears as orphan because Python class instantiation does not produce an explicit call edge; it is invoked indirectly by setup() when registering the extractor",
     "timestamp": "2026-03-11T15:52:36Z",
     "target": null
+  },
+  {
+    "node": "codegraph/arch_diff.py::_find_sccs::strongconnect",
+    "reason": "Internal closure - naturally orphan in static analysis",
+    "timestamp": "2026-03-12T20:03:46Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_score.py::_count_cycles::strongconnect",
+    "reason": "Internal closure - naturally orphan in static analysis",
+    "timestamp": "2026-03-12T20:03:46Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_simulator.py::_count_subsystem_cycles::strongconnect",
+    "reason": "Internal closure - naturally orphan in static analysis",
+    "timestamp": "2026-03-12T20:03:46Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/core.py::timed_command::wrapper",
+    "reason": "Internal closure - naturally orphan in static analysis",
+    "timestamp": "2026-03-12T20:03:46Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extraction_types.py::ImportInfo::resolved_name",
+    "reason": "New code - verify integration into callers",
+    "timestamp": "2026-03-12T20:03:46Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/simulator.py::_find_cycles_in_adj::strongconnect",
+    "reason": "Internal closure - naturally orphan in static analysis",
+    "timestamp": "2026-03-12T20:03:46Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_diff.py::_find_sccs::strongconnect",
+    "reason": "Internal closure - naturally orphan in static analysis",
+    "timestamp": "2026-03-12T20:03:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_score.py::_count_cycles::strongconnect",
+    "reason": "Internal closure - naturally orphan in static analysis",
+    "timestamp": "2026-03-12T20:03:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_simulator.py::_count_subsystem_cycles::strongconnect",
+    "reason": "Internal closure - naturally orphan in static analysis",
+    "timestamp": "2026-03-12T20:03:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/core.py::timed_command::wrapper",
+    "reason": "Internal closure - naturally orphan in static analysis",
+    "timestamp": "2026-03-12T20:03:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extraction_types.py::ImportInfo::resolved_name",
+    "reason": "New code - verify integration into callers",
+    "timestamp": "2026-03-12T20:03:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/simulator.py::_find_cycles_in_adj::strongconnect",
+    "reason": "Internal closure - naturally orphan in static analysis",
+    "timestamp": "2026-03-12T20:03:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::__init__",
+    "reason": "Correctly has no super().__init__() call; ast.NodeVisitor requires no explicit init. Static graph false positive - constructor calls appear on the class node, not __init__ method node.",
+    "timestamp": "2026-03-12T20:08:26Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::__init__",
+    "reason": "Correctly has no super().__init__() call; ast.NodeVisitor requires no explicit init. Static graph false positive - constructor calls appear on the class node, not __init__ method node.",
+    "timestamp": "2026-03-12T20:08:32Z",
+    "target": null
   }
 ]

@@ -1,12 +1,12 @@
 {
-  "cycle": 13,
-  "graph_version": 68,
-  "intents": [
+  "cycle": 4,
+  "graph_version": 78,
+  "intents": [],
+  "repairs": [
     {
-      "node": "codegraph/simulator",
-      "intent": "architecture simulation engine with cycle detection, forbidden path checking, layer validation, subsystem constraint enforcement, coupling analysis, and blast radius computation. Classifies as SAFE, LOW_RISK, MEDIUM_RISK, HIGH_RISK, or BLOCKED.",
-      "tags": []
+      "node": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::__init__",
+      "action": "flag_for_human_review",
+      "reason": "Correctly has no super().__init__() call; ast.NodeVisitor requires no explicit init. Static graph false positive - constructor calls appear on the class node, not __init__ method node."
     }
-  ],
-  "repairs": []
+  ]
 }
