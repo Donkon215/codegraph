@@ -1,6 +1,6 @@
 {
-  "cycle": 10,
-  "graph_version": 58,
+  "cycle": 11,
+  "graph_version": 66,
   "intents": [
     {
       "node": "codegraph/arch_memory_intelligence.py::MetricsSnapshot",
@@ -259,8 +259,119 @@
       "intent": "Save multi-cycle evolution report to planning directory as JSON"
     },
     {
+      "node": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::__init__",
+      "intent": "Initialize RuntimeEdgeVisitor AST visitor with source file path, empty runtime edges list, and current function/class scope trackers",
+      "tags": []
+    },
+    {
+      "node": "codegraph/apply",
+      "intent": "repair action execution system with planning gate enforcement. Coordinates version validation, lock acquisition, backup creation, repair dispatch, and finalization phases for safely applying agent response JSON to source code",
+      "tags": []
+    },
+    {
+      "node": "codegraph/apply.py::_prepare_apply",
+      "intent": "validate graph version, enforce planning gate when repairs are present, acquire file lock, collect files to modify, check for uncommitted conflicts, and create file backups before applying repairs",
+      "tags": []
+    },
+    {
+      "node": "codegraph/arch_evolution.py::run_evolution_cycle",
+      "intent": "run one full evolution cycle: detect smells via architecture advisor, consult architecture memory for past strategy effectiveness, generate mutation candidates, evaluate candidates against policies, simulate impact of best candidate, select the safest improvement, and record the decision to memory",
+      "tags": []
+    },
+    {
+      "node": "codegraph/architecture_compiler",
+      "intent": "intent-to-architecture compiler. Converts high-level text intents into concrete architecture changes — new subsystems, components, edges, and constraints — bridging human intent and machine-readable architecture plans",
+      "tags": []
+    },
+    {
       "node": "codegraph/cli",
-      "intent": "CLI entry point with commands for build, analyze, tasks, apply, query, explain, suggest, architect, compile, code-plan, repair-plan, arch-plan, arch-search, arch-simulate, api-link, memory-intel, metrics-snapshot, policy, evolution, viewer, drift, lock, and copilot-context."
+      "intent": "CLI package entry point for codegraph. Re-exports main from codegraph.cli.core. Commands split across submodules: core (build/analyze/query/explain), architecture, governance, intelligence (semantic/path/visualize/context), and runtime (cas/testing/lifecycle)",
+      "tags": ["entry_point"]
+    },
+    {
+      "node": "codegraph/copilot_context",
+      "intent": "Copilot context generator module. Assembles comprehensive context from .codegraph files (architecture, policy rules, tasks, health, target, drift, decisions) to give Copilot complete architecture visibility before making decisions",
+      "tags": []
+    },
+    {
+      "node": "codegraph/copilot_context.py::CopilotContext",
+      "intent": "complete context package for Copilot decision-making. Holds subsystems, constraints, policy rules, active tasks, health/target/drift summaries, architecture smells, recommended refactors, and strategy rankings",
+      "tags": []
+    },
+    {
+      "node": "codegraph/copilot_context.py::CopilotContext::format",
+      "intent": "format CopilotContext as human-readable text showing graph stats, subsystem map with allowed/forbidden dependencies, architecture smells, active policies, recommended refactors, and strategy rankings",
+      "tags": []
+    },
+    {
+      "node": "codegraph/copilot_context.py::CopilotContext::from_dict",
+      "intent": "deserialize CopilotContext from dictionary, reconstructing subsystems, constraints, policy rules, active tasks, health/target/drift summaries, architecture metrics, and strategy rankings",
+      "tags": []
+    },
+    {
+      "node": "codegraph/copilot_context.py::CopilotContext::to_dict",
+      "intent": "serialize CopilotContext to dictionary with graph stats, architecture definition, smells, active policies, policy rules, tasks, health, target, drift, recent decisions, recommended refactors, and strategy rankings",
+      "tags": []
+    },
+    {
+      "node": "codegraph/copilot_context.py::build_copilot_context",
+      "intent": "build comprehensive Copilot context from .codegraph data. Reads architecture definition, graph stats, policy rules, active tasks, health summary, target architecture, drift status, and recent decisions. Silently skips missing files.",
+      "tags": []
+    },
+    {
+      "node": "codegraph/extractors/api_routes",
+      "intent": "cross-language API endpoint linker. Detects HTTP endpoints in Python backends (FastAPI, Flask, Django REST, Starlette) and API calls in JS/TS frontends (fetch, axios, XHR), creating cross-language WorkflowEdge objects for full-stack architecture visibility",
+      "tags": []
+    },
+    {
+      "node": "codegraph/extractors/api_routes.py::link_api_routes",
+      "intent": "scan Python backend files for HTTP route decorators and JS/TS frontend files for API call patterns, match them by URL path, and create cross-language WorkflowEdge objects linking frontend callers to backend handlers",
+      "tags": []
+    },
+    {
+      "node": "codegraph/extractors/javascript",
+      "intent": "JavaScript/TypeScript/React extractor using regex-based analysis without external dependencies. Handles .js/.jsx/.ts/.tsx/.mjs/.cjs files. Extracts functions, arrow functions, class methods, TypeScript interfaces, JSX component usage, React hooks, dynamic imports, Express endpoints, and intra-file call edges",
+      "tags": []
+    },
+    {
+      "node": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "intent": "language extractor plugin for JavaScript, TypeScript, and React source files. Produces Graph0Node and WorkflowEdge objects using regex-based analysis with no external AST parser dependencies",
+      "tags": []
+    },
+    {
+      "node": "codegraph/extractors/javascript.py::_extract_js_edges",
+      "intent": "extract import-type WorkflowEdge objects from JS/TS source by parsing import/require statements and resolving relative import paths to actual file locations in the project",
+      "tags": []
+    },
+    {
+      "node": "codegraph/extractors/javascript.py::_extract_js_file",
+      "intent": "parse a JS/TS source file using regex patterns to produce Graph0Node objects for function declarations, arrow functions, class methods, React components, hooks, and TypeScript interfaces",
+      "tags": []
+    },
+    {
+      "node": "codegraph/simulator",
+      "intent": "change simulation engine. Tests proposed dependency graph modifications for newly introduced cycles, forbidden path violations, layer boundary violations, and subsystem constraint failures using a virtual adjacency snapshot. Provides blast radius analysis and coupling impact scoring without modifying real data",
+      "tags": []
+    },
+    {
+      "node": "codegraph/simulator.py::SimulationResult",
+      "intent": "result of a simulation run containing proposed changes list, violations list, safety flag, risk level (safe/low/medium/high), coupling delta, blast radius node count, and improvement suggestions",
+      "tags": []
+    },
+    {
+      "node": "codegraph/simulator.py::SimulationResult::format",
+      "intent": "format SimulationResult as human-readable text showing risk level, change and violation counts, blast radius, new cycle count, improvement suggestions, and violation details with severity",
+      "tags": []
+    },
+    {
+      "node": "codegraph/simulator.py::SimulationResult::to_dict",
+      "intent": "serialize SimulationResult to dictionary with safe flag, risk level, changes, violations, new cycle count, coupling delta, blast radius, improvements list, and summary text",
+      "tags": []
+    },
+    {
+      "node": "codegraph/simulator.py::simulate_changes",
+      "intent": "simulate proposed graph changes on a virtual adjacency snapshot built from the index. Checks for newly introduced cycles, forbidden path pattern violations, layer boundary violations, and subsystem constraint failures. Returns SimulationResult with risk level, blast radius, and coupling impact",
+      "tags": []
     }
   ],
   "repairs": []

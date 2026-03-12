@@ -1,7 +1,7 @@
 {
   "format_version": 1,
-  "graph_version": 65,
-  "extracted_at": "2026-03-12T17:13:33Z",
+  "graph_version": 67,
+  "extracted_at": "2026-03-12T17:34:47Z",
   "source_files": [
     "benchmarks/benchmark_build.py",
     "benchmarks/benchmark_query.py",
