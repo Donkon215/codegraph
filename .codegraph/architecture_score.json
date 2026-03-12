@@ -1,0 +1,29 @@
+{
+  "score": 0.435,
+  "grade": "F",
+  "metrics": {
+    "modularity": 0.3341,
+    "subsystem_isolation": 0.5758,
+    "coupling": 0.6659,
+    "fanout_penalty": 0.56,
+    "cycle_penalty": 0.4,
+    "max_fan_out": 22.0,
+    "cycle_count": 3.0
+  },
+  "subsystem_scores": {
+    "core_engine": 0.6185,
+    "semantics": 0.6377,
+    "query": 0.729,
+    "infrastructure": 0.9101,
+    "models": 0.7377,
+    "architecture_memory": 1.0,
+    "intelligence": 0.8571,
+    "cli": 0.1333,
+    "governance": 0.5436
+  },
+  "metadata": {
+    "total_nodes": 3570,
+    "total_edges": 4157,
+    "subsystem_count": 9
+  }
+}

@@ -7056,6 +7056,14 @@
       "intent_timestamp": "2026-03-12T04:54:14Z"
     },
     {
+      "id": "codegraph/cli/intelligence.py::context_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T17:13:33Z"
+    },
+    {
       "id": "codegraph/cli/intelligence.py::copilot_context_cmd",
       "intent": "",
       "layer": 3,
@@ -7128,6 +7136,14 @@
       "intent_timestamp": "2026-03-12T04:54:14Z"
     },
     {
+      "id": "codegraph/cli/intelligence.py::path_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T17:13:33Z"
+    },
+    {
       "id": "codegraph/cli/intelligence.py::refactor_cmd",
       "intent": "",
       "layer": 3,
@@ -7136,12 +7152,60 @@
       "intent_timestamp": "2026-03-12T04:54:14Z"
     },
     {
+      "id": "codegraph/cli/intelligence.py::semantic_build",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T17:13:33Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::semantic_check",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T17:13:33Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::semantic_group",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T17:13:33Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::semantic_show",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T17:13:33Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::semantic_summary",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T17:13:33Z"
+    },
+    {
       "id": "codegraph/cli/intelligence.py::subsystems_cmd",
       "intent": "",
       "layer": 3,
       "intent_author": "",
       "intent_version": 0,
       "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/intelligence.py::visualize_cmd",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T17:13:33Z"
     },
     {
       "id": "codegraph/cli/runtime",
@@ -7222,6 +7286,38 @@
       "intent_author": "",
       "intent_version": 0,
       "intent_timestamp": "2026-03-12T04:54:14Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::cas_build",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T17:13:33Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::cas_group",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T17:13:33Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::cas_impact",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T17:13:33Z"
+    },
+    {
+      "id": "codegraph/cli/runtime.py::cas_verify",
+      "intent": "",
+      "layer": 3,
+      "intent_author": "",
+      "intent_version": 0,
+      "intent_timestamp": "2026-03-12T17:13:33Z"
     },
     {
       "id": "codegraph/cli/runtime.py::lifecycle_create",

@@ -1,7 +1,9 @@
 """codegraph.cli.intelligence — Intelligence CLI commands.
 
 Commands: evolution, evolve, memory-intel, metrics-snapshot,
-copilot-context, health, multilevel, memory, subsystems, metrics, refactor.
+copilot-context, health, multilevel, memory, subsystems, metrics, refactor,
+path, visualize, context.
+Groups: semantic.
 """
 
 from __future__ import annotations
@@ -12,7 +14,7 @@ from pathlib import Path
 import click
 
 from codegraph.config import find_project_root
-from codegraph.cli.core import handle_error, timed_command, EXIT_ERROR
+from codegraph.cli.core import handle_error, timed_command, EXIT_ERROR, EXIT_VALIDATION_FAIL
 
 
 # ── Evolution Engine ──────────────────────────────────────────────────
@@ -462,6 +464,302 @@ def refactor_cmd(ctx: click.Context, json_output: bool,
                     click.echo("No god modules found.")
 
 
+# ── Semantic commands ────────────────────────────────────────────────
+
+@click.group("semantic")
+def semantic_group() -> None:
+    """Manage the Graph_2 semantic behavior layer."""
+
+
+@semantic_group.command("build")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def semantic_build(ctx: click.Context, json_output: bool) -> None:
+    """Extract semantic behaviors from all project code."""
+    import json as _json
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    from codegraph.extractor import load_graph0
+    from codegraph.semantics import build_graph2, save_graph2
+
+    graph0 = load_graph0(root)
+    graph2 = build_graph2(graph0, root)
+    save_graph2(graph2, root)
+
+    if json_output:
+        summary = graph2.get_behavior_summary()
+        click.echo(_json.dumps(summary, indent=2))
+    else:
+        click.echo(f"Extracted semantics for {len(graph2.nodes)} nodes.")
+        summary = graph2.get_behavior_summary()
+        if summary.get("action_types"):
+            click.echo("  Actions: " + ", ".join(
+                f"{k}={v}" for k, v in sorted(summary["action_types"].items())
+            ))
+        if summary.get("side_effect_types"):
+            click.echo("  Side effects: " + ", ".join(
+                f"{k}={v}" for k, v in sorted(summary["side_effect_types"].items())
+            ))
+
+
+@semantic_group.command("show")
+@click.argument("node_id")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def semantic_show(ctx: click.Context, node_id: str, json_output: bool) -> None:
+    """Show semantic behavior for a specific node."""
+    import json as _json
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    from codegraph.semantics import load_graph2
+
+    graph2 = load_graph2(root)
+    node = graph2.get_node(node_id)
+
+    if node is None:
+        click.echo(f"No semantic data for node: {node_id}", err=True)
+        sys.exit(EXIT_ERROR)
+
+    if json_output:
+        click.echo(_json.dumps(node.to_dict(), indent=2))
+    else:
+        click.echo(f"Node: {node.id}")
+        if node.actions:
+            click.echo("  Actions:")
+            for a in node.actions:
+                click.echo(f"    - {a.verb} {a.object} ({a.action_type.value})")
+        if node.guards:
+            click.echo("  Guards:")
+            for g in node.guards:
+                click.echo(f"    - {g.condition}" + (f" → raises {g.raises}" if g.raises else ""))
+        if node.side_effects:
+            click.echo("  Side effects:")
+            for se in node.side_effects:
+                click.echo(f"    - {se.effect_type.value}: {se.target or se.description}")
+        if node.data_flow:
+            click.echo(f"  Inputs:  {', '.join(node.data_flow.inputs)}")
+            click.echo(f"  Outputs: {', '.join(node.data_flow.outputs)}")
+        if node.domain_tags:
+            click.echo(f"  Domain tags: {', '.join(node.domain_tags)}")
+        click.echo(f"  Confidence: {node.confidence:.0%}")
+
+
+@semantic_group.command("summary")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def semantic_summary(ctx: click.Context, json_output: bool) -> None:
+    """Show behavior summary statistics."""
+    import json as _json
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    from codegraph.semantics import load_graph2
+
+    graph2 = load_graph2(root)
+    summary = graph2.get_behavior_summary()
+
+    if json_output:
+        click.echo(_json.dumps(summary, indent=2))
+    else:
+        click.echo(f"Semantic nodes: {summary['total_nodes']}")
+        if summary.get("action_types"):
+            click.echo("\nAction types:")
+            for k, v in sorted(summary["action_types"].items(), key=lambda x: -x[1]):
+                click.echo(f"  {k}: {v}")
+        if summary.get("side_effect_types"):
+            click.echo("\nSide effect types:")
+            for k, v in sorted(summary["side_effect_types"].items(), key=lambda x: -x[1]):
+                click.echo(f"  {k}: {v}")
+        if summary.get("domain_tags"):
+            click.echo("\nDomain tags:")
+            for k, v in sorted(summary["domain_tags"].items(), key=lambda x: -x[1]):
+                click.echo(f"  {k}: {v}")
+
+
+@semantic_group.command("check")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def semantic_check(ctx: click.Context, json_output: bool) -> None:
+    """Run semantic policy checks (DB writes without guards, etc.)."""
+    import json as _json
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    from codegraph.extractor import load_graph0
+    from codegraph.workflow import load_workflow
+    from codegraph.semantics import load_graph2, evaluate_semantic_rules_impl
+
+    graph0 = load_graph0(root)
+    workflow = load_workflow(root)
+    graph2 = load_graph2(root)
+
+    violations = evaluate_semantic_rules_impl(graph2, graph0, workflow)
+
+    if json_output:
+        click.echo(_json.dumps(violations, indent=2))
+    elif not violations:
+        click.echo("No semantic policy violations found.")
+    else:
+        click.echo(f"{len(violations)} semantic violation(s):")
+        for v in violations:
+            sev = v.get("severity", "info")
+            click.echo(f"  [{sev}] {v.get('rule', '?')}: {v.get('message', '')}")
+
+
+# ── Path query ────────────────────────────────────────────────────────
+
+@click.command("path")
+@click.argument("expression")
+@click.option("--max-depth", type=int, default=20, help="Maximum path depth.")
+@click.option("--max-paths", type=int, default=10, help="Maximum paths to find.")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.option("--forbidden", is_flag=True, help="Check as forbidden path (violation if path exists).")
+@click.pass_context
+def path_cmd(ctx: click.Context, expression: str, max_depth: int,
+             max_paths: int, json_output: bool, forbidden: bool) -> None:
+    """Query paths between node patterns (e.g. 'api/* -> database/*')."""
+    import json as _json
+    from codegraph.path_query import find_pattern_paths, check_forbidden_path
+    from codegraph.index import IndexStore
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        click.echo(str(exc), err=True)
+        sys.exit(EXIT_ERROR)
+
+    if " -> " not in expression:
+        click.echo("Error: Expression must be 'source_pattern -> target_pattern'", err=True)
+        sys.exit(EXIT_ERROR)
+
+    parts = expression.split(" -> ", 1)
+    source_pat = parts[0].strip()
+    target_pat = parts[1].strip()
+
+    with IndexStore(root) as index:
+        if forbidden:
+            result = check_forbidden_path(source_pat, target_pat, index, max_depth=max_depth)
+        else:
+            result = find_pattern_paths(source_pat, target_pat, index,
+                                        max_depth=max_depth, max_paths=max_paths)
+
+    if json_output:
+        click.echo(_json.dumps(result.to_dict(), indent=2))
+    else:
+        click.echo(result.format())
+        if forbidden and result.violation:
+            click.echo(click.style("VIOLATION: Forbidden path exists!", fg="red"))
+            sys.exit(EXIT_VALIDATION_FAIL)
+
+
+# ── Visualize ─────────────────────────────────────────────────────────
+
+@click.command("visualize")
+@click.option("--format", "fmt", default="html",
+              type=click.Choice(["json", "mermaid", "html"]),
+              help="Output format.")
+@click.option("--output", "-o", default=None, type=click.Path(),
+              help="Output file path.")
+@click.option("--filter", "filter_file", default=None,
+              help="Filter to nodes from matching files (glob).")
+@click.option("--max-nodes", type=int, default=300,
+              help="Maximum number of nodes to include.")
+@click.pass_context
+def visualize_cmd(ctx: click.Context, fmt: str, output: str | None,
+                  filter_file: str | None, max_nodes: int) -> None:
+    """Export the graph for visualization."""
+    from codegraph.visualization import save_visualization, export_mermaid, export_html_report, build_vis_graph
+    from codegraph.extractor import load_graph0
+    from codegraph.annotator import load_graph1
+    from codegraph.workflow import load_workflow
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        click.echo(str(exc), err=True)
+        sys.exit(EXIT_ERROR)
+
+    graph0 = load_graph0(root)
+    graph1 = load_graph1(root)
+    workflow = load_workflow(root)
+
+    if output:
+        out_path = Path(output).resolve()
+        save_visualization(graph0, graph1, workflow, out_path,
+                           fmt=fmt, filter_file=filter_file, max_nodes=max_nodes)
+        click.echo(f"Visualization saved to {out_path}")
+    else:
+        if fmt == "json":
+            vis = build_vis_graph(graph0, graph1, workflow,
+                                  filter_file=filter_file, max_nodes=max_nodes)
+            click.echo(vis.to_json())
+        elif fmt == "mermaid":
+            content = export_mermaid(graph0, graph1, workflow,
+                                    filter_file=filter_file, max_nodes=max_nodes)
+            click.echo(content)
+        elif fmt == "html":
+            content = export_html_report(graph0, graph1, workflow,
+                                         filter_file=filter_file, max_nodes=max_nodes)
+            click.echo(content)
+
+
+# ── LLM Context Builder ───────────────────────────────────────────────
+
+@click.command("context")
+@click.argument("node_ids", nargs=-1, required=True)
+@click.option("--depth", type=int, default=2,
+              help="BFS depth for expanding context.")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def context_cmd(ctx: click.Context, node_ids: tuple[str, ...], depth: int,
+                json_output: bool) -> None:
+    """Build LLM prompt context for given node IDs."""
+    import json as _json
+
+    from codegraph.annotator import load_graph1
+    from codegraph.context_builder import build_context
+    from codegraph.extractor import load_graph0
+    from codegraph.index import IndexStore
+    from codegraph.workflow import load_workflow
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    graph0 = load_graph0(root)
+    graph1 = load_graph1(root)
+    workflow = load_workflow(root)
+    with IndexStore(root) as index:
+        prompt_ctx = build_context(list(node_ids), graph0, graph1, workflow,
+                                   index, depth=depth)
+
+    if json_output:
+        click.echo(_json.dumps(prompt_ctx.to_dict(), indent=2))
+    else:
+        click.echo(prompt_ctx.to_prompt())
+        click.echo(f"\n--- ~{prompt_ctx.token_estimate()} tokens ---")
+
+
 # ── Registration ──────────────────────────────────────────────────────
 
 COMMANDS = [
@@ -476,4 +774,11 @@ COMMANDS = [
     subsystems_cmd,
     metrics_cmd,
     refactor_cmd,
+    path_cmd,
+    visualize_cmd,
+    context_cmd,
+]
+
+GROUPS = [
+    semantic_group,
 ]
