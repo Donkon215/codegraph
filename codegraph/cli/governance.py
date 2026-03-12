@@ -628,6 +628,205 @@ def repair_plan_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
         click.echo("Repair plan saved.")
 
 
+# ── Architecture Delta ────────────────────────────────────────────────
+@click.command("arch-delta")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.option("--save", is_flag=True,
+              help="Save delta to .codegraph/architecture_delta.json.")
+@click.pass_context
+@timed_command
+def delta_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
+    """Generate architecture delta between current state and proposed plan."""
+    import json as _json
+    from codegraph.architecture_delta import generate_architecture_delta
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    delta = generate_architecture_delta(root)
+
+    if json_output:
+        click.echo(_json.dumps(delta.to_dict(), indent=2))
+    else:
+        click.echo(delta.format())
+
+    if save:
+        delta.save(root)
+        click.echo("\nDelta saved.")
+
+
+# ── Architecture Score ────────────────────────────────────────────────
+@click.command("score")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.option("--save-baseline", is_flag=True,
+              help="Save current score as baseline.")
+@click.option("--compare", is_flag=True,
+              help="Compare current score against saved baseline.")
+@click.pass_context
+@timed_command
+def score_cmd(ctx: click.Context, json_output: bool, save_baseline: bool,
+              compare: bool) -> None:
+    """Compute and display the architecture quality score."""
+    import json as _json
+    from codegraph.architecture_score import (
+        ArchitectureScore, compare_scores, compute_score,
+    )
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    current = compute_score(root)
+
+    if compare:
+        baseline = ArchitectureScore.load(root)
+        if baseline is None:
+            click.echo("No baseline score found. Use --save-baseline first.",
+                       err=True)
+            sys.exit(EXIT_ERROR)
+        result = compare_scores(baseline, current)
+        if json_output:
+            click.echo(_json.dumps(result, indent=2))
+        else:
+            delta = result["delta"]
+            icon = "+" if delta >= 0 else ""
+            click.echo(f"Baseline: {result['baseline_score']:.3f} "
+                       f"({result['baseline_grade']})")
+            click.echo(f"Current:  {result['current_score']:.3f} "
+                       f"({result['current_grade']})")
+            click.echo(f"Delta:    {icon}{delta:.3f}")
+            click.echo(f"Merge allowed: {result['merge_allowed']}")
+        if not result["merge_allowed"]:
+            sys.exit(EXIT_VALIDATION_FAIL)
+        return
+
+    if json_output:
+        click.echo(_json.dumps(current.to_dict(), indent=2))
+    else:
+        click.echo(current.format())
+
+    if save_baseline:
+        current.save(root)
+        click.echo("\nBaseline score saved.")
+
+
+# ── Architecture Proof ────────────────────────────────────────────────
+@click.command("prove")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.option("--proposal-id", default="",
+              help="Custom proposal ID for the proof.")
+@click.pass_context
+@timed_command
+def prove_cmd(ctx: click.Context, json_output: bool, proposal_id: str) -> None:
+    """Validate architecture changes via simulation proof gate.
+
+    Runs cycle detection, layer violations, subsystem constraints,
+    coupling analysis, blast radius, and budget checks.
+    Rejects changes with HIGH_RISK or BLOCKED risk.
+    """
+    import json as _json
+    from codegraph.architecture_proof import REJECTED, generate_proof
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    proof = generate_proof(root, proposal_id=proposal_id)
+
+    if json_output:
+        click.echo(_json.dumps(proof.to_dict(), indent=2))
+    else:
+        click.echo(proof.format())
+
+    proof.save(root)
+
+    if proof.status == REJECTED:
+        click.echo("\nProof REJECTED — implementation blocked.", err=True)
+        sys.exit(EXIT_VALIDATION_FAIL)
+    else:
+        click.echo(f"\nProof: {proof.status}")
+
+
+# ── Context Builder ───────────────────────────────────────────────────
+@click.command("arch-context")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.option("--save", is_flag=True,
+              help="Save context to .codegraph/context/copilot_context.json.")
+@click.pass_context
+@timed_command
+def context_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
+    """Generate enriched architecture context for Copilot."""
+    import json as _json
+    from codegraph.copilot_context_builder import build_enriched_context
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    enriched = build_enriched_context(root)
+
+    if json_output:
+        click.echo(_json.dumps(enriched.to_dict(), indent=2))
+    else:
+        click.echo(enriched.format())
+
+    if save:
+        enriched.save(root)
+        click.echo("\nContext saved.")
+
+
+# ── Pipeline Orchestrator ─────────────────────────────────────────────
+@click.command("pipeline")
+@click.option("--dry-run", is_flag=True,
+              help="Show what would be done without executing.")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.option("--save", is_flag=True,
+              help="Save pipeline report.")
+@click.pass_context
+@timed_command
+def pipeline_cmd(ctx: click.Context, dry_run: bool, json_output: bool,
+                 save: bool) -> None:
+    """Execute the full architecture evolution pipeline.
+
+    Enforced pipeline:
+      build → analyze → advisor → delta → context → simulate → prove
+      → implement → test → score_compare → merge_decision
+
+    Uses state-machine transitions. Blocks on HIGH_RISK or BLOCKED.
+    """
+    import json as _json
+    from codegraph.pipeline_orchestrator import run_pipeline
+
+    try:
+        root = find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
+
+    report = run_pipeline(root, dry_run=dry_run)
+
+    if json_output:
+        click.echo(_json.dumps(report.to_dict(), indent=2))
+    else:
+        click.echo(report.format())
+
+    if save:
+        report.save(root)
+        click.echo("\nPipeline report saved.")
+
+    if not report.success:
+        sys.exit(EXIT_VALIDATION_FAIL)
+
+
 # ── Registration ──────────────────────────────────────────────────────
 
 COMMANDS = [
@@ -639,6 +838,11 @@ COMMANDS = [
     drift_cmd,
     repair_cmd,
     repair_plan_cmd,
+    delta_cmd,
+    score_cmd,
+    prove_cmd,
+    context_cmd,
+    pipeline_cmd,
 ]
 
 GROUPS = [
