@@ -1,7 +1,7 @@
 {
   "cycle": 1,
-  "graph_version": 67,
-  "generated_at": "2026-03-12T17:35:00Z",
+  "graph_version": 69,
+  "generated_at": "2026-03-12T17:51:08Z",
   "tasks": [
     {
       "task_id": "missing_import",
@@ -485,65 +485,73 @@
           "id": "codegraph/arch_search.py::ArchCandidate::from_dict",
           "file": "codegraph/arch_search.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize ArchCandidate from dictionary including candidate_id, strategy, description, proposed_changes, rationale, and estimated_impact",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_search.py::ArchCandidate::to_dict",
           "file": "codegraph/arch_search.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ArchCandidate to dictionary with candidate_id, strategy, description, proposed_changes, rationale, and estimated_impact",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_search.py::ArchSearchResult::format",
           "file": "codegraph/arch_search.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format ArchSearchResult as human-readable text showing candidate count, search query, subsystem target, and candidate summaries",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_search.py::ArchSearchResult::load",
           "file": "codegraph/arch_search.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "load ArchSearchResult from .codegraph/planning/arch_search.json, returning None if the file does not exist",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_versioning.py::ArchVersion::from_dict",
           "file": "codegraph/arch_versioning.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize ArchVersion snapshot from dictionary with version_id, timestamp, description, subsystems, edges, constraints, and metrics",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_versioning.py::ArchVersion::to_dict",
           "file": "codegraph/arch_versioning.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ArchVersion snapshot to dictionary for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_versioning.py::ArchVersionDiff::format",
           "file": "codegraph/arch_versioning.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format ArchVersionDiff as human-readable text showing added/removed subsystems, edges, and constraint changes between two architecture versions",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_versioning.py::ArchVersionDiff::to_dict",
           "file": "codegraph/arch_versioning.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ArchVersionDiff to dictionary with added/removed subsystems, edges, and constraints",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_advisor.py::ArchAdvice::format",
@@ -630,49 +638,55 @@
           "id": "codegraph/architecture_delta.py::ArchitectureDelta::format",
           "file": "codegraph/architecture_delta.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format ArchitectureDelta as human-readable text showing node changes, edge changes, and constraint violations",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_delta.py::ArchitectureDelta::has_changes",
           "file": "codegraph/architecture_delta.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "return True if the delta contains any node changes, edge changes, or constraint violations",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_delta.py::ArchitectureDelta::total_changes",
           "file": "codegraph/architecture_delta.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "return the total count of node changes plus edge changes plus constraint violations in the delta",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_delta.py::ConstraintViolation::to_dict",
           "file": "codegraph/architecture_delta.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ConstraintViolation to dictionary with constraint type, source, target, and description",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_delta.py::EdgeChange::to_dict",
           "file": "codegraph/architecture_delta.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize EdgeChange to dictionary with change type, source subsystem, target subsystem, and reason",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_delta.py::NodeChange::to_dict",
           "file": "codegraph/architecture_delta.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize NodeChange to dictionary with change type, file path, subsystem, and reason",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_lock.py::LockReport::error_count",
@@ -786,65 +800,73 @@
           "id": "codegraph/architecture_objectives.py::CandidateMetrics::to_dict",
           "file": "codegraph/architecture_objectives.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize CandidateMetrics to dictionary with cycle_reduction, coupling_delta, modularity_gain, subsystem_isolation, and blast_radius",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_objectives.py::ObjectiveWeights::from_dict",
           "file": "codegraph/architecture_objectives.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize ObjectiveWeights from dictionary, using default weights when keys are absent",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_objectives.py::ObjectiveWeights::to_dict",
           "file": "codegraph/architecture_objectives.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ObjectiveWeights to dictionary of weight floats for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_objectives.py::ScoredCandidate::to_dict",
           "file": "codegraph/architecture_objectives.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ScoredCandidate to dictionary with candidate_id, total_score, objective_scores, rank, and metrics",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_proof.py::ArchitectureProof::format",
           "file": "codegraph/architecture_proof.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format ArchitectureProof as human-readable text showing proof status, proposal ID, checks run, violations, and budget analysis",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_proof.py::ProofViolation::to_dict",
           "file": "codegraph/architecture_proof.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ProofViolation to dictionary with check name, severity, description, and affected nodes",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_score.py::ArchitectureScore::format",
           "file": "codegraph/architecture_score.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format ArchitectureScore as human-readable text showing overall score, grade, component scores, and per-subsystem isolation",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_score.py::ArchitectureScore::load",
           "file": "codegraph/architecture_score.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "load ArchitectureScore from .codegraph/architecture_score.json, returning None if file does not exist",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_score.py::_count_cycles::strongconnect",
@@ -966,81 +988,91 @@
           "id": "codegraph/cli/core.py::index_group",
           "file": "codegraph/cli/core.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command group for index management (build, show, stats). Registered as 'index' subcommand on the main codegraph group",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/core.py::schema",
           "file": "codegraph/cli/core.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command that prints the JSON schema for agent_response.json to stdout",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/core.py::timed_command",
           "file": "codegraph/cli/core.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "decorator that wraps a CLI command callback to measure and print execution time in milliseconds",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/core.py::timed_command::wrapper",
           "file": "codegraph/cli/core.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "inner wrapper function that records start time, calls the original command, and reports elapsed milliseconds",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/core.py::version_cmd",
           "file": "codegraph/cli/core.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command that prints the codegraph package version string",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/governance.py::suggest_group",
           "file": "codegraph/cli/governance.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command group for policy rule management (list, add, remove). Registered as 'suggest' subcommand on the main codegraph group",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/intelligence.py::semantic_group",
           "file": "codegraph/cli/intelligence.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command group for semantic CAS operations (build, show, summary, check). Registered as 'semantic' subcommand on the main codegraph group",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/runtime.py::branch_group",
           "file": "codegraph/cli/runtime.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command group for branch lifecycle operations. Registered as 'branch' subcommand on the main codegraph group",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/runtime.py::cas_group",
           "file": "codegraph/cli/runtime.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command group for content-addressable storage operations (build, verify, impact). Registered as 'cas' subcommand on the main codegraph group",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/runtime.py::lifecycle_group",
           "file": "codegraph/cli/runtime.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command group for subsystem lifecycle management. Registered as 'lifecycle' subcommand on the main codegraph group",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/code_planner.py::CodePlan::format",
@@ -1172,41 +1204,46 @@
           "id": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::format",
           "file": "codegraph/copilot_context_builder.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format EnrichedCopilotContext as human-readable text with graph summary, architecture health, simulator rules, delta, and proof status for Copilot decision-making",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::save",
           "file": "codegraph/copilot_context_builder.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "save EnrichedCopilotContext to .codegraph/context/copilot_context.json as formatted JSON",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::to_dict",
           "file": "codegraph/copilot_context_builder.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize EnrichedCopilotContext to dictionary with graph_summary, architecture_health, simulator_rules, architecture_delta, proof_status, and budget",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/copilot_context_builder.py::GraphSummary::to_dict",
           "file": "codegraph/copilot_context_builder.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize GraphSummary to dictionary with node_count, edge_count, orphan_count, cycle_count, subsystem_coverage, and top-level module stats",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/copilot_context_builder.py::SimulatorRules::to_dict",
           "file": "codegraph/copilot_context_builder.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize SimulatorRules to dictionary with forbidden_patterns, layer_rules, and subsystem_constraints for use in simulation",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/drift_detector.py::DriftFinding::to_dict",
@@ -1266,41 +1303,46 @@
           "id": "codegraph/evolution_proposals.py::EvolutionProposal::from_dict",
           "file": "codegraph/evolution_proposals.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize EvolutionProposal from dictionary with proposal_id, strategy, description, changes, rationale, and simulation_result",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/evolution_proposals.py::EvolutionProposal::to_dict",
           "file": "codegraph/evolution_proposals.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize EvolutionProposal to dictionary for JSON persistence in the proposals store",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/evolution_proposals.py::ProposalStore::add",
           "file": "codegraph/evolution_proposals.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "add a new EvolutionProposal to the store, replacing any existing proposal with the same ID",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/evolution_proposals.py::ProposalStore::from_dict",
           "file": "codegraph/evolution_proposals.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize ProposalStore from dictionary, reconstructing all proposals and metadata",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/evolution_proposals.py::ProposalStore::to_dict",
           "file": "codegraph/evolution_proposals.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ProposalStore to dictionary with all proposals and store metadata for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/extractor.py::ScopeTree::resolve",
@@ -1315,49 +1357,55 @@
           "id": "codegraph/extractors/api_routes.py::ApiCall::from_dict",
           "file": "codegraph/extractors/api_routes.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize ApiCall from dictionary with method, url_pattern, file, line, and caller_node",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/extractors/api_routes.py::ApiCall::to_dict",
           "file": "codegraph/extractors/api_routes.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ApiCall to dictionary with method, url_pattern, file, line, and caller_node",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/extractors/api_routes.py::ApiEndpoint::from_dict",
           "file": "codegraph/extractors/api_routes.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize ApiEndpoint from dictionary with method, path, file, line, handler_node, and framework",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/extractors/api_routes.py::ApiEndpoint::to_dict",
           "file": "codegraph/extractors/api_routes.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ApiEndpoint to dictionary with method, path, file, line, handler_node, and framework",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/extractors/api_routes.py::ApiLinkReport::format",
           "file": "codegraph/extractors/api_routes.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format ApiLinkReport as human-readable text showing matched and unmatched API endpoints with their callers",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/extractors/api_routes.py::ApiLinkReport::to_dict",
           "file": "codegraph/extractors/api_routes.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ApiLinkReport to dictionary with endpoints, calls, matches, and unmatched lists",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/extractors/javascript.py::JavaScriptExtractor::supported_extensions",
@@ -1489,9 +1537,10 @@
           "id": "codegraph/pipeline_orchestrator.py::PipelineReport::format",
           "file": "codegraph/pipeline_orchestrator.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format PipelineReport as human-readable text showing pipeline status, each step's result, timing, and final score with grade",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/pipeline_orchestrator.py::PipelineState",
@@ -1505,41 +1554,46 @@
           "id": "codegraph/pipeline_orchestrator.py::StepResult::to_dict",
           "file": "codegraph/pipeline_orchestrator.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize StepResult to dictionary with step name, status, timing, message, and optional data payload",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/precommit.py::PreCommitReport::format",
           "file": "codegraph/precommit.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format PreCommitReport as human-readable text showing PASS/FAIL status, metric checks, simulation result, and blocking issues",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/precommit.py::PreCommitReport::to_dict",
           "file": "codegraph/precommit.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize PreCommitReport to dictionary with passed flag, score, delta, violations, simulation_check, and metric details",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/precommit.py::SimulationCheck::to_dict",
           "file": "codegraph/precommit.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize SimulationCheck to dictionary with ran flag, risk_level, violations count, and blast_radius",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/runtime_graph.py::RuntimeEdge::to_dict",
           "file": "codegraph/runtime_graph.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize RuntimeEdge to dictionary with source_file, source_node, edge_type, target, and optional details",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::__init__",
@@ -1554,49 +1608,55 @@
           "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_source_node",
           "file": "codegraph/runtime_graph.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "property that builds the node ID string from file path, current class, and current function scope",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_ClassDef",
           "file": "codegraph/runtime_graph.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "aST visitor for class definitions: sets current class scope, recurses into class body, then restores the previous class scope",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_FunctionDef",
           "file": "codegraph/runtime_graph.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "aST visitor for function and async function definitions: sets current function scope, recurses into the function body, then restores the previous function scope",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/runtime_graph.py::RuntimeGraph::format",
           "file": "codegraph/runtime_graph.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format RuntimeGraph as human-readable text showing total edge count, files scanned, and per-type edge counts sorted by frequency",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/runtime_graph.py::RuntimeGraph::to_dict",
           "file": "codegraph/runtime_graph.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize RuntimeGraph to dictionary with edges list, files_scanned count, edge_types breakdown, and total_edges count",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/simulator.py::CandidateSimResult::to_dict",
           "file": "codegraph/simulator.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize CandidateSimResult to dictionary with candidate_id, risk_level, score, violations count, blast_radius, coupling_delta, improvements list, and safe flag",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/simulator.py::SimViolation::to_dict",
@@ -1633,14 +1693,6 @@
           "previous_intent": "serialize SimulationResult to dictionary with safe flag, risk level, changes, violations, new cycle count, coupling delta, blast radius, improvements list, and summary text",
           "body_hash_changed": false,
           "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "codegraph/simulator.py::_build_allowed_edges",
-          "file": "codegraph/simulator.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/simulator.py::_find_cycles_in_adj::strongconnect",
@@ -1807,16 +1859,18 @@
           "id": "tests/test_api_routes.py::TestDataClasses::test_api_call_from_dict",
           "file": "tests/test_api_routes.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify ApiCall.from_dict correctly deserializes an API call from a dictionary",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_from_dict",
           "file": "tests/test_api_routes.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify ApiEndpoint.from_dict correctly deserializes an API endpoint from a dictionary",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
@@ -1927,8 +1981,9 @@
           "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_strategy_tiers_complete",
           "file": "tests/test_arch_evolution.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify that all SAFE, MEDIUM, and DANGEROUS mutation strategy tiers are populated in MUTATION_SAFETY_TIERS",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
@@ -1983,8 +2038,9 @@
           "id": "tests/test_arch_memory.py::TestArchDecision::test_defaults",
           "file": "tests/test_arch_memory.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify ArchDecision default field values are set correctly",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
@@ -2112,7 +2168,7 @@
           "file": "tests/test_arch_planner.py",
           "type": "method",
           "suggested_fix": "Entry point — no action needed",
-          "previous_intent": "test deserialize planned task from dictionary",
+          "previous_intent": "verify PlannedTask.from_dict correctly deserializes a planned task from a dictionary",
           "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
@@ -2136,8 +2192,9 @@
           "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_valid_policy_types_updated",
           "file": "tests/test_arch_policy.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify that evaluate_policies checks all supported policy type strings without raising errors",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
@@ -2177,7 +2234,7 @@
           "file": "tests/test_arch_schema.py",
           "type": "method",
           "suggested_fix": "Entry point — no action needed",
-          "previous_intent": "test deserialize component from dictionary",
+          "previous_intent": "verify ArchComponent.from_dict correctly deserializes a component from a dictionary",
           "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
@@ -2186,7 +2243,7 @@
           "file": "tests/test_arch_schema.py",
           "type": "method",
           "suggested_fix": "Entry point — no action needed",
-          "previous_intent": "test deserialize constraint from dictionary",
+          "previous_intent": "verify ArchConstraint.from_dict correctly deserializes a constraint with all fields",
           "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
@@ -2195,7 +2252,7 @@
           "file": "tests/test_arch_schema.py",
           "type": "method",
           "suggested_fix": "Entry point — no action needed",
-          "previous_intent": "test deserialize constraint without optional reason field",
+          "previous_intent": "verify ArchConstraint.from_dict handles missing reason field by defaulting to empty string",
           "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
@@ -2204,7 +2261,7 @@
           "file": "tests/test_arch_schema.py",
           "type": "method",
           "suggested_fix": "Entry point — no action needed",
-          "previous_intent": "test deserialize edge from list format backward compatibility",
+          "previous_intent": "verify ArchEdge.from_dict correctly deserializes an edge when metadata is stored as a list",
           "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
@@ -2213,7 +2270,7 @@
           "file": "tests/test_arch_schema.py",
           "type": "method",
           "suggested_fix": "Entry point — no action needed",
-          "previous_intent": "test deserialize edge from object format with custom type",
+          "previous_intent": "verify ArchEdge.from_dict correctly deserializes an edge when metadata is stored as an object/dict",
           "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
@@ -2222,7 +2279,7 @@
           "file": "tests/test_arch_schema.py",
           "type": "method",
           "suggested_fix": "Entry point — no action needed",
-          "previous_intent": "test deserialize subsystem with components and edges",
+          "previous_intent": "verify SubsystemDef.from_dict correctly deserializes a subsystem definition from a dictionary",
           "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
@@ -2231,7 +2288,7 @@
           "file": "tests/test_arch_schema.py",
           "type": "method",
           "suggested_fix": "Entry point — no action needed",
-          "previous_intent": "test load returns None when architecture file missing",
+          "previous_intent": "verify SystemArchitecture.load returns None when the system.json file does not exist",
           "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
@@ -2247,8 +2304,9 @@
           "id": "tests/test_arch_versioning.py::TestArchVersion::test_from_dict",
           "file": "tests/test_arch_versioning.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify ArchVersion.from_dict correctly deserializes an architecture version snapshot from a dictionary",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
@@ -2311,9 +2369,10 @@
           "id": "tests/test_arch_versioning.py::project_with_arch",
           "file": "tests/test_arch_versioning.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Review disconnected node and connect to workflow",
+          "previous_intent": "pytest fixture that creates a temporary project directory with a valid system.json architecture definition for versioning tests",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "tests/test_architecture_compiler.py::TestApplyPlan",
@@ -2335,8 +2394,9 @@
           "id": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_load_missing",
           "file": "tests/test_architecture_compiler.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify ArchitecturePlan.load returns None when the plan file does not exist",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
@@ -2431,8 +2491,9 @@
           "id": "tests/test_architecture_objectives.py::TestObjectiveWeights::test_from_dict_missing_keys",
           "file": "tests/test_architecture_objectives.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify ObjectiveWeights.from_dict uses default values when keys are missing from the dictionary",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
@@ -2519,8 +2580,9 @@
           "id": "tests/test_branch_executor.py::TestBranchMetrics::test_from_dict_defaults",
           "file": "tests/test_branch_executor.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify BranchMetrics.from_dict uses correct default values when all optional fields are missing",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
@@ -2575,56 +2637,63 @@
           "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_all_commands_registered",
           "file": "tests/test_cli_package.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify that all expected CLI commands and groups are registered on the main Click group",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_architecture_commands_list",
           "file": "tests/test_cli_package.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify the architecture submodule exports the expected COMMANDS list",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_governance_commands_and_groups",
           "file": "tests/test_cli_package.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify the governance submodule exports expected COMMANDS and GROUPS (suggest_group)",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_import_from_package",
           "file": "tests/test_cli_package.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify codegraph.cli package correctly re-exports main from codegraph.cli.core",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_intelligence_commands_list",
           "file": "tests/test_cli_package.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify the intelligence submodule exports expected COMMANDS (path, visualize, context) and GROUPS (semantic_group)",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_main_is_click_group",
           "file": "tests/test_cli_package.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify main exported from codegraph.cli is a Click Group instance",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_runtime_commands_and_groups",
           "file": "tests/test_cli_package.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify the runtime submodule exports expected COMMANDS and GROUPS (branch_group, cas_group, lifecycle_group)",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
@@ -2639,8 +2708,9 @@
           "id": "tests/test_code_planner.py::TestCodePlan::test_load_missing",
           "file": "tests/test_code_planner.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify CodePlan.load returns None when the plan file does not exist",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
@@ -2696,8 +2766,9 @@
           "id": "tests/test_copilot_context.py::TestCopilotContext::test_load_missing",
           "file": "tests/test_copilot_context.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify CopilotContext.load returns None when the context file does not exist",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
@@ -2752,8 +2823,9 @@
           "id": "tests/test_evolution_proposals.py::TestEvolutionProposal::test_from_dict",
           "file": "tests/test_evolution_proposals.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify EvolutionProposal.from_dict correctly deserializes a proposal from a dictionary",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
@@ -2769,7 +2841,7 @@
           "file": "tests/test_fuzz.py",
           "type": "method",
           "suggested_fix": "Entry point — no action needed",
-          "previous_intent": "test graph0 no crash",
+          "previous_intent": "fuzz test: verify Graph0 loading does not crash or raise unhandled exceptions on malformed JSON",
           "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
@@ -2778,7 +2850,7 @@
           "file": "tests/test_fuzz.py",
           "type": "method",
           "suggested_fix": "Entry point — no action needed",
-          "previous_intent": "test graph1 no crash",
+          "previous_intent": "fuzz test: verify Graph1 loading does not crash or raise unhandled exceptions on malformed JSON",
           "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
@@ -2787,7 +2859,7 @@
           "file": "tests/test_fuzz.py",
           "type": "method",
           "suggested_fix": "Entry point — no action needed",
-          "previous_intent": "test workflow no crash",
+          "previous_intent": "fuzz test: verify Workflow loading does not crash or raise unhandled exceptions on malformed JSON",
           "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
@@ -2819,9 +2891,10 @@
           "id": "tests/test_js_extractor.py::project",
           "file": "tests/test_js_extractor.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Review disconnected node and connect to workflow",
+          "previous_intent": "pytest fixture that creates a temporary project directory with sample JavaScript/TypeScript source files for extractor tests",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "tests/test_multilevel.py::TestAnalyzeMultilevel",
@@ -2931,24 +3004,27 @@
           "id": "tests/test_precommit.py::TestDefaultThresholds::test_coupling_is_positive",
           "file": "tests/test_precommit.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify the default coupling threshold in PreCommitConfig is a positive float",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_precommit.py::TestDefaultThresholds::test_has_required_metrics",
           "file": "tests/test_precommit.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify PreCommitConfig contains all required metric threshold fields",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_precommit.py::TestDefaultThresholds::test_score_is_negative",
           "file": "tests/test_precommit.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify the default architecture score threshold in PreCommitConfig is a negative float (delta threshold)",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
@@ -3131,8 +3207,9 @@
           "id": "tests/test_target_architecture.py::TestTargetEdge::test_from_dict_defaults",
           "file": "tests/test_target_architecture.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify TargetEdge.from_dict uses correct default values when optional fields are missing",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         },
         {
@@ -3155,8 +3232,9 @@
           "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_load_nonexistent",
           "file": "tests/test_target_architecture.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
+          "suggested_fix": "Entry point — no action needed",
+          "previous_intent": "verify TargetWorkflow.load returns None when the target architecture file does not exist",
+          "body_hash_changed": false,
           "reason": "Orphan (entry_point)"
         }
       ]
@@ -4417,33 +4495,37 @@
           "id": "codegraph/arch_search.py::ArchCandidate::from_dict",
           "file": "codegraph/arch_search.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize ArchCandidate from dictionary including candidate_id, strategy, description, proposed_changes, rationale, and estimated_impact",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_search.py::ArchCandidate::to_dict",
           "file": "codegraph/arch_search.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ArchCandidate to dictionary with candidate_id, strategy, description, proposed_changes, rationale, and estimated_impact",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_search.py::ArchSearchResult::format",
           "file": "codegraph/arch_search.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format ArchSearchResult as human-readable text showing candidate count, search query, subsystem target, and candidate summaries",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_search.py::ArchSearchResult::load",
           "file": "codegraph/arch_search.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "load ArchSearchResult from .codegraph/planning/arch_search.json, returning None if the file does not exist",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_search.py::ArchSearchResult::save",
@@ -4576,33 +4658,37 @@
           "id": "codegraph/arch_versioning.py::ArchVersion::from_dict",
           "file": "codegraph/arch_versioning.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize ArchVersion snapshot from dictionary with version_id, timestamp, description, subsystems, edges, constraints, and metrics",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_versioning.py::ArchVersion::to_dict",
           "file": "codegraph/arch_versioning.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ArchVersion snapshot to dictionary for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_versioning.py::ArchVersionDiff::format",
           "file": "codegraph/arch_versioning.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format ArchVersionDiff as human-readable text showing added/removed subsystems, edges, and constraint changes between two architecture versions",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_versioning.py::ArchVersionDiff::to_dict",
           "file": "codegraph/arch_versioning.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ArchVersionDiff to dictionary with added/removed subsystems, edges, and constraints",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/arch_versioning.py::_load_manifest",
@@ -4877,17 +4963,19 @@
           "id": "codegraph/architecture_delta.py::ArchitectureDelta::format",
           "file": "codegraph/architecture_delta.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format ArchitectureDelta as human-readable text showing node changes, edge changes, and constraint violations",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_delta.py::ArchitectureDelta::has_changes",
           "file": "codegraph/architecture_delta.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "return True if the delta contains any node changes, edge changes, or constraint violations",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_delta.py::ArchitectureDelta::load",
@@ -4923,33 +5011,37 @@
           "id": "codegraph/architecture_delta.py::ArchitectureDelta::total_changes",
           "file": "codegraph/architecture_delta.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "return the total count of node changes plus edge changes plus constraint violations in the delta",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_delta.py::ConstraintViolation::to_dict",
           "file": "codegraph/architecture_delta.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ConstraintViolation to dictionary with constraint type, source, target, and description",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_delta.py::EdgeChange::to_dict",
           "file": "codegraph/architecture_delta.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize EdgeChange to dictionary with change type, source subsystem, target subsystem, and reason",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_delta.py::NodeChange::to_dict",
           "file": "codegraph/architecture_delta.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize NodeChange to dictionary with change type, file path, subsystem, and reason",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_delta.py::_check_constraints",
@@ -5340,41 +5432,46 @@
           "id": "codegraph/architecture_objectives.py::CandidateMetrics::to_dict",
           "file": "codegraph/architecture_objectives.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize CandidateMetrics to dictionary with cycle_reduction, coupling_delta, modularity_gain, subsystem_isolation, and blast_radius",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_objectives.py::ObjectiveWeights::from_dict",
           "file": "codegraph/architecture_objectives.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize ObjectiveWeights from dictionary, using default weights when keys are absent",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_objectives.py::ObjectiveWeights::to_dict",
           "file": "codegraph/architecture_objectives.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ObjectiveWeights to dictionary of weight floats for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_objectives.py::ScoredCandidate::to_dict",
           "file": "codegraph/architecture_objectives.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ScoredCandidate to dictionary with candidate_id, total_score, objective_scores, rank, and metrics",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_proof.py::ArchitectureProof::format",
           "file": "codegraph/architecture_proof.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format ArchitectureProof as human-readable text showing proof status, proposal ID, checks run, violations, and budget analysis",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_proof.py::ArchitectureProof::load",
@@ -5410,9 +5507,10 @@
           "id": "codegraph/architecture_proof.py::ProofViolation::to_dict",
           "file": "codegraph/architecture_proof.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ProofViolation to dictionary with check name, severity, description, and affected nodes",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_proof.py::_check_budget",
@@ -5521,17 +5619,19 @@
           "id": "codegraph/architecture_score.py::ArchitectureScore::format",
           "file": "codegraph/architecture_score.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format ArchitectureScore as human-readable text showing overall score, grade, component scores, and per-subsystem isolation",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_score.py::ArchitectureScore::load",
           "file": "codegraph/architecture_score.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "load ArchitectureScore from .codegraph/architecture_score.json, returning None if file does not exist",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/architecture_score.py::ArchitectureScore::save",
@@ -6383,9 +6483,10 @@
           "id": "codegraph/cli/core.py::index_group",
           "file": "codegraph/cli/core.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command group for index management (build, show, stats). Registered as 'index' subcommand on the main codegraph group",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/core.py::index_rebuild",
@@ -6477,9 +6578,10 @@
           "id": "codegraph/cli/core.py::schema",
           "file": "codegraph/cli/core.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command that prints the JSON schema for agent_response.json to stdout",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/core.py::status",
@@ -6508,17 +6610,19 @@
           "id": "codegraph/cli/core.py::timed_command",
           "file": "codegraph/cli/core.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "decorator that wraps a CLI command callback to measure and print execution time in milliseconds",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/core.py::timed_command::wrapper",
           "file": "codegraph/cli/core.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "inner wrapper function that records start time, calls the original command, and reports elapsed milliseconds",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/core.py::validate",
@@ -6537,9 +6641,10 @@
           "id": "codegraph/cli/core.py::version_cmd",
           "file": "codegraph/cli/core.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command that prints the codegraph package version string",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/core.py::workflow",
@@ -6749,9 +6854,10 @@
           "id": "codegraph/cli/governance.py::suggest_group",
           "file": "codegraph/cli/governance.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command group for policy rule management (list, add, remove). Registered as 'suggest' subcommand on the main codegraph group",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/governance.py::suggest_import_template",
@@ -7040,9 +7146,10 @@
           "id": "codegraph/cli/intelligence.py::semantic_group",
           "file": "codegraph/cli/intelligence.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command group for semantic CAS operations (build, show, summary, check). Registered as 'semantic' subcommand on the main codegraph group",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/intelligence.py::semantic_show",
@@ -7173,9 +7280,10 @@
           "id": "codegraph/cli/runtime.py::branch_group",
           "file": "codegraph/cli/runtime.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command group for branch lifecycle operations. Registered as 'branch' subcommand on the main codegraph group",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/runtime.py::branch_list",
@@ -7238,9 +7346,10 @@
           "id": "codegraph/cli/runtime.py::cas_group",
           "file": "codegraph/cli/runtime.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command group for content-addressable storage operations (build, verify, impact). Registered as 'cas' subcommand on the main codegraph group",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/runtime.py::cas_impact",
@@ -7298,9 +7407,10 @@
           "id": "codegraph/cli/runtime.py::lifecycle_group",
           "file": "codegraph/cli/runtime.py",
           "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "cLI command group for subsystem lifecycle management. Registered as 'lifecycle' subcommand on the main codegraph group",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/cli/runtime.py::lifecycle_merge",
@@ -7776,41 +7886,46 @@
           "id": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::format",
           "file": "codegraph/copilot_context_builder.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format EnrichedCopilotContext as human-readable text with graph summary, architecture health, simulator rules, delta, and proof status for Copilot decision-making",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::save",
           "file": "codegraph/copilot_context_builder.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "save EnrichedCopilotContext to .codegraph/context/copilot_context.json as formatted JSON",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::to_dict",
           "file": "codegraph/copilot_context_builder.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize EnrichedCopilotContext to dictionary with graph_summary, architecture_health, simulator_rules, architecture_delta, proof_status, and budget",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/copilot_context_builder.py::GraphSummary::to_dict",
           "file": "codegraph/copilot_context_builder.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize GraphSummary to dictionary with node_count, edge_count, orphan_count, cycle_count, subsystem_coverage, and top-level module stats",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/copilot_context_builder.py::SimulatorRules::to_dict",
           "file": "codegraph/copilot_context_builder.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize SimulatorRules to dictionary with forbidden_patterns, layer_rules, and subsystem_constraints for use in simulation",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/copilot_context_builder.py::_build_graph_summary",
@@ -8034,25 +8149,28 @@
           "id": "codegraph/evolution_proposals.py::EvolutionProposal::from_dict",
           "file": "codegraph/evolution_proposals.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize EvolutionProposal from dictionary with proposal_id, strategy, description, changes, rationale, and simulation_result",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/evolution_proposals.py::EvolutionProposal::to_dict",
           "file": "codegraph/evolution_proposals.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize EvolutionProposal to dictionary for JSON persistence in the proposals store",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/evolution_proposals.py::ProposalStore::add",
           "file": "codegraph/evolution_proposals.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "add a new EvolutionProposal to the store, replacing any existing proposal with the same ID",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/evolution_proposals.py::ProposalStore::format",
@@ -8068,17 +8186,19 @@
           "id": "codegraph/evolution_proposals.py::ProposalStore::from_dict",
           "file": "codegraph/evolution_proposals.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize ProposalStore from dictionary, reconstructing all proposals and metadata",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/evolution_proposals.py::ProposalStore::to_dict",
           "file": "codegraph/evolution_proposals.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ProposalStore to dictionary with all proposals and store metadata for JSON persistence",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/evolution_proposals.py::_proposals_path",
@@ -8117,49 +8237,55 @@
           "id": "codegraph/extractors/api_routes.py::ApiCall::from_dict",
           "file": "codegraph/extractors/api_routes.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize ApiCall from dictionary with method, url_pattern, file, line, and caller_node",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/extractors/api_routes.py::ApiCall::to_dict",
           "file": "codegraph/extractors/api_routes.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ApiCall to dictionary with method, url_pattern, file, line, and caller_node",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/extractors/api_routes.py::ApiEndpoint::from_dict",
           "file": "codegraph/extractors/api_routes.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "deserialize ApiEndpoint from dictionary with method, path, file, line, handler_node, and framework",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/extractors/api_routes.py::ApiEndpoint::to_dict",
           "file": "codegraph/extractors/api_routes.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ApiEndpoint to dictionary with method, path, file, line, handler_node, and framework",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/extractors/api_routes.py::ApiLinkReport::format",
           "file": "codegraph/extractors/api_routes.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format ApiLinkReport as human-readable text showing matched and unmatched API endpoints with their callers",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/extractors/api_routes.py::ApiLinkReport::to_dict",
           "file": "codegraph/extractors/api_routes.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize ApiLinkReport to dictionary with endpoints, calls, matches, and unmatched lists",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/extractors/api_routes.py::_build_func_ranges",
@@ -8497,9 +8623,10 @@
           "id": "codegraph/pipeline_orchestrator.py::PipelineReport::format",
           "file": "codegraph/pipeline_orchestrator.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format PipelineReport as human-readable text showing pipeline status, each step's result, timing, and final score with grade",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/pipeline_orchestrator.py::PipelineReport::save",
@@ -8525,9 +8652,10 @@
           "id": "codegraph/pipeline_orchestrator.py::StepResult::to_dict",
           "file": "codegraph/pipeline_orchestrator.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize StepResult to dictionary with step name, status, timing, message, and optional data payload",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/pipeline_orchestrator.py::_execute_step",
@@ -8681,25 +8809,28 @@
           "id": "codegraph/precommit.py::PreCommitReport::format",
           "file": "codegraph/precommit.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format PreCommitReport as human-readable text showing PASS/FAIL status, metric checks, simulation result, and blocking issues",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/precommit.py::PreCommitReport::to_dict",
           "file": "codegraph/precommit.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize PreCommitReport to dictionary with passed flag, score, delta, violations, simulation_check, and metric details",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/precommit.py::SimulationCheck::to_dict",
           "file": "codegraph/precommit.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize SimulationCheck to dictionary with ran flag, risk_level, violations count, and blast_radius",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/precommit.py::_compute_current_metrics",
@@ -8716,9 +8847,10 @@
           "id": "codegraph/runtime_graph.py::RuntimeEdge::to_dict",
           "file": "codegraph/runtime_graph.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize RuntimeEdge to dictionary with source_file, source_node, edge_type, target, and optional details",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::__init__",
@@ -8785,9 +8917,10 @@
           "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_source_node",
           "file": "codegraph/runtime_graph.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "property that builds the node ID string from file path, current class, and current function scope",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_Call",
@@ -8806,41 +8939,46 @@
           "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_ClassDef",
           "file": "codegraph/runtime_graph.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "aST visitor for class definitions: sets current class scope, recurses into class body, then restores the previous class scope",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_FunctionDef",
           "file": "codegraph/runtime_graph.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "aST visitor for function and async function definitions: sets current function scope, recurses into the function body, then restores the previous function scope",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/runtime_graph.py::RuntimeGraph::format",
           "file": "codegraph/runtime_graph.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "format RuntimeGraph as human-readable text showing total edge count, files scanned, and per-type edge counts sorted by frequency",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/runtime_graph.py::RuntimeGraph::to_dict",
           "file": "codegraph/runtime_graph.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize RuntimeGraph to dictionary with edges list, files_scanned count, edge_types breakdown, and total_edges count",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/simulator.py::CandidateSimResult::to_dict",
           "file": "codegraph/simulator.py",
           "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
+          "suggested_fix": "Create a test function covering this production code",
+          "previous_intent": "serialize CandidateSimResult to dictionary with candidate_id, risk_level, score, violations count, blast_radius, coupling_delta, improvements list, and safe flag",
+          "body_hash_changed": false,
+          "reason": "Orphan (disconnected)"
         },
         {
           "id": "codegraph/simulator.py::SimViolation::to_dict",
@@ -8888,14 +9026,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/simulator.py::_build_allowed_edges",
-          "file": "codegraph/simulator.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/simulator.py::_build_forbidden_subsystem_deps",
@@ -9702,22 +9832,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/arch_search.py::ArchCandidate::from_dict",
-          "file": "codegraph/arch_search.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_search.py::ArchCandidate::to_dict",
-          "file": "codegraph/arch_search.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/arch_search.py::ArchSearchResult",
           "file": "codegraph/arch_search.py",
           "type": "class",
@@ -9726,22 +9840,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_search.py::ArchSearchResult::format",
-          "file": "codegraph/arch_search.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_search.py::ArchSearchResult::load",
-          "file": "codegraph/arch_search.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/arch_search.py::ArchSearchResult::save",
@@ -9890,22 +9988,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/arch_versioning.py::ArchVersion::from_dict",
-          "file": "codegraph/arch_versioning.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_versioning.py::ArchVersion::to_dict",
-          "file": "codegraph/arch_versioning.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/arch_versioning.py::ArchVersionDiff",
           "file": "codegraph/arch_versioning.py",
           "type": "class",
@@ -9917,22 +9999,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/arch_versioning.py::ArchVersionDiff::format",
-          "file": "codegraph/arch_versioning.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/arch_versioning.py::ArchVersionDiff::to_dict",
-          "file": "codegraph/arch_versioning.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/arch_versioning.py::_load_manifest",
@@ -10123,22 +10189,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/architecture_delta.py::ArchitectureDelta::format",
-          "file": "codegraph/architecture_delta.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/architecture_delta.py::ArchitectureDelta::has_changes",
-          "file": "codegraph/architecture_delta.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/architecture_delta.py::ArchitectureDelta::load",
           "file": "codegraph/architecture_delta.py",
           "type": "method",
@@ -10169,14 +10219,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/architecture_delta.py::ArchitectureDelta::total_changes",
-          "file": "codegraph/architecture_delta.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/architecture_delta.py::ConstraintViolation",
           "file": "codegraph/architecture_delta.py",
           "type": "class",
@@ -10186,14 +10228,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/architecture_delta.py::ConstraintViolation::to_dict",
-          "file": "codegraph/architecture_delta.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/architecture_delta.py::EdgeChange",
@@ -10208,14 +10242,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/architecture_delta.py::EdgeChange::to_dict",
-          "file": "codegraph/architecture_delta.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/architecture_delta.py::NodeChange",
           "file": "codegraph/architecture_delta.py",
           "type": "class",
@@ -10226,14 +10252,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/architecture_delta.py::NodeChange::to_dict",
-          "file": "codegraph/architecture_delta.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/architecture_delta.py::_check_constraints",
@@ -10425,14 +10443,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/architecture_objectives.py::CandidateMetrics::to_dict",
-          "file": "codegraph/architecture_objectives.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/architecture_objectives.py::ObjectiveWeights",
           "file": "codegraph/architecture_objectives.py",
           "type": "class",
@@ -10455,14 +10465,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/architecture_objectives.py::ObjectiveWeights::from_dict",
-          "file": "codegraph/architecture_objectives.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/architecture_objectives.py::ObjectiveWeights::normalize",
           "file": "codegraph/architecture_objectives.py",
           "type": "method",
@@ -10482,14 +10484,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/architecture_objectives.py::ObjectiveWeights::to_dict",
-          "file": "codegraph/architecture_objectives.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/architecture_objectives.py::ScoredCandidate",
           "file": "codegraph/architecture_objectives.py",
           "type": "class",
@@ -10501,14 +10495,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/architecture_objectives.py::ScoredCandidate::to_dict",
-          "file": "codegraph/architecture_objectives.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/architecture_objectives.py::adjust_weights_from_memory",
@@ -10595,14 +10581,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/architecture_proof.py::ArchitectureProof::format",
-          "file": "codegraph/architecture_proof.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/architecture_proof.py::ArchitectureProof::load",
           "file": "codegraph/architecture_proof.py",
           "type": "method",
@@ -10642,14 +10620,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/architecture_proof.py::ProofViolation::to_dict",
-          "file": "codegraph/architecture_proof.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/architecture_proof.py::_check_budget",
@@ -10770,22 +10740,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/architecture_score.py::ArchitectureScore::format",
-          "file": "codegraph/architecture_score.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/architecture_score.py::ArchitectureScore::load",
-          "file": "codegraph/architecture_score.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/architecture_score.py::ArchitectureScore::save",
@@ -11337,14 +11291,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/cli/core.py::index_group",
-          "file": "codegraph/cli/core.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/cli/core.py::index_rebuild",
           "file": "codegraph/cli/core.py",
           "type": "function",
@@ -11431,14 +11377,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/cli/core.py::schema",
-          "file": "codegraph/cli/core.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/cli/core.py::status",
           "file": "codegraph/cli/core.py",
           "type": "function",
@@ -11462,22 +11400,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/cli/core.py::timed_command",
-          "file": "codegraph/cli/core.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/cli/core.py::timed_command::wrapper",
-          "file": "codegraph/cli/core.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/cli/core.py::validate",
           "file": "codegraph/cli/core.py",
           "type": "function",
@@ -11489,14 +11411,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/cli/core.py::version_cmd",
-          "file": "codegraph/cli/core.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/cli/core.py::workflow",
@@ -11708,14 +11622,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/cli/governance.py::suggest_group",
-          "file": "codegraph/cli/governance.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/cli/governance.py::suggest_import_template",
@@ -12008,14 +11914,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/cli/intelligence.py::semantic_group",
-          "file": "codegraph/cli/intelligence.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/cli/intelligence.py::semantic_show",
           "file": "codegraph/cli/intelligence.py",
           "type": "function",
@@ -12148,14 +12046,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/cli/runtime.py::branch_group",
-          "file": "codegraph/cli/runtime.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/cli/runtime.py::branch_list",
           "file": "codegraph/cli/runtime.py",
           "type": "function",
@@ -12213,14 +12103,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/cli/runtime.py::cas_group",
-          "file": "codegraph/cli/runtime.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/cli/runtime.py::cas_impact",
           "file": "codegraph/cli/runtime.py",
           "type": "function",
@@ -12271,14 +12153,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/cli/runtime.py::lifecycle_group",
-          "file": "codegraph/cli/runtime.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/cli/runtime.py::lifecycle_merge",
@@ -12440,30 +12314,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::format",
-          "file": "codegraph/copilot_context_builder.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::save",
-          "file": "codegraph/copilot_context_builder.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::to_dict",
-          "file": "codegraph/copilot_context_builder.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/copilot_context_builder.py::GraphSummary",
           "file": "codegraph/copilot_context_builder.py",
           "type": "class",
@@ -12474,14 +12324,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/copilot_context_builder.py::GraphSummary::to_dict",
-          "file": "codegraph/copilot_context_builder.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/copilot_context_builder.py::SimulatorRules",
           "file": "codegraph/copilot_context_builder.py",
           "type": "class",
@@ -12490,14 +12332,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/copilot_context_builder.py::SimulatorRules::to_dict",
-          "file": "codegraph/copilot_context_builder.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/copilot_context_builder.py::_build_graph_summary",
@@ -12586,22 +12420,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/evolution_proposals.py::EvolutionProposal::from_dict",
-          "file": "codegraph/evolution_proposals.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/evolution_proposals.py::EvolutionProposal::to_dict",
-          "file": "codegraph/evolution_proposals.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/evolution_proposals.py::ProposalStore",
           "file": "codegraph/evolution_proposals.py",
           "type": "class",
@@ -12629,14 +12447,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/evolution_proposals.py::ProposalStore::add",
-          "file": "codegraph/evolution_proposals.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/evolution_proposals.py::ProposalStore::format",
           "file": "codegraph/evolution_proposals.py",
           "type": "method",
@@ -12645,14 +12455,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/evolution_proposals.py::ProposalStore::from_dict",
-          "file": "codegraph/evolution_proposals.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/evolution_proposals.py::ProposalStore::pending",
@@ -12678,14 +12480,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/evolution_proposals.py::ProposalStore::to_dict",
-          "file": "codegraph/evolution_proposals.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/evolution_proposals.py::_proposals_path",
@@ -12744,54 +12538,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/extractors/api_routes.py::ApiCall::from_dict",
-          "file": "codegraph/extractors/api_routes.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/extractors/api_routes.py::ApiCall::to_dict",
-          "file": "codegraph/extractors/api_routes.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/extractors/api_routes.py::ApiEndpoint::from_dict",
-          "file": "codegraph/extractors/api_routes.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/extractors/api_routes.py::ApiEndpoint::to_dict",
-          "file": "codegraph/extractors/api_routes.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/extractors/api_routes.py::ApiLinkReport::format",
-          "file": "codegraph/extractors/api_routes.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/extractors/api_routes.py::ApiLinkReport::to_dict",
-          "file": "codegraph/extractors/api_routes.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/extractors/api_routes.py::_build_func_ranges",
@@ -12995,14 +12741,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/pipeline_orchestrator.py::PipelineReport::format",
-          "file": "codegraph/pipeline_orchestrator.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/pipeline_orchestrator.py::PipelineReport::save",
           "file": "codegraph/pipeline_orchestrator.py",
           "type": "method",
@@ -13050,14 +12788,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/pipeline_orchestrator.py::StepResult::to_dict",
-          "file": "codegraph/pipeline_orchestrator.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/pipeline_orchestrator.py::_execute_step",
@@ -13234,22 +12964,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/precommit.py::PreCommitReport::format",
-          "file": "codegraph/precommit.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/precommit.py::PreCommitReport::to_dict",
-          "file": "codegraph/precommit.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/precommit.py::SimulationCheck",
           "file": "codegraph/precommit.py",
           "type": "class",
@@ -13263,14 +12977,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/precommit.py::SimulationCheck::to_dict",
-          "file": "codegraph/precommit.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/precommit.py::_check_metric",
@@ -13370,14 +13076,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/runtime_graph.py::RuntimeEdge::to_dict",
-          "file": "codegraph/runtime_graph.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor",
           "file": "codegraph/runtime_graph.py",
           "type": "class",
@@ -13441,14 +13139,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_source_node",
-          "file": "codegraph/runtime_graph.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_Call",
           "file": "codegraph/runtime_graph.py",
           "type": "method",
@@ -13460,22 +13150,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_ClassDef",
-          "file": "codegraph/runtime_graph.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_FunctionDef",
-          "file": "codegraph/runtime_graph.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/runtime_graph.py::RuntimeGraph",
@@ -13490,22 +13164,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/runtime_graph.py::RuntimeGraph::format",
-          "file": "codegraph/runtime_graph.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
-          "id": "codegraph/runtime_graph.py::RuntimeGraph::to_dict",
-          "file": "codegraph/runtime_graph.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/runtime_graph.py::extract_runtime_edges",
@@ -13561,14 +13219,6 @@
           "previous_intent": ""
         },
         {
-          "id": "codegraph/simulator.py::CandidateSimResult::to_dict",
-          "file": "codegraph/simulator.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "codegraph/simulator.py::_bfs_limited",
           "file": "codegraph/simulator.py",
           "type": "function",
@@ -13578,14 +13228,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "codegraph/simulator.py::_build_allowed_edges",
-          "file": "codegraph/simulator.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "codegraph/simulator.py::_build_forbidden_subsystem_deps",
@@ -13748,14 +13390,6 @@
           "reason": "Orphan (disconnected)"
         },
         {
-          "id": "tests/test_api_routes.py::TestDataClasses::test_api_call_from_dict",
-          "file": "tests/test_api_routes.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
           "id": "tests/test_api_routes.py::TestDataClasses::test_api_call_to_dict",
           "file": "tests/test_api_routes.py",
           "type": "method",
@@ -13764,14 +13398,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_from_dict",
-          "file": "tests/test_api_routes.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_to_dict",
@@ -14478,14 +14104,6 @@
           "previous_intent": ""
         },
         {
-          "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_strategy_tiers_complete",
-          "file": "tests/test_arch_evolution.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
           "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_unknown_defaults_to_medium",
           "file": "tests/test_arch_evolution.py",
           "type": "method",
@@ -14781,14 +14399,6 @@
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": "",
           "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_arch_memory.py::TestArchDecision::test_defaults",
-          "file": "tests/test_arch_memory.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_arch_memory.py::TestArchDecision::test_minimal_to_dict",
@@ -15546,14 +15156,6 @@
           "previous_intent": ""
         },
         {
-          "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_valid_policy_types_updated",
-          "file": "tests/test_arch_policy.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
           "id": "tests/test_arch_policy.py::TestInitDefaults",
           "file": "tests/test_arch_policy.py",
           "type": "class",
@@ -15783,14 +15385,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "tests/test_arch_versioning.py::TestArchVersion::test_from_dict",
-          "file": "tests/test_arch_versioning.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_arch_versioning.py::TestArchVersionDiff",
@@ -16025,14 +15619,6 @@
           "previous_intent": ""
         },
         {
-          "id": "tests/test_arch_versioning.py::project_with_arch",
-          "file": "tests/test_arch_versioning.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
-        },
-        {
           "id": "tests/test_architecture_compiler",
           "file": "tests/test_architecture_compiler.py",
           "type": "module",
@@ -16166,14 +15752,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_load_missing",
-          "file": "tests/test_architecture_compiler.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_roundtrip",
@@ -16814,14 +16392,6 @@
           "previous_intent": ""
         },
         {
-          "id": "tests/test_architecture_objectives.py::TestObjectiveWeights::test_from_dict_missing_keys",
-          "file": "tests/test_architecture_objectives.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
           "id": "tests/test_architecture_objectives.py::TestObjectiveWeights::test_normalize",
           "file": "tests/test_architecture_objectives.py",
           "type": "method",
@@ -17330,14 +16900,6 @@
           "previous_intent": ""
         },
         {
-          "id": "tests/test_branch_executor.py::TestBranchMetrics::test_from_dict_defaults",
-          "file": "tests/test_branch_executor.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
           "id": "tests/test_branch_executor.py::TestBranchMetrics::test_roundtrip",
           "file": "tests/test_branch_executor.py",
           "type": "method",
@@ -17541,62 +17103,6 @@
           "reason": "Orphan (disconnected)"
         },
         {
-          "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_all_commands_registered",
-          "file": "tests/test_cli_package.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
-          "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_architecture_commands_list",
-          "file": "tests/test_cli_package.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
-          "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_governance_commands_and_groups",
-          "file": "tests/test_cli_package.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
-          "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_import_from_package",
-          "file": "tests/test_cli_package.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
-          "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_intelligence_commands_list",
-          "file": "tests/test_cli_package.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
-          "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_main_is_click_group",
-          "file": "tests/test_cli_package.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
-          "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_runtime_commands_and_groups",
-          "file": "tests/test_cli_package.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
           "id": "tests/test_code_planner",
           "file": "tests/test_code_planner.py",
           "type": "module",
@@ -17621,14 +17127,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "tests/test_code_planner.py::TestCodePlan::test_load_missing",
-          "file": "tests/test_code_planner.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_code_planner.py::TestCodePlan::test_ordered_tasks_by_dependency",
@@ -17988,14 +17486,6 @@
           "previous_intent": ""
         },
         {
-          "id": "tests/test_copilot_context.py::TestCopilotContext::test_load_missing",
-          "file": "tests/test_copilot_context.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
           "id": "tests/test_copilot_context.py::TestCopilotContext::test_roundtrip",
           "file": "tests/test_copilot_context.py",
           "type": "method",
@@ -18349,14 +17839,6 @@
           "reason": "Orphan (disconnected)"
         },
         {
-          "id": "tests/test_evolution_proposals.py::TestEvolutionProposal::test_from_dict",
-          "file": "tests/test_evolution_proposals.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
           "id": "tests/test_evolution_proposals.py::TestEvolutionProposal::test_to_dict",
           "file": "tests/test_evolution_proposals.py",
           "type": "method",
@@ -18656,14 +18138,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "tests/test_js_extractor.py::project",
-          "file": "tests/test_js_extractor.py",
-          "type": "function",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (new_code)"
         },
         {
           "id": "tests/test_multilevel",
@@ -19109,30 +18583,6 @@
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": "",
           "reason": "Orphan (disconnected)"
-        },
-        {
-          "id": "tests/test_precommit.py::TestDefaultThresholds::test_coupling_is_positive",
-          "file": "tests/test_precommit.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
-          "id": "tests/test_precommit.py::TestDefaultThresholds::test_has_required_metrics",
-          "file": "tests/test_precommit.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
-          "id": "tests/test_precommit.py::TestDefaultThresholds::test_score_is_negative",
-          "file": "tests/test_precommit.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_precommit.py::TestPreCommitReport",
@@ -20184,14 +19634,6 @@
           "reason": "Orphan (disconnected)"
         },
         {
-          "id": "tests/test_target_architecture.py::TestTargetEdge::test_from_dict_defaults",
-          "file": "tests/test_target_architecture.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
-        },
-        {
           "id": "tests/test_target_architecture.py::TestTargetEdge::test_roundtrip",
           "file": "tests/test_target_architecture.py",
           "type": "method",
@@ -20302,14 +19744,6 @@
           ],
           "suggested_fix": "Add intent annotation describing this node's purpose",
           "previous_intent": ""
-        },
-        {
-          "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_load_nonexistent",
-          "file": "tests/test_target_architecture.py",
-          "type": "method",
-          "suggested_fix": "Add intent annotation describing this node's purpose",
-          "previous_intent": "",
-          "reason": "Orphan (entry_point)"
         },
         {
           "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_roundtrip",

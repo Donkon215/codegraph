@@ -14377,11 +14377,11 @@
     ]
   },
   "codegraph/simulator.py": {
-    "content_hash": "9a37c2fd973d",
+    "content_hash": "dd51270a86ad",
     "nodes": [
       {
         "id": "codegraph/simulator",
-        "body_hash": "47c56",
+        "body_hash": "4efae",
         "file": "codegraph/simulator.py",
         "type": "module",
         "line": 1
@@ -14391,126 +14391,119 @@
         "body_hash": "892cc",
         "file": "codegraph/simulator.py",
         "type": "class",
-        "line": 41
+        "line": 42
       },
       {
         "id": "codegraph/simulator.py::SimulatedChange::to_dict",
         "body_hash": "3799a",
         "file": "codegraph/simulator.py",
         "type": "method",
-        "line": 50
+        "line": 51
       },
       {
         "id": "codegraph/simulator.py::SimViolation",
         "body_hash": "6ea33",
         "file": "codegraph/simulator.py",
         "type": "class",
-        "line": 62
+        "line": 63
       },
       {
         "id": "codegraph/simulator.py::SimViolation::to_dict",
         "body_hash": "91fde",
         "file": "codegraph/simulator.py",
         "type": "method",
-        "line": 70
+        "line": 71
       },
       {
         "id": "codegraph/simulator.py::SimulationResult",
         "body_hash": "2a811",
         "file": "codegraph/simulator.py",
         "type": "class",
-        "line": 80
+        "line": 81
       },
       {
         "id": "codegraph/simulator.py::SimulationResult::to_dict",
         "body_hash": "0730e",
         "file": "codegraph/simulator.py",
         "type": "method",
-        "line": 93
+        "line": 94
       },
       {
         "id": "codegraph/simulator.py::SimulationResult::format",
         "body_hash": "574fb",
         "file": "codegraph/simulator.py",
         "type": "method",
-        "line": 106
+        "line": 107
       },
       {
         "id": "codegraph/simulator.py::simulate_changes",
         "body_hash": "d842a",
         "file": "codegraph/simulator.py",
         "type": "function",
-        "line": 126
+        "line": 127
       },
       {
         "id": "codegraph/simulator.py::simulate_agent_response",
         "body_hash": "3739d",
         "file": "codegraph/simulator.py",
         "type": "function",
-        "line": 272
+        "line": 279
       },
       {
         "id": "codegraph/simulator.py::_find_cycles_in_adj",
         "body_hash": "8ae7e",
         "file": "codegraph/simulator.py",
         "type": "function",
-        "line": 316
+        "line": 330
       },
       {
         "id": "codegraph/simulator.py::_find_cycles_in_adj::strongconnect",
         "body_hash": "64602",
         "file": "codegraph/simulator.py",
         "type": "function",
-        "line": 329
+        "line": 343
       },
       {
         "id": "codegraph/simulator.py::_original_adj",
         "body_hash": "eabbb",
         "file": "codegraph/simulator.py",
         "type": "function",
-        "line": 378
+        "line": 392
       },
       {
         "id": "codegraph/simulator.py::_compute_module_coupling",
         "body_hash": "3e037",
         "file": "codegraph/simulator.py",
         "type": "function",
-        "line": 387
+        "line": 401
       },
       {
         "id": "codegraph/simulator.py::_node_to_module",
         "body_hash": "ab993",
         "file": "codegraph/simulator.py",
         "type": "function",
-        "line": 414
+        "line": 428
       },
       {
         "id": "codegraph/simulator.py::_check_layer_violations",
         "body_hash": "9ab9d",
         "file": "codegraph/simulator.py",
         "type": "function",
-        "line": 419
+        "line": 433
       },
       {
         "id": "codegraph/simulator.py::_load_system_json",
         "body_hash": "998ea",
         "file": "codegraph/simulator.py",
         "type": "function",
-        "line": 451
+        "line": 466
       },
       {
         "id": "codegraph/simulator.py::_build_module_to_subsystem",
         "body_hash": "8763a",
         "file": "codegraph/simulator.py",
         "type": "function",
-        "line": 459
-      },
-      {
-        "id": "codegraph/simulator.py::_build_allowed_edges",
-        "body_hash": "1cb25",
-        "file": "codegraph/simulator.py",
-        "type": "function",
-        "line": 473
+        "line": 474
       },
       {
         "id": "codegraph/simulator.py::_build_forbidden_subsystem_deps",
@@ -14531,21 +14524,21 @@
         "body_hash": "486ed",
         "file": "codegraph/simulator.py",
         "type": "function",
-        "line": 544
+        "line": 546
       },
       {
         "id": "codegraph/simulator.py::_bfs_limited",
         "body_hash": "a8b72",
         "file": "codegraph/simulator.py",
         "type": "function",
-        "line": 583
+        "line": 587
       },
       {
         "id": "codegraph/simulator.py::_detect_improvements",
         "body_hash": "100ae",
         "file": "codegraph/simulator.py",
         "type": "function",
-        "line": 609
+        "line": 613
       },
       {
         "id": "codegraph/simulator.py::_compute_blast_radius",
@@ -14587,7 +14580,7 @@
         "body_hash": "b8978",
         "file": "codegraph/simulator.py",
         "type": "function",
-        "line": 776
+        "line": 778
       }
     ]
   },

@@ -969,8 +969,8 @@
       "intent": "repair action execution system with planning gate enforcement. Coordinates version validation, lock acquisition, backup creation, repair dispatch, and finalization phases for safely applying agent response JSON to source code",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 6,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 8,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "tags": [
         "governance"
       ],
@@ -1241,8 +1241,8 @@
       "intent": "validate graph version, enforce planning gate when repairs are present, acquire file lock, collect files to modify, check for uncommitted conflicts, and create file backups before applying repairs",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 3,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 5,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "c8e0a"
     },
     {
@@ -1765,8 +1765,8 @@
       "intent": "summary of multi-cycle evolution with total improvement, strategies used, and convergence status",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "4b3bf"
     },
     {
@@ -1774,8 +1774,8 @@
       "intent": "format multi-cycle evolution report as human-readable text",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "a1b4c"
     },
     {
@@ -1783,8 +1783,8 @@
       "intent": "construct EvolutionReport from a list of EvolutionResults, computing totals and convergence",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "15964"
     },
     {
@@ -1792,8 +1792,8 @@
       "intent": "serialize EvolutionReport to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "dd8ae"
     },
     {
@@ -1801,8 +1801,8 @@
       "intent": "complete result of one evolution cycle with 7-stage pipeline outcome, scores, and recommendations",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "a9f47"
     },
     {
@@ -1810,8 +1810,8 @@
       "intent": "format evolution result as human-readable text with stage status icons and recommendations",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "f05e3"
     },
     {
@@ -1819,8 +1819,8 @@
       "intent": "serialize EvolutionResult to dictionary with rounded scores",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "89573"
     },
     {
@@ -1828,8 +1828,8 @@
       "intent": "a named stage in the evolution pipeline with status tracking and metrics",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "0fdd9"
     },
     {
@@ -1837,8 +1837,8 @@
       "intent": "serialize EvolutionStage to dictionary, omitting empty details and metrics",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "46f3e"
     },
     {
@@ -1846,8 +1846,8 @@
       "intent": "boost candidate selection when its strategy has greater than 60% historical effectiveness",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "e1d01"
     },
     {
@@ -1855,8 +1855,8 @@
       "intent": "check architecture policies and return report as dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "96d7e"
     },
     {
@@ -1864,8 +1864,8 @@
       "intent": "generate recommendations based on evolution outcome and historical strategy effectiveness",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "61fed"
     },
     {
@@ -1873,8 +1873,8 @@
       "intent": "get strategy ranking from memory intelligence as list of dictionaries",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "09179"
     },
     {
@@ -1882,8 +1882,8 @@
       "intent": "record current architecture metrics to memory intelligence history",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "bd631"
     },
     {
@@ -1891,8 +1891,8 @@
       "intent": "record evolution decision to architecture memory with strategy and evolution tags",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "3b1cc"
     },
     {
@@ -1908,8 +1908,8 @@
       "intent": "run architecture advisor and return advice as dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "e1a27"
     },
     {
@@ -1917,8 +1917,8 @@
       "intent": "run multi-candidate architecture search and return results as dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "993dc"
     },
     {
@@ -1934,8 +1934,8 @@
       "intent": "mark all pending stages after the named stage as skipped",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "2f1ee"
     },
     {
@@ -1951,8 +1951,8 @@
       "intent": "run multiple evolution cycles until convergence, policy block, or max_cycles reached",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "57770"
     },
     {
@@ -1960,8 +1960,8 @@
       "intent": "run one full evolution cycle: detect smells via architecture advisor, consult architecture memory for past strategy effectiveness, generate mutation candidates, evaluate candidates against policies, simulate impact of best candidate, select the safest improvement, and record the decision to memory",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 3,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 7,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "7189b"
     },
     {
@@ -1969,8 +1969,8 @@
       "intent": "save multi-cycle evolution report to planning directory as JSON",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "0ddc0"
     },
     {
@@ -2228,8 +2228,8 @@
       "intent": "mined architecture pattern with frequency, average impact, and confidence score",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "99487"
     },
     {
@@ -2237,8 +2237,8 @@
       "intent": "deserialize ArchPattern from dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "0998e"
     },
     {
@@ -2246,8 +2246,8 @@
       "intent": "serialize ArchPattern to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "c0d05"
     },
     {
@@ -2255,8 +2255,8 @@
       "intent": "full memory intelligence report containing strategy scores, patterns, metrics trend, and recommendations",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "d6630"
     },
     {
@@ -2264,8 +2264,8 @@
       "intent": "format memory intelligence report as human-readable text with strategy rankings and trend analysis",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "9e0b8"
     },
     {
@@ -2273,8 +2273,8 @@
       "intent": "serialize MemoryIntelligenceReport to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "42969"
     },
     {
@@ -2282,8 +2282,8 @@
       "intent": "point-in-time architecture metrics snapshot with score, grade, modularity, coupling, cycle count, and trigger event",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "a7da6"
     },
     {
@@ -2291,8 +2291,8 @@
       "intent": "deserialize MetricsSnapshot from dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "a08b6"
     },
     {
@@ -2300,8 +2300,8 @@
       "intent": "serialize MetricsSnapshot to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "9adb3"
     },
     {
@@ -2309,8 +2309,8 @@
       "intent": "effectiveness score for an architecture strategy based on historical success rate and score improvement",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "1caee"
     },
     {
@@ -2318,8 +2318,8 @@
       "intent": "deserialize StrategyScore from dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "1bda6"
     },
     {
@@ -2327,8 +2327,8 @@
       "intent": "serialize StrategyScore to dictionary with rounded effectiveness",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "5dfc7"
     },
     {
@@ -2336,8 +2336,8 @@
       "intent": "save metrics history list to disk as JSON, truncating to max 200 entries",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "e7632"
     },
     {
@@ -2345,8 +2345,8 @@
       "intent": "full memory intelligence pipeline: mine patterns, score strategies, generate recommendations",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "d5c75"
     },
     {
@@ -2354,8 +2354,8 @@
       "intent": "generate actionable recommendations from memory data including trend analysis and effective strategy suggestions",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "25f63"
     },
     {
@@ -2363,8 +2363,8 @@
       "intent": "aPI for evolution engine to retrieve strategy effectiveness ranking sorted by score",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "65eba"
     },
     {
@@ -2372,8 +2372,8 @@
       "intent": "load metrics history from disk",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "79342"
     },
     {
@@ -2381,8 +2381,8 @@
       "intent": "discover successful architecture patterns by grouping decisions by tags and analyzing experiment outcomes",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "4ddaa"
     },
     {
@@ -2390,8 +2390,8 @@
       "intent": "record a point-in-time architecture metrics snapshot to history file, keeping last 200 entries",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "37a3c"
     },
     {
@@ -2399,8 +2399,8 @@
       "intent": "persist strategy effectiveness scores to disk for cross-session use",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "9f1b0"
     },
     {
@@ -2408,8 +2408,8 @@
       "intent": "rank architecture strategies by historical effectiveness using composite score: success_rate * 0.5 + impact_factor * 0.5",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "7a13d"
     },
     {
@@ -2596,8 +2596,8 @@
       "intent": "architecture policy definition with type, rule, action (warn/block/suggest), threshold, and target scope",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "8474b"
     },
     {
@@ -2605,8 +2605,8 @@
       "intent": "deserialize ArchPolicy from dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "44daf"
     },
     {
@@ -2614,8 +2614,8 @@
       "intent": "serialize ArchPolicy to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "dcfdf"
     },
     {
@@ -2623,8 +2623,8 @@
       "intent": "policy evaluation result with pass/fail status, violation list, and blocking/warning counts",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "5e401"
     },
     {
@@ -2632,8 +2632,8 @@
       "intent": "format policy report as human-readable text with PASSED/BLOCKED status and violation details",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "3f21a"
     },
     {
@@ -2641,8 +2641,8 @@
       "intent": "serialize PolicyReport to dictionary with summary counts",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "50cf9"
     },
     {
@@ -2650,8 +2650,8 @@
       "intent": "record of a policy violation with action type (warn/block) and details",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "c53d2"
     },
     {
@@ -2659,8 +2659,8 @@
       "intent": "serialize PolicyViolation to dictionary",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "f74da"
     },
     {
@@ -2668,8 +2668,8 @@
       "intent": "check that system coupling does not exceed threshold",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "63887"
     },
     {
@@ -2685,8 +2685,8 @@
       "intent": "check that frontend and backend modules have no direct dependencies",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "b7d00"
     },
     {
@@ -2702,8 +2702,8 @@
       "intent": "check that no subsystem exceeds the component count threshold",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "16c52"
     },
     {
@@ -2711,8 +2711,8 @@
       "intent": "check that an architecture plan exists before allowing apply operations",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "9eab6"
     },
     {
@@ -2720,8 +2720,8 @@
       "intent": "check that no file exceeds the node count threshold",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "f9d30"
     },
     {
@@ -2729,8 +2729,8 @@
       "intent": "dispatch a single policy to its type-specific handler",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "ca71f"
     },
     {
@@ -2738,8 +2738,8 @@
       "intent": "check that architecture health score meets minimum threshold",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "72ff0"
     },
     {
@@ -2747,8 +2747,8 @@
       "intent": "load a JSON file safely, returning empty dict if file does not exist",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "c527b"
     },
     {
@@ -2756,8 +2756,8 @@
       "intent": "add a new architecture policy with auto-generated ID, validating type and action",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "d9f93"
     },
     {
@@ -2765,8 +2765,8 @@
       "intent": "evaluate all enabled architecture policies against current graph, architecture, and health data",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "f6f03"
     },
     {
@@ -2774,8 +2774,8 @@
       "intent": "initialize default architecture policies (no_large_modules, max_subsystem_size, score_gate, coupling_limit)",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "8a66e"
     },
     {
@@ -2783,8 +2783,8 @@
       "intent": "load architecture policies from disk, returning empty list if none exist",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "4e3a3"
     },
     {
@@ -2792,8 +2792,8 @@
       "intent": "remove an architecture policy by ID",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "4c7a8"
     },
     {
@@ -2801,8 +2801,8 @@
       "intent": "persist architecture policies list to disk as JSON",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "d1e1b"
     },
     {
@@ -3076,19 +3076,21 @@
     },
     {
       "id": "codegraph/arch_search.py::ArchCandidate::from_dict",
-      "intent": "",
+      "intent": "deserialize ArchCandidate from dictionary including candidate_id, strategy, description, proposed_changes, rationale, and estimated_impact",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-11T13:22:22Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "6ef5f"
     },
     {
       "id": "codegraph/arch_search.py::ArchCandidate::to_dict",
-      "intent": "",
+      "intent": "serialize ArchCandidate to dictionary with candidate_id, strategy, description, proposed_changes, rationale, and estimated_impact",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-11T13:22:22Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "0c085"
     },
     {
       "id": "codegraph/arch_search.py::ArchSearchResult",
@@ -3100,19 +3102,21 @@
     },
     {
       "id": "codegraph/arch_search.py::ArchSearchResult::format",
-      "intent": "",
+      "intent": "format ArchSearchResult as human-readable text showing candidate count, search query, subsystem target, and candidate summaries",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-11T13:22:22Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "0882a"
     },
     {
       "id": "codegraph/arch_search.py::ArchSearchResult::load",
-      "intent": "",
+      "intent": "load ArchSearchResult from .codegraph/planning/arch_search.json, returning None if the file does not exist",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-11T13:22:22Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "560ad"
     },
     {
       "id": "codegraph/arch_search.py::ArchSearchResult::save",
@@ -3212,19 +3216,21 @@
     },
     {
       "id": "codegraph/arch_versioning.py::ArchVersion::from_dict",
-      "intent": "",
+      "intent": "deserialize ArchVersion snapshot from dictionary with version_id, timestamp, description, subsystems, edges, constraints, and metrics",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "adb8d"
     },
     {
       "id": "codegraph/arch_versioning.py::ArchVersion::to_dict",
-      "intent": "",
+      "intent": "serialize ArchVersion snapshot to dictionary for JSON persistence",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "dff57"
     },
     {
       "id": "codegraph/arch_versioning.py::ArchVersionDiff",
@@ -3236,19 +3242,21 @@
     },
     {
       "id": "codegraph/arch_versioning.py::ArchVersionDiff::format",
-      "intent": "",
+      "intent": "format ArchVersionDiff as human-readable text showing added/removed subsystems, edges, and constraint changes between two architecture versions",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "08bee"
     },
     {
       "id": "codegraph/arch_versioning.py::ArchVersionDiff::to_dict",
-      "intent": "",
+      "intent": "serialize ArchVersionDiff to dictionary with added/removed subsystems, edges, and constraints",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "afbfe"
     },
     {
       "id": "codegraph/arch_versioning.py::_load_manifest",
@@ -3764,8 +3772,8 @@
       "intent": "intent-to-architecture compiler. Converts high-level text intents into concrete architecture changes — new subsystems, components, edges, and constraints — bridging human intent and machine-readable architecture plans",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 3,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 5,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "bae07"
     },
     {
@@ -3938,19 +3946,21 @@
     },
     {
       "id": "codegraph/architecture_delta.py::ArchitectureDelta::format",
-      "intent": "",
+      "intent": "format ArchitectureDelta as human-readable text showing node changes, edge changes, and constraint violations",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "602b0"
     },
     {
       "id": "codegraph/architecture_delta.py::ArchitectureDelta::has_changes",
-      "intent": "",
+      "intent": "return True if the delta contains any node changes, edge changes, or constraint violations",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "1d668"
     },
     {
       "id": "codegraph/architecture_delta.py::ArchitectureDelta::load",
@@ -3978,11 +3988,12 @@
     },
     {
       "id": "codegraph/architecture_delta.py::ArchitectureDelta::total_changes",
-      "intent": "",
+      "intent": "return the total count of node changes plus edge changes plus constraint violations in the delta",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "eaf7c"
     },
     {
       "id": "codegraph/architecture_delta.py::ConstraintViolation",
@@ -3994,11 +4005,12 @@
     },
     {
       "id": "codegraph/architecture_delta.py::ConstraintViolation::to_dict",
-      "intent": "",
+      "intent": "serialize ConstraintViolation to dictionary with constraint type, source, target, and description",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "d7987"
     },
     {
       "id": "codegraph/architecture_delta.py::EdgeChange",
@@ -4010,11 +4022,12 @@
     },
     {
       "id": "codegraph/architecture_delta.py::EdgeChange::to_dict",
-      "intent": "",
+      "intent": "serialize EdgeChange to dictionary with change type, source subsystem, target subsystem, and reason",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "54941"
     },
     {
       "id": "codegraph/architecture_delta.py::NodeChange",
@@ -4026,11 +4039,12 @@
     },
     {
       "id": "codegraph/architecture_delta.py::NodeChange::to_dict",
-      "intent": "",
+      "intent": "serialize NodeChange to dictionary with change type, file path, subsystem, and reason",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "cfe17"
     },
     {
       "id": "codegraph/architecture_delta.py::_check_constraints",
@@ -4475,11 +4489,12 @@
     },
     {
       "id": "codegraph/architecture_objectives.py::CandidateMetrics::to_dict",
-      "intent": "",
+      "intent": "serialize CandidateMetrics to dictionary with cycle_reduction, coupling_delta, modularity_gain, subsystem_isolation, and blast_radius",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "9c9ca"
     },
     {
       "id": "codegraph/architecture_objectives.py::ObjectiveWeights",
@@ -4491,11 +4506,12 @@
     },
     {
       "id": "codegraph/architecture_objectives.py::ObjectiveWeights::from_dict",
-      "intent": "",
+      "intent": "deserialize ObjectiveWeights from dictionary, using default weights when keys are absent",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "1e7f1"
     },
     {
       "id": "codegraph/architecture_objectives.py::ObjectiveWeights::normalize",
@@ -4507,11 +4523,12 @@
     },
     {
       "id": "codegraph/architecture_objectives.py::ObjectiveWeights::to_dict",
-      "intent": "",
+      "intent": "serialize ObjectiveWeights to dictionary of weight floats for JSON persistence",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "d1a01"
     },
     {
       "id": "codegraph/architecture_objectives.py::ScoredCandidate",
@@ -4523,11 +4540,12 @@
     },
     {
       "id": "codegraph/architecture_objectives.py::ScoredCandidate::to_dict",
-      "intent": "",
+      "intent": "serialize ScoredCandidate to dictionary with candidate_id, total_score, objective_scores, rank, and metrics",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "29862"
     },
     {
       "id": "codegraph/architecture_objectives.py::adjust_weights_from_memory",
@@ -4579,11 +4597,12 @@
     },
     {
       "id": "codegraph/architecture_proof.py::ArchitectureProof::format",
-      "intent": "",
+      "intent": "format ArchitectureProof as human-readable text showing proof status, proposal ID, checks run, violations, and budget analysis",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "129d1"
     },
     {
       "id": "codegraph/architecture_proof.py::ArchitectureProof::load",
@@ -4619,11 +4638,12 @@
     },
     {
       "id": "codegraph/architecture_proof.py::ProofViolation::to_dict",
-      "intent": "",
+      "intent": "serialize ProofViolation to dictionary with check name, severity, description, and affected nodes",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "efa87"
     },
     {
       "id": "codegraph/architecture_proof.py::_check_budget",
@@ -4707,19 +4727,21 @@
     },
     {
       "id": "codegraph/architecture_score.py::ArchitectureScore::format",
-      "intent": "",
+      "intent": "format ArchitectureScore as human-readable text showing overall score, grade, component scores, and per-subsystem isolation",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "b1d71"
     },
     {
       "id": "codegraph/architecture_score.py::ArchitectureScore::load",
-      "intent": "",
+      "intent": "load ArchitectureScore from .codegraph/architecture_score.json, returning None if file does not exist",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "fdbe6"
     },
     {
       "id": "codegraph/architecture_score.py::ArchitectureScore::save",
@@ -5601,8 +5623,8 @@
       "intent": "cLI package entry point for codegraph. Re-exports main from codegraph.cli.core. Commands split across submodules: core (build/analyze/query/explain), architecture, governance, intelligence (semantic/path/visualize/context), and runtime (cas/testing/lifecycle)",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 15,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 17,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "tags": [
         "entry_point"
       ],
@@ -6697,11 +6719,15 @@
     },
     {
       "id": "codegraph/cli/core.py::index_group",
-      "intent": "",
+      "intent": "cLI command group for index management (build, show, stats). Registered as 'index' subcommand on the main codegraph group",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "06af9"
     },
     {
       "id": "codegraph/cli/core.py::index_rebuild",
@@ -6769,11 +6795,15 @@
     },
     {
       "id": "codegraph/cli/core.py::schema",
-      "intent": "",
+      "intent": "cLI command that prints the JSON schema for agent_response.json to stdout",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "8f4cb"
     },
     {
       "id": "codegraph/cli/core.py::semantic_build",
@@ -6825,19 +6855,21 @@
     },
     {
       "id": "codegraph/cli/core.py::timed_command",
-      "intent": "",
+      "intent": "decorator that wraps a CLI command callback to measure and print execution time in milliseconds",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "d2587"
     },
     {
       "id": "codegraph/cli/core.py::timed_command::wrapper",
-      "intent": "",
+      "intent": "inner wrapper function that records start time, calls the original command, and reports elapsed milliseconds",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "6ee84"
     },
     {
       "id": "codegraph/cli/core.py::validate",
@@ -6849,11 +6881,15 @@
     },
     {
       "id": "codegraph/cli/core.py::version_cmd",
-      "intent": "",
+      "intent": "cLI command that prints the codegraph package version string",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "d6887"
     },
     {
       "id": "codegraph/cli/core.py::visualize_cmd",
@@ -6993,11 +7029,15 @@
     },
     {
       "id": "codegraph/cli/governance.py::suggest_group",
-      "intent": "",
+      "intent": "cLI command group for policy rule management (list, add, remove). Registered as 'suggest' subcommand on the main codegraph group",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "f389f"
     },
     {
       "id": "codegraph/cli/governance.py::suggest_import_template",
@@ -7169,11 +7209,15 @@
     },
     {
       "id": "codegraph/cli/intelligence.py::semantic_group",
-      "intent": "",
+      "intent": "cLI command group for semantic CAS operations (build, show, summary, check). Registered as 'semantic' subcommand on the main codegraph group",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T17:13:33Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "5f097"
     },
     {
       "id": "codegraph/cli/intelligence.py::semantic_show",
@@ -7257,11 +7301,15 @@
     },
     {
       "id": "codegraph/cli/runtime.py::branch_group",
-      "intent": "",
+      "intent": "cLI command group for branch lifecycle operations. Registered as 'branch' subcommand on the main codegraph group",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "5f5cd"
     },
     {
       "id": "codegraph/cli/runtime.py::branch_list",
@@ -7297,11 +7345,15 @@
     },
     {
       "id": "codegraph/cli/runtime.py::cas_group",
-      "intent": "",
+      "intent": "cLI command group for content-addressable storage operations (build, verify, impact). Registered as 'cas' subcommand on the main codegraph group",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T17:13:33Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "ee2b2"
     },
     {
       "id": "codegraph/cli/runtime.py::cas_impact",
@@ -7337,11 +7389,15 @@
     },
     {
       "id": "codegraph/cli/runtime.py::lifecycle_group",
-      "intent": "",
+      "intent": "cLI command group for subsystem lifecycle management. Registered as 'lifecycle' subcommand on the main codegraph group",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "4ad62"
     },
     {
       "id": "codegraph/cli/runtime.py::lifecycle_merge",
@@ -7780,8 +7836,8 @@
       "intent": "copilot context generator module. Assembles comprehensive context from .codegraph files (architecture, policy rules, tasks, health, target, drift, decisions) to give Copilot complete architecture visibility before making decisions",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 3,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 5,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "c03cd"
     },
     {
@@ -7789,8 +7845,8 @@
       "intent": "complete context package for Copilot decision-making. Holds subsystems, constraints, policy rules, active tasks, health/target/drift summaries, architecture smells, recommended refactors, and strategy rankings",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 3,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 5,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "49afc"
     },
     {
@@ -7798,8 +7854,8 @@
       "intent": "format CopilotContext as human-readable text showing graph stats, subsystem map with allowed/forbidden dependencies, architecture smells, active policies, recommended refactors, and strategy rankings",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 3,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 5,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "f2279"
     },
     {
@@ -7807,8 +7863,8 @@
       "intent": "deserialize CopilotContext from dictionary, reconstructing subsystems, constraints, policy rules, active tasks, health/target/drift summaries, architecture metrics, and strategy rankings",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 3,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 5,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "6d794"
     },
     {
@@ -7834,8 +7890,8 @@
       "intent": "serialize CopilotContext to dictionary with graph stats, architecture definition, smells, active policies, policy rules, tasks, health, target, drift, recent decisions, recommended refactors, and strategy rankings",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 3,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 5,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "03bb0"
     },
     {
@@ -7965,8 +8021,8 @@
       "intent": "build comprehensive Copilot context from .codegraph data. Reads architecture definition, graph stats, policy rules, active tasks, health summary, target architecture, drift status, and recent decisions. Silently skips missing files",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 3,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 5,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "3f094"
     },
     {
@@ -7987,27 +8043,30 @@
     },
     {
       "id": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::format",
-      "intent": "",
+      "intent": "format EnrichedCopilotContext as human-readable text with graph summary, architecture health, simulator rules, delta, and proof status for Copilot decision-making",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "1755c"
     },
     {
       "id": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::save",
-      "intent": "",
+      "intent": "save EnrichedCopilotContext to .codegraph/context/copilot_context.json as formatted JSON",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "14419"
     },
     {
       "id": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::to_dict",
-      "intent": "",
+      "intent": "serialize EnrichedCopilotContext to dictionary with graph_summary, architecture_health, simulator_rules, architecture_delta, proof_status, and budget",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "b5ec9"
     },
     {
       "id": "codegraph/copilot_context_builder.py::GraphSummary",
@@ -8019,11 +8078,12 @@
     },
     {
       "id": "codegraph/copilot_context_builder.py::GraphSummary::to_dict",
-      "intent": "",
+      "intent": "serialize GraphSummary to dictionary with node_count, edge_count, orphan_count, cycle_count, subsystem_coverage, and top-level module stats",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "15ba7"
     },
     {
       "id": "codegraph/copilot_context_builder.py::SimulatorRules",
@@ -8035,11 +8095,12 @@
     },
     {
       "id": "codegraph/copilot_context_builder.py::SimulatorRules::to_dict",
-      "intent": "",
+      "intent": "serialize SimulatorRules to dictionary with forbidden_patterns, layer_rules, and subsystem_constraints for use in simulation",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "b3b86"
     },
     {
       "id": "codegraph/copilot_context_builder.py::_build_graph_summary",
@@ -8576,19 +8637,21 @@
     },
     {
       "id": "codegraph/evolution_proposals.py::EvolutionProposal::from_dict",
-      "intent": "",
+      "intent": "deserialize EvolutionProposal from dictionary with proposal_id, strategy, description, changes, rationale, and simulation_result",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "7c427"
     },
     {
       "id": "codegraph/evolution_proposals.py::EvolutionProposal::to_dict",
-      "intent": "",
+      "intent": "serialize EvolutionProposal to dictionary for JSON persistence in the proposals store",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "e1c25"
     },
     {
       "id": "codegraph/evolution_proposals.py::ProposalStore",
@@ -8608,11 +8671,12 @@
     },
     {
       "id": "codegraph/evolution_proposals.py::ProposalStore::add",
-      "intent": "",
+      "intent": "add a new EvolutionProposal to the store, replacing any existing proposal with the same ID",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "e21a6"
     },
     {
       "id": "codegraph/evolution_proposals.py::ProposalStore::format",
@@ -8624,11 +8688,12 @@
     },
     {
       "id": "codegraph/evolution_proposals.py::ProposalStore::from_dict",
-      "intent": "",
+      "intent": "deserialize ProposalStore from dictionary, reconstructing all proposals and metadata",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "94537"
     },
     {
       "id": "codegraph/evolution_proposals.py::ProposalStore::pending",
@@ -8648,11 +8713,12 @@
     },
     {
       "id": "codegraph/evolution_proposals.py::ProposalStore::to_dict",
-      "intent": "",
+      "intent": "serialize ProposalStore to dictionary with all proposals and store metadata for JSON persistence",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T04:54:14Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "dd898"
     },
     {
       "id": "codegraph/evolution_proposals.py::_proposals_path",
@@ -9645,8 +9711,8 @@
       "intent": "cross-language API endpoint linker. Detects HTTP endpoints in Python backends (FastAPI, Flask, Django REST, Starlette) and API calls in JS/TS frontends (fetch, axios, XHR), creating cross-language WorkflowEdge objects for full-stack architecture visibility",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "291df"
     },
     {
@@ -9660,19 +9726,21 @@
     },
     {
       "id": "codegraph/extractors/api_routes.py::ApiCall::from_dict",
-      "intent": "",
+      "intent": "deserialize ApiCall from dictionary with method, url_pattern, file, line, and caller_node",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-11T18:05:07Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "dc0da"
     },
     {
       "id": "codegraph/extractors/api_routes.py::ApiCall::to_dict",
-      "intent": "",
+      "intent": "serialize ApiCall to dictionary with method, url_pattern, file, line, and caller_node",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-11T18:05:07Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "ec926"
     },
     {
       "id": "codegraph/extractors/api_routes.py::ApiEndpoint",
@@ -9685,19 +9753,21 @@
     },
     {
       "id": "codegraph/extractors/api_routes.py::ApiEndpoint::from_dict",
-      "intent": "",
+      "intent": "deserialize ApiEndpoint from dictionary with method, path, file, line, handler_node, and framework",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-11T18:05:07Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "7ac68"
     },
     {
       "id": "codegraph/extractors/api_routes.py::ApiEndpoint::to_dict",
-      "intent": "",
+      "intent": "serialize ApiEndpoint to dictionary with method, path, file, line, handler_node, and framework",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-11T18:05:07Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "bff78"
     },
     {
       "id": "codegraph/extractors/api_routes.py::ApiLinkReport",
@@ -9710,19 +9780,21 @@
     },
     {
       "id": "codegraph/extractors/api_routes.py::ApiLinkReport::format",
-      "intent": "",
+      "intent": "format ApiLinkReport as human-readable text showing matched and unmatched API endpoints with their callers",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-11T18:05:07Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "dc3d7"
     },
     {
       "id": "codegraph/extractors/api_routes.py::ApiLinkReport::to_dict",
-      "intent": "",
+      "intent": "serialize ApiLinkReport to dictionary with endpoints, calls, matches, and unmatched lists",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-11T18:05:07Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "7a1f8"
     },
     {
       "id": "codegraph/extractors/api_routes.py::_build_func_ranges",
@@ -9827,8 +9899,8 @@
       "intent": "scan Python backend files for HTTP route decorators and JS/TS frontend files for API call patterns, match them by URL path, and create cross-language WorkflowEdge objects linking frontend callers to backend handlers",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "14d2d"
     },
     {
@@ -9836,8 +9908,8 @@
       "intent": "javaScript/TypeScript/React extractor using regex-based analysis without external dependencies. Handles .js/.jsx/.ts/.tsx/.mjs/.cjs files. Extracts functions, arrow functions, class methods, TypeScript interfaces, JSX component usage, React hooks, dynamic imports, Express endpoints, and intra-file call edges",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 4,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 6,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "44992"
     },
     {
@@ -9845,8 +9917,8 @@
       "intent": "language extractor plugin for JavaScript, TypeScript, and React source files. Produces Graph0Node and WorkflowEdge objects using regex-based analysis with no external AST parser dependencies",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "c96c3"
     },
     {
@@ -9935,8 +10007,8 @@
       "intent": "extract import-type WorkflowEdge objects from JS/TS source by parsing import/require statements and resolving relative import paths to actual file locations in the project",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 4,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 6,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "94163"
     },
     {
@@ -9944,8 +10016,8 @@
       "intent": "parse a JS/TS source file using regex patterns to produce Graph0Node objects for function declarations, arrow functions, class methods, React components, hooks, and TypeScript interfaces",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 4,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 6,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "00ae0"
     },
     {
@@ -13969,11 +14041,12 @@
     },
     {
       "id": "codegraph/pipeline_orchestrator.py::PipelineReport::format",
-      "intent": "",
+      "intent": "format PipelineReport as human-readable text showing pipeline status, each step's result, timing, and final score with grade",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "0adc2"
     },
     {
       "id": "codegraph/pipeline_orchestrator.py::PipelineReport::save",
@@ -14009,11 +14082,12 @@
     },
     {
       "id": "codegraph/pipeline_orchestrator.py::StepResult::to_dict",
-      "intent": "",
+      "intent": "serialize StepResult to dictionary with step name, status, timing, message, and optional data payload",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T16:34:34Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "be5e9"
     },
     {
       "id": "codegraph/pipeline_orchestrator.py::_execute_step",
@@ -14236,19 +14310,21 @@
     },
     {
       "id": "codegraph/precommit.py::PreCommitReport::format",
-      "intent": "",
+      "intent": "format PreCommitReport as human-readable text showing PASS/FAIL status, metric checks, simulation result, and blocking issues",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "c6022"
     },
     {
       "id": "codegraph/precommit.py::PreCommitReport::to_dict",
-      "intent": "",
+      "intent": "serialize PreCommitReport to dictionary with passed flag, score, delta, violations, simulation_check, and metric details",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "bb183"
     },
     {
       "id": "codegraph/precommit.py::SimulationCheck",
@@ -14260,11 +14336,12 @@
     },
     {
       "id": "codegraph/precommit.py::SimulationCheck::to_dict",
-      "intent": "",
+      "intent": "serialize SimulationCheck to dictionary with ran flag, risk_level, violations count, and blast_radius",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "11e73"
     },
     {
       "id": "codegraph/precommit.py::_check_metric",
@@ -14954,11 +15031,12 @@
     },
     {
       "id": "codegraph/runtime_graph.py::RuntimeEdge::to_dict",
-      "intent": "",
+      "intent": "serialize RuntimeEdge to dictionary with source_file, source_node, edge_type, target, and optional details",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "ca40f"
     },
     {
       "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor",
@@ -14973,8 +15051,8 @@
       "intent": "initialize RuntimeEdgeVisitor AST visitor with source file path, empty runtime edges list, and current function/class scope trackers",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "c8a3f"
     },
     {
@@ -15011,11 +15089,12 @@
     },
     {
       "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_source_node",
-      "intent": "",
+      "intent": "property that builds the node ID string from file path, current class, and current function scope",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "957cb"
     },
     {
       "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_Call",
@@ -15027,19 +15106,21 @@
     },
     {
       "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_ClassDef",
-      "intent": "",
+      "intent": "aST visitor for class definitions: sets current class scope, recurses into class body, then restores the previous class scope",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "16b4b"
     },
     {
       "id": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_FunctionDef",
-      "intent": "",
+      "intent": "aST visitor for function and async function definitions: sets current function scope, recurses into the function body, then restores the previous function scope",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "064dc"
     },
     {
       "id": "codegraph/runtime_graph.py::RuntimeGraph",
@@ -15051,19 +15132,21 @@
     },
     {
       "id": "codegraph/runtime_graph.py::RuntimeGraph::format",
-      "intent": "",
+      "intent": "format RuntimeGraph as human-readable text showing total edge count, files scanned, and per-type edge counts sorted by frequency",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "24127"
     },
     {
       "id": "codegraph/runtime_graph.py::RuntimeGraph::to_dict",
-      "intent": "",
+      "intent": "serialize RuntimeGraph to dictionary with edges list, files_scanned count, edge_types breakdown, and total_edges count",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "20168"
     },
     {
       "id": "codegraph/runtime_graph.py::extract_runtime_edges",
@@ -15433,12 +15516,12 @@
     },
     {
       "id": "codegraph/simulator",
-      "intent": "change simulation engine. Tests proposed dependency graph modifications for newly introduced cycles, forbidden path violations, layer boundary violations, and subsystem constraint failures using a virtual adjacency snapshot. Provides blast radius analysis and coupling impact scoring without modifying real data",
+      "intent": "architecture simulation engine with cycle detection, forbidden path checking, layer validation, subsystem constraint enforcement, coupling analysis, and blast radius computation. Classifies as SAFE, LOW_RISK, MEDIUM_RISK, HIGH_RISK, or BLOCKED",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 3,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
-      "intent_body_hash": "47c56"
+      "intent_version": 6,
+      "intent_timestamp": "2026-03-12T17:50:41Z",
+      "intent_body_hash": "4efae"
     },
     {
       "id": "codegraph/simulator.py::CandidateSimResult",
@@ -15450,11 +15533,12 @@
     },
     {
       "id": "codegraph/simulator.py::CandidateSimResult::to_dict",
-      "intent": "",
+      "intent": "serialize CandidateSimResult to dictionary with candidate_id, risk_level, score, violations count, blast_radius, coupling_delta, improvements list, and safe flag",
       "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T14:36:18Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "intent_body_hash": "95951"
     },
     {
       "id": "codegraph/simulator.py::SimViolation",
@@ -15497,8 +15581,8 @@
       "intent": "result of a simulation run containing proposed changes list, violations list, safety flag, risk level (safe/low/medium/high), coupling delta, blast radius node count, and improvement suggestions",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "2a811"
     },
     {
@@ -15506,8 +15590,8 @@
       "intent": "format SimulationResult as human-readable text showing risk level, change and violation counts, blast radius, new cycle count, improvement suggestions, and violation details with severity",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "574fb"
     },
     {
@@ -15515,20 +15599,12 @@
       "intent": "serialize SimulationResult to dictionary with safe flag, risk level, changes, violations, new cycle count, coupling delta, blast radius, improvements list, and summary text",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 2,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 4,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "0730e"
     },
     {
       "id": "codegraph/simulator.py::_bfs_limited",
-      "intent": "",
-      "layer": 3,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T14:36:18Z"
-    },
-    {
-      "id": "codegraph/simulator.py::_build_allowed_edges",
       "intent": "",
       "layer": 3,
       "intent_author": "",
@@ -15681,8 +15757,8 @@
       "intent": "simulate proposed graph changes on a virtual adjacency snapshot built from the index. Checks for newly introduced cycles, forbidden path pattern violations, layer boundary violations, and subsystem constraint failures. Returns SimulationResult with risk level, blast radius, and coupling impact",
       "layer": 3,
       "intent_author": "agent",
-      "intent_version": 3,
-      "intent_timestamp": "2026-03-12T17:34:38Z",
+      "intent_version": 5,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
       "intent_body_hash": "d842a"
     },
     {
@@ -19202,11 +19278,15 @@
     },
     {
       "id": "tests/test_api_routes.py::TestDataClasses::test_api_call_from_dict",
-      "intent": "",
+      "intent": "verify ApiCall.from_dict correctly deserializes an API call from a dictionary",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-11T18:05:07Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "a77b0"
     },
     {
       "id": "tests/test_api_routes.py::TestDataClasses::test_api_call_to_dict",
@@ -19218,11 +19298,15 @@
     },
     {
       "id": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_from_dict",
-      "intent": "",
+      "intent": "verify ApiEndpoint.from_dict correctly deserializes an API endpoint from a dictionary",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-11T18:05:07Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "8bd6c"
     },
     {
       "id": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_to_dict",
@@ -20183,11 +20267,15 @@
     },
     {
       "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_strategy_tiers_complete",
-      "intent": "",
+      "intent": "verify that all SAFE, MEDIUM, and DANGEROUS mutation strategy tiers are populated in MUTATION_SAFETY_TIERS",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "378af"
     },
     {
       "id": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_unknown_defaults_to_medium",
@@ -20574,11 +20662,15 @@
     },
     {
       "id": "tests/test_arch_memory.py::TestArchDecision::test_defaults",
-      "intent": "",
+      "intent": "verify ArchDecision default field values are set correctly",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-10T16:15:33Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "9218b"
     },
     {
       "id": "tests/test_arch_memory.py::TestArchDecision::test_minimal_to_dict",
@@ -21208,11 +21300,14 @@
     },
     {
       "id": "tests/test_arch_planner.py::TestPlannedTask::test_from_dict",
-      "intent": "test deserialize planned task from dictionary",
+      "intent": "verify PlannedTask.from_dict correctly deserializes a planned task from a dictionary",
       "layer": 4,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
       "intent_body_hash": "2a950"
     },
     {
@@ -21389,11 +21484,15 @@
     },
     {
       "id": "tests/test_arch_policy.py::TestEvaluatePolicies::test_valid_policy_types_updated",
-      "intent": "",
+      "intent": "verify that evaluate_policies checks all supported policy type strings without raising errors",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "04917"
     },
     {
       "id": "tests/test_arch_policy.py::TestInitDefaults",
@@ -21562,11 +21661,14 @@
     },
     {
       "id": "tests/test_arch_schema.py::TestArchComponent::test_from_dict",
-      "intent": "test deserialize component from dictionary",
+      "intent": "verify ArchComponent.from_dict correctly deserializes a component from a dictionary",
       "layer": 4,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
       "intent_body_hash": "90f57"
     },
     {
@@ -21610,20 +21712,26 @@
     },
     {
       "id": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict",
-      "intent": "test deserialize constraint from dictionary",
+      "intent": "verify ArchConstraint.from_dict correctly deserializes a constraint with all fields",
       "layer": 4,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
       "intent_body_hash": "6c540"
     },
     {
       "id": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict_no_reason",
-      "intent": "test deserialize constraint without optional reason field",
+      "intent": "verify ArchConstraint.from_dict handles missing reason field by defaulting to empty string",
       "layer": 4,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
       "intent_body_hash": "aebf7"
     },
     {
@@ -21649,20 +21757,26 @@
     },
     {
       "id": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_list",
-      "intent": "test deserialize edge from list format backward compatibility",
+      "intent": "verify ArchEdge.from_dict correctly deserializes an edge when metadata is stored as a list",
       "layer": 4,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
       "intent_body_hash": "442be"
     },
     {
       "id": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_object",
-      "intent": "test deserialize edge from object format with custom type",
+      "intent": "verify ArchEdge.from_dict correctly deserializes an edge when metadata is stored as an object/dict",
       "layer": 4,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
       "intent_body_hash": "48070"
     },
     {
@@ -21745,11 +21859,14 @@
     },
     {
       "id": "tests/test_arch_schema.py::TestSubsystemDef::test_from_dict",
-      "intent": "test deserialize subsystem with components and edges",
+      "intent": "verify SubsystemDef.from_dict correctly deserializes a subsystem definition from a dictionary",
       "layer": 4,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
       "intent_body_hash": "43f1c"
     },
     {
@@ -21838,11 +21955,14 @@
     },
     {
       "id": "tests/test_arch_schema.py::TestSystemArchitecture::test_load_missing",
-      "intent": "test load returns None when architecture file missing",
+      "intent": "verify SystemArchitecture.load returns None when the system.json file does not exist",
       "layer": 4,
       "intent_author": "agent",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-10T10:53:12Z",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
       "intent_body_hash": "ef808"
     },
     {
@@ -21898,11 +22018,15 @@
     },
     {
       "id": "tests/test_arch_versioning.py::TestArchVersion::test_from_dict",
-      "intent": "",
+      "intent": "verify ArchVersion.from_dict correctly deserializes an architecture version snapshot from a dictionary",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "a7155"
     },
     {
       "id": "tests/test_arch_versioning.py::TestArchVersionDiff",
@@ -22098,11 +22222,15 @@
     },
     {
       "id": "tests/test_arch_versioning.py::project_with_arch",
-      "intent": "",
+      "intent": "pytest fixture that creates a temporary project directory with a valid system.json architecture definition for versioning tests",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "2aa1a"
     },
     {
       "id": "tests/test_arch_viewer",
@@ -22721,11 +22849,15 @@
     },
     {
       "id": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_load_missing",
-      "intent": "",
+      "intent": "verify ArchitecturePlan.load returns None when the plan file does not exist",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-10T17:53:06Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "49e61"
     },
     {
       "id": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_roundtrip",
@@ -23193,11 +23325,15 @@
     },
     {
       "id": "tests/test_architecture_objectives.py::TestObjectiveWeights::test_from_dict_missing_keys",
-      "intent": "",
+      "intent": "verify ObjectiveWeights.from_dict uses default values when keys are missing from the dictionary",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T14:36:18Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "c42e5"
     },
     {
       "id": "tests/test_architecture_objectives.py::TestObjectiveWeights::test_normalize",
@@ -23577,11 +23713,15 @@
     },
     {
       "id": "tests/test_branch_executor.py::TestBranchMetrics::test_from_dict_defaults",
-      "intent": "",
+      "intent": "verify BranchMetrics.from_dict uses correct default values when all optional fields are missing",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-10T16:15:33Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "28e84"
     },
     {
       "id": "tests/test_branch_executor.py::TestBranchMetrics::test_roundtrip",
@@ -25049,59 +25189,87 @@
     },
     {
       "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_all_commands_registered",
-      "intent": "",
+      "intent": "verify that all expected CLI commands and groups are registered on the main Click group",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T14:36:18Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "fd53b"
     },
     {
       "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_architecture_commands_list",
-      "intent": "",
+      "intent": "verify the architecture submodule exports the expected COMMANDS list",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T14:36:18Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "e7436"
     },
     {
       "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_governance_commands_and_groups",
-      "intent": "",
+      "intent": "verify the governance submodule exports expected COMMANDS and GROUPS (suggest_group)",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T14:36:18Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "72e58"
     },
     {
       "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_import_from_package",
-      "intent": "",
+      "intent": "verify codegraph.cli package correctly re-exports main from codegraph.cli.core",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T14:36:18Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "7dfe3"
     },
     {
       "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_intelligence_commands_list",
-      "intent": "",
+      "intent": "verify the intelligence submodule exports expected COMMANDS (path, visualize, context) and GROUPS (semantic_group)",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T14:36:18Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "54ee7"
     },
     {
       "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_main_is_click_group",
-      "intent": "",
+      "intent": "verify main exported from codegraph.cli is a Click Group instance",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T14:36:18Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "3d37c"
     },
     {
       "id": "tests/test_cli_package.py::TestCLIPackageRegistration::test_runtime_commands_and_groups",
-      "intent": "",
+      "intent": "verify the runtime submodule exports expected COMMANDS and GROUPS (branch_group, cas_group, lifecycle_group)",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T14:36:18Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "e12b5"
     },
     {
       "id": "tests/test_code_planner",
@@ -25129,11 +25297,15 @@
     },
     {
       "id": "tests/test_code_planner.py::TestCodePlan::test_load_missing",
-      "intent": "",
+      "intent": "verify CodePlan.load returns None when the plan file does not exist",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-10T17:53:06Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "0d5c8"
     },
     {
       "id": "tests/test_code_planner.py::TestCodePlan::test_ordered_tasks_by_dependency",
@@ -25584,11 +25756,15 @@
     },
     {
       "id": "tests/test_copilot_context.py::TestCopilotContext::test_load_missing",
-      "intent": "",
+      "intent": "verify CopilotContext.load returns None when the context file does not exist",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-10T17:53:06Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "fa387"
     },
     {
       "id": "tests/test_copilot_context.py::TestCopilotContext::test_roundtrip",
@@ -25938,11 +26114,15 @@
     },
     {
       "id": "tests/test_evolution_proposals.py::TestEvolutionProposal::test_from_dict",
-      "intent": "",
+      "intent": "verify EvolutionProposal.from_dict correctly deserializes a proposal from a dictionary",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T14:36:18Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "60526"
     },
     {
       "id": "tests/test_evolution_proposals.py::TestEvolutionProposal::test_to_dict",
@@ -26631,29 +26811,38 @@
     },
     {
       "id": "tests/test_fuzz.py::TestJsonLoaderFuzz::test_graph0_no_crash",
-      "intent": "test graph0 no crash",
+      "intent": "fuzz test: verify Graph0 loading does not crash or raise unhandled exceptions on malformed JSON",
       "layer": 4,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
+      "intent_author": "agent",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
       "intent_body_hash": "6d000"
     },
     {
       "id": "tests/test_fuzz.py::TestJsonLoaderFuzz::test_graph1_no_crash",
-      "intent": "test graph1 no crash",
+      "intent": "fuzz test: verify Graph1 loading does not crash or raise unhandled exceptions on malformed JSON",
       "layer": 4,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
+      "intent_author": "agent",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
       "intent_body_hash": "49dfc"
     },
     {
       "id": "tests/test_fuzz.py::TestJsonLoaderFuzz::test_workflow_no_crash",
-      "intent": "test workflow no crash",
+      "intent": "fuzz test: verify Workflow loading does not crash or raise unhandled exceptions on malformed JSON",
       "layer": 4,
-      "intent_author": "copilot",
-      "intent_version": 1,
-      "intent_timestamp": "2026-03-09T12:59:01Z",
+      "intent_author": "agent",
+      "intent_version": 3,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
       "intent_body_hash": "0d5d8"
     },
     {
@@ -27402,11 +27591,15 @@
     },
     {
       "id": "tests/test_js_extractor.py::project",
-      "intent": "",
+      "intent": "pytest fixture that creates a temporary project directory with sample JavaScript/TypeScript source files for extractor tests",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-11T17:26:39Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "dd194"
     },
     {
       "id": "tests/test_known_libraries",
@@ -28878,27 +29071,39 @@
     },
     {
       "id": "tests/test_precommit.py::TestDefaultThresholds::test_coupling_is_positive",
-      "intent": "",
+      "intent": "verify the default coupling threshold in PreCommitConfig is a positive float",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "58765"
     },
     {
       "id": "tests/test_precommit.py::TestDefaultThresholds::test_has_required_metrics",
-      "intent": "",
+      "intent": "verify PreCommitConfig contains all required metric threshold fields",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "c9d94"
     },
     {
       "id": "tests/test_precommit.py::TestDefaultThresholds::test_score_is_negative",
-      "intent": "",
+      "intent": "verify the default architecture score threshold in PreCommitConfig is a negative float (delta threshold)",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-12T03:29:57Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "56635"
     },
     {
       "id": "tests/test_precommit.py::TestPreCommitReport",
@@ -31412,11 +31617,15 @@
     },
     {
       "id": "tests/test_target_architecture.py::TestTargetEdge::test_from_dict_defaults",
-      "intent": "",
+      "intent": "verify TargetEdge.from_dict uses correct default values when optional fields are missing",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-10T16:15:33Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "f8334"
     },
     {
       "id": "tests/test_target_architecture.py::TestTargetEdge::test_roundtrip",
@@ -31508,11 +31717,15 @@
     },
     {
       "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_load_nonexistent",
-      "intent": "",
+      "intent": "verify TargetWorkflow.load returns None when the target architecture file does not exist",
       "layer": 4,
-      "intent_author": "",
-      "intent_version": 0,
-      "intent_timestamp": "2026-03-10T16:15:33Z"
+      "intent_author": "agent",
+      "intent_version": 2,
+      "intent_timestamp": "2026-03-12T17:47:21Z",
+      "tags": [
+        "entry_point"
+      ],
+      "intent_body_hash": "9569d"
     },
     {
       "id": "tests/test_target_architecture.py::TestTargetWorkflow::test_roundtrip",
