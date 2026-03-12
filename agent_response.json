@@ -1,12 +1,947 @@
 {
-  "cycle": 4,
-  "graph_version": 78,
+  "cycle": 3,
+  "graph_version": 80,
   "intents": [],
   "repairs": [
     {
-      "node": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::__init__",
+      "node": "codegraph/arch_health.py::save_health_report",
       "action": "flag_for_human_review",
-      "reason": "Correctly has no super().__init__() call; ast.NodeVisitor requires no explicit init. Static graph false positive - constructor calls appear on the class node, not __init__ method node."
+      "reason": "utility method/property - may be called via protocol or not yet connected in static graph"
+    },
+    {
+      "node": "codegraph/cli/core.py::index_group",
+      "action": "flag_for_human_review",
+      "reason": "Click CLI entry point - registered by decorator, called by CLI framework"
+    },
+    {
+      "node": "codegraph/cli/core.py::schema",
+      "action": "flag_for_human_review",
+      "reason": "Click CLI entry point - registered by decorator, called by CLI framework"
+    },
+    {
+      "node": "codegraph/cli/core.py::timed_command",
+      "action": "flag_for_human_review",
+      "reason": "Click CLI entry point - registered by decorator, called by CLI framework"
+    },
+    {
+      "node": "codegraph/cli/core.py::version_cmd",
+      "action": "flag_for_human_review",
+      "reason": "Click CLI entry point - registered by decorator, called by CLI framework"
+    },
+    {
+      "node": "codegraph/cli/governance.py::suggest_group",
+      "action": "flag_for_human_review",
+      "reason": "Click CLI entry point - registered by decorator, called by CLI framework"
+    },
+    {
+      "node": "codegraph/cli/intelligence.py::semantic_group",
+      "action": "flag_for_human_review",
+      "reason": "Click CLI entry point - registered by decorator, called by CLI framework"
+    },
+    {
+      "node": "codegraph/cli/runtime.py::branch_group",
+      "action": "flag_for_human_review",
+      "reason": "Click CLI entry point - registered by decorator, called by CLI framework"
+    },
+    {
+      "node": "codegraph/cli/runtime.py::cas_group",
+      "action": "flag_for_human_review",
+      "reason": "Click CLI entry point - registered by decorator, called by CLI framework"
+    },
+    {
+      "node": "codegraph/cli/runtime.py::lifecycle_group",
+      "action": "flag_for_human_review",
+      "reason": "Click CLI entry point - registered by decorator, called by CLI framework"
+    },
+    {
+      "node": "codegraph/code_planner.py::CodePlan::ordered_tasks::_visit",
+      "action": "flag_for_human_review",
+      "reason": "nested closure - naturally orphan in static analysis"
+    },
+    {
+      "node": "codegraph/drift_detector.py::DriftReport::findings_by_type",
+      "action": "flag_for_human_review",
+      "reason": "utility method/property - may be called via protocol or not yet connected in static graph"
+    },
+    {
+      "node": "codegraph/drift_detector.py::DriftReport::has_drift",
+      "action": "flag_for_human_review",
+      "reason": "utility method/property - may be called via protocol or not yet connected in static graph"
+    },
+    {
+      "node": "codegraph/extractor.py::ScopeTree::resolve",
+      "action": "flag_for_human_review",
+      "reason": "utility method/property - may be called via protocol or not yet connected in static graph"
+    },
+    {
+      "node": "codegraph/extractors/javascript.py::JavaScriptExtractor::supported_extensions",
+      "action": "flag_for_human_review",
+      "reason": "utility method/property - may be called via protocol or not yet connected in static graph"
+    },
+    {
+      "node": "codegraph/models/agent_response.py::AgentResponse::from_json",
+      "action": "flag_for_human_review",
+      "reason": "utility method/property - may be called via protocol or not yet connected in static graph"
+    },
+    {
+      "node": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_source_node",
+      "action": "flag_for_human_review",
+      "reason": "ast.NodeVisitor visit method or property - called dynamically by generic_visit dispatch"
+    },
+    {
+      "node": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_ClassDef",
+      "action": "flag_for_human_review",
+      "reason": "ast.NodeVisitor visit method or property - called dynamically by generic_visit dispatch"
+    },
+    {
+      "node": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_FunctionDef",
+      "action": "flag_for_human_review",
+      "reason": "ast.NodeVisitor visit method or property - called dynamically by generic_visit dispatch"
+    },
+    {
+      "node": "tests/test_api_routes.py::TestDataClasses",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_api_routes.py::TestDataClasses::test_api_call_from_dict",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_from_dict",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_api_routes.py::TestExtractJsApiCalls",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_api_routes.py::TestExtractPythonEndpoints",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_api_routes.py::TestLinkApiRoutes",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_api_routes.py::TestLooksLikeApiPath",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_api_routes.py::TestMatchParameterized",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_api_routes.py::TestNormalizeApiPath",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_api_routes.py::TestNormalizePath",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_evolution.py::TestApplyMemoryBoost",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_evolution.py::TestEvolutionReport",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_evolution.py::TestEvolutionResult",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_evolution.py::TestEvolutionStage",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_evolution.py::TestMutationSafetyTiers",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_strategy_tiers_complete",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_evolution.py::TestRerankWithMemory",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_evolution.py::TestRunEvolution",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_evolution.py::TestSaveEvolutionReport",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_evolution.py::TestSkipRemaining",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory.py::TestArchDecision",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory.py::TestArchDecision::test_defaults",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory.py::TestArchExperiment",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory.py::TestArchMemory",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory.py::TestGetRelevantDecisions",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory.py::TestLoadSaveMemory",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory.py::TestRecordDecision",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory.py::TestRecordExperiment",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory_intelligence.py::TestMinePatterns",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory_intelligence.py::TestRecommendations",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory_intelligence.py::TestRecordMetrics",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory_intelligence.py::TestReportFormatting",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory_intelligence.py::TestScoreStrategies",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_memory_intelligence.py::TestStrategyScore",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_planner.py::TestPlannedTask::test_from_dict",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_policy.py::TestArchPolicy",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_policy.py::TestEvaluatePolicies",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_policy.py::TestEvaluatePolicies::test_valid_policy_types_updated",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_policy.py::TestInitDefaults",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_policy.py::TestPolicyReport",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_policy.py::TestPolicyStore",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_policy.py::TestPolicyViolation",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchComponent::test_from_dict",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict_no_reason",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_list",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_object",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSubsystemDef::test_from_dict",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_schema.py::TestSystemArchitecture::test_load_missing",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_versioning.py::TestArchVersion",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_versioning.py::TestArchVersion::test_from_dict",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_versioning.py::TestArchVersionDiff",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_versioning.py::TestDiffVersions",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_versioning.py::TestFormatVersionHistory",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_versioning.py::TestListVersions",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_versioning.py::TestLoadVersion",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_versioning.py::TestRollback",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_versioning.py::TestSaveVersion",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_arch_versioning.py::project_with_arch",
+      "action": "flag_for_human_review",
+      "reason": "test helper or assertion method - invoked indirectly via runner"
+    },
+    {
+      "node": "tests/test_architecture_compiler.py::TestApplyPlan",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_compiler.py::TestArchitecturePlan",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_load_missing",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_compiler.py::TestCompileIntent",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_compiler.py::TestCompiledChange",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_compiler.py::TestPlanToTargetWorkflow",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_lock.py::TestCheckDependencyAllowed",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_lock.py::TestCheckLock",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_lock.py::TestCheckModulePlacement",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_lock.py::TestLockReport",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_lock.py::TestLockViolation",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_objectives.py::TestAdjustWeightsFromMemory",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_objectives.py::TestComputeObjectiveScore",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_objectives.py::TestObjectiveWeights",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_objectives.py::TestObjectiveWeights::test_from_dict_missing_keys",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_objectives.py::TestRejectDegradingCandidates",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_objectives.py::TestScoreCandidates",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_simulator.py::TestArchChange",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_simulator.py::TestArchPrediction",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_simulator.py::TestArchSimulationResult",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_simulator.py::TestCycleDetection",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_architecture_simulator.py::TestSimulateSubsystemAddition",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_branch_executor.py::TestBranchComparison",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_branch_executor.py::TestBranchMetrics",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_branch_executor.py::TestBranchMetrics::test_from_dict_defaults",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_branch_executor.py::TestBranchState",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_branch_executor.py::TestCaptureMetrics",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_branch_executor.py::TestCompareBranches",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_branch_executor.py::TestLoadBranchState",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_branch_executor.py::TestUpdateBranchStatus",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_cli_package.py::TestCLIPackageRegistration",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_all_commands_registered",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_architecture_commands_list",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_governance_commands_and_groups",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_import_from_package",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_intelligence_commands_list",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_main_is_click_group",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_runtime_commands_and_groups",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_code_planner.py::TestCodePlan",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_code_planner.py::TestCodePlan::test_load_missing",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_code_planner.py::TestGeneratePlan",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_code_planner.py::TestPlanTask",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_code_planner.py::TestValidatePlan",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_context_builder.py::_make_graph1::get_node",
+      "action": "flag_for_human_review",
+      "reason": "test helper or assertion method - invoked indirectly via runner"
+    },
+    {
+      "node": "tests/test_copilot_context.py::TestBuildCopilotContext",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_copilot_context.py::TestCopilotContext",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_copilot_context.py::TestCopilotContext::test_load_missing",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_copilot_context.py::TestSubsystemSummary",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_drift_detector.py::TestDetectDrift",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_drift_detector.py::TestDriftFinding",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_drift_detector.py::TestDriftReport",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_evolution_proposals.py::TestCreateProposalFromEvolution",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_evolution_proposals.py::TestEvolutionProposal",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_evolution_proposals.py::TestEvolutionProposal::test_from_dict",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_evolution_proposals.py::TestProposalStore",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_fuzz.py::TestJsonLoaderFuzz::test_graph0_no_crash",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_fuzz.py::TestJsonLoaderFuzz::test_graph1_no_crash",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_fuzz.py::TestJsonLoaderFuzz::test_workflow_no_crash",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_js_extractor.py::TestJavaScriptExtractor",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_js_extractor.py::TestLineOf",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_js_extractor.py::TestResolveJsImport",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_js_extractor.py::project",
+      "action": "flag_for_human_review",
+      "reason": "test helper or assertion method - invoked indirectly via runner"
+    },
+    {
+      "node": "tests/test_multilevel.py::TestAnalyzeMultilevel",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_multilevel.py::TestBuildModuleGraph",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_multilevel.py::TestBuildSubsystemGraph",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_multilevel.py::TestInferSubsystemMapping",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_multilevel.py::TestModuleGraph",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_multilevel.py::TestModuleNode",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_multilevel.py::TestMultiLevelReport",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_multilevel.py::TestMultiLevelSmell",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_multilevel.py::TestSubsystemGraph",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_multilevel.py::TestSubsystemNode",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_precommit.py::TestBaseline",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_precommit.py::TestCheckMetric",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_precommit.py::TestDefaultThresholds",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_precommit.py::TestDefaultThresholds::test_coupling_is_positive",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_precommit.py::TestDefaultThresholds::test_has_required_metrics",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_precommit.py::TestDefaultThresholds::test_score_is_negative",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_precommit.py::TestPreCommitReport",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_precommit.py::TestRunPreCommitCheck",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_precommit.py::TestSimulationCheck",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_runtime_graph.py::TestExtractRuntimeEdges",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_runtime_graph.py::TestRuntimeEdge",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_runtime_graph.py::TestRuntimeGraph",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_runtime_graph.py::TestSaveLoadRuntimeGraph",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_subsystem_lifecycle.py::TestCreateSubsystem",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_subsystem_lifecycle.py::TestGenerateSubsystemFiles",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_subsystem_lifecycle.py::TestListSubsystemFiles",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_subsystem_lifecycle.py::TestLoadSubsystemFile",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_subsystem_lifecycle.py::TestMoveComponent",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_subsystem_lifecycle.py::TestSubsystemChange",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_subsystem_lifecycle.py::TestSubsystemFile",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_target_architecture.py::TestArchitectureDelta",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_target_architecture.py::TestComputeArchitectureDelta",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_target_architecture.py::TestDeltaToTasks",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_target_architecture.py::TestTargetEdge",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_target_architecture.py::TestTargetEdge::test_from_dict_defaults",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_target_architecture.py::TestTargetNode",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_target_architecture.py::TestTargetWorkflow",
+      "action": "flag_for_human_review",
+      "reason": "pytest test class - discovered by test runner, not static callers"
+    },
+    {
+      "node": "tests/test_target_architecture.py::TestTargetWorkflow::test_load_nonexistent",
+      "action": "flag_for_human_review",
+      "reason": "pytest entry point - invoked by test runner, not static callers"
     }
   ]
 }

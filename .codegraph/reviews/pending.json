@@ -16882,5 +16882,4397 @@
     "reason": "Correctly has no super().__init__() call; ast.NodeVisitor requires no explicit init. Static graph false positive - constructor calls appear on the class node, not __init__ method node.",
     "timestamp": "2026-03-12T20:08:32Z",
     "target": null
+  },
+  {
+    "node": "codegraph/agent_memory.py::AgentMemory::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:47Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_diff.py::ArchDiffReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:47Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_diff.py::ArchDiffReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:47Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_diff.py::EdgeChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:47Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_diff.py::MetricDelta::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:47Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_diff.py::NodeChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_evolution.py::EvolutionReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_evolution.py::EvolutionReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_evolution.py::EvolutionResult::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_evolution.py::EvolutionResult::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_evolution.py::EvolutionStage::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory.py::ArchDecision::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory.py::ArchDecision::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory.py::ArchExperiment::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory.py::ArchExperiment::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory.py::ArchMemory::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory.py::ArchMemory::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::ArchPattern::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::ArchPattern::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::StrategyScore::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::StrategyScore::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::ArchPlan::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::ArchPlan::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::CoverageResult::overall_coverage",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::CoverageResult::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::PlannedTask::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::PlannedTask::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_policy.py::ArchPolicy::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_policy.py::ArchPolicy::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_policy.py::PolicyReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_policy.py::PolicyReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_policy.py::PolicyViolation::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_policy.py::_check_frontend_backend_boundary",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_policy.py::_check_no_apply_without_plan",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:48Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::ArchComponent::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::ArchComponent::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::ArchConstraint::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::ArchConstraint::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::ArchEdge::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::ArchEdge::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SubsystemDef::all_functions",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SubsystemDef::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SubsystemDef::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SystemArchitecture::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SystemArchitecture::load",
+    "reason": "Protocol/utility method (load) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_search.py::ArchCandidate::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_search.py::ArchCandidate::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_search.py::ArchSearchResult::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_search.py::ArchSearchResult::load",
+    "reason": "Protocol/utility method (load) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_versioning.py::ArchVersion::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_versioning.py::ArchVersion::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_versioning.py::ArchVersionDiff::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_versioning.py::ArchVersionDiff::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_advisor.py::ArchAdvice::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_advisor.py::ArchSmell::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_advisor.py::ArchSuggestion::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_compiler.py::ArchitecturePlan::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_compiler.py::ArchitecturePlan::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_compiler.py::ArchitecturePlan::has_changes",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_compiler.py::ArchitecturePlan::load",
+    "reason": "Protocol/utility method (load) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_compiler.py::CompiledChange::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_compiler.py::CompiledChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_delta.py::ArchitectureDelta::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_delta.py::ArchitectureDelta::has_changes",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_delta.py::ArchitectureDelta::total_changes",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_delta.py::ConstraintViolation::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:49Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_delta.py::EdgeChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_delta.py::NodeChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_lock.py::LockReport::error_count",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_lock.py::LockReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_lock.py::LockReport::is_locked",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_lock.py::LockReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_lock.py::LockReport::warning_count",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_lock.py::LockViolation::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_memory.py::AdviceRecord::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_memory.py::AdviceRecord::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_memory.py::DecisionRecord::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_memory.py::DecisionRecord::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_memory.py::SimulationRecord::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_memory.py::SimulationRecord::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_objectives.py::CandidateMetrics::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_objectives.py::ObjectiveWeights::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_objectives.py::ObjectiveWeights::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_objectives.py::ScoredCandidate::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_proof.py::ArchitectureProof::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_proof.py::ProofViolation::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_score.py::ArchitectureScore::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_score.py::ArchitectureScore::load",
+    "reason": "Protocol/utility method (load) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_simulator.py::ArchChange::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_simulator.py::ArchChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_simulator.py::ArchPrediction::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_simulator.py::ArchSimulationResult::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_simulator.py::ArchSimulationResult::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/branch_executor.py::BranchComparison::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/branch_executor.py::BranchComparison::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/branch_executor.py::BranchMetrics::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/branch_executor.py::BranchMetrics::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/branch_executor.py::BranchState::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/branch_executor.py::BranchState::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:50Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::CodePlan::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::CodePlan::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::CodePlan::load",
+    "reason": "Protocol/utility method (load) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::CodePlan::task_count",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::CodePlan::tasks_by_type",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::PlanTask::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::PlanTask::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/config.py::CodegraphConfig::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/context_builder.py::NodeContext::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/context_builder.py::PromptContext::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context.py::CopilotContext::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context.py::CopilotContext::load",
+    "reason": "Protocol/utility method (load) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context.py::SubsystemSummary::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::save",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context_builder.py::GraphSummary::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context_builder.py::SimulatorRules::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/drift_detector.py::DriftFinding::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/drift_detector.py::DriftReport::error_count",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/drift_detector.py::DriftReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/drift_detector.py::DriftReport::warning_count",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/evolution_proposals.py::EvolutionProposal::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/evolution_proposals.py::EvolutionProposal::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/evolution_proposals.py::ProposalStore::add",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/evolution_proposals.py::ProposalStore::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/evolution_proposals.py::ProposalStore::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractors/api_routes.py::ApiCall::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractors/api_routes.py::ApiCall::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractors/api_routes.py::ApiEndpoint::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractors/api_routes.py::ApiEndpoint::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractors/api_routes.py::ApiLinkReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractors/api_routes.py::ApiLinkReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/filters.py::FilterPipeline::add",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::ModuleEdge::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::ModuleGraph::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::ModuleGraph::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::ModuleNode::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::MultiLevelReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::MultiLevelReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::MultiLevelSmell::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::SubsystemEdge::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::SubsystemGraph::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::SubsystemGraph::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::SubsystemNode::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/pipeline_orchestrator.py::PipelineReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/pipeline_orchestrator.py::PipelineState",
+    "reason": "Data class or value object - may be instantiated dynamically",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/pipeline_orchestrator.py::StepResult::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/precommit.py::PreCommitReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/precommit.py::PreCommitReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/precommit.py::SimulationCheck::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/runtime_graph.py::RuntimeEdge::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/runtime_graph.py::RuntimeGraph::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/runtime_graph.py::RuntimeGraph::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/simulator.py::CandidateSimResult::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/simulator.py::SimViolation::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/simulator.py::SimulatedChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/simulator.py::SimulationResult::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/simulator.py::SimulationResult::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/subsystem.py::Subsystem::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/subsystem.py::SubsystemCoupling::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/subsystem.py::SubsystemReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/subsystem.py::SubsystemReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/subsystem_lifecycle.py::SubsystemChange",
+    "reason": "Data class or value object - may be instantiated dynamically",
+    "timestamp": "2026-03-12T20:10:52Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/subsystem_lifecycle.py::SubsystemChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:53Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/subsystem_lifecycle.py::SubsystemFile::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:53Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::ArchitectureDelta::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:53Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::ArchitectureDelta::has_changes",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:53Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::ArchitectureDelta::total_changes",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:10:53Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::TargetEdge::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:53Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::TargetEdge::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:53Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::TargetNode::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:53Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::TargetNode::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:53Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::TargetWorkflow::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:53Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::TargetWorkflow::load",
+    "reason": "Protocol/utility method (load) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:53Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/agent_memory.py::AgentMemory::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_diff.py::ArchDiffReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_diff.py::ArchDiffReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_diff.py::EdgeChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_diff.py::MetricDelta::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_diff.py::NodeChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_evolution.py::EvolutionReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_evolution.py::EvolutionReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_evolution.py::EvolutionResult::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_evolution.py::EvolutionResult::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_evolution.py::EvolutionStage::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory.py::ArchDecision::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory.py::ArchDecision::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory.py::ArchExperiment::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory.py::ArchExperiment::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory.py::ArchMemory::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:10:59Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory.py::ArchMemory::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::ArchPattern::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::ArchPattern::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::MemoryIntelligenceReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::MetricsSnapshot::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::StrategyScore::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_memory_intelligence.py::StrategyScore::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::ArchPlan::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::ArchPlan::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::CoverageResult::overall_coverage",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::CoverageResult::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::PlannedTask::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_planner.py::PlannedTask::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_policy.py::ArchPolicy::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_policy.py::ArchPolicy::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_policy.py::PolicyReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_policy.py::PolicyReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_policy.py::PolicyViolation::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_policy.py::_check_frontend_backend_boundary",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_policy.py::_check_no_apply_without_plan",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::ArchComponent::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::ArchComponent::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::ArchConstraint::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::ArchConstraint::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::ArchEdge::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::ArchEdge::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SubsystemDef::all_functions",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SubsystemDef::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:00Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SubsystemDef::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SystemArchitecture::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_schema.py::SystemArchitecture::load",
+    "reason": "Protocol/utility method (load) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_search.py::ArchCandidate::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_search.py::ArchCandidate::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_search.py::ArchSearchResult::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_search.py::ArchSearchResult::load",
+    "reason": "Protocol/utility method (load) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_versioning.py::ArchVersion::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_versioning.py::ArchVersion::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_versioning.py::ArchVersionDiff::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_versioning.py::ArchVersionDiff::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_advisor.py::ArchAdvice::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_advisor.py::ArchSmell::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_advisor.py::ArchSuggestion::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_compiler.py::ArchitecturePlan::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_compiler.py::ArchitecturePlan::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_compiler.py::ArchitecturePlan::has_changes",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_compiler.py::ArchitecturePlan::load",
+    "reason": "Protocol/utility method (load) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_compiler.py::CompiledChange::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_compiler.py::CompiledChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_delta.py::ArchitectureDelta::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_delta.py::ArchitectureDelta::has_changes",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_delta.py::ArchitectureDelta::total_changes",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_delta.py::ConstraintViolation::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_delta.py::EdgeChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_delta.py::NodeChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_lock.py::LockReport::error_count",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_lock.py::LockReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_lock.py::LockReport::is_locked",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:01Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_lock.py::LockReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_lock.py::LockReport::warning_count",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_lock.py::LockViolation::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_memory.py::AdviceRecord::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_memory.py::AdviceRecord::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_memory.py::DecisionRecord::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_memory.py::DecisionRecord::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_memory.py::SimulationRecord::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_memory.py::SimulationRecord::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_objectives.py::CandidateMetrics::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_objectives.py::ObjectiveWeights::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_objectives.py::ObjectiveWeights::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_objectives.py::ScoredCandidate::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_proof.py::ArchitectureProof::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_proof.py::ProofViolation::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_score.py::ArchitectureScore::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_score.py::ArchitectureScore::load",
+    "reason": "Protocol/utility method (load) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_simulator.py::ArchChange::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_simulator.py::ArchChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_simulator.py::ArchPrediction::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_simulator.py::ArchSimulationResult::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/architecture_simulator.py::ArchSimulationResult::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/branch_executor.py::BranchComparison::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/branch_executor.py::BranchComparison::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/branch_executor.py::BranchMetrics::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/branch_executor.py::BranchMetrics::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/branch_executor.py::BranchState::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/branch_executor.py::BranchState::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::CodePlan::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::CodePlan::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::CodePlan::load",
+    "reason": "Protocol/utility method (load) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:02Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::CodePlan::task_count",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::CodePlan::tasks_by_type",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::PlanTask::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::PlanTask::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/config.py::CodegraphConfig::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/context_builder.py::NodeContext::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/context_builder.py::PromptContext::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context.py::CopilotContext::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context.py::CopilotContext::load",
+    "reason": "Protocol/utility method (load) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context.py::SubsystemSummary::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::save",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context_builder.py::EnrichedCopilotContext::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context_builder.py::GraphSummary::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/copilot_context_builder.py::SimulatorRules::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/drift_detector.py::DriftFinding::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/drift_detector.py::DriftReport::error_count",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/drift_detector.py::DriftReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/drift_detector.py::DriftReport::warning_count",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/evolution_proposals.py::EvolutionProposal::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/evolution_proposals.py::EvolutionProposal::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/evolution_proposals.py::ProposalStore::add",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/evolution_proposals.py::ProposalStore::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/evolution_proposals.py::ProposalStore::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractors/api_routes.py::ApiCall::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractors/api_routes.py::ApiCall::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractors/api_routes.py::ApiEndpoint::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractors/api_routes.py::ApiEndpoint::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractors/api_routes.py::ApiLinkReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractors/api_routes.py::ApiLinkReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/filters.py::FilterPipeline::add",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:03Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::ModuleEdge::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::ModuleGraph::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::ModuleGraph::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::ModuleNode::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::MultiLevelReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::MultiLevelReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::MultiLevelSmell::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::SubsystemEdge::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::SubsystemGraph::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::SubsystemGraph::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/multilevel.py::SubsystemNode::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/pipeline_orchestrator.py::PipelineReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/pipeline_orchestrator.py::PipelineState",
+    "reason": "Data class or value object - may be instantiated dynamically",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/pipeline_orchestrator.py::StepResult::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/precommit.py::PreCommitReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/precommit.py::PreCommitReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/precommit.py::SimulationCheck::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/runtime_graph.py::RuntimeEdge::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/runtime_graph.py::RuntimeGraph::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/runtime_graph.py::RuntimeGraph::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/simulator.py::CandidateSimResult::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/simulator.py::SimViolation::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/simulator.py::SimulatedChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/simulator.py::SimulationResult::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/simulator.py::SimulationResult::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/subsystem.py::Subsystem::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/subsystem.py::SubsystemCoupling::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/subsystem.py::SubsystemReport::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/subsystem.py::SubsystemReport::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/subsystem_lifecycle.py::SubsystemChange",
+    "reason": "Data class or value object - may be instantiated dynamically",
+    "timestamp": "2026-03-12T20:11:04Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/subsystem_lifecycle.py::SubsystemChange::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:05Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/subsystem_lifecycle.py::SubsystemFile::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:05Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::ArchitectureDelta::format",
+    "reason": "Protocol/utility method (format) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:05Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::ArchitectureDelta::has_changes",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:05Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::ArchitectureDelta::total_changes",
+    "reason": "Utility/accessor method - may not appear in static call graph",
+    "timestamp": "2026-03-12T20:11:05Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::TargetEdge::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:05Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::TargetEdge::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:05Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::TargetNode::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:05Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::TargetNode::to_dict",
+    "reason": "Protocol/utility method (to_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:05Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::TargetWorkflow::from_dict",
+    "reason": "Protocol/utility method (from_dict) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:05Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/target_architecture.py::TargetWorkflow::load",
+    "reason": "Protocol/utility method (load) - called dynamically; not tracked by static analysis",
+    "timestamp": "2026-03-12T20:11:05Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_health.py::save_health_report",
+    "reason": "utility method/property - may be called via protocol or not yet connected in static graph",
+    "timestamp": "2026-03-12T20:13:45Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/core.py::index_group",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:45Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/core.py::schema",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:45Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/core.py::timed_command",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:45Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/core.py::version_cmd",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:45Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/governance.py::suggest_group",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:45Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/intelligence.py::semantic_group",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:45Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/runtime.py::branch_group",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:45Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/runtime.py::cas_group",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:45Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/runtime.py::lifecycle_group",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:45Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::CodePlan::ordered_tasks::_visit",
+    "reason": "nested closure - naturally orphan in static analysis",
+    "timestamp": "2026-03-12T20:13:45Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/drift_detector.py::DriftReport::findings_by_type",
+    "reason": "utility method/property - may be called via protocol or not yet connected in static graph",
+    "timestamp": "2026-03-12T20:13:45Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/drift_detector.py::DriftReport::has_drift",
+    "reason": "utility method/property - may be called via protocol or not yet connected in static graph",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractor.py::ScopeTree::resolve",
+    "reason": "utility method/property - may be called via protocol or not yet connected in static graph",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractors/javascript.py::JavaScriptExtractor::supported_extensions",
+    "reason": "utility method/property - may be called via protocol or not yet connected in static graph",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/models/agent_response.py::AgentResponse::from_json",
+    "reason": "utility method/property - may be called via protocol or not yet connected in static graph",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_source_node",
+    "reason": "ast.NodeVisitor visit method or property - called dynamically by generic_visit dispatch",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_ClassDef",
+    "reason": "ast.NodeVisitor visit method or property - called dynamically by generic_visit dispatch",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_FunctionDef",
+    "reason": "ast.NodeVisitor visit method or property - called dynamically by generic_visit dispatch",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestDataClasses",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestDataClasses::test_api_call_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestExtractJsApiCalls",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestExtractPythonEndpoints",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestLinkApiRoutes",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestLooksLikeApiPath",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestMatchParameterized",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestNormalizeApiPath",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestNormalizePath",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestApplyMemoryBoost",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestEvolutionReport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestEvolutionResult",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestEvolutionStage",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestMutationSafetyTiers",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_strategy_tiers_complete",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestRerankWithMemory",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestRunEvolution",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestSaveEvolutionReport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestSkipRemaining",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestArchDecision",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestArchDecision::test_defaults",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestArchExperiment",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestArchMemory",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestGetRelevantDecisions",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestLoadSaveMemory",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestRecordDecision",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestRecordExperiment",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:46Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestMinePatterns",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestRecommendations",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestRecordMetrics",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestReportFormatting",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestScoreStrategies",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestStrategyScore",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_planner.py::TestPlannedTask::test_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_policy.py::TestArchPolicy",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_policy.py::TestEvaluatePolicies",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_policy.py::TestEvaluatePolicies::test_valid_policy_types_updated",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_policy.py::TestInitDefaults",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_policy.py::TestPolicyReport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_policy.py::TestPolicyStore",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_policy.py::TestPolicyViolation",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchComponent::test_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict_no_reason",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_list",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_object",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestSubsystemDef::test_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestSystemArchitecture::test_load_missing",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestArchVersion",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestArchVersion::test_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestArchVersionDiff",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestDiffVersions",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestFormatVersionHistory",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestListVersions",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestLoadVersion",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestRollback",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestSaveVersion",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::project_with_arch",
+    "reason": "test helper or assertion method - invoked indirectly via runner",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_compiler.py::TestApplyPlan",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_compiler.py::TestArchitecturePlan",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_load_missing",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:47Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_compiler.py::TestCompileIntent",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_compiler.py::TestCompiledChange",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_compiler.py::TestPlanToTargetWorkflow",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_lock.py::TestCheckDependencyAllowed",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_lock.py::TestCheckLock",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_lock.py::TestCheckModulePlacement",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_lock.py::TestLockReport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_lock.py::TestLockViolation",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_objectives.py::TestAdjustWeightsFromMemory",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_objectives.py::TestComputeObjectiveScore",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_objectives.py::TestObjectiveWeights",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_objectives.py::TestObjectiveWeights::test_from_dict_missing_keys",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_objectives.py::TestRejectDegradingCandidates",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_objectives.py::TestScoreCandidates",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_simulator.py::TestArchChange",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_simulator.py::TestArchPrediction",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_simulator.py::TestArchSimulationResult",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_simulator.py::TestCycleDetection",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_simulator.py::TestSimulateSubsystemAddition",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestBranchComparison",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestBranchMetrics",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestBranchMetrics::test_from_dict_defaults",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestBranchState",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestCaptureMetrics",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestCompareBranches",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestLoadBranchState",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestUpdateBranchStatus",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_all_commands_registered",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_architecture_commands_list",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_governance_commands_and_groups",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_import_from_package",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_intelligence_commands_list",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:48Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_main_is_click_group",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_runtime_commands_and_groups",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_code_planner.py::TestCodePlan",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_code_planner.py::TestCodePlan::test_load_missing",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_code_planner.py::TestGeneratePlan",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_code_planner.py::TestPlanTask",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_code_planner.py::TestValidatePlan",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_context_builder.py::_make_graph1::get_node",
+    "reason": "test helper or assertion method - invoked indirectly via runner",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_copilot_context.py::TestBuildCopilotContext",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_copilot_context.py::TestCopilotContext",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_copilot_context.py::TestCopilotContext::test_load_missing",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_copilot_context.py::TestSubsystemSummary",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_drift_detector.py::TestDetectDrift",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_drift_detector.py::TestDriftFinding",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_drift_detector.py::TestDriftReport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_evolution_proposals.py::TestCreateProposalFromEvolution",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_evolution_proposals.py::TestEvolutionProposal",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_evolution_proposals.py::TestEvolutionProposal::test_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_evolution_proposals.py::TestProposalStore",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_fuzz.py::TestJsonLoaderFuzz::test_graph0_no_crash",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_fuzz.py::TestJsonLoaderFuzz::test_graph1_no_crash",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_fuzz.py::TestJsonLoaderFuzz::test_workflow_no_crash",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_js_extractor.py::TestJavaScriptExtractor",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:49Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_js_extractor.py::TestLineOf",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_js_extractor.py::TestResolveJsImport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_js_extractor.py::project",
+    "reason": "test helper or assertion method - invoked indirectly via runner",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestAnalyzeMultilevel",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestBuildModuleGraph",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestBuildSubsystemGraph",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestInferSubsystemMapping",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestModuleGraph",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestModuleNode",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestMultiLevelReport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestMultiLevelSmell",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestSubsystemGraph",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestSubsystemNode",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestBaseline",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestCheckMetric",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestDefaultThresholds",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestDefaultThresholds::test_coupling_is_positive",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestDefaultThresholds::test_has_required_metrics",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestDefaultThresholds::test_score_is_negative",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestPreCommitReport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestRunPreCommitCheck",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestSimulationCheck",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_runtime_graph.py::TestExtractRuntimeEdges",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_runtime_graph.py::TestRuntimeEdge",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:50Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_runtime_graph.py::TestRuntimeGraph",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_runtime_graph.py::TestSaveLoadRuntimeGraph",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestCreateSubsystem",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestGenerateSubsystemFiles",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestListSubsystemFiles",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestLoadSubsystemFile",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestMoveComponent",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestSubsystemChange",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestSubsystemFile",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestArchitectureDelta",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestComputeArchitectureDelta",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestDeltaToTasks",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestTargetEdge",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestTargetEdge::test_from_dict_defaults",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestTargetNode",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestTargetWorkflow",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestTargetWorkflow::test_load_nonexistent",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:51Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/arch_health.py::save_health_report",
+    "reason": "utility method/property - may be called via protocol or not yet connected in static graph",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/core.py::index_group",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/core.py::schema",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/core.py::timed_command",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/core.py::version_cmd",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/governance.py::suggest_group",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/intelligence.py::semantic_group",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/runtime.py::branch_group",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/runtime.py::cas_group",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/cli/runtime.py::lifecycle_group",
+    "reason": "Click CLI entry point - registered by decorator, called by CLI framework",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/code_planner.py::CodePlan::ordered_tasks::_visit",
+    "reason": "nested closure - naturally orphan in static analysis",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/drift_detector.py::DriftReport::findings_by_type",
+    "reason": "utility method/property - may be called via protocol or not yet connected in static graph",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/drift_detector.py::DriftReport::has_drift",
+    "reason": "utility method/property - may be called via protocol or not yet connected in static graph",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractor.py::ScopeTree::resolve",
+    "reason": "utility method/property - may be called via protocol or not yet connected in static graph",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/extractors/javascript.py::JavaScriptExtractor::supported_extensions",
+    "reason": "utility method/property - may be called via protocol or not yet connected in static graph",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/models/agent_response.py::AgentResponse::from_json",
+    "reason": "utility method/property - may be called via protocol or not yet connected in static graph",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::_source_node",
+    "reason": "ast.NodeVisitor visit method or property - called dynamically by generic_visit dispatch",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_ClassDef",
+    "reason": "ast.NodeVisitor visit method or property - called dynamically by generic_visit dispatch",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "codegraph/runtime_graph.py::RuntimeEdgeVisitor::visit_FunctionDef",
+    "reason": "ast.NodeVisitor visit method or property - called dynamically by generic_visit dispatch",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestDataClasses",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestDataClasses::test_api_call_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestDataClasses::test_api_endpoint_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestExtractJsApiCalls",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestExtractPythonEndpoints",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestLinkApiRoutes",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestLooksLikeApiPath",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestMatchParameterized",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestNormalizeApiPath",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:57Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_api_routes.py::TestNormalizePath",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestApplyMemoryBoost",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestEvolutionReport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestEvolutionResult",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestEvolutionStage",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestGenerateEvolutionRecommendations",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestMutationSafetyTiers",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestMutationSafetyTiers::test_strategy_tiers_complete",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestRerankWithMemory",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestRunEvolution",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestRunEvolutionCycleMocked",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestSaveEvolutionReport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_evolution.py::TestSkipRemaining",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestArchDecision",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestArchDecision::test_defaults",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestArchExperiment",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestArchMemory",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestGetRelevantDecisions",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestLoadSaveMemory",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestRecordDecision",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory.py::TestRecordExperiment",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestAnalyzeMemory",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestMetricsSnapshot",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestMinePatterns",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestRecommendations",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestRecordMetrics",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestReportFormatting",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestSaveStrategyScores",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestScoreStrategies",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_memory_intelligence.py::TestStrategyScore",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_planner.py::TestPlannedTask::test_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:58Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_policy.py::TestArchPolicy",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_policy.py::TestEvaluatePolicies",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_policy.py::TestEvaluatePolicies::test_valid_policy_types_updated",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_policy.py::TestInitDefaults",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_policy.py::TestPolicyReport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_policy.py::TestPolicyStore",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_policy.py::TestPolicyViolation",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchComponent::test_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchConstraint::test_from_dict_no_reason",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_list",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestArchEdge::test_from_dict_object",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestSubsystemDef::test_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_schema.py::TestSystemArchitecture::test_load_missing",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestArchVersion",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestArchVersion::test_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestArchVersionDiff",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestDiffVersions",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestFormatVersionHistory",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestListVersions",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestLoadVersion",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestRollback",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::TestSaveVersion",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_arch_versioning.py::project_with_arch",
+    "reason": "test helper or assertion method - invoked indirectly via runner",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_compiler.py::TestApplyPlan",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_compiler.py::TestArchitecturePlan",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_compiler.py::TestArchitecturePlan::test_load_missing",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_compiler.py::TestCompileIntent",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_compiler.py::TestCompiledChange",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_compiler.py::TestPlanToTargetWorkflow",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_lock.py::TestCheckDependencyAllowed",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_lock.py::TestCheckLock",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:13:59Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_lock.py::TestCheckModulePlacement",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_lock.py::TestLockReport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_lock.py::TestLockViolation",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_objectives.py::TestAdjustWeightsFromMemory",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_objectives.py::TestComputeObjectiveScore",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_objectives.py::TestObjectiveWeights",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_objectives.py::TestObjectiveWeights::test_from_dict_missing_keys",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_objectives.py::TestRejectDegradingCandidates",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_objectives.py::TestScoreCandidates",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_simulator.py::TestArchChange",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_simulator.py::TestArchPrediction",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_simulator.py::TestArchSimulationResult",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_simulator.py::TestCycleDetection",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_simulator.py::TestSimulateArchitectureChanges",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_architecture_simulator.py::TestSimulateSubsystemAddition",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestBranchComparison",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestBranchMetrics",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestBranchMetrics::test_from_dict_defaults",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestBranchState",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestCaptureMetrics",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestCompareBranches",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestLoadBranchState",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_branch_executor.py::TestUpdateBranchStatus",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_all_commands_registered",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_architecture_commands_list",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_governance_commands_and_groups",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_import_from_package",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_intelligence_commands_list",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_main_is_click_group",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_cli_package.py::TestCLIPackageRegistration::test_runtime_commands_and_groups",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:00Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_code_planner.py::TestCodePlan",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_code_planner.py::TestCodePlan::test_load_missing",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_code_planner.py::TestGeneratePlan",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_code_planner.py::TestPlanTask",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_code_planner.py::TestValidatePlan",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_context_builder.py::_make_graph1::get_node",
+    "reason": "test helper or assertion method - invoked indirectly via runner",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_copilot_context.py::TestBuildCopilotContext",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_copilot_context.py::TestCopilotContext",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_copilot_context.py::TestCopilotContext::test_load_missing",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_copilot_context.py::TestSubsystemSummary",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_drift_detector.py::TestDetectDrift",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_drift_detector.py::TestDriftFinding",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_drift_detector.py::TestDriftReport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_evolution_proposals.py::TestCreateProposalFromEvolution",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_evolution_proposals.py::TestEvolutionProposal",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_evolution_proposals.py::TestEvolutionProposal::test_from_dict",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_evolution_proposals.py::TestProposalStore",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_fuzz.py::TestJsonLoaderFuzz::test_graph0_no_crash",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_fuzz.py::TestJsonLoaderFuzz::test_graph1_no_crash",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_fuzz.py::TestJsonLoaderFuzz::test_workflow_no_crash",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_js_extractor.py::TestJavaScriptExtractor",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_js_extractor.py::TestLineOf",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_js_extractor.py::TestResolveJsImport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_js_extractor.py::project",
+    "reason": "test helper or assertion method - invoked indirectly via runner",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestAnalyzeMultilevel",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestBuildModuleGraph",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestBuildSubsystemGraph",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestInferSubsystemMapping",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestModuleGraph",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestModuleNode",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:01Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestMultiLevelReport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestMultiLevelSmell",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestSubsystemGraph",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_multilevel.py::TestSubsystemNode",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestBaseline",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestCheckMetric",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestDefaultThresholds",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestDefaultThresholds::test_coupling_is_positive",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestDefaultThresholds::test_has_required_metrics",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestDefaultThresholds::test_score_is_negative",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestPreCommitReport",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestRunPreCommitCheck",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_precommit.py::TestSimulationCheck",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_runtime_graph.py::TestExtractRuntimeEdges",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_runtime_graph.py::TestRuntimeEdge",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_runtime_graph.py::TestRuntimeEdgeVisitor",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_runtime_graph.py::TestRuntimeGraph",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_runtime_graph.py::TestSaveLoadRuntimeGraph",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestCreateSubsystem",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestGenerateSubsystemFiles",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestListSubsystemFiles",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestLoadSubsystemFile",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestMergeSubsystems",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestMoveComponent",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestSplitSubsystem",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestSubsystemChange",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_subsystem_lifecycle.py::TestSubsystemFile",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestArchitectureDelta",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestComputeArchitectureDelta",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestDeltaToTasks",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestGenerateTargetFromArchitecture",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:02Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestTargetEdge",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:03Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestTargetEdge::test_from_dict_defaults",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:03Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestTargetNode",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:03Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestTargetWorkflow",
+    "reason": "pytest test class - discovered by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:03Z",
+    "target": null
+  },
+  {
+    "node": "tests/test_target_architecture.py::TestTargetWorkflow::test_load_nonexistent",
+    "reason": "pytest entry point - invoked by test runner, not static callers",
+    "timestamp": "2026-03-12T20:14:03Z",
+    "target": null
   }
 ]
