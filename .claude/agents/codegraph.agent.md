@@ -21,6 +21,70 @@ You (Copilot)     = Architecture Worker     (executes tasks, proposes rules, imp
 
 ---
 
+## Global Usage & Environment Verification
+
+This agent is designed to run on this repository **and other Python repositories** with minimal changes.
+
+### 0) Tooling preflight (mandatory)
+
+Before running the pipeline, verify Codegraph is installed:
+
+```bash
+codegraph --version
+```
+
+If this fails, stop and report installation is required.
+
+### 1) Git safety preflight (mandatory)
+
+Before any pipeline operation, verify repository state:
+
+```bash
+git status
+git branch
+git remote -v
+git diff --quiet
+```
+
+Rules:
+- Do not run architecture implementation flow on `main`.
+- Require a feature/refactor/fix branch for write operations.
+- If `git diff --quiet` fails, stop and request a clean working tree (commit/stash/discard) before pipeline execution.
+
+### 2) Workspace lock check (mandatory)
+
+Before running build/analyze/apply/prove, check for lock collisions:
+
+```bash
+ls .codegraph/lock
+```
+
+If lock exists and is active, stop and escalate (avoid concurrent agent corruption).
+
+### 3) Repository type detection (mandatory)
+
+Verify Python project markers:
+
+```bash
+ls pyproject.toml setup.py requirements.txt
+```
+
+If none are present, ask human for confirmation before proceeding.
+
+### 4) Workspace bootstrap (self-healing)
+
+If `.codegraph/` is missing, bootstrap automatically:
+
+```bash
+codegraph architecture --init
+codegraph build
+codegraph analyze
+```
+
+Then continue canonical pipeline.
+
+---
+
 ## MAIN LOOP — The Canonical Pipeline
 
 Every architecture change follows this exact state machine.
@@ -41,6 +105,7 @@ codegraph arch-delta --save         # 4. Generate delta
 codegraph arch-context --save       # 5. Build Copilot context
 codegraph arch-simulate <name>     # 6. Simulation gate
 codegraph prove                    # 7. Proof gate
+# for large changes: codegraph arch-version --save "pre-refactor snapshot"
 # ... implement on branch ...      # 8. Implementation
 py -m pytest tests/ -x --tb=short  # 9. Test
 codegraph score --compare          # 10. Score comparison
@@ -128,8 +193,15 @@ What these tell you:
 # 1. Create branch
 git checkout -b codegraph/<type>-<name>
 
+# 1.5 Ensure clean working tree before architecture operations
+git diff --quiet
+
 # 2. Read architecture context
 codegraph arch-context --save
+
+# 2.5 Ensure baseline exists for later score comparison
+# if architecture_score.json is missing:
+codegraph score --save-baseline
 
 # 3. Generate delta (what will change)
 codegraph delta --save
@@ -138,6 +210,8 @@ codegraph delta --save
 codegraph prove
 
 # 5. Only if PROVEN_SAFE or PROVEN_WARNING:
+# for large refactors, snapshot architecture before code edits
+codegraph arch-version --save "pre-refactor snapshot"
 # ... implement changes ...
 
 # 6. Test
@@ -147,6 +221,8 @@ py -m pytest tests/ -x --tb=short -q
 codegraph build
 codegraph analyze
 codegraph score --compare
+codegraph lock
+codegraph drift
 
 # 8. If score >= baseline AND no violations:
 git add -A && git commit -m "codegraph: <description>"
@@ -235,6 +311,10 @@ max_nodes_removed = 10
 
 If exceeded, proof is REJECTED. Reduce scope and re-plan.
 
+Pre-proof budget discipline:
+- Estimate expected mutation scope before generating delta (files, nodes, edges).
+- If expected scope exceeds budget, split into smaller plans before proof.
+
 ---
 
 ## Failure Recovery
@@ -257,6 +337,18 @@ TEST_FAIL       → ANALYZE (repair loop, max 2 retries)
 SCORE_DROP      → BLOCKED (revert)
 ```
 
+## Pipeline Abort Conditions
+
+Stop the pipeline and report to the human if any of the following occur:
+- All architecture candidates fail simulation
+- Proof status is `REJECTED` for every candidate
+- Repair loop exceeds `max_repair_cycles`
+- Architecture score drops below baseline - 0.05
+- Drift cannot be resolved after enforcement cycle
+
+In these cases the agent must not attempt forced repair.
+Escalate to human review.
+
 ---
 
 ## The Full Pipeline (Detailed)
@@ -266,6 +358,20 @@ SCORE_DROP      → BLOCKED (revert)
 ```
 build → analyze → tasks → repair → build → analyze
 ```
+
+Strict loop bound:
+
+```text
+max_repair_cycles = 3
+```
+
+Algorithm:
+1. Run tasks by priority (P1 → P10)
+2. Apply repairs with `--dry-run` first
+3. Rebuild + re-analyze
+4. Stop when no P1–P4 remain OR cycle count reaches 3
+5. If violations remain at cycle 3, escalate to human
+6. If repairs conflict, prioritize rule-preserving repair over dependency-adding repair
 
 Fixes: missing intents, orphan nodes, missing imports, stale intents.
 Process tasks by priority: P1 (policy_violation) first, P10 (intent_missing) last.
@@ -297,6 +403,14 @@ architect → arch-search → memory rerank → tier check → simulate → sele
 
 Never implement the first suggestion. Generate candidates, simulate each, select best.
 If `arch-search` returns `NO_SAFE_ARCHITECTURE_CHANGE`, report to human — do not force.
+
+Candidate selection rubric (mandatory):
+1. Highest score improvement (`score_delta`)
+2. Lowest blast radius
+3. Within mutation budget
+4. Better subsystem isolation / lower coupling
+
+If tie: prefer lower-risk candidate (`PROVEN_SAFE` over `PROVEN_WARNING`).
 
 ---
 
@@ -383,6 +497,10 @@ Read source, write intent describing what the function does.
 ```
 
 **Always read `graph_version` from `graph0.json` first.**
+
+Graph synchronization rule:
+- Always verify `graph_version` in `.codegraph/graphs/graph0.json` matches `agent_response.json` before submitting repairs.
+- If mismatched, regenerate graph/context and rewrite `agent_response.json` against the current version.
 
 ### Repair actions:
 
@@ -573,3 +691,29 @@ code changes → codegraph build → codegraph architect
 16. **Score formula is deterministic.** Know the weights: 0.30 modularity, 0.25 isolation, 0.20 coupling, 0.15 fanout, 0.10 cycles.
 17. **Per-subsystem scores matter.** Global improvement cannot mask subsystem damage.
 18. **Run tests with**: `py -m pytest tests/ -x --tb=short -q`
+19. **Run preflight checks first**: `codegraph --version`, git state, lock check, repo-type check.
+20. **Auto-bootstrap** missing `.codegraph` via `codegraph architecture --init`, `build`, `analyze`.
+21. **Repair loop is bounded**: never exceed `max_repair_cycles = 3`.
+22. **Before merge, enforce drift guard**: run `codegraph lock` and `codegraph drift`.
+23. **For candidate search, use rubric**: score delta → blast radius → budget → isolation.
+24. **Abort conditions are mandatory**: stop and escalate on full candidate rejection, score collapse, unresolved drift, or repair-loop overflow.
+25. **Graph-version synchronization is mandatory**: never submit stale `agent_response.json` against older graph versions.
+26. **Working tree must be clean** before running architecture pipeline stages.
+27. **Create baseline when missing** via `codegraph score --save-baseline` before score comparisons.
+28. **Snapshot before large refactors** using `codegraph arch-version --save`.
+29. **Resolve repair conflicts safely**: prefer rule-preserving repairs over dependency-adding repairs.
+30. **Estimate budget before proof** and split plans expected to exceed mutation limits.
+
+---
+
+## Optional Watch Mode (Recommended)
+
+To act as a real-time architecture guard after file changes:
+
+```bash
+codegraph build
+codegraph analyze
+codegraph architect
+```
+
+Run these on change events (or periodically) to detect drift early.

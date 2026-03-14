@@ -142,6 +142,7 @@ class ExtractionReport:
     collisions: List[str] = field(default_factory=list)
     warnings: List[ExtractionWarning] = field(default_factory=list)
     duration_seconds: float = 0.0
+    language_counts: Dict[str, int] = field(default_factory=dict)  # e.g. {"Python": 120, "TypeScript": 45}
 
     @property
     def total_nodes(self) -> int:
@@ -152,9 +153,17 @@ class ExtractionReport:
             f"Files processed: {self.files_processed}",
             f"Files skipped:   {self.files_skipped}",
         ]
+        
+        # Language coverage
+        if self.language_counts:
+            lines.append("\nLanguages detected:")
+            for lang, count in sorted(self.language_counts.items(), key=lambda x: -x[1]):
+                lines.append(f"  {lang}: {count} files")
+        
+        lines.append("\nNodes extracted:")
         for ntype, count in sorted(self.nodes_extracted.items()):
             lines.append(f"  {ntype}: {count}")
-        lines.append(f"Total nodes:     {self.total_nodes}")
+        lines.append(f"\nTotal nodes:     {self.total_nodes}")
         if self.collisions:
             lines.append(f"Collisions:      {len(self.collisions)}")
         if self.warnings:
@@ -1232,19 +1241,23 @@ def extract_project(
         except Exception:
             logger.warning("Could not save extraction cache")
 
+    # Phase 2 — Extract API routes (polyglot support)
+    # API extraction links frontend components to backend services via HTTP endpoints
+    try:
+        from codegraph.extractors.api_routes import APIRouteExtractor
+        api_extractor = APIRouteExtractor(project_root)
+        api_result = api_extractor.extract_all()
+        if api_result.nodes:
+            all_nodes.extend(api_result.nodes)
+            node_counts["api_endpoint"] = len([n for n in api_result.nodes if n.type == "api_endpoint"])
+            logger.info("Extracted %d API endpoints", len(api_result.nodes))
+    except Exception as exc:
+        logger.warning("API route extraction failed: %s", exc)
+
     # Finalize and assemble Graph_0
     graph0, duration = _finalize_graph0(
         project_root, report, source_files, all_nodes, node_counts, resolver, t0
     )
-
-    logger.info(
-        "Extracted %d nodes from %d files (%.2fs)",
-        len(all_nodes),
-        report.files_processed,
-        duration,
-    )
-
-    return graph0, report
 
 
 # ═══════════════════════════════════════════════════════════════════════

@@ -104,6 +104,15 @@ class ArchAdvice:
     max_fan_out: int = 0
     max_dependency_depth: int = 0
     modularity: float = 0.0
+    architecture_type: str = "unknown"
+    architecture_confidence: float = 0.0
+    architecture_detection: Dict[str, Any] = field(default_factory=dict)
+    decay_warnings: Dict[str, Any] = field(default_factory=dict)
+    microservice_candidates: List[Dict[str, Any]] = field(default_factory=list)
+    refactor_plans: List[Dict[str, Any]] = field(default_factory=list)
+    migration_simulations: List[Dict[str, Any]] = field(default_factory=list)
+    explanations: List[Dict[str, Any]] = field(default_factory=list)
+    refactor_simulations: List[Dict[str, Any]] = field(default_factory=list)
     smells: List[ArchSmell] = field(default_factory=list)
     suggestions: List[ArchSuggestion] = field(default_factory=list)
 
@@ -124,6 +133,15 @@ class ArchAdvice:
             "max_fan_out": self.max_fan_out,
             "max_dependency_depth": self.max_dependency_depth,
             "modularity": round(self.modularity, 3),
+            "architecture_type": self.architecture_type,
+            "architecture_confidence": round(self.architecture_confidence, 3),
+            "architecture_detection": self.architecture_detection,
+            "decay_warnings": self.decay_warnings,
+            "microservice_candidates": self.microservice_candidates,
+            "refactor_plans": self.refactor_plans,
+            "migration_simulations": self.migration_simulations,
+            "explanations": self.explanations,
+            "refactor_simulations": self.refactor_simulations,
             "smells": [s.to_dict() for s in self.smells],
             "suggestions": [s.to_dict() for s in self.suggestions],
         }
@@ -144,6 +162,8 @@ class ArchAdvice:
             f"Fan-out avg={self.avg_fan_out:.1f} max={self.max_fan_out}",
             f"  Modularity: {self.modularity:.3f}  "
             f"Max dependency depth: {self.max_dependency_depth}",
+            f"  Architecture pattern: {self.architecture_type} "
+            f"(confidence {self.architecture_confidence:.2f})",
             "",
             f"Smells ({len(self.smells)}):",
             f"  Cycles: {self.cycle_count}",
@@ -164,6 +184,68 @@ class ArchAdvice:
             for s in sorted(self.suggestions, key=lambda x: x.priority):
                 lines.append(f"  P{s.priority} [{s.action}] {s.target}")
                 lines.append(f"     {s.reason}")
+        if self.decay_warnings:
+            lines.append("")
+            lines.append("Architecture decay:")
+            lines.append(
+                "  "
+                f"God modules={len(self.decay_warnings.get('god_modules', []))}, "
+                f"Cyclic subsystems={len(self.decay_warnings.get('cyclic_subsystems', []))}, "
+                f"Dead subsystems={len(self.decay_warnings.get('dead_subsystems', []))}"
+            )
+        if self.refactor_simulations:
+            lines.append("")
+            lines.append(f"Refactor simulations ({len(self.refactor_simulations)}):")
+            for simulation in self.refactor_simulations[:10]:
+                lines.append(
+                    "  "
+                    f"[{simulation.get('type', '')}] "
+                    f"dscore~{simulation.get('expected_score_delta', 0):.2f} "
+                    f"risk={simulation.get('simulation_risk_level', 'UNTESTED')}"
+                )
+                lines.append(f"     {simulation.get('description', '')}")
+        if self.microservice_candidates:
+            lines.append("")
+            lines.append(f"Microservice candidates ({len(self.microservice_candidates)}):")
+            for candidate in self.microservice_candidates[:10]:
+                lines.append(
+                    "  "
+                    f"{candidate.get('subsystem_name', 'candidate')} "
+                    f"cohesion={candidate.get('cohesion_score', 0):.2f} "
+                    f"coupling={candidate.get('coupling_score', 0):.2f}"
+                )
+        if self.refactor_plans:
+            lines.append("")
+            lines.append(f"Refactor plans ({len(self.refactor_plans)}):")
+            for plan in self.refactor_plans[:10]:
+                lines.append(
+                    "  "
+                    f"{plan.get('plan_id', 'plan')} "
+                    f"type={plan.get('problem_type', 'unknown')} "
+                    f"steps={len(plan.get('steps', []))} "
+                    f"dscore~{plan.get('estimated_score_delta', 0):.3f}"
+                )
+        if self.migration_simulations:
+            lines.append("")
+            lines.append(f"Migration simulations ({len(self.migration_simulations)}):")
+            for migration in self.migration_simulations[:10]:
+                lines.append(
+                    "  "
+                    f"before={migration.get('before_score', 0):.3f} "
+                    f"after={migration.get('after_score', 0):.3f} "
+                    f"delta={migration.get('score_delta', 0):.3f} "
+                    f"risk={migration.get('risk_level', 'SAFE')}"
+                )
+        if self.explanations:
+            lines.append("")
+            lines.append(f"Explanations ({len(self.explanations)}):")
+            for explanation in self.explanations[:10]:
+                lines.append(
+                    "  "
+                    f"{explanation.get('subject', 'insight')} "
+                    f"confidence={explanation.get('confidence', 0):.2f}"
+                )
+                lines.append(f"     {explanation.get('analysis', '')}")
         return "\n".join(lines)
 
 
@@ -387,6 +469,146 @@ def advise_architecture(
 
     # 6. Hidden coupling: cross-layer edges
     _detect_hidden_coupling(graph0, index, advice)
+
+    # 7. Architecture pattern, decay analysis, and subsystem extraction simulation
+    try:
+        from codegraph.architecture_decay import (
+            detect_architecture_decay,
+            record_architecture_history,
+        )
+        from codegraph.architecture_detection import detect_architecture_patterns
+        from codegraph.architecture_explainer import generate_explanations
+        from codegraph.dependency_inversion import suggest_dependency_inversions
+        from codegraph.microservice_detector import detect_microservice_candidates
+        from codegraph.refactor_planner import generate_refactor_plans
+        from codegraph.simulator import (
+            simulate_dependency_inversion,
+            simulate_service_boundary,
+            simulate_subsystem_extraction,
+        )
+        from codegraph.subsystem_extractor import generate_subsystem_extraction_report
+
+        pattern_report = detect_architecture_patterns(graph0, index)
+        advice.architecture_type = pattern_report.get("architecture_type", "unknown")
+        advice.architecture_confidence = float(pattern_report.get("confidence", 0.0))
+        advice.architecture_detection = pattern_report
+
+        decay_report = detect_architecture_decay(
+            graph0,
+            index,
+            fan_in_threshold=fan_in_threshold,
+            fan_out_threshold=fan_out_threshold,
+        )
+        advice.decay_warnings = decay_report.to_dict()
+
+        extraction_report = generate_subsystem_extraction_report(
+            graph0,
+            index,
+            project_root=project_root,
+        )
+        advice.refactor_simulations = extraction_report.get("suggestions", [])[:20]
+
+        microservice_candidates = detect_microservice_candidates(
+            graph0,
+            index,
+            project_root=project_root,
+        )
+        advice.microservice_candidates = [
+            candidate.to_dict() for candidate in microservice_candidates[:20]
+        ]
+
+        dependency_inversions = suggest_dependency_inversions(
+            index,
+            fan_in_threshold=fan_in_threshold,
+            fan_out_threshold=max(3, fan_out_threshold // 2),
+            project_root=project_root,
+        )
+
+        advice.refactor_plans = [
+            plan.to_dict()
+            for plan in generate_refactor_plans(
+                architecture_decay_report=advice.decay_warnings,
+                architecture_detection_report=advice.architecture_detection,
+                subsystem_clusters=advice.microservice_candidates,
+                index=index,
+                dependency_inversions=dependency_inversions[:10],
+                project_root=project_root,
+            )[:20]
+        ]
+
+        migration_simulations: List[Dict[str, Any]] = []
+        for candidate in advice.microservice_candidates[:5]:
+            migration_simulations.append(
+                simulate_service_boundary(
+                    index,
+                    candidate.get("nodes", []),
+                    project_root=project_root,
+                ).to_dict()
+            )
+            migration_simulations.append(
+                simulate_subsystem_extraction(
+                    index,
+                    candidate.get("nodes", []),
+                    project_root=project_root,
+                ).to_dict()
+            )
+        for inversion in dependency_inversions[:5]:
+            migration_simulations.append(
+                simulate_dependency_inversion(
+                    index,
+                    inversion.source_node,
+                    inversion.target_node,
+                    inversion.interface_name,
+                    project_root=project_root,
+                ).to_dict()
+            )
+        advice.migration_simulations = migration_simulations[:20]
+
+        explanation_objects = generate_explanations(
+            pattern_report=advice.architecture_detection,
+            decay_report=advice.decay_warnings,
+            microservice_candidates=advice.microservice_candidates,
+            refactor_plans=advice.refactor_plans,
+        )
+        advice.explanations = [explanation.to_dict() for explanation in explanation_objects[:20]]
+
+        for suggestion in advice.refactor_simulations[:20]:
+            target = ", ".join(suggestion.get("affected_nodes", [])[:3])
+            advice.suggestions.append(
+                ArchSuggestion(
+                    action=suggestion.get("type", "flag_review"),
+                    target=target,
+                    reason=suggestion.get("description", ""),
+                    priority=3,
+                    source_smell="architecture_decay",
+                )
+            )
+
+        for inversion in dependency_inversions[:10]:
+            advice.suggestions.append(
+                ArchSuggestion(
+                    action="introduce_interface",
+                    target=f"{inversion.source_node} -> {inversion.interface_name}",
+                    reason=(
+                        f"Invert dependency from {inversion.source_node} to {inversion.target_node} "
+                        f"using interface {inversion.interface_name}"
+                    ),
+                    priority=2,
+                    source_smell="dependency_inversion",
+                )
+            )
+
+        if project_root is not None:
+            hidden_coupling_count = len(
+                [smell for smell in advice.smells if smell.smell_type == "hidden_coupling"]
+            )
+            record_architecture_history(
+                project_root,
+                decay_report,
+                layer_violations=hidden_coupling_count,
+            )
+    except Exception as exc:
+        logger.warning("Architecture detection/decay integration failed: %s", exc)
 
     # Compute overall score
     score = 1.0
