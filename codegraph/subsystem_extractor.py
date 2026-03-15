@@ -15,7 +15,7 @@ from codegraph.simulator import SimulatedChange, simulate_changes
 from codegraph.subsystem_graph import SubsystemGraph
 
 
-_SUBSYSTEM_CACHE: Dict[Tuple[str, int, int, int], SubsystemGraph] = {}
+_SUBSYSTEM_CACHE: Dict[Tuple[str, int, int, int, int, str], SubsystemGraph] = {}
 
 
 def extract_subsystem(
@@ -23,6 +23,8 @@ def extract_subsystem(
     root_node: str,
     depth: int = 2,
     max_nodes: int = 200,
+    min_interaction_density: float = 0.4,
+    project_root: Optional[Path] = None,
 ) -> SubsystemGraph:
     """Extract a connected subsystem slice around ``root_node``.
 
@@ -34,13 +36,22 @@ def extract_subsystem(
         raise ValueError("depth must be >= 0")
     if max_nodes < 1:
         raise ValueError("max_nodes must be >= 1")
+    if not (0.0 <= min_interaction_density <= 1.0):
+        raise ValueError("min_interaction_density must be in [0.0, 1.0]")
 
     node_ids = {str(node.get("id", "")) for node in architecture_graph.nodes}
     if root_node not in node_ids:
         raise ValueError(f"Root node not found in architecture graph: {root_node}")
 
     graph_version = int(architecture_graph.metadata.get("graph_version", 0))
-    cache_key = (root_node, depth, max_nodes, graph_version)
+    cache_key = (
+        root_node,
+        depth,
+        max_nodes,
+        graph_version,
+        int(min_interaction_density * 1000),
+        str(project_root or ""),
+    )
     cached = _SUBSYSTEM_CACHE.get(cache_key)
     if cached is not None:
         return cached
@@ -72,6 +83,16 @@ def extract_subsystem(
             adjacency[source].add(target)
             adjacency[target].add(source)
 
+    runtime_edges: List[Dict[str, Any]] = []
+    if project_root is not None:
+        runtime_edges = _load_runtime_edges(project_root, node_ids)
+        for edge in runtime_edges:
+            source = str(edge.get("source", ""))
+            target = str(edge.get("target", ""))
+            if source in adjacency and target in adjacency:
+                adjacency[source].add(target)
+                adjacency[target].add(source)
+
     selected_nodes: Set[str] = {root_node}
     frontier: Set[str] = {root_node}
     for _ in range(depth):
@@ -92,9 +113,24 @@ def extract_subsystem(
         if not frontier:
             break
 
+    selected_nodes = _apply_density_filter(
+        selected_nodes,
+        adjacency,
+        root_node,
+        min_interaction_density=min_interaction_density,
+    )
+
     internal_edges: List[Dict[str, Any]] = []
     external_edges: List[Dict[str, Any]] = []
     for edge in architecture_graph.edges:
+        source = str(edge.get("source", ""))
+        target = str(edge.get("target", ""))
+        if source in selected_nodes and target in selected_nodes:
+            internal_edges.append(dict(edge))
+        elif (source in selected_nodes) ^ (target in selected_nodes):
+            external_edges.append(dict(edge))
+
+    for edge in runtime_edges:
         source = str(edge.get("source", ""))
         target = str(edge.get("target", ""))
         if source in selected_nodes and target in selected_nodes:
@@ -123,6 +159,8 @@ def extract_subsystem(
 
     subsystem.metadata["depth"] = depth
     subsystem.metadata["max_nodes"] = max_nodes
+    subsystem.metadata["interaction_density_threshold"] = min_interaction_density
+    subsystem.metadata["runtime_edges_included"] = len(runtime_edges)
     subsystem.metadata["external_dependencies"] = sorted({
         str(edge.get("target", ""))
         if str(edge.get("source", "")) in selected_nodes
@@ -135,6 +173,79 @@ def extract_subsystem(
         _SUBSYSTEM_CACHE.clear()
     _SUBSYSTEM_CACHE[cache_key] = subsystem
     return subsystem
+
+
+def _apply_density_filter(
+    selected_nodes: Set[str],
+    adjacency: Dict[str, Set[str]],
+    root_node: str,
+    *,
+    min_interaction_density: float,
+) -> Set[str]:
+    if not selected_nodes:
+        return selected_nodes
+
+    filtered: Set[str] = set(selected_nodes)
+    root_module = root_node.split("::", 1)[0]
+    for node in list(selected_nodes):
+        if node == root_node:
+            continue
+        total_degree = len(adjacency.get(node, set()))
+        if total_degree == 0:
+            filtered.discard(node)
+            continue
+        internal_degree = len([n for n in adjacency.get(node, set()) if n in selected_nodes])
+        density = internal_degree / total_degree
+        if density < min_interaction_density:
+            filtered.discard(node)
+            continue
+
+        node_module = node.split("::", 1)[0]
+        if node_module != root_module:
+            direct_to_root_module = any(
+                (nbr == root_node) or (nbr.split("::", 1)[0] == root_module)
+                for nbr in adjacency.get(node, set())
+            )
+            if not direct_to_root_module:
+                filtered.discard(node)
+
+    filtered.add(root_node)
+    return filtered
+
+
+def _load_runtime_edges(project_root: Path, node_ids: Set[str]) -> List[Dict[str, Any]]:
+    try:
+        from codegraph.runtime_graph import load_runtime_graph
+    except Exception:
+        return []
+
+    runtime = load_runtime_graph(project_root)
+    if runtime is None:
+        return []
+
+    normalized: List[Dict[str, Any]] = []
+    for edge in runtime.edges:
+        source_node = str(edge.source_node or "")
+        source_file = str(edge.source_file or "")
+        source = source_node if "::" in source_node else f"{source_file}::{source_node}".strip(":")
+
+        target_node = str((edge.details or {}).get("target_node", ""))
+        target_file = str((edge.details or {}).get("target_file", ""))
+        if target_node:
+            target = target_node if "::" in target_node else f"{target_file}::{target_node}".strip(":")
+        else:
+            target = str((edge.details or {}).get("target_id", ""))
+
+        if source in node_ids and target in node_ids:
+            normalized.append({
+                "source": source,
+                "target": target,
+                "edge_type": "runtime",
+                "confidence": "runtime",
+                "source_detail": str(edge.target),
+                "conditional": False,
+            })
+    return normalized
 
 
 @dataclass

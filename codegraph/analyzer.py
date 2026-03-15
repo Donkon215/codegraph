@@ -250,6 +250,34 @@ def analyze(
     _analyze_basic(result, graph0, graph1, workflow, layer_map, affected_nodes, index)
     _analyze_policies(result, graph0, graph1, workflow, suggested_workflow, index, affected_nodes)
 
+    try:
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.architecture_intent import load_architecture_intent
+        from codegraph.intent_validator import validate_architecture_intent
+
+        intent = load_architecture_intent(project_root)
+        if intent.layers and intent.rules:
+            arch_graph = ArchitectureGraph.from_views(
+                structure_graph=graph0,
+                intent_graph=graph1,
+                workflow_graph=workflow,
+            )
+            intent_report = validate_architecture_intent(arch_graph, intent)
+            result.metadata["intent_validation"] = intent_report.to_dict()
+            for violation in intent_report.violations:
+                result.findings.append(Finding(
+                    finding_type="intent_violation",
+                    severity="error",
+                    node_id=str(violation.get("from_node", "")),
+                    message=(
+                        f"Intent violation: {violation.get('from_layer', '?')} -> "
+                        f"{violation.get('to_layer', '?')} is forbidden"
+                    ),
+                    details=violation,
+                ))
+    except Exception:
+        pass
+
     # I-026 — Heuristic missing edges
     result.missing_edges = detect_missing_edges(workflow, graph0, affected_nodes)
     for me in result.missing_edges:

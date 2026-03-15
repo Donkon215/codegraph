@@ -8,9 +8,12 @@ from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
 from codegraph.architecture_graph import ArchitectureGraph
+from codegraph.architecture_drift import compute_architecture_drift
 from codegraph.architecture_health import build_health_report
+from codegraph.architecture_intent import load_architecture_intent
 from codegraph.architecture_patterns import detect_patterns
 from codegraph.architecture_smells import detect_architecture_smells
+from codegraph.intent_validator import validate_architecture_intent
 
 
 @dataclass
@@ -277,30 +280,38 @@ def compute_architecture_index(project_root: Path) -> MultiAxisArchitectureScore
     ) / 4.0
 
     # Requested enhanced score components
-    coupling_score = 1.0 - min(1.0, (cross_subsystem / max(1, classified)))
-
-    internal_edges = 0
-    for src, tgt in edges:
-        if _module_of(src) == _module_of(tgt):
-            internal_edges += 1
+    internal_edges = sum(1 for src, tgt in edges if _module_of(src) == _module_of(tgt))
     cohesion_score = internal_edges / max(1, total_edges)
 
-    layer_integrity = 1.0 - min(1.0, health.layer_violation_count / max(1, total_edges))
+    node_couplings: Dict[str, int] = {}
+    for src, tgt in edges:
+        node_couplings[src] = node_couplings.get(src, 0) + 1
+        node_couplings[tgt] = node_couplings.get(tgt, 0) + 1
+    max_coupling = max(node_couplings.values()) if node_couplings else 0
+    coupling_score = 1.0 - min(1.0, max_coupling / 50.0)
+
+    intent = load_architecture_intent(project_root)
+    if intent.layers and intent.rules:
+        intent_report = validate_architecture_intent(graph, intent)
+        layer_integrity = intent_report.layer_integrity_score
+        drift_report = compute_architecture_drift(graph, intent)
+        architecture_drift = 1.0 - drift_report.drift_score
+    else:
+        layer_integrity = 1.0 - min(1.0, health.layer_violation_count / max(1, total_edges))
+        architecture_drift = 1.0 - min(1.0, mismatch_ratio)
+
     cycle_penalty = 1.0 - min(1.0, health.cycle_count / 5.0)
-    architecture_drift = 1.0 - min(1.0, mismatch_ratio)
 
     test_edges = sum(1 for e in graph.workflow_graph.edges if e.edge_type == "test")
     test_coverage = min(1.0, test_edges / max(1, total_nodes))
     dead_code_ratio = health.orphan_nodes / max(1, total_nodes)
 
     weighted_score = (
-        0.25 * coupling_score
-        + 0.20 * cohesion_score
-        + 0.15 * layer_integrity
-        + 0.15 * cycle_penalty
+        0.25 * cohesion_score
+        + 0.25 * coupling_score
+        + 0.20 * layer_integrity
+        + 0.20 * cycle_penalty
         + 0.10 * architecture_drift
-        + 0.10 * test_coverage
-        + 0.05 * (1.0 - min(1.0, dead_code_ratio))
     )
 
     # Pattern consistency can boost or reduce by up to ±0.05 around neutral 0.5

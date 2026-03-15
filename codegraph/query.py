@@ -111,6 +111,11 @@ _AQL_EQ_RE = re.compile(
     re.DOTALL,
 )
 
+_AQL_CMP_RE = re.compile(
+    r"^([a-zA-Z_][a-zA-Z0-9_]*)\s*(<=|>=|<|>)\s*([0-9]*\.?[0-9]+)$",
+    re.DOTALL,
+)
+
 # Pattern: function_name("arg1", "arg2", key=value, ...)
 _QUERY_RE = re.compile(
     r'^(\w+)\s*\(\s*(.*?)\s*\)$', re.DOTALL,
@@ -179,13 +184,24 @@ def parse_query(query_string: str) -> ParsedQuery:
                 options["predicate_arg"] = raw_arg
             else:
                 eq_match = _AQL_EQ_RE.match(where_expr)
-                if not eq_match:
-                    raise ValueError(
-                        f"Invalid AQL WHERE clause: {where_expr!r}. "
-                        "Expected predicate(arg) or key=value"
-                    )
-                options["filter_key"] = eq_match.group(1).strip().lower()
-                options["filter_value"] = eq_match.group(3).strip()
+                if eq_match:
+                    options["filter_key"] = eq_match.group(1).strip().lower()
+                    options["filter_value"] = eq_match.group(3).strip()
+                else:
+                    cmp_match = _AQL_CMP_RE.match(where_expr)
+                    if cmp_match:
+                        options["filter_key"] = cmp_match.group(1).strip().lower()
+                        options["filter_op"] = cmp_match.group(2)
+                        options["filter_value"] = cmp_match.group(3).strip()
+                    else:
+                        if re.match(r"^[a-zA-Z_][a-zA-Z0-9_]*$", where_expr):
+                            options["filter_key"] = where_expr.strip().lower()
+                            options["filter_value"] = "true"
+                        else:
+                            raise ValueError(
+                                f"Invalid AQL WHERE clause: {where_expr!r}. "
+                                "Expected predicate(arg), key=value, key<value, or a bare flag"
+                            )
 
         return ParsedQuery(function="aql", options=options)
 
@@ -959,6 +975,7 @@ def _execute_aql(
     predicate = str(query.options.get("predicate", "")).lower()
     predicate_arg = str(query.options.get("predicate_arg", ""))
     filter_key = str(query.options.get("filter_key", "")).lower()
+    filter_op = str(query.options.get("filter_op", ""))
     filter_value = str(query.options.get("filter_value", ""))
     cache_key = _cache_namespace(project_root)
 
@@ -970,10 +987,10 @@ def _execute_aql(
 
     subsystem_root = str(query.options.get("subsystem_root", ""))
 
-    if subject not in {"services", "frontend_components", "modules", "cycles", "events", "smells", "subsystem", "nodes"}:
+    if subject not in {"services", "frontend_components", "modules", "cycles", "events", "smells", "subsystem", "nodes", "violations", "subsystems"}:
         raise ValueError(
             "Unsupported AQL SELECT target. "
-            "Supported: services, frontend_components, modules, cycles, events, smells, subsystem, nodes"
+            "Supported: services, frontend_components, modules, cycles, events, smells, subsystem, nodes, violations, subsystems"
         )
 
     if subject == "subsystem":
@@ -1007,6 +1024,32 @@ def _execute_aql(
         result.nodes = [str(node.get("id", "")) for node in subsystem.nodes]
         result.total = len(result.nodes)
         result.metadata["subsystem_root"] = subsystem_root
+
+    elif subject == "nodes" and filter_key == "drift":
+        if project_root is None:
+            raise ValueError("AQL drift query requires project_root")
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.architecture_drift import compute_architecture_drift
+        from codegraph.architecture_intent import load_architecture_intent
+        from codegraph.intent_validator import validate_architecture_intent
+
+        threshold = float(filter_value or "0")
+        graph = ArchitectureGraph.load(project_root)
+        intent = load_architecture_intent(project_root)
+        drift = compute_architecture_drift(graph, intent)
+        if drift.drift_score <= threshold:
+            result.nodes = []
+            result.total = 0
+        else:
+            report = validate_architecture_intent(graph, intent)
+            affected: Set[str] = set()
+            for violation in report.violations:
+                affected.add(str(violation.get("from_node", "")))
+                affected.add(str(violation.get("to_node", "")))
+            result.nodes = sorted(n for n in affected if n)
+            result.total = len(result.nodes)
+        result.metadata["drift_score"] = round(drift.drift_score, 4)
+        result.metadata["threshold"] = threshold
 
     elif subject == "services":
         if predicate != "depends_on" or not predicate_arg:
@@ -1170,6 +1213,83 @@ def _execute_aql(
 
         result.nodes = selected
         result.total = len(result.nodes)
+
+    elif subject == "violations":
+        if project_root is None:
+            raise ValueError("AQL violations query requires project_root")
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.architecture_intent import load_architecture_intent
+        from codegraph.intent_validator import validate_architecture_intent
+
+        graph = ArchitectureGraph.load(project_root)
+        intent = load_architecture_intent(project_root)
+        report = validate_architecture_intent(graph, intent)
+
+        show_layer_rule_only = filter_key in {"layer_rule_broken", "rule", "type"}
+        entries = report.violations if show_layer_rule_only else report.violations
+        result.nodes = [
+            f"{v.get('from_node', '')} -> {v.get('to_node', '')}: {v.get('message', '')}"
+            for v in entries
+        ]
+        result.total = len(result.nodes)
+        result.metadata["layer_integrity_score"] = report.layer_integrity_score
+
+    elif subject == "subsystems":
+        if filter_key != "cohesion":
+            raise ValueError("SELECT subsystems currently supports WHERE cohesion <value>")
+        if not filter_op:
+            filter_op = "<"
+        threshold = float(filter_value or "0.4")
+        if project_root is None:
+            raise ValueError("AQL subsystem cohesion query requires project_root")
+
+        system_path = project_root / ".codegraph" / "architecture" / "system.json"
+        if not system_path.exists():
+            result.nodes = []
+            result.total = 0
+        else:
+            try:
+                system = json.loads(system_path.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                system = {}
+
+            from codegraph.architecture_graph import ArchitectureGraph
+            from codegraph.subsystem_extractor import extract_subsystem
+
+            graph = ArchitectureGraph.load(project_root)
+            selected: List[str] = []
+            for subsystem in system.get("subsystems", []):
+                name = str(subsystem.get("name", ""))
+                components = subsystem.get("components", [])
+                root_module = ""
+                if components:
+                    root_module = str(components[0].get("module", ""))
+                if not root_module:
+                    continue
+                root_node = ""
+                for node in graph.nodes:
+                    if str(node.get("file", "")) == root_module:
+                        root_node = str(node.get("id", ""))
+                        break
+                if not root_node:
+                    continue
+                sub = extract_subsystem(graph, root_node, depth=2, max_nodes=200, project_root=project_root)
+                metrics = sub.compute_metrics()
+                cohesion = float(metrics.get("edges", 0))
+                cohesion = 0.0 if cohesion == 0 else max(0.0, 1.0 - (metrics.get("external_dependencies", 0) / max(1, metrics.get("edges", 1))))
+
+                match = (
+                    (filter_op == "<" and cohesion < threshold)
+                    or (filter_op == "<=" and cohesion <= threshold)
+                    or (filter_op == ">" and cohesion > threshold)
+                    or (filter_op == ">=" and cohesion >= threshold)
+                )
+                if match:
+                    selected.append(f"{name}: cohesion={cohesion:.3f}")
+
+            result.nodes = selected
+            result.total = len(result.nodes)
+            result.metadata["cohesion_threshold"] = threshold
 
     if limit and len(result.nodes) > limit:
         result.nodes = result.nodes[:limit]

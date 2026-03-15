@@ -104,6 +104,10 @@ class EnrichedCopilotContext:
     architecture_patterns: Dict[str, Any] = field(default_factory=dict)
     architecture_violations: List[Dict[str, Any]] = field(default_factory=list)
     subsystem_context: Dict[str, Any] = field(default_factory=dict)
+    architecture_intent_summary: Dict[str, Any] = field(default_factory=dict)
+    layer_rules: List[Dict[str, Any]] = field(default_factory=list)
+    top_violations: List[str] = field(default_factory=list)
+    suggested_refactor: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         d = self.base_context.to_dict()
@@ -129,6 +133,14 @@ class EnrichedCopilotContext:
             d["architecture_violations"] = self.architecture_violations
         if self.subsystem_context:
             d["subsystem_context"] = self.subsystem_context
+        if self.architecture_intent_summary:
+            d["architecture_intent_summary"] = self.architecture_intent_summary
+        if self.layer_rules:
+            d["layer_rules"] = self.layer_rules
+        if self.top_violations:
+            d["top_violations"] = self.top_violations
+        if self.suggested_refactor:
+            d["suggested_refactor"] = self.suggested_refactor
         return d
 
     def save(self, project_root: Path) -> Path:
@@ -309,7 +321,114 @@ def build_enriched_context(
         affected_file=affected_file,
     )
 
+    # 13. Intent + guardrail summary
+    intent_ctx = _build_intent_context(
+        project_root,
+        affected_node=affected_node,
+        affected_file=affected_file,
+    )
+    ctx.architecture_intent_summary = intent_ctx.get("architecture_intent_summary", {})
+    ctx.layer_rules = intent_ctx.get("layer_rules", [])
+    ctx.top_violations = intent_ctx.get("top_violations", [])
+    ctx.suggested_refactor = intent_ctx.get("suggested_refactor", "")
+    if intent_ctx.get("guardrail"):
+        ctx.subsystem_context["guardrail"] = intent_ctx["guardrail"]
+
     return ctx
+
+
+def validate_copilot_architecture_edit(
+    project_root: Path,
+    *,
+    affected_node: str = "",
+    affected_file: str = "",
+) -> Dict[str, Any]:
+    try:
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.architecture_intent import load_architecture_intent
+        from codegraph.intent_validator import validate_architecture_intent
+        from codegraph.subsystem_extractor import extract_subsystem
+
+        graph = ArchitectureGraph.load(project_root)
+        if not graph.nodes:
+            return {"allowed": True, "violations": []}
+
+        node_id = affected_node.strip()
+        if not node_id and affected_file:
+            normalized = affected_file.replace("\\", "/")
+            for node in graph.nodes:
+                if str(node.get("file", "")) == normalized:
+                    node_id = str(node.get("id", ""))
+                    break
+        if not node_id:
+            node_id = str(graph.nodes[0].get("id", ""))
+
+        extract_subsystem(graph, node_id, depth=2, max_nodes=200, project_root=project_root)
+        intent = load_architecture_intent(project_root)
+        report = validate_architecture_intent(graph, intent)
+
+        if report.violations:
+            first = report.violations[0]
+            return {
+                "allowed": False,
+                "error": "architecture_violation",
+                "violations": report.violations,
+                "message": first.get("message", "Architecture rule violated"),
+                "suggested_fix": "Controller -> Service -> Repository",
+            }
+
+        return {"allowed": True, "violations": []}
+    except Exception:
+        return {"allowed": True, "violations": []}
+
+
+def _build_intent_context(
+    project_root: Path,
+    *,
+    affected_node: str = "",
+    affected_file: str = "",
+) -> Dict[str, Any]:
+    try:
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.architecture_intent import load_architecture_intent
+        from codegraph.intent_validator import validate_architecture_intent
+
+        graph = ArchitectureGraph.load(project_root)
+        intent = load_architecture_intent(project_root)
+        report = validate_architecture_intent(graph, intent)
+        guardrail = validate_copilot_architecture_edit(
+            project_root,
+            affected_node=affected_node,
+            affected_file=affected_file,
+        )
+
+        layer_rules = [
+            {
+                "from": str(rule.get("from", "")),
+                "to": str(rule.get("to", "")),
+                "allowed": bool(rule.get("allowed", False)),
+            }
+            for rule in intent.rules[:50]
+        ]
+
+        top_violations = [
+            f"{v.get('from_node', '')} -> {v.get('to_node', '')}: {v.get('message', '')}"
+            for v in report.violations[:10]
+        ]
+
+        return {
+            "architecture_intent_summary": {
+                "layers": sorted(intent.layers.keys()),
+                "rule_count": len(intent.rules),
+                "subsystem_rule_count": len(intent.subsystem_rules),
+            },
+            "layer_rules": layer_rules,
+            "top_violations": top_violations,
+            "suggested_refactor": "Introduce Service/Repository boundary for violating edges" if top_violations else "",
+            "guardrail": guardrail,
+        }
+    except Exception:
+        return {}
 
 
 def _build_subsystem_context(
@@ -339,7 +458,7 @@ def _build_subsystem_context(
         if not root_node:
             return {}
 
-        subsystem = extract_subsystem(graph, root_node, depth=2, max_nodes=200)
+        subsystem = extract_subsystem(graph, root_node, depth=2, max_nodes=200, project_root=project_root)
         subsystem_context = build_subsystem_context(project_root, root_node, depth=2, max_nodes=200)
 
         return {
