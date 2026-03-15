@@ -2,8 +2,11 @@ from __future__ import annotations
 
 import copy
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any, Dict, List
 
+from codegraph.architecture_graph import ArchitectureGraph
+from codegraph.graph_partitioning import load_or_build_partitions
 from codegraph.subsystem_graph import SubsystemGraph
 
 
@@ -152,3 +155,46 @@ def _score_from_metrics(metrics: Dict[str, Any]) -> float:
     layer_penalty = min(1.0, metrics.get("layer_violations", 0) / max(1, metrics.get("edges", 1)))
     fanout_penalty = min(1.0, metrics.get("fan_out_max", 0) / 25.0)
     return max(0.0, 1.0 - (0.45 * cycle_penalty + 0.35 * layer_penalty + 0.20 * fanout_penalty))
+
+
+def build_partition_sandbox(
+    project_root: Path,
+    graph: ArchitectureGraph,
+    root_node: str,
+) -> SubsystemSandbox:
+    """Create a sandbox scoped to the root node's partition + boundary nodes."""
+    partitions = load_or_build_partitions(project_root, graph)
+    partition = partitions.partition_for_node(root_node)
+    if partition is None:
+        return SubsystemSandbox(
+            SubsystemGraph.from_architecture_graph(
+                graph,
+                node_ids={str(node.get("id", "")) for node in graph.nodes if str(node.get("id", ""))},
+                internal_edges=[dict(edge) for edge in graph.edges],
+                external_edges=[],
+                root_node=root_node,
+            )
+        )
+
+    selected_nodes = set(partition.nodes) | set(partition.boundary_nodes)
+    internal_edges: List[Dict[str, Any]] = []
+    external_edges: List[Dict[str, Any]] = []
+    for edge in graph.edges:
+        source = str(edge.get("source", ""))
+        target = str(edge.get("target", ""))
+        if source in selected_nodes and target in selected_nodes:
+            internal_edges.append(dict(edge))
+        elif (source in selected_nodes) ^ (target in selected_nodes):
+            external_edges.append(dict(edge))
+
+    subsystem = SubsystemGraph.from_architecture_graph(
+        graph,
+        node_ids=selected_nodes,
+        internal_edges=internal_edges,
+        external_edges=external_edges,
+        root_node=root_node,
+    )
+    subsystem.metadata["simulation_partition_id"] = partition.id
+    subsystem.metadata["simulation_partition_nodes"] = len(partition.nodes)
+    subsystem.metadata["simulation_boundary_nodes"] = len(partition.boundary_nodes)
+    return SubsystemSandbox(subsystem)

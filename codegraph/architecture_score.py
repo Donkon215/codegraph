@@ -177,21 +177,45 @@ def _compute_raw_metrics(edges, mod_to_sub, total_edges):
 def compute_score(project_root: Path) -> ArchitectureScore:
     """Compute architecture score via the multi-axis architecture scoring engine."""
     from codegraph.architecture_scoring import compute_architecture_index
+    from codegraph.graph_partitioning import load_or_build_partitions
+    from codegraph.architecture_graph import ArchitectureGraph
 
     index = compute_architecture_index(project_root)
+    graph = ArchitectureGraph.load(project_root)
+    partitions = load_or_build_partitions(project_root, graph)
 
     metrics = dict(index.dimensions)
     metrics["penalty_total"] = sum(index.penalties.values()) if index.penalties else 0.0
 
+    partition_scores: Dict[str, float] = {}
+    total_nodes = 0
+    weighted_sum = 0.0
+    for pid, part in partitions.partitions.items():
+        size = len(part.nodes)
+        if size == 0:
+            continue
+        internal = len(part.internal_edges)
+        density = min(1.0, internal / max(1.0, size * 2.0))
+        boundary_penalty = min(1.0, len(part.boundary_nodes) / max(1.0, size))
+        part_score = max(0.0, min(1.0, (0.7 * density) + (0.3 * (1.0 - boundary_penalty))))
+        partition_scores[pid] = part_score
+        weighted_sum += part_score * size
+        total_nodes += size
+
+    partition_weighted_score = (weighted_sum / total_nodes) if total_nodes > 0 else index.score
+    metrics["partition_weighted_score"] = partition_weighted_score
+
     return ArchitectureScore(
-        score=index.score,
-        grade=index.grade,
+        score=partition_weighted_score,
+        grade=_score_to_grade(partition_weighted_score),
         metrics=metrics,
-        subsystem_scores={},
+        subsystem_scores=partition_scores,
         metadata={
             **index.metadata,
             "penalties": index.penalties,
             "scoring_model": "multi_axis_v2",
+            "global_score": index.score,
+            "partition_count": len(partition_scores),
         },
     )
 

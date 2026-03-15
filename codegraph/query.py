@@ -1020,7 +1020,7 @@ def _execute_aql(
         from codegraph.subsystem_extractor import extract_subsystem
 
         graph = ArchitectureGraph.load(project_root)
-        subsystem = extract_subsystem(graph, subsystem_root, depth=2, max_nodes=200)
+        subsystem = extract_subsystem(graph, subsystem_root, depth=2, max_nodes=200, project_root=project_root)
         result.nodes = [str(node.get("id", "")) for node in subsystem.nodes]
         result.total = len(result.nodes)
         result.metadata["subsystem_root"] = subsystem_root
@@ -1063,6 +1063,24 @@ def _execute_aql(
             return result
 
         dependents: Set[str] = set()
+        target_partitions: Set[str] = set()
+        partition_map: Dict[str, str] = {}
+        if project_root is not None:
+            try:
+                from codegraph.architecture_graph import ArchitectureGraph
+                from codegraph.graph_partitioning import load_or_build_partitions
+
+                graph = ArchitectureGraph.load(project_root)
+                partitions = load_or_build_partitions(project_root, graph)
+                partition_map = dict(partitions.node_to_partition)
+                for target in targets:
+                    pid = partition_map.get(target)
+                    if pid:
+                        target_partitions.add(pid)
+            except Exception:
+                partition_map = {}
+                target_partitions = set()
+
         for target in targets:
             dep_cache_key = f"{cache_key}:{target}"
             cached_dependents = _cache_get("dependents", dep_cache_key)
@@ -1072,10 +1090,20 @@ def _execute_aql(
                 _cache_put("dependents", dep_cache_key, cached_dependents)
             dependents.update(cached_dependents)
 
+        if partition_map and target_partitions:
+            local = {
+                node for node in dependents
+                if partition_map.get(node) in target_partitions
+            }
+            if local:
+                dependents = local
+
         service_dependents = sorted(n for n in dependents if _is_service_node(n, index))
         result.nodes = service_dependents
         result.total = len(result.nodes)
         result.metadata["targets"] = targets
+        if target_partitions:
+            result.metadata["target_partitions"] = sorted(target_partitions)
 
     elif subject == "frontend_components":
         if predicate != "calls_api" or not predicate_arg:
@@ -1127,7 +1155,7 @@ def _execute_aql(
             from codegraph.subsystem_extractor import extract_subsystem
 
             graph = ArchitectureGraph.load(project_root)
-            subsystem = extract_subsystem(graph, subsystem_root, depth=2, max_nodes=200)
+            subsystem = extract_subsystem(graph, subsystem_root, depth=2, max_nodes=200, project_root=project_root)
             cycle_count = int(subsystem.compute_metrics().get("cycle_count", 0))
             if cycle_count:
                 result.nodes = [f"subsystem_cycle[{i + 1}] in {subsystem_root}" for i in range(cycle_count)]

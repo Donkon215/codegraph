@@ -630,6 +630,107 @@ def arch_version_cmd(ctx: click.Context, do_save: bool, do_list: bool,
         click.echo(format_version_history(versions))
 
 
+# ── Graph Partitions ──────────────────────────────────────────────────
+@click.command("partitions")
+@click.option("--list", "do_list", is_flag=True, help="List known partition files.")
+@click.option("--rebuild", is_flag=True, help="Rebuild partitions from current ArchitectureGraph.")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.pass_context
+def partitions_cmd(ctx: click.Context, do_list: bool, rebuild: bool, json_output: bool) -> None:
+    """Inspect or rebuild graph partitions used for large-scale acceleration."""
+    import json as _json
+    from codegraph.architecture_graph import ArchitectureGraph
+    from codegraph.graph_partitioning import (
+        build_partitions,
+        list_partition_files,
+        load_partitions,
+        save_partitions,
+    )
+
+    root = _resolve_root(ctx)
+
+    if rebuild:
+        graph = ArchitectureGraph.load(root)
+        partitions = build_partitions(graph)
+        save_partitions(root, partitions)
+        if json_output:
+            click.echo(_json.dumps(partitions.to_dict(), indent=2))
+        else:
+            click.echo(f"Rebuilt {len(partitions.partitions)} partitions.")
+        return
+
+    if do_list:
+        files = list_partition_files(root)
+        if json_output:
+            click.echo(_json.dumps({"files": files, "count": len(files)}, indent=2))
+        else:
+            click.echo(f"Partition files: {len(files)}")
+            for name in files:
+                click.echo(f"  - {name}")
+        return
+
+    partitions = load_partitions(root)
+    if partitions is None:
+        click.echo("No partitions found. Run: codegraph partitions --rebuild")
+        return
+
+    if json_output:
+        click.echo(_json.dumps(partitions.to_dict(), indent=2))
+    else:
+        click.echo(f"Partitions: {len(partitions.partitions)}")
+        for pid, part in sorted(partitions.partitions.items()):
+            click.echo(
+                f"  {pid}: nodes={len(part.nodes)} "
+                f"boundary={len(part.boundary_nodes)} edges={len(part.internal_edges)}"
+            )
+
+
+# ── Subsystem Cache ───────────────────────────────────────────────────
+@click.command("subsystem-cache")
+@click.option("--clear", "do_clear", is_flag=True, help="Clear persisted subsystem cache.")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.pass_context
+def subsystem_cache_cmd(ctx: click.Context, do_clear: bool, json_output: bool) -> None:
+    """Inspect or clear subsystem cache entries."""
+    import json as _json
+    from codegraph.subsystem_cache import SubsystemCache, cache_status
+
+    root = _resolve_root(ctx)
+    cache = SubsystemCache(root)
+
+    if do_clear:
+        removed = cache.clear()
+        if json_output:
+            click.echo(_json.dumps({"cleared": removed}, indent=2))
+        else:
+            click.echo(f"Cleared {removed} subsystem cache entries.")
+        return
+
+    status = cache_status(root)
+    if json_output:
+        click.echo(_json.dumps(status, indent=2))
+    else:
+        click.echo(f"Cache entries: {status['entries']}")
+        click.echo(f"Cache dir: {status['cache_dir']}")
+        for name in status.get("files", [])[:20]:
+            click.echo(f"  - {name}")
+
+
+# ── Rebuild Partitions Task ───────────────────────────────────────────
+@click.command("rebuild-partitions")
+@click.pass_context
+def rebuild_partitions_cmd(ctx: click.Context) -> None:
+    """Recalculate graph partitions after major structural changes."""
+    from codegraph.architecture_graph import ArchitectureGraph
+    from codegraph.graph_partitioning import build_partitions, save_partitions
+
+    root = _resolve_root(ctx)
+    graph = ArchitectureGraph.load(root)
+    partitions = build_partitions(graph)
+    save_partitions(root, partitions)
+    click.echo(f"Rebuilt {len(partitions.partitions)} partitions in .codegraph/partitions/")
+
+
 # ── Registration ──────────────────────────────────────────────────────
 
 COMMANDS = [
@@ -646,4 +747,7 @@ COMMANDS = [
     arch_search_cmd,
     arch_simulate_cmd,
     arch_version_cmd,
+    partitions_cmd,
+    subsystem_cache_cmd,
+    rebuild_partitions_cmd,
 ]

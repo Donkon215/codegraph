@@ -9,9 +9,11 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 from codegraph.architecture_decay import ArchitectureDecayReport, detect_architecture_decay
 from codegraph.architecture_detection import detect_bidirectional_clusters
 from codegraph.architecture_score import compute_score
+from codegraph.graph_partitioning import load_or_build_partitions
 from codegraph.index import IndexStore
 from codegraph.models.graph0 import Graph0
 from codegraph.simulator import SimulatedChange, simulate_changes
+from codegraph.subsystem_cache import SubsystemCache
 from codegraph.subsystem_graph import SubsystemGraph
 
 
@@ -43,6 +45,20 @@ def extract_subsystem(
     if root_node not in node_ids:
         raise ValueError(f"Root node not found in architecture graph: {root_node}")
 
+    partition_nodes: Set[str] = set(node_ids)
+    boundary_seed_nodes: Set[str] = set()
+    if project_root is not None:
+        partitions = load_or_build_partitions(project_root, architecture_graph)
+        root_partition = partitions.partition_for_node(root_node)
+        if root_partition is not None and root_partition.nodes:
+            partition_nodes = set(root_partition.nodes)
+            boundary_seed_nodes = set(root_partition.boundary_nodes)
+
+        cache_store = SubsystemCache(project_root)
+        cache_entry = cache_store.get(root_node)
+        if cache_store.is_valid(cache_entry):
+            return cache_store.entry_to_subsystem(cache_entry)
+
     graph_version = int(architecture_graph.metadata.get("graph_version", 0))
     cache_key = (
         root_node,
@@ -72,14 +88,25 @@ def extract_subsystem(
         "frontend_to_backend",
     }
 
-    adjacency: Dict[str, Set[str]] = {node_id: set() for node_id in node_ids}
+    traversal_scope: Set[str] = set(partition_nodes) | set(boundary_seed_nodes)
+    adjacency: Dict[str, Set[str]] = {node_id: set() for node_id in traversal_scope}
+    for source, targets in getattr(architecture_graph, "adj_out", {}).items():
+        if source not in adjacency:
+            continue
+        for target in targets:
+            if target in adjacency:
+                adjacency[source].add(target)
+                adjacency[target].add(source)
+
     for edge in architecture_graph.edges:
         source = str(edge.get("source", ""))
         target = str(edge.get("target", ""))
         edge_type = str(edge.get("edge_type", "call")).lower()
-        if source not in adjacency or target not in adjacency:
+        if source not in traversal_scope or target not in traversal_scope:
             continue
         if edge_type in allowed_edge_types:
+            adjacency.setdefault(source, set())
+            adjacency.setdefault(target, set())
             adjacency[source].add(target)
             adjacency[target].add(source)
 
@@ -89,8 +116,21 @@ def extract_subsystem(
         for edge in runtime_edges:
             source = str(edge.get("source", ""))
             target = str(edge.get("target", ""))
-            if source in adjacency and target in adjacency:
+            source_inside = source in traversal_scope
+            target_inside = target in traversal_scope
+
+            if source_inside and target_inside:
                 adjacency[source].add(target)
+                adjacency[target].add(source)
+                continue
+
+            if source_inside and target in node_ids:
+                traversal_scope.add(target)
+                adjacency.setdefault(target, set()).add(source)
+                adjacency[source].add(target)
+            elif target_inside and source in node_ids:
+                traversal_scope.add(source)
+                adjacency.setdefault(source, set()).add(target)
                 adjacency[target].add(source)
 
     selected_nodes: Set[str] = {root_node}
@@ -159,6 +199,10 @@ def extract_subsystem(
 
     subsystem.metadata["depth"] = depth
     subsystem.metadata["max_nodes"] = max_nodes
+    subsystem.metadata["partition_size"] = len(partition_nodes)
+    subsystem.metadata["partition_limited"] = project_root is not None
+    if boundary_seed_nodes:
+        subsystem.metadata["partition_boundary_nodes"] = sorted(boundary_seed_nodes)
     subsystem.metadata["interaction_density_threshold"] = min_interaction_density
     subsystem.metadata["runtime_edges_included"] = len(runtime_edges)
     subsystem.metadata["external_dependencies"] = sorted({
@@ -172,6 +216,10 @@ def extract_subsystem(
     if len(_SUBSYSTEM_CACHE) > 256:
         _SUBSYSTEM_CACHE.clear()
     _SUBSYSTEM_CACHE[cache_key] = subsystem
+
+    if project_root is not None:
+        SubsystemCache(project_root).put(root_node, subsystem)
+
     return subsystem
 
 

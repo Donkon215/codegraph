@@ -439,6 +439,7 @@ def _build_subsystem_context(
 ) -> Dict[str, Any]:
     try:
         from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.graph_partitioning import load_or_build_partitions
         from codegraph.subsystem_extractor import extract_subsystem
         from codegraph.subsystem_context_builder import build_subsystem_context
 
@@ -460,9 +461,16 @@ def _build_subsystem_context(
 
         subsystem = extract_subsystem(graph, root_node, depth=2, max_nodes=200, project_root=project_root)
         subsystem_context = build_subsystem_context(project_root, root_node, depth=2, max_nodes=200)
+        partitions = load_or_build_partitions(project_root, graph)
+        partition = partitions.partition_for_node(root_node)
 
         return {
             "subsystem": root_node,
+            "partition": {
+                "id": partition.id if partition else "",
+                "nodes": len(partition.nodes) if partition else 0,
+                "boundary_nodes": len(partition.boundary_nodes) if partition else 0,
+            },
             "architecture_slice": {
                 "nodes": len(subsystem.nodes),
                 "edges": len(subsystem.edges),

@@ -8,9 +8,11 @@ projections derived from canonical fields on this model.
 from __future__ import annotations
 
 import json
+import time
+from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Set
 
 from codegraph.constants import GRAPHS_DIR
 from codegraph.models.graph0 import Graph0, Graph0Node
@@ -36,6 +38,8 @@ class ArchitectureGraph:
 
     nodes: List[Dict[str, Any]] = field(default_factory=list)
     edges: List[Dict[str, Any]] = field(default_factory=list)
+    adj_out: Dict[str, Set[str]] = field(default_factory=lambda: defaultdict(set))
+    adj_in: Dict[str, Set[str]] = field(default_factory=lambda: defaultdict(set))
     node_types: Dict[str, str] = field(default_factory=dict)
     edge_types: Dict[str, str] = field(default_factory=dict)
     metadata: Dict[str, Any] = field(default_factory=dict)
@@ -43,6 +47,129 @@ class ArchitectureGraph:
     _structure_graph_cache: Optional[Graph0] = field(default=None, init=False, repr=False)
     _intent_graph_cache: Optional[Graph1] = field(default=None, init=False, repr=False)
     _workflow_graph_cache: Optional[Workflow] = field(default=None, init=False, repr=False)
+
+    def __post_init__(self) -> None:
+        self.rebuild_indexes()
+
+    def rebuild_indexes(self) -> None:
+        """Rebuild adjacency/type indexes from canonical node/edge lists."""
+        out_index: Dict[str, Set[str]] = defaultdict(set)
+        in_index: Dict[str, Set[str]] = defaultdict(set)
+
+        node_ids: Set[str] = set()
+        for node in self.nodes:
+            node_id = str(node.get("id", "")).strip()
+            if not node_id:
+                continue
+            node_ids.add(node_id)
+            if node_id not in self.node_types:
+                self.node_types[node_id] = str(node.get("type") or "function")
+            out_index.setdefault(node_id, set())
+            in_index.setdefault(node_id, set())
+
+        for index, edge in enumerate(self.edges):
+            source = str(edge.get("source", "")).strip()
+            target = str(edge.get("target", "")).strip()
+            if not source or not target:
+                continue
+
+            out_index[source].add(target)
+            in_index[target].add(source)
+            if source not in node_ids:
+                out_index.setdefault(source, set())
+                in_index.setdefault(source, set())
+                node_ids.add(source)
+            if target not in node_ids:
+                out_index.setdefault(target, set())
+                in_index.setdefault(target, set())
+                node_ids.add(target)
+
+            edge_key = f"{source}->{target}#{index}"
+            if edge_key not in self.edge_types:
+                self.edge_types[edge_key] = str(edge.get("edge_type", "call"))
+
+        self.adj_out = out_index
+        self.adj_in = in_index
+        self.metadata.setdefault("node_count", len(node_ids))
+        self.metadata.setdefault("edge_count", len(self.edges))
+
+    def add_node(self, node: Dict[str, Any]) -> None:
+        node_id = str(node.get("id", "")).strip()
+        if not node_id:
+            raise ValueError("node id is required")
+        if any(str(existing.get("id", "")).strip() == node_id for existing in self.nodes):
+            return
+
+        self.nodes.append(dict(node))
+        self.node_types[node_id] = str(node.get("type") or self.node_types.get(node_id, "function"))
+        self.adj_out.setdefault(node_id, set())
+        self.adj_in.setdefault(node_id, set())
+        self.metadata["last_graph_change"] = time.time()
+        self.metadata["node_count"] = len({str(n.get("id", "")).strip() for n in self.nodes if str(n.get("id", "")).strip()})
+
+    def remove_node(self, node_id: str) -> None:
+        node_id = str(node_id).strip()
+        if not node_id:
+            return
+
+        self.nodes = [n for n in self.nodes if str(n.get("id", "")).strip() != node_id]
+        self.edges = [
+            e for e in self.edges
+            if str(e.get("source", "")).strip() != node_id and str(e.get("target", "")).strip() != node_id
+        ]
+        self.node_types.pop(node_id, None)
+        self.adj_out.pop(node_id, None)
+        self.adj_in.pop(node_id, None)
+        for src in list(self.adj_out.keys()):
+            self.adj_out[src].discard(node_id)
+        for tgt in list(self.adj_in.keys()):
+            self.adj_in[tgt].discard(node_id)
+        self.rebuild_indexes()
+        self.metadata["last_graph_change"] = time.time()
+
+    def add_edge(self, edge: Dict[str, Any]) -> None:
+        source = str(edge.get("source", "")).strip()
+        target = str(edge.get("target", "")).strip()
+        if not source or not target:
+            raise ValueError("edge source and target are required")
+
+        edge_record = dict(edge)
+        edge_record.setdefault("edge_type", "call")
+        self.edges.append(edge_record)
+
+        self.adj_out.setdefault(source, set()).add(target)
+        self.adj_in.setdefault(target, set()).add(source)
+        self.adj_out.setdefault(target, set())
+        self.adj_in.setdefault(source, set())
+
+        edge_index = len(self.edges) - 1
+        edge_key = f"{source}->{target}#{edge_index}"
+        self.edge_types[edge_key] = str(edge_record.get("edge_type", "call"))
+        self.metadata["edge_count"] = len(self.edges)
+        self.metadata["last_graph_change"] = time.time()
+
+    def remove_edge(self, source: str, target: str) -> int:
+        source = str(source).strip()
+        target = str(target).strip()
+        if not source or not target:
+            return 0
+
+        kept: List[Dict[str, Any]] = []
+        removed = 0
+        for edge in self.edges:
+            src = str(edge.get("source", "")).strip()
+            tgt = str(edge.get("target", "")).strip()
+            if src == source and tgt == target:
+                removed += 1
+                continue
+            kept.append(edge)
+
+        if removed:
+            self.edges = kept
+            self.rebuild_indexes()
+            self.metadata["edge_count"] = len(self.edges)
+            self.metadata["last_graph_change"] = time.time()
+        return removed
 
     @property
     def structure_graph(self) -> Graph0:
@@ -231,6 +358,7 @@ class ArchitectureGraph:
         self.node_types = synchronized.node_types
         self.edge_types = synchronized.edge_types
         self.metadata = synchronized.metadata
+        self.rebuild_indexes()
 
         self._structure_graph_cache = synchronized._to_graph0()
         self._intent_graph_cache = synchronized._to_graph1()

@@ -47,8 +47,7 @@ def simulate_change(project_root: Any, node: str, change: str, target: str = "")
     """
     from codegraph.architecture_graph import ArchitectureGraph
     from codegraph.architecture_scoring import compute_architecture_index
-    from codegraph.architecture_health import compute_architecture_health
-    from codegraph.models.workflow import WorkflowEdge
+    from codegraph.subsystem_sandbox import build_partition_sandbox
 
     if not hasattr(project_root, "__truediv__"):
         raise ValueError("project_root must be a Path")
@@ -56,53 +55,48 @@ def simulate_change(project_root: Any, node: str, change: str, target: str = "")
     baseline_score = compute_architecture_index(project_root)
     graph = ArchitectureGraph.load(project_root)
 
-    before_health = compute_architecture_health(graph)
+    sandbox = build_partition_sandbox(project_root, graph, node)
+    before_metrics = sandbox.get_metrics()
 
     if change == "add_edge" and target:
-        graph.workflow_graph.edges.append(WorkflowEdge(
-            source=node,
-            target=target,
-            edge_type="call",
-            confidence="ai_inferred",
-            source_detail="simulated",
-        ))
+        sandbox.subsystem_graph.edges.append({
+            "source": node,
+            "target": target,
+            "edge_type": "call",
+            "confidence": "ai_inferred",
+            "source_detail": "simulated",
+        })
     elif change == "remove_edge" and target:
-        graph.workflow_graph.edges = [
-            e for e in graph.workflow_graph.edges
-            if not (e.source == node and e.target == target)
+        sandbox.subsystem_graph.edges = [
+            edge for edge in sandbox.subsystem_graph.edges
+            if not (str(edge.get("source", "")) == node and str(edge.get("target", "")) == target)
         ]
     elif change == "rewire_edge" and target:
-        graph.workflow_graph.edges = [
-            e if e.source != node else WorkflowEdge(
-                source=node,
-                target=target,
-                edge_type=e.edge_type,
-                confidence=e.confidence,
-                source_detail="simulated_rewire",
-            )
-            for e in graph.workflow_graph.edges
-        ]
+        for edge in sandbox.subsystem_graph.edges:
+            if str(edge.get("source", "")) == node:
+                edge["target"] = target
+                edge["source_detail"] = "simulated_rewire"
 
-    # Save derived views to temp project state and recompute score against new workflow
-    graph.save_derived_views(project_root)
-
+    after_metrics = sandbox.get_metrics()
     predicted_score = compute_architecture_index(project_root)
-    after_health = compute_architecture_health(graph)
 
     return {
         "node": node,
         "change": change,
         "target": target,
-        "cycle_risk": after_health.cycle_count - before_health.cycle_count,
+        "cycle_risk": int(after_metrics.get("cycle_count", 0)) - int(before_metrics.get("cycle_count", 0)),
         "coupling_delta": round(
             predicted_score.dimensions.get("coupling_score", 0.0)
             - baseline_score.dimensions.get("coupling_score", 0.0),
             4,
         ),
-        "layer_violations": after_health.layer_violation_count,
+        "layer_violations": int(after_metrics.get("layer_violations", 0)),
         "predicted_architecture_score": round(predicted_score.score, 4),
         "baseline_architecture_score": round(baseline_score.score, 4),
         "score_delta": round(predicted_score.score - baseline_score.score, 4),
+        "partition": sandbox.subsystem_graph.metadata.get("simulation_partition_id", ""),
+        "partition_nodes": sandbox.subsystem_graph.metadata.get("simulation_partition_nodes", 0),
+        "partition_boundary_nodes": sandbox.subsystem_graph.metadata.get("simulation_boundary_nodes", 0),
     }
 
 

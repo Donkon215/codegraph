@@ -41,7 +41,13 @@ def build_subsystem_context(
     max_nodes: int = 200,
 ) -> SubsystemContext:
     arch = ArchitectureGraph.load(project_root)
-    subsystem = extract_subsystem(arch, root_node, depth=depth, max_nodes=max_nodes)
+    subsystem = extract_subsystem(
+        arch,
+        root_node,
+        depth=depth,
+        max_nodes=max_nodes,
+        project_root=project_root,
+    )
 
     smells_index = detect_architecture_smells(arch, project_root)
     subsystem_node_ids = {str(node.get("id", "")) for node in subsystem.nodes}
