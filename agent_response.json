@@ -1,5 +1,5 @@
 {
-  "cycle": 8,
+  "cycle": 9,
   "graph_version": 85,
   "intents": [],
   "repairs": [],
@@ -406,26 +406,45 @@
         "Copilot context now writes .codegraph/context/copilot_context.staged.json always and publishes copilot_context.json only on PROVEN_SAFE",
         "Added payload shrinking and intelligence summary shaping to keep context under configured size limit"
       ]
+    },
+    {
+      "id": "chg-026",
+      "architecture_change_description": "Added Architecture Query Language (AQL) support to query engine with SQL-like SELECT/WHERE syntax for architecture-oriented questions.",
+      "files_to_modify": [
+        "codegraph/query.py",
+        "tests/test_query.py"
+      ],
+      "refactoring_steps": [
+        "Added AQL parser path in parse_query with SELECT <subject> WHERE <predicate>(arg)",
+        "Implemented AQL execution for services depends_on, frontend_components calls_api, and cycles in_layer(service)",
+        "Added service-layer SCC cycle detection for cycle-focused AQL queries",
+        "Added parser and execution unit tests for the new DSL"
+      ],
+      "code_patches": [
+        "New query function 'aql' dispatch with dedicated AQL execution helpers",
+        "AQL predicates: depends_on, calls_api, in_layer(service)",
+        "Extended query tests to validate AQL parse and execution semantics"
+      ]
     }
   ],
   "validation": {
     "tests": {
-      "command": "py -m pytest tests/test_architecture_simulator.py tests/test_copilot_context.py tests/test_context_builder.py -x --tb=short -q",
+      "command": "py -m pytest tests/test_query.py tests/test_fuzz.py -x --tb=short -q",
       "result": "passed",
-      "details": "45 passed"
+      "details": "59 passed"
     },
     "architecture": {
-      "build": "pending_clean_tree",
-      "analyze": "pending_clean_tree",
-      "proof": "pending_clean_tree",
-      "latest_proof_id": "proof_20260315_085053",
+      "build": "success",
+      "analyze": "success",
+      "proof": "PROVEN_SAFE",
+      "latest_proof_id": "proof_20260315_102838",
       "score_compare": {
         "baseline": 0.446,
-        "current": 0.577,
-        "delta": 0.131,
+        "current": 0.538,
+        "delta": 0.092,
         "merge_allowed": true
       },
-      "note": "Mandatory preflight requires a clean working tree before the next build/analyze/prove/score run."
+      "note": "Cycle finalized: build/analyze/prove/score compare all executed after checkpoint commit."
     }
   },
   "next_increment_candidates": [

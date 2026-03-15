@@ -65,6 +65,7 @@ class RuntimeGraph:
     edges: List[RuntimeEdge] = field(default_factory=list)
     files_scanned: int = 0
     edge_types: Dict[str, int] = field(default_factory=dict)
+    service_nodes: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -72,6 +73,7 @@ class RuntimeGraph:
             "edges": [e.to_dict() for e in self.edges],
             "files_scanned": self.files_scanned,
             "edge_types": self.edge_types,
+            "service_nodes": self.service_nodes,
             "total_edges": len(self.edges),
         }
 
@@ -106,7 +108,15 @@ _MQ_PATTERNS = {
 }
 
 _EVENT_PATTERNS = {
-    "emit", "dispatch", "dispatch_event", "socket_emit",
+    "emit", "publish", "dispatch", "dispatch_event", "send_event", "socket_emit",
+}
+
+_EVENT_CONSUMER_PATTERNS = {
+    "subscribe", "on", "add_listener", "consume_event", "handle_event",
+}
+
+_WEBSOCKET_PATTERNS = {
+    "send", "send_json", "send_text", "emit",
 }
 
 
@@ -153,6 +163,8 @@ class RuntimeEdgeVisitor(ast.NodeVisitor):
         self._check_event_call(node)
         self._check_queue_worker_call(node)
         self._check_rpc_call(node)
+        self._check_websocket_call(node)
+        self._check_async_workflow_call(node)
         self._check_env_var(node)
         self.generic_visit(node)
 
@@ -230,20 +242,29 @@ class RuntimeEdgeVisitor(ast.NodeVisitor):
             target=target,
             details={"operation": node.func.attr},
         ))
+        if "publish" in node.func.attr:
+            self.edges.append(RuntimeEdge(
+                source_file=self.file_path,
+                source_node=self._source_node,
+                edge_type="event_produce",
+                target=target,
+                details={"channel": "queue", "operation": node.func.attr},
+            ))
 
     def _check_event_call(self, node: ast.Call) -> None:
         if not isinstance(node.func, ast.Attribute):
             return
-        op = node.func.attr
-        if op not in _EVENT_PATTERNS and op not in {"emit", "dispatch"}:
+        op = node.func.attr.lower()
+        if op not in _EVENT_PATTERNS and op not in _EVENT_CONSUMER_PATTERNS:
             return
         target = "<dynamic>"
         if node.args and isinstance(node.args[0], ast.Constant):
             target = str(node.args[0].value)
+        edge_type = "event_produce" if op in _EVENT_PATTERNS else "event_consume"
         self.edges.append(RuntimeEdge(
             source_file=self.file_path,
             source_node=self._source_node,
-            edge_type="event",
+            edge_type=edge_type,
             target=target,
             details={"operation": op},
         ))
@@ -263,28 +284,90 @@ class RuntimeEdgeVisitor(ast.NodeVisitor):
         if op in {"put", "get", "enqueue", "dequeue"} and not queue_like:
             return
         kind = "queue" if op in {"enqueue", "dequeue", "put", "get"} else "worker"
+        target = "<runtime>"
+        if node.args and isinstance(node.args[0], ast.Constant):
+            target = str(node.args[0].value)
         self.edges.append(RuntimeEdge(
             source_file=self.file_path,
             source_node=self._source_node,
             edge_type=kind,
-            target="<runtime>",
+            target=target,
             details={"operation": op},
         ))
+        if kind in {"queue", "worker"}:
+            self.edges.append(RuntimeEdge(
+                source_file=self.file_path,
+                source_node=self._source_node,
+                edge_type="queue_task",
+                target=target,
+                details={"operation": op},
+            ))
 
     def _check_rpc_call(self, node: ast.Call) -> None:
         if not isinstance(node.func, ast.Attribute):
             return
         op = node.func.attr.lower()
-        if op not in {"rpc_call", "call", "invoke"}:
+        if op not in {"rpc_call", "call", "invoke", "request"}:
             return
         value = node.func.value
-        if isinstance(value, ast.Name) and value.id.lower() in {"grpc", "rpc", "client"}:
+        name_hint = ""
+        if isinstance(value, ast.Name):
+            name_hint = value.id.lower()
+        elif isinstance(value, ast.Attribute):
+            name_hint = value.attr.lower()
+        if name_hint in {"grpc", "rpc", "client", "stub", "channel"}:
             self.edges.append(RuntimeEdge(
                 source_file=self.file_path,
                 source_node=self._source_node,
                 edge_type="rpc_call",
                 target="<rpc>",
                 details={"operation": op},
+            ))
+
+    def _check_websocket_call(self, node: ast.Call) -> None:
+        if not isinstance(node.func, ast.Attribute):
+            return
+        op = node.func.attr.lower()
+        if op not in _WEBSOCKET_PATTERNS:
+            return
+        receiver = ""
+        if isinstance(node.func.value, ast.Name):
+            receiver = node.func.value.id.lower()
+        elif isinstance(node.func.value, ast.Attribute):
+            receiver = node.func.value.attr.lower()
+        if "socket" not in receiver and "ws" not in receiver and op != "emit":
+            return
+
+        target = "<dynamic>"
+        if node.args and isinstance(node.args[0], ast.Constant):
+            target = str(node.args[0].value)
+
+        self.edges.append(RuntimeEdge(
+            source_file=self.file_path,
+            source_node=self._source_node,
+            edge_type="websocket_event",
+            target=target,
+            details={"operation": op},
+        ))
+
+    def _check_async_workflow_call(self, node: ast.Call) -> None:
+        if not isinstance(node.func, ast.Attribute):
+            return
+        op = node.func.attr.lower()
+        value = node.func.value
+        namespace = ""
+        if isinstance(value, ast.Name):
+            namespace = value.id.lower()
+        elif isinstance(value, ast.Attribute):
+            namespace = value.attr.lower()
+
+        if namespace == "asyncio" and op in {"create_task", "gather", "wait", "wait_for"}:
+            self.edges.append(RuntimeEdge(
+                source_file=self.file_path,
+                source_node=self._source_node,
+                edge_type="async_workflow",
+                target=op,
+                details={"namespace": namespace, "operation": op},
             ))
 
     def _check_env_var(self, node: ast.Call) -> None:
@@ -409,6 +492,7 @@ def load_runtime_graph(project_root: Path) -> RuntimeGraph | None:
     graph = RuntimeGraph(
         files_scanned=data.get("files_scanned", 0),
         edge_types=data.get("edge_types", {}),
+        service_nodes=data.get("service_nodes", []),
     )
     for e in data.get("edges", []):
         graph.edges.append(RuntimeEdge(
@@ -473,36 +557,20 @@ def _extract_js_runtime_edges(
 
 
 def _add_cross_language_edges(project_root: Path, graph: RuntimeGraph) -> None:
-    # Build route map from python decorators
-    route_targets: Dict[str, str] = {}
-    for py_file in project_root.rglob("*.py"):
-        rel = py_file.relative_to(project_root).as_posix()
-        if any(skip in rel for skip in (".codegraph", "__pycache__", ".venv", "venv")):
-            continue
-        try:
-            src = py_file.read_text(encoding="utf-8", errors="replace")
-        except OSError:
-            continue
-        for match in re.finditer(r"@\w+\.(?:get|post|put|patch|delete)\((['\"])(/[^'\"]*)\1\)", src):
-            route_targets[match.group(2)] = rel
+    from codegraph.cross_language_linker import build_cross_language_links
 
-    if not route_targets:
-        return
+    report = build_cross_language_links(project_root)
+    graph.service_nodes = report.service_nodes
 
     additions: List[RuntimeEdge] = []
-    for edge in graph.edges:
-        if edge.edge_type not in {"fetch", "axios", "http_call"}:
-            continue
-        target = edge.target
-        for route, backend_file in route_targets.items():
-            if target == route or target.endswith(route):
-                additions.append(RuntimeEdge(
-                    source_file=edge.source_file,
-                    source_node=edge.source_node,
-                    edge_type="frontend_to_backend",
-                    target=f"{backend_file}::{route}",
-                    details={"from": target, "to": route},
-                ))
-                break
+    for edge in report.edges:
+        source_file = edge.source.split("::", 1)[0] if "::" in edge.source else edge.source
+        additions.append(RuntimeEdge(
+            source_file=source_file,
+            source_node=edge.source,
+            edge_type=edge.edge_type,
+            target=edge.target,
+            details=edge.details,
+        ))
 
     graph.edges.extend(additions)

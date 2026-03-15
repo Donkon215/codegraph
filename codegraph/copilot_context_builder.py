@@ -98,6 +98,11 @@ class EnrichedCopilotContext:
     proof_status: Dict[str, Any] = field(default_factory=dict)
     refactor_budget: Dict[str, int] = field(default_factory=dict)
     authority_levels: Dict[str, List[str]] = field(default_factory=dict)
+    architecture_queries: List[str] = field(default_factory=list)
+    refactor_suggestions: List[Dict[str, Any]] = field(default_factory=list)
+    architecture_stability: Dict[str, Any] = field(default_factory=dict)
+    architecture_patterns: Dict[str, Any] = field(default_factory=dict)
+    architecture_violations: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         d = self.base_context.to_dict()
@@ -111,6 +116,16 @@ class EnrichedCopilotContext:
             d["refactor_budget"] = self.refactor_budget
         if self.authority_levels:
             d["authority_levels"] = self.authority_levels
+        if self.architecture_queries:
+            d["architecture_queries"] = self.architecture_queries
+        if self.refactor_suggestions:
+            d["refactor_suggestions"] = self.refactor_suggestions
+        if self.architecture_stability:
+            d["architecture_stability"] = self.architecture_stability
+        if self.architecture_patterns:
+            d["architecture_patterns"] = self.architecture_patterns
+        if self.architecture_violations:
+            d["architecture_violations"] = self.architecture_violations
         return d
 
     def save(self, project_root: Path) -> Path:
@@ -192,6 +207,14 @@ class EnrichedCopilotContext:
             for k, v in self.refactor_budget.items():
                 lines.append(f"  {k}: {v}")
 
+        if self.refactor_suggestions:
+            lines.append(f"\nRefactor Suggestions: {len(self.refactor_suggestions)}")
+        if self.architecture_patterns:
+            primary = self.architecture_patterns.get("primary_pattern", "unknown")
+            lines.append(f"Architecture Pattern: {primary}")
+        if self.architecture_violations:
+            lines.append(f"Architecture Violations: {len(self.architecture_violations)}")
+
         return "\n".join(lines)
 
 
@@ -243,6 +266,33 @@ def build_enriched_context(project_root: Path) -> EnrichedCopilotContext:
         "human": ["subsystem_merge", "subsystem_delete", "rewrite",
                    "modify_constraints", "modify_subsystem_edges"],
     }
+
+    # 8. Common architecture queries
+    ctx.architecture_queries = [
+        "SELECT services WHERE depends_on(PaymentService)",
+        "SELECT frontend_components WHERE calls_api('/api/orders')",
+        "SELECT modules WHERE in_layer(service)",
+        "SELECT cycles WHERE in_layer(service)",
+        "SELECT events WHERE produced_by(OrderService)",
+        "SELECT smells WHERE type='god_module'",
+    ]
+
+    # 9. Refactor suggestions and structured violations
+    try:
+        from codegraph.architecture_refactor_planner import generate_refactor_plan
+
+        plan = generate_refactor_plan(project_root, max_items=8)
+        ctx.refactor_suggestions = plan.get("refactor_plan", [])
+        ctx.architecture_violations = plan.get("architecture_violations", [])
+    except Exception:
+        ctx.refactor_suggestions = []
+        ctx.architecture_violations = []
+
+    # 10. Architecture stability (churn)
+    ctx.architecture_stability = _build_architecture_stability(project_root)
+
+    # 11. Pattern summary
+    ctx.architecture_patterns = _load_architecture_patterns(project_root)
 
     return ctx
 
@@ -386,6 +436,88 @@ def _load_refactor_budget(project_root: Path) -> Dict[str, int]:
     }
 
 
+def _build_architecture_stability(project_root: Path) -> Dict[str, Any]:
+    graph0_path = project_root / ".codegraph" / "graphs" / "graph0.json"
+    graph1_path = project_root / ".codegraph" / "graphs" / "graph1.json"
+    history_path = project_root / ".codegraph" / "architecture" / "architecture_history.json"
+
+    changed_nodes = 0
+    top_churn_modules: List[Dict[str, Any]] = []
+
+    try:
+        g0 = json.loads(graph0_path.read_text(encoding="utf-8")) if graph0_path.exists() else {}
+        g1 = json.loads(graph1_path.read_text(encoding="utf-8")) if graph1_path.exists() else {}
+        g0_nodes = {n.get("id", ""): n for n in g0.get("nodes", [])}
+        g1_nodes = g1.get("nodes", [])
+
+        churn_by_module: Dict[str, int] = {}
+        for node in g1_nodes:
+            node_id = node.get("id", "")
+            if not node_id:
+                continue
+            g0_node = g0_nodes.get(node_id)
+            if not g0_node:
+                continue
+            if node.get("intent_body_hash", "") and node.get("intent_body_hash", "") != g0_node.get("body_hash", ""):
+                changed_nodes += 1
+                module = node_id.split("::", 1)[0]
+                churn_by_module[module] = churn_by_module.get(module, 0) + 1
+
+        top_churn_modules = [
+            {"module": module, "changes": count}
+            for module, count in sorted(churn_by_module.items(), key=lambda x: -x[1])[:10]
+        ]
+    except Exception:
+        pass
+
+    score_trend: Dict[str, Any] = {}
+    if history_path.exists():
+        try:
+            history = json.loads(history_path.read_text(encoding="utf-8"))
+            entries = history.get("entries", [])
+            if entries:
+                last = entries[-1]
+                prev = entries[-2] if len(entries) >= 2 else None
+                score_trend = {
+                    "latest_cycles": last.get("cycles_count", 0),
+                    "latest_coupling_index": last.get("coupling_index", 0.0),
+                    "delta_cycles": (last.get("cycles_count", 0) - prev.get("cycles_count", 0)) if prev else 0,
+                }
+        except Exception:
+            pass
+
+    return {
+        "changed_intent_nodes": changed_nodes,
+        "top_churn_modules": top_churn_modules,
+        "score_trend": score_trend,
+    }
+
+
+def _load_architecture_patterns(project_root: Path) -> Dict[str, Any]:
+    pattern_path = project_root / ".codegraph" / "architecture" / "architecture_patterns.json"
+    if not pattern_path.exists():
+        return {}
+    try:
+        data = json.loads(pattern_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+    patterns = data.get("patterns", [])
+    compact_patterns = [
+        {
+            "architecture_type": p.get("architecture_type", ""),
+            "confidence": p.get("confidence", 0.0),
+            "consistency": p.get("consistency", 0.0),
+        }
+        for p in patterns[:10]
+    ]
+
+    return {
+        "primary_pattern": data.get("primary_pattern", "unknown"),
+        "patterns": compact_patterns,
+    }
+
+
 def _is_proven_safe(proof_status: Dict[str, Any]) -> bool:
     return str(proof_status.get("status", "")).strip().upper() == "PROVEN_SAFE"
 
@@ -447,6 +579,10 @@ def _summarize_intelligence(ctx: EnrichedCopilotContext) -> Dict[str, Any]:
         "active_policies": policies,
         "recommended_refactors": refactors,
         "strategy_rankings": rankings,
+        "refactor_suggestions": ctx.refactor_suggestions[:10],
+        "architecture_patterns": ctx.architecture_patterns,
+        "stability": ctx.architecture_stability,
+        "architecture_violations": ctx.architecture_violations[:20],
     }
 
 
@@ -469,6 +605,12 @@ def _apply_base_caps(payload: Dict[str, Any]) -> None:
     if "active_policies" in payload and isinstance(payload["active_policies"], list):
         payload["active_policies"] = payload["active_policies"][:50]
 
+    if "refactor_suggestions" in payload and isinstance(payload["refactor_suggestions"], list):
+        payload["refactor_suggestions"] = payload["refactor_suggestions"][:15]
+
+    if "architecture_violations" in payload and isinstance(payload["architecture_violations"], list):
+        payload["architecture_violations"] = payload["architecture_violations"][:25]
+
 
 def _shrink_to_size(payload: Dict[str, Any], max_bytes: int) -> Dict[str, Any]:
     def size_of(data: Dict[str, Any]) -> int:
@@ -485,6 +627,9 @@ def _shrink_to_size(payload: Dict[str, Any], max_bytes: int) -> Dict[str, Any]:
         "strategy_rankings",
         "active_policies",
         "policy_rules",
+        "refactor_suggestions",
+        "architecture_violations",
+        "architecture_queries",
     ]
 
     shrunk = dict(payload)
@@ -509,5 +654,8 @@ def _shrink_to_size(payload: Dict[str, Any], max_bytes: int) -> Dict[str, Any]:
         shrunk["strategy_rankings"] = []
         shrunk["active_policies"] = []
         shrunk["policy_rules"] = []
+        shrunk["refactor_suggestions"] = []
+        shrunk["architecture_violations"] = []
+        shrunk["architecture_queries"] = []
 
     return shrunk

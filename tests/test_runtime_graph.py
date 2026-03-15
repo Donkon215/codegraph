@@ -115,9 +115,33 @@ class TestRuntimeEdgeVisitor:
             def notify():
                 channel.publish(queue="notifications")
         """)
+        assert any(edge.edge_type == "mq_publish" for edge in edges)
+        assert any(edge.edge_type == "event_produce" for edge in edges)
+
+    def test_event_dispatch(self):
+        edges = self._visit_source("""
+            def trigger():
+                bus.dispatch("OrderCreated")
+        """)
         assert len(edges) == 1
-        assert edges[0].edge_type == "mq_publish"
-        assert edges[0].target == "notifications"
+        assert edges[0].edge_type == "event_produce"
+        assert edges[0].target == "OrderCreated"
+
+    def test_queue_task(self):
+        edges = self._visit_source("""
+            def schedule():
+                queue.enqueue("send_email")
+        """)
+        types = {edge.edge_type for edge in edges}
+        assert "queue" in types
+        assert "queue_task" in types
+
+    def test_websocket_event(self):
+        edges = self._visit_source("""
+            def push(socket):
+                socket.emit("message")
+        """)
+        assert any(edge.edge_type == "websocket_event" for edge in edges)
 
     def test_env_var_getenv(self):
         edges = self._visit_source("""
@@ -195,6 +219,30 @@ class TestExtractRuntimeEdges:
         graph = extract_runtime_edges(tmp_path)
         assert graph.edge_types.get("http_call", 0) == 2
         assert graph.edge_types.get("db_query", 0) == 1
+
+    def test_cross_language_links_and_service_nodes(self, tmp_path):
+        frontend = tmp_path / "frontend" / "src"
+        backend = tmp_path / "backend"
+        frontend.mkdir(parents=True)
+        backend.mkdir(parents=True)
+
+        (frontend / "orders.tsx").write_text("""
+            export function Orders() {
+                return fetch('/api/orders')
+            }
+        """, encoding="utf-8")
+        (backend / "api.py").write_text("""
+from fastapi import APIRouter
+router = APIRouter()
+
+@router.get('/api/orders')
+def list_orders():
+    return []
+        """, encoding="utf-8")
+
+        graph = extract_runtime_edges(tmp_path)
+        assert any(edge.edge_type == "frontend_to_backend" for edge in graph.edges)
+        assert any(node.get("service_type") == "frontend" for node in graph.service_nodes)
 
 
 # ── Save / Load ───────────────────────────────────────────────────────
