@@ -27,10 +27,14 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from codegraph.copilot_context import CopilotContext, build_copilot_context
+from codegraph.copilot_context import CONTEXT_DIR, CopilotContext, build_copilot_context
 from codegraph.logging_config import get_logger
 
 logger = get_logger("copilot_context_builder")
+
+MAX_CONTEXT_BYTES = 100 * 1024
+PUBLISHED_CONTEXT_FILE = "copilot_context.json"
+STAGED_CONTEXT_FILE = "copilot_context.staged.json"
 
 
 @dataclass
@@ -110,7 +114,50 @@ class EnrichedCopilotContext:
         return d
 
     def save(self, project_root: Path) -> Path:
-        return self.base_context.save(project_root)
+        context_dir = project_root / ".codegraph" / CONTEXT_DIR
+        context_dir.mkdir(parents=True, exist_ok=True)
+
+        payload = _build_capped_payload(self)
+        staged_path = context_dir / STAGED_CONTEXT_FILE
+        staged_path.write_text(
+            json.dumps(payload, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+
+        publish_status_path = context_dir / "copilot_context_publish_status.json"
+        publish_status = {
+            "published": False,
+            "reason": "proof_not_proven_safe",
+            "proof_status": self.proof_status.get("status", "UNKNOWN"),
+            "staged_path": str(staged_path),
+            "size_bytes": len(json.dumps(payload, ensure_ascii=False).encode("utf-8")),
+        }
+
+        if _is_proven_safe(self.proof_status):
+            published_path = context_dir / PUBLISHED_CONTEXT_FILE
+            published_path.write_text(
+                json.dumps(payload, indent=2, ensure_ascii=False),
+                encoding="utf-8",
+            )
+            publish_status = {
+                "published": True,
+                "reason": "proof_proven_safe",
+                "proof_status": self.proof_status.get("status", "UNKNOWN"),
+                "published_path": str(published_path),
+                "staged_path": str(staged_path),
+                "size_bytes": len(json.dumps(payload, ensure_ascii=False).encode("utf-8")),
+            }
+            publish_status_path.write_text(
+                json.dumps(publish_status, indent=2, ensure_ascii=False),
+                encoding="utf-8",
+            )
+            return published_path
+
+        publish_status_path.write_text(
+            json.dumps(publish_status, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        return staged_path
 
     def format(self) -> str:
         lines = [self.base_context.format()]
@@ -337,3 +384,130 @@ def _load_refactor_budget(project_root: Path) -> Dict[str, int]:
         "max_nodes_added": 15,
         "max_nodes_removed": 10,
     }
+
+
+def _is_proven_safe(proof_status: Dict[str, Any]) -> bool:
+    return str(proof_status.get("status", "")).strip().upper() == "PROVEN_SAFE"
+
+
+def _build_capped_payload(ctx: EnrichedCopilotContext) -> Dict[str, Any]:
+    payload = ctx.to_dict()
+    payload["intelligence_summary"] = _summarize_intelligence(ctx)
+
+    _apply_base_caps(payload)
+    payload = _shrink_to_size(payload, MAX_CONTEXT_BYTES)
+    payload["publish_constraints"] = {
+        "max_bytes": MAX_CONTEXT_BYTES,
+        "proof_required": "PROVEN_SAFE",
+        "actual_bytes": len(json.dumps(payload, ensure_ascii=False).encode("utf-8")),
+    }
+    return payload
+
+
+def _summarize_intelligence(ctx: EnrichedCopilotContext) -> Dict[str, Any]:
+    base = ctx.base_context
+
+    smells = [
+        {
+            "type": s.get("smell_type", ""),
+            "severity": s.get("severity", ""),
+            "where": s.get("location", s.get("module", "")),
+        }
+        for s in base.architecture_smells[:20]
+    ]
+
+    policies = [
+        {
+            "policy_id": p.get("policy_id", ""),
+            "name": p.get("name", ""),
+            "action": p.get("action", ""),
+        }
+        for p in base.active_policies[:20]
+    ]
+
+    refactors = [
+        {
+            "strategy": r.get("strategy", ""),
+            "targets": r.get("target_modules", [])[:4],
+            "risk": r.get("risk", r.get("risk_estimate", "")),
+        }
+        for r in base.recommended_refactors[:20]
+    ]
+
+    rankings = [
+        {
+            "strategy": s.get("strategy", ""),
+            "effectiveness": s.get("effectiveness", 0),
+        }
+        for s in base.strategy_rankings[:20]
+    ]
+
+    return {
+        "smells": smells,
+        "active_policies": policies,
+        "recommended_refactors": refactors,
+        "strategy_rankings": rankings,
+    }
+
+
+def _apply_base_caps(payload: Dict[str, Any]) -> None:
+    if "active_tasks" in payload and isinstance(payload["active_tasks"], list):
+        payload["active_tasks"] = payload["active_tasks"][:50]
+
+    if "recent_decisions" in payload and isinstance(payload["recent_decisions"], list):
+        payload["recent_decisions"] = payload["recent_decisions"][:25]
+
+    if "architecture_smells" in payload and isinstance(payload["architecture_smells"], list):
+        payload["architecture_smells"] = payload["architecture_smells"][:50]
+
+    if "recommended_refactors" in payload and isinstance(payload["recommended_refactors"], list):
+        payload["recommended_refactors"] = payload["recommended_refactors"][:25]
+
+    if "strategy_rankings" in payload and isinstance(payload["strategy_rankings"], list):
+        payload["strategy_rankings"] = payload["strategy_rankings"][:25]
+
+    if "active_policies" in payload and isinstance(payload["active_policies"], list):
+        payload["active_policies"] = payload["active_policies"][:50]
+
+
+def _shrink_to_size(payload: Dict[str, Any], max_bytes: int) -> Dict[str, Any]:
+    def size_of(data: Dict[str, Any]) -> int:
+        return len(json.dumps(data, ensure_ascii=False).encode("utf-8"))
+
+    if size_of(payload) <= max_bytes:
+        return payload
+
+    keys_to_trim = [
+        "active_tasks",
+        "recent_decisions",
+        "architecture_smells",
+        "recommended_refactors",
+        "strategy_rankings",
+        "active_policies",
+        "policy_rules",
+    ]
+
+    shrunk = dict(payload)
+    for key in keys_to_trim:
+        value = shrunk.get(key)
+        if not isinstance(value, list) or len(value) <= 5:
+            continue
+
+        current = value
+        while len(current) > 5 and size_of(shrunk) > max_bytes:
+            current = current[: max(5, len(current) // 2)]
+            shrunk[key] = current
+
+        if size_of(shrunk) <= max_bytes:
+            break
+
+    if size_of(shrunk) > max_bytes:
+        shrunk["active_tasks"] = []
+        shrunk["recent_decisions"] = []
+        shrunk["architecture_smells"] = []
+        shrunk["recommended_refactors"] = []
+        shrunk["strategy_rankings"] = []
+        shrunk["active_policies"] = []
+        shrunk["policy_rules"] = []
+
+    return shrunk

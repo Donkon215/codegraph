@@ -386,13 +386,33 @@
       "code_patches": [
         "Build now emits multi-graph architecture intelligence artifacts and enhanced score dimensions"
       ]
+    },
+    {
+      "id": "chg-025",
+      "architecture_change_description": "Hardened canonical architecture discipline and Copilot context publishing controls by making derived graph views projection-backed from canonical node/edge fields and gating published context on PROVEN_SAFE with staged fallback and strict size cap.",
+      "files_to_modify": [
+        "codegraph/architecture_graph.py",
+        "codegraph/copilot_context_builder.py",
+        "codegraph/cli/governance.py"
+      ],
+      "refactoring_steps": [
+        "Promoted ArchitectureGraph canonical fields (nodes, edges, node_types, edge_types, metadata) and implemented projection methods for Graph_0/Graph_1/workflow",
+        "Added compatibility-preserving view caches with canonical sync so existing mutating consumers (e.g., simulator) continue to work",
+        "Implemented enriched Copilot context save pipeline with staged output, PROVEN_SAFE publish gate, and 100KB payload cap using summarized intelligence sections",
+        "Updated arch-context CLI output to report actual save path"
+      ],
+      "code_patches": [
+        "ArchitectureGraph now acts as canonical source and writes graph artifacts only as derived projections",
+        "Copilot context now writes .codegraph/context/copilot_context.staged.json always and publishes copilot_context.json only on PROVEN_SAFE",
+        "Added payload shrinking and intelligence summary shaping to keep context under configured size limit"
+      ]
     }
   ],
   "validation": {
     "tests": {
-      "command": "py -m pytest tests/test_runtime_graph.py tests/test_workflow.py tests/test_arch_health.py tests/test_architecture_simulator.py tests/test_arch_memory.py tests/test_cli_package.py -x --tb=short -q",
+      "command": "py -m pytest tests/test_architecture_simulator.py tests/test_copilot_context.py tests/test_context_builder.py -x --tb=short -q",
       "result": "passed",
-      "details": "87 passed"
+      "details": "45 passed"
     },
     "architecture": {
       "build": "pending_clean_tree",

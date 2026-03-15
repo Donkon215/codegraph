@@ -770,8 +770,8 @@ def context_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
         click.echo(enriched.format())
 
     if save:
-        enriched.save(root)
-        click.echo("\nContext saved.")
+        saved_path = enriched.save(root)
+        click.echo(f"\nContext saved: {saved_path}")
 
 
 # ── Pipeline Orchestrator ─────────────────────────────────────────────
