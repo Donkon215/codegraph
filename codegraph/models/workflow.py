@@ -21,6 +21,11 @@ class EdgeType(str, enum.Enum):
     """Edge relationship kind."""
 
     CALL = "call"
+    EVENT = "event"
+    DATAFLOW = "dataflow"
+    DATA_FLOW = "data_flow"
+    CONTROL_FLOW = "control_flow"
+    SIDE_EFFECT = "side_effect"
     TEST = "test"
     TRACE = "trace"
     DYNAMIC = "dynamic"
@@ -168,8 +173,13 @@ def deduplicate_edges(edges: List[WorkflowEdge]) -> List[WorkflowEdge]:
 _EDGE_TYPE_RANK: Dict[str, int] = {
     EdgeType.TRACE.value: 4,
     EdgeType.CALL.value: 3,
-    EdgeType.TEST.value: 2,
-    EdgeType.DYNAMIC.value: 1,
+    EdgeType.CONTROL_FLOW.value: 3,
+    EdgeType.EVENT.value: 2,
+    EdgeType.DATAFLOW.value: 2,
+    EdgeType.DATA_FLOW.value: 2,
+    EdgeType.SIDE_EFFECT.value: 1,
+    EdgeType.TEST.value: 1,
+    EdgeType.DYNAMIC.value: 0,
 }
 
 

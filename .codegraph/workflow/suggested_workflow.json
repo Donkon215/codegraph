@@ -325,6 +325,78 @@
       "target": "(any)",
       "added_by": "human",
       "added_at": "2026-03-11T18:52:40Z"
+    },
+    {
+      "id": "rule_038",
+      "type": "forbidden_call",
+      "reason": "Intelligence must not apply repairs directly",
+      "source": "codegraph/arch_evolution.py::*",
+      "target": "codegraph/apply.py::*",
+      "added_by": "human",
+      "added_at": "2026-03-15T08:31:08Z"
+    },
+    {
+      "id": "rule_039",
+      "type": "layer_boundary",
+      "reason": "Models layer must not depend on governance layer",
+      "source": "arch=models",
+      "target": "arch=governance",
+      "added_by": "human",
+      "added_at": "2026-03-15T08:31:27Z"
+    },
+    {
+      "id": "rule_040",
+      "type": "layer_boundary",
+      "reason": "Models layer must not depend on intelligence layer",
+      "source": "arch=models",
+      "target": "arch=intelligence",
+      "added_by": "human",
+      "added_at": "2026-03-15T08:31:27Z"
+    },
+    {
+      "id": "rule_041",
+      "type": "layer_boundary",
+      "reason": "Models layer must not depend on compiler/core engine",
+      "source": "arch=models",
+      "target": "arch=core_engine",
+      "added_by": "human",
+      "added_at": "2026-03-15T08:31:28Z"
+    },
+    {
+      "id": "rule_042",
+      "type": "layer_boundary",
+      "reason": "Infrastructure layer must not depend on governance",
+      "source": "arch=infrastructure",
+      "target": "arch=governance",
+      "added_by": "human",
+      "added_at": "2026-03-15T08:31:28Z"
+    },
+    {
+      "id": "rule_043",
+      "type": "layer_boundary",
+      "reason": "Infrastructure layer must not depend on intelligence",
+      "source": "arch=infrastructure",
+      "target": "arch=intelligence",
+      "added_by": "human",
+      "added_at": "2026-03-15T08:31:28Z"
+    },
+    {
+      "id": "rule_044",
+      "type": "layer_boundary",
+      "reason": "Query layer must not depend on governance",
+      "source": "arch=query",
+      "target": "arch=governance",
+      "added_by": "human",
+      "added_at": "2026-03-15T08:31:28Z"
+    },
+    {
+      "id": "rule_045",
+      "type": "forbidden_call",
+      "reason": "Intelligence must not apply repairs directly",
+      "source": "codegraph/intelligence.py::*",
+      "target": "codegraph/apply.py::*",
+      "added_by": "human",
+      "added_at": "2026-03-15T08:31:29Z"
     }
   ]
 }

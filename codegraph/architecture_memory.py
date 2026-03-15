@@ -29,6 +29,7 @@ MEMORY_DIR = "memory"
 DECISIONS_FILE = "decisions.json"
 SIMULATIONS_FILE = "simulations.json"
 ADVICE_FILE = "advice.json"
+PATTERNS_FILE = "patterns.json"
 
 
 # ── Data structures ───────────────────────────────────────────────────
@@ -338,3 +339,45 @@ def load_advice_history(
     path = project_root / ".codegraph" / MEMORY_DIR / ADVICE_FILE
     records = [AdviceRecord.from_dict(d) for d in _load_json_list(path, "advice")]
     return records[-limit:]
+
+
+def learn_interaction_patterns(project_root: Path, limit: int = 200) -> List[Dict[str, Any]]:
+    """Learn common architecture interaction patterns from workflow/history.
+
+    Stores pattern frequency and confidence to .codegraph/memory/patterns.json.
+    """
+    workflow_path = project_root / ".codegraph" / "workflow" / "workflow.json"
+    patterns: Dict[str, int] = {}
+
+    if workflow_path.exists():
+        try:
+            workflow = json.loads(workflow_path.read_text(encoding="utf-8"))
+            for edge in workflow.get("edges", []):
+                src = edge.get("source", "")
+                tgt = edge.get("target", "")
+                if not src or not tgt:
+                    continue
+                src_parts = src.split("::")
+                tgt_parts = tgt.split("::")
+                if len(src_parts) >= 2 and len(tgt_parts) >= 2:
+                    src_kind = src_parts[-2] if len(src_parts) >= 3 else src_parts[-1]
+                    tgt_kind = tgt_parts[-2] if len(tgt_parts) >= 3 else tgt_parts[-1]
+                    key = f"{src_kind} -> {tgt_kind}"
+                    patterns[key] = patterns.get(key, 0) + 1
+        except Exception:
+            pass
+
+    total = sum(patterns.values())
+    entries: List[Dict[str, Any]] = []
+    for pattern, occurrences in sorted(patterns.items(), key=lambda x: x[1], reverse=True)[:limit]:
+        confidence = (occurrences / total) if total else 0.0
+        entries.append({
+            "pattern": pattern,
+            "confidence": round(confidence, 4),
+            "occurrences": occurrences,
+        })
+
+    out = project_root / ".codegraph" / MEMORY_DIR / PATTERNS_FILE
+    _save_json_list(out, "patterns", entries)
+    logger.info("Learned %d interaction patterns", len(entries))
+    return entries

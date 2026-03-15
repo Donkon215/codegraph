@@ -1,9 +1,12 @@
-"""codegraph.runtime_graph — Runtime behaviour extraction.
+"""codegraph.runtime_graph — Runtime behaviour extraction (Graph3).
 
-Extracts dynamic/runtime information that AST analysis cannot capture:
+Extracts dynamic/runtime information that static AST analysis cannot fully capture:
   - Service call patterns (HTTP, gRPC)
   - Database access patterns (queries, table references)
   - Message queue patterns (publish/subscribe)
+    - Event dispatch/pub-sub flows
+    - Runtime worker/queue interactions
+    - Frontend ↔ backend API interactions (cross-language)
   - File I/O patterns
   - Environment variable usage
 
@@ -29,7 +32,8 @@ from codegraph.logging_config import get_logger
 
 logger = get_logger("runtime_graph")
 
-RUNTIME_FILE = "runtime_edges.json"
+RUNTIME_FILE = "runtime_edges.json"  # backwards-compatible alias
+GRAPH3_FILE = "graph3_runtime.json"
 
 
 @dataclass
@@ -64,6 +68,7 @@ class RuntimeGraph:
 
     def to_dict(self) -> Dict[str, Any]:
         return {
+            "graph": "graph3",
             "edges": [e.to_dict() for e in self.edges],
             "files_scanned": self.files_scanned,
             "edge_types": self.edge_types,
@@ -98,6 +103,10 @@ _DB_PATTERNS = {
 _MQ_PATTERNS = {
     "publish", "subscribe", "send_message", "receive_message",
     "basic_publish", "basic_consume",
+}
+
+_EVENT_PATTERNS = {
+    "emit", "dispatch", "dispatch_event", "socket_emit",
 }
 
 
@@ -141,6 +150,9 @@ class RuntimeEdgeVisitor(ast.NodeVisitor):
         self._check_http_call(node)
         self._check_db_call(node)
         self._check_mq_call(node)
+        self._check_event_call(node)
+        self._check_queue_worker_call(node)
+        self._check_rpc_call(node)
         self._check_env_var(node)
         self.generic_visit(node)
 
@@ -219,6 +231,62 @@ class RuntimeEdgeVisitor(ast.NodeVisitor):
             details={"operation": node.func.attr},
         ))
 
+    def _check_event_call(self, node: ast.Call) -> None:
+        if not isinstance(node.func, ast.Attribute):
+            return
+        op = node.func.attr
+        if op not in _EVENT_PATTERNS and op not in {"emit", "dispatch"}:
+            return
+        target = "<dynamic>"
+        if node.args and isinstance(node.args[0], ast.Constant):
+            target = str(node.args[0].value)
+        self.edges.append(RuntimeEdge(
+            source_file=self.file_path,
+            source_node=self._source_node,
+            edge_type="event",
+            target=target,
+            details={"operation": op},
+        ))
+
+    def _check_queue_worker_call(self, node: ast.Call) -> None:
+        if not isinstance(node.func, ast.Attribute):
+            return
+        op = node.func.attr.lower()
+        if op not in {"delay", "apply_async", "enqueue", "dequeue", "put", "get"}:
+            return
+        receiver = ""
+        try:
+            receiver = ast.unparse(node.func.value).lower()
+        except Exception:
+            receiver = ""
+        queue_like = any(tok in receiver for tok in ("queue", "celery", "broker", "channel", "worker"))
+        if op in {"put", "get", "enqueue", "dequeue"} and not queue_like:
+            return
+        kind = "queue" if op in {"enqueue", "dequeue", "put", "get"} else "worker"
+        self.edges.append(RuntimeEdge(
+            source_file=self.file_path,
+            source_node=self._source_node,
+            edge_type=kind,
+            target="<runtime>",
+            details={"operation": op},
+        ))
+
+    def _check_rpc_call(self, node: ast.Call) -> None:
+        if not isinstance(node.func, ast.Attribute):
+            return
+        op = node.func.attr.lower()
+        if op not in {"rpc_call", "call", "invoke"}:
+            return
+        value = node.func.value
+        if isinstance(value, ast.Name) and value.id.lower() in {"grpc", "rpc", "client"}:
+            self.edges.append(RuntimeEdge(
+                source_file=self.file_path,
+                source_node=self._source_node,
+                edge_type="rpc_call",
+                target="<rpc>",
+                details={"operation": op},
+            ))
+
     def _check_env_var(self, node: ast.Call) -> None:
         """Detect os.environ.get(...), os.getenv(...)."""
         if not isinstance(node.func, ast.Attribute):
@@ -268,6 +336,8 @@ def extract_runtime_edges(
     graph = RuntimeGraph()
 
     py_files = sorted(project_root.rglob("*.py"))
+    js_files = sorted(project_root.rglob("*.js")) + sorted(project_root.rglob("*.jsx"))
+    ts_files = sorted(project_root.rglob("*.ts")) + sorted(project_root.rglob("*.tsx"))
     if exclude_patterns is None:
         exclude_patterns = ["__pycache__", ".codegraph", "node_modules",
                            ".git", ".venv", "venv"]
@@ -291,6 +361,10 @@ def extract_runtime_edges(
         graph.edges.extend(visitor.edges)
         graph.files_scanned += 1
 
+    _extract_js_runtime_edges(project_root, js_files + ts_files, graph, include_patterns, exclude_patterns)
+
+    _add_cross_language_edges(project_root, graph)
+
     # Compute edge type counts
     for edge in graph.edges:
         graph.edge_types[edge.edge_type] = (
@@ -303,11 +377,20 @@ def extract_runtime_edges(
 def save_runtime_graph(
     project_root: Path, graph: RuntimeGraph,
 ) -> Path:
-    """Save runtime graph to .codegraph/graphs/runtime_edges.json."""
+    """Save runtime graph (Graph3) to .codegraph/graphs/graph3_runtime.json.
+
+    Also writes runtime_edges.json for backwards compatibility.
+    """
     out_dir = project_root / ".codegraph" / "graphs"
     out_dir.mkdir(parents=True, exist_ok=True)
-    path = out_dir / RUNTIME_FILE
+    data = json.dumps(graph.to_dict(), indent=2, ensure_ascii=False)
+    path = out_dir / GRAPH3_FILE
     path.write_text(
+        data,
+        encoding="utf-8",
+    )
+    legacy = out_dir / RUNTIME_FILE
+    legacy.write_text(
         json.dumps(graph.to_dict(), indent=2, ensure_ascii=False),
         encoding="utf-8",
     )
@@ -317,7 +400,9 @@ def save_runtime_graph(
 
 def load_runtime_graph(project_root: Path) -> RuntimeGraph | None:
     """Load runtime graph from disk."""
-    path = project_root / ".codegraph" / "graphs" / RUNTIME_FILE
+    path = project_root / ".codegraph" / "graphs" / GRAPH3_FILE
+    if not path.exists():
+        path = project_root / ".codegraph" / "graphs" / RUNTIME_FILE
     if not path.exists():
         return None
     data = json.loads(path.read_text(encoding="utf-8"))
@@ -334,3 +419,90 @@ def load_runtime_graph(project_root: Path) -> RuntimeGraph | None:
             details=e.get("details", {}),
         ))
     return graph
+
+
+def _extract_js_runtime_edges(
+    project_root: Path,
+    files: List[Path],
+    graph: RuntimeGraph,
+    include_patterns: List[str] | None,
+    exclude_patterns: List[str] | None,
+) -> None:
+    for file_path in files:
+        rel = file_path.relative_to(project_root).as_posix()
+        if exclude_patterns and any(pat in rel for pat in exclude_patterns):
+            continue
+        if include_patterns and not any(pat in rel for pat in include_patterns):
+            continue
+        try:
+            content = file_path.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+
+        # fetch("/api/..."), axios.get("/api/..."), socket.emit("event"), dispatch(...)
+        for m in re.finditer(r"fetch\((['\"])([^'\"]+)\1", content):
+            graph.edges.append(RuntimeEdge(
+                source_file=rel,
+                source_node=f"{rel}::<module>",
+                edge_type="fetch",
+                target=m.group(2),
+            ))
+        for m in re.finditer(r"axios\.(get|post|put|patch|delete)\((['\"])([^'\"]+)\2", content):
+            graph.edges.append(RuntimeEdge(
+                source_file=rel,
+                source_node=f"{rel}::<module>",
+                edge_type="axios",
+                target=m.group(3),
+                details={"method": m.group(1).upper()},
+            ))
+        for m in re.finditer(r"socket\.emit\((['\"])([^'\"]+)\1", content):
+            graph.edges.append(RuntimeEdge(
+                source_file=rel,
+                source_node=f"{rel}::<module>",
+                edge_type="socket",
+                target=m.group(2),
+            ))
+        for _ in re.finditer(r"\bdispatch\(", content):
+            graph.edges.append(RuntimeEdge(
+                source_file=rel,
+                source_node=f"{rel}::<module>",
+                edge_type="dispatch",
+                target="<action>",
+            ))
+        graph.files_scanned += 1
+
+
+def _add_cross_language_edges(project_root: Path, graph: RuntimeGraph) -> None:
+    # Build route map from python decorators
+    route_targets: Dict[str, str] = {}
+    for py_file in project_root.rglob("*.py"):
+        rel = py_file.relative_to(project_root).as_posix()
+        if any(skip in rel for skip in (".codegraph", "__pycache__", ".venv", "venv")):
+            continue
+        try:
+            src = py_file.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        for match in re.finditer(r"@\w+\.(?:get|post|put|patch|delete)\((['\"])(/[^'\"]*)\1\)", src):
+            route_targets[match.group(2)] = rel
+
+    if not route_targets:
+        return
+
+    additions: List[RuntimeEdge] = []
+    for edge in graph.edges:
+        if edge.edge_type not in {"fetch", "axios", "http_call"}:
+            continue
+        target = edge.target
+        for route, backend_file in route_targets.items():
+            if target == route or target.endswith(route):
+                additions.append(RuntimeEdge(
+                    source_file=edge.source_file,
+                    source_node=edge.source_node,
+                    edge_type="frontend_to_backend",
+                    target=f"{backend_file}::{route}",
+                    details={"from": target, "to": route},
+                ))
+                break
+
+    graph.edges.extend(additions)

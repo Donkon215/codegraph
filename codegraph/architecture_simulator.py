@@ -33,6 +33,79 @@ from codegraph.logging_config import get_logger
 logger = get_logger("architecture_simulator")
 
 
+@dataclass
+class GraphMutation:
+    node_id: str
+    change: str  # add_edge, remove_edge, rewire_edge
+    target: str = ""
+
+
+def simulate_change(project_root: Any, node: str, change: str, target: str = "") -> Dict[str, Any]:
+    """Simulate a graph mutation without changing source files.
+
+    API requested by phase-II evolution task.
+    """
+    from codegraph.architecture_graph import ArchitectureGraph
+    from codegraph.architecture_scoring import compute_architecture_index
+    from codegraph.architecture_health import compute_architecture_health
+    from codegraph.models.workflow import WorkflowEdge
+
+    if not hasattr(project_root, "__truediv__"):
+        raise ValueError("project_root must be a Path")
+
+    baseline_score = compute_architecture_index(project_root)
+    graph = ArchitectureGraph.load(project_root)
+
+    before_health = compute_architecture_health(graph)
+
+    if change == "add_edge" and target:
+        graph.workflow_graph.edges.append(WorkflowEdge(
+            source=node,
+            target=target,
+            edge_type="call",
+            confidence="ai_inferred",
+            source_detail="simulated",
+        ))
+    elif change == "remove_edge" and target:
+        graph.workflow_graph.edges = [
+            e for e in graph.workflow_graph.edges
+            if not (e.source == node and e.target == target)
+        ]
+    elif change == "rewire_edge" and target:
+        graph.workflow_graph.edges = [
+            e if e.source != node else WorkflowEdge(
+                source=node,
+                target=target,
+                edge_type=e.edge_type,
+                confidence=e.confidence,
+                source_detail="simulated_rewire",
+            )
+            for e in graph.workflow_graph.edges
+        ]
+
+    # Save derived views to temp project state and recompute score against new workflow
+    graph.save_derived_views(project_root)
+
+    predicted_score = compute_architecture_index(project_root)
+    after_health = compute_architecture_health(graph)
+
+    return {
+        "node": node,
+        "change": change,
+        "target": target,
+        "cycle_risk": after_health.cycle_count - before_health.cycle_count,
+        "coupling_delta": round(
+            predicted_score.dimensions.get("coupling_score", 0.0)
+            - baseline_score.dimensions.get("coupling_score", 0.0),
+            4,
+        ),
+        "layer_violations": after_health.layer_violation_count,
+        "predicted_architecture_score": round(predicted_score.score, 4),
+        "baseline_architecture_score": round(baseline_score.score, 4),
+        "score_delta": round(predicted_score.score - baseline_score.score, 4),
+    }
+
+
 # ── Simulated Architecture Change ──────────────────────────────────────
 
 

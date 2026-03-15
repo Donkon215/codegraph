@@ -83,26 +83,39 @@ class ArchitectureScore:
     def format(self) -> str:
         lines = [f"Architecture Score: {self.score:.2%} ({self.grade})"]
         lines.append("  Metrics:")
-        lines.append(f"    Modularity:          {self.metrics.get('modularity', 0):.3f}  "
-                      f"(weight {W_MODULARITY})")
-        lines.append(f"    Subsystem Isolation: {self.metrics.get('subsystem_isolation', 0):.3f}  "
-                      f"(weight {W_ISOLATION})")
-        lines.append(f"    Coupling:            {self.metrics.get('coupling', 0):.3f}  "
-                      f"(weight {W_COUPLING})")
-        lines.append(f"    Fan-out Penalty:     {self.metrics.get('fanout_penalty', 0):.3f}  "
-                      f"(weight {W_FANOUT})")
-        lines.append(f"    Cycle Penalty:       {self.metrics.get('cycle_penalty', 0):.3f}  "
-                      f"(weight {W_CYCLE})")
+
+        if "coupling_score" in self.metrics:
+            lines.append(f"    Coupling Score:         {self.metrics.get('coupling_score', 0):.3f} (weight 0.25)")
+            lines.append(f"    Cohesion Score:         {self.metrics.get('cohesion_score', 0):.3f} (weight 0.20)")
+            lines.append(f"    Layer Integrity:        {self.metrics.get('layer_integrity', 0):.3f} (weight 0.15)")
+            lines.append(f"    Cycle Penalty:          {self.metrics.get('cycle_penalty', 0):.3f} (weight 0.15)")
+            lines.append(f"    Architecture Drift:     {self.metrics.get('architecture_drift', 0):.3f} (weight 0.10)")
+            lines.append(f"    Test Coverage:          {self.metrics.get('test_coverage', 0):.3f} (weight 0.10)")
+            lines.append(f"    Dead Code Ratio:        {self.metrics.get('dead_code_ratio', 0):.3f} (weight 0.05)")
+            lines.append(f"    Pattern Consistency:    {self.metrics.get('pattern_consistency', 0):.3f} (influence)")
+            lines.append(f"    Penalty Total:          {self.metrics.get('penalty_total', 0):.3f}")
+        elif "structural_health" in self.metrics:
+            lines.append(f"    Structural Health:      {self.metrics.get('structural_health', 0):.3f} (weight 0.25)")
+            lines.append(f"    Dependency Correctness: {self.metrics.get('dependency_correctness', 0):.3f} (weight 0.25)")
+            lines.append(f"    Behavioral Integrity:   {self.metrics.get('behavioral_integrity', 0):.3f} (weight 0.20)")
+            lines.append(f"    Architecture Stability: {self.metrics.get('architecture_stability', 0):.3f} (weight 0.15)")
+            lines.append(f"    Intent Alignment:       {self.metrics.get('intent_alignment', 0):.3f} (weight 0.15)")
+            lines.append(f"    Penalty Total:          {self.metrics.get('penalty_total', 0):.3f}")
+        else:
+            lines.append(f"    Modularity:          {self.metrics.get('modularity', 0):.3f}  (weight {W_MODULARITY})")
+            lines.append(f"    Subsystem Isolation: {self.metrics.get('subsystem_isolation', 0):.3f}  (weight {W_ISOLATION})")
+            lines.append(f"    Coupling:            {self.metrics.get('coupling', 0):.3f}  (weight {W_COUPLING})")
+            lines.append(f"    Fan-out Penalty:     {self.metrics.get('fanout_penalty', 0):.3f}  (weight {W_FANOUT})")
+            lines.append(f"    Cycle Penalty:       {self.metrics.get('cycle_penalty', 0):.3f}  (weight {W_CYCLE})")
 
         if self.subsystem_scores:
             lines.append("\n  Subsystem Scores:")
-            for name, sc in sorted(self.subsystem_scores.items(),
-                                   key=lambda x: x[1]):
+            for name, sc in sorted(self.subsystem_scores.items(), key=lambda x: x[1]):
                 bar = "█" * int(sc * 20) + "░" * (20 - int(sc * 20))
                 lines.append(f"    {name:30s} {sc:.2%}  {bar}")
 
         if self.metadata:
-            lines.append(f"\n  Details:")
+            lines.append("\n  Details:")
             for k, v in self.metadata.items():
                 lines.append(f"    {k}: {v}")
 
@@ -162,61 +175,23 @@ def _compute_raw_metrics(edges, mod_to_sub, total_edges):
 
 
 def compute_score(project_root: Path) -> ArchitectureScore:
-    """Compute the architecture score from current graph data.
+    """Compute architecture score via the multi-axis architecture scoring engine."""
+    from codegraph.architecture_scoring import compute_architecture_index
 
-    Reads graph0.json (nodes), workflow.json (edges), system.json (subsystems).
-    Returns an :class:`ArchitectureScore` with component metrics.
-    """
-    nodes, node_types, edges, mod_to_sub = _load_score_data(project_root)
-    total_edges = len(edges)
+    index = compute_architecture_index(project_root)
 
-    modularity, isolation, coupling, max_fo, cycle_count = _compute_raw_metrics(
-        edges, mod_to_sub, total_edges
-    )
-
-    # Transform to 0..1 scale
-    fanout_penalty = max(0.0, 1.0 - min(1.0, max_fo / 50.0))
-    if cycle_count == 0:
-        cycle_penalty_val = 1.0
-    elif cycle_count >= 5:
-        cycle_penalty_val = 0.0
-    else:
-        cycle_penalty_val = 1.0 - (cycle_count / 5.0)
-
-    coupling_term = max(0.0, 1.0 - coupling)
-
-    # Weighted score
-    score = (
-        W_MODULARITY * modularity
-        + W_ISOLATION * isolation
-        + W_COUPLING * coupling_term
-        + W_FANOUT * fanout_penalty
-        + W_CYCLE * cycle_penalty_val
-    )
-    score = max(0.0, min(1.0, score))
-
-    grade = _score_to_grade(score)
-
-    # Per-subsystem scores
-    sub_scores = _compute_subsystem_scores(edges, mod_to_sub)
+    metrics = dict(index.dimensions)
+    metrics["penalty_total"] = sum(index.penalties.values()) if index.penalties else 0.0
 
     return ArchitectureScore(
-        score=score,
-        grade=grade,
-        metrics={
-            "modularity": modularity,
-            "subsystem_isolation": isolation,
-            "coupling": coupling,
-            "fanout_penalty": fanout_penalty,
-            "cycle_penalty": cycle_penalty_val,
-            "max_fan_out": float(max_fo),
-            "cycle_count": float(cycle_count),
-        },
-        subsystem_scores=sub_scores,
+        score=index.score,
+        grade=index.grade,
+        metrics=metrics,
+        subsystem_scores={},
         metadata={
-            "total_nodes": len(nodes),
-            "total_edges": total_edges,
-            "subsystem_count": len(set(mod_to_sub.values())),
+            **index.metadata,
+            "penalties": index.penalties,
+            "scoring_model": "multi_axis_v2",
         },
     )
 

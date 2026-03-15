@@ -21,6 +21,17 @@
         "arch_search",
         "fan_out_reduction"
       ]
+    },
+    {
+      "decision_id": "d0003",
+      "decision": "arch_search: selected sug_cli_architecture -> IIndex_introduce_interface",
+      "reason": "Strategy: dependency_inversion. Invert dependency from codegraph/cli/architecture.py to codegraph/index.py using interface IIndex. Composite score: 0.475",
+      "result": "pending",
+      "timestamp": "2026-03-15T08:27:01.026880+00:00",
+      "tags": [
+        "arch_search",
+        "dependency_inversion"
+      ]
     }
   ]
 }

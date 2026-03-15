@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "built_at": "2026-03-12T20:14:26Z",
+    "built_at": "2026-03-15T08:50:52Z",
     "level": "function",
     "trace_mode": "static_only",
     "filters_applied": [
@@ -9,12 +9,12 @@
       "stdlib",
       "test_harness"
     ],
-    "edge_count": 3800,
-    "node_count": 2309,
-    "build_time_s": 12.88
+    "edge_count": 4005,
+    "node_count": 2438,
+    "build_time_s": 7.76
   },
   "format_version": 1,
-  "built_at": "2026-03-12T20:14:26Z",
+  "built_at": "2026-03-15T08:50:52Z",
   "level": "function",
   "edges": [
     {
@@ -774,6 +774,90 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/apply.py::ApplyEngine::apply",
+      "target": "codegraph/apply.py::ApplyResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::ApplyEngine::apply",
+      "target": "codegraph/apply.py::BackupManager::create",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::ApplyEngine::apply",
+      "target": "codegraph/apply.py::GraphUpdater::finalize",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::ApplyEngine::apply",
+      "target": "codegraph/apply.py::RepairDispatcher::dispatch",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::ApplyEngine::apply",
+      "target": "codegraph/apply.py::_prepare_apply",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::ApplyEngine::apply",
+      "target": "codegraph/apply.py::_release_lock",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::BackupManager::cleanup",
+      "target": "codegraph/apply.py::_cleanup_backups",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::BackupManager::create",
+      "target": "codegraph/apply.py::_create_backups",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::BackupManager::restore",
+      "target": "codegraph/apply.py::_restore_backups",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::BackupManager::save_undo",
+      "target": "codegraph/apply.py::_save_undo",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::GraphUpdater::finalize",
+      "target": "codegraph/apply.py::_finalize_apply",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::RepairDispatcher::dispatch",
+      "target": "codegraph/apply.py::_dispatch_repairs",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::ValidationService::validate_and_gate",
+      "target": "codegraph/apply.py::_validate_and_gate",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::ValidationService::validate_modified_files",
+      "target": "codegraph/apply.py::_validate_modified_files",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/apply.py::_acquire_lock",
       "target": "codegraph/apply.py::_lock_path",
       "edge_type": "call",
@@ -1021,31 +1105,7 @@
     },
     {
       "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::ApplyResult",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::_dispatch_repairs",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::_finalize_apply",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::_prepare_apply",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/apply.py::apply_response",
-      "target": "codegraph/apply.py::_release_lock",
+      "target": "codegraph/apply.py::ApplyEngine",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -1069,13 +1129,25 @@
     },
     {
       "source": "codegraph/apply.py::run_apply",
-      "target": "codegraph/index.py::IndexStore",
+      "target": "codegraph/index.py::IndexStore::get_node",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/apply.py::run_apply",
-      "target": "codegraph/workflow.py::load_workflow",
+      "target": "codegraph/services.py::GraphStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::run_apply",
+      "target": "codegraph/services.py::GraphStore::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/apply.py::run_apply",
+      "target": "codegraph/services.py::IndexService",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -2443,6 +2515,12 @@
     },
     {
       "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/architecture_advisor.py::ArchSuggestion",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
       "target": "codegraph/architecture_advisor.py::_analyze_node_risks",
       "edge_type": "call",
       "confidence": "static"
@@ -2473,13 +2551,79 @@
     },
     {
       "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/architecture_decay.py::detect_architecture_decay",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/architecture_decay.py::record_architecture_history",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/architecture_detection.py::detect_architecture_patterns",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/architecture_explainer.py::generate_explanations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/dependency_inversion.py::suggest_dependency_inversions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
       "target": "codegraph/index.py::IndexStore::_get_conn",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/microservice_detector.py::detect_microservice_candidates",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/refactor_planner.py::generate_refactor_plans",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
       "target": "codegraph/risk_metrics.py::compute_risk_metrics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/simulator.py::simulate_dependency_inversion",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/simulator.py::simulate_service_boundary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/simulator.py::simulate_subsystem_extraction",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_advisor.py::advise_architecture",
+      "target": "codegraph/subsystem_extractor.py::generate_subsystem_extraction_report",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -2616,6 +2760,102 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/architecture_decay.py::_build_module_adjacency",
+      "target": "codegraph/architecture_decay.py::_module_of",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_decay.py::_build_module_adjacency",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_decay.py::_detect_dead_subsystems",
+      "target": "codegraph/architecture_decay.py::DeadSubsystem",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_decay.py::_detect_extractable_subsystems",
+      "target": "codegraph/architecture_decay.py::ExtractableSubsystem",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_decay.py::_module_test_links",
+      "target": "codegraph/architecture_decay.py::_module_of",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_decay.py::_module_test_links",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_decay.py::detect_architecture_decay",
+      "target": "codegraph/architecture_decay.py::ArchitectureDecayReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_decay.py::detect_architecture_decay",
+      "target": "codegraph/architecture_decay.py::CycleCluster",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_decay.py::detect_architecture_decay",
+      "target": "codegraph/architecture_decay.py::GodModuleWarning",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_decay.py::detect_architecture_decay",
+      "target": "codegraph/architecture_decay.py::_build_module_adjacency",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_decay.py::detect_architecture_decay",
+      "target": "codegraph/architecture_decay.py::_compute_coupling_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_decay.py::detect_architecture_decay",
+      "target": "codegraph/architecture_decay.py::_detect_dead_subsystems",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_decay.py::detect_architecture_decay",
+      "target": "codegraph/architecture_decay.py::_detect_extractable_subsystems",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_decay.py::detect_architecture_decay",
+      "target": "codegraph/architecture_decay.py::_module_test_links",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_decay.py::detect_architecture_decay",
+      "target": "codegraph/architecture_decay.py::_tarjan_scc",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_decay.py::detect_architecture_decay",
+      "target": "codegraph/subsystem.py::detect_subsystems",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/architecture_delta.py::ArchitectureDelta::load",
       "target": "codegraph/architecture_delta.py::_dict_to_delta",
       "edge_type": "call",
@@ -2726,6 +2966,228 @@
     {
       "source": "codegraph/architecture_delta.py::generate_architecture_delta",
       "target": "codegraph/architecture_delta.py::_try_load_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_detection.py::_module_graph",
+      "target": "codegraph/architecture_detection.py::_module_of",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_detection.py::_module_graph",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_detection.py::detect_architecture_patterns",
+      "target": "codegraph/architecture_detection.py::detect_bidirectional_clusters",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_detection.py::detect_architecture_patterns",
+      "target": "codegraph/architecture_detection.py::detect_event_driven_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_detection.py::detect_architecture_patterns",
+      "target": "codegraph/architecture_detection.py::detect_layered_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_detection.py::detect_architecture_patterns",
+      "target": "codegraph/architecture_detection.py::detect_pipeline_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_detection.py::detect_bidirectional_clusters",
+      "target": "codegraph/architecture_detection.py::_module_graph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_detection.py::detect_event_driven_architecture",
+      "target": "codegraph/architecture_detection.py::_module_graph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_detection.py::detect_layered_architecture",
+      "target": "codegraph/architecture_detection.py::_module_graph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_detection.py::detect_pipeline_architecture",
+      "target": "codegraph/architecture_detection.py::_module_graph",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_explainer.py::explain_architecture_pattern",
+      "target": "codegraph/architecture_explainer.py::ArchitectureExplanation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_explainer.py::explain_decay_report",
+      "target": "codegraph/architecture_explainer.py::ArchitectureExplanation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_explainer.py::explain_microservice_candidate",
+      "target": "codegraph/architecture_explainer.py::ArchitectureExplanation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_explainer.py::explain_refactor_plan",
+      "target": "codegraph/architecture_explainer.py::ArchitectureExplanation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_explainer.py::generate_explanations",
+      "target": "codegraph/architecture_explainer.py::explain_architecture_pattern",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_explainer.py::generate_explanations",
+      "target": "codegraph/architecture_explainer.py::explain_decay_report",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_explainer.py::generate_explanations",
+      "target": "codegraph/architecture_explainer.py::explain_microservice_candidate",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_explainer.py::generate_explanations",
+      "target": "codegraph/architecture_explainer.py::explain_refactor_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_graph.py::ArchitectureGraph::from_views",
+      "target": "codegraph/models/graph0.py::Graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_graph.py::ArchitectureGraph::from_views",
+      "target": "codegraph/models/graph1.py::Graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_graph.py::ArchitectureGraph::from_views",
+      "target": "codegraph/models/workflow.py::Workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_graph.py::ArchitectureGraph::load",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_graph.py::ArchitectureGraph::load",
+      "target": "codegraph/architecture_graph.py::ArchitectureGraph::from_views",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_graph.py::ArchitectureGraph::load",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_graph.py::ArchitectureGraph::load",
+      "target": "codegraph/storage.py::resolve_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_graph.py::ArchitectureGraph::load",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_graph.py::ArchitectureGraph::save_derived_views",
+      "target": "codegraph/annotator.py::save_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_graph.py::ArchitectureGraph::save_derived_views",
+      "target": "codegraph/extractor.py::save_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_graph.py::ArchitectureGraph::save_derived_views",
+      "target": "codegraph/storage.py::atomic_write",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_graph.py::ArchitectureGraph::save_derived_views",
+      "target": "codegraph/storage.py::resolve_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_graph.py::ArchitectureGraph::save_derived_views",
+      "target": "codegraph/workflow.py::write_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_health.py::ArchitectureHealthReport::save",
+      "target": "codegraph/architecture_health.py::ArchitectureHealthReport::to_dict",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_health.py::ArchitectureHealthReport::save",
+      "target": "codegraph/storage.py::resolve_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_health.py::build_health_report",
+      "target": "codegraph/architecture_health.py::compute_architecture_health",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_health.py::compute_architecture_health",
+      "target": "codegraph/architecture_health.py::ArchitectureHealthReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_health.py::compute_architecture_health",
+      "target": "codegraph/architecture_health.py::_count_cycles",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/architecture_health.py::compute_architecture_health",
+      "target": "codegraph/index.py::IndexStore::get_node",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3564,6 +4026,24 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/cli/architecture.py::_resolve_root",
+      "target": "codegraph/cli/core.py::handle_error",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::_resolve_root",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::_resolve_root",
+      "target": "codegraph/services.py::ConfigService",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/cli/architecture.py::arch_diff_cmd",
       "target": "codegraph/cli/core.py::handle_error",
       "edge_type": "call",
@@ -3572,6 +4052,18 @@
     {
       "source": "codegraph/cli/architecture.py::arch_diff_cmd",
       "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_health_cmd",
+      "target": "codegraph/architecture_health.py::build_health_report",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_health_cmd",
+      "target": "codegraph/cli/architecture.py::_resolve_root",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3601,13 +4093,7 @@
     },
     {
       "source": "codegraph/cli/architecture.py::arch_plan_cmd",
-      "target": "codegraph/cli/core.py::handle_error",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/architecture.py::arch_plan_cmd",
-      "target": "codegraph/config.py::find_project_root",
+      "target": "codegraph/cli/architecture.py::_resolve_root",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3619,7 +4105,13 @@
     },
     {
       "source": "codegraph/cli/architecture.py::arch_plan_cmd",
-      "target": "codegraph/index.py::IndexStore",
+      "target": "codegraph/services.py::GraphStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::arch_plan_cmd",
+      "target": "codegraph/services.py::IndexService",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3709,13 +4201,7 @@
     },
     {
       "source": "codegraph/cli/architecture.py::architect_cmd",
-      "target": "codegraph/cli/core.py::handle_error",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/architecture.py::architect_cmd",
-      "target": "codegraph/config.py::find_project_root",
+      "target": "codegraph/cli/architecture.py::_resolve_root",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3727,7 +4213,13 @@
     },
     {
       "source": "codegraph/cli/architecture.py::architect_cmd",
-      "target": "codegraph/index.py::IndexStore",
+      "target": "codegraph/services.py::GraphStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::architect_cmd",
+      "target": "codegraph/services.py::IndexService",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3739,13 +4231,7 @@
     },
     {
       "source": "codegraph/cli/architecture.py::architecture_cmd",
-      "target": "codegraph/cli/core.py::handle_error",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/architecture.py::architecture_cmd",
-      "target": "codegraph/config.py::find_project_root",
+      "target": "codegraph/cli/architecture.py::_resolve_root",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3757,7 +4243,13 @@
     },
     {
       "source": "codegraph/cli/architecture.py::architecture_cmd",
-      "target": "codegraph/index.py::IndexStore",
+      "target": "codegraph/services.py::GraphStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::architecture_cmd",
+      "target": "codegraph/services.py::IndexService",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3865,13 +4357,7 @@
     },
     {
       "source": "codegraph/cli/architecture.py::viewer_cmd",
-      "target": "codegraph/cli/core.py::handle_error",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/cli/architecture.py::viewer_cmd",
-      "target": "codegraph/config.py::find_project_root",
+      "target": "codegraph/cli/architecture.py::_resolve_root",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -3883,7 +4369,13 @@
     },
     {
       "source": "codegraph/cli/architecture.py::viewer_cmd",
-      "target": "codegraph/index.py::IndexStore",
+      "target": "codegraph/services.py::GraphStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/cli/architecture.py::viewer_cmd",
+      "target": "codegraph/services.py::IndexService",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -6774,6 +7266,42 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/dependency_inversion.py::suggest_dependency_inversions",
+      "target": "codegraph/architecture_score.py::compute_score",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/dependency_inversion.py::suggest_dependency_inversions",
+      "target": "codegraph/dependency_inversion.py::DependencyInversionSuggestion",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/dependency_inversion.py::suggest_dependency_inversions",
+      "target": "codegraph/dependency_inversion.py::_infer_layer",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/dependency_inversion.py::suggest_dependency_inversions",
+      "target": "codegraph/dependency_inversion.py::_interface_name_for",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/dependency_inversion.py::suggest_dependency_inversions",
+      "target": "codegraph/dependency_inversion.py::_module_of",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/dependency_inversion.py::suggest_dependency_inversions",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/drift_detector.py::DriftReport::save",
       "target": "codegraph/drift_detector.py::DriftReport::to_dict",
       "edge_type": "call",
@@ -7129,7 +7657,7 @@
     },
     {
       "source": "codegraph/extractor.py::_run_file_extraction",
-      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
+      "target": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_all",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7303,6 +7831,18 @@
     },
     {
       "source": "codegraph/extractor.py::extract_project",
+      "target": "codegraph/extractors/api_routes.py::APIRouteExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::extract_project",
+      "target": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_all",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractor.py::extract_project",
       "target": "codegraph/models/graph0.py::Graph0",
       "edge_type": "call",
       "confidence": "static"
@@ -7320,31 +7860,31 @@
       "confidence": "static"
     },
     {
-      "source": "codegraph/extractor.py::load_graph0",
+      "source": "codegraph/extractor_io.py::load_graph0",
       "target": "codegraph/models/graph0.py::Graph0",
       "edge_type": "call",
       "confidence": "static"
     },
     {
-      "source": "codegraph/extractor.py::load_graph0",
+      "source": "codegraph/extractor_io.py::load_graph0",
       "target": "codegraph/storage.py::resolve_path",
       "edge_type": "call",
       "confidence": "static"
     },
     {
-      "source": "codegraph/extractor.py::save_graph0",
+      "source": "codegraph/extractor_io.py::save_graph0",
       "target": "codegraph/storage.py::atomic_write",
       "edge_type": "call",
       "confidence": "static"
     },
     {
-      "source": "codegraph/extractor.py::save_graph0",
+      "source": "codegraph/extractor_io.py::save_graph0",
       "target": "codegraph/storage.py::ensure_codegraph_dir",
       "edge_type": "call",
       "confidence": "static"
     },
     {
-      "source": "codegraph/extractor.py::save_graph0",
+      "source": "codegraph/extractor_io.py::save_graph0",
       "target": "codegraph/storage.py::resolve_path",
       "edge_type": "call",
       "confidence": "static"
@@ -7370,6 +7910,36 @@
     {
       "source": "codegraph/extractors/__init__.py::setup",
       "target": "codegraph/extractors/python.py::PythonExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_all",
+      "target": "codegraph/extraction_types.py::FileExtractionResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_all",
+      "target": "codegraph/extractors/api_routes.py::link_api_routes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_all",
+      "target": "codegraph/models/graph0.py::Graph0Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_edges",
+      "target": "codegraph/extractors/api_routes.py::link_api_routes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_project_routes",
+      "target": "codegraph/extractors/api_routes.py::link_api_routes",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -7962,36 +8532,6 @@
       "confidence": "static"
     },
     {
-      "source": "codegraph/index.py::export_index",
-      "target": "codegraph/index.py::_connect",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/index.py::export_index",
-      "target": "codegraph/index.py::_index_dir",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/index.py::index_statistics",
-      "target": "codegraph/index.py::IndexStats",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/index.py::index_statistics",
-      "target": "codegraph/index.py::_connect",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "codegraph/index.py::index_statistics",
-      "target": "codegraph/index.py::_index_dir",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
       "source": "codegraph/index.py::rebuild_index",
       "target": "codegraph/extractor.py::load_graph0",
       "edge_type": "call",
@@ -8036,6 +8576,42 @@
     {
       "source": "codegraph/index.py::update_index_delta",
       "target": "codegraph/index.py::build_all_indexes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/index_inspect.py::_index_dir",
+      "target": "codegraph/storage.py::resolve_path",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/index_inspect.py::export_index",
+      "target": "codegraph/index_inspect.py::_connect",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/index_inspect.py::export_index",
+      "target": "codegraph/index_inspect.py::_index_dir",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/index_inspect.py::index_statistics",
+      "target": "codegraph/index_inspect.py::IndexStats",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/index_inspect.py::index_statistics",
+      "target": "codegraph/index_inspect.py::_connect",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/index_inspect.py::index_statistics",
+      "target": "codegraph/index_inspect.py::_index_dir",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -8210,6 +8786,42 @@
     {
       "source": "codegraph/metrics.py::Timer::__exit__",
       "target": "codegraph/metrics.py::Timer::stop",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/microservice_detector.py::_collect_module_metrics",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/microservice_detector.py::_collect_module_metrics",
+      "target": "codegraph/microservice_detector.py::_module_of",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/microservice_detector.py::detect_microservice_candidates",
+      "target": "codegraph/microservice_detector.py::MicroserviceCandidate",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/microservice_detector.py::detect_microservice_candidates",
+      "target": "codegraph/microservice_detector.py::_api_surface_for_modules",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/microservice_detector.py::detect_microservice_candidates",
+      "target": "codegraph/microservice_detector.py::_collect_module_metrics",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/microservice_detector.py::detect_microservice_candidates",
+      "target": "codegraph/subsystem.py::detect_subsystems",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -9444,6 +10056,78 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/refactor_planner.py::_cycle_plan",
+      "target": "codegraph/refactor_planner.py::RefactorPlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/refactor_planner.py::_cycle_plan",
+      "target": "codegraph/refactor_planner.py::RefactorStep",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/refactor_planner.py::_dependency_inversion_plan",
+      "target": "codegraph/refactor_planner.py::RefactorPlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/refactor_planner.py::_dependency_inversion_plan",
+      "target": "codegraph/refactor_planner.py::RefactorStep",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/refactor_planner.py::_estimate_plan_delta",
+      "target": "codegraph/simulator.py::simulate_dependency_inversion",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/refactor_planner.py::_estimate_plan_delta",
+      "target": "codegraph/simulator.py::simulate_subsystem_extraction",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/refactor_planner.py::_extract_plan",
+      "target": "codegraph/refactor_planner.py::RefactorPlan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/refactor_planner.py::_extract_plan",
+      "target": "codegraph/refactor_planner.py::RefactorStep",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/refactor_planner.py::generate_refactor_plans",
+      "target": "codegraph/refactor_planner.py::_cycle_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/refactor_planner.py::generate_refactor_plans",
+      "target": "codegraph/refactor_planner.py::_dependency_inversion_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/refactor_planner.py::generate_refactor_plans",
+      "target": "codegraph/refactor_planner.py::_estimate_plan_delta",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/refactor_planner.py::generate_refactor_plans",
+      "target": "codegraph/refactor_planner.py::_extract_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/risk_metrics.py::check_dependency_limits",
       "target": "codegraph/index.py::IndexStore::_get_conn",
       "edge_type": "call",
@@ -9822,6 +10506,84 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/services.py::ConfigService::find_project_root",
+      "target": "codegraph/config.py::find_project_root",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/services.py::GraphStore::load_graph0",
+      "target": "codegraph/extractor.py::load_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/services.py::GraphStore::load_graph1",
+      "target": "codegraph/annotator.py::load_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/services.py::GraphStore::load_workflow",
+      "target": "codegraph/workflow.py::load_workflow",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/services.py::GraphStore::save_graph0",
+      "target": "codegraph/extractor.py::save_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/services.py::GraphStore::save_graph1",
+      "target": "codegraph/annotator.py::save_graph1",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/services.py::IndexService::_get_store",
+      "target": "codegraph/index.py::IndexStore",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/services.py::IndexService::get_callees",
+      "target": "codegraph/index.py::IndexStore::get_callees",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/services.py::IndexService::get_callees",
+      "target": "codegraph/services.py::IndexService::_get_store",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/services.py::IndexService::get_callers",
+      "target": "codegraph/index.py::IndexStore::get_callers",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/services.py::IndexService::get_callers",
+      "target": "codegraph/services.py::IndexService::_get_store",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/services.py::IndexService::get_node",
+      "target": "codegraph/index.py::IndexStore::get_node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/services.py::IndexService::get_node",
+      "target": "codegraph/services.py::IndexService::_get_store",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/simulator.py::_check_layer_violations",
       "target": "codegraph/simulator.py::SimViolation",
       "edge_type": "call",
@@ -9924,8 +10686,38 @@
       "confidence": "static"
     },
     {
+      "source": "codegraph/simulator.py::_migration_from_simulation",
+      "target": "codegraph/simulator.py::MigrationSimulationResult",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::_migration_from_simulation",
+      "target": "codegraph/simulator.py::_score_with_simulation_delta",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::_module_edge_examples",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::_module_edge_examples",
+      "target": "codegraph/simulator.py::_node_to_module",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "codegraph/simulator.py::_original_adj",
       "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::_score_with_simulation_delta",
+      "target": "codegraph/architecture_score.py::compute_score",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -10010,6 +10802,84 @@
     {
       "source": "codegraph/simulator.py::simulate_changes",
       "target": "codegraph/simulator.py::_find_cycles_in_adj",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::simulate_dependency_inversion",
+      "target": "codegraph/simulator.py::SimulatedChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::simulate_dependency_inversion",
+      "target": "codegraph/simulator.py::_migration_from_simulation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::simulate_dependency_inversion",
+      "target": "codegraph/simulator.py::_module_edge_examples",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::simulate_dependency_inversion",
+      "target": "codegraph/simulator.py::simulate_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::simulate_layer_restructure",
+      "target": "codegraph/simulator.py::SimulatedChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::simulate_layer_restructure",
+      "target": "codegraph/simulator.py::_migration_from_simulation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::simulate_layer_restructure",
+      "target": "codegraph/simulator.py::_module_edge_examples",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::simulate_layer_restructure",
+      "target": "codegraph/simulator.py::simulate_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::simulate_service_boundary",
+      "target": "codegraph/simulator.py::simulate_subsystem_extraction",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::simulate_subsystem_extraction",
+      "target": "codegraph/simulator.py::SimulatedChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::simulate_subsystem_extraction",
+      "target": "codegraph/simulator.py::_migration_from_simulation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::simulate_subsystem_extraction",
+      "target": "codegraph/simulator.py::_module_edge_examples",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/simulator.py::simulate_subsystem_extraction",
+      "target": "codegraph/simulator.py::simulate_changes",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -10148,6 +11018,84 @@
     {
       "source": "codegraph/subsystem.py::detect_subsystems",
       "target": "codegraph/subsystem.py::_derive_subsystem_name",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/subsystem_extractor.py::_build_module_edge_examples",
+      "target": "codegraph/index.py::IndexStore::_get_conn",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/subsystem_extractor.py::_simulate_suggestion",
+      "target": "codegraph/simulator.py::SimulatedChange",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/subsystem_extractor.py::_simulate_suggestion",
+      "target": "codegraph/simulator.py::simulate_changes",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/subsystem_extractor.py::_simulate_suggestion",
+      "target": "codegraph/subsystem_extractor.py::_estimate_score_delta_from_simulation",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/subsystem_extractor.py::generate_subsystem_extraction_report",
+      "target": "codegraph/architecture_decay.py::detect_architecture_decay",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/subsystem_extractor.py::generate_subsystem_extraction_report",
+      "target": "codegraph/subsystem_extractor.py::propose_refactor_suggestions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/subsystem_extractor.py::generate_subsystem_extraction_report",
+      "target": "codegraph/subsystem_extractor.py::simulate_refactor_suggestions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/subsystem_extractor.py::propose_refactor_suggestions",
+      "target": "codegraph/architecture_decay.py::detect_architecture_decay",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/subsystem_extractor.py::propose_refactor_suggestions",
+      "target": "codegraph/architecture_detection.py::detect_bidirectional_clusters",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/subsystem_extractor.py::propose_refactor_suggestions",
+      "target": "codegraph/subsystem_extractor.py::RefactorSuggestion",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/subsystem_extractor.py::simulate_refactor_suggestions",
+      "target": "codegraph/architecture_score.py::compute_score",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/subsystem_extractor.py::simulate_refactor_suggestions",
+      "target": "codegraph/subsystem_extractor.py::_build_module_edge_examples",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "codegraph/subsystem_extractor.py::simulate_refactor_suggestions",
+      "target": "codegraph/subsystem_extractor.py::_simulate_suggestion",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -11047,7 +11995,7 @@
     },
     {
       "source": "codegraph/workflow.py::_collect_call_sites_and_imports",
-      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
+      "target": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_all",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -15234,6 +16182,120 @@
       "confidence": "static"
     },
     {
+      "source": "tests/test_architecture_detection.py::_make_graph0",
+      "target": "codegraph/models/graph0.py::Graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_detection.py::_make_graph0",
+      "target": "codegraph/models/graph0.py::Graph0Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_detection.py::test_detect_architecture_patterns_returns_dominant_report",
+      "target": "codegraph/architecture_detection.py::detect_architecture_patterns",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_detection.py::test_detect_architecture_patterns_returns_dominant_report",
+      "target": "tests/test_architecture_detection.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_detection.py::test_detect_architecture_patterns_returns_dominant_report",
+      "target": "tests/test_architecture_detection.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_detection.py::test_detect_bidirectional_clusters",
+      "target": "codegraph/architecture_detection.py::detect_bidirectional_clusters",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_detection.py::test_detect_bidirectional_clusters",
+      "target": "tests/test_architecture_detection.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_detection.py::test_detect_bidirectional_clusters",
+      "target": "tests/test_architecture_detection.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_detection.py::test_detect_layered_architecture",
+      "target": "codegraph/architecture_detection.py::detect_layered_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_detection.py::test_detect_layered_architecture",
+      "target": "tests/test_architecture_detection.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_detection.py::test_detect_layered_architecture",
+      "target": "tests/test_architecture_detection.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_detection.py::test_detect_pipeline_architecture",
+      "target": "codegraph/architecture_detection.py::detect_pipeline_architecture",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_detection.py::test_detect_pipeline_architecture",
+      "target": "tests/test_architecture_detection.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_detection.py::test_detect_pipeline_architecture",
+      "target": "tests/test_architecture_detection.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_explainer.py::test_explain_microservice_candidate_has_metrics_and_reasoning",
+      "target": "codegraph/architecture_explainer.py::explain_microservice_candidate",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_explainer.py::test_explain_refactor_plan_and_pattern_and_decay",
+      "target": "codegraph/architecture_explainer.py::explain_architecture_pattern",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_explainer.py::test_explain_refactor_plan_and_pattern_and_decay",
+      "target": "codegraph/architecture_explainer.py::explain_decay_report",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_explainer.py::test_explain_refactor_plan_and_pattern_and_decay",
+      "target": "codegraph/architecture_explainer.py::explain_refactor_plan",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_architecture_explainer.py::test_generate_explanations_aggregates_outputs",
+      "target": "codegraph/architecture_explainer.py::generate_explanations",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "tests/test_architecture_lock.py::TestCheckDependencyAllowed::test_allowed_dependency",
       "target": "codegraph/architecture_lock.py::check_dependency_allowed",
       "edge_type": "call",
@@ -17580,6 +18642,18 @@
       "confidence": "static"
     },
     {
+      "source": "tests/test_dependency_inversion.py::test_detects_layer_inversion_and_suggests_interface",
+      "target": "codegraph/dependency_inversion.py::suggest_dependency_inversions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_dependency_inversion.py::test_detects_layer_inversion_and_suggests_interface",
+      "target": "tests/test_dependency_inversion.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "tests/test_drift_detector.py::TestDetectDrift::test_drift_score",
       "target": "codegraph/drift_detector.py::detect_drift",
       "edge_type": "call",
@@ -18817,13 +19891,19 @@
     },
     {
       "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_body_hash_is_populated",
-      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "target": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_nodes",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_body_hash_is_populated",
-      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_class_declaration",
+      "target": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_nodes",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -18834,8 +19914,8 @@
       "confidence": "static"
     },
     {
-      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_class_declaration",
-      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_all_returns_result",
+      "target": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_all",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -18846,8 +19926,14 @@
       "confidence": "static"
     },
     {
-      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_all_returns_result",
-      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_all",
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_edges_imports",
+      "target": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_edges",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_edges_imports",
+      "target": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_nodes",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -18858,14 +19944,8 @@
       "confidence": "static"
     },
     {
-      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_edges_imports",
-      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_edges",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_edges_imports",
-      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_arrow_function",
+      "target": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_nodes",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -18876,8 +19956,8 @@
       "confidence": "static"
     },
     {
-      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_arrow_function",
-      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_hook",
+      "target": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_nodes",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -18888,8 +19968,8 @@
       "confidence": "static"
     },
     {
-      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_hook",
-      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_react_component",
+      "target": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_nodes",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -18900,8 +19980,8 @@
       "confidence": "static"
     },
     {
-      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_extract_nodes_react_component",
-      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_missing_file_returns_empty",
+      "target": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_nodes",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -18912,20 +19992,14 @@
       "confidence": "static"
     },
     {
-      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_missing_file_returns_empty",
-      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
+      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_node_types",
+      "target": "codegraph/extractors/api_routes.py::APIRouteExtractor::extract_nodes",
       "edge_type": "call",
       "confidence": "static"
     },
     {
       "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_node_types",
       "target": "codegraph/extractors/javascript.py::JavaScriptExtractor",
-      "edge_type": "call",
-      "confidence": "static"
-    },
-    {
-      "source": "tests/test_js_extractor.py::TestJavaScriptExtractor::test_node_types",
-      "target": "codegraph/extractors/javascript.py::JavaScriptExtractor::extract_nodes",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -19082,6 +20156,78 @@
     {
       "source": "tests/test_layers.py::TestLayerEnum::test_modifiable_layers",
       "target": "codegraph/layers.py::Layer::is_modifiable",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_microservice_detection.py::_make_graph0",
+      "target": "codegraph/models/graph0.py::Graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_microservice_detection.py::_make_graph0",
+      "target": "codegraph/models/graph0.py::Graph0Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_microservice_detection.py::test_detects_microservice_candidate_on_cohesive_cluster",
+      "target": "codegraph/microservice_detector.py::detect_microservice_candidates",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_microservice_detection.py::test_detects_microservice_candidate_on_cohesive_cluster",
+      "target": "tests/test_microservice_detection.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_microservice_detection.py::test_detects_microservice_candidate_on_cohesive_cluster",
+      "target": "tests/test_microservice_detection.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_migration_simulation.py::test_layer_restructure_simulation_returns_result",
+      "target": "codegraph/simulator.py::simulate_layer_restructure",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_migration_simulation.py::test_layer_restructure_simulation_returns_result",
+      "target": "tests/test_migration_simulation.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_migration_simulation.py::test_service_boundary_and_dependency_inversion_simulations",
+      "target": "codegraph/simulator.py::simulate_dependency_inversion",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_migration_simulation.py::test_service_boundary_and_dependency_inversion_simulations",
+      "target": "codegraph/simulator.py::simulate_service_boundary",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_migration_simulation.py::test_service_boundary_and_dependency_inversion_simulations",
+      "target": "tests/test_migration_simulation.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_migration_simulation.py::test_subsystem_extraction_simulation_returns_result",
+      "target": "codegraph/simulator.py::simulate_subsystem_extraction",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_migration_simulation.py::test_subsystem_extraction_simulation_returns_result",
+      "target": "tests/test_migration_simulation.py::_make_index",
       "edge_type": "call",
       "confidence": "static"
     },
@@ -20508,6 +21654,24 @@
       "confidence": "static"
     },
     {
+      "source": "tests/test_refactor_planning.py::test_generates_cycle_and_inversion_plans",
+      "target": "codegraph/dependency_inversion.py::DependencyInversionSuggestion",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_refactor_planning.py::test_generates_cycle_and_inversion_plans",
+      "target": "codegraph/refactor_planner.py::generate_refactor_plans",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_refactor_planning.py::test_generates_cycle_and_inversion_plans",
+      "target": "tests/test_refactor_planning.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
       "source": "tests/test_risk_metrics.py::TestApproximateBetweenness::test_empty_graph",
       "target": "codegraph/risk_metrics.py::_approximate_betweenness",
       "edge_type": "call",
@@ -21572,6 +22736,72 @@
     {
       "source": "tests/test_subsystem.py::TestSubsystemReport::test_format",
       "target": "codegraph/subsystem.py::SubsystemReport",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_subsystem_extraction.py::_make_graph0",
+      "target": "codegraph/models/graph0.py::Graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_subsystem_extraction.py::_make_graph0",
+      "target": "codegraph/models/graph0.py::Graph0Node",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_subsystem_extraction.py::test_decay_detects_extractable_subsystem",
+      "target": "codegraph/architecture_decay.py::detect_architecture_decay",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_subsystem_extraction.py::test_decay_detects_extractable_subsystem",
+      "target": "tests/test_subsystem_extraction.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_subsystem_extraction.py::test_decay_detects_extractable_subsystem",
+      "target": "tests/test_subsystem_extraction.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_subsystem_extraction.py::test_generate_subsystem_extraction_report_simulates_suggestions",
+      "target": "codegraph/subsystem_extractor.py::generate_subsystem_extraction_report",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_subsystem_extraction.py::test_generate_subsystem_extraction_report_simulates_suggestions",
+      "target": "tests/test_subsystem_extraction.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_subsystem_extraction.py::test_generate_subsystem_extraction_report_simulates_suggestions",
+      "target": "tests/test_subsystem_extraction.py::_make_index",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_subsystem_extraction.py::test_propose_refactor_suggestions_contains_extract_or_split_types",
+      "target": "codegraph/subsystem_extractor.py::propose_refactor_suggestions",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_subsystem_extraction.py::test_propose_refactor_suggestions_contains_extract_or_split_types",
+      "target": "tests/test_subsystem_extraction.py::_make_graph0",
+      "edge_type": "call",
+      "confidence": "static"
+    },
+    {
+      "source": "tests/test_subsystem_extraction.py::test_propose_refactor_suggestions_contains_extract_or_split_types",
+      "target": "tests/test_subsystem_extraction.py::_make_index",
       "edge_type": "call",
       "confidence": "static"
     },

@@ -13,6 +13,15 @@ import click
 
 from codegraph.config import find_project_root, load_config
 from codegraph.cli.core import handle_error, timed_command, EXIT_ERROR
+from codegraph.services import ConfigService, GraphStore, IndexService
+
+
+def _resolve_root(ctx: click.Context) -> Path:
+    try:
+        return ConfigService().find_project_root()
+    except FileNotFoundError as exc:
+        handle_error(exc, ctx.obj.get("verbose", False))
+        sys.exit(EXIT_ERROR)
 
 
 # ── Architecture Advisor ──────────────────────────────────────────────
@@ -38,17 +47,12 @@ def architect_cmd(
 ) -> None:
     """Run architecture advisor — detect smells and suggest improvements."""
     from codegraph.architecture_advisor import advise_architecture
-    from codegraph.extractor import load_graph0
-    from codegraph.index import IndexStore
 
+    root = _resolve_root(ctx)
+    store = GraphStore(root)
+    index = IndexService(root)
+    graph0 = store.load_graph0()
     try:
-        root = find_project_root()
-    except FileNotFoundError as exc:
-        handle_error(exc, ctx.obj.get("verbose", False))
-        sys.exit(EXIT_ERROR)
-
-    graph0 = load_graph0(root)
-    with IndexStore(root) as index:
         advice = advise_architecture(
             graph0, index,
             project_root=root,
@@ -56,6 +60,8 @@ def architect_cmd(
             fan_in_threshold=fan_in_threshold,
             fan_out_threshold=fan_out_threshold,
         )
+    finally:
+        index.close()
 
     if save:
         path = advice.save(root)
@@ -82,19 +88,17 @@ def architecture_cmd(ctx: click.Context, do_init: bool, do_validate: bool,
     import json as _json
 
     from codegraph.arch_schema import SystemArchitecture, init_architecture
-    from codegraph.extractor import load_graph0
-    from codegraph.index import IndexStore
 
-    try:
-        root = find_project_root()
-    except FileNotFoundError as exc:
-        handle_error(exc, ctx.obj.get("verbose", False))
-        sys.exit(EXIT_ERROR)
+    root = _resolve_root(ctx)
+    store = GraphStore(root)
 
     if do_init:
-        graph0 = load_graph0(root)
-        with IndexStore(root) as index:
+        graph0 = store.load_graph0()
+        index = IndexService(root)
+        try:
             arch = init_architecture(graph0, index, project_root=root)
+        finally:
+            index.close()
         arch.save(root)
         click.echo(f"Architecture initialized with {len(arch.subsystems)} subsystems.")
         return
@@ -105,7 +109,7 @@ def architecture_cmd(ctx: click.Context, do_init: bool, do_validate: bool,
         sys.exit(EXIT_ERROR)
 
     if do_validate:
-        graph0 = load_graph0(root)
+        graph0 = store.load_graph0()
         # Build list of actual modules from graph0
         actual_modules = list({n.file for n in graph0.nodes if n.file})
         issues: list[str] = []
@@ -158,14 +162,8 @@ def arch_plan_cmd(ctx: click.Context, output_file: str | None,
 
     from codegraph.arch_planner import plan_architecture, plan_to_agent_response
     from codegraph.arch_schema import SystemArchitecture
-    from codegraph.extractor import load_graph0
-    from codegraph.index import IndexStore
 
-    try:
-        root = find_project_root()
-    except FileNotFoundError as exc:
-        handle_error(exc, ctx.obj.get("verbose", False))
-        sys.exit(EXIT_ERROR)
+    root = _resolve_root(ctx)
 
     arch = SystemArchitecture.load(root)
     if arch is None:
@@ -173,9 +171,13 @@ def arch_plan_cmd(ctx: click.Context, output_file: str | None,
                     err=True)
         sys.exit(EXIT_ERROR)
 
-    graph0 = load_graph0(root)
-    with IndexStore(root) as index:
+    store = GraphStore(root)
+    graph0 = store.load_graph0()
+    index = IndexService(root)
+    try:
         plan = plan_architecture(arch, graph0, index)
+    finally:
+        index.close()
 
     if agent_response:
         graph0_path = root / ".codegraph" / "graphs" / "graph0.json"
@@ -212,28 +214,60 @@ def viewer_cmd(ctx: click.Context, output_file: str | None) -> None:
     from codegraph.annotator import load_graph1
     from codegraph.arch_schema import SystemArchitecture
     from codegraph.arch_viewer import generate_viewer
-    from codegraph.extractor import load_graph0
-    from codegraph.index import IndexStore
     from codegraph.workflow import load_workflow
 
-    try:
-        root = find_project_root()
-    except FileNotFoundError as exc:
-        handle_error(exc, ctx.obj.get("verbose", False))
-        sys.exit(EXIT_ERROR)
+    root = _resolve_root(ctx)
+    store = GraphStore(root)
 
-    graph0 = load_graph0(root)
+    graph0 = store.load_graph0()
     graph1 = load_graph1(root)
     workflow = load_workflow(root)
     architecture = SystemArchitecture.load(root)
 
     out_path = Path(output_file) if output_file else None
-    with IndexStore(root) as index:
+    index = IndexService(root)
+    try:
         result_path = generate_viewer(
             root, graph0, graph1, workflow, index,
             architecture=architecture, output_path=out_path,
         )
+    finally:
+        index.close()
     click.echo(f"Dashboard generated: {result_path}")
+
+
+# ── Architecture Health ───────────────────────────────────────────────
+@click.command("arch-health")
+@click.option("--save", is_flag=True,
+              help="Save report to .codegraph/architecture/architecture_health.json")
+@click.option("--json", "json_output", is_flag=True, help="JSON output.")
+@click.pass_context
+def arch_health_cmd(ctx: click.Context, save: bool, json_output: bool) -> None:
+    """Compute architecture health metrics from canonical ArchitectureGraph."""
+    import json as _json
+    from codegraph.architecture_health import build_health_report
+
+    root = _resolve_root(ctx)
+    report = build_health_report(root)
+
+    if save:
+        path = report.save(root)
+        click.echo(f"Saved architecture health report: {path}")
+
+    if json_output:
+        click.echo(_json.dumps(report.to_dict(), indent=2))
+    else:
+        data = report.to_dict()
+        click.echo("Architecture Health")
+        click.echo(f"  Cycles: {data['cycle_count']}")
+        click.echo(f"  Layer violations: {data['layer_violation_count']}")
+        click.echo(f"  Orphan nodes: {data['orphan_nodes']}")
+        click.echo(f"  Unused services: {data['unused_services']}")
+        click.echo(f"  Fan-in entropy: {data['fan_in_entropy']:.4f}")
+        click.echo(f"  Fan-out variance: {data['fan_out_variance']:.4f}")
+        click.echo(f"  Module complexity variance: {data['module_complexity_variance']:.4f}")
+        click.echo(f"  Fan-in buckets: {len(data['fan_in_distribution'])}")
+        click.echo(f"  Fan-out buckets: {len(data['fan_out_distribution'])}")
 
 
 # ── Compile Intent → Architecture ─────────────────────────────────────
@@ -600,6 +634,7 @@ def arch_version_cmd(ctx: click.Context, do_save: bool, do_list: bool,
 
 COMMANDS = [
     architect_cmd,
+    arch_health_cmd,
     architecture_cmd,
     arch_plan_cmd,
     viewer_cmd,

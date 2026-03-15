@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "updated_at": "2026-03-15T14:20:00Z",
+  "objectives": {
+    "reduce_fan_in_hotspots": true,
+    "reduce_cross_subsystem_coupling": true,
+    "increase_subsystem_modularity": true,
+    "limit_module_complexity": true
+  },
+  "targets": {
+    "modularity_min": 0.7,
+    "coupling_max": 0.4,
+    "max_fan_in": 25,
+    "max_fan_out": 20,
+    "god_modules_max": 0,
+    "cycle_count": 0
+  },
+  "governance_enforcement": {
+    "enforce_layer_boundaries": true,
+    "enforce_forbidden_calls": true,
+    "enforce_dependency_limits": true
+  }
+}
