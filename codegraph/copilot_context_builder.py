@@ -103,6 +103,7 @@ class EnrichedCopilotContext:
     architecture_stability: Dict[str, Any] = field(default_factory=dict)
     architecture_patterns: Dict[str, Any] = field(default_factory=dict)
     architecture_violations: List[Dict[str, Any]] = field(default_factory=list)
+    subsystem_context: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         d = self.base_context.to_dict()
@@ -126,6 +127,8 @@ class EnrichedCopilotContext:
             d["architecture_patterns"] = self.architecture_patterns
         if self.architecture_violations:
             d["architecture_violations"] = self.architecture_violations
+        if self.subsystem_context:
+            d["subsystem_context"] = self.subsystem_context
         return d
 
     def save(self, project_root: Path) -> Path:
@@ -218,7 +221,12 @@ class EnrichedCopilotContext:
         return "\n".join(lines)
 
 
-def build_enriched_context(project_root: Path) -> EnrichedCopilotContext:
+def build_enriched_context(
+    project_root: Path,
+    *,
+    affected_node: str = "",
+    affected_file: str = "",
+) -> EnrichedCopilotContext:
     """Build a full architecture-aware context for Copilot.
 
     Combines the base CopilotContext with graph metrics,
@@ -294,7 +302,58 @@ def build_enriched_context(project_root: Path) -> EnrichedCopilotContext:
     # 11. Pattern summary
     ctx.architecture_patterns = _load_architecture_patterns(project_root)
 
+    # 12. Optional subsystem-aware context (best-effort)
+    ctx.subsystem_context = _build_subsystem_context(
+        project_root,
+        affected_node=affected_node,
+        affected_file=affected_file,
+    )
+
     return ctx
+
+
+def _build_subsystem_context(
+    project_root: Path,
+    *,
+    affected_node: str = "",
+    affected_file: str = "",
+) -> Dict[str, Any]:
+    try:
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.subsystem_extractor import extract_subsystem
+        from codegraph.subsystem_context_builder import build_subsystem_context
+
+        graph = ArchitectureGraph.load(project_root)
+        if not graph.nodes:
+            return {}
+
+        root_node = affected_node.strip()
+        if not root_node and affected_file:
+            target_file = affected_file.replace("\\", "/")
+            for node in graph.nodes:
+                if str(node.get("file", "")) == target_file:
+                    root_node = str(node.get("id", ""))
+                    break
+        if not root_node:
+            root_node = str(graph.nodes[0].get("id", ""))
+        if not root_node:
+            return {}
+
+        subsystem = extract_subsystem(graph, root_node, depth=2, max_nodes=200)
+        subsystem_context = build_subsystem_context(project_root, root_node, depth=2, max_nodes=200)
+
+        return {
+            "subsystem": root_node,
+            "architecture_slice": {
+                "nodes": len(subsystem.nodes),
+                "edges": len(subsystem.edges),
+                "boundary_nodes": len(subsystem.boundary_nodes),
+            },
+            "smells": subsystem_context.smells[:10],
+            "refactor_options": subsystem_context.refactor_suggestions[:5],
+        }
+    except Exception:
+        return {}
 
 
 def _build_graph_summary(project_root: Path) -> GraphSummary:

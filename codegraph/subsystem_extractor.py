@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 from codegraph.architecture_decay import ArchitectureDecayReport, detect_architecture_decay
 from codegraph.architecture_detection import detect_bidirectional_clusters
@@ -12,6 +12,129 @@ from codegraph.architecture_score import compute_score
 from codegraph.index import IndexStore
 from codegraph.models.graph0 import Graph0
 from codegraph.simulator import SimulatedChange, simulate_changes
+from codegraph.subsystem_graph import SubsystemGraph
+
+
+_SUBSYSTEM_CACHE: Dict[Tuple[str, int, int, int], SubsystemGraph] = {}
+
+
+def extract_subsystem(
+    architecture_graph: Any,
+    root_node: str,
+    depth: int = 2,
+    max_nodes: int = 200,
+) -> SubsystemGraph:
+    """Extract a connected subsystem slice around ``root_node``.
+
+    Traverses call/dependency/runtime style edges breadth-first up to ``depth``
+    and returns a temporary `SubsystemGraph` view derived from the canonical
+    architecture graph.
+    """
+    if depth < 0:
+        raise ValueError("depth must be >= 0")
+    if max_nodes < 1:
+        raise ValueError("max_nodes must be >= 1")
+
+    node_ids = {str(node.get("id", "")) for node in architecture_graph.nodes}
+    if root_node not in node_ids:
+        raise ValueError(f"Root node not found in architecture graph: {root_node}")
+
+    graph_version = int(architecture_graph.metadata.get("graph_version", 0))
+    cache_key = (root_node, depth, max_nodes, graph_version)
+    cached = _SUBSYSTEM_CACHE.get(cache_key)
+    if cached is not None:
+        return cached
+
+    allowed_edge_types = {
+        "call",
+        "dependency",
+        "depends",
+        "dataflow",
+        "data_flow",
+        "runtime",
+        "http_call",
+        "rpc_call",
+        "event",
+        "event_produce",
+        "event_consume",
+        "queue_task",
+        "frontend_to_backend",
+    }
+
+    adjacency: Dict[str, Set[str]] = {node_id: set() for node_id in node_ids}
+    for edge in architecture_graph.edges:
+        source = str(edge.get("source", ""))
+        target = str(edge.get("target", ""))
+        edge_type = str(edge.get("edge_type", "call")).lower()
+        if source not in adjacency or target not in adjacency:
+            continue
+        if edge_type in allowed_edge_types:
+            adjacency[source].add(target)
+            adjacency[target].add(source)
+
+    selected_nodes: Set[str] = {root_node}
+    frontier: Set[str] = {root_node}
+    for _ in range(depth):
+        if len(selected_nodes) >= max_nodes:
+            break
+        next_frontier: Set[str] = set()
+        for node in frontier:
+            for nxt in adjacency.get(node, set()):
+                if nxt in selected_nodes:
+                    continue
+                selected_nodes.add(nxt)
+                next_frontier.add(nxt)
+                if len(selected_nodes) >= max_nodes:
+                    break
+            if len(selected_nodes) >= max_nodes:
+                break
+        frontier = next_frontier
+        if not frontier:
+            break
+
+    internal_edges: List[Dict[str, Any]] = []
+    external_edges: List[Dict[str, Any]] = []
+    for edge in architecture_graph.edges:
+        source = str(edge.get("source", ""))
+        target = str(edge.get("target", ""))
+        if source in selected_nodes and target in selected_nodes:
+            internal_edges.append(dict(edge))
+        elif (source in selected_nodes) ^ (target in selected_nodes):
+            external_edges.append(dict(edge))
+
+    subsystem = SubsystemGraph.from_architecture_graph(
+        architecture_graph,
+        selected_nodes,
+        internal_edges,
+        external_edges,
+        root_node=root_node,
+    )
+
+    boundary_nodes = set(subsystem.boundary_nodes)
+    for edge in internal_edges:
+        source = str(edge.get("source", ""))
+        target = str(edge.get("target", ""))
+        source_module = source.split("::", 1)[0]
+        target_module = target.split("::", 1)[0]
+        if source_module != target_module:
+            boundary_nodes.add(source)
+            boundary_nodes.add(target)
+    subsystem.boundary_nodes = sorted(boundary_nodes)
+
+    subsystem.metadata["depth"] = depth
+    subsystem.metadata["max_nodes"] = max_nodes
+    subsystem.metadata["external_dependencies"] = sorted({
+        str(edge.get("target", ""))
+        if str(edge.get("source", "")) in selected_nodes
+        else str(edge.get("source", ""))
+        for edge in external_edges
+    })
+    subsystem.metadata["original_edges"] = list(internal_edges)
+
+    if len(_SUBSYSTEM_CACHE) > 256:
+        _SUBSYSTEM_CACHE.clear()
+    _SUBSYSTEM_CACHE[cache_key] = subsystem
+    return subsystem
 
 
 @dataclass

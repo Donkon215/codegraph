@@ -1,5 +1,5 @@
 {
-  "cycle": 9,
+  "cycle": 10,
   "graph_version": 85,
   "intents": [],
   "repairs": [],
@@ -425,26 +425,55 @@
         "AQL predicates: depends_on, calls_api, in_layer(service)",
         "Extended query tests to validate AQL parse and execution semantics"
       ]
+    },
+    {
+      "id": "chg-027",
+      "architecture_change_description": "Implemented Phase III architecture evolution slice: advanced runtime interaction modeling, cross-language linking, expanded AQL predicates, refactor planning engine, and enriched Copilot context decision payloads.",
+      "files_to_modify": [
+        "codegraph/runtime_graph.py",
+        "codegraph/cross_language_linker.py",
+        "codegraph/query.py",
+        "codegraph/architecture_refactor_planner.py",
+        "codegraph/copilot_context_builder.py",
+        "tests/test_runtime_graph.py",
+        "tests/test_cross_language_linker.py",
+        "tests/test_query.py",
+        "tests/test_architecture_refactor_planner.py",
+        "tests/test_copilot_context_builder.py"
+      ],
+      "refactoring_steps": [
+        "Extended runtime graph visitor with event_produce/event_consume, queue_task, websocket_event, async_workflow and richer RPC detection",
+        "Added cross_language_linker module for frontend→backend route links, DTO contract mapping, and service boundary node detection",
+        "Expanded AQL to support modules/events/smells system queries and filter syntax (predicate(arg), key=value)",
+        "Added architecture_refactor_planner with structured refactor_plan output and architecture_violation records",
+        "Enriched Copilot context builder with architecture_queries, refactor_suggestions, architecture_stability, architecture_patterns, architecture_violations while preserving 100KB caps and PROVEN_SAFE publish gating"
+      ],
+      "code_patches": [
+        "New cross-language linkage artifact source integrated into runtime graph extraction",
+        "AQL now answers service dependency, frontend/backend, layer, cycle, runtime event, and smell queries",
+        "Refactor planner now emits machine-readable suggestions and rule-violation fix guidance",
+        "Copilot context now carries actionable architecture query templates and top refactor opportunities"
+      ]
     }
   ],
   "validation": {
     "tests": {
-      "command": "py -m pytest tests/test_query.py tests/test_fuzz.py -x --tb=short -q",
+      "command": "py -m pytest tests/test_runtime_graph.py tests/test_cross_language_linker.py tests/test_query.py tests/test_architecture_refactor_planner.py tests/test_copilot_context_builder.py tests/test_fuzz.py -x --tb=short -q",
       "result": "passed",
-      "details": "59 passed"
+      "details": "89 passed"
     },
     "architecture": {
       "build": "success",
       "analyze": "success",
       "proof": "PROVEN_SAFE",
-      "latest_proof_id": "proof_20260315_102838",
+      "latest_proof_id": "proof_20260315_105019",
       "score_compare": {
         "baseline": 0.446,
         "current": 0.538,
         "delta": 0.092,
         "merge_allowed": true
       },
-      "note": "Cycle finalized: build/analyze/prove/score compare all executed after checkpoint commit."
+      "note": "Phase III cycle finalized on clean-tree checkpoint commit with mandatory build/analyze/prove/score gates passing."
     }
   },
   "next_increment_candidates": [

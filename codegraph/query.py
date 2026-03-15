@@ -96,6 +96,11 @@ _AQL_RE = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 
+_AQL_SUBSYSTEM_RE = re.compile(
+    r"^SELECT\s+([a-zA-Z_][a-zA-Z0-9_]*)\s+IN\s+subsystem\(\s*(.*?)\s*\)\s*$",
+    re.IGNORECASE | re.DOTALL,
+)
+
 _AQL_PRED_RE = re.compile(
     r"^([a-zA-Z_][a-zA-Z0-9_]*)\s*\(\s*(.*?)\s*\)$",
     re.DOTALL,
@@ -134,6 +139,23 @@ def parse_query(query_string: str) -> ParsedQuery:
         layer(3)
     """
     query_string = query_string.strip()
+
+    subsystem_match = _AQL_SUBSYSTEM_RE.match(query_string)
+    if subsystem_match:
+        subject = subsystem_match.group(1).strip().lower()
+        root = subsystem_match.group(2).strip()
+        if (
+            (root.startswith('"') and root.endswith('"'))
+            or (root.startswith("'") and root.endswith("'"))
+        ):
+            root = root[1:-1]
+        return ParsedQuery(
+            function="aql",
+            options={
+                "subject": subject,
+                "subsystem_root": root,
+            },
+        )
 
     # Architecture Query Language (AQL) support
     # Example: SELECT services WHERE depends_on(PaymentService)
@@ -946,13 +968,47 @@ def _execute_aql(
 
     result = QueryResult(function="aql", query=rendered)
 
-    if subject not in {"services", "frontend_components", "modules", "cycles", "events", "smells"}:
+    subsystem_root = str(query.options.get("subsystem_root", ""))
+
+    if subject not in {"services", "frontend_components", "modules", "cycles", "events", "smells", "subsystem", "nodes"}:
         raise ValueError(
             "Unsupported AQL SELECT target. "
-            "Supported: services, frontend_components, modules, cycles, events, smells"
+            "Supported: services, frontend_components, modules, cycles, events, smells, subsystem, nodes"
         )
 
-    if subject == "services":
+    if subject == "subsystem":
+        if filter_key != "root" or not filter_value:
+            raise ValueError("SELECT subsystem currently requires WHERE root=<node>")
+        if project_root is None:
+            raise ValueError("AQL subsystem query requires project_root")
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.subsystem_extractor import extract_subsystem
+
+        graph = ArchitectureGraph.load(project_root)
+        subsystem = extract_subsystem(graph, filter_value, depth=2, max_nodes=200)
+        metrics = subsystem.compute_metrics()
+        result.nodes = [f"{filter_value} ({metrics['nodes']} nodes, {metrics['edges']} edges)"]
+        result.total = 1
+        result.metadata["subsystem"] = {
+            "root": filter_value,
+            "nodes": metrics["nodes"],
+            "edges": metrics["edges"],
+            "boundary_nodes": len(subsystem.boundary_nodes),
+        }
+
+    elif subject == "nodes" and subsystem_root:
+        if project_root is None:
+            raise ValueError("AQL subsystem query requires project_root")
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.subsystem_extractor import extract_subsystem
+
+        graph = ArchitectureGraph.load(project_root)
+        subsystem = extract_subsystem(graph, subsystem_root, depth=2, max_nodes=200)
+        result.nodes = [str(node.get("id", "")) for node in subsystem.nodes]
+        result.total = len(result.nodes)
+        result.metadata["subsystem_root"] = subsystem_root
+
+    elif subject == "services":
         if predicate != "depends_on" or not predicate_arg:
             raise ValueError(
                 "SELECT services currently requires WHERE depends_on(<node_or_symbol>)"
@@ -1021,20 +1077,37 @@ def _execute_aql(
         result.metadata["layer"] = predicate_arg.lower()
 
     elif subject == "cycles":
-        if predicate and predicate != "in_layer":
-            raise ValueError(
-                "SELECT cycles supports optional WHERE in_layer(<layer_name>)"
-            )
+        if subsystem_root:
+            if project_root is None:
+                raise ValueError("AQL subsystem query requires project_root")
+            from codegraph.architecture_graph import ArchitectureGraph
+            from codegraph.subsystem_extractor import extract_subsystem
 
-        layer_name = predicate_arg.lower() if predicate else "service"
-        if layer_name == "service":
-            cycles = _build_service_cycles(index, cache_key)
+            graph = ArchitectureGraph.load(project_root)
+            subsystem = extract_subsystem(graph, subsystem_root, depth=2, max_nodes=200)
+            cycle_count = int(subsystem.compute_metrics().get("cycle_count", 0))
+            if cycle_count:
+                result.nodes = [f"subsystem_cycle[{i + 1}] in {subsystem_root}" for i in range(cycle_count)]
+            else:
+                result.nodes = []
+            result.total = len(result.nodes)
+            result.metadata["subsystem_root"] = subsystem_root
+            result.metadata["layer"] = "subsystem"
         else:
-            layer_nodes = _nodes_in_layer(index, layer_name, cache_key)
-            cycles = _build_cycles(index, layer_nodes)
-        result.nodes = cycles
-        result.total = len(cycles)
-        result.metadata["layer"] = layer_name
+            if predicate and predicate != "in_layer":
+                raise ValueError(
+                    "SELECT cycles supports optional WHERE in_layer(<layer_name>)"
+                )
+
+            layer_name = predicate_arg.lower() if predicate else "service"
+            if layer_name == "service":
+                cycles = _build_service_cycles(index, cache_key)
+            else:
+                layer_nodes = _nodes_in_layer(index, layer_name, cache_key)
+                cycles = _build_cycles(index, layer_nodes)
+            result.nodes = cycles
+            result.total = len(cycles)
+            result.metadata["layer"] = layer_name
 
     elif subject == "events":
         if predicate != "produced_by" or not predicate_arg:
