@@ -287,8 +287,15 @@ def compute_architecture_index(project_root: Path) -> MultiAxisArchitectureScore
     for src, tgt in edges:
         node_couplings[src] = node_couplings.get(src, 0) + 1
         node_couplings[tgt] = node_couplings.get(tgt, 0) + 1
-    max_coupling = max(node_couplings.values()) if node_couplings else 0
-    coupling_score = 1.0 - min(1.0, max_coupling / 50.0)
+    # Use 95th percentile coupling instead of raw max to avoid outlier
+    # utility functions (e.g. find_project_root) zeroing the entire metric.
+    coupling_values = sorted(node_couplings.values(), reverse=True)
+    if coupling_values:
+        p95_idx = max(0, int(len(coupling_values) * 0.05))
+        representative_coupling = coupling_values[p95_idx]
+    else:
+        representative_coupling = 0
+    coupling_score = 1.0 - min(1.0, representative_coupling / 50.0)
 
     intent = load_architecture_intent(project_root)
     if intent.layers and intent.rules:

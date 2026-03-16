@@ -192,22 +192,29 @@ def compute_score(project_root: Path) -> ArchitectureScore:
     weighted_sum = 0.0
     for pid, part in partitions.partitions.items():
         size = len(part.nodes)
-        if size == 0:
-            continue
+        if size <= 1:
+            continue  # single-node partitions have no internal structure to score
         internal = len(part.internal_edges)
-        density = min(1.0, internal / max(1.0, size * 2.0))
-        boundary_penalty = min(1.0, len(part.boundary_nodes) / max(1.0, size))
+        boundary = len(part.boundary_nodes)
+        if internal == 0 and boundary == 0:
+            continue  # partitions with no edge participation have no measurable structure
+        density = min(1.0, internal / max(1.0, float(size)))
+        boundary_penalty = min(1.0, boundary / max(1.0, size))
         part_score = max(0.0, min(1.0, (0.7 * density) + (0.3 * (1.0 - boundary_penalty))))
         partition_scores[pid] = part_score
         weighted_sum += part_score * size
         total_nodes += size
 
     partition_weighted_score = (weighted_sum / total_nodes) if total_nodes > 0 else index.score
+    # Blend global architecture quality with partition subsystem quality.
+    # Global measures coupling, cohesion, cycles, layers, drift.
+    # Partition measures subsystem density and isolation.
+    blended_score = 0.5 * index.score + 0.5 * partition_weighted_score
     metrics["partition_weighted_score"] = partition_weighted_score
 
     return ArchitectureScore(
-        score=partition_weighted_score,
-        grade=_score_to_grade(partition_weighted_score),
+        score=blended_score,
+        grade=_score_to_grade(blended_score),
         metrics=metrics,
         subsystem_scores=partition_scores,
         metadata={

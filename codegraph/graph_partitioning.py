@@ -68,7 +68,8 @@ def _label_propagation_communities(
     *,
     max_iterations: int = 20,
 ) -> Dict[str, str]:
-    labels: Dict[str, str] = {node: node for node in nodes}
+    # Initialize labels by module to encourage module-level cohesion
+    labels: Dict[str, str] = {node: _module_of(node) for node in nodes}
     if not nodes:
         return labels
 
@@ -161,9 +162,8 @@ def build_partitions(
         if src_pid == tgt_pid:
             partitions.partitions[src_pid].internal_edges.append(dict(edge))
         else:
+            # Only mark nodes as boundary in the partition they belong to
             partitions.partitions[src_pid].boundary_nodes.add(source)
-            partitions.partitions[src_pid].boundary_nodes.add(target)
-            partitions.partitions[tgt_pid].boundary_nodes.add(source)
             partitions.partitions[tgt_pid].boundary_nodes.add(target)
 
     partitions.metadata = {

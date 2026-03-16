@@ -340,7 +340,7 @@ def _update_graph1_after_apply(
 
         if ar.action == "remove_dead_code":
             # Remove from Graph_1
-            graph1.remove_node(node_id)
+            graph1.remove_intent_node(node_id)
             continue
 
         if g0_node and g1_node:
@@ -466,7 +466,6 @@ def _prepare_apply(
     skip_plan_check: bool = False,
 ) -> Tuple[Set[Path], Dict[Path, Path]]:
     """Validate version, acquire lock, collect files, check conflicts, create backups."""
-    _validate_and_gate(response, project_root, dry_run, skip_plan_check)
 
     if not dry_run:
         _acquire_lock(project_root)
@@ -714,6 +713,11 @@ class ApplyEngine:
         skip_plan_check: bool = False,
     ) -> ApplyResult:
         result = ApplyResult(dry_run=dry_run)
+
+        self.validation_service.validate_and_gate(
+            response, self.project_root, dry_run=dry_run,
+            skip_plan_check=skip_plan_check,
+        )
 
         files_to_modify, backups = _prepare_apply(
             response,

@@ -66,6 +66,8 @@ def _count_cycles(adjacency: Dict[str, List[str]]) -> int:
         visited.add(node)
         in_stack.add(node)
         for nxt in adjacency.get(node, []):
+            if nxt == node:
+                continue  # skip self-loops (recursive calls)
             if nxt not in visited:
                 _visit(nxt)
             elif nxt in in_stack:
@@ -144,7 +146,17 @@ def compute_architecture_health(architecture_graph: ArchitectureGraph) -> Archit
         if n.type in ("class", "function", "method")
         and (n.id.endswith("Service") or "::" in n.id and n.id.split("::")[-1].endswith("Service"))
     ]
-    unused_services = sum(1 for sid in service_nodes if fan_in.get(sid, 0) == 0)
+    # A class service is used if any of its methods have external callers
+    def _is_service_used(sid: str) -> bool:
+        if fan_in.get(sid, 0) > 0:
+            return True
+        prefix = sid + "::"
+        for e in edges:
+            if e.target.startswith(prefix) and not e.source.startswith(prefix):
+                return True
+        return False
+
+    unused_services = sum(1 for sid in service_nodes if not _is_service_used(sid))
 
     return ArchitectureHealthReport(
         fan_in_distribution=fan_in_distribution,

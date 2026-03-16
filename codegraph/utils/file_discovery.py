@@ -29,6 +29,7 @@ _ALWAYS_EXCLUDE = {
     "dist",
     "build",
     "*.egg-info",
+    "temp_clone",
 }
 
 
