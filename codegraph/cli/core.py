@@ -308,17 +308,72 @@ def _build_annotate(root, graph0, layers, quiet):
 
 def _build_workflow_and_index(root, config, graph0, g1, quiet):
     """Build workflow edges and search indexes."""
-    from codegraph.workflow import build_workflow, workflow_summary
+    from codegraph.workflow import build_workflow, workflow_summary, write_workflow
     from codegraph.index import build_all_indexes
+    from codegraph.context_flow_graph import enrich_workflow_with_context_flows
+    from codegraph.runtime_graph import extract_runtime_edges, save_runtime_graph
+    from codegraph.graph_module import build_module_graph
+    from codegraph.graph_build import build_graph_build
+    from codegraph.system_architecture_layer import build_system_layer_mapping
 
     wf = build_workflow(root, config, trace=False, level="function")
+    wf = enrich_workflow_with_context_flows(root, wf)
+    write_workflow(wf, root)
     if not quiet:
         click.echo(workflow_summary(wf, graph0))
+
+    # Graph3 runtime interactions (cross-language aware)
+    runtime_graph = extract_runtime_edges(root)
+    runtime_path = save_runtime_graph(root, runtime_graph)
+    if not quiet:
+        click.echo(f"Runtime graph saved: {runtime_path} ({len(runtime_graph.edges)} edges)")
+
+    # GraphModule and GraphBuild layers
+    module_graph = build_module_graph(root)
+    module_path = module_graph.save(root)
+    build_graph = build_graph_build(root)
+    build_path = build_graph.save(root)
+    layer_mapping = build_system_layer_mapping(root)
+    layer_path = layer_mapping.save(root)
+    if not quiet:
+        click.echo(f"Module graph saved: {module_path}")
+        click.echo(f"Build graph saved: {build_path}")
+        click.echo(f"System layer mapping saved: {layer_path}")
 
     idx_result = build_all_indexes(graph0, g1, wf, root)
     if not quiet:
         total = sum(idx_result.values())
         click.echo(f"Index built: {total} rows across {len(idx_result)} tables")
+
+    # Architecture pattern detection after indexes are available
+    try:
+        from codegraph.architecture_patterns import detect_patterns
+        from codegraph.architecture_reasoning import explain_architecture_problems
+        from codegraph.architecture_smells import detect_architecture_smells
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.architecture_memory import learn_interaction_patterns
+        from codegraph.index import IndexStore
+
+        with IndexStore(root) as index:
+            pattern_report = detect_patterns(root, graph0, index)
+        pattern_path = pattern_report.save(root)
+
+        arch_graph = ArchitectureGraph.load(root)
+        smell_index = detect_architecture_smells(arch_graph, root)
+        reasoning = explain_architecture_problems(smell_index)
+        reasoning_path = root / ".codegraph" / "architecture" / "architecture_reasoning.json"
+        reasoning_path.parent.mkdir(parents=True, exist_ok=True)
+        import json as _json
+        reasoning_path.write_text(_json.dumps(reasoning.to_dict(), indent=2), encoding="utf-8")
+
+        learn_interaction_patterns(root)
+
+        if not quiet:
+            click.echo(f"Architecture patterns saved: {pattern_path}")
+            click.echo(f"Architecture reasoning saved: {reasoning_path}")
+    except Exception as exc:
+        if not quiet:
+            click.echo(f"Pattern detection warning: {exc}")
 
 
 def _build_track_commit(root):

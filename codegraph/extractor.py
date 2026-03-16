@@ -142,6 +142,7 @@ class ExtractionReport:
     collisions: List[str] = field(default_factory=list)
     warnings: List[ExtractionWarning] = field(default_factory=list)
     duration_seconds: float = 0.0
+    language_counts: Dict[str, int] = field(default_factory=dict)  # e.g. {"Python": 120, "TypeScript": 45}
 
     @property
     def total_nodes(self) -> int:
@@ -152,9 +153,17 @@ class ExtractionReport:
             f"Files processed: {self.files_processed}",
             f"Files skipped:   {self.files_skipped}",
         ]
+        
+        # Language coverage
+        if self.language_counts:
+            lines.append("\nLanguages detected:")
+            for lang, count in sorted(self.language_counts.items(), key=lambda x: -x[1]):
+                lines.append(f"  {lang}: {count} files")
+        
+        lines.append("\nNodes extracted:")
         for ntype, count in sorted(self.nodes_extracted.items()):
             lines.append(f"  {ntype}: {count}")
-        lines.append(f"Total nodes:     {self.total_nodes}")
+        lines.append(f"\nTotal nodes:     {self.total_nodes}")
         if self.collisions:
             lines.append(f"Collisions:      {len(self.collisions)}")
         if self.warnings:
@@ -380,36 +389,11 @@ def parse_file(file_path: Path) -> Optional[ast.Module]:
 
 def extract_imports(tree: ast.Module, file_path: str = "") -> List[ImportInfo]:
     """Extract all import statements from a module AST."""
-    imports: List[ImportInfo] = []
+    from codegraph.extractor_import_resolver import (
+        extract_imports as _extract_imports_impl,
+    )
 
-    for node in ast.walk(tree):
-        if isinstance(node, ast.Import):
-            for alias in node.names:
-                imports.append(
-                    ImportInfo(
-                        module=alias.name,
-                        names=[alias.name.split(".")[-1]],
-                        alias=alias.asname,
-                        is_relative=False,
-                        level=0,
-                        line=node.lineno,
-                    )
-                )
-        elif isinstance(node, ast.ImportFrom):
-            module_name = node.module or ""
-            names = [a.name for a in node.names] if node.names else []
-            imports.append(
-                ImportInfo(
-                    module=module_name,
-                    names=names,
-                    alias=node.names[0].asname if node.names and len(node.names) == 1 else None,
-                    is_relative=node.level > 0,
-                    level=node.level or 0,
-                    line=node.lineno,
-                )
-            )
-
-    return imports
+    return _extract_imports_impl(tree, file_path)
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -465,33 +449,11 @@ def extract_call_sites(
 
     Also detects ``await`` expressions as call sites (C-033).
     """
-    calls: List[CallSite] = []
+    from codegraph.extractor_call_graph_extractor import (
+        extract_call_sites as _extract_call_sites_impl,
+    )
 
-    for node in ast.walk(func_node):
-        if isinstance(node, ast.Call):
-            func = node.func
-            if isinstance(func, ast.Name):
-                calls.append(CallSite(raw_name=func.id, line=node.lineno))
-            elif isinstance(func, ast.Attribute):
-                obj = _unparse_safe(func.value)
-                calls.append(
-                    CallSite(
-                        raw_name=f"{obj}.{func.attr}" if obj else func.attr,
-                        line=node.lineno,
-                        is_method_call=True,
-                        object_name=obj,
-                    )
-                )
-            else:
-                calls.append(
-                    CallSite(
-                        raw_name=_unparse_safe(func) or "<dynamic>",
-                        line=node.lineno,
-                        is_dynamic=True,
-                    )
-                )
-
-    return calls
+    return [CallSite(**c.__dict__) for c in _extract_call_sites_impl(func_node)]
 
 
 def detect_dynamic_calls(
@@ -499,41 +461,18 @@ def detect_dynamic_calls(
     scope: str = "",
 ) -> List[DynamicCall]:
     """Detect dynamic dispatch patterns that cannot be resolved statically.  (C-019)"""
-    dynamics: List[DynamicCall] = []
+    from codegraph.extractor_call_graph_extractor import (
+        detect_dynamic_calls as _detect_dynamic_calls_impl,
+    )
 
-    for node in ast.walk(func_node):
-        if not isinstance(node, ast.Call):
-            continue
-
-        func = node.func
-
-        # Pattern: getattr(obj, name)()
-        if (
-            isinstance(func, ast.Call)
-            and isinstance(func.func, ast.Name)
-            and func.func.id == "getattr"
-        ):
-            dynamics.append(DynamicCall(pattern="getattr", line=node.lineno, scope=scope))
-            continue
-
-        # Pattern: dict_lookup[key]()  — Subscript call
-        if isinstance(func, ast.Subscript):
-            dynamics.append(DynamicCall(pattern="dict_dispatch", line=node.lineno, scope=scope))
-            continue
-
-        # Pattern: any non-Name/non-Attribute call
-        if not isinstance(func, (ast.Name, ast.Attribute)):
-            dynamics.append(DynamicCall(pattern="indirect_call", line=node.lineno, scope=scope))
-
-    return dynamics
+    return [DynamicCall(**d.__dict__) for d in _detect_dynamic_calls_impl(func_node, scope)]
 
 
 def _unparse_safe(node: ast.AST) -> Optional[str]:
     """Return ``ast.unparse(node)`` or *None* on failure."""
-    try:
-        return ast.unparse(node)
-    except Exception:
-        return None
+    from codegraph.extractor_call_graph_extractor import _unparse_safe as _unparse_safe_impl
+
+    return _unparse_safe_impl(node)
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -593,81 +532,20 @@ def resolve_call_target(
 
     Returns *None* if the target cannot be resolved statically.
     """
-    name = call.raw_name
+    from codegraph.extractor_import_resolver import (
+        resolve_call_target as _resolve_call_target_impl,
+    )
 
-    # self.method() → resolve to current_class::method
-    if call.is_method_call and call.object_name == "self" and current_class:
-        candidate = f"{current_file}::{current_class}::{name.split('.')[-1]}"
-        if candidate in all_node_ids:
-            return candidate
-
-    # super().method() — needs class hierarchy, bail
-    if call.is_method_call and call.object_name and call.object_name.startswith("super("):
-        return None
-
-    # Scope tree lookup
-    if scope is not None:
-        resolved = scope.resolve(name)
-        if resolved and resolved in all_node_ids:
-            return resolved
-
-    # Simple name → same-file function
-    if not call.is_method_call:
-        candidate = f"{current_file}::{name}"
-        if candidate in all_node_ids:
-            return candidate
-
-    # Import-based resolution
-    for imp in imports:
-        if name in imp.names:
-            module_path = imp.module.replace(".", "/")
-            candidate = f"{module_path}.py::{name}"
-            if candidate in all_node_ids:
-                return candidate
-            candidate = f"{module_path}::{name}"
-            if candidate in all_node_ids:
-                return candidate
-        if imp.alias and imp.alias == name.split(".")[0]:
-            if "." in name:
-                func_part = name.split(".", 1)[1]
-                module_path = imp.module.replace(".", "/")
-                candidate = f"{module_path}.py::{func_part}"
-                if candidate in all_node_ids:
-                    return candidate
-
-    # Method call: obj.method() — fuzzy match
-    # Skip common builtin method names that produce false positive resolutions
-    if call.is_method_call and "." in name:
-        method_name = name.split(".")[-1]
-        if method_name not in _AMBIGUOUS_METHOD_NAMES:
-            for nid in sorted(all_node_ids):
-                if nid.endswith(f"::{method_name}"):
-                    return nid
-
-    return None
+    return _resolve_call_target_impl(
+        call=call,
+        imports=imports,
+        current_file=current_file,
+        all_node_ids=all_node_ids,
+        scope=scope,
+        current_class=current_class,
+    )
 
 
-# Names that are common on builtins/stdlib types.  Fuzzy-matching these
-# to the first class that defines them creates massive false-positive
-# fan-in (e.g. every ``list.append()`` resolves to TaskHistory::append).
-_AMBIGUOUS_METHOD_NAMES: frozenset[str] = frozenset({
-    # list / set / dict builtins
-    "append", "extend", "insert", "remove", "pop", "clear",
-    "get", "keys", "values", "items", "update", "setdefault",
-    "add", "discard", "put",
-    # str builtins
-    "format", "join", "split", "strip", "replace", "startswith", "endswith",
-    "lower", "upper", "encode", "decode",
-    # common dunder-like / generic names
-    "to_dict", "from_dict", "to_json", "from_json",
-    "copy", "sort", "reverse", "count", "index",
-    # logging / formatting
-    "info", "debug", "warning", "error", "critical",
-    "write", "read", "close", "flush", "seek",
-    # pathlib / common object methods
-    "resolve", "exists", "save", "load", "apply",
-    "validate", "run", "execute", "start", "stop",
-})
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -1232,18 +1110,24 @@ def extract_project(
         except Exception:
             logger.warning("Could not save extraction cache")
 
+    # Phase 2 — Extract API routes (polyglot support)
+    # API extraction links frontend components to backend services via HTTP endpoints
+    try:
+        from codegraph.extractors.api_routes import APIRouteExtractor
+        api_extractor = APIRouteExtractor(project_root)
+        api_result = api_extractor.extract_all()
+        if api_result.nodes:
+            all_nodes.extend(api_result.nodes)
+            node_counts["api_endpoint"] = len([n for n in api_result.nodes if n.type == "api_endpoint"])
+            logger.info("Extracted %d API endpoints", len(api_result.nodes))
+    except Exception as exc:
+        logger.warning("API route extraction failed: %s", exc)
+
     # Finalize and assemble Graph_0
     graph0, duration = _finalize_graph0(
         project_root, report, source_files, all_nodes, node_counts, resolver, t0
     )
-
-    logger.info(
-        "Extracted %d nodes from %d files (%.2fs)",
-        len(all_nodes),
-        report.files_processed,
-        duration,
-    )
-
+    report.duration_seconds = duration
     return graph0, report
 
 
@@ -1254,12 +1138,9 @@ def extract_project(
 
 def save_graph0(graph0: Graph0, project_root: Path) -> Path:
     """Persist *graph0* to ``.codegraph/graphs/graph0.json``."""
-    ensure_codegraph_dir(project_root)
-    dest = resolve_path(project_root, GRAPHS_DIR, "graph0.json")
-    data = json.loads(graph0.to_json())
-    atomic_write(dest, data)
-    logger.info("Saved Graph_0 (%d nodes) → %s", len(graph0.nodes), dest)
-    return dest
+    from codegraph.extractor_io import save_graph0 as _save_graph0
+
+    return _save_graph0(graph0, project_root)
 
 
 def load_graph0(project_root: Path) -> Graph0:
@@ -1267,17 +1148,9 @@ def load_graph0(project_root: Path) -> Graph0:
 
     Returns an empty Graph0 if the file does not exist.
     """
-    path = resolve_path(project_root, GRAPHS_DIR, "graph0.json")
-    if not path.exists():
-        logger.debug("No graph0.json found — returning empty Graph_0")
-        return Graph0()
+    from codegraph.extractor_io import load_graph0 as _load_graph0
 
-    try:
-        text = path.read_text(encoding="utf-8")
-        return Graph0.from_json(text)
-    except (json.JSONDecodeError, KeyError) as exc:
-        logger.error("Corrupted graph0.json: %s", exc)
-        raise ValueError(f"Corrupted graph0.json: {exc}") from exc
+    return _load_graph0(project_root)
 
 
 # ═══════════════════════════════════════════════════════════════════════

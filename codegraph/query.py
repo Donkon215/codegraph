@@ -88,8 +88,33 @@ QUERY_FUNCTIONS = {
     "callers", "callees", "dependencies", "dependents",
     "path", "orphans", "layer", "tests", "explain",
     "imports", "effects", "actions", "guards",
-    "domain", "pure", "unguarded", "risky",
+    "domain", "pure", "unguarded", "risky", "aql",
 }
+
+_AQL_RE = re.compile(
+    r"^SELECT\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*(?:WHERE\s+(.+))?$",
+    re.IGNORECASE | re.DOTALL,
+)
+
+_AQL_SUBSYSTEM_RE = re.compile(
+    r"^SELECT\s+([a-zA-Z_][a-zA-Z0-9_]*)\s+IN\s+subsystem\(\s*(.*?)\s*\)\s*$",
+    re.IGNORECASE | re.DOTALL,
+)
+
+_AQL_PRED_RE = re.compile(
+    r"^([a-zA-Z_][a-zA-Z0-9_]*)\s*\(\s*(.*?)\s*\)$",
+    re.DOTALL,
+)
+
+_AQL_EQ_RE = re.compile(
+    r"^([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*([\"']?)(.+?)\2$",
+    re.DOTALL,
+)
+
+_AQL_CMP_RE = re.compile(
+    r"^([a-zA-Z_][a-zA-Z0-9_]*)\s*(<=|>=|<|>)\s*([0-9]*\.?[0-9]+)$",
+    re.DOTALL,
+)
 
 # Pattern: function_name("arg1", "arg2", key=value, ...)
 _QUERY_RE = re.compile(
@@ -98,6 +123,14 @@ _QUERY_RE = re.compile(
 
 _QUOTED_ARG_RE = re.compile(r'"((?:[^"\\]|\\.)*)"|\'((?:[^\'\\]|\\.)*)\'')
 _OPTION_RE = re.compile(r'(\w+)\s*=\s*(\d+)')
+
+_AQL_CACHE: Dict[str, Dict[str, Any]] = {
+    "dependents": {},
+    "layer_nodes": {},
+    "service_nodes": {},
+    "service_cycles": {},
+    "events": {},
+}
 
 
 def parse_query(query_string: str) -> ParsedQuery:
@@ -111,6 +144,66 @@ def parse_query(query_string: str) -> ParsedQuery:
         layer(3)
     """
     query_string = query_string.strip()
+
+    subsystem_match = _AQL_SUBSYSTEM_RE.match(query_string)
+    if subsystem_match:
+        subject = subsystem_match.group(1).strip().lower()
+        root = subsystem_match.group(2).strip()
+        if (
+            (root.startswith('"') and root.endswith('"'))
+            or (root.startswith("'") and root.endswith("'"))
+        ):
+            root = root[1:-1]
+        return ParsedQuery(
+            function="aql",
+            options={
+                "subject": subject,
+                "subsystem_root": root,
+            },
+        )
+
+    # Architecture Query Language (AQL) support
+    # Example: SELECT services WHERE depends_on(PaymentService)
+    aql_match = _AQL_RE.match(query_string)
+    if aql_match:
+        subject = aql_match.group(1).strip().lower()
+        where_expr = (aql_match.group(2) or "").strip()
+        options: Dict[str, Any] = {"subject": subject}
+
+        if where_expr:
+            pred_match = _AQL_PRED_RE.match(where_expr)
+            if pred_match:
+                predicate = pred_match.group(1).strip().lower()
+                raw_arg = pred_match.group(2).strip()
+                if (
+                    (raw_arg.startswith('"') and raw_arg.endswith('"'))
+                    or (raw_arg.startswith("'") and raw_arg.endswith("'"))
+                ):
+                    raw_arg = raw_arg[1:-1]
+                options["predicate"] = predicate
+                options["predicate_arg"] = raw_arg
+            else:
+                eq_match = _AQL_EQ_RE.match(where_expr)
+                if eq_match:
+                    options["filter_key"] = eq_match.group(1).strip().lower()
+                    options["filter_value"] = eq_match.group(3).strip()
+                else:
+                    cmp_match = _AQL_CMP_RE.match(where_expr)
+                    if cmp_match:
+                        options["filter_key"] = cmp_match.group(1).strip().lower()
+                        options["filter_op"] = cmp_match.group(2)
+                        options["filter_value"] = cmp_match.group(3).strip()
+                    else:
+                        if re.match(r"^[a-zA-Z_][a-zA-Z0-9_]*$", where_expr):
+                            options["filter_key"] = where_expr.strip().lower()
+                            options["filter_value"] = "true"
+                        else:
+                            raise ValueError(
+                                f"Invalid AQL WHERE clause: {where_expr!r}. "
+                                "Expected predicate(arg), key=value, key<value, or a bare flag"
+                            )
+
+        return ParsedQuery(function="aql", options=options)
 
     m = _QUERY_RE.match(query_string)
     if not m:
@@ -709,7 +802,528 @@ def _dispatch_extended_query(func, query, index, depth, limit, project_root, gra
         )
         return result
 
+    if func == "aql":
+        return _execute_aql(query, index, project_root=project_root, limit=limit)
+
     return None
+
+
+def _is_service_node(node_id: str, index: IndexStore) -> bool:
+    data = index.get_node(node_id) or {}
+    arch_layer = str(data.get("arch_layer", "")).lower()
+    if arch_layer == "service":
+        return True
+    return node_id.endswith("Service") or "::" in node_id and node_id.split("::")[-1].endswith("Service")
+
+
+def _is_frontend_component_node(node_id: str, index: IndexStore) -> bool:
+    data = index.get_node(node_id) or {}
+    file_path = str(data.get("file", "")).lower()
+    return (
+        "/frontend/" in file_path
+        or "/src/components/" in file_path
+        or file_path.endswith(".tsx")
+        or file_path.endswith(".jsx")
+    )
+
+
+def _resolve_target_nodes(name_or_id: str, index: IndexStore) -> List[str]:
+    needle = name_or_id.strip()
+    if not needle:
+        return []
+
+    exact = index.get_node(needle)
+    if exact:
+        return [needle]
+
+    candidates = index.search_nodes(f"*{needle}*", limit=100)
+    if not candidates:
+        return []
+
+    exact_suffix = [n for n in candidates if n.endswith(f"::{needle}")]
+    if exact_suffix:
+        return exact_suffix
+    return candidates
+
+
+def _cache_namespace(project_root: Optional[Path]) -> str:
+    if project_root is None:
+        return "mem"
+    version_path = project_root / ".codegraph" / "graphs" / "version.json"
+    if not version_path.exists():
+        return str(project_root)
+    try:
+        version_data = json.loads(version_path.read_text(encoding="utf-8"))
+        graph_version = version_data.get("graph_version", version_data.get("version", 0))
+    except (json.JSONDecodeError, OSError):
+        graph_version = 0
+    return f"{project_root}:{graph_version}"
+
+
+def _cache_get(cache_name: str, key: str) -> Any:
+    return _AQL_CACHE.get(cache_name, {}).get(key)
+
+
+def _cache_put(cache_name: str, key: str, value: Any) -> None:
+    bucket = _AQL_CACHE.setdefault(cache_name, {})
+    if len(bucket) > 1024:
+        bucket.clear()
+    bucket[key] = value
+
+
+def _layer_of(node_id: str, index: IndexStore) -> str:
+    data = index.get_node(node_id) or {}
+    layer = str(data.get("arch_layer", "")).lower()
+    if layer:
+        return layer
+    file_path = str(data.get("file", "")).lower()
+    if "controller" in file_path or "/api/" in file_path or "/cli/" in file_path:
+        return "controller"
+    if "service" in file_path:
+        return "service"
+    if "repo" in file_path or "model" in file_path or "schema" in file_path:
+        return "repository"
+    return "domain"
+
+
+def _nodes_in_layer(index: IndexStore, layer_name: str, cache_key: str) -> List[str]:
+    key = f"{cache_key}:{layer_name}"
+    cached = _cache_get("layer_nodes", key)
+    if cached is not None:
+        return list(cached)
+    nodes = [node_id for node_id in index.get_all_node_ids() if _layer_of(node_id, index) == layer_name]
+    _cache_put("layer_nodes", key, nodes)
+    return nodes
+
+
+def _build_cycles(index: IndexStore, nodes: List[str], max_cycles: int = 100) -> List[str]:
+    node_set = set(nodes)
+    adjacency: Dict[str, List[str]] = {
+        node: [c for c in index.get_callees(node) if c in node_set]
+        for node in nodes
+    }
+
+    index_counter = 0
+    stack: List[str] = []
+    on_stack: Set[str] = set()
+    indices: Dict[str, int] = {}
+    lowlinks: Dict[str, int] = {}
+    sccs: List[List[str]] = []
+
+    def strongconnect(node: str) -> None:
+        nonlocal index_counter
+        indices[node] = index_counter
+        lowlinks[node] = index_counter
+        index_counter += 1
+        stack.append(node)
+        on_stack.add(node)
+
+        for callee in adjacency.get(node, []):
+            if callee not in indices:
+                strongconnect(callee)
+                lowlinks[node] = min(lowlinks[node], lowlinks[callee])
+            elif callee in on_stack:
+                lowlinks[node] = min(lowlinks[node], indices[callee])
+
+        if lowlinks[node] == indices[node]:
+            component: List[str] = []
+            while stack:
+                w = stack.pop()
+                on_stack.remove(w)
+                component.append(w)
+                if w == node:
+                    break
+            if len(component) > 1:
+                sccs.append(sorted(component))
+            elif component:
+                only = component[0]
+                if only in adjacency and only in adjacency[only]:
+                    sccs.append([only])
+
+    for node in nodes:
+        if node not in indices:
+            strongconnect(node)
+
+    cycle_strings: List[str] = []
+    for comp in sccs[:max_cycles]:
+        if len(comp) == 1:
+            cycle_strings.append(f"{comp[0]} -> {comp[0]}")
+        else:
+            cycle_strings.append(" -> ".join(comp + [comp[0]]))
+    return cycle_strings
+
+
+def _build_service_cycles(index: IndexStore, cache_key: str, max_cycles: int = 100) -> List[str]:
+    key = f"{cache_key}:service"
+    cached = _cache_get("service_cycles", key)
+    if cached is not None:
+        return list(cached)
+    service_nodes = [n for n in index.get_all_node_ids() if _is_service_node(n, index)]
+    cycles = _build_cycles(index, service_nodes, max_cycles=max_cycles)
+    _cache_put("service_cycles", key, cycles)
+    return cycles
+
+
+def _execute_aql(
+    query: ParsedQuery,
+    index: IndexStore,
+    *,
+    project_root: Optional[Path],
+    limit: Optional[int],
+) -> QueryResult:
+    subject = str(query.options.get("subject", "")).lower()
+    predicate = str(query.options.get("predicate", "")).lower()
+    predicate_arg = str(query.options.get("predicate_arg", ""))
+    filter_key = str(query.options.get("filter_key", "")).lower()
+    filter_op = str(query.options.get("filter_op", ""))
+    filter_value = str(query.options.get("filter_value", ""))
+    cache_key = _cache_namespace(project_root)
+
+    rendered = f"SELECT {subject}"
+    if predicate:
+        rendered += f" WHERE {predicate}({predicate_arg})"
+
+    result = QueryResult(function="aql", query=rendered)
+
+    subsystem_root = str(query.options.get("subsystem_root", ""))
+
+    if subject not in {"services", "frontend_components", "modules", "cycles", "events", "smells", "subsystem", "nodes", "violations", "subsystems"}:
+        raise ValueError(
+            "Unsupported AQL SELECT target. "
+            "Supported: services, frontend_components, modules, cycles, events, smells, subsystem, nodes, violations, subsystems"
+        )
+
+    if subject == "subsystem":
+        if filter_key != "root" or not filter_value:
+            raise ValueError("SELECT subsystem currently requires WHERE root=<node>")
+        if project_root is None:
+            raise ValueError("AQL subsystem query requires project_root")
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.subsystem_extractor import extract_subsystem
+
+        graph = ArchitectureGraph.load(project_root)
+        subsystem = extract_subsystem(graph, filter_value, depth=2, max_nodes=200)
+        metrics = subsystem.compute_metrics()
+        result.nodes = [f"{filter_value} ({metrics['nodes']} nodes, {metrics['edges']} edges)"]
+        result.total = 1
+        result.metadata["subsystem"] = {
+            "root": filter_value,
+            "nodes": metrics["nodes"],
+            "edges": metrics["edges"],
+            "boundary_nodes": len(subsystem.boundary_nodes),
+        }
+
+    elif subject == "nodes" and subsystem_root:
+        if project_root is None:
+            raise ValueError("AQL subsystem query requires project_root")
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.subsystem_extractor import extract_subsystem
+
+        graph = ArchitectureGraph.load(project_root)
+        subsystem = extract_subsystem(graph, subsystem_root, depth=2, max_nodes=200, project_root=project_root)
+        result.nodes = [str(node.get("id", "")) for node in subsystem.nodes]
+        result.total = len(result.nodes)
+        result.metadata["subsystem_root"] = subsystem_root
+
+    elif subject == "nodes" and filter_key == "drift":
+        if project_root is None:
+            raise ValueError("AQL drift query requires project_root")
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.architecture_drift import compute_architecture_drift
+        from codegraph.architecture_intent import load_architecture_intent
+        from codegraph.intent_validator import validate_architecture_intent
+
+        threshold = float(filter_value or "0")
+        graph = ArchitectureGraph.load(project_root)
+        intent = load_architecture_intent(project_root)
+        drift = compute_architecture_drift(graph, intent)
+        if drift.drift_score <= threshold:
+            result.nodes = []
+            result.total = 0
+        else:
+            report = validate_architecture_intent(graph, intent)
+            affected: Set[str] = set()
+            for violation in report.violations:
+                affected.add(str(violation.get("from_node", "")))
+                affected.add(str(violation.get("to_node", "")))
+            result.nodes = sorted(n for n in affected if n)
+            result.total = len(result.nodes)
+        result.metadata["drift_score"] = round(drift.drift_score, 4)
+        result.metadata["threshold"] = threshold
+
+    elif subject == "services":
+        if predicate != "depends_on" or not predicate_arg:
+            raise ValueError(
+                "SELECT services currently requires WHERE depends_on(<node_or_symbol>)"
+            )
+
+        targets = _resolve_target_nodes(predicate_arg, index)
+        if not targets:
+            result.message = f"No target nodes found for depends_on({predicate_arg})"
+            return result
+
+        dependents: Set[str] = set()
+        target_partitions: Set[str] = set()
+        partition_map: Dict[str, str] = {}
+        if project_root is not None:
+            try:
+                from codegraph.architecture_graph import ArchitectureGraph
+                from codegraph.graph_partitioning import load_or_build_partitions
+
+                graph = ArchitectureGraph.load(project_root)
+                partitions = load_or_build_partitions(project_root, graph)
+                partition_map = dict(partitions.node_to_partition)
+                for target in targets:
+                    pid = partition_map.get(target)
+                    if pid:
+                        target_partitions.add(pid)
+            except Exception:
+                partition_map = {}
+                target_partitions = set()
+
+        for target in targets:
+            dep_cache_key = f"{cache_key}:{target}"
+            cached_dependents = _cache_get("dependents", dep_cache_key)
+            if cached_dependents is None:
+                dep_result = query_dependents(target, index)
+                cached_dependents = dep_result.nodes
+                _cache_put("dependents", dep_cache_key, cached_dependents)
+            dependents.update(cached_dependents)
+
+        if partition_map and target_partitions:
+            local = {
+                node for node in dependents
+                if partition_map.get(node) in target_partitions
+            }
+            if local:
+                dependents = local
+
+        service_dependents = sorted(n for n in dependents if _is_service_node(n, index))
+        result.nodes = service_dependents
+        result.total = len(result.nodes)
+        result.metadata["targets"] = targets
+        if target_partitions:
+            result.metadata["target_partitions"] = sorted(target_partitions)
+
+    elif subject == "frontend_components":
+        if predicate != "calls_api" or not predicate_arg:
+            raise ValueError(
+                "SELECT frontend_components currently requires WHERE calls_api(<route>)"
+            )
+        if project_root is None:
+            raise ValueError("AQL calls_api requires project_root")
+
+        from codegraph.runtime_graph import load_runtime_graph
+
+        runtime_graph = load_runtime_graph(project_root)
+        if runtime_graph is None:
+            result.message = "No runtime graph found. Run 'codegraph build' first."
+            return result
+
+        matching_files: Set[str] = set()
+        route = predicate_arg
+        for edge in runtime_graph.edges:
+            if edge.edge_type not in {"fetch", "axios", "http_call", "frontend_to_backend"}:
+                continue
+            if edge.target == route or edge.target.endswith(route) or route in edge.target:
+                matching_files.add(edge.source_file)
+
+        frontend_nodes: List[str] = []
+        for node_id in index.get_all_node_ids():
+            data = index.get_node(node_id) or {}
+            file_path = str(data.get("file", ""))
+            if file_path in matching_files and _is_frontend_component_node(node_id, index):
+                frontend_nodes.append(node_id)
+
+        result.nodes = sorted(set(frontend_nodes))
+        result.total = len(result.nodes)
+        result.metadata["matched_files"] = sorted(matching_files)
+
+    elif subject == "modules":
+        if predicate != "in_layer" or not predicate_arg:
+            raise ValueError("SELECT modules currently requires WHERE in_layer(<layer_name>)")
+        modules = _nodes_in_layer(index, predicate_arg.lower(), cache_key)
+        result.nodes = sorted(modules)
+        result.total = len(result.nodes)
+        result.metadata["layer"] = predicate_arg.lower()
+
+    elif subject == "cycles":
+        if subsystem_root:
+            if project_root is None:
+                raise ValueError("AQL subsystem query requires project_root")
+            from codegraph.architecture_graph import ArchitectureGraph
+            from codegraph.subsystem_extractor import extract_subsystem
+
+            graph = ArchitectureGraph.load(project_root)
+            subsystem = extract_subsystem(graph, subsystem_root, depth=2, max_nodes=200, project_root=project_root)
+            cycle_count = int(subsystem.compute_metrics().get("cycle_count", 0))
+            if cycle_count:
+                result.nodes = [f"subsystem_cycle[{i + 1}] in {subsystem_root}" for i in range(cycle_count)]
+            else:
+                result.nodes = []
+            result.total = len(result.nodes)
+            result.metadata["subsystem_root"] = subsystem_root
+            result.metadata["layer"] = "subsystem"
+        else:
+            if predicate and predicate != "in_layer":
+                raise ValueError(
+                    "SELECT cycles supports optional WHERE in_layer(<layer_name>)"
+                )
+
+            layer_name = predicate_arg.lower() if predicate else "service"
+            if layer_name == "service":
+                cycles = _build_service_cycles(index, cache_key)
+            else:
+                layer_nodes = _nodes_in_layer(index, layer_name, cache_key)
+                cycles = _build_cycles(index, layer_nodes)
+            result.nodes = cycles
+            result.total = len(cycles)
+            result.metadata["layer"] = layer_name
+
+    elif subject == "events":
+        if predicate != "produced_by" or not predicate_arg:
+            raise ValueError("SELECT events currently requires WHERE produced_by(<service_or_node>)")
+        if project_root is None:
+            raise ValueError("AQL events query requires project_root")
+
+        from codegraph.runtime_graph import load_runtime_graph
+
+        runtime_graph = load_runtime_graph(project_root)
+        if runtime_graph is None:
+            result.message = "No runtime graph found. Run 'codegraph build' first."
+            return result
+
+        event_cache_key = f"{cache_key}:{predicate_arg}"
+        cached_events = _cache_get("events", event_cache_key)
+        if cached_events is None:
+            needle = predicate_arg.lower()
+            events = []
+            for edge in runtime_graph.edges:
+                if edge.edge_type not in {"event", "event_produce", "mq_publish", "websocket_event"}:
+                    continue
+                src = edge.source_node.lower()
+                if needle in src or src.endswith(f"::{needle}"):
+                    events.append(f"{edge.source_node} -> {edge.target}")
+            _cache_put("events", event_cache_key, events)
+            cached_events = events
+
+        result.nodes = list(cached_events)
+        result.total = len(result.nodes)
+
+    elif subject == "smells":
+        if filter_key != "type" or not filter_value:
+            raise ValueError("SELECT smells currently requires WHERE type=<smell_type>")
+        if project_root is None:
+            raise ValueError("AQL smell query requires project_root")
+
+        smells_path = project_root / ".codegraph" / "architecture" / "architecture_smells.json"
+        smell_entries: List[Dict[str, Any]] = []
+        if smells_path.exists():
+            try:
+                smell_entries = json.loads(smells_path.read_text(encoding="utf-8")).get("smells", [])
+            except (json.JSONDecodeError, OSError, AttributeError):
+                smell_entries = []
+
+        if not smell_entries:
+            from codegraph.architecture_graph import ArchitectureGraph
+            from codegraph.architecture_smells import detect_architecture_smells
+
+            arch_graph = ArchitectureGraph.load(project_root)
+            smell_entries = detect_architecture_smells(arch_graph, project_root).to_dict().get("smells", [])
+
+        selected = []
+        needle = filter_value.lower()
+        for smell in smell_entries:
+            smell_type = str(smell.get("smell_type", "")).lower()
+            if smell_type == needle:
+                location = smell.get("node", "")
+                selected.append(f"{smell_type}: {location}".rstrip(": "))
+
+        result.nodes = selected
+        result.total = len(result.nodes)
+
+    elif subject == "violations":
+        if project_root is None:
+            raise ValueError("AQL violations query requires project_root")
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.architecture_intent import load_architecture_intent
+        from codegraph.intent_validator import validate_architecture_intent
+
+        graph = ArchitectureGraph.load(project_root)
+        intent = load_architecture_intent(project_root)
+        report = validate_architecture_intent(graph, intent)
+
+        show_layer_rule_only = filter_key in {"layer_rule_broken", "rule", "type"}
+        entries = report.violations if show_layer_rule_only else report.violations
+        result.nodes = [
+            f"{v.get('from_node', '')} -> {v.get('to_node', '')}: {v.get('message', '')}"
+            for v in entries
+        ]
+        result.total = len(result.nodes)
+        result.metadata["layer_integrity_score"] = report.layer_integrity_score
+
+    elif subject == "subsystems":
+        if filter_key != "cohesion":
+            raise ValueError("SELECT subsystems currently supports WHERE cohesion <value>")
+        if not filter_op:
+            filter_op = "<"
+        threshold = float(filter_value or "0.4")
+        if project_root is None:
+            raise ValueError("AQL subsystem cohesion query requires project_root")
+
+        system_path = project_root / ".codegraph" / "architecture" / "system.json"
+        if not system_path.exists():
+            result.nodes = []
+            result.total = 0
+        else:
+            try:
+                system = json.loads(system_path.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                system = {}
+
+            from codegraph.architecture_graph import ArchitectureGraph
+            from codegraph.subsystem_extractor import extract_subsystem
+
+            graph = ArchitectureGraph.load(project_root)
+            selected: List[str] = []
+            for subsystem in system.get("subsystems", []):
+                name = str(subsystem.get("name", ""))
+                components = subsystem.get("components", [])
+                root_module = ""
+                if components:
+                    root_module = str(components[0].get("module", ""))
+                if not root_module:
+                    continue
+                root_node = ""
+                for node in graph.nodes:
+                    if str(node.get("file", "")) == root_module:
+                        root_node = str(node.get("id", ""))
+                        break
+                if not root_node:
+                    continue
+                sub = extract_subsystem(graph, root_node, depth=2, max_nodes=200, project_root=project_root)
+                metrics = sub.compute_metrics()
+                cohesion = float(metrics.get("edges", 0))
+                cohesion = 0.0 if cohesion == 0 else max(0.0, 1.0 - (metrics.get("external_dependencies", 0) / max(1, metrics.get("edges", 1))))
+
+                match = (
+                    (filter_op == "<" and cohesion < threshold)
+                    or (filter_op == "<=" and cohesion <= threshold)
+                    or (filter_op == ">" and cohesion > threshold)
+                    or (filter_op == ">=" and cohesion >= threshold)
+                )
+                if match:
+                    selected.append(f"{name}: cohesion={cohesion:.3f}")
+
+            result.nodes = selected
+            result.total = len(result.nodes)
+            result.metadata["cohesion_threshold"] = threshold
+
+    if limit and len(result.nodes) > limit:
+        result.nodes = result.nodes[:limit]
+        result.truncated = True
+
+    return result
 
 
 def execute_query(

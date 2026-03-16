@@ -26,6 +26,7 @@ from codegraph.models.agent_response import (
 from codegraph.models.graph0 import Graph0
 from codegraph.models.graph1 import Graph1
 from codegraph.models.workflow import Workflow
+from codegraph.services import GraphStore, IndexService
 from codegraph.storage import resolve_path
 from codegraph.utils.formatting import iso_now
 from codegraph.apply_handlers import (
@@ -339,7 +340,7 @@ def _update_graph1_after_apply(
 
         if ar.action == "remove_dead_code":
             # Remove from Graph_1
-            graph1.remove_node(node_id)
+            graph1.remove_intent_node(node_id)
             continue
 
         if g0_node and g1_node:
@@ -465,7 +466,6 @@ def _prepare_apply(
     skip_plan_check: bool = False,
 ) -> Tuple[Set[Path], Dict[Path, Path]]:
     """Validate version, acquire lock, collect files, check conflicts, create backups."""
-    _validate_and_gate(response, project_root, dry_run, skip_plan_check)
 
     if not dry_run:
         _acquire_lock(project_root)
@@ -598,6 +598,166 @@ def _finalize_apply(
         _cleanup_backups(backups)
 
 
+class BackupManager:
+    """Backup/undo operations for apply lifecycle."""
+
+    def create(self, files_to_modify: Set[Path], project_root: Path) -> Dict[Path, Path]:
+        return _create_backups(files_to_modify, project_root)
+
+    def restore(self, mapping: Dict[Path, Path]) -> None:
+        _restore_backups(mapping)
+
+    def cleanup(self, mapping: Dict[Path, Path]) -> None:
+        _cleanup_backups(mapping)
+
+    def save_undo(self, project_root: Path, backups: Dict[Path, Path], result: ApplyResult) -> None:
+        _save_undo(project_root, backups, result)
+
+
+class ValidationService:
+    """Validation and gating checks for apply lifecycle."""
+
+    def validate_and_gate(
+        self,
+        response: AgentResponse,
+        project_root: Path,
+        *,
+        dry_run: bool,
+        skip_plan_check: bool,
+    ) -> None:
+        _validate_and_gate(response, project_root, dry_run, skip_plan_check)
+
+    def validate_modified_files(self, files: Set[str], project_root: Path) -> List[str]:
+        return _validate_modified_files(files, project_root)
+
+
+class RepairDispatcher:
+    """Dispatches repair actions to handlers."""
+
+    def dispatch(
+        self,
+        response: AgentResponse,
+        project_root: Path,
+        graph0: Graph0,
+        graph1: Graph1,
+        workflow: Workflow,
+        result: ApplyResult,
+        *,
+        index: Any = None,
+        dry_run: bool = False,
+    ) -> None:
+        _dispatch_repairs(
+            response,
+            project_root,
+            graph0,
+            graph1,
+            workflow,
+            result,
+            index=index,
+            dry_run=dry_run,
+        )
+
+
+class GraphUpdater:
+    """Applies post-dispatch graph and metadata updates."""
+
+    def finalize(
+        self,
+        result: ApplyResult,
+        response: AgentResponse,
+        project_root: Path,
+        graph0: Graph0,
+        graph1: Graph1,
+        backups: Dict[Path, Path],
+        *,
+        dry_run: bool = False,
+    ) -> None:
+        _finalize_apply(
+            result,
+            response,
+            project_root,
+            graph0,
+            graph1,
+            backups,
+            dry_run=dry_run,
+        )
+
+
+class ApplyEngine:
+    """Orchestrates apply workflow using specialized components."""
+
+    def __init__(
+        self,
+        project_root: Path,
+        graph0: Graph0,
+        graph1: Graph1,
+        workflow: Workflow,
+        *,
+        index: Any = None,
+    ) -> None:
+        self.project_root = project_root
+        self.graph0 = graph0
+        self.graph1 = graph1
+        self.workflow = workflow
+        self.index = index
+        self.backup_manager = BackupManager()
+        self.validation_service = ValidationService()
+        self.dispatcher = RepairDispatcher()
+        self.graph_updater = GraphUpdater()
+
+    def apply(
+        self,
+        response: AgentResponse,
+        *,
+        dry_run: bool = False,
+        skip_plan_check: bool = False,
+    ) -> ApplyResult:
+        result = ApplyResult(dry_run=dry_run)
+
+        self.validation_service.validate_and_gate(
+            response, self.project_root, dry_run=dry_run,
+            skip_plan_check=skip_plan_check,
+        )
+
+        files_to_modify, backups = _prepare_apply(
+            response,
+            self.project_root,
+            self.graph0,
+            dry_run=dry_run,
+            skip_plan_check=skip_plan_check,
+        )
+
+        if not dry_run and files_to_modify and not backups:
+            backups = self.backup_manager.create(files_to_modify, self.project_root)
+
+        try:
+            self.dispatcher.dispatch(
+                response,
+                self.project_root,
+                self.graph0,
+                self.graph1,
+                self.workflow,
+                result,
+                index=self.index,
+                dry_run=dry_run,
+            )
+
+            self.graph_updater.finalize(
+                result,
+                response,
+                self.project_root,
+                self.graph0,
+                self.graph1,
+                backups,
+                dry_run=dry_run,
+            )
+        finally:
+            if not dry_run:
+                _release_lock(self.project_root)
+
+        return result
+
+
 def apply_response(
     response: AgentResponse,
     project_root: Path,
@@ -614,29 +774,18 @@ def apply_response(
     Dispatches each repair action to its handler.  Supports dry_run (J-011).
     Uses transaction management (J-009) and lock file (J-010).
     """
-    result = ApplyResult(dry_run=dry_run)
-
-    _files_to_modify, backups = _prepare_apply(
-        response, project_root, graph0, dry_run=dry_run,
+    engine = ApplyEngine(
+        project_root,
+        graph0,
+        graph1,
+        workflow,
+        index=index,
+    )
+    return engine.apply(
+        response,
+        dry_run=dry_run,
         skip_plan_check=skip_plan_check,
     )
-
-    try:
-        _dispatch_repairs(
-            response, project_root, graph0, graph1, workflow, result,
-            index=index, dry_run=dry_run,
-        )
-
-        _finalize_apply(
-            result, response, project_root, graph0, graph1, backups,
-            dry_run=dry_run,
-        )
-
-    finally:
-        if not dry_run:
-            _release_lock(project_root)
-
-    return result
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -652,23 +801,21 @@ def run_apply(
     skip_plan_check: bool = False,
 ) -> ApplyResult:
     """Load agent response and apply it (CLI entry point)."""
-    from codegraph.extractor import load_graph0
-    from codegraph.annotator import load_graph1
-    from codegraph.workflow import load_workflow
-
     text = response_file.read_text(encoding="utf-8")
     response = AgentResponse.from_json(text)
 
-    graph0 = load_graph0(project_root)
-    graph1 = load_graph1(project_root)
-    workflow = load_workflow(project_root)
+    store = GraphStore(project_root)
+    graph0 = store.load_graph0()
+    graph1 = store.load_graph1()
+    workflow = store.load_workflow()
 
-    index = None
+    index_service = IndexService(project_root)
+    index: Any = None
     try:
-        from codegraph.index import IndexStore
-        index = IndexStore(project_root)
+        index = index_service
+        index.get_node("__codegraph_health_check__")
     except FileNotFoundError:
-        pass
+        index = None
 
     result = apply_response(
         response, project_root, graph0, graph1, workflow,
@@ -677,6 +824,6 @@ def run_apply(
     )
 
     if index is not None:
-        index.close()
+        index_service.close()
 
     return result

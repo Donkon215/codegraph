@@ -605,7 +605,7 @@ def _migrate_renames(
         for node in to_migrate:
             new_id = node.id.replace(old_path + "::", new_path + "::", 1)
             # Remove old, add with new ID
-            graph1.remove_node(node.id)
+            graph1.remove_intent_node(node.id)
             node.id = new_id
             graph1.upsert_node(node)
             migrated += 1

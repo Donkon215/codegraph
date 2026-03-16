@@ -217,10 +217,13 @@ class Graph1:
             self.nodes.append(node)
             self._index[node.id] = node
 
-    def remove_node(self, node_id: str) -> None:
+    def remove_intent_node(self, node_id: str) -> None:
         if node_id in self._index:
             self.nodes = [n for n in self.nodes if n.id != node_id]
             del self._index[node_id]
+
+    # Backward-compatible alias
+    remove_node = remove_intent_node
 
     # ── Serialization ─────────────────────────────────────────────────
 

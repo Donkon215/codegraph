@@ -27,10 +27,14 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from codegraph.copilot_context import CopilotContext, build_copilot_context
+from codegraph.copilot_context import CONTEXT_DIR, CopilotContext, build_copilot_context
 from codegraph.logging_config import get_logger
 
 logger = get_logger("copilot_context_builder")
+
+MAX_CONTEXT_BYTES = 100 * 1024
+PUBLISHED_CONTEXT_FILE = "copilot_context.json"
+STAGED_CONTEXT_FILE = "copilot_context.staged.json"
 
 
 @dataclass
@@ -94,6 +98,16 @@ class EnrichedCopilotContext:
     proof_status: Dict[str, Any] = field(default_factory=dict)
     refactor_budget: Dict[str, int] = field(default_factory=dict)
     authority_levels: Dict[str, List[str]] = field(default_factory=dict)
+    architecture_queries: List[str] = field(default_factory=list)
+    refactor_suggestions: List[Dict[str, Any]] = field(default_factory=list)
+    architecture_stability: Dict[str, Any] = field(default_factory=dict)
+    architecture_patterns: Dict[str, Any] = field(default_factory=dict)
+    architecture_violations: List[Dict[str, Any]] = field(default_factory=list)
+    subsystem_context: Dict[str, Any] = field(default_factory=dict)
+    architecture_intent_summary: Dict[str, Any] = field(default_factory=dict)
+    layer_rules: List[Dict[str, Any]] = field(default_factory=list)
+    top_violations: List[str] = field(default_factory=list)
+    suggested_refactor: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         d = self.base_context.to_dict()
@@ -107,10 +121,73 @@ class EnrichedCopilotContext:
             d["refactor_budget"] = self.refactor_budget
         if self.authority_levels:
             d["authority_levels"] = self.authority_levels
+        if self.architecture_queries:
+            d["architecture_queries"] = self.architecture_queries
+        if self.refactor_suggestions:
+            d["refactor_suggestions"] = self.refactor_suggestions
+        if self.architecture_stability:
+            d["architecture_stability"] = self.architecture_stability
+        if self.architecture_patterns:
+            d["architecture_patterns"] = self.architecture_patterns
+        if self.architecture_violations:
+            d["architecture_violations"] = self.architecture_violations
+        if self.subsystem_context:
+            d["subsystem_context"] = self.subsystem_context
+        if self.architecture_intent_summary:
+            d["architecture_intent_summary"] = self.architecture_intent_summary
+        if self.layer_rules:
+            d["layer_rules"] = self.layer_rules
+        if self.top_violations:
+            d["top_violations"] = self.top_violations
+        if self.suggested_refactor:
+            d["suggested_refactor"] = self.suggested_refactor
         return d
 
     def save(self, project_root: Path) -> Path:
-        return self.base_context.save(project_root)
+        context_dir = project_root / ".codegraph" / CONTEXT_DIR
+        context_dir.mkdir(parents=True, exist_ok=True)
+
+        payload = _build_capped_payload(self)
+        staged_path = context_dir / STAGED_CONTEXT_FILE
+        staged_path.write_text(
+            json.dumps(payload, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+
+        publish_status_path = context_dir / "copilot_context_publish_status.json"
+        publish_status = {
+            "published": False,
+            "reason": "proof_not_proven_safe",
+            "proof_status": self.proof_status.get("status", "UNKNOWN"),
+            "staged_path": str(staged_path),
+            "size_bytes": len(json.dumps(payload, ensure_ascii=False).encode("utf-8")),
+        }
+
+        if _is_proven_safe(self.proof_status):
+            published_path = context_dir / PUBLISHED_CONTEXT_FILE
+            published_path.write_text(
+                json.dumps(payload, indent=2, ensure_ascii=False),
+                encoding="utf-8",
+            )
+            publish_status = {
+                "published": True,
+                "reason": "proof_proven_safe",
+                "proof_status": self.proof_status.get("status", "UNKNOWN"),
+                "published_path": str(published_path),
+                "staged_path": str(staged_path),
+                "size_bytes": len(json.dumps(payload, ensure_ascii=False).encode("utf-8")),
+            }
+            publish_status_path.write_text(
+                json.dumps(publish_status, indent=2, ensure_ascii=False),
+                encoding="utf-8",
+            )
+            return published_path
+
+        publish_status_path.write_text(
+            json.dumps(publish_status, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        return staged_path
 
     def format(self) -> str:
         lines = [self.base_context.format()]
@@ -145,10 +222,23 @@ class EnrichedCopilotContext:
             for k, v in self.refactor_budget.items():
                 lines.append(f"  {k}: {v}")
 
+        if self.refactor_suggestions:
+            lines.append(f"\nRefactor Suggestions: {len(self.refactor_suggestions)}")
+        if self.architecture_patterns:
+            primary = self.architecture_patterns.get("primary_pattern", "unknown")
+            lines.append(f"Architecture Pattern: {primary}")
+        if self.architecture_violations:
+            lines.append(f"Architecture Violations: {len(self.architecture_violations)}")
+
         return "\n".join(lines)
 
 
-def build_enriched_context(project_root: Path) -> EnrichedCopilotContext:
+def build_enriched_context(
+    project_root: Path,
+    *,
+    affected_node: str = "",
+    affected_file: str = "",
+) -> EnrichedCopilotContext:
     """Build a full architecture-aware context for Copilot.
 
     Combines the base CopilotContext with graph metrics,
@@ -197,7 +287,200 @@ def build_enriched_context(project_root: Path) -> EnrichedCopilotContext:
                    "modify_constraints", "modify_subsystem_edges"],
     }
 
+    # 8. Common architecture queries
+    ctx.architecture_queries = [
+        "SELECT services WHERE depends_on(PaymentService)",
+        "SELECT frontend_components WHERE calls_api('/api/orders')",
+        "SELECT modules WHERE in_layer(service)",
+        "SELECT cycles WHERE in_layer(service)",
+        "SELECT events WHERE produced_by(OrderService)",
+        "SELECT smells WHERE type='god_module'",
+    ]
+
+    # 9. Refactor suggestions and structured violations
+    try:
+        from codegraph.architecture_refactor_planner import generate_refactor_plan
+
+        plan = generate_refactor_plan(project_root, max_items=8)
+        ctx.refactor_suggestions = plan.get("refactor_plan", [])
+        ctx.architecture_violations = plan.get("architecture_violations", [])
+    except Exception:
+        ctx.refactor_suggestions = []
+        ctx.architecture_violations = []
+
+    # 10. Architecture stability (churn)
+    ctx.architecture_stability = _build_architecture_stability(project_root)
+
+    # 11. Pattern summary
+    ctx.architecture_patterns = _load_architecture_patterns(project_root)
+
+    # 12. Optional subsystem-aware context (best-effort)
+    ctx.subsystem_context = _build_subsystem_context(
+        project_root,
+        affected_node=affected_node,
+        affected_file=affected_file,
+    )
+
+    # 13. Intent + guardrail summary
+    intent_ctx = _build_intent_context(
+        project_root,
+        affected_node=affected_node,
+        affected_file=affected_file,
+    )
+    ctx.architecture_intent_summary = intent_ctx.get("architecture_intent_summary", {})
+    ctx.layer_rules = intent_ctx.get("layer_rules", [])
+    ctx.top_violations = intent_ctx.get("top_violations", [])
+    ctx.suggested_refactor = intent_ctx.get("suggested_refactor", "")
+    if intent_ctx.get("guardrail"):
+        ctx.subsystem_context["guardrail"] = intent_ctx["guardrail"]
+
     return ctx
+
+
+def validate_copilot_architecture_edit(
+    project_root: Path,
+    *,
+    affected_node: str = "",
+    affected_file: str = "",
+) -> Dict[str, Any]:
+    try:
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.architecture_intent import load_architecture_intent
+        from codegraph.intent_validator import validate_architecture_intent
+        from codegraph.subsystem_extractor import extract_subsystem
+
+        graph = ArchitectureGraph.load(project_root)
+        if not graph.nodes:
+            return {"allowed": True, "violations": []}
+
+        node_id = affected_node.strip()
+        if not node_id and affected_file:
+            normalized = affected_file.replace("\\", "/")
+            for node in graph.nodes:
+                if str(node.get("file", "")) == normalized:
+                    node_id = str(node.get("id", ""))
+                    break
+        if not node_id:
+            node_id = str(graph.nodes[0].get("id", ""))
+
+        extract_subsystem(graph, node_id, depth=2, max_nodes=200, project_root=project_root)
+        intent = load_architecture_intent(project_root)
+        report = validate_architecture_intent(graph, intent)
+
+        if report.violations:
+            first = report.violations[0]
+            return {
+                "allowed": False,
+                "error": "architecture_violation",
+                "violations": report.violations,
+                "message": first.get("message", "Architecture rule violated"),
+                "suggested_fix": "Controller -> Service -> Repository",
+            }
+
+        return {"allowed": True, "violations": []}
+    except Exception:
+        return {"allowed": True, "violations": []}
+
+
+def _build_intent_context(
+    project_root: Path,
+    *,
+    affected_node: str = "",
+    affected_file: str = "",
+) -> Dict[str, Any]:
+    try:
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.architecture_intent import load_architecture_intent
+        from codegraph.intent_validator import validate_architecture_intent
+
+        graph = ArchitectureGraph.load(project_root)
+        intent = load_architecture_intent(project_root)
+        report = validate_architecture_intent(graph, intent)
+        guardrail = validate_copilot_architecture_edit(
+            project_root,
+            affected_node=affected_node,
+            affected_file=affected_file,
+        )
+
+        layer_rules = [
+            {
+                "from": str(rule.get("from", "")),
+                "to": str(rule.get("to", "")),
+                "allowed": bool(rule.get("allowed", False)),
+            }
+            for rule in intent.rules[:50]
+        ]
+
+        top_violations = [
+            f"{v.get('from_node', '')} -> {v.get('to_node', '')}: {v.get('message', '')}"
+            for v in report.violations[:10]
+        ]
+
+        return {
+            "architecture_intent_summary": {
+                "layers": sorted(intent.layers.keys()),
+                "rule_count": len(intent.rules),
+                "subsystem_rule_count": len(intent.subsystem_rules),
+            },
+            "layer_rules": layer_rules,
+            "top_violations": top_violations,
+            "suggested_refactor": "Introduce Service/Repository boundary for violating edges" if top_violations else "",
+            "guardrail": guardrail,
+        }
+    except Exception:
+        return {}
+
+
+def _build_subsystem_context(
+    project_root: Path,
+    *,
+    affected_node: str = "",
+    affected_file: str = "",
+) -> Dict[str, Any]:
+    try:
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.graph_partitioning import load_or_build_partitions
+        from codegraph.subsystem_extractor import extract_subsystem
+        from codegraph.subsystem_context_builder import build_subsystem_context
+
+        graph = ArchitectureGraph.load(project_root)
+        if not graph.nodes:
+            return {}
+
+        root_node = affected_node.strip()
+        if not root_node and affected_file:
+            target_file = affected_file.replace("\\", "/")
+            for node in graph.nodes:
+                if str(node.get("file", "")) == target_file:
+                    root_node = str(node.get("id", ""))
+                    break
+        if not root_node:
+            root_node = str(graph.nodes[0].get("id", ""))
+        if not root_node:
+            return {}
+
+        subsystem = extract_subsystem(graph, root_node, depth=2, max_nodes=200, project_root=project_root)
+        subsystem_context = build_subsystem_context(project_root, root_node, depth=2, max_nodes=200)
+        partitions = load_or_build_partitions(project_root, graph)
+        partition = partitions.partition_for_node(root_node)
+
+        return {
+            "subsystem": root_node,
+            "partition": {
+                "id": partition.id if partition else "",
+                "nodes": len(partition.nodes) if partition else 0,
+                "boundary_nodes": len(partition.boundary_nodes) if partition else 0,
+            },
+            "architecture_slice": {
+                "nodes": len(subsystem.nodes),
+                "edges": len(subsystem.edges),
+                "boundary_nodes": len(subsystem.boundary_nodes),
+            },
+            "smells": subsystem_context.smells[:10],
+            "refactor_options": subsystem_context.refactor_suggestions[:5],
+        }
+    except Exception:
+        return {}
 
 
 def _build_graph_summary(project_root: Path) -> GraphSummary:
@@ -337,3 +620,228 @@ def _load_refactor_budget(project_root: Path) -> Dict[str, int]:
         "max_nodes_added": 15,
         "max_nodes_removed": 10,
     }
+
+
+def _build_architecture_stability(project_root: Path) -> Dict[str, Any]:
+    graph0_path = project_root / ".codegraph" / "graphs" / "graph0.json"
+    graph1_path = project_root / ".codegraph" / "graphs" / "graph1.json"
+    history_path = project_root / ".codegraph" / "architecture" / "architecture_history.json"
+
+    changed_nodes = 0
+    top_churn_modules: List[Dict[str, Any]] = []
+
+    try:
+        g0 = json.loads(graph0_path.read_text(encoding="utf-8")) if graph0_path.exists() else {}
+        g1 = json.loads(graph1_path.read_text(encoding="utf-8")) if graph1_path.exists() else {}
+        g0_nodes = {n.get("id", ""): n for n in g0.get("nodes", [])}
+        g1_nodes = g1.get("nodes", [])
+
+        churn_by_module: Dict[str, int] = {}
+        for node in g1_nodes:
+            node_id = node.get("id", "")
+            if not node_id:
+                continue
+            g0_node = g0_nodes.get(node_id)
+            if not g0_node:
+                continue
+            if node.get("intent_body_hash", "") and node.get("intent_body_hash", "") != g0_node.get("body_hash", ""):
+                changed_nodes += 1
+                module = node_id.split("::", 1)[0]
+                churn_by_module[module] = churn_by_module.get(module, 0) + 1
+
+        top_churn_modules = [
+            {"module": module, "changes": count}
+            for module, count in sorted(churn_by_module.items(), key=lambda x: -x[1])[:10]
+        ]
+    except Exception:
+        pass
+
+    score_trend: Dict[str, Any] = {}
+    if history_path.exists():
+        try:
+            history = json.loads(history_path.read_text(encoding="utf-8"))
+            entries = history.get("entries", [])
+            if entries:
+                last = entries[-1]
+                prev = entries[-2] if len(entries) >= 2 else None
+                score_trend = {
+                    "latest_cycles": last.get("cycles_count", 0),
+                    "latest_coupling_index": last.get("coupling_index", 0.0),
+                    "delta_cycles": (last.get("cycles_count", 0) - prev.get("cycles_count", 0)) if prev else 0,
+                }
+        except Exception:
+            pass
+
+    return {
+        "changed_intent_nodes": changed_nodes,
+        "top_churn_modules": top_churn_modules,
+        "score_trend": score_trend,
+    }
+
+
+def _load_architecture_patterns(project_root: Path) -> Dict[str, Any]:
+    pattern_path = project_root / ".codegraph" / "architecture" / "architecture_patterns.json"
+    if not pattern_path.exists():
+        return {}
+    try:
+        data = json.loads(pattern_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+    patterns = data.get("patterns", [])
+    compact_patterns = [
+        {
+            "architecture_type": p.get("architecture_type", ""),
+            "confidence": p.get("confidence", 0.0),
+            "consistency": p.get("consistency", 0.0),
+        }
+        for p in patterns[:10]
+    ]
+
+    return {
+        "primary_pattern": data.get("primary_pattern", "unknown"),
+        "patterns": compact_patterns,
+    }
+
+
+def _is_proven_safe(proof_status: Dict[str, Any]) -> bool:
+    return str(proof_status.get("status", "")).strip().upper() == "PROVEN_SAFE"
+
+
+def _build_capped_payload(ctx: EnrichedCopilotContext) -> Dict[str, Any]:
+    payload = ctx.to_dict()
+    payload["intelligence_summary"] = _summarize_intelligence(ctx)
+
+    _apply_base_caps(payload)
+    payload = _shrink_to_size(payload, MAX_CONTEXT_BYTES)
+    payload["publish_constraints"] = {
+        "max_bytes": MAX_CONTEXT_BYTES,
+        "proof_required": "PROVEN_SAFE",
+        "actual_bytes": len(json.dumps(payload, ensure_ascii=False).encode("utf-8")),
+    }
+    return payload
+
+
+def _summarize_intelligence(ctx: EnrichedCopilotContext) -> Dict[str, Any]:
+    base = ctx.base_context
+
+    smells = [
+        {
+            "type": s.get("smell_type", ""),
+            "severity": s.get("severity", ""),
+            "where": s.get("location", s.get("module", "")),
+        }
+        for s in base.architecture_smells[:20]
+    ]
+
+    policies = [
+        {
+            "policy_id": p.get("policy_id", ""),
+            "name": p.get("name", ""),
+            "action": p.get("action", ""),
+        }
+        for p in base.active_policies[:20]
+    ]
+
+    refactors = [
+        {
+            "strategy": r.get("strategy", ""),
+            "targets": r.get("target_modules", [])[:4],
+            "risk": r.get("risk", r.get("risk_estimate", "")),
+        }
+        for r in base.recommended_refactors[:20]
+    ]
+
+    rankings = [
+        {
+            "strategy": s.get("strategy", ""),
+            "effectiveness": s.get("effectiveness", 0),
+        }
+        for s in base.strategy_rankings[:20]
+    ]
+
+    return {
+        "smells": smells,
+        "active_policies": policies,
+        "recommended_refactors": refactors,
+        "strategy_rankings": rankings,
+        "refactor_suggestions": ctx.refactor_suggestions[:10],
+        "architecture_patterns": ctx.architecture_patterns,
+        "stability": ctx.architecture_stability,
+        "architecture_violations": ctx.architecture_violations[:20],
+    }
+
+
+def _apply_base_caps(payload: Dict[str, Any]) -> None:
+    if "active_tasks" in payload and isinstance(payload["active_tasks"], list):
+        payload["active_tasks"] = payload["active_tasks"][:50]
+
+    if "recent_decisions" in payload and isinstance(payload["recent_decisions"], list):
+        payload["recent_decisions"] = payload["recent_decisions"][:25]
+
+    if "architecture_smells" in payload and isinstance(payload["architecture_smells"], list):
+        payload["architecture_smells"] = payload["architecture_smells"][:50]
+
+    if "recommended_refactors" in payload and isinstance(payload["recommended_refactors"], list):
+        payload["recommended_refactors"] = payload["recommended_refactors"][:25]
+
+    if "strategy_rankings" in payload and isinstance(payload["strategy_rankings"], list):
+        payload["strategy_rankings"] = payload["strategy_rankings"][:25]
+
+    if "active_policies" in payload and isinstance(payload["active_policies"], list):
+        payload["active_policies"] = payload["active_policies"][:50]
+
+    if "refactor_suggestions" in payload and isinstance(payload["refactor_suggestions"], list):
+        payload["refactor_suggestions"] = payload["refactor_suggestions"][:15]
+
+    if "architecture_violations" in payload and isinstance(payload["architecture_violations"], list):
+        payload["architecture_violations"] = payload["architecture_violations"][:25]
+
+
+def _shrink_to_size(payload: Dict[str, Any], max_bytes: int) -> Dict[str, Any]:
+    def size_of(data: Dict[str, Any]) -> int:
+        return len(json.dumps(data, ensure_ascii=False).encode("utf-8"))
+
+    if size_of(payload) <= max_bytes:
+        return payload
+
+    keys_to_trim = [
+        "active_tasks",
+        "recent_decisions",
+        "architecture_smells",
+        "recommended_refactors",
+        "strategy_rankings",
+        "active_policies",
+        "policy_rules",
+        "refactor_suggestions",
+        "architecture_violations",
+        "architecture_queries",
+    ]
+
+    shrunk = dict(payload)
+    for key in keys_to_trim:
+        value = shrunk.get(key)
+        if not isinstance(value, list) or len(value) <= 5:
+            continue
+
+        current = value
+        while len(current) > 5 and size_of(shrunk) > max_bytes:
+            current = current[: max(5, len(current) // 2)]
+            shrunk[key] = current
+
+        if size_of(shrunk) <= max_bytes:
+            break
+
+    if size_of(shrunk) > max_bytes:
+        shrunk["active_tasks"] = []
+        shrunk["recent_decisions"] = []
+        shrunk["architecture_smells"] = []
+        shrunk["recommended_refactors"] = []
+        shrunk["strategy_rankings"] = []
+        shrunk["active_policies"] = []
+        shrunk["policy_rules"] = []
+        shrunk["refactor_suggestions"] = []
+        shrunk["architecture_violations"] = []
+        shrunk["architecture_queries"] = []
+
+    return shrunk

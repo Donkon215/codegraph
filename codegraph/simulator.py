@@ -794,3 +794,191 @@ def _score_candidate(result: SimulationResult) -> float:
     score += len(result.improvements) * 0.1
     score -= result.blast_radius / 100.0
     return max(0.0, score)
+
+
+@dataclass
+class MigrationSimulationResult:
+    """Result for a high-level architecture migration simulation."""
+
+    before_score: float = 0.0
+    after_score: float = 0.0
+    score_delta: float = 0.0
+    new_cycles: int = 0
+    layer_violations: int = 0
+    coupling_index: float = 0.0
+    affected_nodes: List[str] = field(default_factory=list)
+    risk_level: str = RISK_SAFE
+    summary: str = ""
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "before_score": round(self.before_score, 4),
+            "after_score": round(self.after_score, 4),
+            "score_delta": round(self.score_delta, 4),
+            "new_cycles": self.new_cycles,
+            "layer_violations": self.layer_violations,
+            "coupling_index": round(self.coupling_index, 4),
+            "affected_nodes": self.affected_nodes,
+            "risk_level": self.risk_level,
+            "summary": self.summary,
+        }
+
+
+def _module_edge_examples(index: IndexStore) -> Dict[Tuple[str, str], Tuple[str, str]]:
+    examples: Dict[Tuple[str, str], Tuple[str, str]] = {}
+    conn = index._get_conn()
+    for source, target in conn.execute("SELECT node_id, callee_id FROM callees").fetchall():
+        source_module = _node_to_module(source)
+        target_module = _node_to_module(target)
+        if source_module == target_module:
+            continue
+        key = (source_module, target_module)
+        if key not in examples:
+            examples[key] = (source, target)
+    return examples
+
+
+def _score_with_simulation_delta(project_root: Optional[Path], coupling_delta: float) -> Tuple[float, float]:
+    if project_root is None:
+        return 0.0, max(0.0, -coupling_delta)
+    from codegraph.architecture_score import compute_score
+
+    before = compute_score(project_root).score
+    estimated_delta = max(0.0, -coupling_delta)
+    after = max(0.0, min(1.0, before + estimated_delta))
+    return before, after
+
+
+def _migration_from_simulation(
+    sim_result: SimulationResult,
+    *,
+    affected_nodes: List[str],
+    project_root: Optional[Path] = None,
+) -> MigrationSimulationResult:
+    before_score, after_score = _score_with_simulation_delta(project_root, sim_result.coupling_delta)
+    layer_violations = len(
+        [violation for violation in sim_result.violations if violation.violation_type == "layer_violation"]
+    )
+    return MigrationSimulationResult(
+        before_score=before_score,
+        after_score=after_score,
+        score_delta=after_score - before_score,
+        new_cycles=sim_result.new_cycle_count,
+        layer_violations=layer_violations,
+        coupling_index=sim_result.coupling_delta,
+        affected_nodes=affected_nodes,
+        risk_level=sim_result.risk_level,
+        summary=sim_result.summary,
+    )
+
+
+def simulate_subsystem_extraction(
+    index: IndexStore,
+    subsystem_modules: List[str],
+    *,
+    project_root: Optional[Path] = None,
+) -> MigrationSimulationResult:
+    """Simulate extraction of a subsystem by removing one cross-boundary edge."""
+    module_edges = _module_edge_examples(index)
+    module_set = set(subsystem_modules)
+    changes: List[SimulatedChange] = []
+    for (source_module, target_module), (source, target) in module_edges.items():
+        in_source = source_module in module_set
+        in_target = target_module in module_set
+        if in_source != in_target:
+            changes.append(
+                SimulatedChange(
+                    action="remove_edge",
+                    source=source,
+                    target=target,
+                    reason="simulate subsystem extraction boundary",
+                )
+            )
+            break
+
+    sim_result = simulate_changes(changes, index)
+    return _migration_from_simulation(
+        sim_result,
+        affected_nodes=subsystem_modules,
+        project_root=project_root,
+    )
+
+
+def simulate_layer_restructure(
+    index: IndexStore,
+    source_module: str,
+    target_module: str,
+    *,
+    project_root: Optional[Path] = None,
+) -> MigrationSimulationResult:
+    """Simulate layer restructuring by removing a problematic cross-layer edge."""
+    module_edges = _module_edge_examples(index)
+    pair = module_edges.get((source_module, target_module))
+    changes: List[SimulatedChange] = []
+    if pair:
+        changes.append(
+            SimulatedChange(
+                action="remove_edge",
+                source=pair[0],
+                target=pair[1],
+                reason="simulate layer hierarchy restructure",
+            )
+        )
+
+    sim_result = simulate_changes(changes, index, layer_rules=DEFAULT_LAYER_RULES)
+    return _migration_from_simulation(
+        sim_result,
+        affected_nodes=[source_module, target_module],
+        project_root=project_root,
+    )
+
+
+def simulate_service_boundary(
+    index: IndexStore,
+    service_modules: List[str],
+    *,
+    project_root: Optional[Path] = None,
+) -> MigrationSimulationResult:
+    """Simulate introducing a service boundary using subsystem extraction logic."""
+    return simulate_subsystem_extraction(
+        index,
+        service_modules,
+        project_root=project_root,
+    )
+
+
+def simulate_dependency_inversion(
+    index: IndexStore,
+    source_module: str,
+    target_module: str,
+    interface_name: str,
+    *,
+    project_root: Optional[Path] = None,
+) -> MigrationSimulationResult:
+    """Simulate dependency inversion by replacing a direct edge with interface mediation."""
+    module_edges = _module_edge_examples(index)
+    pair = module_edges.get((source_module, target_module))
+    changes: List[SimulatedChange] = []
+    if pair:
+        changes.append(
+            SimulatedChange(
+                action="remove_edge",
+                source=pair[0],
+                target=pair[1],
+                reason=f"remove direct dependency for interface {interface_name}",
+            )
+        )
+        changes.append(
+            SimulatedChange(
+                action="add_node",
+                node_id=f"interfaces/{interface_name}.py::{interface_name}",
+                reason="introduce interface abstraction",
+            )
+        )
+
+    sim_result = simulate_changes(changes, index)
+    return _migration_from_simulation(
+        sim_result,
+        affected_nodes=[source_module, target_module, interface_name],
+        project_root=project_root,
+    )

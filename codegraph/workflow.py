@@ -767,7 +767,17 @@ def load_workflow(project_root: Path) -> Workflow:
 # F-020 — Workflow validation
 # ═══════════════════════════════════════════════════════════════════════
 
-_VALID_EDGE_TYPES = {"call", "test", "trace", "dynamic"}
+_VALID_EDGE_TYPES = {
+    "call",
+    "event",
+    "dataflow",
+    "data_flow",
+    "control_flow",
+    "side_effect",
+    "test",
+    "trace",
+    "dynamic",
+}
 _VALID_CONFIDENCES = {"runtime", "test", "static", "ai_inferred"}
 
 

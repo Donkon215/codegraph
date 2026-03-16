@@ -32,11 +32,15 @@ import os
 import sqlite3
 import time
 from collections import deque
-from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
-from codegraph.constants import CODEGRAPH_DIR, GRAPHS_DIR, INDEX_DIR
+from codegraph.constants import CODEGRAPH_DIR, INDEX_DIR
+from codegraph.index_inspect import (
+    IndexStats,
+    export_index as _export_index_impl,
+    index_statistics as _index_statistics_impl,
+)
 from codegraph.logging_config import get_logger
 from codegraph.storage import resolve_path
 
@@ -400,68 +404,16 @@ def update_index_delta(
     project_root: Path,
 ) -> int:
     """Incrementally update index for changed nodes only (G-008)."""
-    db_path = _index_dir(project_root) / "codegraph.db"
-    if not db_path.exists():
-        logger.warning("No index found — performing full build")
-        return sum(build_all_indexes(graph0, graph1, workflow, project_root).values())
+    from codegraph.index_delta import update_index_delta as _update_index_delta_impl
 
-    conn = _connect(db_path)
-    changed = set(changed_node_ids)
-    updated = 0
-
-    # Delete old entries for changed nodes
-    placeholders = ",".join("?" for _ in changed)
-    if changed:
-        conn.execute(f"DELETE FROM nodes WHERE id IN ({placeholders})", list(changed))
-        conn.execute(f"DELETE FROM callers WHERE node_id IN ({placeholders}) OR caller_id IN ({placeholders})",
-                     list(changed) + list(changed))
-        conn.execute(f"DELETE FROM callees WHERE node_id IN ({placeholders}) OR callee_id IN ({placeholders})",
-                     list(changed) + list(changed))
-        conn.execute(f"DELETE FROM layers WHERE node_id IN ({placeholders})", list(changed))
-        conn.execute(f"DELETE FROM tests WHERE test_id IN ({placeholders}) OR node_id IN ({placeholders})",
-                     list(changed) + list(changed))
-        conn.execute(f"DELETE FROM dependency_hashes WHERE node_id IN ({placeholders})", list(changed))
-
-    # Re-insert for nodes that still exist
-    g1_index = {n.id: n for n in graph1.nodes} if graph1 else {}
-    for node in graph0.nodes:
-        if node.id not in changed:
-            continue
-        g1 = g1_index.get(node.id)
-        layer = g1.layer if g1 else 3
-        arch_layer = (g1.arch_layer or "") if g1 else ""
-        dep_hash = node.dependency_hash or ""
-        conn.execute(
-            "INSERT INTO nodes VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-            (node.id, node.file, node.type, node.line, node.body_hash,
-             layer, arch_layer, dep_hash),
-        )
-        if dep_hash:
-            conn.execute(
-                "INSERT OR REPLACE INTO dependency_hashes VALUES (?, ?, ?, ?)",
-                (node.id, dep_hash, node.body_hash, ""),
-            )
-        if g1:
-            conn.execute("INSERT INTO layers VALUES (?, ?)", (layer, node.id))
-        updated += 1
-
-    # Re-insert edges for changed nodes
-    if workflow:
-        for e in workflow.edges:
-            if e.source in changed or e.target in changed:
-                conn.execute(
-                    "INSERT INTO callers VALUES (?, ?, ?, ?)",
-                    (e.target, e.source, e.edge_type, e.confidence),
-                )
-                conn.execute(
-                    "INSERT INTO callees VALUES (?, ?, ?, ?)",
-                    (e.source, e.target, e.edge_type, e.confidence),
-                )
-
-    conn.commit()
-    conn.close()
-    logger.info("Delta index updated: %d nodes affected", updated)
-    return updated
+    return _update_index_delta_impl(
+        changed_node_ids,
+        graph0,
+        graph1,
+        workflow,
+        project_root,
+        build_all_indexes,
+    )
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -471,21 +423,9 @@ def update_index_delta(
 
 def rebuild_index(project_root: Path) -> Dict[str, int]:
     """Rebuild index from committed graph files without re-extraction (G-009)."""
-    from codegraph.extractor import load_graph0
-    from codegraph.workflow import load_workflow
+    from codegraph.index_maintenance import rebuild_index as _rebuild_index_impl
 
-    graph0 = load_graph0(project_root)
-    workflow = load_workflow(project_root)
-
-    # Load graph1 directly to avoid circular import with annotator
-    from codegraph.models.graph1 import Graph1
-    graph1_path = resolve_path(project_root, GRAPHS_DIR, "graph1.json")
-    if graph1_path.exists():
-        graph1 = Graph1.from_json(graph1_path.read_text(encoding="utf-8"))
-    else:
-        graph1 = Graph1()
-
-    return build_all_indexes(graph0, graph1, workflow, project_root)
+    return _rebuild_index_impl(project_root, build_all_indexes)
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -493,76 +433,16 @@ def rebuild_index(project_root: Path) -> Dict[str, int]:
 # ═══════════════════════════════════════════════════════════════════════
 
 
-@dataclass
-class ConsistencyIssue:
-    """A single index consistency problem (G-010)."""
-
-    table: str
-    message: str
+from codegraph.index_maintenance import ConsistencyIssue
 
 
 def check_index_consistency(project_root: Path) -> List[ConsistencyIssue]:
     """Verify index data matches current graph files (G-010)."""
-    from codegraph.extractor import load_graph0
-    from codegraph.workflow import load_workflow
+    from codegraph.index_maintenance import (
+        check_index_consistency as _check_index_consistency_impl,
+    )
 
-    issues: List[ConsistencyIssue] = []
-    db_path = _index_dir(project_root) / "codegraph.db"
-
-    if not db_path.exists():
-        issues.append(ConsistencyIssue("all", "Index database does not exist"))
-        return issues
-
-    conn = _connect(db_path, readonly=True)
-
-    # Check version
-    if not _check_version(conn):
-        issues.append(ConsistencyIssue("schema", "Schema version mismatch — rebuild needed"))
-        conn.close()
-        return issues
-
-    graph0 = load_graph0(project_root)
-
-    # Load graph1 directly to avoid circular import with annotator
-    from codegraph.models.graph1 import Graph1
-    graph1_path = resolve_path(project_root, GRAPHS_DIR, "graph1.json")
-    if graph1_path.exists():
-        graph1 = Graph1.from_json(graph1_path.read_text(encoding="utf-8"))
-    else:
-        graph1 = Graph1()
-
-    workflow = load_workflow(project_root)
-
-    # Check nodes table
-    try:
-        indexed_ids = {row[0] for row in conn.execute("SELECT id FROM nodes").fetchall()}
-        graph_ids = {n.id for n in graph0.nodes}
-
-        missing = graph_ids - indexed_ids
-        extra = indexed_ids - graph_ids
-        if missing:
-            issues.append(ConsistencyIssue("nodes", f"{len(missing)} Graph_0 nodes missing from index"))
-        if extra:
-            issues.append(ConsistencyIssue("nodes", f"{len(extra)} extra nodes in index"))
-    except sqlite3.OperationalError:
-        issues.append(ConsistencyIssue("nodes", "Table does not exist"))
-
-    # Check edge counts
-    try:
-        callers_count = conn.execute("SELECT COUNT(*) FROM callers").fetchone()[0]
-        callees_count = conn.execute("SELECT COUNT(*) FROM callees").fetchone()[0]
-        expected = len(workflow.edges)
-        if callers_count != expected:
-            issues.append(ConsistencyIssue(
-                "callers", f"Row count {callers_count} != expected {expected}"))
-        if callees_count != expected:
-            issues.append(ConsistencyIssue(
-                "callees", f"Row count {callees_count} != expected {expected}"))
-    except sqlite3.OperationalError:
-        issues.append(ConsistencyIssue("callers/callees", "Table(s) do not exist"))
-
-    conn.close()
-    return issues
+    return _check_index_consistency_impl(project_root)
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -784,47 +664,9 @@ class IndexStore:
 # ═══════════════════════════════════════════════════════════════════════
 
 
-@dataclass
-class IndexStats:
-    """Index health and size statistics (G-018)."""
-
-    db_size_bytes: int = 0
-    table_counts: Dict[str, int] = field(default_factory=dict)
-    exists: bool = False
-
-    def format(self) -> str:
-        if not self.exists:
-            return "Index: not built"
-        lines = [f"Index: {self.db_size_bytes / 1024:.1f} KB"]
-        for table, count in sorted(self.table_counts.items()):
-            lines.append(f"  {table}: {count} rows")
-        return "\n".join(lines)
-
-
 def index_statistics(project_root: Path) -> IndexStats:
     """Report index size and health (G-018)."""
-    db_path = _index_dir(project_root) / "codegraph.db"
-    stats = IndexStats()
-
-    if not db_path.exists():
-        return stats
-
-    stats.exists = True
-    stats.db_size_bytes = db_path.stat().st_size
-
-    try:
-        conn = _connect(db_path, readonly=True)
-        for table in ("nodes", "callers", "callees", "layers", "tests", "dependency_hashes"):
-            try:
-                row = conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()
-                stats.table_counts[table] = row[0]
-            except sqlite3.OperationalError:
-                stats.table_counts[table] = -1
-        conn.close()
-    except Exception:
-        pass
-
-    return stats
+    return _index_statistics_impl(project_root)
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -837,24 +679,4 @@ def export_index(
     table_name: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Export index contents as JSON for debugging (G-020)."""
-    db_path = _index_dir(project_root) / "codegraph.db"
-    if not db_path.exists():
-        return {"error": "Index does not exist"}
-
-    conn = _connect(db_path, readonly=True)
-    result: Dict[str, Any] = {}
-
-    tables = [table_name] if table_name else [
-        "nodes", "callers", "callees", "layers", "tests", "dependency_hashes",
-    ]
-
-    for tbl in tables:
-        try:
-            rows = conn.execute(f"SELECT * FROM {tbl}").fetchall()
-            cols = [desc[0] for desc in conn.execute(f"SELECT * FROM {tbl} LIMIT 0").description]
-            result[tbl] = [dict(zip(cols, row)) for row in rows]
-        except sqlite3.OperationalError:
-            result[tbl] = {"error": f"Table '{tbl}' does not exist"}
-
-    conn.close()
-    return result
+    return _export_index_impl(project_root, table_name)

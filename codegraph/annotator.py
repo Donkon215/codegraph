@@ -314,7 +314,7 @@ def prune_graph1(graph0: Graph0, graph1: Graph1) -> PruneReport:
         logger.warning("Graph_0 is empty — pruning all Graph_1 entries")
 
     for nid in stale_ids:
-        graph1.remove_node(nid)
+        graph1.remove_intent_node(nid)
         report.removed_ids.append(nid)
         logger.warning("Pruned stale Graph_1 node: %s", nid)
         report.removed_count += 1

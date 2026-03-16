@@ -14,6 +14,7 @@ calls are linked to their corresponding backend handlers.
 
 from __future__ import annotations
 
+import hashlib
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -615,3 +616,81 @@ def _extract_express_api_endpoints(
         )
         for ep in raw
     ]
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# APIRouteExtractor — LanguageExtractor implementation for polyglot support
+# ═══════════════════════════════════════════════════════════════════════
+
+
+class APIRouteExtractor:
+    """Extract API endpoints as Graph_0 nodes and cross-language edges.
+    
+    This enables full-stack architecture analysis where:
+      Frontend components → API calls → API endpoints → Backend services
+    
+    This extractor scans the entire project to find and link endpoints.
+    """
+
+    def __init__(self, project_root: Path) -> None:
+        self._root = project_root
+
+    def supported_extensions(self) -> List[str]:
+        """API extractor is project-level, not file-level."""
+        return []  # No specific file extensions
+
+    def extract_nodes(self, file_path: Path) -> List[Any]:
+        """This extractor uses project-level extraction, not file-level."""
+        return []
+
+    def extract_all(self, file_path: Path = None) -> Any:
+        """Extract API endpoints as nodes from the entire project.
+        
+        Returns a FileExtractionResult with API endpoint nodes and cross-language edges.
+        """
+        from codegraph.extraction_types import FileExtractionResult
+        from codegraph.models.graph0 import Graph0Node
+        from codegraph.constants import BODY_HASH_LENGTH
+
+        result = FileExtractionResult()
+        report = link_api_routes(self._root)
+
+        # Create Graph0 nodes for each API endpoint
+        for endpoint in report.endpoints:
+            # Create a node ID for the API endpoint: /api/endpoint::METHOD
+            node_id = f"{endpoint.path}::{endpoint.method}"
+            
+            # Compute body hash from endpoint metadata
+            endpoint_str = f"{endpoint.path}:{endpoint.method}:{endpoint.handler_node}"
+            body_hash = hashlib.sha256(endpoint_str.encode()).hexdigest()[:BODY_HASH_LENGTH]
+
+            node = Graph0Node(
+                id=node_id,
+                body_hash=body_hash,
+                file="[API]",
+                type="api_endpoint",
+                line=endpoint.line,
+            )
+            node._metadata = {  # type: ignore[attr-defined]
+                "path": endpoint.path,
+                "method": endpoint.method,
+                "handler": endpoint.handler_node,
+                "framework": endpoint.framework,
+                "source_file": endpoint.file,
+            }
+            result.nodes.append(node)
+
+        # Create edges linking frontend calls to backend APIs
+        for edge in report.linked_edges:
+            result.call_sites.setdefault("api_edge", []).append(edge)
+
+        return result
+
+    def extract_edges(self, file_path: Path = None, nodes: List[Any] = None) -> List[WorkflowEdge]:
+        """Extract cross-language workflow edges (frontend → API → backend)."""
+        report = link_api_routes(self._root)
+        return report.linked_edges
+
+    def extract_project_routes(self) -> ApiLinkReport:
+        """Full project-level API extraction and linking."""
+        return link_api_routes(self._root)

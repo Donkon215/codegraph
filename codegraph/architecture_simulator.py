@@ -33,6 +33,73 @@ from codegraph.logging_config import get_logger
 logger = get_logger("architecture_simulator")
 
 
+@dataclass
+class GraphMutation:
+    node_id: str
+    change: str  # add_edge, remove_edge, rewire_edge
+    target: str = ""
+
+
+def simulate_change(project_root: Any, node: str, change: str, target: str = "") -> Dict[str, Any]:
+    """Simulate a graph mutation without changing source files.
+
+    API requested by phase-II evolution task.
+    """
+    from codegraph.architecture_graph import ArchitectureGraph
+    from codegraph.architecture_scoring import compute_architecture_index
+    from codegraph.subsystem_sandbox import build_partition_sandbox
+
+    if not hasattr(project_root, "__truediv__"):
+        raise ValueError("project_root must be a Path")
+
+    baseline_score = compute_architecture_index(project_root)
+    graph = ArchitectureGraph.load(project_root)
+
+    sandbox = build_partition_sandbox(project_root, graph, node)
+    before_metrics = sandbox.get_metrics()
+
+    if change == "add_edge" and target:
+        sandbox.subsystem_graph.edges.append({
+            "source": node,
+            "target": target,
+            "edge_type": "call",
+            "confidence": "ai_inferred",
+            "source_detail": "simulated",
+        })
+    elif change == "remove_edge" and target:
+        sandbox.subsystem_graph.edges = [
+            edge for edge in sandbox.subsystem_graph.edges
+            if not (str(edge.get("source", "")) == node and str(edge.get("target", "")) == target)
+        ]
+    elif change == "rewire_edge" and target:
+        for edge in sandbox.subsystem_graph.edges:
+            if str(edge.get("source", "")) == node:
+                edge["target"] = target
+                edge["source_detail"] = "simulated_rewire"
+
+    after_metrics = sandbox.get_metrics()
+    predicted_score = compute_architecture_index(project_root)
+
+    return {
+        "node": node,
+        "change": change,
+        "target": target,
+        "cycle_risk": int(after_metrics.get("cycle_count", 0)) - int(before_metrics.get("cycle_count", 0)),
+        "coupling_delta": round(
+            predicted_score.dimensions.get("coupling_score", 0.0)
+            - baseline_score.dimensions.get("coupling_score", 0.0),
+            4,
+        ),
+        "layer_violations": int(after_metrics.get("layer_violations", 0)),
+        "predicted_architecture_score": round(predicted_score.score, 4),
+        "baseline_architecture_score": round(baseline_score.score, 4),
+        "score_delta": round(predicted_score.score - baseline_score.score, 4),
+        "partition": sandbox.subsystem_graph.metadata.get("simulation_partition_id", ""),
+        "partition_nodes": sandbox.subsystem_graph.metadata.get("simulation_partition_nodes", 0),
+        "partition_boundary_nodes": sandbox.subsystem_graph.metadata.get("simulation_boundary_nodes", 0),
+    }
+
+
 # ── Simulated Architecture Change ──────────────────────────────────────
 
 
