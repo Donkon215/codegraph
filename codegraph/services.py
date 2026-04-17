@@ -85,3 +85,6 @@ class IndexService:
 
     def get_callees(self, node_id: str) -> List[str]:
         return self._get_store().get_callees(node_id)
+
+    def _get_conn(self):
+        return self._get_store()._get_conn()

@@ -40,6 +40,9 @@ dev = [
     "mypy>=1.5",
     "pre-commit>=3.0",
 ]
+watch = [
+    "watchdog>=3.0",
+]
 
 [project.scripts]
 codegraph = "codegraph.cli:main"

@@ -1,22 +1,20 @@
 """codegraph.copilot_context_builder — Structured context builder for Copilot.
 
-Enhanced context builder that provides Copilot with full architecture-aware
-context including:
-  - Subsystem definitions from system.json
-  - Architecture constraints and forbidden dependencies
-  - Dependency graph summary
-  - Workflow graph overview
-  - Architecture risks and current smells
-  - Simulator rules (layer rules, subsystem constraints)
-  - Current architecture score and grade
-  - Architecture delta (if available)
-  - Proof status (if available)
+This module is the public API for all Copilot context operations.
+Core logic has been split into focused sub-modules:
 
-This wraps and extends the existing CopilotContext with additional
-decision-support data that prevents architecture-breaking decisions.
+  - copilot_focus.py     — FocusContext, focus_context()
+  - copilot_hotspots.py  — HotspotReport, hotspot_context()
+  - copilot_scope.py     — ScopeContext, scope_context()
+  - copilot_briefing.py  — quick_edit_briefing(), save_quick_briefing_to_feedback()
 
-CLI command: codegraph context
+All names are re-exported here so existing ``from codegraph.copilot_context_builder
+import X`` imports continue to work without change.
 
+EnrichedCopilotContext and build_enriched_context() remain here as they depend
+on all sub-modules and the extended CopilotContext.
+
+CLI command: codegraph context / codegraph arch-context
 Output: .codegraph/context/copilot_context.json
 """
 
@@ -29,10 +27,24 @@ from typing import Any, Dict, List, Optional
 
 from codegraph.copilot_context import CONTEXT_DIR, CopilotContext, build_copilot_context
 from codegraph.logging_config import get_logger
+from codegraph.utils.json_cache import load_json_cached
+
+# ── Re-exports for backward compatibility ────────────────────────────────────
+from codegraph.copilot_focus import FocusContext, focus_context          # noqa: F401
+from codegraph.copilot_hotspots import (                                  # noqa: F401
+    HotspotReport,
+    hotspot_context,
+    build_architecture_stability as _build_architecture_stability_new,
+)
+from codegraph.copilot_scope import ScopeContext, scope_context           # noqa: F401
+from codegraph.copilot_briefing import (                                  # noqa: F401
+    quick_edit_briefing,
+    save_quick_briefing_to_feedback,
+)
 
 logger = get_logger("copilot_context_builder")
 
-MAX_CONTEXT_BYTES = 100 * 1024
+MAX_CONTEXT_BYTES = 128 * 1024
 PUBLISHED_CONTEXT_FILE = "copilot_context.json"
 STAGED_CONTEXT_FILE = "copilot_context.staged.json"
 
@@ -257,23 +269,11 @@ def build_enriched_context(
 
     # 4. Architecture delta (if available)
     delta_path = project_root / ".codegraph" / "architecture_delta.json"
-    if delta_path.exists():
-        try:
-            ctx.architecture_delta = json.loads(
-                delta_path.read_text(encoding="utf-8")
-            )
-        except (json.JSONDecodeError, OSError):
-            pass
+    ctx.architecture_delta = load_json_cached(delta_path, {})
 
     # 5. Proof status (if available)
     proof_path = project_root / ".codegraph" / "proofs" / "latest_proof.json"
-    if proof_path.exists():
-        try:
-            ctx.proof_status = json.loads(
-                proof_path.read_text(encoding="utf-8")
-            )
-        except (json.JSONDecodeError, OSError):
-            pass
+    ctx.proof_status = load_json_cached(proof_path, {})
 
     # 6. Refactor budget
     ctx.refactor_budget = _load_refactor_budget(project_root)
@@ -488,67 +488,52 @@ def _build_graph_summary(project_root: Path) -> GraphSummary:
     summary = GraphSummary()
 
     g0_path = project_root / ".codegraph" / "graphs" / "graph0.json"
-    if g0_path.exists():
-        try:
-            g0 = json.loads(g0_path.read_text(encoding="utf-8"))
-            nodes = g0.get("nodes", [])
-            summary.total_nodes = len(nodes)
-            for node in nodes:
-                nt = node.get("type", "")
-                if nt == "function":
-                    summary.functions += 1
-                elif nt == "class":
-                    summary.classes += 1
-                elif nt == "module":
-                    summary.modules += 1
-        except (json.JSONDecodeError, OSError):
-            pass
+    g0 = load_json_cached(g0_path, {})
+    nodes = g0.get("nodes", [])
+    summary.total_nodes = len(nodes)
+    for node in nodes:
+        nt = node.get("type", "")
+        if nt == "function":
+            summary.functions += 1
+        elif nt == "class":
+            summary.classes += 1
+        elif nt == "module":
+            summary.modules += 1
 
     wf_path = project_root / ".codegraph" / "workflow" / "workflow.json"
-    if wf_path.exists():
-        try:
-            wf = json.loads(wf_path.read_text(encoding="utf-8"))
-            edges = wf.get("edges", [])
-            summary.total_edges = len(edges)
+    wf = load_json_cached(wf_path, {})
+    edges = wf.get("edges", [])
+    summary.total_edges = len(edges)
 
-            # Compute fan-in/fan-out
-            fan_in: Dict[str, int] = {}
-            fan_out: Dict[str, int] = {}
-            nodes_in_edges: set[str] = set()
-            for edge in edges:
-                src = edge.get("source", "")
-                tgt = edge.get("target", "")
-                if src:
-                    fan_out[src] = fan_out.get(src, 0) + 1
-                    nodes_in_edges.add(src)
-                if tgt:
-                    fan_in[tgt] = fan_in.get(tgt, 0) + 1
-                    nodes_in_edges.add(tgt)
+    fan_in: Dict[str, int] = {}
+    fan_out: Dict[str, int] = {}
+    nodes_in_edges: set[str] = set()
+    for edge in edges:
+        src = edge.get("source", "")
+        tgt = edge.get("target", "")
+        if src:
+            fan_out[src] = fan_out.get(src, 0) + 1
+            nodes_in_edges.add(src)
+        if tgt:
+            fan_in[tgt] = fan_in.get(tgt, 0) + 1
+            nodes_in_edges.add(tgt)
 
-            if fan_in:
-                summary.max_fan_in = max(fan_in.values())
-                summary.avg_fan_in = sum(fan_in.values()) / len(fan_in)
-            if fan_out:
-                summary.max_fan_out = max(fan_out.values())
-                summary.avg_fan_out = sum(fan_out.values()) / len(fan_out)
+    if fan_in:
+        summary.max_fan_in = max(fan_in.values())
+        summary.avg_fan_in = sum(fan_in.values()) / len(fan_in)
+    if fan_out:
+        summary.max_fan_out = max(fan_out.values())
+        summary.avg_fan_out = sum(fan_out.values()) / len(fan_out)
 
-            # Orphan count
-            summary.orphan_nodes = max(
-                0, summary.total_nodes - len(nodes_in_edges)
-            )
-        except (json.JSONDecodeError, OSError):
-            pass
+    summary.orphan_nodes = max(0, summary.total_nodes - len(nodes_in_edges))
 
-    # Cycle count from advice
-    advice_path = (project_root / ".codegraph" / "architecture"
-                   / "architecture_advice.json")
-    if advice_path.exists():
-        try:
-            advice = json.loads(advice_path.read_text(encoding="utf-8"))
-            cycles = advice.get("cycles", [])
-            summary.cycle_count = len(cycles) if isinstance(cycles, list) else int(cycles)
-        except (json.JSONDecodeError, OSError, ValueError):
-            pass
+    advice_path = project_root / ".codegraph" / "architecture" / "architecture_advice.json"
+    advice = load_json_cached(advice_path, {})
+    try:
+        cycles = advice.get("cycles", [])
+        summary.cycle_count = len(cycles) if isinstance(cycles, list) else int(cycles)
+    except (ValueError, TypeError):
+        pass
 
     return summary
 
@@ -557,43 +542,31 @@ def _build_simulator_rules(project_root: Path) -> SimulatorRules:
     """Extract simulator rules from system.json and suggested_workflow."""
     rules = SimulatorRules()
 
-    # System.json constraints
     system_path = project_root / ".codegraph" / "architecture" / "system.json"
-    if system_path.exists():
-        try:
-            system = json.loads(system_path.read_text(encoding="utf-8"))
-            for constraint in system.get("constraints", []):
-                if constraint.get("type") == "forbidden_dependency":
-                    rules.forbidden_subsystem_deps.append({
-                        "source": constraint.get("source", ""),
-                        "target": constraint.get("target", ""),
-                        "reason": constraint.get("reason", ""),
-                    })
-        except (json.JSONDecodeError, OSError):
-            pass
+    system = load_json_cached(system_path, {})
+    for constraint in system.get("constraints", []):
+        if constraint.get("type") == "forbidden_dependency":
+            rules.forbidden_subsystem_deps.append({
+                "source": constraint.get("source", ""),
+                "target": constraint.get("target", ""),
+                "reason": constraint.get("reason", ""),
+            })
 
-    # Suggested workflow rules
-    sw_path = (project_root / ".codegraph" / "workflow"
-               / "suggested_workflow.json")
-    if sw_path.exists():
-        try:
-            sw = json.loads(sw_path.read_text(encoding="utf-8"))
-            for rule in sw.get("rules", []):
-                rt = rule.get("type", "")
-                if rt == "layer_boundary":
-                    rules.layer_rules.append({
-                        "source": rule.get("source", ""),
-                        "target": rule.get("target", ""),
-                    })
-                elif rt == "dependency_limit":
-                    rules.dependency_limits.append({
-                        "module": rule.get("source", ""),
-                        "max_fan_out": rule.get("max_fan_out", 20),
-                    })
-        except (json.JSONDecodeError, OSError):
-            pass
+    sw_path = project_root / ".codegraph" / "workflow" / "suggested_workflow.json"
+    sw = load_json_cached(sw_path, {})
+    for rule in sw.get("rules", []):
+        rt = rule.get("type", "")
+        if rt == "layer_boundary":
+            rules.layer_rules.append({
+                "source": rule.get("source", ""),
+                "target": rule.get("target", ""),
+            })
+        elif rt == "dependency_limit":
+            rules.dependency_limits.append({
+                "module": rule.get("source", ""),
+                "max_fan_out": rule.get("max_fan_out", 20),
+            })
 
-    # Safety tiers
     from codegraph.arch_evolution import STRATEGY_TIERS
     rules.safety_tiers = dict(STRATEGY_TIERS)
 
@@ -603,16 +576,10 @@ def _build_simulator_rules(project_root: Path) -> SimulatorRules:
 def _load_refactor_budget(project_root: Path) -> Dict[str, int]:
     """Load refactor budget from agent_config or return defaults."""
     config_path = project_root / ".codegraph" / "agent_config.json"
-    if config_path.exists():
-        try:
-            config = json.loads(config_path.read_text(encoding="utf-8"))
-            budget = config.get("refactor_budget", {})
-            if budget:
-                return budget
-        except (json.JSONDecodeError, OSError):
-            pass
-
-    # Defaults
+    config = load_json_cached(config_path, {})
+    budget = config.get("refactor_budget", {})
+    if budget:
+        return budget
     return {
         "max_files_modified": 12,
         "max_edges_added": 25,
@@ -623,69 +590,14 @@ def _load_refactor_budget(project_root: Path) -> Dict[str, int]:
 
 
 def _build_architecture_stability(project_root: Path) -> Dict[str, Any]:
-    graph0_path = project_root / ".codegraph" / "graphs" / "graph0.json"
-    graph1_path = project_root / ".codegraph" / "graphs" / "graph1.json"
-    history_path = project_root / ".codegraph" / "architecture" / "architecture_history.json"
-
-    changed_nodes = 0
-    top_churn_modules: List[Dict[str, Any]] = []
-
-    try:
-        g0 = json.loads(graph0_path.read_text(encoding="utf-8")) if graph0_path.exists() else {}
-        g1 = json.loads(graph1_path.read_text(encoding="utf-8")) if graph1_path.exists() else {}
-        g0_nodes = {n.get("id", ""): n for n in g0.get("nodes", [])}
-        g1_nodes = g1.get("nodes", [])
-
-        churn_by_module: Dict[str, int] = {}
-        for node in g1_nodes:
-            node_id = node.get("id", "")
-            if not node_id:
-                continue
-            g0_node = g0_nodes.get(node_id)
-            if not g0_node:
-                continue
-            if node.get("intent_body_hash", "") and node.get("intent_body_hash", "") != g0_node.get("body_hash", ""):
-                changed_nodes += 1
-                module = node_id.split("::", 1)[0]
-                churn_by_module[module] = churn_by_module.get(module, 0) + 1
-
-        top_churn_modules = [
-            {"module": module, "changes": count}
-            for module, count in sorted(churn_by_module.items(), key=lambda x: -x[1])[:10]
-        ]
-    except Exception:
-        pass
-
-    score_trend: Dict[str, Any] = {}
-    if history_path.exists():
-        try:
-            history = json.loads(history_path.read_text(encoding="utf-8"))
-            entries = history.get("entries", [])
-            if entries:
-                last = entries[-1]
-                prev = entries[-2] if len(entries) >= 2 else None
-                score_trend = {
-                    "latest_cycles": last.get("cycles_count", 0),
-                    "latest_coupling_index": last.get("coupling_index", 0.0),
-                    "delta_cycles": (last.get("cycles_count", 0) - prev.get("cycles_count", 0)) if prev else 0,
-                }
-        except Exception:
-            pass
-
-    return {
-        "changed_intent_nodes": changed_nodes,
-        "top_churn_modules": top_churn_modules,
-        "score_trend": score_trend,
-    }
+    """Delegate to copilot_hotspots.build_architecture_stability."""
+    return _build_architecture_stability_new(project_root)
 
 
 def _load_architecture_patterns(project_root: Path) -> Dict[str, Any]:
     pattern_path = project_root / ".codegraph" / "architecture" / "architecture_patterns.json"
-    if not pattern_path.exists():
-        return {}
-    try:
-        data = json.loads(pattern_path.read_text(encoding="utf-8"))
-    except (json.JSONDecodeError, OSError):
+    data = load_json_cached(pattern_path, {})
+    if not data:
         return {}
 
     patterns = data.get("patterns", [])
@@ -845,3 +757,17 @@ def _shrink_to_size(payload: Dict[str, Any], max_bytes: int) -> Dict[str, Any]:
         shrunk["architecture_queries"] = []
 
     return shrunk
+
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# Precision Context API — implementations in sub-modules (re-exported above)
+# ═══════════════════════════════════════════════════════════════════════
+#
+# FocusContext, focus_context()                -> codegraph.copilot_focus
+# HotspotReport, hotspot_context()            -> codegraph.copilot_hotspots
+# ScopeContext, scope_context()               -> codegraph.copilot_scope
+# quick_edit_briefing()                       -> codegraph.copilot_briefing
+# save_quick_briefing_to_feedback()           -> codegraph.copilot_briefing
+#
+# All names remain importable from this module via the re-exports at the top.

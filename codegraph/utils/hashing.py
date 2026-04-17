@@ -38,7 +38,7 @@ class _DocstringStripper(ast.NodeTransformer):
             isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef, ast.Module))
             and node.body
             and isinstance(node.body[0], ast.Expr)
-            and isinstance(node.body[0].value, (ast.Constant, ast.Str))
+            and isinstance(node.body[0].value, ast.Constant)
         ):
             node.body = node.body[1:] or [ast.Pass()]
         return node

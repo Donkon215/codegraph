@@ -1,0 +1,137 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "codegraph: arch-context (active file)",
+      "type": "shell",
+      "command": "codegraph arch-context ${relativeFile} --save",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "default"
+      }
+    },
+    {
+      "label": "codegraph: build + analyze",
+      "type": "shell",
+      "command": "codegraph build && codegraph analyze && codegraph score",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "codegraph: focus (active file)",
+      "type": "shell",
+      "command": "codegraph focus ${relativeFile} --json",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "codegraph: hotspots",
+      "type": "shell",
+      "command": "codegraph hotspots",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "codegraph: arch-diff",
+      "type": "shell",
+      "command": "codegraph arch-diff",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "codegraph: score",
+      "type": "shell",
+      "command": "codegraph score",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": false
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "codegraph: reactive server",
+      "type": "shell",
+      "command": "codegraph server --interval 2",
+      "isBackground": true,
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
+      "problemMatcher": [
+        {
+          "pattern": [
+            {
+              "regexp": ".",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "\\[codegraph server\\] Watching",
+            "endsPattern": "\\[codegraph server\\] Stopped"
+          }
+        }
+      ]
+    },
+    {
+      "label": "codegraph: decide (active file)",
+      "type": "shell",
+      "command": "codegraph decide ${relativeFile} --json",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "codegraph: full pre-edit check",
+      "type": "shell",
+      "command": "codegraph arch-context ${relativeFile} --save && codegraph focus ${relativeFile} --json",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": [],
+      "dependsOrder": "sequence"
+    }
+  ]
+}
