@@ -721,13 +721,27 @@ def extract_file(
 
     # C-001 — parse
     tree = parse_file(file_path)
+    source = file_path.read_text(encoding="utf-8")
+
     if tree is None:
+        # N-034 — Fallback to tree-sitter for broken source files
+        try:
+            from codegraph.parser_fallback import extract_skeleton_from_broken_source
+            skeleton = extract_skeleton_from_broken_source(source, rel)
+            if skeleton:
+                logger.info("Recovered %d nodes from broken source %s using tree-sitter", len(skeleton), rel)
+                # Still need a module node
+                module_node = _extract_module_node(file_path, project_root, source)
+                result.nodes.append(module_node)
+                result.nodes.extend(skeleton)
+                return result
+        except ImportError:
+            pass
+
         result.warnings.append(
-            ExtractionWarning(file=rel, message="Could not parse file")
+            ExtractionWarning(file=rel, message="Could not parse file (ast.parse failed)")
         )
         return result
-
-    source = file_path.read_text(encoding="utf-8")
 
     # C-007 / C-027 — module node
     module_node = _extract_module_node(file_path, project_root, source)
@@ -754,7 +768,7 @@ def extract_file(
     return result
 
 
-def _extract_call_data(tree, rel, result):
+def _extract_call_data(tree: ast.Module, rel: str, result: FileExtractionResult) -> None:
     """Extract call sites and dynamic calls from AST."""
     for node in ast.walk(tree):
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
@@ -1138,9 +1152,12 @@ def extract_project(
 
 def save_graph0(graph0: Graph0, project_root: Path) -> Path:
     """Persist *graph0* to ``.codegraph/graphs/graph0.json``."""
-    from codegraph.extractor_io import save_graph0 as _save_graph0
-
-    return _save_graph0(graph0, project_root)
+    ensure_codegraph_dir(project_root)
+    dest = resolve_path(project_root, GRAPHS_DIR, "graph0.json")
+    data = json.loads(graph0.to_json())
+    atomic_write(dest, data)
+    logger.info("Saved Graph_0 (%d nodes) → %s", len(graph0.nodes), dest)
+    return dest
 
 
 def load_graph0(project_root: Path) -> Graph0:
@@ -1148,9 +1165,17 @@ def load_graph0(project_root: Path) -> Graph0:
 
     Returns an empty Graph0 if the file does not exist.
     """
-    from codegraph.extractor_io import load_graph0 as _load_graph0
+    path = resolve_path(project_root, GRAPHS_DIR, "graph0.json")
+    if not path.exists():
+        logger.debug("No graph0.json found — returning empty Graph_0")
+        return Graph0()
 
-    return _load_graph0(project_root)
+    try:
+        text = path.read_text(encoding="utf-8")
+        return Graph0.from_json(text)
+    except (json.JSONDecodeError, KeyError) as exc:
+        logger.error("Corrupted graph0.json: %s", exc)
+        raise ValueError(f"Corrupted graph0.json: {exc}") from exc
 
 
 # ═══════════════════════════════════════════════════════════════════════
