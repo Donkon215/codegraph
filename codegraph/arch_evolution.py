@@ -724,7 +724,7 @@ def _record_to_memory(
     result: EvolutionResult,
 ) -> None:
     """Record evolution result to architecture memory."""
-    from codegraph.arch_memory import record_decision
+    from codegraph.architecture_memory import record_decision
 
     record_decision(
         project_root,
