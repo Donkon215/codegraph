@@ -229,17 +229,6 @@ def _compute_current_metrics(project_root: Path) -> Dict[str, float]:
     """Compute current architecture metrics from available data."""
     metrics: Dict[str, float] = {}
 
-    # Try to get metrics from health report
-    health_path = project_root / ".codegraph" / "health" / "health_report.json"
-    if health_path.exists():
-        try:
-            data = json.loads(health_path.read_text(encoding="utf-8"))
-            metrics["score"] = data.get("overall_score", 0.0)
-            metrics["coupling"] = data.get("coupling", 0.0)
-            metrics["modularity"] = data.get("modularity", 0.0)
-        except (json.JSONDecodeError, OSError):
-            pass
-
     # Try to get metrics from advisor
     advice_path = (project_root / ".codegraph" / "architecture"
                    / "architecture_advice.json")

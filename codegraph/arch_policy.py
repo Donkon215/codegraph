@@ -277,9 +277,8 @@ def evaluate_policies(
             project_root / ".codegraph" / "architecture" / "system.json"
         )
     if health_data is None:
-        health_data = _load_json(
-            project_root / ".codegraph" / "health" / "health_report.json"
-        )
+        # No file-backed producer exists; inject programmatically when needed.
+        health_data = {}
 
     for policy in enabled:
         violations = _check_policy(

@@ -156,10 +156,6 @@ class TestRunPreCommitCheck:
     def test_no_baseline_creates_one(self, tmp_path):
         # Create minimal .codegraph structure
         cg = tmp_path / ".codegraph"
-        health_dir = cg / "health"
-        health_dir.mkdir(parents=True)
-        (health_dir / "health_report.json").write_text(
-            json.dumps({"overall_score": 0.7, "overall_grade": "C"}))
         arch_dir = cg / "architecture"
         arch_dir.mkdir(parents=True)
         (arch_dir / "architecture_advice.json").write_text(

@@ -249,40 +249,6 @@ def copilot_context_cmd(ctx: click.Context, json_output: bool,
         click.echo(f"\nCopilot context saved.")
 
 
-# ── Health ────────────────────────────────────────────────────────────
-@click.command("health")
-@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
-@click.option("--save", "save_history", is_flag=True,
-              help="Save health entry to history.")
-@click.pass_context
-def health_cmd(ctx: click.Context, json_output: bool, save_history: bool) -> None:
-    """Show per-module architecture health grades."""
-    import json as _json
-    from codegraph.arch_health import compute_health
-    from codegraph.extractor import load_graph0
-    from codegraph.index import IndexStore
-
-    try:
-        root = find_project_root()
-    except FileNotFoundError as exc:
-        handle_error(exc, ctx.obj.get("verbose", False))
-        sys.exit(EXIT_ERROR)
-
-    graph0 = load_graph0(root)
-    with IndexStore(root) as index:
-        report = compute_health(graph0, index, project_root=root)
-
-    if save_history:
-        from codegraph.arch_health import save_health_history
-        save_health_history(report, root)
-        click.echo("Health entry saved to history.")
-
-    if json_output:
-        click.echo(_json.dumps(report.to_dict(), indent=2))
-    else:
-        click.echo(report.format())
-
-
 # ── Multilevel Analysis ──────────────────────────────────────────────
 @click.command("multilevel")
 @click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
@@ -1315,7 +1281,6 @@ COMMANDS = [
     memory_intel_cmd,
     metrics_snapshot_cmd,
     copilot_context_cmd,
-    health_cmd,
     multilevel_cmd,
     memory_cmd,
     subsystems_cmd,
