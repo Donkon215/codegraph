@@ -12,7 +12,7 @@ Each candidate represents a different refactoring strategy (module split,
 fan-out reduction, subsystem boundary improvement, etc.) and is evaluated
 against architecture metrics before any code changes are made.
 
-Dependencies: intelligence (architecture_advisor, arch_health, risk_metrics,
+Dependencies: intelligence (architecture_advisor, architecture_health, risk_metrics,
 refactor, architecture_simulator), infrastructure (logging_config, storage),
 architecture_memory.
 """
