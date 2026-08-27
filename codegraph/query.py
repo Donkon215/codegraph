@@ -355,11 +355,10 @@ def query_dependencies(
 ) -> QueryResult:
     """Return all transitive dependencies (callees-of-callees) (L-004)."""
     result = QueryResult(function="dependencies", query=f'dependencies("{node_id}")')
-    result.nodes = index.get_dependencies_recursive(node_id, max_depth=depth)
-    result.total = len(result.nodes)
-    if limit and len(result.nodes) > limit:
-        result.nodes = result.nodes[:limit]
-        result.truncated = True
+    nodes, truncated = index.get_dependencies_recursive(node_id, max_depth=depth, limit=limit)
+    result.nodes = nodes
+    result.total = len(nodes)
+    result.truncated = truncated
     return result
 
 

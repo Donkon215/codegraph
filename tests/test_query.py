@@ -6,8 +6,28 @@ Task O-015: Query functions with known graph data.
 from __future__ import annotations
 
 import pytest
+from typing import Dict, List
 
-from codegraph.query import ParsedQuery, QueryOptions, execute_query, parse_query
+from codegraph.index import IndexStore
+from codegraph.query import (
+    ParsedQuery,
+    QueryOptions,
+    execute_query,
+    parse_query,
+    query_dependencies,
+)
+
+
+class _InstrumentedIndex(IndexStore):
+    """IndexStore backed by a dict with a counted get_callees (no DB needed)."""
+
+    def __init__(self, callees: Dict[str, List[str]]) -> None:
+        self._callees = callees
+        self.callee_calls = 0
+
+    def get_callees(self, node_id: str) -> List[str]:
+        self.callee_calls += 1
+        return list(self._callees.get(node_id, []))
 
 
 class TestQueryParser:
@@ -190,3 +210,38 @@ class TestAQL:
                 result = execute_query(parsed, index, QueryOptions(), project_root=tmp_path)
                 assert result.total == 1
                 assert result.nodes[0].startswith("god_module")
+
+
+class TestQueryDependenciesLimit:
+    """Regression tests for issue #3: --limit must bound the traversal."""
+
+    def _graph(self) -> _InstrumentedIndex:
+        callees: Dict[str, List[str]] = {"A": [f"B{i}" for i in range(5)]}
+        for i in range(5):
+            callees[f"B{i}"] = [f"B{i}_leaf{j}" for j in range(100)]
+        return _InstrumentedIndex(callees)
+
+    def test_limit_stops_traversal(self) -> None:
+        index = self._graph()
+        result = query_dependencies("A", index, limit=2)
+
+        assert len(result.nodes) == 2
+        assert result.truncated is True
+        # The whole graph would require ~505 callee lookups; with limit=2
+        # only the seed and the first two discovered nodes are walked.
+        assert index.callee_calls <= 4
+
+    def test_unlimited_returns_full_set(self) -> None:
+        index = _InstrumentedIndex({"A": ["B", "C"], "B": ["D"], "C": ["E"]})
+        result = query_dependencies("A", index)
+
+        assert set(result.nodes) == {"B", "C", "D", "E"}
+        assert result.truncated is False
+
+    def test_limit_through_execute_query(self) -> None:
+        index = self._graph()
+        parsed = parse_query('dependencies("A", limit=3)')
+        result = execute_query(parsed, index, QueryOptions())
+
+        assert len(result.nodes) == 3
+        assert result.truncated is True

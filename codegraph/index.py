@@ -611,16 +611,29 @@ class IndexStore:
         self,
         node_id: str,
         max_depth: Optional[int] = None,
-    ) -> List[str]:
-        """BFS through callees for transitive dependencies (G-013)."""
+        limit: Optional[int] = None,
+    ) -> Tuple[List[str], bool]:
+        """BFS through callees for transitive dependencies (G-013).
+
+        If ``limit`` is given, traversal stops as soon as that many dependency
+        nodes have been discovered, so callers can bound expensive queries on
+        large graphs. Returns ``(nodes, truncated)`` where ``truncated`` is
+        ``True`` when the limit cut the traversal short.
+        """
         visited: Set[str] = set()
         queue: deque[Tuple[str, int]] = deque([(node_id, 0)])
+        truncated = False
 
         while queue:
             current, depth = queue.popleft()
             if current in visited:
                 continue
             visited.add(current)
+            if limit is not None and len(visited) - 1 >= limit:
+                # Enough dependency nodes found. Only mark truncated if more
+                # nodes remain undiscovered in the queue.
+                truncated = len(queue) > 0
+                break
             if max_depth is not None and depth >= max_depth:
                 continue
             for callee in self.get_callees(current):
@@ -628,7 +641,7 @@ class IndexStore:
                     queue.append((callee, depth + 1))
 
         visited.discard(node_id)
-        return sorted(visited)
+        return sorted(visited), truncated
 
     # ── G-014 shortest path ───────────────────────────────────────────
 
