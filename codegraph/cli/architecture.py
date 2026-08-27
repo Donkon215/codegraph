@@ -430,7 +430,7 @@ def arch_memory_cmd(ctx: click.Context, decisions: bool, experiments: bool,
                     simulations: bool, json_output: bool) -> None:
     """Query architecture memory — decisions, experiments, simulations."""
     import json as _json
-    from codegraph.arch_memory import (
+    from codegraph.architecture_memory import (
         load_decisions, load_experiments, load_simulations,
         format_decisions, format_experiments, format_simulations,
     )

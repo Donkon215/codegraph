@@ -18,7 +18,6 @@ Covers tasks F-001, F-009 through F-035:
   F-022  Workflow edge counting
   F-023  Workflow incremental update
   F-024  Self-call detection
-  F-025  Coverage.py pytest plugin hook (see pytest_plugin.py)
   F-026  Trace fallback on failure
   F-027  Architecture test trace mode
   F-028  Edge source tracking metadata

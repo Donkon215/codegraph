@@ -20,10 +20,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-from codegraph.arch_memory import (
-    ArchDecision,
-    ArchExperiment,
-    ArchMemory,
+from codegraph.architecture_memory import (
+    DecisionRecord,
+    ExperimentRecord,
+    ArchitectureMemory,
     load_memory,
     save_memory,
 )
@@ -317,7 +317,7 @@ def _save_metrics_history(
 # ═══════════════════════════════════════════════════════════════════════
 
 
-def mine_patterns(memory: ArchMemory) -> List[ArchPattern]:
+def mine_patterns(memory: ArchitectureMemory) -> List[ArchPattern]:
     """Mine patterns from architecture decisions and experiments.
 
     Looks for:
@@ -401,7 +401,7 @@ def mine_patterns(memory: ArchMemory) -> List[ArchPattern]:
 # ═══════════════════════════════════════════════════════════════════════
 
 
-def score_strategies(memory: ArchMemory) -> List[StrategyScore]:
+def score_strategies(memory: ArchitectureMemory) -> List[StrategyScore]:
     """Score architecture strategies by historical effectiveness.
 
     Analyzes decisions tagged with strategy types and computes
@@ -414,7 +414,7 @@ def score_strategies(memory: ArchMemory) -> List[StrategyScore]:
         "cycle_break", "deep_chain_reduction", "refactor", "governance",
     }
 
-    strategy_data: Dict[str, List[ArchDecision]] = {}
+    strategy_data: Dict[str, List[DecisionRecord]] = {}
     for d in memory.decisions:
         matched_tags = strategy_tags & set(d.tags)
         for tag in matched_tags:
@@ -427,7 +427,7 @@ def score_strategies(memory: ArchMemory) -> List[StrategyScore]:
             keyword = strategy.replace("_", " ").replace("-", " ")
             if keyword in exp.branch_name.lower() or keyword in exp.description.lower():
                 # Create a synthetic decision record
-                d = ArchDecision(
+                d = DecisionRecord(
                     decision_id=exp.experiment_id,
                     decision=exp.description,
                     reason="",
@@ -468,7 +468,7 @@ def score_strategies(memory: ArchMemory) -> List[StrategyScore]:
 
 
 def generate_recommendations(
-    memory: ArchMemory,
+    memory: ArchitectureMemory,
     metrics_history: List[MetricsSnapshot],
     strategy_scores: List[StrategyScore],
 ) -> List[str]:

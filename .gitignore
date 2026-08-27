@@ -1,2 +1,33 @@
 __pycache__/
 .codegraph/
+# codegraph generated artifacts
+.codegraph/graphs/graph0.json
+.codegraph/workflow/workflow.json
+.codegraph/delta.json
+.codegraph/setup.json
+.codegraph/index/
+.codegraph/tasks/
+.codegraph/responses/
+
+# build artifacts
+*.egg-info/
+dist/
+build/
+
+# generated junk / runtime state
+*.backup
+*.bak
+.coverage
+coverage.json
+coverage.xml
+htmlcov/
+test_out.txt
+*_output.txt
+tasks_output.json
+bulk_intents.json
+intents.json
+agent_response.json
+
+# stray clones / fixture repos
+temp_clone/
+sample_project/

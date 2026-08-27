@@ -7,10 +7,10 @@ from pathlib import Path
 
 import pytest
 
-from codegraph.arch_memory import (
-    ArchDecision,
-    ArchExperiment,
-    ArchMemory,
+from codegraph.architecture_memory import (
+    DecisionRecord,
+    ExperimentRecord,
+    ArchitectureMemory,
     load_memory,
     save_memory,
 )
@@ -35,11 +35,11 @@ from codegraph.arch_memory_intelligence import (
 
 def _setup_memory(
     tmp_path: Path,
-    decisions: list[ArchDecision] | None = None,
-    experiments: list[ArchExperiment] | None = None,
-) -> ArchMemory:
-    """Create and persist an ArchMemory in tmp_path."""
-    mem = ArchMemory(
+    decisions: list[DecisionRecord] | None = None,
+    experiments: list[ExperimentRecord] | None = None,
+) -> ArchitectureMemory:
+    """Create and persist an ArchitectureMemory in tmp_path."""
+    mem = ArchitectureMemory(
         decisions=decisions or [],
         experiments=experiments or [],
     )
@@ -98,16 +98,16 @@ class TestStrategyScore:
 
 class TestMinePatterns:
     def test_empty_memory(self):
-        mem = ArchMemory()
+        mem = ArchitectureMemory()
         patterns = mine_patterns(mem)
         assert patterns == []
 
     def test_mines_tag_patterns(self):
-        mem = ArchMemory(decisions=[
-            ArchDecision(decision_id="d1", decision="split cli",
+        mem = ArchitectureMemory(decisions=[
+            DecisionRecord(decision_id="d1", decision="split cli",
                          reason="too big", result="success",
                          health_delta=0.05, tags=["refactor"]),
-            ArchDecision(decision_id="d2", decision="split apply",
+            DecisionRecord(decision_id="d2", decision="split apply",
                          reason="god module", result="success",
                          health_delta=0.03, tags=["refactor"]),
         ])
@@ -119,8 +119,8 @@ class TestMinePatterns:
         assert refactor_patterns[0].avg_impact > 0
 
     def test_mines_experiment_patterns(self):
-        mem = ArchMemory(experiments=[
-            ArchExperiment(
+        mem = ArchitectureMemory(experiments=[
+            ExperimentRecord(
                 experiment_id="e1", branch_name="fix-cycles",
                 description="break cycles", outcome="merged",
                 health_before=0.5, health_after=0.7,
@@ -137,16 +137,16 @@ class TestMinePatterns:
 
 class TestScoreStrategies:
     def test_empty_memory(self):
-        mem = ArchMemory()
+        mem = ArchitectureMemory()
         scores = score_strategies(mem)
         assert scores == []
 
     def test_scores_from_decisions(self):
-        mem = ArchMemory(decisions=[
-            ArchDecision(decision_id="d1", decision="split module",
+        mem = ArchitectureMemory(decisions=[
+            DecisionRecord(decision_id="d1", decision="split module",
                          reason="god module", result="success",
                          health_delta=0.05, tags=["module_split"]),
-            ArchDecision(decision_id="d2", decision="split another module",
+            DecisionRecord(decision_id="d2", decision="split another module",
                          reason="god module", result="success",
                          health_delta=0.03, tags=["module_split"]),
         ])
@@ -158,8 +158,8 @@ class TestScoreStrategies:
         assert split_score.effectiveness > 0.5
 
     def test_scores_from_experiments(self):
-        mem = ArchMemory(experiments=[
-            ArchExperiment(
+        mem = ArchitectureMemory(experiments=[
+            ExperimentRecord(
                 experiment_id="e1",
                 branch_name="codegraph/refactor-fan-out",
                 description="fan out reduction in cli",
@@ -204,7 +204,7 @@ class TestRecordMetrics:
 
 class TestRecommendations:
     def test_empty_data(self):
-        recs = generate_recommendations(ArchMemory(), [], [])
+        recs = generate_recommendations(ArchitectureMemory(), [], [])
         assert any("No architecture decisions" in r for r in recs)
 
     def test_trend_up(self):
@@ -213,7 +213,7 @@ class TestRecommendations:
             MetricsSnapshot(timestamp="t2", score=0.6),
             MetricsSnapshot(timestamp="t3", score=0.7),
         ]
-        recs = generate_recommendations(ArchMemory(), history, [])
+        recs = generate_recommendations(ArchitectureMemory(), history, [])
         assert any("trending up" in r for r in recs)
 
     def test_trend_down(self):
@@ -222,7 +222,7 @@ class TestRecommendations:
             MetricsSnapshot(timestamp="t2", score=0.6),
             MetricsSnapshot(timestamp="t3", score=0.5),
         ]
-        recs = generate_recommendations(ArchMemory(), history, [])
+        recs = generate_recommendations(ArchitectureMemory(), history, [])
         assert any("trending down" in r for r in recs)
 
     def test_effective_strategy(self):
@@ -230,7 +230,7 @@ class TestRecommendations:
             StrategyScore(strategy="module_split", times_used=5,
                           times_succeeded=4, effectiveness=0.8),
         ]
-        recs = generate_recommendations(ArchMemory(), [], scores)
+        recs = generate_recommendations(ArchitectureMemory(), [], scores)
         assert any("module_split" in r for r in recs)
 
 
@@ -248,10 +248,10 @@ class TestAnalyzeMemory:
     def test_with_data(self, tmp_path: Path):
         _make_codegraph_dirs(tmp_path)
         _setup_memory(tmp_path, decisions=[
-            ArchDecision(decision_id="d1", decision="test",
+            DecisionRecord(decision_id="d1", decision="test",
                          reason="r", result="success",
                          health_delta=0.1, tags=["module_split"]),
-            ArchDecision(decision_id="d2", decision="test2",
+            DecisionRecord(decision_id="d2", decision="test2",
                          reason="r", result="success",
                          health_delta=0.05, tags=["module_split"]),
         ])

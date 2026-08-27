@@ -57,12 +57,6 @@ def _setup_codegraph(tmp_path: Path) -> None:
         json.dumps(arch), encoding="utf-8",
     )
 
-    # Minimal health report
-    health = {"overall_score": 0.7, "coupling": 0.3}
-    (tmp_path / ".codegraph" / "health" / "health_report.json").write_text(
-        json.dumps(health), encoding="utf-8",
-    )
-
 
 # ── Policy Data Class ─────────────────────────────────────────────────
 
@@ -224,14 +218,16 @@ class TestEvaluatePolicies:
         _setup_codegraph(tmp_path)
         add_policy(tmp_path, "gate", "score_gate",
                     "Min score 0.5", "block", 0.5)
-        report = evaluate_policies(tmp_path)
+        report = evaluate_policies(
+            tmp_path, health_data={"overall_score": 0.7})
         assert report.passed is True
 
     def test_score_gate_block(self, tmp_path: Path):
         _setup_codegraph(tmp_path)
         add_policy(tmp_path, "gate", "score_gate",
                     "Min score 0.9", "block", 0.9)
-        report = evaluate_policies(tmp_path)
+        report = evaluate_policies(
+            tmp_path, health_data={"overall_score": 0.7})
         assert report.passed is False
         assert any(v.action == "block" for v in report.violations)
 
@@ -239,6 +235,14 @@ class TestEvaluatePolicies:
         _setup_codegraph(tmp_path)
         add_policy(tmp_path, "coupling", "coupling_limit",
                     "Max coupling 0.5", "warn", 0.5)
+        report = evaluate_policies(
+            tmp_path, health_data={"coupling": 0.3})
+        assert report.passed is True
+
+    def test_no_health_data_defaults_to_pass(self, tmp_path: Path):
+        _setup_codegraph(tmp_path)
+        add_policy(tmp_path, "gate", "score_gate",
+                    "Min score 0.5", "block", 0.5)
         report = evaluate_policies(tmp_path)
         assert report.passed is True
 
