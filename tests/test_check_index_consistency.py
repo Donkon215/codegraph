@@ -134,3 +134,23 @@ def test_corrupted_node_layer_same_count_detected():
     issues = _consistency(repo)
     tables = {i.table for i in issues}
     assert "layers" in tables, [ (i.table, i.message) for i in issues ]
+
+
+def test_cas_failure_does_not_false_diverge(monkeypatch):
+    # If CAS is unavailable when the reference snapshot is built, the checker must
+    # fall back to a structural comparison rather than report a false divergence
+    # on the dependency_hash column (concern #2 hardening).
+    repo = _make_repo(_repo_with_edges())
+    _cg(repo, "build")
+
+    import codegraph.cas as cas_mod
+
+    def _boom(*_a, **_k):
+        raise RuntimeError("CAS down")
+
+    monkeypatch.setattr(cas_mod, "run_cas_pipeline", _boom)
+
+    issues = _consistency(repo)
+    tables = {i.table for i in issues}
+    assert "nodes" not in tables, [ (i.table, i.message) for i in issues ]
+    assert "dependency_hashes" not in tables, [ (i.table, i.message) for i in issues ]

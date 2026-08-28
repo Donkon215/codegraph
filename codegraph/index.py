@@ -400,6 +400,17 @@ def build_all_indexes(
     return results
 
 
+def _strip_dependency_hash(snap: "IndexSnapshot") -> "IndexSnapshot":
+    """Drop CAS-dependent columns so a reference built without CAS can still be
+    compared structurally (used when CAS is unavailable for the consistency check).
+    """
+    tables = dict(snap.tables)
+    tables.pop("dependency_hashes", None)
+    if "nodes" in tables:
+        tables["nodes"] = [r[:-1] for r in tables["nodes"]]
+    return IndexSnapshot(tables)
+
+
 def build_reference_snapshot(
     graph0: Any,
     graph1: Any,
@@ -413,6 +424,11 @@ def build_reference_snapshot(
     clone and no source re-extraction. The result can be diffed against the
     on-disk index by ``check_index_consistency`` to detect logical divergence
     (e.g. an edge whose target changed while its row count stayed the same).
+
+    Returns ``(snapshot, dep_ok)``. ``dep_ok`` is False when CAS could not run,
+    in which case the returned snapshot is structural-only (the dependency_hash
+    column/table is stripped) so a CAS outage cannot produce a misleading
+    divergence against a real index that does carry hashes.
     """
     import sqlite3
 
@@ -430,8 +446,13 @@ def build_reference_snapshot(
         cached = load_hash_snapshot(project_root)
         _, hashes = run_cas_pipeline(_Graph0(), graph0, workflow, cached)
         graph0.update_dependency_hashes(hashes)
-    except Exception:
-        pass
+        dep_ok = True
+    except Exception as exc:
+        logger.warning(
+            "CAS unavailable for consistency reference; comparing structural index only: %s", exc
+        )
+        dep_ok = False
+
     conn = sqlite3.connect(":memory:")
     conn.row_factory = sqlite3.Row
     _ensure_version_table(conn)
@@ -445,7 +466,13 @@ def build_reference_snapshot(
     build_tests_index(conn, edges, graph0.nodes)
     build_dependency_hash_index(conn, graph0.nodes)
 
-    return snapshot_conn(conn)
+    snap = snapshot_conn(conn)
+    if not dep_ok:
+        # Without CAS the reference carries empty dependency hashes; comparing
+        # them against a real index would falsely diverge. Fall back to a
+        # structural-only snapshot instead of a misleading one.
+        snap = _strip_dependency_hash(snap)
+    return snap, dep_ok
 
 
 # ═══════════════════════════════════════════════════════════════════════

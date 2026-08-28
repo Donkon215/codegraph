@@ -125,8 +125,16 @@ def check_index_consistency(project_root: Path) -> List[ConsistencyIssue]:
         from codegraph.index import build_reference_snapshot
         from codegraph.index_snapshot import diff_index_snapshots, snapshot_index
 
-        reference = build_reference_snapshot(graph0, graph1, workflow, project_root)
+        reference, dep_ok = build_reference_snapshot(graph0, graph1, workflow, project_root)
         actual = snapshot_index(project_root)
+        if not dep_ok:
+            # CAS was unavailable when building the reference; compare the actual
+            # index structurally too so a missing hash column cannot be reported
+            # as a divergence.
+            from codegraph.index import _strip_dependency_hash
+
+            reference = _strip_dependency_hash(reference)
+            actual = _strip_dependency_hash(actual)
         logical = diff_index_snapshots(
             reference, actual, table_names=tuple(reference.tables.keys())
         )
