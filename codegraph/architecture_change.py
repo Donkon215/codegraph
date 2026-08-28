@@ -1,103 +1,213 @@
-"""codegraph.architecture_change — canonical proposed-change model (v1.2 issue #27/A).
+"""codegraph.architecture_change — canonical ArchitectureChange IR (v1.2 issue #27).
 
-A single schema that unifies the four parallel "proposed change" models that
-already exist in the codebase:
+This module is the INTERMEDIATE REPRESENTATION (IR) for a proposed architectural
+transformation. It is a DESCRIPTION ONLY: it does NOT apply changes to
+SystemArchitecture, does NOT contain source-code edits, and does NOT perform
+simulation. Mutating the architecture / simulating is a separate later stage.
 
-  - AgentResponse.repairs   (codegraph.models.agent_response.RepairAction)
-  - SimulatedChange         (codegraph.simulator.SimulatedChange)
-  - ArchChange              (codegraph.architecture_simulator.ArchChange)
-  - PlannedTask             (codegraph.arch_planner.PlannedTask)
+Pipeline:
+    raw ArchitectureChange -> normalize() -> validate() -> accept / reject
+    normalize() canonicalizes ordering + defaults; it NEVER erases contradictory
+    intent. Contradictions are rejected by validate(), not hidden by normalize().
 
-It is the input contract every later stage (delta, simulate, policy, agent
-loop) consumes. Public JSON shape matches the product vision:
+Identity (from repo evidence, PHASE 1 audit):
+    subsystem   = SubsystemDef.name
+    component   = module path (the de-facto architecture<->code link key)
+    edge        = (source, target, edge_type)
+    constraint  = (constraint_type, source, target)  # constraint_type kept VERBATIM
 
-    {
-      "add": ["service.payment"],
-      "remove": [],
-      "modify": ["service.order"],
-      "relationships": [{"action": "add", "from": "order", "to": "payment", "type": "calls"}],
-      "constraints": [{"action": "add", "type": "forbidden", "source": "ui", "target": "db", "reason": ""}]
-    }
+Edge-type vocabulary is LOCKED to the architecture layer's tokens
+(arch_schema.ArchEdge: "call" / "dependency" / "data_flow"). Legacy tokens such as
+"calls" / "depends" / "depends_on" are mapped to canonical form ONLY at adapter
+boundaries (PHASE 3) via EDGE_TYPE_ALIASES below — no casual invention.
 """
 
 from __future__ import annotations
 
 import json
 from dataclasses import dataclass, field
-from typing import Any, Dict, List
+from enum import Enum
+from typing import Any, Dict, List, Optional
 
-from codegraph.arch_schema import ArchConstraint
-from codegraph.logging_config import get_logger
+__all__ = [
+    "OpType",
+    "ArchitectureOperation",
+    "ArchitectureChange",
+    "ArchitectureChangeError",
+    "ArchitectureChangeValidationError",
+    "EDGE_TYPE_CANONICAL",
+    "EDGE_TYPE_ALIASES",
+    "canonical_edge_type",
+]
 
-logger = get_logger("architecture_change")
+
+class ArchitectureChangeError(Exception):
+    """Base error for ArchitectureChange."""
+
+
+class ArchitectureChangeValidationError(ArchitectureChangeError):
+    """Raised when an ArchitectureChange fails structural validation."""
+
+
+class OpType(str, Enum):
+    ADD_SUBSYSTEM = "add_subsystem"
+    REMOVE_SUBSYSTEM = "remove_subsystem"
+    ADD_COMPONENT = "add_component"
+    REMOVE_COMPONENT = "remove_component"
+    ADD_EDGE = "add_edge"
+    REMOVE_EDGE = "remove_edge"
+    ADD_CONSTRAINT = "add_constraint"
+    REMOVE_CONSTRAINT = "remove_constraint"
+
+
+_ADD_OPS = {
+    OpType.ADD_SUBSYSTEM,
+    OpType.ADD_COMPONENT,
+    OpType.ADD_EDGE,
+    OpType.ADD_CONSTRAINT,
+}
+_REMOVE_OPS = {
+    OpType.REMOVE_SUBSYSTEM,
+    OpType.REMOVE_COMPONENT,
+    OpType.REMOVE_EDGE,
+    OpType.REMOVE_CONSTRAINT,
+}
+
+# Canonical edge types — exactly ArchEdge.edge_type vocabulary (arch_schema.py:71).
+EDGE_TYPE_CANONICAL = ("call", "dependency", "data_flow")
+
+# Adapter vocabulary lock (used in PHASE 3). Legacy token -> canonical token.
+# The IR itself only accepts EDGE_TYPE_CANONICAL; adapters translate via this map.
+EDGE_TYPE_ALIASES = {
+    "call": "call",
+    "calls": "call",
+    "dependency": "dependency",
+    "depends": "dependency",
+    "depends_on": "dependency",
+    "data_flow": "data_flow",
+    "dataflow": "data_flow",
+}
+
+
+def canonical_edge_type(token: str) -> str:
+    """Map a (possibly legacy) edge-type token to its canonical form.
+
+    Unknown tokens are returned unchanged; validate() will reject them. This is
+    the single place adapters resolve vocabulary divergence — no other code may
+    invent its own translation.
+    """
+    if token in EDGE_TYPE_CANONICAL:
+        return token
+    return EDGE_TYPE_ALIASES.get(token, token)
+
+
+_OP_RANK = {
+    OpType.ADD_SUBSYSTEM: 0,
+    OpType.REMOVE_SUBSYSTEM: 1,
+    OpType.ADD_COMPONENT: 2,
+    OpType.REMOVE_COMPONENT: 3,
+    OpType.ADD_EDGE: 4,
+    OpType.REMOVE_EDGE: 5,
+    OpType.ADD_CONSTRAINT: 6,
+    OpType.REMOVE_CONSTRAINT: 7,
+}
+
+_OP_FIELDS = (
+    "subsystem",
+    "component",
+    "component_subsystem",
+    "component_name",
+    "source",
+    "target",
+    "edge_type",
+    "constraint_type",
+    "reason",
+)
 
 
 @dataclass
-class ArchRelationship:
-    """An edge change between two nodes (add or remove)."""
+class ArchitectureOperation:
+    """A single typed operation of an ArchitectureChange."""
 
-    action: str = "add"  # "add" | "remove"
-    from_: str = ""
-    to: str = ""
-    type: str = "calls"  # "calls" | "depends" | "data_flow"
+    op: OpType
+    subsystem: str = ""
+    component: str = ""  # module path (component identity)
+    component_subsystem: str = ""  # owning subsystem for add_component
+    component_name: str = ""  # optional label
+    source: str = ""
+    target: str = ""
+    edge_type: str = ""
+    constraint_type: str = ""  # VERBATIM (e.g. forbidden / forbidden_dependency)
+    reason: str = ""
+
+    def _identity(self) -> tuple:
+        """Identity used for contradiction/duplicate detection (op-independent)."""
+        if self.op in (OpType.ADD_SUBSYSTEM, OpType.REMOVE_SUBSYSTEM):
+            return ("subsystem", self.subsystem)
+        if self.op in (OpType.ADD_COMPONENT, OpType.REMOVE_COMPONENT):
+            return ("component", self.component)
+        if self.op in (OpType.ADD_EDGE, OpType.REMOVE_EDGE):
+            return ("edge", self.source, self.target, self.edge_type)
+        if self.op in (OpType.ADD_CONSTRAINT, OpType.REMOVE_CONSTRAINT):
+            return ("constraint", self.constraint_type, self.source, self.target)
+        return ("?",)
 
     def to_dict(self) -> Dict[str, Any]:
-        d: Dict[str, Any] = {"action": self.action, "from": self.from_, "to": self.to}
-        if self.type != "calls":
-            d["type"] = self.type
+        d: Dict[str, Any] = {"op": self.op.value}
+        for f in _OP_FIELDS:
+            v = getattr(self, f)
+            if v:
+                d[f] = v
         return d
 
     @classmethod
-    def from_dict(cls, d: Dict[str, Any]) -> "ArchRelationship":
-        if isinstance(d, list) and len(d) >= 2:
-            return cls(action="add", from_=d[0], to=d[1])
+    def from_dict(cls, d: Dict[str, Any]) -> "ArchitectureOperation":
+        try:
+            op = OpType(d["op"])
+        except (ValueError, KeyError):
+            raise ArchitectureChangeValidationError(
+                f"unknown or missing operation type: {d.get('op')!r}"
+            )
         return cls(
-            action=d.get("action", "add"),
-            from_=d.get("from", ""),
-            to=d.get("to", ""),
-            type=d.get("type", "calls"),
+            op=op,
+            subsystem=d.get("subsystem", ""),
+            component=d.get("component", ""),
+            component_subsystem=d.get("component_subsystem", ""),
+            component_name=d.get("component_name", ""),
+            source=d.get("source", ""),
+            target=d.get("target", ""),
+            edge_type=d.get("edge_type", ""),
+            constraint_type=d.get("constraint_type", ""),
+            reason=d.get("reason", ""),
         )
 
 
 @dataclass
-class ConstraintChange:
-    """Add or remove an architectural constraint (reuses ArchConstraint)."""
-
-    action: str = "add"  # "add" | "remove"
-    constraint: ArchConstraint = field(default_factory=ArchConstraint)
-
-    def to_dict(self) -> Dict[str, Any]:
-        d = self.constraint.to_dict()
-        d["action"] = self.action
-        return d
-
-    @classmethod
-    def from_dict(cls, d: Dict[str, Any]) -> "ConstraintChange":
-        return cls(action=d.get("action", "add"), constraint=ArchConstraint.from_dict(d))
-
-
-@dataclass
 class ArchitectureChange:
-    """The single canonical representation of a proposed architectural change."""
+    """Canonical representation of a proposed architectural transformation.
 
-    add: List[str] = field(default_factory=list)
-    remove: List[str] = field(default_factory=list)
-    modify: List[str] = field(default_factory=list)
-    relationships: List[ArchRelationship] = field(default_factory=list)
-    constraints: List[ConstraintChange] = field(default_factory=list)
+    Description only. States intent; does not apply or simulate.
+    """
+
+    base_version: int = 0
+    reason: str = ""
+    operations: List[ArchitectureOperation] = field(default_factory=list)
+    id: Optional[str] = None
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+    # ── Serialization ────────────────────────────────────────────────────
 
     def to_dict(self) -> Dict[str, Any]:
-        d: Dict[str, Any] = {}
-        if self.add:
-            d["add"] = list(self.add)
-        if self.remove:
-            d["remove"] = list(self.remove)
-        if self.modify:
-            d["modify"] = list(self.modify)
-        if self.relationships:
-            d["relationships"] = [r.to_dict() for r in self.relationships]
-        if self.constraints:
-            d["constraints"] = [c.to_dict() for c in self.constraints]
+        d: Dict[str, Any] = {
+            "base_version": self.base_version,
+            "operations": [o.to_dict() for o in self.operations],
+        }
+        if self.id is not None:
+            d["id"] = self.id
+        if self.reason:
+            d["reason"] = self.reason
+        if self.metadata:
+            d["metadata"] = self.metadata
         return d
 
     def to_json(self, compact: bool = False) -> str:
@@ -105,159 +215,127 @@ class ArchitectureChange:
 
     @classmethod
     def from_dict(cls, d: Dict[str, Any]) -> "ArchitectureChange":
+        if not isinstance(d, dict):
+            raise ArchitectureChangeValidationError("ArchitectureChange must be an object")
+        try:
+            base_version = int(d.get("base_version", 0))
+        except (TypeError, ValueError):
+            raise ArchitectureChangeValidationError("base_version must be an integer")
         return cls(
-            add=list(d.get("add", [])),
-            remove=list(d.get("remove", [])),
-            modify=list(d.get("modify", [])),
-            relationships=[ArchRelationship.from_dict(x) for x in d.get("relationships", [])],
-            constraints=[ConstraintChange.from_dict(x) for x in d.get("constraints", [])],
+            base_version=base_version,
+            reason=d.get("reason", "") or "",
+            operations=[ArchitectureOperation.from_dict(o) for o in d.get("operations", [])],
+            id=d.get("id"),
+            metadata=d.get("metadata", {}) or {},
         )
 
     @classmethod
     def from_json(cls, text: str) -> "ArchitectureChange":
         return cls.from_dict(json.loads(text))
 
-    # ── Adapters from the legacy parallel models ─────────────────────────
+    # ── Validation (structural) ───────────────────────────────────────────
 
-    @classmethod
-    def from_agent_response(cls, ar: "Any") -> "ArchitectureChange":
-        """Map AgentResponse.repairs into a proposed change.
+    def validate(self) -> None:
+        """Structural validation. Raises ArchitectureChangeValidationError.
 
-        connect_call/add_import -> relationship; remove_dead_code -> remove node
-        or edge; flag_for_human_review is a review note, not a topology change.
+        Catches: bad base_version, missing required fields, unknown/non-canonical
+        edge_type, and CONTRADICTORY or DUPLICATE operations. Malformed proposed
+        changes are rejected here, never silently normalized away.
         """
-        from codegraph.models.agent_response import RepairActionType
+        if isinstance(self.base_version, bool) or not isinstance(self.base_version, int):
+            raise ArchitectureChangeValidationError("base_version must be an integer")
+        if not isinstance(self.reason, str):
+            raise ArchitectureChangeValidationError("reason must be a string")
 
-        ch = cls()
-        for r in ar.repairs:
-            if r.action == RepairActionType.CONNECT_CALL.value:
-                ch.relationships.append(
-                    ArchRelationship(action="add", from_=r.node, to=r.target or "", type="calls")
+        seen_exact: set = set()
+        add_seen: Dict[tuple, bool] = {}
+        remove_seen: Dict[tuple, bool] = {}
+        for op in self.operations:
+            self._validate_op(op)
+            ident = op._identity()
+            exact = (op.op.value, ident)
+            if exact in seen_exact:
+                raise ArchitectureChangeValidationError(
+                    f"duplicate operation: {op.op.value} {ident}"
                 )
-            elif r.action == RepairActionType.ADD_IMPORT.value:
-                ch.relationships.append(
-                    ArchRelationship(action="add", from_=r.node, to=r.target or "", type="depends")
-                )
-            elif r.action == RepairActionType.REMOVE_DEAD_CODE.value:
-                if r.target:
-                    ch.relationships.append(
-                        ArchRelationship(action="remove", from_=r.node, to=r.target, type="calls")
+            seen_exact.add(exact)
+            if op.op in _ADD_OPS:
+                if ident in remove_seen:
+                    raise ArchitectureChangeValidationError(
+                        f"contradictory operation: add and remove same target {ident}"
                     )
-                else:
-                    ch.remove.append(r.node)
-            # FLAG_FOR_HUMAN_REVIEW is intentionally ignored (review, not change)
-        return ch
-
-    @classmethod
-    def from_planned_tasks(cls, tasks: "List[Any]") -> "ArchitectureChange":
-        """Map arch_planner.PlannedTask list into a proposed change."""
-        ch = cls()
-        for t in tasks:
-            if t.task_type == "create_module":
-                if t.module:
-                    ch.add.append(t.module)
-            elif t.task_type == "create_function":
-                ident = f"{t.module}::{t.function}" if t.module else (t.function or t.source)
-                if ident:
-                    ch.add.append(ident)
-            elif t.task_type == "connect_call":
-                src = t.source or t.module
-                tgt = t.target or t.function
-                if src and tgt:
-                    ch.relationships.append(
-                        ArchRelationship(action="add", from_=src, to=tgt, type="calls")
+                add_seen[ident] = True
+            else:
+                if ident in add_seen:
+                    raise ArchitectureChangeValidationError(
+                        f"contradictory operation: add and remove same target {ident}"
                     )
-            elif t.task_type == "add_constraint":
-                ch.constraints.append(
-                    ConstraintChange(
-                        action="add",
-                        constraint=ArchConstraint(
-                            constraint_type="forbidden",
-                            source=t.source,
-                            target=t.target,
-                            reason=t.reason,
-                        ),
-                    )
-                )
-            # flag_violation is intentionally ignored (review, not change)
-        return ch
+                remove_seen[ident] = True
 
-    @classmethod
-    def from_simulated_changes(cls, changes: "List[Any]") -> "ArchitectureChange":
-        """Map simulator.SimulatedChange list into a proposed change."""
-        ch = cls()
-        for c in changes:
-            if c.action == "add_node":
-                ch.add.append(c.node_id or c.source)
-            elif c.action == "remove_node":
-                ch.remove.append(c.node_id or c.source)
-            elif c.action == "add_edge":
-                ch.relationships.append(
-                    ArchRelationship(action="add", from_=c.source, to=c.target)
+    @staticmethod
+    def _validate_op(op: ArchitectureOperation) -> None:
+        if not isinstance(op.op, OpType):
+            raise ArchitectureChangeValidationError(f"unknown operation type: {op.op!r}")
+        t = op.op
+        if t in (OpType.ADD_SUBSYSTEM, OpType.REMOVE_SUBSYSTEM):
+            if not op.subsystem:
+                raise ArchitectureChangeValidationError("subsystem operation requires 'subsystem'")
+        elif t in (OpType.ADD_COMPONENT, OpType.REMOVE_COMPONENT):
+            if not op.component:
+                raise ArchitectureChangeValidationError(
+                    "component operation requires 'component' (module path)"
                 )
-            elif c.action == "remove_edge":
-                ch.relationships.append(
-                    ArchRelationship(action="remove", from_=c.source, to=c.target)
+            if t == OpType.ADD_COMPONENT and not op.component_subsystem:
+                raise ArchitectureChangeValidationError(
+                    "add_component requires 'component_subsystem'"
                 )
-        return ch
+        elif t in (OpType.ADD_EDGE, OpType.REMOVE_EDGE):
+            if not op.source or not op.target:
+                raise ArchitectureChangeValidationError("edge operation requires 'source' and 'target'")
+            if op.edge_type and op.edge_type not in EDGE_TYPE_CANONICAL:
+                raise ArchitectureChangeValidationError(
+                    f"edge_type must be one of {EDGE_TYPE_CANONICAL}, got {op.edge_type!r}"
+                )
+        elif t in (OpType.ADD_CONSTRAINT, OpType.REMOVE_CONSTRAINT):
+            if not op.constraint_type:
+                raise ArchitectureChangeValidationError(
+                    "constraint operation requires 'constraint_type' (kept verbatim)"
+                )
+            if not op.source or not op.target:
+                raise ArchitectureChangeValidationError(
+                    "constraint operation requires 'source' and 'target'"
+                )
 
-    @classmethod
-    def from_arch_changes(cls, changes: "List[Any]") -> "ArchitectureChange":
-        """Map architecture_simulator.ArchChange list into a proposed change."""
-        ch = cls()
-        for c in changes:
-            if c.action == "add_subsystem":
-                if c.subsystem:
-                    ch.add.append(c.subsystem)
-            elif c.action in ("remove_subsystem", "split_subsystem", "merge_subsystems"):
-                if c.subsystem:
-                    ch.modify.append(c.subsystem)
-                ch.modify.extend(c.components)
-            elif c.action == "add_component":
-                ch.add.append(c.component_name or c.module_path)
-            elif c.action == "add_edge":
-                ch.relationships.append(
-                    ArchRelationship(action="add", from_=c.subsystem, to=c.target_subsystem)
-                )
-            elif c.action == "remove_edge":
-                ch.relationships.append(
-                    ArchRelationship(action="remove", from_=c.subsystem, to=c.target_subsystem)
-                )
-            elif c.action == "add_constraint":
-                ch.constraints.append(
-                    ConstraintChange(
-                        action="add",
-                        constraint=ArchConstraint(
-                            constraint_type=c.constraint_type or "forbidden",
-                            source=c.subsystem,
-                            target=c.target_subsystem,
-                            reason=c.reason,
-                        ),
-                    )
-                )
-        return ch
+    # ── Normalization (representation only) ──────────────────────────────
 
-    # ── Bridge to the existing simulation engine ──────────────────────────
+    def normalize(self) -> "ArchitectureChange":
+        """Return a canonical form: sorted operations + default edge_type.
 
-    def to_simulated_changes(self) -> "List[Any]":
-        """Emit SimulatedChange objects the existing simulator can consume.
-
-        Constraints are policy-layer, not dependency-graph mutations, so they
-        are not expressed here (handled by issues B/E on the architecture graph).
+        Deliberately does NOT dedupe or cancel add/remove pairs — contradictions
+        remain detectable and are the job of validate(). Two descriptions of the
+        same intent normalize to the same object (deterministic serialization).
         """
-        from codegraph.simulator import SimulatedChange
-
-        out: List[SimulatedChange] = []
-        for node in self.add:
-            out.append(SimulatedChange(action="add_node", node_id=node))
-        for node in self.remove:
-            out.append(SimulatedChange(action="remove_node", node_id=node))
-        for rel in self.relationships:
-            out.append(
-                SimulatedChange(
-                    action="add_edge" if rel.action == "add" else "remove_edge",
-                    source=rel.from_,
-                    target=rel.to,
+        normed: List[ArchitectureOperation] = []
+        for op in self.operations:
+            if op.op in (OpType.ADD_EDGE, OpType.REMOVE_EDGE) and not op.edge_type:
+                op = ArchitectureOperation(
+                    op.op,
+                    subsystem=op.subsystem,
+                    component=op.component,
+                    component_subsystem=op.component_subsystem,
+                    component_name=op.component_name,
+                    source=op.source,
+                    target=op.target,
+                    edge_type="call",
+                    constraint_type=op.constraint_type,
+                    reason=op.reason,
                 )
-            )
-        return out
+            normed.append(op)
+        normed.sort(key=lambda o: (_OP_RANK[o.op], o.op.value, str(o._identity())))
+        return ArchitectureChange(
+            base_version=self.base_version,
+            reason=self.reason,
+            operations=normed,
+            id=self.id,
+            metadata=self.metadata,
+        )
