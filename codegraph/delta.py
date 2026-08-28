@@ -848,6 +848,7 @@ def _delta_update_graphs(project_root, changed, updates, graph0, new_graph0, res
         initialize_graph1,
         load_graph1,
         merge_graph1,
+        prune_graph1,
     )
 
     workflow = load_workflow(project_root)
@@ -901,6 +902,12 @@ def _delta_update_graphs(project_root, changed, updates, graph0, new_graph0, res
         graph1 = merge_graph1(existing_g1, new_graph0, layers)
     else:
         graph1 = initialize_graph1(new_graph0, layers)
+
+    # Drop Graph_1 nodes deleted in this delta so graph1.json stays in lock-step
+    # with graph0 (and the SQLite index); otherwise consistency checks still see
+    # stale layers for removed files (Issue #10).
+    prune_graph1(new_graph0, graph1)
+
     if changed.renamed:
         _migrate_renames(changed.renamed, graph1)
 
