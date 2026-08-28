@@ -406,64 +406,21 @@ def parse_trace_data(
     coverage_data: List[Dict[str, Any]],
     graph0: Graph0,
 ) -> List[WorkflowEdge]:
-    """Parse coverage.py output to function-level call edges (F-010).
+    """Map coverage.py output to runtime-observed functions (F-010).
 
-    Maps covered lines to Graph_0 nodes, then infers call relationships.
+    Coverage only proves *which* functions executed (via ``executed_lines``);
+    it does not record call/return events, so it can never establish a
+    caller → callee relationship. Manufactured edges from source/declaration
+    ordering would be false ``confidence="runtime"`` edges (see Issue #7),
+    which is worse than having no runtime edge at all.
+
+    Valid runtime *coverage* relationships (test → production) are produced by
+    :func:`build_test_edges`; this function therefore returns no call edges.
     """
-    if not coverage_data:
-        return []
-
-    # Build a line→node lookup: file → sorted list of (start_line, node_id)
-    file_nodes: Dict[str, List[Tuple[int, str]]] = defaultdict(list)
-    for node in graph0.nodes:
-        if node.type in ("function", "method"):
-            file_nodes[node.file].append((node.line, node.id))
-
-    for fpath in file_nodes:
-        file_nodes[fpath].sort()
-
-    edges: List[WorkflowEdge] = []
-    seen: Set[Tuple[str, str]] = set()
-
-    for entry in coverage_data:
-        raw_file = entry.get("file", "")
-        executed = set(entry.get("executed_lines", []))
-        if not executed:
-            continue
-
-        # Normalize file path
-        file_key = raw_file.replace("\\", "/")
-        # Try to match against graph0 file paths
-        matched_key = None
-        for fk in file_nodes:
-            if file_key.endswith(fk) or fk.endswith(file_key):
-                matched_key = fk
-                break
-        if matched_key is None:
-            continue
-
-        nodes_in_file = file_nodes[matched_key]
-        # Find which functions were executed
-        executed_funcs: List[str] = []
-        for start_line, node_id in nodes_in_file:
-            if start_line in executed:
-                executed_funcs.append(node_id)
-
-        # Infer edges: consecutive executed functions in the same file
-        for i in range(len(executed_funcs) - 1):
-            src, tgt = executed_funcs[i], executed_funcs[i + 1]
-            if src != tgt:
-                key = (src, tgt)
-                if key not in seen:
-                    seen.add(key)
-                    edges.append(WorkflowEdge(
-                        source=src,
-                        target=tgt,
-                        edge_type="trace",
-                        confidence="runtime",
-                    ))
-
-    return edges
+    # Coverage cannot prove call relationships, so we deliberately emit none.
+    # If true call-stack tracing is added later, it belongs in a dedicated
+    # tracer that records CALL/RETURN events, not in coverage post-processing.
+    return []
 
 
 # ═══════════════════════════════════════════════════════════════════════
