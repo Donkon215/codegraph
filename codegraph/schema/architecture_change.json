@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://codegraph.dev/schema/architecture_change.json",
+  "title": "ArchitectureChange",
+  "description": "Canonical intermediate representation (IR) for a proposed architectural transformation. Description-only: does not apply or simulate. See codegraph/architecture_change.py.",
+  "type": "object",
+  "required": ["base_version", "operations"],
+  "properties": {
+    "id": { "type": "string" },
+    "base_version": { "type": "integer", "minimum": 0 },
+    "reason": { "type": "string" },
+    "metadata": { "type": "object" },
+    "operations": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/operation" }
+    }
+  },
+  "definitions": {
+    "operation": {
+      "type": "object",
+      "required": ["op"],
+      "properties": {
+        "op": {
+          "enum": [
+            "add_subsystem", "remove_subsystem",
+            "add_component", "remove_component",
+            "add_edge", "remove_edge",
+            "add_constraint", "remove_constraint"
+          ]
+        },
+        "subsystem": { "type": "string" },
+        "component": { "type": "string" },
+        "component_subsystem": { "type": "string" },
+        "component_name": { "type": "string" },
+        "source": { "type": "string" },
+        "target": { "type": "string" },
+        "edge_type": { "enum": ["call", "dependency", "data_flow"] },
+        "constraint_type": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    }
+  }
+}

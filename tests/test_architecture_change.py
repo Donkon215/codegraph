@@ -1,97 +1,166 @@
-"""Tests for the canonical ArchitectureChange model (v1.2 issue #27/A)."""
+"""PHASE 2 tests for the canonical ArchitectureChange IR (v1.2 issue #27).
+
+Covers: round-trip, structural schema validation, contradiction rejection,
+deterministic normalization. Adapter equivalence is PHASE 4 (not here).
+"""
 
 import pytest
 
 from codegraph.architecture_change import (
     ArchitectureChange,
-    ArchRelationship,
-    ConstraintChange,
+    ArchitectureChangeValidationError,
+    ArchitectureOperation,
+    OpType,
+    EDGE_TYPE_CANONICAL,
 )
-from codegraph.arch_schema import ArchConstraint
-from codegraph.models.agent_response import AgentResponse, RepairAction
-from codegraph.arch_planner import PlannedTask
 
 
-def test_roundtrip_dict_and_json():
-    ch = ArchitectureChange(
-        add=["service.payment"],
-        remove=["service.legacy"],
-        modify=["service.order"],
-        relationships=[
-            ArchRelationship(action="add", from_="order", to="payment", type="calls")
-        ],
-        constraints=[
-            ConstraintChange(
-                action="add",
-                constraint=ArchConstraint("forbidden", "ui", "db", "no direct dep"),
-            )
-        ],
+def _ac(ops, base_version=1, reason="test"):
+    return ArchitectureChange(
+        base_version=base_version, reason=reason, operations=ops
     )
-    back = ArchitectureChange.from_dict(ch.to_dict())
-    assert back == ch
-    # round-trips through JSON too
-    assert ArchitectureChange.from_json(ch.to_json()) == ch
 
 
-def test_from_agent_response():
-    ar = AgentResponse(
-        repairs=[
-            RepairAction(node="a", action="connect_call", target="b"),
-            RepairAction(node="c", action="remove_dead_code"),
-            RepairAction(node="d", action="flag_for_human_review", reason="check"),
-        ]
-    )
-    ch = ArchitectureChange.from_agent_response(ar)
-    assert ArchRelationship(action="add", from_="a", to="b", type="calls") in ch.relationships
-    assert "c" in ch.remove
-    # flag_for_human_review is a review note, not a topology change
-    assert len(ch.relationships) == 1
+# ── Round-trip ──────────────────────────────────────────────────────────
+
+def test_round_trip_dict():
+    ac = _ac([
+        ArchitectureOperation(OpType.ADD_SUBSYSTEM, subsystem="billing"),
+        ArchitectureOperation(OpType.ADD_EDGE, source="a", target="b", edge_type="call"),
+    ])
+    assert ArchitectureChange.from_dict(ac.to_dict()) == ac
 
 
-def test_from_planned_tasks():
-    tasks = [
-        PlannedTask(task_type="create_module", module="service.payment"),
-        PlannedTask(task_type="connect_call", source="order", target="payment"),
-        PlannedTask(task_type="add_constraint", source="ui", target="db", reason="boundary"),
-    ]
-    ch = ArchitectureChange.from_planned_tasks(tasks)
-    assert "service.payment" in ch.add
-    assert (
-        ArchRelationship(action="add", from_="order", to="payment", type="calls")
-        in ch.relationships
-    )
-    assert ch.constraints and ch.constraints[0].constraint.source == "ui"
+def test_round_trip_json():
+    ac = _ac([
+        ArchitectureOperation(OpType.ADD_COMPONENT, component="svc/pay.py",
+                              component_subsystem="billing", component_name="Payment"),
+        ArchitectureOperation(OpType.ADD_CONSTRAINT, constraint_type="forbidden_dependency",
+                              source="ui", target="db", reason="no direct"),
+    ])
+    assert ArchitectureChange.from_json(ac.to_json()) == ac
 
 
-def test_to_simulated_changes_bridge():
-    ch = ArchitectureChange(
-        add=["x"],
-        remove=["y"],
-        relationships=[
-            ArchRelationship(action="add", from_="a", to="b"),
-            ArchRelationship(action="remove", from_="c", to="d"),
-        ],
-    )
-    sims = ch.to_simulated_changes()
-    actions = {(s.action, s.node_id, s.source, s.target) for s in sims}
-    assert ("add_node", "x", "", "") in actions
-    assert ("remove_node", "y", "", "") in actions
-    assert ("add_edge", "", "a", "b") in actions
-    assert ("remove_edge", "", "c", "d") in actions
+# ── Structural validation (accept) ───────────────────────────────────────
+
+def test_valid_change_passes():
+    ac = _ac([
+        ArchitectureOperation(OpType.ADD_SUBSYSTEM, subsystem="x"),
+        ArchitectureOperation(OpType.REMOVE_SUBSYSTEM, subsystem="y"),
+        ArchitectureOperation(OpType.ADD_EDGE, source="x", target="y", edge_type="dependency"),
+    ])
+    ac.validate()  # no raise
 
 
-def test_user_vision_json_shape():
-    text = """
-    {
-      "add": ["service.payment"],
-      "remove": [],
-      "modify": ["service.order"],
-      "relationships": [{"action": "add", "from": "order", "to": "payment", "type": "calls"}],
-      "constraints": [{"action": "add", "type": "forbidden", "source": "ui", "target": "db", "reason": ""}]
-    }
-    """
-    ch = ArchitectureChange.from_json(text)
-    assert ch.add == ["service.payment"]
-    assert ch.modify == ["service.order"]
-    assert ch.relationships[0].to == "payment"
-    assert ch.constraints[0].constraint.target == "db"
+# ── Structural validation (reject) ───────────────────────────────────────
+
+def test_bad_base_version_rejected():
+    ac = ArchitectureChange(base_version="not-int", operations=[])
+    with pytest.raises(ArchitectureChangeValidationError):
+        ac.validate()
+
+
+def test_unknown_op_rejected():
+    with pytest.raises(ArchitectureChangeValidationError):
+        ArchitectureOperation.from_dict({"op": "frob"})
+
+
+def test_edge_missing_endpoints_rejected():
+    ac = _ac([ArchitectureOperation(OpType.ADD_EDGE, source="a", edge_type="call")])
+    with pytest.raises(ArchitectureChangeValidationError):
+        ac.validate()
+
+
+def test_non_canonical_edge_type_rejected():
+    ac = _ac([ArchitectureOperation(OpType.ADD_EDGE, source="a", target="b", edge_type="calls")])
+    with pytest.raises(ArchitectureChangeValidationError):
+        ac.validate()
+
+
+def test_constraint_missing_source_rejected():
+    ac = _ac([ArchitectureOperation(OpType.ADD_CONSTRAINT, constraint_type="forbidden",
+                                    target="db")])
+    with pytest.raises(ArchitectureChangeValidationError):
+        ac.validate()
+
+
+def test_add_component_requires_subsystem_rejected():
+    ac = _ac([ArchitectureOperation(OpType.ADD_COMPONENT, component="svc/x.py")])
+    with pytest.raises(ArchitectureChangeValidationError):
+        ac.validate()
+
+
+# ── Contradiction rejection ──────────────────────────────────────────────
+
+def test_add_remove_same_subsystem_rejected():
+    ac = _ac([
+        ArchitectureOperation(OpType.ADD_SUBSYSTEM, subsystem="x"),
+        ArchitectureOperation(OpType.REMOVE_SUBSYSTEM, subsystem="x"),
+    ])
+    with pytest.raises(ArchitectureChangeValidationError):
+        ac.validate()
+
+
+def test_duplicate_add_edge_rejected():
+    ac = _ac([
+        ArchitectureOperation(OpType.ADD_EDGE, source="a", target="b", edge_type="call"),
+        ArchitectureOperation(OpType.ADD_EDGE, source="a", target="b", edge_type="call"),
+    ])
+    with pytest.raises(ArchitectureChangeValidationError):
+        ac.validate()
+
+
+def test_add_remove_same_edge_rejected():
+    ac = _ac([
+        ArchitectureOperation(OpType.ADD_EDGE, source="a", target="b", edge_type="call"),
+        ArchitectureOperation(OpType.REMOVE_EDGE, source="a", target="b", edge_type="call"),
+    ])
+    with pytest.raises(ArchitectureChangeValidationError):
+        ac.validate()
+
+
+def test_different_edge_types_not_contradictory():
+    # (a,b,call) and (a,b,depends) are distinct edges -> allowed
+    ac = _ac([
+        ArchitectureOperation(OpType.ADD_EDGE, source="a", target="b", edge_type="call"),
+        ArchitectureOperation(OpType.ADD_EDGE, source="a", target="b", edge_type="dependency"),
+    ])
+    ac.validate()  # no raise
+
+
+# ── Normalization (deterministic, does NOT erase contradictions) ──────────
+
+def test_normalize_is_order_independent():
+    a = _ac([
+        ArchitectureOperation(OpType.ADD_EDGE, source="a", target="b", edge_type="call"),
+        ArchitectureOperation(OpType.ADD_SUBSYSTEM, subsystem="x"),
+    ])
+    b = _ac([
+        ArchitectureOperation(OpType.ADD_SUBSYSTEM, subsystem="x"),
+        ArchitectureOperation(OpType.ADD_EDGE, source="a", target="b", edge_type="call"),
+    ])
+    assert a.normalize() == b.normalize()
+    assert a.normalize().to_json() == b.normalize().to_json()
+
+
+def test_normalize_defaults_edge_type():
+    ac = _ac([ArchitectureOperation(OpType.ADD_EDGE, source="a", target="b")])
+    norm = ac.normalize()
+    assert norm.operations[0].edge_type == "call"
+    norm.validate()  # normalized form is structurally valid
+
+
+def test_normalize_keeps_contradiction_for_validation():
+    # The contradiction must survive normalization so validate() can reject it.
+    ac = _ac([
+        ArchitectureOperation(OpType.ADD_SUBSYSTEM, subsystem="x"),
+        ArchitectureOperation(OpType.REMOVE_SUBSYSTEM, subsystem="x"),
+    ])
+    norm = ac.normalize()
+    assert len(norm.operations) == 2  # NOT collapsed
+    with pytest.raises(ArchitectureChangeValidationError):
+        norm.validate()
+
+
+def test_edge_type_vocabulary_locked():
+    assert EDGE_TYPE_CANONICAL == ("call", "dependency", "data_flow")
