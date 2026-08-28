@@ -116,4 +116,38 @@ def check_index_consistency(project_root: Path) -> List[ConsistencyIssue]:
         issues.append(ConsistencyIssue("callers/callees", "Table(s) do not exist"))
 
     conn.close()
+
+    # Logical divergence: does the on-disk index equal a fresh build of the
+    # current source? Reuses the canonical snapshot/diff machinery (G-010) so
+    # content is compared semantically — a corrupted row with the same count
+    # (e.g. A→B rewritten to A→C) is still detected.
+    try:
+        from codegraph.index import build_reference_snapshot
+        from codegraph.index_snapshot import diff_index_snapshots, snapshot_index
+
+        reference, dep_ok = build_reference_snapshot(graph0, graph1, workflow, project_root)
+        actual = snapshot_index(project_root)
+        if not dep_ok:
+            # CAS was unavailable when building the reference; compare the actual
+            # index structurally too so a missing hash column cannot be reported
+            # as a divergence.
+            from codegraph.index import _strip_dependency_hash
+
+            reference = _strip_dependency_hash(reference)
+            actual = _strip_dependency_hash(actual)
+        logical = diff_index_snapshots(
+            reference, actual, table_names=tuple(reference.tables.keys())
+        )
+        for table, diff in logical.items():
+            only_delta = diff.get("only_in_delta", [])
+            only_full = diff.get("only_in_full", [])
+            if only_delta or only_full:
+                issues.append(ConsistencyIssue(
+                    table,
+                    f"Logical mismatch in '{table}': {len(only_delta)} unexpected, "
+                    f"{len(only_full)} missing vs expected index",
+                ))
+    except Exception as exc:  # pragma: no cover - defensive: never break the check
+        issues.append(ConsistencyIssue("logical", f"Logical consistency check failed: {exc}"))
+
     return issues

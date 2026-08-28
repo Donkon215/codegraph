@@ -319,6 +319,19 @@ def _build_workflow_and_index(root, config, graph0, g1, quiet):
     wf = build_workflow(root, config, trace=False, level="function")
     wf = enrich_workflow_with_context_flows(root, wf)
     write_workflow(wf, root)
+
+    # Compute content-addressable dependency hashes so a full build produces
+    # the same dependency_hashes / nodes.dependency_hash as an incremental
+    # delta (Issue #9). Without this, full build leaves them empty while
+    # delta populates them, breaking the equivalence invariant.
+    from codegraph.cas import run_cas_pipeline, save_hash_snapshot, load_hash_snapshot
+    from codegraph.storage import get_graph_version
+    from codegraph.models.graph0 import Graph0 as _Graph0
+
+    cached_hashes = load_hash_snapshot(root)
+    _, new_hashes = run_cas_pipeline(_Graph0(), graph0, wf, cached_hashes)
+    graph0.update_dependency_hashes(new_hashes)
+    save_hash_snapshot(new_hashes, root, get_graph_version(root))
     if not quiet:
         click.echo(workflow_summary(wf, graph0))
 

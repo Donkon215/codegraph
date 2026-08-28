@@ -400,6 +400,81 @@ def build_all_indexes(
     return results
 
 
+def _strip_dependency_hash(snap: "IndexSnapshot") -> "IndexSnapshot":
+    """Drop CAS-dependent columns so a reference built without CAS can still be
+    compared structurally (used when CAS is unavailable for the consistency check).
+    """
+    tables = dict(snap.tables)
+    tables.pop("dependency_hashes", None)
+    if "nodes" in tables:
+        tables["nodes"] = [r[:-1] for r in tables["nodes"]]
+    return IndexSnapshot(tables)
+
+
+def build_reference_snapshot(
+    graph0: Any,
+    graph1: Any,
+    workflow: Any,
+    project_root: Path,
+) -> Any:
+    """Canonical snapshot a fresh full build would produce from current source (G-010).
+
+    Reuses the same index builders as ``build_all_indexes`` but generates the
+    rows into an in-memory database from the already-loaded graph — no project
+    clone and no source re-extraction. The result can be diffed against the
+    on-disk index by ``check_index_consistency`` to detect logical divergence
+    (e.g. an edge whose target changed while its row count stayed the same).
+
+    Returns ``(snapshot, dep_ok)``. ``dep_ok`` is False when CAS could not run,
+    in which case the returned snapshot is structural-only (the dependency_hash
+    column/table is stripped) so a CAS outage cannot produce a misleading
+    divergence against a real index that does carry hashes.
+    """
+    import sqlite3
+
+    from codegraph.index_snapshot import snapshot_conn
+    from codegraph.models.graph0 import Graph0 as _Graph0
+
+    # Compute dependency hashes exactly as a full build does, so the reference
+    # matches the on-disk index (which was produced by the same CAS pipeline).
+    # Required: load_graph0() returns nodes with empty dependency_hash (graph0.json
+    # does not persist them), so without this the reference would mismatch the
+    # on-disk index's nodes.dependency_hash column and falsely report divergence.
+    try:
+        from codegraph.cas import load_hash_snapshot, run_cas_pipeline
+
+        cached = load_hash_snapshot(project_root)
+        _, hashes = run_cas_pipeline(_Graph0(), graph0, workflow, cached)
+        graph0.update_dependency_hashes(hashes)
+        dep_ok = True
+    except Exception as exc:
+        logger.warning(
+            "CAS unavailable for consistency reference; comparing structural index only: %s", exc
+        )
+        dep_ok = False
+
+    conn = sqlite3.connect(":memory:")
+    conn.row_factory = sqlite3.Row
+    _ensure_version_table(conn)
+
+    edges = workflow.edges if workflow else []
+    g1_index = {n.id: n for n in graph1.nodes} if graph1 and graph1.nodes else {}
+    build_nodes_index(conn, graph0.nodes, g1_index)
+    build_callers_index(conn, edges)
+    build_callees_index(conn, edges)
+    build_layers_index(conn, graph1.nodes if graph1 else [])
+    build_tests_index(conn, edges, graph0.nodes)
+    build_dependency_hash_index(conn, graph0.nodes)
+
+    snap = snapshot_conn(conn)
+    if not dep_ok:
+        # Without CAS the reference carries empty dependency hashes; comparing
+        # them against a real index would falsely diverge. Fall back to a
+        # structural-only snapshot instead of a misleading one.
+        snap = _strip_dependency_hash(snap)
+    return snap, dep_ok
+
+
 # ═══════════════════════════════════════════════════════════════════════
 # G-008 — Delta index update
 # ═══════════════════════════════════════════════════════════════════════
@@ -411,6 +486,7 @@ def update_index_delta(
     graph1: Any,
     workflow: Any,
     project_root: Path,
+    affected_set: Any = None,
 ) -> int:
     """Incrementally update index for changed nodes only (G-008)."""
     from codegraph.index_delta import update_index_delta as _update_index_delta_impl
@@ -422,6 +498,7 @@ def update_index_delta(
         workflow,
         project_root,
         build_all_indexes,
+        affected_set=affected_set,
     )
 
 

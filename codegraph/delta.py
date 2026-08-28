@@ -317,11 +317,9 @@ def reextract_changed(
         if file_result is None:
             continue
 
-        # Collect call_sites and imports for workflow rebuild
-        if file_result.call_sites:
-            updates.call_sites.update(file_result.call_sites)
-        if file_result.imports:
-            updates.imports[rel_path] = file_result.imports
+        # Call sites / imports for the workflow rebuild are collected in full by
+        # _delta_update_graphs (see _collect_call_sites_and_imports) so every
+        # source file's edges can be re-resolved, not just re-extracted ones.
 
         # Remove old nodes for this file (they'll be replaced)
         for old_node in old_nodes_by_file.get(rel_path, []):
@@ -445,6 +443,8 @@ def recompute_edges(
     workflow: Workflow,
     call_sites: Dict[str, List[Any]],
     imports: Dict[str, List[Any]],
+    affected_source_files: Optional[Set[str]] = None,
+    deleted_nodes: Optional[Set[str]] = None,
 ) -> Tuple[Workflow, List[Tuple[str, str]], List[Tuple[str, str]]]:
     """Recompute workflow edges for changed files (K-008).
 
@@ -457,6 +457,7 @@ def recompute_edges(
 
     new_workflow = update_workflow_incremental(
         workflow, changed_files, graph0, call_sites, imports,
+        affected_source_files=affected_source_files, deleted_nodes=deleted_nodes,
     )
 
     # Compute edge diff
@@ -465,6 +466,36 @@ def recompute_edges(
     edges_removed = [(e.source, e.target) for e in wf_diff.removed]
 
     return new_workflow, edges_added, edges_removed
+
+
+def _affected_source_files(changed, updates, graph0, call_sites):
+    """Expand changed files to every source file whose resolution may flip.
+
+    A call site in an unchanged file can still re-resolve when a symbol it
+    references (by name, or via an imported module) is added, removed, or
+    renamed in a changed file. Returning that expanded file set keeps the
+    incremental update correct without recomputing the whole graph (Issue #9).
+    """
+    changed_files = set(changed.all_changed + changed.deleted)
+    changed_names: Set[str] = set()
+    for n in getattr(updates, "added_nodes", []) or []:
+        changed_names.add(n.id.split("::")[-1])
+    for nid in getattr(updates, "removed_node_ids", []) or []:
+        changed_names.add(nid.split("::")[-1])
+    for n in getattr(updates, "modified_nodes", []) or []:
+        changed_names.add(n.id.split("::")[-1])
+
+    affected = set(changed_files)
+    for node_id, calls in call_sites.items():
+        src_file = node_id.split("::")[0] if "::" in node_id else node_id
+        if src_file in affected:
+            continue
+        for c in calls:
+            name = getattr(c, "raw_name", None) or getattr(c, "name", None)
+            if name and name in changed_names:
+                affected.add(src_file)
+                break
+    return affected
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -478,6 +509,7 @@ def update_index(
     graph1: Graph1,
     workflow: Workflow,
     project_root: Path,
+    affected_set: Any = None,
 ) -> int:
     """Incrementally update the graph index (K-009)."""
     from codegraph.index import update_index_delta
@@ -491,7 +523,10 @@ def update_index(
     if not changed_ids:
         return 0
 
-    return update_index_delta(changed_ids, graph0, graph1, workflow, project_root)
+    return update_index_delta(
+        changed_ids, graph0, graph1, workflow, project_root,
+        affected_set=affected_set,
+    )
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -657,7 +692,8 @@ def _try_cas_pipeline(
     updates: Graph0Updates,
     old_graph0: Graph0,
     new_graph0: Graph0,
-    workflow: Any,
+    new_workflow: Any,
+    old_workflow: Any,
     result: DeltaResult,
     project_root: Path,
 ) -> Optional[Set[str]]:
@@ -675,8 +711,16 @@ def _try_cas_pipeline(
         from codegraph.storage import get_graph_version
 
         cached_hashes = load_hash_snapshot(project_root)
+        # An edge change (e.g. import flip re-resolving a callee) must re-hash
+        # its source node even when no node body changed (Issue #9).
+        edge_changed = set()
+        for e in (getattr(result, "workflow_edges_added", []) or []):
+            edge_changed.add(e[0])
+        for e in (getattr(result, "workflow_edges_removed", []) or []):
+            edge_changed.add(e[0])
         affected_set, new_hashes = run_cas_pipeline(
-            old_graph0, new_graph0, workflow, cached_hashes,
+            old_graph0, new_graph0, new_workflow, cached_hashes,
+            old_workflow=old_workflow, extra_changed=edge_changed or None,
         )
 
         # Persist updated hashes on Graph0 nodes
@@ -775,11 +819,11 @@ def run_delta(
     result.nodes_removed = updates.removed_node_ids
     result.nodes_modified = [n.id for n in updates.modified_nodes]
 
-    new_graph0, new_workflow, result = _delta_update_graphs(
-        project_root, changed, updates, graph0, new_graph0, result,
+    new_graph0, new_workflow, result, graph1, affected_set = _delta_update_graphs(
+        project_root, changed, updates, graph0, new_graph0, result, config,
     )
 
-    _delta_persist(project_root, new_graph0, new_workflow, updates, result, current_commit)
+    _delta_persist(project_root, new_graph0, new_workflow, updates, result, current_commit, graph1, affected_set)
 
     return result
 
@@ -796,44 +840,87 @@ def _delta_load_state(project_root: Path):
     return graph0, current_version, current_commit
 
 
-def _delta_update_graphs(project_root, changed, updates, graph0, new_graph0, result):
+def _delta_update_graphs(project_root, changed, updates, graph0, new_graph0, result, config=None):
     """Update workflow edges and graph1 intents."""
-    from codegraph.annotator import load_graph1
     from codegraph.workflow import load_workflow
-
-    workflow = load_workflow(project_root)
-    affected_set = _try_cas_pipeline(
-        updates, graph0, new_graph0, workflow, result, project_root,
+    from codegraph.layers import assign_layers
+    from codegraph.annotator import (
+        initialize_graph1,
+        load_graph1,
+        merge_graph1,
     )
 
-    graph1 = load_graph1(project_root)
+    workflow = load_workflow(project_root)
+
+    # The incremental edge recompute needs the call sites and imports of
+    # *every* source file, not just the re-extracted (changed) ones: an
+    # unchanged caller of a changed symbol must re-resolve its edges, and a
+    # newly added symbol gains callers whose call sites live in files that were
+    # never re-extracted. Reuse the same full call-site collection the full
+    # build uses so the delta's workflow exactly matches a fresh full build
+    # (Issue #9). Without this, unaffected edges whose source file was not
+    # re-extracted are silently dropped.
+    from codegraph.workflow import _collect_call_sites_and_imports as _collect_cs
+
+    full_call_sites, full_imports = _collect_cs(new_graph0, project_root)
+    updates.call_sites = full_call_sites
+    updates.imports = full_imports
+
+    # Expand changed files to every source file whose call sites may have
+    # re-resolved (a referenced symbol was added/removed/renamed in a changed
+    # file). Without this, an unchanged caller keeps a stale edge and the
+    # build<->delta equivalence invariant (Issue #9) breaks.
+    affected = _affected_source_files(changed, updates, new_graph0, full_call_sites)
+    deleted_nodes = set(getattr(updates, "removed_node_ids", []) or [])
+
+    # Recompute edges FIRST so CAS and Graph_1 see the *new* graph, not the
+    # stale pre-delta one. CAS adjacency is keyed on workflow edges
+    # (cas._build_adjacency), so running it against the v1 workflow would
+    # compute dependency hashes that diverge from a fresh full build whenever
+    # a resolved edge changes between versions (Issue #9).
+    new_workflow, edges_added, edges_removed = recompute_edges(
+        changed, new_graph0, workflow, full_call_sites, full_imports,
+        affected_source_files=affected, deleted_nodes=deleted_nodes,
+    )
+    result.workflow_edges_added = edges_added
+    result.workflow_edges_removed = edges_removed
+
+    affected_set = _try_cas_pipeline(
+        updates, graph0, new_graph0, new_workflow, workflow, result, project_root,
+    )
+
+    # Recompute Graph_1 (layer assignments) for the *new* graph0 so the
+    # incremental index stays in lock-step with a fresh full build (Issue #9).
+    # Reusing the stale on-disk g1 would omit layer rows for added nodes, and
+    # rebuilding it from scratch (initialize_graph1) would discard user intents
+    # on every delta — so merge the existing overlay exactly like a full
+    # rebuild does.
+    layers = assign_layers(new_graph0.nodes, config)
+    existing_g1 = load_graph1(project_root)
+    if existing_g1.nodes:
+        graph1 = merge_graph1(existing_g1, new_graph0, layers)
+    else:
+        graph1 = initialize_graph1(new_graph0, layers)
     if changed.renamed:
         _migrate_renames(changed.renamed, graph1)
 
     stale = flag_stale_intents(updates.logic_changes, graph1)
     result.stale_intents = stale
 
-    new_workflow, edges_added, edges_removed = recompute_edges(
-        changed, new_graph0, workflow, updates.call_sites, updates.imports,
-    )
-    result.workflow_edges_added = edges_added
-    result.workflow_edges_removed = edges_removed
-
-    return new_graph0, new_workflow, result
+    return new_graph0, new_workflow, result, graph1, affected_set
 
 
-def _delta_persist(project_root, new_graph0, new_workflow, updates, result, current_commit):
+def _delta_persist(project_root, new_graph0, new_workflow, updates, result, current_commit, graph1, affected_set=None):
     """Save all delta artifacts to disk."""
     from codegraph.extractor import save_graph0
-    from codegraph.annotator import load_graph1, save_graph1
+    from codegraph.annotator import save_graph1
     from codegraph.workflow import write_workflow
 
-    graph1 = load_graph1(project_root)
     save_graph0(new_graph0, project_root)
     save_graph1(graph1, project_root)
     write_workflow(new_workflow, project_root)
 
-    update_index(updates, new_graph0, graph1, new_workflow, project_root)
+    update_index(updates, new_graph0, graph1, new_workflow, project_root, affected_set=affected_set)
 
     new_version = _increment_version(project_root)
     result.current_graph_version = new_version

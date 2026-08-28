@@ -433,6 +433,8 @@ def run_cas_pipeline(
     new_graph0: Any,
     workflow: Any,
     cached_hashes: Optional[Dict[str, str]] = None,
+    old_workflow: Optional[Any] = None,
+    extra_changed: Optional[Set[str]] = None,
 ) -> Tuple[Set[str], Dict[str, str]]:
     """Full CAS pipeline for delta integration.
 
@@ -442,25 +444,42 @@ def run_cas_pipeline(
     4. Recompute affected hashes
 
     Returns (affected_set, new_hashes).
+
+    ``extra_changed`` seeds invalidation from nodes whose *edges* changed even
+    though their body did not (e.g. an import flip that re-resolves a callee).
+    A dependency hash depends on callee edges, so such a node must be
+    re-hashed even when no node-level change is detected (Issue #9).
     """
     node_changes = detect_node_changes(old_graph0, new_graph0)
 
-    if not node_changes.has_changes:
+    if not node_changes.has_changes and not extra_changed:
         logger.info("No node-level changes detected — CAS skip")
         # Return existing hashes
         existing = cached_hashes or {}
         return set(), existing
 
-    changed_set = set(node_changes.added + node_changes.body_changed)
+    # Seed invalidation from added, body-changed AND removed nodes: a removed
+    # node's former callers must be re-hashed even though the node itself is
+    # gone (Issue #9). Also seed nodes whose edges changed (extra_changed).
+    changed_set = set(
+        node_changes.added + node_changes.body_changed + list(node_changes.removed)
+    )
+    if extra_changed:
+        changed_set.update(extra_changed)
 
     graph0_ids = {n.id for n in new_graph0.nodes}
     reverse_map = build_reverse_dependency_map(workflow, graph0_ids)
+    # A node whose edge was *removed* between versions (present in the old
+    # workflow, absent in the new one) must still invalidate its former
+    # sources. build_reverse_dependency_map drops edges whose target no longer
+    # exists, so for the old workflow we keep edges whose *source* (the caller)
+    # still exists — that's exactly the caller we need to re-hash (Issue #9).
+    if old_workflow is not None:
+        for edge in old_workflow.edges:
+            src = getattr(edge, "source", None)
+            if src in graph0_ids:
+                reverse_map.setdefault(edge.target, set()).add(src)
     affected = propagate_invalidation(changed_set, reverse_map)
-
-    # Include removed nodes' dependents
-    for removed_id in node_changes.removed:
-        for dep in reverse_map.get(removed_id, ()):
-            affected.add(dep)
 
     # Filter to nodes that still exist
     affected = affected & graph0_ids
