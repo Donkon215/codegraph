@@ -411,6 +411,7 @@ def update_index_delta(
     graph1: Any,
     workflow: Any,
     project_root: Path,
+    affected_set: Any = None,
 ) -> int:
     """Incrementally update index for changed nodes only (G-008)."""
     from codegraph.index_delta import update_index_delta as _update_index_delta_impl
@@ -422,6 +423,7 @@ def update_index_delta(
         workflow,
         project_root,
         build_all_indexes,
+        affected_set=affected_set,
     )
 
 

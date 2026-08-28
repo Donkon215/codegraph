@@ -36,6 +36,7 @@ def update_index_delta(
     workflow: Any,
     project_root: Path,
     build_all_indexes_fn,
+    affected_set: Any = None,
 ) -> int:
     db_path = _index_dir(project_root) / "codegraph.db"
     if not db_path.exists():
@@ -44,6 +45,10 @@ def update_index_delta(
 
     conn = _connect(db_path)
     changed = set(changed_node_ids)
+    # CAS may invalidate nodes that were not directly changed (e.g. a caller
+    # whose callee edge was removed). Those nodes keep their stale
+    # dependency_hash unless refreshed here (Issue #9).
+    affected = changed | set(affected_set or set())
     updated = 0
 
     placeholders = ",".join("?" for _ in changed)
@@ -85,6 +90,24 @@ def update_index_delta(
         if g1:
             conn.execute("INSERT INTO layers VALUES (?, ?)", (layer, node.id))
         updated += 1
+
+    # Refresh dependency_hash for CAS-affected nodes that were not directly
+    # changed (else their stale index row survives the delta).
+    if affected - changed:
+        for node in graph0.nodes:
+            if node.id not in affected or node.id in changed:
+                continue
+            dep_hash = node.dependency_hash or ""
+            conn.execute(
+                "UPDATE nodes SET dependency_hash = ? WHERE id = ?",
+                (dep_hash, node.id),
+            )
+            if dep_hash:
+                conn.execute(
+                    "INSERT OR REPLACE INTO dependency_hashes VALUES (?, ?, ?, ?)",
+                    (node.id, dep_hash, node.body_hash, ""),
+                )
+            updated += 1
 
     if workflow:
         for e in workflow.edges:

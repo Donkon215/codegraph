@@ -122,3 +122,22 @@ def test_rename_function_resolution():
             "c.py": "def helper():\n    return 2\n",
         },
     )
+
+
+def test_resolved_edge_change():
+    # a.py imports `helper` from b and calls it (a real, resolved edge
+    # caller -> b.py::helper). v2 renames b.py::helper -> helper2, so the edge
+    # disappears. The dependency hash of `caller` therefore changes between v1
+    # and v2; delta must recompute CAS against the *new* workflow, otherwise
+    # its hash (keyed on the stale v1 edge) diverges from a fresh full build.
+    assert_equivalence(
+        {
+            "a.py": "from b import helper\n\n\ndef caller():\n    return helper()\n",
+            "b.py": "def helper():\n    return 1\n",
+        },
+        {
+            "a.py": "from b import helper\n\n\ndef caller():\n    return helper()\n",
+            "b.py": "def helper2():\n    return 1\n",
+            "c.py": "def helper():\n    return 2\n",
+        },
+    )

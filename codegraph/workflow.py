@@ -856,21 +856,48 @@ def update_workflow_incremental(
     graph0: Graph0,
     call_sites: Dict[str, List[Any]],
     imports: Dict[str, List[Any]],
+    affected_source_files: Optional[Set[str]] = None,
+    deleted_nodes: Optional[Set[str]] = None,
 ) -> Workflow:
-    """Update workflow edges incrementally for changed files (F-023)."""
+    """Update workflow edges incrementally for changed files (F-023).
+
+    A call site in an *unchanged* file can still change its resolution when a
+    symbol it references (by name or via an imported module) is added, removed,
+    or renamed in a *changed* file. So edges must be rebuilt not only for the
+    changed files themselves, but for every source file whose call sites may
+    have re-resolved. ``affected_source_files`` is that expanded set; when
+    ``None`` it defaults to ``changed_files`` (the original behaviour).
+
+    Edges are dropped when their *source* file is affected (to be rebuilt) or
+    when their *target* node was deleted. Inbound edges into an affected source
+    are preserved — they are only removed if the caller that produced them is
+    itself re-resolved.
+    """
     changed_set = set(changed_files)
+    if affected_source_files is None:
+        affected_source_files = changed_set
+    if deleted_nodes is None:
+        deleted_nodes = set()
 
-    def _in_changed(node_id: str) -> bool:
-        file_part = node_id.split("::")[0] if "::" in node_id else node_id
-        return file_part in changed_set
+    def _source_file(node_id: str) -> str:
+        return node_id.split("::")[0] if "::" in node_id else node_id
 
-    # Remove edges where source or target is in changed files
-    kept = [e for e in workflow.edges if not (_in_changed(e.source) or _in_changed(e.target))]
+    def _source_affected(edge) -> bool:
+        return _source_file(edge.source) in affected_source_files
 
-    # Re-build edges for changed files only
-    changed_call_sites = {k: v for k, v in call_sites.items() if _in_changed(k)}
-    changed_imports = {k: v for k, v in imports.items() if _in_changed(k)}
-    new_edges, _ = build_static_edges(graph0, changed_call_sites, changed_imports)
+    kept = [
+        e
+        for e in workflow.edges
+        if not _source_affected(e) and e.target not in deleted_nodes
+    ]
+
+    affected_call_sites = {
+        k: v for k, v in call_sites.items() if _source_file(k) in affected_source_files
+    }
+    affected_imports = {
+        k: v for k, v in imports.items() if _source_file(k) in affected_source_files
+    }
+    new_edges, _ = build_static_edges(graph0, affected_call_sites, affected_imports)
 
     kept.extend(new_edges)
     new_wf = Workflow(
