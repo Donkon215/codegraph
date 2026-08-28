@@ -317,9 +317,17 @@ def reextract_changed(
         if file_result is None:
             continue
 
-        # Collect call_sites and imports for workflow rebuild
+        # Collect call_sites and imports for workflow rebuild.
+        # Rekey call_sites from bare function name to node id, matching the
+        # full build's _collect_call_sites_and_imports (workflow.py). The delta
+        # previously kept bare-name keys, which build_static_edges drops (it
+        # looks up source_id in all_node_ids), so every resolved edge was
+        # silently lost on incremental update (Issue #9).
         if file_result.call_sites:
-            updates.call_sites.update(file_result.call_sites)
+            for node in file_result.nodes:
+                fname = node.id.rsplit("::", 1)[-1] if "::" in node.id else ""
+                if fname in file_result.call_sites:
+                    updates.call_sites[node.id] = file_result.call_sites[fname]
         if file_result.imports:
             updates.imports[rel_path] = file_result.imports
 
@@ -713,9 +721,16 @@ def _try_cas_pipeline(
         from codegraph.storage import get_graph_version
 
         cached_hashes = load_hash_snapshot(project_root)
+        # An edge change (e.g. import flip re-resolving a callee) must re-hash
+        # its source node even when no node body changed (Issue #9).
+        edge_changed = set()
+        for e in (getattr(result, "workflow_edges_added", []) or []):
+            edge_changed.add(e[0])
+        for e in (getattr(result, "workflow_edges_removed", []) or []):
+            edge_changed.add(e[0])
         affected_set, new_hashes = run_cas_pipeline(
             old_graph0, new_graph0, new_workflow, cached_hashes,
-            old_workflow=old_workflow,
+            old_workflow=old_workflow, extra_changed=edge_changed or None,
         )
 
         # Persist updated hashes on Graph0 nodes

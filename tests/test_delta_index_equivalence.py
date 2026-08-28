@@ -50,6 +50,7 @@ def _cg(cwd: Path, *args: str) -> None:
 
 
 def _write(p: Path, text: str) -> None:
+    p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(text, encoding="utf-8")
 
 
@@ -141,3 +142,191 @@ def test_resolved_edge_change():
             "c.py": "def helper():\n    return 2\n",
         },
     )
+
+
+def test_chain_dependency_propagation():
+    # A -> B -> C chain. Modifying the leaf C must propagate the dependency
+    # hash invalidation up through B to A in BOTH the full build and the
+    # delta, so all three hashes agree.
+    assert_equivalence(
+        {
+            "a.py": "def a():\n    return b()\n",
+            "b.py": "def b():\n    return c()\n",
+            "c.py": "def c():\n    return 1\n",
+        },
+        {
+            "a.py": "def a():\n    return b()\n",
+            "b.py": "def b():\n    return c()\n",
+            "c.py": "def c():\n    return 2\n",
+        },
+    )
+
+
+def test_chain_delete_leaf():
+    # Deleting the leaf C removes the edge into it, which must re-hash B and
+    # then A (the whole affected closure), not just C.
+    assert_equivalence(
+        {
+            "a.py": "def a():\n    return b()\n",
+            "b.py": "def b():\n    return c()\n",
+            "c.py": "def c():\n    return 1\n",
+        },
+        {
+            "a.py": "def a():\n    return 1\n",
+            "b.py": "def b():\n    return 1\n",
+        },
+    )
+
+
+def test_diamond_dependency_propagation():
+    # A -> {B, C} -> D. Modifying D must invalidate B, C and A.
+    assert_equivalence(
+        {
+            "a.py": "def a():\n    return b() + c()\n",
+            "b.py": "def b():\n    return d()\n",
+            "c.py": "def c():\n    return d()\n",
+            "d.py": "def d():\n    return 1\n",
+        },
+        {
+            "a.py": "def a():\n    return b() + c()\n",
+            "b.py": "def b():\n    return d()\n",
+            "c.py": "def c():\n    return d()\n",
+            "d.py": "def d():\n    return 2\n",
+        },
+    )
+
+
+def test_cycle_scc():
+    # A <-> B mutual recursion (an SCC). Modifying one node must recompute the
+    # SCC hash for both, identically in full build and delta.
+    assert_equivalence(
+        {
+            "a.py": "def a():\n    return b()\n",
+            "b.py": "def b():\n    return a()\n",
+        },
+        {
+            "a.py": "def a():\n    return b()\n",
+            "b.py": "def b():\n    return a() + 1\n",
+        },
+    )
+
+
+def test_file_rename():
+    # Rename the module that defines `helper` (a.py -> mod.py). The unchanged
+    # caller re-resolves `helper` to mod.py::helper in BOTH paths.
+    assert_equivalence(
+        {
+            "a.py": "def helper():\n    return 1\n",
+            "b.py": "def caller():\n    return helper()\n",
+        },
+        {
+            "mod.py": "def helper():\n    return 1\n",
+            "b.py": "def caller():\n    return helper()\n",
+        },
+    )
+
+
+def test_import_change():
+    # Flip the import so `caller` resolves to c.py::helper instead of
+    # b.py::helper. Delta must rebuild the caller edge and re-hash it.
+    assert_equivalence(
+        {
+            "a.py": "from b import helper\n\n\ndef caller():\n    return helper()\n",
+            "b.py": "def helper():\n    return 1\n",
+            "c.py": "def helper():\n    return 2\n",
+        },
+        {
+            "a.py": "from c import helper\n\n\ndef caller():\n    return helper()\n",
+            "b.py": "def helper():\n    return 1\n",
+            "c.py": "def helper():\n    return 2\n",
+        },
+    )
+
+
+def test_test_relationship_change():
+    # Adding a tested function and a new test that exercises it must keep the
+    # `tests` table in lock-step between full build and delta.
+    assert_equivalence(
+        {
+            "app.py": "def do_work():\n    return 1\n",
+            "tests/test_app.py": (
+                "from app import do_work\n\n"
+                "def test_work():\n    assert do_work() == 1\n"
+            ),
+        },
+        {
+            "app.py": (
+                "def do_work():\n    return 1\n\n"
+                "def do_more():\n    return 2\n"
+            ),
+            "tests/test_app.py": (
+                "from app import do_work, do_more\n\n"
+                "def test_work():\n    assert do_work() == 1\n\n"
+                "def test_more():\n    assert do_more() == 2\n"
+            ),
+        },
+    )
+
+
+def test_multiple_simultaneous_changes():
+    # Delete b.py, add c.py (redefining helper + a new fn), and modify a.py
+    # to call both. Exercises deletion + addition + modification + resolution
+    # flip in a single delta.
+    assert_equivalence(
+        {
+            "a.py": "def caller():\n    return helper()\n",
+            "b.py": "def helper():\n    return 1\n",
+        },
+        {
+            "a.py": "def caller():\n    return helper() + added()\n",
+            "c.py": "def added():\n    return 2\n\ndef helper():\n    return 9\n",
+        },
+    )
+
+
+def test_noop_delta():
+    # A second delta with no source change must leave the index identical to a
+    # fresh full build of the same state.
+    from codegraph.index_snapshot import diff_index_snapshots, snapshot_index
+
+    initial = {"a.py": "def f():\n    return 1\n"}
+    delta_dir = _make_repo(initial)
+    _cg(delta_dir, "build")
+    _cg(delta_dir, "delta")  # no changes
+
+    full_dir = _make_repo(initial)
+    _cg(full_dir, "build")
+
+    diff = diff_index_snapshots(snapshot_index(delta_dir), snapshot_index(full_dir))
+    if diff:
+        import pprint
+
+        pytest.fail("build<->no-op-delta divergence:\n" + pprint.pformat(diff))
+
+
+def test_repeated_delta():
+    # Two successive deltas must converge to the same index as a fresh full
+    # build of the final state (incremental state must persist correctly).
+    from codegraph.index_snapshot import diff_index_snapshots, snapshot_index
+
+    initial = {"a.py": "def f():\n    return 1\n"}
+    mid = {"a.py": "def f():\n    return 2\n"}
+    final = {"a.py": "def f():\n    return 3\n"}
+
+    delta_dir = _make_repo(initial)
+    _cg(delta_dir, "build")
+    _write(delta_dir / "a.py", mid["a.py"])
+    _git(delta_dir, "add", "a.py")
+    _cg(delta_dir, "delta")
+    _write(delta_dir / "a.py", final["a.py"])
+    _git(delta_dir, "add", "a.py")
+    _cg(delta_dir, "delta")
+
+    full_dir = _make_repo(final)
+    _cg(full_dir, "build")
+
+    diff = diff_index_snapshots(snapshot_index(delta_dir), snapshot_index(full_dir))
+    if diff:
+        import pprint
+
+        pytest.fail("build<->repeated-delta divergence:\n" + pprint.pformat(diff))
