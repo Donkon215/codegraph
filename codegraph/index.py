@@ -421,6 +421,9 @@ def build_reference_snapshot(
 
     # Compute dependency hashes exactly as a full build does, so the reference
     # matches the on-disk index (which was produced by the same CAS pipeline).
+    # Required: load_graph0() returns nodes with empty dependency_hash (graph0.json
+    # does not persist them), so without this the reference would mismatch the
+    # on-disk index's nodes.dependency_hash column and falsely report divergence.
     try:
         from codegraph.cas import load_hash_snapshot, run_cas_pipeline
 
@@ -429,7 +432,6 @@ def build_reference_snapshot(
         graph0.update_dependency_hashes(hashes)
     except Exception:
         pass
-
     conn = sqlite3.connect(":memory:")
     conn.row_factory = sqlite3.Row
     _ensure_version_table(conn)

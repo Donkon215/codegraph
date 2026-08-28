@@ -501,7 +501,7 @@ def _affected_source_files(changed, updates, graph0, call_sites):
         if src_file in affected:
             continue
         for c in calls:
-            name = getattr(c, "name", None)
+            name = getattr(c, "raw_name", None) or getattr(c, "name", None)
             if name and name in changed_names:
                 affected.add(src_file)
                 break
@@ -862,11 +862,25 @@ def _delta_update_graphs(project_root, changed, updates, graph0, new_graph0, res
 
     workflow = load_workflow(project_root)
 
+    # The incremental edge recompute needs the call sites and imports of
+    # *every* source file, not just the re-extracted (changed) ones: an
+    # unchanged caller of a changed symbol must re-resolve its edges, and a
+    # newly added symbol gains callers whose call sites live in files that were
+    # never re-extracted. Reuse the same full call-site collection the full
+    # build uses so the delta's workflow exactly matches a fresh full build
+    # (Issue #9). Without this, unaffected edges whose source file was not
+    # re-extracted are silently dropped.
+    from codegraph.workflow import _collect_call_sites_and_imports as _collect_cs
+
+    full_call_sites, full_imports = _collect_cs(new_graph0, project_root)
+    updates.call_sites = full_call_sites
+    updates.imports = full_imports
+
     # Expand changed files to every source file whose call sites may have
     # re-resolved (a referenced symbol was added/removed/renamed in a changed
     # file). Without this, an unchanged caller keeps a stale edge and the
     # build<->delta equivalence invariant (Issue #9) breaks.
-    affected = _affected_source_files(changed, updates, new_graph0, updates.call_sites)
+    affected = _affected_source_files(changed, updates, new_graph0, full_call_sites)
     deleted_nodes = set(getattr(updates, "removed_node_ids", []) or [])
 
     # Recompute edges FIRST so CAS and Graph_1 see the *new* graph, not the
@@ -875,7 +889,7 @@ def _delta_update_graphs(project_root, changed, updates, graph0, new_graph0, res
     # compute dependency hashes that diverge from a fresh full build whenever
     # a resolved edge changes between versions (Issue #9).
     new_workflow, edges_added, edges_removed = recompute_edges(
-        changed, new_graph0, workflow, updates.call_sites, updates.imports,
+        changed, new_graph0, workflow, full_call_sites, full_imports,
         affected_source_files=affected, deleted_nodes=deleted_nodes,
     )
     result.workflow_edges_added = edges_added

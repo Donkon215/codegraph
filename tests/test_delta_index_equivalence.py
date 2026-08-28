@@ -94,15 +94,17 @@ def test_modify_function_body():
 
 def test_add_function():
     # caller references bar before bar exists; adding bar.py must resolve it.
+    # Explicit import so the cross-file edge actually forms (bare calls don't
+    # resolve across files in this extractor).
     assert_equivalence(
-        {"a.py": "def caller():\n    return bar()\n"},
-        {"a.py": "def caller():\n    return bar()\n", "b.py": "def bar():\n    return 1\n"},
+        {"a.py": "from b import bar\n\n\ndef caller():\n    return bar()\n"},
+        {"a.py": "from b import bar\n\n\ndef caller():\n    return bar()\n", "b.py": "def bar():\n    return 1\n"},
     )
 
 
 def test_delete_function():
     assert_equivalence(
-        {"a.py": "def caller():\n    return foo()\n", "b.py": "def foo():\n    return 1\n"},
+        {"a.py": "from b import foo\n\n\ndef caller():\n    return foo()\n", "b.py": "def foo():\n    return 1\n"},
         {"a.py": "def caller():\n    return 1\n"},
     )
 
@@ -147,16 +149,16 @@ def test_resolved_edge_change():
 def test_chain_dependency_propagation():
     # A -> B -> C chain. Modifying the leaf C must propagate the dependency
     # hash invalidation up through B to A in BOTH the full build and the
-    # delta, so all three hashes agree.
+    # delta, so all three hashes agree. Explicit imports make the edges real.
     assert_equivalence(
         {
-            "a.py": "def a():\n    return b()\n",
-            "b.py": "def b():\n    return c()\n",
+            "a.py": "from b import b\n\n\ndef a():\n    return b()\n",
+            "b.py": "from c import c\n\n\ndef b():\n    return c()\n",
             "c.py": "def c():\n    return 1\n",
         },
         {
-            "a.py": "def a():\n    return b()\n",
-            "b.py": "def b():\n    return c()\n",
+            "a.py": "from b import b\n\n\ndef a():\n    return b()\n",
+            "b.py": "from c import c\n\n\ndef b():\n    return c()\n",
             "c.py": "def c():\n    return 2\n",
         },
     )
@@ -167,8 +169,8 @@ def test_chain_delete_leaf():
     # then A (the whole affected closure), not just C.
     assert_equivalence(
         {
-            "a.py": "def a():\n    return b()\n",
-            "b.py": "def b():\n    return c()\n",
+            "a.py": "from b import b\n\n\ndef a():\n    return b()\n",
+            "b.py": "from c import c\n\n\ndef b():\n    return c()\n",
             "c.py": "def c():\n    return 1\n",
         },
         {
@@ -182,15 +184,15 @@ def test_diamond_dependency_propagation():
     # A -> {B, C} -> D. Modifying D must invalidate B, C and A.
     assert_equivalence(
         {
-            "a.py": "def a():\n    return b() + c()\n",
-            "b.py": "def b():\n    return d()\n",
-            "c.py": "def c():\n    return d()\n",
+            "a.py": "from b import b\nfrom c import c\n\n\ndef a():\n    return b() + c()\n",
+            "b.py": "from d import d\n\n\ndef b():\n    return d()\n",
+            "c.py": "from d import d\n\n\ndef c():\n    return d()\n",
             "d.py": "def d():\n    return 1\n",
         },
         {
-            "a.py": "def a():\n    return b() + c()\n",
-            "b.py": "def b():\n    return d()\n",
-            "c.py": "def c():\n    return d()\n",
+            "a.py": "from b import b\nfrom c import c\n\n\ndef a():\n    return b() + c()\n",
+            "b.py": "from d import d\n\n\ndef b():\n    return d()\n",
+            "c.py": "from d import d\n\n\ndef c():\n    return d()\n",
             "d.py": "def d():\n    return 2\n",
         },
     )
@@ -201,27 +203,28 @@ def test_cycle_scc():
     # SCC hash for both, identically in full build and delta.
     assert_equivalence(
         {
-            "a.py": "def a():\n    return b()\n",
-            "b.py": "def b():\n    return a()\n",
+            "a.py": "from b import b\n\n\ndef a():\n    return b()\n",
+            "b.py": "from a import a\n\n\ndef b():\n    return a()\n",
         },
         {
-            "a.py": "def a():\n    return b()\n",
-            "b.py": "def b():\n    return a() + 1\n",
+            "a.py": "from b import b\n\n\ndef a():\n    return b()\n",
+            "b.py": "from a import a\n\n\ndef b():\n    return a() + 1\n",
         },
     )
 
 
 def test_file_rename():
     # Rename the module that defines `helper` (a.py -> mod.py). The unchanged
-    # caller re-resolves `helper` to mod.py::helper in BOTH paths.
+    # caller re-resolves `helper` to mod.py::helper in BOTH paths. Explicit
+    # import makes the caller->helper edge real.
     assert_equivalence(
         {
             "a.py": "def helper():\n    return 1\n",
-            "b.py": "def caller():\n    return helper()\n",
+            "b.py": "from a import helper\n\n\ndef caller():\n    return helper()\n",
         },
         {
             "mod.py": "def helper():\n    return 1\n",
-            "b.py": "def caller():\n    return helper()\n",
+            "b.py": "from mod import helper\n\n\ndef caller():\n    return helper()\n",
         },
     )
 
@@ -271,15 +274,15 @@ def test_test_relationship_change():
 def test_multiple_simultaneous_changes():
     # Delete b.py, add c.py (redefining helper + a new fn), and modify a.py
     # to call both. Exercises deletion + addition + modification + resolution
-    # flip in a single delta.
+    # flip in a single delta. Explicit imports make the edges real.
     assert_equivalence(
         {
-            "a.py": "def caller():\n    return helper()\n",
+            "a.py": "from b import helper\n\n\ndef caller():\n    return helper()\n",
             "b.py": "def helper():\n    return 1\n",
         },
         {
-            "a.py": "def caller():\n    return helper() + added()\n",
-            "c.py": "def added():\n    return 2\n\ndef helper():\n    return 9\n",
+            "a.py": "from c import helper, added\n\n\ndef caller():\n    return helper() + added()\n",
+            "c.py": "def added():\n    return 2\ndef helper():\n    return 9\n",
         },
     )
 
