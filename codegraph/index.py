@@ -261,19 +261,28 @@ def _create_tests_table(conn: sqlite3.Connection) -> None:
     conn.execute("CREATE INDEX IF NOT EXISTS idx_tests_node ON tests(node_id)")
 
 
+def _generate_test_rows(edges: list, graph0_nodes: list) -> List[Tuple[str, str]]:
+    """Return canonical (test_id, node_id) rows from test-type workflow edges.
+
+    This is the single source of truth for which test relationships exist. Both
+    the full build and the incremental delta update must use it so the two stay
+    consistent (Issue #6).
+    """
+    test_ids = {n.id for n in graph0_nodes
+                if n.file.startswith("test") or "/test" in n.file or "\\test" in n.file}
+    rows = []
+    for e in edges:
+        if e.edge_type == "test" or e.source in test_ids:
+            rows.append((e.source, e.target))
+    return rows
+
+
 def build_tests_index(conn: sqlite3.Connection, edges: list, graph0_nodes: list) -> int:
     """Populate tests table from test-type workflow edges (G-006)."""
     _create_tests_table(conn)
     conn.execute("DELETE FROM tests")
 
-    # Identify test nodes
-    test_ids = {n.id for n in graph0_nodes
-                if n.file.startswith("test") or "/test" in n.file or "\\test" in n.file}
-
-    rows = []
-    for e in edges:
-        if e.edge_type == "test" or e.source in test_ids:
-            rows.append((e.source, e.target))
+    rows = _generate_test_rows(edges, graph0_nodes)
 
     conn.executemany("INSERT INTO tests (test_id, node_id) VALUES (?, ?)", rows)
     conn.commit()

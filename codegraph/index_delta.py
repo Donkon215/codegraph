@@ -98,6 +98,18 @@ def update_index_delta(
                     (e.source, e.target, e.edge_type, e.confidence),
                 )
 
+        # G-006 — rebuild test relationships for affected nodes (Issue #6).
+        # Reuse the canonical generation so the delta index stays consistent
+        # with a fresh full rebuild, rather than inventing a second rule.
+        from codegraph.index import _generate_test_rows
+
+        for test_id, node_id in _generate_test_rows(workflow.edges, graph0.nodes):
+            if test_id in changed or node_id in changed:
+                conn.execute(
+                    "INSERT INTO tests (test_id, node_id) VALUES (?, ?)",
+                    (test_id, node_id),
+                )
+
     conn.commit()
     conn.close()
     logger.info("Delta index updated: %d nodes affected", updated)
