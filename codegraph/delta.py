@@ -104,6 +104,66 @@ def _detect_uncommitted(project_root: Path) -> bool:
     return False
 
 
+def _parse_name_status(stdout: str, target: ChangedFiles) -> None:
+    """Parse `git diff --name-status -M` output into *target* (K-002, K-015)."""
+    for line in stdout.strip().splitlines():
+        if not line.strip():
+            continue
+        parts = line.split("\t")
+        if len(parts) < 2:
+            continue
+        status = parts[0]
+        if status == "A":
+            target.added.append(parts[1])
+        elif status == "M":
+            target.modified.append(parts[1])
+        elif status == "D":
+            target.deleted.append(parts[1])
+        elif status.startswith("R") and len(parts) >= 3:
+            # Rename: old_path → new_path
+            target.renamed.append((parts[1], parts[2]))
+
+
+def _diff_name_status(project_root: Path, rev_range: str) -> ChangedFiles:
+    """Run `git diff --name-status -M <rev_range>` and parse the result."""
+    out = ChangedFiles()
+    try:
+        proc = subprocess.run(
+            ["git", "diff", "--name-status", "-M", rev_range],
+            cwd=str(project_root),
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+    except (FileNotFoundError, subprocess.TimeoutExpired) as exc:
+        logger.warning("git not available: %s", exc)
+        return out
+    if proc.returncode != 0:
+        # Commit might not exist (rebase) — fall back
+        logger.warning("git diff failed (%s): %s", rev_range, proc.stderr.strip())
+        return out
+    _parse_name_status(proc.stdout, out)
+    return out
+
+
+def _merge_changed(base: ChangedFiles, extra: ChangedFiles) -> ChangedFiles:
+    """Merge *extra* change sets into *base* (lists may hold duplicates)."""
+    base.added.extend(extra.added)
+    base.modified.extend(extra.modified)
+    base.deleted.extend(extra.deleted)
+    base.renamed.extend(extra.renamed)
+    return base
+
+
+def _dedup_changed(cf: ChangedFiles) -> ChangedFiles:
+    """Drop duplicate entries within each change list."""
+    cf.added = list(dict.fromkeys(cf.added))
+    cf.modified = list(dict.fromkeys(cf.modified))
+    cf.deleted = list(dict.fromkeys(cf.deleted))
+    cf.renamed = list(dict.fromkeys(cf.renamed))
+    return cf
+
+
 def get_changed_files(
     project_root: Path,
     since_commit: Optional[str] = None,
@@ -114,7 +174,7 @@ def get_changed_files(
     if since_commit is None:
         since_commit = _get_last_build_commit(project_root)
 
-    # K-003 — Check for uncommitted changes
+    # K-003 — Check for uncommitted changes (informational warning only)
     if _detect_uncommitted(project_root):
         result.includes_uncommitted = True
         logger.warning("Processing uncommitted changes")
@@ -124,60 +184,17 @@ def get_changed_files(
         logger.info("No previous build commit — all files are 'changed'")
         return result
 
-    # K-015 — Use -M for rename detection
-    try:
-        proc = subprocess.run(
-            ["git", "diff", "--name-status", "-M", f"{since_commit}..HEAD"],
-            cwd=str(project_root),
-            capture_output=True,
-            text=True,
-            timeout=30,
-        )
-        if proc.returncode != 0:
-            # Commit might not exist (rebase) — fall back
-            logger.warning("git diff failed (commit %s may not exist): %s",
-                           since_commit, proc.stderr.strip())
-            return result
+    # K-002/K-015 — Committed changes since the last build baseline.
+    result = _merge_changed(result, _diff_name_status(project_root, f"{since_commit}..HEAD"))
 
-        for line in proc.stdout.strip().splitlines():
-            if not line.strip():
-                continue
-            parts = line.split("\t")
-            if len(parts) < 2:
-                continue
-            status = parts[0]
-            if status == "A":
-                result.added.append(parts[1])
-            elif status == "M":
-                result.modified.append(parts[1])
-            elif status == "D":
-                result.deleted.append(parts[1])
-            elif status.startswith("R"):
-                # Rename: old_path → new_path
-                if len(parts) >= 3:
-                    result.renamed.append((parts[1], parts[2]))
+    # K-003 — Staged AND unstaged changes relative to HEAD.
+    # `git diff HEAD` compares the index + working tree against HEAD, so the
+    # previously-missed staged modifications/deletions/renames are now caught.
+    # ponytail: relies on `git diff HEAD` covering index+worktree; untracked
+    # files remain excluded (unchanged prior behavior).
+    result = _merge_changed(result, _diff_name_status(project_root, "HEAD"))
 
-    except (FileNotFoundError, subprocess.TimeoutExpired) as exc:
-        logger.warning("git not available: %s", exc)
-
-    # Also include uncommitted changes (working tree)
-    if result.includes_uncommitted:
-        try:
-            proc = subprocess.run(
-                ["git", "diff", "--name-only"],
-                cwd=str(project_root),
-                capture_output=True,
-                text=True,
-                timeout=30,
-            )
-            if proc.returncode == 0:
-                for f in proc.stdout.strip().splitlines():
-                    f = f.strip()
-                    if f and f not in result.modified and f not in result.added:
-                        if (project_root / f).exists():
-                            result.modified.append(f)
-        except (FileNotFoundError, subprocess.TimeoutExpired):
-            pass
+    result = _dedup_changed(result)
 
     # Filter to Python files that exist
     result.added = [f for f in result.added if f.endswith(".py") and (project_root / f).exists()]
