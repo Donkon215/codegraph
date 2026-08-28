@@ -5,7 +5,11 @@ All notable changes to codegraph will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.0.0] — 2026-08-28
+
+First stable foundation release. CodeGraph provides a persistent code graph and
+indexed query/analysis system that survives iterative code changes through
+`build → delta → query/analyze` without becoming inconsistent.
 
 ### Added
 - CLI interface with 30+ commands via Click (`codegraph build`, `query`, `explain`, etc.)
@@ -28,6 +32,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI/CD with GitHub Actions (Python 3.9–3.12 matrix)
 - Pre-commit hooks (black, ruff, mypy)
 
+### Fixed
+- #3 — `dependencies()` now stops traversal at `--limit` (BFS breaks once the
+  limit of dependency nodes is discovered) instead of walking the whole graph
+  and truncating the result afterwards.
+- #2 — Delta detects staged-but-uncommitted changes (`git diff HEAD` covers the
+  index + working tree, so staged modifications/deletions/renames are caught).
+- #6 — Incremental index update preserves test relationships on delta (test
+  rows rebuilt from the canonical generation, not a second rule).
+- #7 — Runtime trace parser builds correct edges from source order.
+- #9 — `build` and `build → delta` produce logically equivalent indexes
+  (canonical snapshot/diff; full call-site collection on every delta).
+- #10 — Delta now prunes deleted nodes from Graph_1 (graph1.json) so the index,
+  graph0, and graph1 stay in lock-step after a file deletion; adds an end-to-end
+  developer-workflow regression test.
+
 ## [0.1.0] — 2025-01-01
 
 ### Added
@@ -36,5 +55,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - JSON file storage backend.
 - MIT license.
 
-[Unreleased]: https://github.com/codegraph/codegraph/compare/v0.1.0...HEAD
+[1.0.0]: https://github.com/codegraph/codegraph/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/codegraph/codegraph/releases/tag/v0.1.0

@@ -2,6 +2,11 @@
 
 > A CLI-driven graph system for extracting, annotating, and analyzing codebase structure — designed for AI agents operating over large codebases.
 
+> **Status: v1.0.0 (stable foundation).** CodeGraph reliably supports the core
+> development loop — `build → delta → query / analyze` — and keeps the graph and
+> index consistent across incremental code changes. See
+> [CHANGELOG.md](CHANGELOG.md) for the full list of fixes and features.
+
 ---
 
 ## What is codegraph?
