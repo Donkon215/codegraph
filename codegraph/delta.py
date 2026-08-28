@@ -317,19 +317,9 @@ def reextract_changed(
         if file_result is None:
             continue
 
-        # Collect call_sites and imports for workflow rebuild.
-        # Rekey call_sites from bare function name to node id, matching the
-        # full build's _collect_call_sites_and_imports (workflow.py). The delta
-        # previously kept bare-name keys, which build_static_edges drops (it
-        # looks up source_id in all_node_ids), so every resolved edge was
-        # silently lost on incremental update (Issue #9).
-        if file_result.call_sites:
-            for node in file_result.nodes:
-                fname = node.id.rsplit("::", 1)[-1] if "::" in node.id else ""
-                if fname in file_result.call_sites:
-                    updates.call_sites[node.id] = file_result.call_sites[fname]
-        if file_result.imports:
-            updates.imports[rel_path] = file_result.imports
+        # Call sites / imports for the workflow rebuild are collected in full by
+        # _delta_update_graphs (see _collect_call_sites_and_imports) so every
+        # source file's edges can be re-resolved, not just re-extracted ones.
 
         # Remove old nodes for this file (they'll be replaced)
         for old_node in old_nodes_by_file.get(rel_path, []):
