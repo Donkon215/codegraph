@@ -11,7 +11,7 @@ from __future__ import annotations
 import sqlite3
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 from codegraph.index_maintenance import _check_version, _connect, _index_dir
 
@@ -61,27 +61,42 @@ def snapshot_index(project_root: Path) -> IndexSnapshot:
     if not db_path.exists():
         return IndexSnapshot()
     conn = _connect(db_path, readonly=True)
-    if not _check_version(conn):
+    try:
+        if not _check_version(conn):
+            raise ValueError("Index schema version mismatch — rebuild needed")
+        return snapshot_conn(conn)
+    finally:
         conn.close()
-        raise ValueError("Index schema version mismatch — rebuild needed")
+
+
+def snapshot_conn(conn: sqlite3.Connection) -> IndexSnapshot:
+    """Snapshot an already-open index database connection (G-010).
+
+    Used to canonicalise an in-memory reference index (built from the current
+    source) so it can be diffed against the on-disk index without a second
+    comparison implementation.
+    """
     tables: Dict[str, List[Tuple]] = {}
     for name, query in _TABLE_QUERIES.items():
         try:
             tables[name] = [tuple(row) for row in conn.execute(query).fetchall()]
         except sqlite3.OperationalError:
             tables[name] = []
-    conn.close()
     return IndexSnapshot(tables)
 
 
-def diff_index_snapshots(a: IndexSnapshot, b: IndexSnapshot) -> Dict[str, dict]:
+def diff_index_snapshots(
+    a: IndexSnapshot, b: IndexSnapshot, table_names: Optional[tuple] = None
+) -> Dict[str, dict]:
     """Per-table difference between two snapshots.
 
     Returns a mapping of table name -> ``{"only_in_delta": [...], "only_in_full": [...]}``.
     Tables without differences are omitted so the report stays focused.
+
+    ``table_names`` restricts the comparison (defaults to all known tables).
     """
     out: Dict[str, dict] = {}
-    for name in TABLE_NAMES:
+    for name in (table_names or TABLE_NAMES):
         rows_a = a.tables.get(name, [])
         rows_b = b.tables.get(name, [])
         if set(rows_a) == set(rows_b):

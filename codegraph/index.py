@@ -400,6 +400,52 @@ def build_all_indexes(
     return results
 
 
+def build_reference_snapshot(
+    graph0: Any,
+    graph1: Any,
+    workflow: Any,
+    project_root: Path,
+) -> Any:
+    """Canonical snapshot a fresh full build would produce from current source (G-010).
+
+    Reuses the same index builders as ``build_all_indexes`` but generates the
+    rows into an in-memory database from the already-loaded graph — no project
+    clone and no source re-extraction. The result can be diffed against the
+    on-disk index by ``check_index_consistency`` to detect logical divergence
+    (e.g. an edge whose target changed while its row count stayed the same).
+    """
+    import sqlite3
+
+    from codegraph.index_snapshot import snapshot_conn
+    from codegraph.models.graph0 import Graph0 as _Graph0
+
+    # Compute dependency hashes exactly as a full build does, so the reference
+    # matches the on-disk index (which was produced by the same CAS pipeline).
+    try:
+        from codegraph.cas import load_hash_snapshot, run_cas_pipeline
+
+        cached = load_hash_snapshot(project_root)
+        _, hashes = run_cas_pipeline(_Graph0(), graph0, workflow, cached)
+        graph0.update_dependency_hashes(hashes)
+    except Exception:
+        pass
+
+    conn = sqlite3.connect(":memory:")
+    conn.row_factory = sqlite3.Row
+    _ensure_version_table(conn)
+
+    edges = workflow.edges if workflow else []
+    g1_index = {n.id: n for n in graph1.nodes} if graph1 and graph1.nodes else {}
+    build_nodes_index(conn, graph0.nodes, g1_index)
+    build_callers_index(conn, edges)
+    build_callees_index(conn, edges)
+    build_layers_index(conn, graph1.nodes if graph1 else [])
+    build_tests_index(conn, edges, graph0.nodes)
+    build_dependency_hash_index(conn, graph0.nodes)
+
+    return snapshot_conn(conn)
+
+
 # ═══════════════════════════════════════════════════════════════════════
 # G-008 — Delta index update
 # ═══════════════════════════════════════════════════════════════════════
