@@ -775,11 +775,11 @@ def run_delta(
     result.nodes_removed = updates.removed_node_ids
     result.nodes_modified = [n.id for n in updates.modified_nodes]
 
-    new_graph0, new_workflow, result = _delta_update_graphs(
-        project_root, changed, updates, graph0, new_graph0, result,
+    new_graph0, new_workflow, result, graph1 = _delta_update_graphs(
+        project_root, changed, updates, graph0, new_graph0, result, config,
     )
 
-    _delta_persist(project_root, new_graph0, new_workflow, updates, result, current_commit)
+    _delta_persist(project_root, new_graph0, new_workflow, updates, result, current_commit, graph1)
 
     return result
 
@@ -796,17 +796,22 @@ def _delta_load_state(project_root: Path):
     return graph0, current_version, current_commit
 
 
-def _delta_update_graphs(project_root, changed, updates, graph0, new_graph0, result):
+def _delta_update_graphs(project_root, changed, updates, graph0, new_graph0, result, config=None):
     """Update workflow edges and graph1 intents."""
-    from codegraph.annotator import load_graph1
     from codegraph.workflow import load_workflow
+    from codegraph.layers import assign_layers
+    from codegraph.annotator import initialize_graph1
 
     workflow = load_workflow(project_root)
     affected_set = _try_cas_pipeline(
         updates, graph0, new_graph0, workflow, result, project_root,
     )
 
-    graph1 = load_graph1(project_root)
+    # Recompute Graph_1 (layer assignments) for the *new* graph0 so the
+    # incremental index stays in lock-step with a fresh full build (Issue #9).
+    # Reusing the stale on-disk g1 would omit layer rows for added nodes.
+    layers = assign_layers(new_graph0.nodes, config)
+    graph1 = initialize_graph1(new_graph0, layers)
     if changed.renamed:
         _migrate_renames(changed.renamed, graph1)
 
@@ -819,16 +824,15 @@ def _delta_update_graphs(project_root, changed, updates, graph0, new_graph0, res
     result.workflow_edges_added = edges_added
     result.workflow_edges_removed = edges_removed
 
-    return new_graph0, new_workflow, result
+    return new_graph0, new_workflow, result, graph1
 
 
-def _delta_persist(project_root, new_graph0, new_workflow, updates, result, current_commit):
+def _delta_persist(project_root, new_graph0, new_workflow, updates, result, current_commit, graph1):
     """Save all delta artifacts to disk."""
     from codegraph.extractor import save_graph0
-    from codegraph.annotator import load_graph1, save_graph1
+    from codegraph.annotator import save_graph1
     from codegraph.workflow import write_workflow
 
-    graph1 = load_graph1(project_root)
     save_graph0(new_graph0, project_root)
     save_graph1(graph1, project_root)
     write_workflow(new_workflow, project_root)

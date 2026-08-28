@@ -261,6 +261,11 @@ def build_dynamic_edges(
 
     for dc in dynamic_calls:
         scope = getattr(dc, "scope", "") or default_scope or "unknown"
+        # A call with no resolvable scope cannot form a meaningful dynamic
+        # edge; emitting `unknown::*` pollutes the graph and breaks the
+        # build<->delta equivalence invariant (Issue #9).
+        if not scope or scope == "unknown":
+            continue
         source = scope
         target = f"{scope}::*"
         key = (source, target)
