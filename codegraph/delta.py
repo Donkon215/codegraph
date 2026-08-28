@@ -18,6 +18,10 @@ from codegraph.constants import (
     GRAPHS_DIR,
     WORKFLOW_DIR,
 )
+
+from codegraph.extractor import CallSite  # lazily used by cache loader
+
+_CALLSITE_CACHE_FILE = "callsites_cache.json"
 from codegraph.logging_config import get_logger
 from codegraph.models.delta import DeltaResult
 from codegraph.models.graph0 import Graph0, Graph0Node
@@ -499,6 +503,115 @@ def _affected_source_files(changed, updates, graph0, call_sites):
 
 
 # ═══════════════════════════════════════════════════════════════════════
+# Issue #16 — Incremental call-site collection
+# ═══════════════════════════════════════════════════════════════════════
+
+
+def _load_callsite_cache(project_root: Path):
+    """Load the persisted call-site/import cache, or None if absent/stale."""
+    from codegraph.extraction_types import ImportInfo
+
+    path = resolve_path(project_root, _CALLSITE_CACHE_FILE)
+    if not path.exists():
+        return None
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return None
+
+    call_sites: Dict[str, List[Any]] = {}
+    for nid, calls in data.get("call_sites", {}).items():
+        lst: List[Any] = [CallSite(**d) for d in calls]
+        call_sites[nid] = lst
+
+    imports: Dict[str, List[Any]] = {}
+    for f, imps in data.get("imports", {}).items():
+        imports[f] = [ImportInfo(**d) for d in imps]
+
+    return call_sites, imports
+
+
+def _save_callsite_cache(project_root: Path, call_sites, imports) -> None:
+    """Persist call sites/imports so the next delta need not re-parse all files."""
+    from codegraph.storage import atomic_write, ensure_codegraph_dir
+
+    ensure_codegraph_dir(project_root)
+    path = resolve_path(project_root, _CALLSITE_CACHE_FILE)
+    data = {
+        "call_sites": {
+            nid: [vars(c) for c in calls] for nid, calls in call_sites.items()
+        },
+        "imports": {
+            f: [imp.__dict__ for imp in imps] for f, imps in imports.items()
+        },
+    }
+    atomic_write(path, data)
+
+
+def _collect_call_sites_incremental(
+    new_graph0: Graph0,
+    project_root: Path,
+    changed: ChangedFiles,
+    updates: Graph0Updates,
+    cached_cs: Dict[str, List[Any]],
+    cached_imp: Dict[str, List[Any]],
+) -> Tuple[Dict[str, List[Any]], Dict[str, List[Any]]]:
+    """Build full call-site/import maps without re-parsing unchanged files.
+
+    Unchanged files keep their cached call sites/imports verbatim (their call
+    sites cannot change unless the file changes). Only the *affected* set —
+    changed files expanded to unchanged callers of changed symbols — is
+    re-extracted. The merged result is identical to a fresh full
+    ``_collect_call_sites_and_imports`` but skips the bulk of the repo.
+    """
+    from codegraph.extractor import extract_file
+    from codegraph.extractors import get_extractor
+
+    all_files = {n.file for n in new_graph0.nodes}
+
+    # Cached call sites are stable for unchanged files, so scanning them yields
+    # the correct affected set without re-parsing the whole project.
+    affected = _affected_source_files(changed, updates, new_graph0, cached_cs)
+
+    # Seed from cache entries that still belong to an existing file.
+    full_cs: Dict[str, List[Any]] = {}
+    full_imp: Dict[str, List[Any]] = {}
+    for nid, calls in cached_cs.items():
+        if nid.split("::", 1)[0] in all_files:
+            full_cs[nid] = calls
+    for f, imps in cached_imp.items():
+        if f in all_files:
+            full_imp[f] = imps
+
+    # Drop cached entries for affected files so re-extraction replaces them.
+    for f in affected:
+        full_imp.pop(f, None)
+        for nid in [k for k in full_cs if k.split("::", 1)[0] == f]:
+            del full_cs[nid]
+
+    # Re-extract only the affected files.
+    for rel_file in affected:
+        abs_path = project_root / rel_file
+        if not abs_path.exists():
+            continue
+        try:
+            extractor = get_extractor(abs_path)
+            if extractor is not None and abs_path.suffix != ".py":
+                result = extractor.extract_all(abs_path)
+            else:
+                result = extract_file(abs_path, project_root)
+        except Exception:
+            continue
+        full_imp[rel_file] = result.imports
+        for node in result.nodes:
+            fname = node.id.rsplit("::", 1)[-1] if "::" in node.id else ""
+            if fname in result.call_sites:
+                full_cs[node.id] = result.call_sites[fname]
+
+    return full_cs, full_imp
+
+
+# ═══════════════════════════════════════════════════════════════════════
 # K-009 — Index Incremental Update
 # ═══════════════════════════════════════════════════════════════════════
 
@@ -863,9 +976,21 @@ def _delta_update_graphs(project_root, changed, updates, graph0, new_graph0, res
     # re-extracted are silently dropped.
     from codegraph.workflow import _collect_call_sites_and_imports as _collect_cs
 
-    full_call_sites, full_imports = _collect_cs(new_graph0, project_root)
+    # Issue #16 — collect call sites incrementally: reuse the persisted cache
+    # for unchanged files and re-extract only the affected set, instead of
+    # re-parsing every source file on every delta. The first delta after a
+    # build (no cache yet) falls back to the full collection and seeds the
+    # cache, so subsequent deltas stay incremental and still equivalent.
+    cached = _load_callsite_cache(project_root)
+    if cached is not None:
+        full_call_sites, full_imports = _collect_call_sites_incremental(
+            new_graph0, project_root, changed, updates, cached[0], cached[1],
+        )
+    else:
+        full_call_sites, full_imports = _collect_cs(new_graph0, project_root)
     updates.call_sites = full_call_sites
     updates.imports = full_imports
+    _save_callsite_cache(project_root, full_call_sites, full_imports)
 
     # Expand changed files to every source file whose call sites may have
     # re-resolved (a referenced symbol was added/removed/renamed in a changed
