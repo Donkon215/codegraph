@@ -64,8 +64,9 @@ class NodeChange:
 
     node_id: str
     module: str = ""
-    node_type: str = ""  # function, class, method
+    node_type: str = ""  # function, class, method, module, subsystem
     reason: str = ""
+    subsystem: str = ""  # owning subsystem; preserved verbatim (no silent loss)
     intent: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,6 +77,8 @@ class NodeChange:
             d["node_type"] = self.node_type
         if self.reason:
             d["reason"] = self.reason
+        if self.subsystem:
+            d["subsystem"] = self.subsystem
         if self.intent:
             d["intent"] = self.intent
         return d
@@ -193,6 +196,7 @@ class ArchitectureDelta:
                 module=n.get("module", ""),
                 node_type=n.get("node_type", ""),
                 reason=n.get("reason", ""),
+                subsystem=n.get("subsystem", ""),
                 intent=n.get("intent", ""),
             ))
         for n in data.get("extra_nodes", []):
@@ -201,6 +205,7 @@ class ArchitectureDelta:
                 module=n.get("module", ""),
                 node_type=n.get("node_type", ""),
                 reason=n.get("reason", ""),
+                subsystem=n.get("subsystem", ""),
                 intent=n.get("intent", ""),
             ))
         return delta
@@ -272,6 +277,7 @@ def _dict_to_delta(data: Dict[str, Any]) -> ArchitectureDelta:
             module=n.get("module", ""),
             node_type=n.get("node_type", ""),
             reason=n.get("reason", ""),
+            subsystem=n.get("subsystem", ""),
             intent=n.get("intent", ""),
         ))
     for n in data.get("removed_nodes", []):
@@ -280,6 +286,7 @@ def _dict_to_delta(data: Dict[str, Any]) -> ArchitectureDelta:
             module=n.get("module", ""),
             node_type=n.get("node_type", ""),
             reason=n.get("reason", ""),
+            subsystem=n.get("subsystem", ""),
             intent=n.get("intent", ""),
         ))
     for e in data.get("added_edges", []):
@@ -328,7 +335,7 @@ def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> Arch
     delta = ArchitectureDelta()
     system_path = project_root / ".codegraph" / "architecture" / "system.json"
     mod_to_sub: Dict[str, str] = {}
-    forbidden: Set[tuple[str, str]] = set()
+    forbidden: Dict[tuple[str, str], str] = {}
     current_nodes: Set[str] = set()
     if system_path.exists():
         try:
@@ -345,8 +352,9 @@ def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> Arch
                     mod_to_sub[mod] = sub_name
                     current_nodes.add(mod)
         for c in system.get("constraints", []):
-            if c.get("type") == "forbidden_dependency":
-                forbidden.add((c["source"], c["target"]))
+            ctype = c.get("type", "")
+            if ctype:
+                forbidden[(c["source"], c["target"])] = ctype
 
     # Current node state (function/module ids from graph0)
     graph0_path = project_root / ".codegraph" / "graphs" / "graph0.json"
@@ -393,11 +401,13 @@ def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> Arch
         if op.op == OpType.ADD_COMPONENT:
             nid = op.component
             proposed_nodes.add(nid)
-            add_node_meta[nid] = {"module": op.component, "node_type": "component", "reason": op.reason}
+            add_node_meta[nid] = {"module": op.component, "node_type": "module",
+                                  "reason": op.reason, "subsystem": op.component_subsystem}
         elif op.op == OpType.REMOVE_COMPONENT:
             nid = op.component
             proposed_nodes.discard(nid)
-            remove_node_meta[nid] = {"module": op.component, "node_type": "module", "reason": op.reason}
+            remove_node_meta[nid] = {"module": op.component, "node_type": "module",
+                                     "reason": op.reason, "subsystem": op.component_subsystem}
         elif op.op == OpType.ADD_SUBSYSTEM:
             nid = op.subsystem
             proposed_nodes.add(nid)
@@ -419,13 +429,13 @@ def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> Arch
                 "op": "ADD_CONSTRAINT",
                 "constraint_type": op.constraint_type,
                 "source": op.source, "target": op.target})
-            forbidden.add((op.source, op.target))
+            forbidden[(op.source, op.target)] = op.constraint_type
         elif op.op == OpType.REMOVE_CONSTRAINT:
             constraint_changes.append({
                 "op": "REMOVE_CONSTRAINT",
                 "constraint_type": op.constraint_type,
                 "source": op.source, "target": op.target})
-            forbidden.discard((op.source, op.target))
+            forbidden.pop((op.source, op.target), None)
 
     # ArchitectureDelta = diff(CurrentState, ProposedState)
     for (s, t, et) in sorted(proposed_edges - current_edges):
@@ -449,12 +459,14 @@ def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> Arch
         delta.added_nodes.append(NodeChange(
             node_id=nid, module=m.get("module", nid),
             node_type=m.get("node_type", ""), reason=m.get("reason", ""),
+            subsystem=m.get("subsystem", ""),
         ))
     for nid in sorted(current_nodes - proposed_nodes):
         m = remove_node_meta.get(nid, {})
         delta.removed_nodes.append(NodeChange(
             node_id=nid, module=m.get("module", nid),
             node_type=m.get("node_type", ""), reason=m.get("reason", ""),
+            subsystem=m.get("subsystem", ""),
         ))
 
     # affected subsystems (subsystem-type nodes carry the name directly)
@@ -463,7 +475,7 @@ def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> Arch
         if n.node_type == "subsystem":
             affected.add(n.node_id)
         else:
-            s = _sub_of(n.module or n.node_id)
+            s = n.subsystem or _sub_of(n.module or n.node_id)
             if s:
                 affected.add(s)
     for e in delta.added_edges + delta.removed_edges:
@@ -480,7 +492,7 @@ def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> Arch
         tsub = _sub_of(t)
         if ssub and tsub and (ssub, tsub) in forbidden:
             delta.constraint_violations.append(ConstraintViolation(
-                constraint_type="forbidden_dep",
+                constraint_type=forbidden[(ssub, tsub)],
                 description=f"Forbidden dependency: {ssub} -> {tsub} ({s} -> {t})",
                 source=s, target=t))
 

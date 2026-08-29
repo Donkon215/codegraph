@@ -52,7 +52,12 @@ class TestChangeToDelta:
         with tempfile.TemporaryDirectory() as d:
             delta = generate_architecture_delta(Path(d), change=ac)
         assert len(delta.added_nodes) == 1
-        assert delta.added_nodes[0].node_id == "x.py"
+        n = delta.added_nodes[0]
+        assert n.node_id == "x.py"
+        # Locked contract: ADD_COMPONENT -> node_type "module" (not "component")
+        assert n.node_type == "module"
+        # subsystem metadata is preserved, not silently dropped
+        assert n.subsystem == "core"
 
     def test_remove_component(self):
         # Removing a component that does not exist is a no-op (no state difference).
@@ -151,6 +156,8 @@ class TestConstraints:
             self._write_system(Path(d))
             delta = generate_architecture_delta(Path(d), change=ac)
         assert len(delta.constraint_violations) == 1
+        # Locked contract: constraint_type survives verbatim, never normalized.
+        assert delta.constraint_violations[0].constraint_type == "forbidden_dependency"
         assert delta.risk_estimate == "BLOCKED"
 
     def test_policy_removal_removes_violation(self):
@@ -188,6 +195,10 @@ class TestSemanticEquivalence:
                {e.source for e in change_delta.added_edges}
         assert {n.node_id for n in target_delta.added_nodes} == \
                {n.node_id for n in change_delta.added_nodes}
+        # Locked contract: subsystem metadata must survive into the canonical
+        # delta on both paths (not just node ids).
+        assert {n.subsystem for n in target_delta.added_nodes} == \
+               {n.subsystem for n in change_delta.added_nodes}
 
 
 class TestNoOpSemantics:
@@ -312,3 +323,44 @@ class TestAffectedSubsystems:
         assert "core" in delta.affected_subsystems
         assert any(n.node_type == "subsystem" and n.node_id == "core"
                    for n in delta.removed_nodes)
+
+
+class TestComponentAffectsSubsystem:
+    def test_added_component_affects_its_subsystem(self):
+        # component_subsystem is not yet in system.json -> must still appear
+        # in affected_subsystems (derived from the node's subsystem field).
+        ac = ArchitectureChange(operations=[
+            ArchitectureOperation(OpType.ADD_COMPONENT, component="new.py",
+                                  component_subsystem="api")])
+        with tempfile.TemporaryDirectory() as d:
+            delta = generate_architecture_delta(Path(d), change=ac)
+        assert "api" in delta.affected_subsystems
+        assert delta.added_nodes[0].subsystem == "api"
+
+    def test_removed_component_affects_its_subsystem(self):
+        system = {"subsystems": [{"name": "api",
+                                  "components": [{"name": "n", "module": "new.py"}]}]}
+        with tempfile.TemporaryDirectory() as d:
+            arch_dir = Path(d) / ".codegraph" / "architecture"
+            arch_dir.mkdir(parents=True, exist_ok=True)
+            (arch_dir / "system.json").write_text(json.dumps(system), encoding="utf-8")
+            ac = ArchitectureChange(operations=[
+                ArchitectureOperation(OpType.REMOVE_COMPONENT, component="new.py",
+                                      component_subsystem="api")])
+            delta = generate_architecture_delta(Path(d), change=ac)
+        assert "api" in delta.affected_subsystems
+
+
+class TestTargetPathPreservesMetadata:
+    def test_target_node_subsystem_and_intent_survive(self):
+        # The canonical delta must not silently drop TargetWorkflow metadata.
+        target = TargetWorkflow()
+        target.add_node("new.py", module="new.py", subsystem="api", intent="wire routes")
+        target.add_edge("a::f", "b::g", reason="needed", priority=3)
+        delta = compute_architecture_delta(target, {"edges": []}, set())
+        n = delta.added_nodes[0]
+        assert n.subsystem == "api"
+        assert n.intent == "wire routes"
+        e = delta.added_edges[0]
+        assert e.priority == 3
+        assert e.reason == "needed"

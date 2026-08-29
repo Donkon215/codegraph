@@ -245,7 +245,7 @@ def compute_architecture_delta(
         if tn.node_id not in current_nodes:
             delta.added_nodes.append(NodeChange(
                 node_id=tn.node_id, module=tn.module,
-                intent=tn.intent, reason=tn.reason,
+                subsystem=tn.subsystem, intent=tn.intent, reason=tn.reason,
             ))
 
     # Sort added edges by priority (preserves prior evolution ordering)
