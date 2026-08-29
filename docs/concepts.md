@@ -112,6 +112,7 @@ The analyzer runs iterative repair cycles:
 
 ## Further Reading
 
+- [ArchitectureChange IR](architecture-change.md) — canonical proposed-change representation and simulation boundary
 - [Configuration](configuration.md) — customize analysis behavior
 - [CLI Reference](cli-reference.md) — command documentation
 - [Schema Reference](schema-reference.md) — JSON schema details
