@@ -420,7 +420,7 @@ def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> Arch
             key = (op.source, op.target, op.edge_type or "call")
             proposed_edges.add(key)
             edge_priority = change.metadata.get("target_edge_priorities", {}).get(
-                f"{op.source}->{op.target}", 5)
+                f"{op.source}->{op.target}->{op.edge_type or 'call'}", 5)
             add_edge_meta[key] = {"edge_type": op.edge_type or "call",
                                   "reason": op.reason, "priority": edge_priority}
         elif op.op == OpType.REMOVE_EDGE:

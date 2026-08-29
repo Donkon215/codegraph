@@ -232,6 +232,42 @@ class TestSemanticEquivalence:
             funnel = generate_architecture_delta(Path(d), change=ac)
         assert funnel.added_edges[0].priority == 2
 
+    def test_target_edge_priority_collision_is_deterministic(self):
+        # Duplicate same-endpoint target edges with different priorities must not
+        # silently overwrite each other: the funnel keeps MAX (deterministic).
+        target = TargetWorkflow()
+        target.add_edge("a::f", "b::g", reason="low", priority=2)
+        target.add_edge("a::f", "b::g", reason="high", priority=9)
+        ac = target_workflow_to_change(target, {"edges": []}, set())
+        with tempfile.TemporaryDirectory() as d:
+            funnel = generate_architecture_delta(Path(d), change=ac)
+        assert len(funnel.added_edges) == 1
+        assert funnel.added_edges[0].priority == 9
+
+    def test_target_distinct_edges_keep_distinct_priorities(self):
+        # The priority map keys by full edge identity (src->tgt->edge_type), so
+        # two different edges keep their own priorities.
+        target = TargetWorkflow()
+        target.add_edge("a::f", "b::g", reason="r", priority=2)
+        target.add_edge("a::f", "c::h", reason="r", priority=7)
+        ac = target_workflow_to_change(target, {"edges": []}, set())
+        with tempfile.TemporaryDirectory() as d:
+            funnel = generate_architecture_delta(Path(d), change=ac)
+        by_key = {(e.source, e.target): e.priority for e in funnel.added_edges}
+        assert by_key[("a::f", "b::g")] == 2
+        assert by_key[("a::f", "c::h")] == 7
+
+    def test_target_priority_metadata_survives_serialization(self):
+        # ArchitectureChange.metadata round-trips through JSON (json keys are
+        # strings); the priority side-channel must survive a save/load cycle.
+        from codegraph.architecture_change import ArchitectureChange
+        target = TargetWorkflow()
+        target.add_edge("a::f", "b::g", reason="r", priority=3)
+        ac = target_workflow_to_change(target, {"edges": []}, set())
+        ac2 = ArchitectureChange.from_json(ac.to_json())
+        assert ac2.metadata == ac.metadata
+        assert ac2.metadata["target_edge_priorities"] == {"a::f->b::g->call": 3}
+
 
 class TestNoOpSemantics:
     """The locked contract: delta == diff(current, current + change).
