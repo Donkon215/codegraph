@@ -259,18 +259,27 @@ class ArchitectureChange:
                     f"duplicate operation: {op.op.value} {ident}"
                 )
             seen_exact.add(exact)
-            if op.op in _ADD_OPS:
-                if ident in remove_seen:
-                    raise ArchitectureChangeValidationError(
-                        f"contradictory operation: add and remove same target {ident}"
-                    )
-                add_seen[ident] = True
+            # Contradiction detection for component add/remove is subsystem-aware:
+            # the owning subsystem distinguishes a genuine move
+            # (REMOVE_COMPONENT(A,m) + ADD_COMPONENT(B,m)) from a meaningless no-op
+            # (REMOVE_COMPONENT(A,m) + ADD_COMPONENT(A,m)). Canonical component identity
+            # (module path, used for dedup/normalization) is deliberately NOT changed.
+            if op.op in (OpType.ADD_COMPONENT, OpType.REMOVE_COMPONENT):
+                conflict_ident = ("component", op.component, op.component_subsystem)
             else:
-                if ident in add_seen:
+                conflict_ident = ident
+            if op.op in _ADD_OPS:
+                if conflict_ident in remove_seen:
                     raise ArchitectureChangeValidationError(
-                        f"contradictory operation: add and remove same target {ident}"
+                        f"contradictory operation: add and remove same target {conflict_ident}"
                     )
-                remove_seen[ident] = True
+                add_seen[conflict_ident] = True
+            else:
+                if conflict_ident in add_seen:
+                    raise ArchitectureChangeValidationError(
+                        f"contradictory operation: add and remove same target {conflict_ident}"
+                    )
+                remove_seen[conflict_ident] = True
 
     @staticmethod
     def _validate_op(op: ArchitectureOperation) -> None:

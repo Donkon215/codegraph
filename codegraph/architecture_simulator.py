@@ -399,6 +399,10 @@ def _apply_changes(
                     description=change.reason,
                 ))
 
+        elif change.action == "remove_subsystem":
+            arch.subsystems = [s for s in arch.subsystems
+                               if s.name != change.subsystem]
+
         elif change.action == "add_edge":
             src = change.subsystem
             tgt = change.target_subsystem
@@ -430,6 +434,14 @@ def _apply_changes(
                         module=change.module_path,
                     ))
 
+        elif change.action == "remove_component":
+            sub = arch.get_subsystem(change.subsystem)
+            if sub:
+                name = change.component_name
+                mod = change.module_path
+                sub.components = [c for c in sub.components
+                                  if not (c.name == name or (mod and c.module == mod))]
+
         elif change.action == "add_constraint":
             arch.constraints.append(ArchConstraint(
                 constraint_type=change.constraint_type,
@@ -437,6 +449,14 @@ def _apply_changes(
                 target=change.target_subsystem,
                 reason=change.reason,
             ))
+
+        elif change.action == "remove_constraint":
+            src = change.subsystem
+            tgt = change.target_subsystem
+            ct = change.constraint_type
+            arch.constraints = [c for c in arch.constraints
+                                if not (c.constraint_type == ct
+                                        and c.source == src and c.target == tgt)]
 
         elif change.action == "split_subsystem":
             # Simulate splitting a subsystem
@@ -553,3 +573,23 @@ def _determine_recommendation(result: ArchSimulationResult) -> None:
     else:
         result.recommendation = "accept"
         result.reasons.append("No significant issues predicted")
+
+
+# ── ArchitectureChange boundary ─────────────────────────────────────────
+
+def simulate(
+    change: "ArchitectureChange",
+    architecture: SystemArchitecture,
+) -> ArchSimulationResult:
+    """Simulate a canonical ArchitectureChange using the existing engine.
+
+    Single public boundary: validate the IR, convert it ONCE to the legacy
+    ArchChange list via the reverse adapter, then run the existing
+    simulate_architecture_changes. The IR is description-only; the simulator
+    deep-copies the architecture, so persistent state is never mutated here.
+    """
+    from codegraph.architecture_change_adapters import architecture_change_to_arch_changes
+
+    change.validate()
+    arch_changes = architecture_change_to_arch_changes(change, architecture)
+    return simulate_architecture_changes(arch_changes, architecture)
