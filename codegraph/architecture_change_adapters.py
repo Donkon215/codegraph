@@ -520,13 +520,14 @@ def target_workflow_to_change(
     # TargetEdge.priority has no field in the frozen ArchitectureChange IR, so it
     # travels through the funnel via existing metadata (not an IR change).
     # Keyed by full edge identity (incl. edge_type) so distinct edge types never
-    # collide, and MAX priority is taken so duplicate same-endpoint edges cannot
-    # silently overwrite each other (deterministic, not last-wins).
+    # collide, and MIN priority is taken so duplicate same-endpoint edges keep the
+    # HIGHER-urgency intent (repo convention: 1=highest, 10=lowest; added_edges
+    # are sorted ascending by priority) instead of silently overwriting it.
     if delta.added_edges:
         edge_priorities: Dict[str, int] = {}
         for e in delta.added_edges:
             k = f"{e.source}->{e.target}->{e.edge_type}"
-            edge_priorities[k] = max(edge_priorities.get(k, 0), e.priority)
+            edge_priorities[k] = min(edge_priorities.get(k, 99), e.priority)
         metadata["target_edge_priorities"] = edge_priorities
     ac = ArchitectureChange(operations=ops, metadata=metadata)
     ac.validate()

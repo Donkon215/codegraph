@@ -236,13 +236,14 @@ class TestSemanticEquivalence:
         # Duplicate same-endpoint target edges with different priorities must not
         # silently overwrite each other: the funnel keeps MAX (deterministic).
         target = TargetWorkflow()
-        target.add_edge("a::f", "b::g", reason="low", priority=2)
-        target.add_edge("a::f", "b::g", reason="high", priority=9)
+        target.add_edge("a::f", "b::g", reason="high", priority=2)
+        target.add_edge("a::f", "b::g", reason="low", priority=9)
         ac = target_workflow_to_change(target, {"edges": []}, set())
         with tempfile.TemporaryDirectory() as d:
             funnel = generate_architecture_delta(Path(d), change=ac)
         assert len(funnel.added_edges) == 1
-        assert funnel.added_edges[0].priority == 9
+        # Repo semantics: 1=highest priority; MIN keeps the higher-urgency intent.
+        assert funnel.added_edges[0].priority == 2
 
     def test_target_distinct_edges_keep_distinct_priorities(self):
         # The priority map keys by full edge identity (src->tgt->edge_type), so

@@ -223,7 +223,10 @@ def compute_architecture_delta(
     for te in target.edges:
         key = (te.source, te.target)
         target_edge_set.add(key)
-        target_edge_info[key] = te
+        # Keep the higher-urgency (lower priority number) duplicate target edge;
+        # repo convention is 1=highest, 10=lowest.
+        if key not in target_edge_info or te.priority < target_edge_info[key].priority:
+            target_edge_info[key] = te
 
     # Added edges: in target but not in current
     for key in target_edge_set - current_edges:
