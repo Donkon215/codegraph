@@ -22,6 +22,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
+from codegraph.architecture_delta import ArchitectureDelta, EdgeChange, NodeChange
 from codegraph.logging_config import get_logger
 
 logger = get_logger("target_architecture")
@@ -169,82 +170,26 @@ class TargetWorkflow:
 
 
 # ── Architecture Delta ─────────────────────────────────────────────────
+# The canonical `ArchitectureDelta` now lives in `codegraph.architecture_delta`.
+# This module previously defined a duplicate class (missing_*/extra_*); it was
+# unified into the single canonical model. `compute_architecture_delta` and
+# `delta_to_tasks` below use the canonical `added_*`/`removed_*` vocabulary.
 
 
-@dataclass
-class ArchitectureDelta:
-    """The difference between target and current architecture.
+def save_target_delta(delta: ArchitectureDelta, project_root: Path) -> Path:
+    """Persist a delta to .codegraph/planning/delta.json in the legacy shape.
 
-    This is the core output of the evolution engine:
-      delta = target_workflow - current_workflow
+    The on-disk format keeps missing_*/extra_* for backward compatibility;
+    the in-memory object is the canonical ArchitectureDelta.
     """
-
-    missing_edges: List[Dict[str, Any]] = field(default_factory=list)
-    extra_edges: List[Dict[str, Any]] = field(default_factory=list)
-    missing_nodes: List[Dict[str, Any]] = field(default_factory=list)
-    extra_nodes: List[Dict[str, Any]] = field(default_factory=list)
-
-    @property
-    def has_changes(self) -> bool:
-        return bool(self.missing_edges or self.extra_edges
-                     or self.missing_nodes or self.extra_nodes)
-
-    @property
-    def total_changes(self) -> int:
-        return (len(self.missing_edges) + len(self.extra_edges)
-                + len(self.missing_nodes) + len(self.extra_nodes))
-
-    def to_dict(self) -> Dict[str, Any]:
-        return {
-            "summary": {
-                "missing_edges": len(self.missing_edges),
-                "extra_edges": len(self.extra_edges),
-                "missing_nodes": len(self.missing_nodes),
-                "extra_nodes": len(self.extra_nodes),
-                "total_changes": self.total_changes,
-            },
-            "missing_edges": self.missing_edges,
-            "extra_edges": self.extra_edges,
-            "missing_nodes": self.missing_nodes,
-            "extra_nodes": self.extra_nodes,
-        }
-
-    def format(self) -> str:
-        lines = ["Architecture Delta"]
-        lines.append(f"  Missing edges: {len(self.missing_edges)}")
-        lines.append(f"  Extra edges:   {len(self.extra_edges)}")
-        lines.append(f"  Missing nodes: {len(self.missing_nodes)}")
-        lines.append(f"  Extra nodes:   {len(self.extra_nodes)}")
-
-        if self.missing_edges:
-            lines.append("\nMissing edges (target requires):")
-            for e in self.missing_edges[:20]:
-                lines.append(f"  + {e['source']} → {e['target']}")
-                if e.get("reason"):
-                    lines.append(f"    Reason: {e['reason']}")
-        if self.extra_edges:
-            lines.append("\nExtra edges (not in target):")
-            for e in self.extra_edges[:20]:
-                lines.append(f"  - {e['source']} → {e['target']}")
-        if self.missing_nodes:
-            lines.append("\nMissing nodes (target requires):")
-            for n in self.missing_nodes[:20]:
-                lines.append(f"  + {n['node_id']}")
-        if self.extra_nodes:
-            lines.append("\nExtra nodes (not in target):")
-            for n in self.extra_nodes[:10]:
-                lines.append(f"  - {n['node_id']}")
-        return "\n".join(lines)
-
-    def save(self, project_root: Path) -> Path:
-        path = project_root / ".codegraph" / "planning" / "delta.json"
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(
-            json.dumps(self.to_dict(), indent=2, ensure_ascii=False),
-            encoding="utf-8",
-        )
-        logger.info("Saved architecture delta → %s", path)
-        return path
+    path = project_root / ".codegraph" / "planning" / "delta.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(delta.to_legacy_target_dict(), indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    logger.info("Saved architecture delta → %s", path)
+    return path
 
 
 # ── Delta Engine ───────────────────────────────────────────────────────
@@ -280,37 +225,31 @@ def compute_architecture_delta(
         target_edge_set.add(key)
         target_edge_info[key] = te
 
-    # Missing edges: in target but not in current
+    # Added edges: in target but not in current
     for key in target_edge_set - current_edges:
         te = target_edge_info[key]
-        delta.missing_edges.append({
-            "source": te.source,
-            "target": te.target,
-            "reason": te.reason,
-            "priority": te.priority,
-            "subsystem": te.subsystem,
-        })
+        delta.added_edges.append(EdgeChange(
+            source=te.source, target=te.target,
+            reason=te.reason, priority=te.priority, subsystem=te.subsystem,
+        ))
 
-    # Extra edges: edges explicitly marked in target scope but not desired
-    # (Only report extras if target defines a scope for specific subsystems)
+    # Removed edges: edges in current but explicitly not desired by target
+    # (Only report removals if target defines a scope for specific sources)
     target_sources = {te.source for te in target.edges}
     for src, tgt in current_edges:
         if src in target_sources and (src, tgt) not in target_edge_set:
-            delta.extra_edges.append({"source": src, "target": tgt})
+            delta.removed_edges.append(EdgeChange(source=src, target=tgt))
 
-    # Missing nodes: in target but not in current
+    # Added nodes: in target but not in current
     for tn in target.nodes:
         if tn.node_id not in current_nodes:
-            delta.missing_nodes.append({
-                "node_id": tn.node_id,
-                "module": tn.module,
-                "subsystem": tn.subsystem,
-                "intent": tn.intent,
-                "reason": tn.reason,
-            })
+            delta.added_nodes.append(NodeChange(
+                node_id=tn.node_id, module=tn.module,
+                subsystem=tn.subsystem, intent=tn.intent, reason=tn.reason,
+            ))
 
-    # Sort missing edges by priority
-    delta.missing_edges.sort(key=lambda e: e.get("priority", 5))
+    # Sort added edges by priority (preserves prior evolution ordering)
+    delta.added_edges.sort(key=lambda e: e.priority)
 
     return delta
 
@@ -324,32 +263,32 @@ def delta_to_tasks(delta: ArchitectureDelta, graph_version: int) -> Dict[str, An
     repairs: List[Dict[str, Any]] = []
     intents: List[Dict[str, Any]] = []
 
-    for edge in delta.missing_edges:
+    for edge in delta.added_edges:
         repairs.append({
-            "node": edge["source"],
+            "node": edge.source,
             "action": "connect_call",
-            "target": edge["target"],
-            "reason": edge.get("reason", "Target workflow requires this edge"),
+            "target": edge.target,
+            "reason": edge.reason or "Target workflow requires this edge",
         })
 
-    for node in delta.missing_nodes:
+    for node in delta.added_nodes:
         repairs.append({
-            "node": node["node_id"],
+            "node": node.node_id,
             "action": "flag_for_human_review",
-            "target": node.get("module", ""),
-            "reason": node.get("reason", "Target architecture requires this node"),
+            "target": node.module,
+            "reason": node.reason or "Target architecture requires this node",
         })
-        if node.get("intent"):
+        if node.intent:
             intents.append({
-                "node": node["node_id"],
-                "intent": node["intent"],
+                "node": node.node_id,
+                "intent": node.intent,
             })
 
-    for edge in delta.extra_edges:
+    for edge in delta.removed_edges:
         repairs.append({
-            "node": edge["source"],
+            "node": edge.source,
             "action": "flag_for_human_review",
-            "target": edge["target"],
+            "target": edge.target,
             "reason": "Edge exists in current workflow but not in target — review for removal",
         })
 

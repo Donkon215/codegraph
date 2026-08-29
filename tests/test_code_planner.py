@@ -17,7 +17,7 @@ from codegraph.code_planner import (
     generate_plan,
     validate_plan,
 )
-from codegraph.target_architecture import ArchitectureDelta
+from codegraph.architecture_delta import ArchitectureDelta, EdgeChange, NodeChange
 
 
 # ── helpers ────────────────────────────────────────────────────────────
@@ -153,8 +153,8 @@ class TestCodePlan:
 class TestGeneratePlan:
     def test_missing_nodes(self):
         delta = ArchitectureDelta(
-            missing_nodes=[
-                {"node_id": "api/server.py::serve", "module": "api/server.py", "subsystem": "api"},
+            added_nodes=[
+                NodeChange("api/server.py::serve", module="api/server.py", subsystem="api"),
             ],
         )
         arch = _make_arch()
@@ -166,8 +166,8 @@ class TestGeneratePlan:
 
     def test_missing_edges(self):
         delta = ArchitectureDelta(
-            missing_edges=[
-                {"source": "codegraph/engine.py::run", "target": "codegraph/models/graph0.py::build"},
+            added_edges=[
+                EdgeChange("codegraph/engine.py::run", "codegraph/models/graph0.py::build"),
             ],
         )
         arch = _make_arch()
@@ -177,8 +177,8 @@ class TestGeneratePlan:
 
     def test_extra_edges(self):
         delta = ArchitectureDelta(
-            extra_edges=[
-                {"source": "codegraph/engine.py::run", "target": "codegraph/old.py::legacy"},
+            removed_edges=[
+                EdgeChange("codegraph/engine.py::run", "codegraph/old.py::legacy"),
             ],
         )
         arch = _make_arch()
@@ -188,8 +188,8 @@ class TestGeneratePlan:
 
     def test_architecture_update_task(self):
         delta = ArchitectureDelta(
-            missing_nodes=[
-                {"node_id": "api/server.py::serve", "module": "api/server.py", "subsystem": "api"},
+            added_nodes=[
+                NodeChange("api/server.py::serve", module="api/server.py", subsystem="api"),
             ],
         )
         arch = _make_arch()
@@ -205,8 +205,8 @@ class TestGeneratePlan:
 
     def test_task_ids_generated(self):
         delta = ArchitectureDelta(
-            missing_nodes=[
-                {"node_id": "a.py::foo", "module": "a.py", "subsystem": "core"},
+            added_nodes=[
+                NodeChange("a.py::foo", module="a.py", subsystem="core"),
             ],
         )
         arch = _make_arch()

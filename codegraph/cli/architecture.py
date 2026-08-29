@@ -327,8 +327,8 @@ def code_plan_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
     """Generate a code implementation plan from architecture delta."""
     import json as _json
     from codegraph.arch_schema import SystemArchitecture
+    from codegraph.architecture_delta import ArchitectureDelta
     from codegraph.code_planner import generate_plan, validate_plan
-    from codegraph.target_architecture import ArchitectureDelta
 
     try:
         root = find_project_root()
@@ -347,12 +347,7 @@ def code_plan_cmd(ctx: click.Context, json_output: bool, save: bool) -> None:
         sys.exit(EXIT_ERROR)
 
     delta_data = _json.loads(delta_path.read_text(encoding="utf-8"))
-    delta = ArchitectureDelta(
-        missing_edges=delta_data.get("missing_edges", []),
-        extra_edges=delta_data.get("extra_edges", []),
-        missing_nodes=delta_data.get("missing_nodes", []),
-        extra_nodes=delta_data.get("extra_nodes", []),
-    )
+    delta = ArchitectureDelta.from_legacy_target_dict(delta_data)
 
     plan = generate_plan(delta, arch)
     violations = validate_plan(plan, arch)

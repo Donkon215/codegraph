@@ -498,20 +498,20 @@ def target_workflow_to_change(
     delta = compute_architecture_delta(target_workflow, current_workflow, current_nodes)
     ops: List[ArchitectureOperation] = []
     skipped: List[Dict[str, Any]] = []
-    for e in delta.missing_edges:
+    for e in delta.added_edges:
         ops.append(ArchitectureOperation(
-            OpType.ADD_EDGE, source=e["source"], target=e["target"],
-            edge_type="call", reason=e.get("reason", ""),
+            OpType.ADD_EDGE, source=e.source, target=e.target,
+            edge_type="call", reason=e.reason,
         ))
-    for n in delta.missing_nodes:
-        node_id = n["node_id"]
+    for n in delta.added_nodes:
+        node_id = n.node_id
         if "::" in node_id:
             skipped.append({"target_node_function": node_id, "note": "function node, not an architecture component"})
             continue
-        module = n.get("module") or node_id
+        module = n.module or node_id
         ops.append(ArchitectureOperation(
             OpType.ADD_COMPONENT, component=module,
-            component_subsystem=n.get("subsystem", ""), reason=n.get("reason", ""),
+            component_subsystem=n.subsystem, reason=n.reason,
         ))
     ac = ArchitectureChange(operations=ops, metadata={"skipped": skipped} if skipped else {})
     ac.validate()

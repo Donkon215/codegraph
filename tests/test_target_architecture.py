@@ -6,14 +6,15 @@ from pathlib import Path
 
 import pytest
 
+from codegraph.architecture_delta import ArchitectureDelta, EdgeChange, NodeChange
 from codegraph.target_architecture import (
     TargetEdge,
     TargetNode,
     TargetWorkflow,
-    ArchitectureDelta,
     compute_architecture_delta,
     delta_to_tasks,
     generate_target_from_architecture,
+    save_target_delta,
 )
 
 
@@ -125,48 +126,42 @@ class TestArchitectureDelta:
         assert d.total_changes == 0
 
     def test_has_changes(self):
-        d = ArchitectureDelta(
-            missing_edges=[{"source": "a", "target": "b"}],
-        )
+        d = ArchitectureDelta(added_edges=[EdgeChange("a", "b")])
         assert d.has_changes
         assert d.total_changes == 1
 
     def test_total_changes(self):
         d = ArchitectureDelta(
-            missing_edges=[{"source": "a", "target": "b"}],
-            extra_edges=[{"source": "c", "target": "d"}],
-            missing_nodes=[{"node_id": "e"}],
-            extra_nodes=[{"node_id": "f"}],
+            added_edges=[EdgeChange("a", "b")],
+            removed_edges=[EdgeChange("c", "d")],
+            added_nodes=[NodeChange("e")],
+            removed_nodes=[NodeChange("f")],
         )
         assert d.total_changes == 4
 
     def test_to_dict_summary(self):
-        d = ArchitectureDelta(
-            missing_edges=[{"source": "a", "target": "b"}],
-        )
+        d = ArchitectureDelta(added_edges=[EdgeChange("a", "b")])
         dd = d.to_dict()
-        assert dd["summary"]["missing_edges"] == 1
-        assert dd["summary"]["total_changes"] == 1
+        assert len(dd["added_edges"]) == 1
+        assert dd["total_changes"] == 1
 
     def test_format(self):
         d = ArchitectureDelta(
-            missing_edges=[{"source": "a", "target": "b", "reason": "required"}],
-            extra_edges=[{"source": "c", "target": "d"}],
+            added_edges=[EdgeChange("a", "b", reason="required")],
+            removed_edges=[EdgeChange("c", "d")],
         )
         text = d.format()
-        assert "Missing edges: 1" in text
-        assert "a → b" in text
+        assert "Added edges: 1" in text
+        assert "a -> b" in text
 
     def test_save(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
-            d = ArchitectureDelta(
-                missing_edges=[{"source": "a", "target": "b"}],
-            )
+            d = ArchitectureDelta(added_edges=[EdgeChange("a", "b")])
             path = d.save(root)
             assert path.exists()
             data = json.loads(path.read_text(encoding="utf-8"))
-            assert data["summary"]["missing_edges"] == 1
+            assert len(data["added_edges"]) == 1
 
 
 class TestComputeArchitectureDelta:
@@ -183,8 +178,8 @@ class TestComputeArchitectureDelta:
         target.add_edge("a::f", "b::g", reason="needed")
         workflow = {"edges": []}
         delta = compute_architecture_delta(target, workflow, set())
-        assert len(delta.missing_edges) == 1
-        assert delta.missing_edges[0]["source"] == "a::f"
+        assert len(delta.added_edges) == 1
+        assert delta.added_edges[0].source == "a::f"
 
     def test_extra_edge(self):
         target = TargetWorkflow()
@@ -195,23 +190,23 @@ class TestComputeArchitectureDelta:
         ]}
         delta = compute_architecture_delta(target, workflow, set())
         # a::f is in target sources, so a::f → c::h is extra
-        assert len(delta.extra_edges) == 1
-        assert delta.extra_edges[0]["target"] == "c::h"
+        assert len(delta.removed_edges) == 1
+        assert delta.removed_edges[0].target == "c::h"
 
     def test_missing_node(self):
         target = TargetWorkflow()
         target.add_node("new::func", module="new.py")
         workflow = {"edges": []}
         delta = compute_architecture_delta(target, workflow, set())
-        assert len(delta.missing_nodes) == 1
-        assert delta.missing_nodes[0]["node_id"] == "new::func"
+        assert len(delta.added_nodes) == 1
+        assert delta.added_nodes[0].node_id == "new::func"
 
     def test_existing_node_not_missing(self):
         target = TargetWorkflow()
         target.add_node("a::f")
         workflow = {"edges": []}
         delta = compute_architecture_delta(target, workflow, {"a::f"})
-        assert len(delta.missing_nodes) == 0
+        assert len(delta.added_nodes) == 0
 
     def test_priority_sorting(self):
         target = TargetWorkflow()
@@ -219,13 +214,13 @@ class TestComputeArchitectureDelta:
         target.add_edge("c::h", "d::i", priority=1)
         workflow = {"edges": []}
         delta = compute_architecture_delta(target, workflow, set())
-        assert delta.missing_edges[0]["priority"] == 1  # sorted ascending
+        assert delta.added_edges[0].priority == 1  # sorted ascending
 
 
 class TestDeltaToTasks:
     def test_missing_edge_repair(self):
         delta = ArchitectureDelta(
-            missing_edges=[{"source": "a::f", "target": "b::g", "reason": "needed"}],
+            added_edges=[EdgeChange("a::f", "b::g", reason="needed")],
         )
         response = delta_to_tasks(delta, 42)
         assert response["graph_version"] == 42
@@ -235,8 +230,8 @@ class TestDeltaToTasks:
 
     def test_missing_node_flagged(self):
         delta = ArchitectureDelta(
-            missing_nodes=[{"node_id": "x::y", "module": "x.py",
-                            "reason": "needed", "intent": "helper"}],
+            added_nodes=[NodeChange("x::y", module="x.py",
+                                    reason="needed", intent="helper")],
         )
         response = delta_to_tasks(delta, 1)
         assert len(response["repairs"]) == 1
@@ -245,9 +240,7 @@ class TestDeltaToTasks:
         assert response["intents"][0]["intent"] == "helper"
 
     def test_extra_edge_flagged(self):
-        delta = ArchitectureDelta(
-            extra_edges=[{"source": "a", "target": "b"}],
-        )
+        delta = ArchitectureDelta(removed_edges=[EdgeChange("a", "b")])
         response = delta_to_tasks(delta, 1)
         assert len(response["repairs"]) == 1
         assert response["repairs"][0]["action"] == "flag_for_human_review"
@@ -257,6 +250,41 @@ class TestDeltaToTasks:
         response = delta_to_tasks(delta, 1)
         assert response["repairs"] == []
         assert response["intents"] == []
+
+
+class TestLegacySerialization:
+    def test_round_trip_legacy_shape(self):
+        delta = ArchitectureDelta(
+            added_edges=[EdgeChange("a", "b", reason="r", priority=2)],
+            removed_edges=[EdgeChange("c", "d")],
+            added_nodes=[NodeChange("n", module="m.py", subsystem="s",
+                                    intent="i", reason="nr")],
+            removed_nodes=[NodeChange("o")],
+        )
+        legacy = delta.to_legacy_target_dict()
+        assert legacy["summary"]["missing_edges"] == 1
+        assert legacy["summary"]["extra_edges"] == 1
+        assert legacy["summary"]["missing_nodes"] == 1
+        assert legacy["summary"]["extra_nodes"] == 1
+
+        restored = ArchitectureDelta.from_legacy_target_dict(legacy)
+        assert len(restored.added_edges) == 1
+        assert restored.added_edges[0].source == "a"
+        assert restored.added_edges[0].priority == 2
+        assert len(restored.removed_edges) == 1
+        assert restored.removed_nodes[0].node_id == "o"
+
+    def test_save_target_delta_legacy_file(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            delta = ArchitectureDelta(added_edges=[EdgeChange("a", "b")])
+            path = save_target_delta(delta, root)
+            assert path.name == "delta.json"
+            data = json.loads(path.read_text(encoding="utf-8"))
+            assert data["summary"]["missing_edges"] == 1
+            # reload through the legacy loader -> canonical
+            restored = ArchitectureDelta.from_legacy_target_dict(data)
+            assert len(restored.added_edges) == 1
 
 
 class TestGenerateTargetFromArchitecture:
