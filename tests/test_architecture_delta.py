@@ -72,6 +72,15 @@ class TestChangeToDelta:
         assert any(n.node_type == "subsystem" and n.node_id == "core"
                    for n in delta.added_nodes)
 
+    def test_remove_subsystem(self):
+        ac = ArchitectureChange(operations=[
+            ArchitectureOperation(OpType.REMOVE_SUBSYSTEM, subsystem="core"),
+        ])
+        with tempfile.TemporaryDirectory() as d:
+            delta = generate_architecture_delta(Path(d), change=ac)
+        assert any(n.node_type == "subsystem" and n.node_id == "core"
+                   for n in delta.removed_nodes)
+
     def test_add_edge_preserves_type(self):
         ac = ArchitectureChange(operations=[
             ArchitectureOperation(OpType.ADD_EDGE, source="a", target="b",
@@ -140,6 +149,20 @@ class TestConstraints:
             delta = generate_architecture_delta(Path(d), change=ac)
         assert len(delta.constraint_violations) == 1
         assert delta.risk_estimate == "BLOCKED"
+
+    def test_policy_removal_removes_violation(self):
+        ac = ArchitectureChange(operations=[
+            ArchitectureOperation(OpType.ADD_EDGE, source="codegraph/core.py",
+                                  target="codegraph/models.py"),
+            ArchitectureOperation(OpType.REMOVE_CONSTRAINT, constraint_type="forbidden_dependency",
+                                  source="core", target="models"),
+        ])
+        with tempfile.TemporaryDirectory() as d:
+            self._write_system(Path(d))
+            delta = generate_architecture_delta(Path(d), change=ac)
+        # The forbidden policy is gone, so the proposed edge is no longer a violation.
+        assert delta.constraint_violations == []
+        assert delta.metadata["constraint_changes"][-1]["op"] == "REMOVE_CONSTRAINT"
 
 
 class TestSemanticEquivalence:
