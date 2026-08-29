@@ -329,22 +329,41 @@ def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> Arch
     system_path = project_root / ".codegraph" / "architecture" / "system.json"
     mod_to_sub: Dict[str, str] = {}
     forbidden: Set[tuple[str, str]] = set()
+    current_nodes: Set[str] = set()
     if system_path.exists():
         try:
             system = json.loads(system_path.read_text(encoding="utf-8"))
         except (json.JSONDecodeError, OSError):
             system = {}
         for sub in system.get("subsystems", []):
+            sub_name = sub.get("name", "")
+            if sub_name:
+                current_nodes.add(sub_name)
             for comp in sub.get("components", []):
                 mod = comp.get("module", "")
                 if mod:
-                    mod_to_sub[mod] = sub["name"]
+                    mod_to_sub[mod] = sub_name
+                    current_nodes.add(mod)
         for c in system.get("constraints", []):
             if c.get("type") == "forbidden_dependency":
                 forbidden.add((c["source"], c["target"]))
 
+    # Current node state (function/module ids from graph0)
+    graph0_path = project_root / ".codegraph" / "graphs" / "graph0.json"
+    if graph0_path.exists():
+        try:
+            g0 = json.loads(graph0_path.read_text(encoding="utf-8"))
+            for node in g0.get("nodes", []):
+                nid = node.get("id", "")
+                if nid:
+                    current_nodes.add(nid)
+        except (json.JSONDecodeError, OSError):
+            pass
+
+    # Current edge state, keyed by (source, target, edge_type) so that
+    # changing an edge's type is detected as a removal + addition.
+    current_edges: Set[tuple[str, str, str]] = set()
     wf_path = project_root / ".codegraph" / "workflow" / "workflow.json"
-    proposed_edges: Set[tuple[str, str]] = set()
     if wf_path.exists():
         try:
             wf = json.loads(wf_path.read_text(encoding="utf-8"))
@@ -352,9 +371,17 @@ def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> Arch
                 src = e.get("source", "")
                 tgt = e.get("target", "")
                 if src and tgt:
-                    proposed_edges.add((src, tgt))
+                    current_edges.add((src, tgt, e.get("edge_type", "call")))
         except (json.JSONDecodeError, OSError):
             pass
+
+    # ProposedState = CurrentState + ArchitectureChange
+    proposed_edges: Set[tuple[str, str, str]] = set(current_edges)
+    proposed_nodes: Set[str] = set(current_nodes)
+    add_edge_meta: Dict[tuple[str, str, str], Dict[str, Any]] = {}
+    remove_edge_meta: Dict[tuple[str, str, str], Dict[str, Any]] = {}
+    add_node_meta: Dict[str, Dict[str, Any]] = {}
+    remove_node_meta: Dict[str, Dict[str, Any]] = {}
 
     constraint_changes: List[Dict[str, Any]] = []
 
@@ -364,29 +391,29 @@ def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> Arch
 
     for op in change.operations:
         if op.op == OpType.ADD_COMPONENT:
-            delta.added_nodes.append(NodeChange(
-                node_id=op.component, module=op.component,
-                node_type="component", reason=op.reason))
+            nid = op.component
+            proposed_nodes.add(nid)
+            add_node_meta[nid] = {"module": op.component, "node_type": "component", "reason": op.reason}
         elif op.op == OpType.REMOVE_COMPONENT:
-            delta.removed_nodes.append(NodeChange(
-                node_id=op.component, module=op.component,
-                node_type="module", reason=op.reason))
+            nid = op.component
+            proposed_nodes.discard(nid)
+            remove_node_meta[nid] = {"module": op.component, "node_type": "module", "reason": op.reason}
         elif op.op == OpType.ADD_SUBSYSTEM:
-            delta.added_nodes.append(NodeChange(
-                node_id=op.subsystem, node_type="subsystem", reason=op.reason))
+            nid = op.subsystem
+            proposed_nodes.add(nid)
+            add_node_meta[nid] = {"module": op.subsystem, "node_type": "subsystem", "reason": op.reason}
         elif op.op == OpType.REMOVE_SUBSYSTEM:
-            delta.removed_nodes.append(NodeChange(
-                node_id=op.subsystem, node_type="subsystem", reason=op.reason))
+            nid = op.subsystem
+            proposed_nodes.discard(nid)
+            remove_node_meta[nid] = {"module": op.subsystem, "node_type": "subsystem", "reason": op.reason}
         elif op.op == OpType.ADD_EDGE:
-            delta.added_edges.append(EdgeChange(
-                source=op.source, target=op.target,
-                edge_type=op.edge_type or "call", reason=op.reason))
-            proposed_edges.add((op.source, op.target))
+            key = (op.source, op.target, op.edge_type or "call")
+            proposed_edges.add(key)
+            add_edge_meta[key] = {"edge_type": op.edge_type or "call", "reason": op.reason, "priority": 5}
         elif op.op == OpType.REMOVE_EDGE:
-            delta.removed_edges.append(EdgeChange(
-                source=op.source, target=op.target,
-                edge_type=op.edge_type or "call", reason=op.reason))
-            proposed_edges.discard((op.source, op.target))
+            key = (op.source, op.target, op.edge_type or "call")
+            proposed_edges.discard(key)
+            remove_edge_meta[key] = {"edge_type": op.edge_type or "call", "reason": op.reason}
         elif op.op == OpType.ADD_CONSTRAINT:
             constraint_changes.append({
                 "op": "ADD_CONSTRAINT",
@@ -400,11 +427,45 @@ def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> Arch
                 "source": op.source, "target": op.target})
             forbidden.discard((op.source, op.target))
 
+    # ArchitectureDelta = diff(CurrentState, ProposedState)
+    for (s, t, et) in sorted(proposed_edges - current_edges):
+        m = add_edge_meta.get((s, t, et), {})
+        delta.added_edges.append(EdgeChange(
+            source=s, target=t,
+            edge_type=m.get("edge_type", et),
+            reason=m.get("reason", ""),
+            priority=m.get("priority", 5),
+        ))
+    delta.added_edges.sort(key=lambda e: e.priority)
+    for (s, t, et) in sorted(current_edges - proposed_edges):
+        m = remove_edge_meta.get((s, t, et), {})
+        delta.removed_edges.append(EdgeChange(
+            source=s, target=t,
+            edge_type=m.get("edge_type", et),
+            reason=m.get("reason", ""),
+        ))
+    for nid in sorted(proposed_nodes - current_nodes):
+        m = add_node_meta.get(nid, {})
+        delta.added_nodes.append(NodeChange(
+            node_id=nid, module=m.get("module", nid),
+            node_type=m.get("node_type", ""), reason=m.get("reason", ""),
+        ))
+    for nid in sorted(current_nodes - proposed_nodes):
+        m = remove_node_meta.get(nid, {})
+        delta.removed_nodes.append(NodeChange(
+            node_id=nid, module=m.get("module", nid),
+            node_type=m.get("node_type", ""), reason=m.get("reason", ""),
+        ))
+
+    # affected subsystems (subsystem-type nodes carry the name directly)
     affected: Set[str] = set()
     for n in delta.added_nodes + delta.removed_nodes:
-        s = _sub_of(n.module or n.node_id)
-        if s:
-            affected.add(s)
+        if n.node_type == "subsystem":
+            affected.add(n.node_id)
+        else:
+            s = _sub_of(n.module or n.node_id)
+            if s:
+                affected.add(s)
     for e in delta.added_edges + delta.removed_edges:
         s = _sub_of(e.source)
         t = _sub_of(e.target)
@@ -414,7 +475,7 @@ def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> Arch
             affected.add(t)
     delta.affected_subsystems = sorted(affected)
 
-    for (s, t) in proposed_edges:
+    for (s, t, _et) in proposed_edges:
         ssub = _sub_of(s)
         tsub = _sub_of(t)
         if ssub and tsub and (ssub, tsub) in forbidden:
