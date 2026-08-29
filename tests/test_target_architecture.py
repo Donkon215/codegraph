@@ -257,7 +257,7 @@ class TestLegacySerialization:
         delta = ArchitectureDelta(
             added_edges=[EdgeChange("a", "b", reason="r", priority=2)],
             removed_edges=[EdgeChange("c", "d")],
-            added_nodes=[NodeChange("n", module="m.py", subsystem="s",
+            added_nodes=[NodeChange("n", module="m.py",
                                     intent="i", reason="nr")],
             removed_nodes=[NodeChange("o")],
         )

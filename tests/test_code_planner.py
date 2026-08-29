@@ -154,7 +154,7 @@ class TestGeneratePlan:
     def test_missing_nodes(self):
         delta = ArchitectureDelta(
             added_nodes=[
-                NodeChange("api/server.py::serve", module="api/server.py", subsystem="api"),
+                NodeChange("api/server.py::serve", module="api/server.py"),
             ],
         )
         arch = _make_arch()
@@ -189,7 +189,7 @@ class TestGeneratePlan:
     def test_architecture_update_task(self):
         delta = ArchitectureDelta(
             added_nodes=[
-                NodeChange("api/server.py::serve", module="api/server.py", subsystem="api"),
+                NodeChange("api/server.py::serve", module="api/server.py"),
             ],
         )
         arch = _make_arch()
@@ -206,7 +206,7 @@ class TestGeneratePlan:
     def test_task_ids_generated(self):
         delta = ArchitectureDelta(
             added_nodes=[
-                NodeChange("a.py::foo", module="a.py", subsystem="core"),
+                NodeChange("a.py::foo", module="a.py"),
             ],
         )
         arch = _make_arch()

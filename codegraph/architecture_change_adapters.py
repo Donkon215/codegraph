@@ -498,6 +498,7 @@ def target_workflow_to_change(
     delta = compute_architecture_delta(target_workflow, current_workflow, current_nodes)
     ops: List[ArchitectureOperation] = []
     skipped: List[Dict[str, Any]] = []
+    node_subsys = {tn.node_id: tn.subsystem for tn in target_workflow.nodes}
     for e in delta.added_edges:
         ops.append(ArchitectureOperation(
             OpType.ADD_EDGE, source=e.source, target=e.target,
@@ -511,7 +512,7 @@ def target_workflow_to_change(
         module = n.module or node_id
         ops.append(ArchitectureOperation(
             OpType.ADD_COMPONENT, component=module,
-            component_subsystem=n.subsystem, reason=n.reason,
+            component_subsystem=node_subsys.get(node_id, ""), reason=n.reason,
         ))
     ac = ArchitectureChange(operations=ops, metadata={"skipped": skipped} if skipped else {})
     ac.validate()

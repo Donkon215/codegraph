@@ -221,7 +221,7 @@ def generate_plan(
     for node_info in delta.added_nodes:
         node_id = node_info.node_id
         module = node_info.module
-        subsystem = node_info.subsystem
+        subsystem = mod_to_sub.get(module, "") if module else ""
 
         if module:
             task_counter += 1

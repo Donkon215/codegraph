@@ -46,7 +46,6 @@ class EdgeChange:
     edge_type: str = "call"
     reason: str = ""
     priority: int = 5
-    subsystem: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         d: Dict[str, Any] = {"source": self.source, "target": self.target}
@@ -56,8 +55,6 @@ class EdgeChange:
             d["reason"] = self.reason
         if self.priority != 5:
             d["priority"] = self.priority
-        if self.subsystem:
-            d["subsystem"] = self.subsystem
         return d
 
 
@@ -69,7 +66,6 @@ class NodeChange:
     module: str = ""
     node_type: str = ""  # function, class, method
     reason: str = ""
-    subsystem: str = ""
     intent: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,8 +76,6 @@ class NodeChange:
             d["node_type"] = self.node_type
         if self.reason:
             d["reason"] = self.reason
-        if self.subsystem:
-            d["subsystem"] = self.subsystem
         if self.intent:
             d["intent"] = self.intent
         return d
@@ -185,7 +179,6 @@ class ArchitectureDelta:
                 edge_type=e.get("edge_type", "call"),
                 reason=e.get("reason", ""),
                 priority=e.get("priority", 5),
-                subsystem=e.get("subsystem", ""),
             ))
         for e in data.get("extra_edges", []):
             delta.removed_edges.append(EdgeChange(
@@ -193,7 +186,6 @@ class ArchitectureDelta:
                 edge_type=e.get("edge_type", "call"),
                 reason=e.get("reason", ""),
                 priority=e.get("priority", 5),
-                subsystem=e.get("subsystem", ""),
             ))
         for n in data.get("missing_nodes", []):
             delta.added_nodes.append(NodeChange(
@@ -201,7 +193,6 @@ class ArchitectureDelta:
                 module=n.get("module", ""),
                 node_type=n.get("node_type", ""),
                 reason=n.get("reason", ""),
-                subsystem=n.get("subsystem", ""),
                 intent=n.get("intent", ""),
             ))
         for n in data.get("extra_nodes", []):
@@ -210,7 +201,6 @@ class ArchitectureDelta:
                 module=n.get("module", ""),
                 node_type=n.get("node_type", ""),
                 reason=n.get("reason", ""),
-                subsystem=n.get("subsystem", ""),
                 intent=n.get("intent", ""),
             ))
         return delta
@@ -282,7 +272,6 @@ def _dict_to_delta(data: Dict[str, Any]) -> ArchitectureDelta:
             module=n.get("module", ""),
             node_type=n.get("node_type", ""),
             reason=n.get("reason", ""),
-            subsystem=n.get("subsystem", ""),
             intent=n.get("intent", ""),
         ))
     for n in data.get("removed_nodes", []):
@@ -291,7 +280,6 @@ def _dict_to_delta(data: Dict[str, Any]) -> ArchitectureDelta:
             module=n.get("module", ""),
             node_type=n.get("node_type", ""),
             reason=n.get("reason", ""),
-            subsystem=n.get("subsystem", ""),
             intent=n.get("intent", ""),
         ))
     for e in data.get("added_edges", []):
@@ -301,7 +289,6 @@ def _dict_to_delta(data: Dict[str, Any]) -> ArchitectureDelta:
             edge_type=e.get("edge_type", "call"),
             reason=e.get("reason", ""),
             priority=e.get("priority", 5),
-            subsystem=e.get("subsystem", ""),
         ))
     for e in data.get("removed_edges", []):
         delta.removed_edges.append(EdgeChange(
@@ -310,7 +297,6 @@ def _dict_to_delta(data: Dict[str, Any]) -> ArchitectureDelta:
             edge_type=e.get("edge_type", "call"),
             reason=e.get("reason", ""),
             priority=e.get("priority", 5),
-            subsystem=e.get("subsystem", ""),
         ))
     for v in data.get("constraint_violations", []):
         delta.constraint_violations.append(ConstraintViolation(
@@ -380,8 +366,7 @@ def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> Arch
         if op.op == OpType.ADD_COMPONENT:
             delta.added_nodes.append(NodeChange(
                 node_id=op.component, module=op.component,
-                node_type="module", reason=op.reason,
-                subsystem=op.component_subsystem))
+                node_type="component", reason=op.reason))
         elif op.op == OpType.REMOVE_COMPONENT:
             delta.removed_nodes.append(NodeChange(
                 node_id=op.component, module=op.component,
@@ -417,7 +402,7 @@ def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> Arch
 
     affected: Set[str] = set()
     for n in delta.added_nodes + delta.removed_nodes:
-        s = n.subsystem or _sub_of(n.module or n.node_id)
+        s = _sub_of(n.module or n.node_id)
         if s:
             affected.add(s)
     for e in delta.added_edges + delta.removed_edges:

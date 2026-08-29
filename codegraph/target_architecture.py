@@ -230,7 +230,7 @@ def compute_architecture_delta(
         te = target_edge_info[key]
         delta.added_edges.append(EdgeChange(
             source=te.source, target=te.target,
-            reason=te.reason, priority=te.priority, subsystem=te.subsystem,
+            reason=te.reason, priority=te.priority,
         ))
 
     # Removed edges: edges in current but explicitly not desired by target
@@ -245,7 +245,7 @@ def compute_architecture_delta(
         if tn.node_id not in current_nodes:
             delta.added_nodes.append(NodeChange(
                 node_id=tn.node_id, module=tn.module,
-                subsystem=tn.subsystem, intent=tn.intent, reason=tn.reason,
+                intent=tn.intent, reason=tn.reason,
             ))
 
     # Sort added edges by priority (preserves prior evolution ordering)
