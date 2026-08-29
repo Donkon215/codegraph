@@ -42,6 +42,18 @@ class TestSingleCanonicalClass:
         delta = compute_architecture_delta(TargetWorkflow(), {"edges": []}, set())
         assert isinstance(delta, ArchitectureDelta)
 
+    def test_target_nodes_not_scoped_for_removal(self):
+        # Target nodes are intentionally non-scoped, mirroring the edge rule
+        # (edges are only removed when their source is in the target scope).
+        # A current node absent from the target is NOT reported as a removal.
+        target = TargetWorkflow()
+        target.add_node("new.py", module="new.py", subsystem="api")
+        delta = compute_architecture_delta(target, {"edges": []}, {"old.py"})
+        # new.py: target but not current -> added
+        assert len(delta.added_nodes) == 1 and delta.added_nodes[0].node_id == "new.py"
+        # old.py: current but not target -> NOT removed (nodes non-scoped)
+        assert delta.removed_nodes == []
+
 
 class TestChangeToDelta:
     def test_add_component(self):
@@ -178,7 +190,7 @@ class TestConstraints:
 class TestSemanticEquivalence:
     def test_target_and_change_paths_match_structurally(self):
         target = TargetWorkflow()
-        target.add_edge("a::f", "b::g", reason="needed")
+        target.add_edge("a::f", "b::g", reason="needed", priority=2)
         target.add_node("new.py", module="new.py", subsystem="api")
 
         # Target path
@@ -206,6 +218,19 @@ class TestSemanticEquivalence:
         # Phase 1 contract: ADD_COMPONENT -> node_type "module" on BOTH paths.
         assert all(n.node_type == "module" for n in target_delta.added_nodes)
         assert all(n.node_type == "module" for n in change_delta.added_nodes)
+
+    def test_target_edge_priority_preserved_through_funnel(self):
+        # TargetEdge.priority (non-default) must survive the funnel even though
+        # the frozen ArchitectureChange IR has no priority field.
+        target = TargetWorkflow()
+        target.add_edge("a::f", "b::g", reason="needed", priority=2)
+        direct = compute_architecture_delta(target, {"edges": []}, set())
+        assert direct.added_edges[0].priority == 2
+
+        ac = target_workflow_to_change(target, {"edges": []}, set())
+        with tempfile.TemporaryDirectory() as d:
+            funnel = generate_architecture_delta(Path(d), change=ac)
+        assert funnel.added_edges[0].priority == 2
 
 
 class TestNoOpSemantics:

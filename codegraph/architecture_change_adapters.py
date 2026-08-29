@@ -514,7 +514,16 @@ def target_workflow_to_change(
             OpType.ADD_COMPONENT, component=module,
             component_subsystem=node_subsys.get(node_id, ""), reason=n.reason,
         ))
-    ac = ArchitectureChange(operations=ops, metadata={"skipped": skipped} if skipped else {})
+    metadata: Dict[str, Any] = {}
+    if skipped:
+        metadata["skipped"] = skipped
+    # TargetEdge.priority has no field in the frozen ArchitectureChange IR, so it
+    # travels through the funnel via existing metadata (not an IR change).
+    if delta.added_edges:
+        metadata["target_edge_priorities"] = {
+            f"{e.source}->{e.target}": e.priority for e in delta.added_edges
+        }
+    ac = ArchitectureChange(operations=ops, metadata=metadata)
     ac.validate()
     return ac
 
