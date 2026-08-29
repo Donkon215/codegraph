@@ -25,7 +25,8 @@ from typing import Any, Dict, List, Optional, Set
 
 from codegraph.arch_schema import SystemArchitecture
 from codegraph.logging_config import get_logger
-from codegraph.target_architecture import ArchitectureDelta, TargetWorkflow
+from codegraph.architecture_delta import ArchitectureDelta
+from codegraph.target_architecture import TargetWorkflow
 
 logger = get_logger("code_planner")
 
@@ -207,7 +208,7 @@ def generate_plan(
 ) -> CodePlan:
     """Generate a code plan from an architecture delta.
 
-    Analyzes the delta (missing edges, missing nodes, extra edges) and
+    Analyzes the delta (added/removed nodes and edges) and
     produces ordered tasks for Copilot to implement.
     """
     plan = CodePlan(description="Plan from architecture delta")
@@ -216,11 +217,11 @@ def generate_plan(
     # Build module→subsystem mapping
     mod_to_sub = _build_module_mapping(architecture)
 
-    # 1. Missing nodes → create_file + create_function tasks
-    for node_info in delta.missing_nodes:
-        node_id = node_info.get("node_id", "")
-        module = node_info.get("module", "")
-        subsystem = node_info.get("subsystem", "")
+    # 1. Added nodes → create_file + create_function tasks
+    for node_info in delta.added_nodes:
+        node_id = node_info.node_id
+        module = node_info.module
+        subsystem = mod_to_sub.get(module, "") if module else ""
 
         if module:
             task_counter += 1
@@ -260,10 +261,10 @@ def generate_plan(
                 depends_on=[file_task_id] if module else [],
             ))
 
-    # 2. Missing edges → add_import tasks
-    for edge_info in delta.missing_edges:
-        source = edge_info.get("source", "")
-        target_node = edge_info.get("target", "")
+    # 2. Added edges → add_import tasks
+    for edge_info in delta.added_edges:
+        source = edge_info.source
+        target_node = edge_info.target
         if source and target_node:
             task_counter += 1
             plan.tasks.append(PlanTask(
@@ -277,10 +278,10 @@ def generate_plan(
                 task_id=f"t{task_counter:03d}",
             ))
 
-    # 3. Extra edges → flag for removal
-    for edge_info in delta.extra_edges:
-        source = edge_info.get("source", "")
-        target_node = edge_info.get("target", "")
+    # 3. Removed edges → flag for removal
+    for edge_info in delta.removed_edges:
+        source = edge_info.source
+        target_node = edge_info.target
         if source and target_node:
             task_counter += 1
             plan.tasks.append(PlanTask(
@@ -292,7 +293,7 @@ def generate_plan(
             ))
 
     # 4. Architecture file updates
-    if delta.missing_nodes or delta.extra_nodes:
+    if delta.added_nodes or delta.removed_nodes:
         task_counter += 1
         plan.tasks.append(PlanTask(
             task_type="update_architecture",

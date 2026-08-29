@@ -85,6 +85,7 @@ def evolve_cmd(ctx: click.Context, max_cycles: int, dry_run: bool,
         compute_architecture_delta,
         delta_to_tasks,
         generate_target_from_architecture,
+        save_target_delta,
     )
     from codegraph.workflow import load_workflow
 
@@ -136,7 +137,7 @@ def evolve_cmd(ctx: click.Context, max_cycles: int, dry_run: bool,
         gv = 0
 
     response = delta_to_tasks(delta, gv)
-    delta.save(root)
+    save_target_delta(delta, root)
 
     if json_output:
         click.echo(_json.dumps(response, indent=2))

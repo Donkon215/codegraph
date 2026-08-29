@@ -45,6 +45,7 @@ class EdgeChange:
     target: str
     edge_type: str = "call"
     reason: str = ""
+    priority: int = 5
 
     def to_dict(self) -> Dict[str, Any]:
         d: Dict[str, Any] = {"source": self.source, "target": self.target}
@@ -52,6 +53,8 @@ class EdgeChange:
             d["edge_type"] = self.edge_type
         if self.reason:
             d["reason"] = self.reason
+        if self.priority != 5:
+            d["priority"] = self.priority
         return d
 
 
@@ -61,8 +64,10 @@ class NodeChange:
 
     node_id: str
     module: str = ""
-    node_type: str = ""  # function, class, method
+    node_type: str = ""  # function, class, method, module, subsystem
     reason: str = ""
+    subsystem: str = ""  # owning subsystem; preserved verbatim (no silent loss)
+    intent: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         d: Dict[str, Any] = {"node_id": self.node_id}
@@ -72,6 +77,10 @@ class NodeChange:
             d["node_type"] = self.node_type
         if self.reason:
             d["reason"] = self.reason
+        if self.subsystem:
+            d["subsystem"] = self.subsystem
+        if self.intent:
+            d["intent"] = self.intent
         return d
 
 
@@ -137,6 +146,69 @@ class ArchitectureDelta:
             "total_changes": self.total_changes,
             "metadata": self.metadata,
         }
+
+    # ── Legacy target-delta compatibility (planning/delta.json) ──────────
+    # The evolution pipeline persisted delta as missing_*/extra_*. The
+    # canonical model uses added_*/removed_*. These two helpers translate
+    # without changing the on-disk contract.
+
+    def to_legacy_target_dict(self) -> Dict[str, Any]:
+        """Emit the legacy ``missing_*`` / ``extra_*`` shape for planning/delta.json."""
+        return {
+            "summary": {
+                "missing_edges": len(self.added_edges),
+                "extra_edges": len(self.removed_edges),
+                "missing_nodes": len(self.added_nodes),
+                "extra_nodes": len(self.removed_nodes),
+                "total_changes": self.total_changes,
+            },
+            "missing_edges": [e.to_dict() for e in self.added_edges],
+            "extra_edges": [e.to_dict() for e in self.removed_edges],
+            "missing_nodes": [n.to_dict() for n in self.added_nodes],
+            "extra_nodes": [n.to_dict() for n in self.removed_nodes],
+        }
+
+    @classmethod
+    def from_legacy_target_dict(cls, data: Dict[str, Any]) -> "ArchitectureDelta":
+        """Build a canonical delta from the legacy ``missing_*`` / ``extra_*`` shape."""
+        delta = cls(
+            risk_estimate=data.get("risk_estimate", "LOW"),
+            affected_subsystems=data.get("affected_subsystems", []),
+            metadata=data.get("metadata", {}),
+        )
+        for e in data.get("missing_edges", []):
+            delta.added_edges.append(EdgeChange(
+                source=e["source"], target=e["target"],
+                edge_type=e.get("edge_type", "call"),
+                reason=e.get("reason", ""),
+                priority=e.get("priority", 5),
+            ))
+        for e in data.get("extra_edges", []):
+            delta.removed_edges.append(EdgeChange(
+                source=e["source"], target=e["target"],
+                edge_type=e.get("edge_type", "call"),
+                reason=e.get("reason", ""),
+                priority=e.get("priority", 5),
+            ))
+        for n in data.get("missing_nodes", []):
+            delta.added_nodes.append(NodeChange(
+                node_id=n["node_id"],
+                module=n.get("module", ""),
+                node_type=n.get("node_type", ""),
+                reason=n.get("reason", ""),
+                subsystem=n.get("subsystem", ""),
+                intent=n.get("intent", ""),
+            ))
+        for n in data.get("extra_nodes", []):
+            delta.removed_nodes.append(NodeChange(
+                node_id=n["node_id"],
+                module=n.get("module", ""),
+                node_type=n.get("node_type", ""),
+                reason=n.get("reason", ""),
+                subsystem=n.get("subsystem", ""),
+                intent=n.get("intent", ""),
+            ))
+        return delta
 
     def format(self) -> str:
         lines = ["Architecture Delta"]
@@ -205,6 +277,8 @@ def _dict_to_delta(data: Dict[str, Any]) -> ArchitectureDelta:
             module=n.get("module", ""),
             node_type=n.get("node_type", ""),
             reason=n.get("reason", ""),
+            subsystem=n.get("subsystem", ""),
+            intent=n.get("intent", ""),
         ))
     for n in data.get("removed_nodes", []):
         delta.removed_nodes.append(NodeChange(
@@ -212,6 +286,8 @@ def _dict_to_delta(data: Dict[str, Any]) -> ArchitectureDelta:
             module=n.get("module", ""),
             node_type=n.get("node_type", ""),
             reason=n.get("reason", ""),
+            subsystem=n.get("subsystem", ""),
+            intent=n.get("intent", ""),
         ))
     for e in data.get("added_edges", []):
         delta.added_edges.append(EdgeChange(
@@ -219,6 +295,7 @@ def _dict_to_delta(data: Dict[str, Any]) -> ArchitectureDelta:
             target=e["target"],
             edge_type=e.get("edge_type", "call"),
             reason=e.get("reason", ""),
+            priority=e.get("priority", 5),
         ))
     for e in data.get("removed_edges", []):
         delta.removed_edges.append(EdgeChange(
@@ -226,6 +303,7 @@ def _dict_to_delta(data: Dict[str, Any]) -> ArchitectureDelta:
             target=e["target"],
             edge_type=e.get("edge_type", "call"),
             reason=e.get("reason", ""),
+            priority=e.get("priority", 5),
         ))
     for v in data.get("constraint_violations", []):
         delta.constraint_violations.append(ConstraintViolation(
@@ -243,21 +321,211 @@ def _dict_to_delta(data: Dict[str, Any]) -> ArchitectureDelta:
 # ═══════════════════════════════════════════════════════════════════════
 
 
+def _delta_from_change(change: "ArchitectureChange", project_root: Path) -> ArchitectureDelta:
+    """Derive ArchitectureDelta from a canonical ArchitectureChange.
+
+    ProposedState = CurrentState + ArchitectureChange
+    ArchitectureDelta = diff(CurrentState, ProposedState)
+
+    Constraint operations are policy changes (recorded in metadata), never
+    violations; violations are detected only in the proposed state.
+    """
+    from codegraph.architecture_change import OpType
+
+    delta = ArchitectureDelta()
+    system_path = project_root / ".codegraph" / "architecture" / "system.json"
+    mod_to_sub: Dict[str, str] = {}
+    forbidden: Dict[tuple[str, str], str] = {}
+    current_nodes: Set[str] = set()
+    if system_path.exists():
+        try:
+            system = json.loads(system_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            system = {}
+        for sub in system.get("subsystems", []):
+            sub_name = sub.get("name", "")
+            if sub_name:
+                current_nodes.add(sub_name)
+            for comp in sub.get("components", []):
+                mod = comp.get("module", "")
+                if mod:
+                    mod_to_sub[mod] = sub_name
+                    current_nodes.add(mod)
+        for c in system.get("constraints", []):
+            ctype = c.get("type", "")
+            if ctype:
+                forbidden[(c["source"], c["target"])] = ctype
+
+    # Current node state (function/module ids from graph0)
+    graph0_path = project_root / ".codegraph" / "graphs" / "graph0.json"
+    if graph0_path.exists():
+        try:
+            g0 = json.loads(graph0_path.read_text(encoding="utf-8"))
+            for node in g0.get("nodes", []):
+                nid = node.get("id", "")
+                if nid:
+                    current_nodes.add(nid)
+        except (json.JSONDecodeError, OSError):
+            pass
+
+    # Current edge state, keyed by (source, target, edge_type) so that
+    # changing an edge's type is detected as a removal + addition.
+    current_edges: Set[tuple[str, str, str]] = set()
+    wf_path = project_root / ".codegraph" / "workflow" / "workflow.json"
+    if wf_path.exists():
+        try:
+            wf = json.loads(wf_path.read_text(encoding="utf-8"))
+            for e in wf.get("edges", []):
+                src = e.get("source", "")
+                tgt = e.get("target", "")
+                if src and tgt:
+                    current_edges.add((src, tgt, e.get("edge_type", "call")))
+        except (json.JSONDecodeError, OSError):
+            pass
+
+    # ProposedState = CurrentState + ArchitectureChange
+    proposed_edges: Set[tuple[str, str, str]] = set(current_edges)
+    proposed_nodes: Set[str] = set(current_nodes)
+    add_edge_meta: Dict[tuple[str, str, str], Dict[str, Any]] = {}
+    remove_edge_meta: Dict[tuple[str, str, str], Dict[str, Any]] = {}
+    add_node_meta: Dict[str, Dict[str, Any]] = {}
+    remove_node_meta: Dict[str, Dict[str, Any]] = {}
+
+    constraint_changes: List[Dict[str, Any]] = []
+
+    def _sub_of(thing: str) -> str:
+        mod = thing.split("::")[0] if "::" in thing else thing
+        return mod_to_sub.get(mod, "")
+
+    for op in change.operations:
+        if op.op == OpType.ADD_COMPONENT:
+            nid = op.component
+            proposed_nodes.add(nid)
+            add_node_meta[nid] = {"module": op.component, "node_type": "module",
+                                  "reason": op.reason, "subsystem": op.component_subsystem}
+        elif op.op == OpType.REMOVE_COMPONENT:
+            nid = op.component
+            proposed_nodes.discard(nid)
+            remove_node_meta[nid] = {"module": op.component, "node_type": "module",
+                                     "reason": op.reason, "subsystem": op.component_subsystem}
+        elif op.op == OpType.ADD_SUBSYSTEM:
+            nid = op.subsystem
+            proposed_nodes.add(nid)
+            add_node_meta[nid] = {"module": op.subsystem, "node_type": "subsystem", "reason": op.reason}
+        elif op.op == OpType.REMOVE_SUBSYSTEM:
+            nid = op.subsystem
+            proposed_nodes.discard(nid)
+            remove_node_meta[nid] = {"module": op.subsystem, "node_type": "subsystem", "reason": op.reason}
+        elif op.op == OpType.ADD_EDGE:
+            key = (op.source, op.target, op.edge_type or "call")
+            proposed_edges.add(key)
+            edge_priority = change.metadata.get("target_edge_priorities", {}).get(
+                f"{op.source}->{op.target}->{op.edge_type or 'call'}", 5)
+            add_edge_meta[key] = {"edge_type": op.edge_type or "call",
+                                  "reason": op.reason, "priority": edge_priority}
+        elif op.op == OpType.REMOVE_EDGE:
+            key = (op.source, op.target, op.edge_type or "call")
+            proposed_edges.discard(key)
+            remove_edge_meta[key] = {"edge_type": op.edge_type or "call", "reason": op.reason}
+        elif op.op == OpType.ADD_CONSTRAINT:
+            constraint_changes.append({
+                "op": "ADD_CONSTRAINT",
+                "constraint_type": op.constraint_type,
+                "source": op.source, "target": op.target})
+            forbidden[(op.source, op.target)] = op.constraint_type
+        elif op.op == OpType.REMOVE_CONSTRAINT:
+            constraint_changes.append({
+                "op": "REMOVE_CONSTRAINT",
+                "constraint_type": op.constraint_type,
+                "source": op.source, "target": op.target})
+            forbidden.pop((op.source, op.target), None)
+
+    # ArchitectureDelta = diff(CurrentState, ProposedState)
+    for (s, t, et) in sorted(proposed_edges - current_edges):
+        m = add_edge_meta.get((s, t, et), {})
+        delta.added_edges.append(EdgeChange(
+            source=s, target=t,
+            edge_type=m.get("edge_type", et),
+            reason=m.get("reason", ""),
+            priority=m.get("priority", 5),
+        ))
+    delta.added_edges.sort(key=lambda e: e.priority)
+    for (s, t, et) in sorted(current_edges - proposed_edges):
+        m = remove_edge_meta.get((s, t, et), {})
+        delta.removed_edges.append(EdgeChange(
+            source=s, target=t,
+            edge_type=m.get("edge_type", et),
+            reason=m.get("reason", ""),
+        ))
+    for nid in sorted(proposed_nodes - current_nodes):
+        m = add_node_meta.get(nid, {})
+        delta.added_nodes.append(NodeChange(
+            node_id=nid, module=m.get("module", nid),
+            node_type=m.get("node_type", ""), reason=m.get("reason", ""),
+            subsystem=m.get("subsystem", ""),
+        ))
+    for nid in sorted(current_nodes - proposed_nodes):
+        m = remove_node_meta.get(nid, {})
+        delta.removed_nodes.append(NodeChange(
+            node_id=nid, module=m.get("module", nid),
+            node_type=m.get("node_type", ""), reason=m.get("reason", ""),
+            subsystem=m.get("subsystem", ""),
+        ))
+
+    # affected subsystems (subsystem-type nodes carry the name directly)
+    affected: Set[str] = set()
+    for n in delta.added_nodes + delta.removed_nodes:
+        if n.node_type == "subsystem":
+            affected.add(n.node_id)
+        else:
+            s = n.subsystem or _sub_of(n.module or n.node_id)
+            if s:
+                affected.add(s)
+    for e in delta.added_edges + delta.removed_edges:
+        s = _sub_of(e.source)
+        t = _sub_of(e.target)
+        if s:
+            affected.add(s)
+        if t:
+            affected.add(t)
+    delta.affected_subsystems = sorted(affected)
+
+    for (s, t, _et) in proposed_edges:
+        ssub = _sub_of(s)
+        tsub = _sub_of(t)
+        if ssub and tsub and (ssub, tsub) in forbidden:
+            delta.constraint_violations.append(ConstraintViolation(
+                constraint_type=forbidden[(ssub, tsub)],
+                description=f"Forbidden dependency: {ssub} -> {tsub} ({s} -> {t})",
+                source=s, target=t))
+
+    if constraint_changes:
+        delta.metadata["constraint_changes"] = constraint_changes
+
+    delta.risk_estimate = _classify_delta_risk(delta)
+    return delta
+
+
 def generate_architecture_delta(
     project_root: Path,
     *,
+    change: "Optional[ArchitectureChange]" = None,
     plan: Optional[Dict[str, Any]] = None,
     agent_response: Optional[Dict[str, Any]] = None,
 ) -> ArchitectureDelta:
     """Generate architecture delta from current state vs proposed changes.
 
-    Inputs (one of):
+    Inputs (precedence): change > plan > agent_response > auto-load.
+      - change: canonical ArchitectureChange (#27)
       - plan: an architecture plan (from codegraph compile --save)
       - agent_response: an agent_response.json with repairs
 
-    If neither is provided, loads the plan from
+    If none provided, loads the plan from
     .codegraph/planning/architecture_plan.json or agent_response.json.
     """
+    if change is not None:
+        return _delta_from_change(change, project_root)
+
     delta = ArchitectureDelta()
 
     # Load current graph state

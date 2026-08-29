@@ -498,22 +498,38 @@ def target_workflow_to_change(
     delta = compute_architecture_delta(target_workflow, current_workflow, current_nodes)
     ops: List[ArchitectureOperation] = []
     skipped: List[Dict[str, Any]] = []
-    for e in delta.missing_edges:
+    node_subsys = {tn.node_id: tn.subsystem for tn in target_workflow.nodes}
+    for e in delta.added_edges:
         ops.append(ArchitectureOperation(
-            OpType.ADD_EDGE, source=e["source"], target=e["target"],
-            edge_type="call", reason=e.get("reason", ""),
+            OpType.ADD_EDGE, source=e.source, target=e.target,
+            edge_type="call", reason=e.reason,
         ))
-    for n in delta.missing_nodes:
-        node_id = n["node_id"]
+    for n in delta.added_nodes:
+        node_id = n.node_id
         if "::" in node_id:
             skipped.append({"target_node_function": node_id, "note": "function node, not an architecture component"})
             continue
-        module = n.get("module") or node_id
+        module = n.module or node_id
         ops.append(ArchitectureOperation(
             OpType.ADD_COMPONENT, component=module,
-            component_subsystem=n.get("subsystem", ""), reason=n.get("reason", ""),
+            component_subsystem=node_subsys.get(node_id, ""), reason=n.reason,
         ))
-    ac = ArchitectureChange(operations=ops, metadata={"skipped": skipped} if skipped else {})
+    metadata: Dict[str, Any] = {}
+    if skipped:
+        metadata["skipped"] = skipped
+    # TargetEdge.priority has no field in the frozen ArchitectureChange IR, so it
+    # travels through the funnel via existing metadata (not an IR change).
+    # Keyed by full edge identity (incl. edge_type) so distinct edge types never
+    # collide, and MIN priority is taken so duplicate same-endpoint edges keep the
+    # HIGHER-urgency intent (repo convention: 1=highest, 10=lowest; added_edges
+    # are sorted ascending by priority) instead of silently overwriting it.
+    if delta.added_edges:
+        edge_priorities: Dict[str, int] = {}
+        for e in delta.added_edges:
+            k = f"{e.source}->{e.target}->{e.edge_type}"
+            edge_priorities[k] = min(edge_priorities.get(k, 99), e.priority)
+        metadata["target_edge_priorities"] = edge_priorities
+    ac = ArchitectureChange(operations=ops, metadata=metadata)
     ac.validate()
     return ac
 
