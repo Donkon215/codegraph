@@ -189,16 +189,23 @@ class TestSemanticEquivalence:
         with tempfile.TemporaryDirectory() as d:
             change_delta = generate_architecture_delta(Path(d), change=ac)
 
-        assert len(target_delta.added_edges) == len(change_delta.added_edges)
-        assert len(target_delta.added_nodes) == len(change_delta.added_nodes)
-        assert {e.source for e in target_delta.added_edges} == \
-               {e.source for e in change_delta.added_edges}
-        assert {n.node_id for n in target_delta.added_nodes} == \
-               {n.node_id for n in change_delta.added_nodes}
-        # Locked contract: subsystem metadata must survive into the canonical
-        # delta on both paths (not just node ids).
-        assert {n.subsystem for n in target_delta.added_nodes} == \
-               {n.subsystem for n in change_delta.added_nodes}
+        # Both historical producers must yield the SAME canonical object,
+        # not merely objects sharing IDs.
+        def node_key(n):
+            return (n.node_id, n.module, n.node_type, n.subsystem, n.intent)
+
+        def edge_key(e):
+            return (e.source, e.target, e.edge_type, e.priority, e.reason)
+
+        assert [node_key(n) for n in target_delta.added_nodes] == \
+               [node_key(n) for n in change_delta.added_nodes]
+        assert [edge_key(e) for e in target_delta.added_edges] == \
+               [edge_key(e) for e in change_delta.added_edges]
+        assert target_delta.affected_subsystems == change_delta.affected_subsystems
+
+        # Phase 1 contract: ADD_COMPONENT -> node_type "module" on BOTH paths.
+        assert all(n.node_type == "module" for n in target_delta.added_nodes)
+        assert all(n.node_type == "module" for n in change_delta.added_nodes)
 
 
 class TestNoOpSemantics:

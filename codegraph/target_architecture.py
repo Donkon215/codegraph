@@ -245,11 +245,37 @@ def compute_architecture_delta(
         if tn.node_id not in current_nodes:
             delta.added_nodes.append(NodeChange(
                 node_id=tn.node_id, module=tn.module,
+                node_type="module",
                 subsystem=tn.subsystem, intent=tn.intent, reason=tn.reason,
             ))
 
     # Sort added edges by priority (preserves prior evolution ordering)
     delta.added_edges.sort(key=lambda e: e.priority)
+
+    # Affected subsystems — derived the same way as the canonical change path,
+    # so both producers yield an equivalent ArchitectureDelta.
+    mod_to_sub = {}
+    for tn in target.nodes:
+        if tn.module and tn.subsystem:
+            mod_to_sub[tn.module] = tn.subsystem
+
+    def _sub_of(thing: str) -> str:
+        mod = thing.split("::")[0] if "::" in thing else thing
+        return mod_to_sub.get(mod, "")
+
+    affected: Set[str] = set()
+    for n in delta.added_nodes + delta.removed_nodes:
+        s = n.subsystem or _sub_of(n.module or n.node_id)
+        if s:
+            affected.add(s)
+    for e in delta.added_edges + delta.removed_edges:
+        s = _sub_of(e.source)
+        t = _sub_of(e.target)
+        if s:
+            affected.add(s)
+        if t:
+            affected.add(t)
+    delta.affected_subsystems = sorted(affected)
 
     return delta
 
