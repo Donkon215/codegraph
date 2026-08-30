@@ -1,0 +1,104 @@
+<svg width="900" height="500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bg { fill: #1e1e1e; }
+      .titlebar { fill: #3c3c3c; }
+      .dot { fill: #ff5f57; }
+      .dot2 { fill: #ffbd2e; }
+      .dot3 { fill: #28ca42; }
+      .prompt { fill: #00ff88; font-family: 'Fira Code', 'Monospace'; font-size: 13px; }
+      .command { fill: #ffffff; font-family: 'Fira Code', 'Monospace'; font-size: 13px; }
+      .output { fill: #cccccc; font-family: 'Fira Code', 'Monospace'; font-size: 12px; }
+      .success { fill: #4ec9b0; font-family: 'Fira Code', 'Monospace'; font-size: 12px; }
+      .info { fill: #569cd6; font-family: 'Fira Code', 'Monospace'; font-size: 12px; }
+      .warn { fill: #dcdcaa; font-family: 'Fira Code', 'Monospace'; font-size: 12px; }
+      .header { fill: #9cdcfe; font-family: 'Fira Code', 'Monospace'; font-size: 13px; font-weight: bold; }
+      .key { fill: #d4d4d4; font-family: 'Fira Code', 'Monospace'; font-size: 12px; }
+      .val { fill: #ce9178; font-family: 'Fira Code', 'Monospace'; font-size: 12px; }
+    </style>
+  </defs>
+  
+  <!-- Window background -->
+  <rect class="bg" width="900" height="500" rx="8"/>
+  
+  <!-- Title bar -->
+  <rect class="titlebar" width="900" height="36" rx="8" ry="0"/>
+  <circle class="dot" cx="18" cy="18" r="7"/>
+  <circle class="dot2" cx="42" cy="18" r="7"/>
+  <circle class="dot3" cx="66" cy="18" r="7"/>
+  <text x="90" y="24" font-family="Monospace" font-size="12" fill="#cccccc">codegraph  •  sample_project  •  bash</text>
+  
+  <!-- Terminal content -->
+  <g transform="translate(20, 55)">
+    <!-- Line 1: init -->
+    <text class="prompt" x="0" y="0">$</text>
+    <text class="command" x="15" y="0">codegraph init</text>
+    
+    <!-- Line 2: output -->
+    <text class="output" x="0" y="25">Initialized .codegraph/ in /home/user/sample_project</text>
+    <text class="info" x="0" y="45">Updated .gitignore with codegraph rules</text>
+    
+    <!-- Line 3: build -->
+    <text class="prompt" x="0" y="75">$</text>
+    <text class="command" x="15" y="75">codegraph build</text>
+    
+    <!-- Line 4-12: build output -->
+    <text class="output" x="0" y="100">Building graphs for /home/user/sample_project …</text>
+    <text class="output" x="0" y="120">Extracting: 1/7 (14%)</text>
+    <text class="output" x="0" y="140">Extracting: 2/7 (28%)</text>
+    <text class="output" x="0" y="160">Extracting: 3/7 (42%)</text>
+    <text class="output" x="0" y="180">Extracting: 4/7 (57%)</text>
+    <text class="output" x="0" y="200">Extracting: 5/7 (71%)</text>
+    <text class="output" x="0" y="220">Extracting: 6/7 (85%)</text>
+    <text class="output" x="0" y="240">Extracting: 7/7 (100%)</text>
+    <text class="success" x="0" y="260">Extracting: done (7 items, 0.03s)</text>
+    <text class="info" x="0" y="280">API linking: 0 endpoints, 0 calls, 0 linked</text>
+    <text class="success" x="0" y="300">Saved Graph_0 (20 nodes) → .codegraph/graphs/graph0.json</text>
+    <text class="info" x="0" y="320">Layer assignments: 20 nodes classified</text>
+    <text class="info" x="0" y="340">Files processed: 7  Files skipped: 0</text>
+    <text class="output" x="0" y="360">Nodes extracted: function: 13  module: 7</text>
+    <text class="output" x="0" y="380">Total nodes: 20  Duration: 0.17s</text>
+    <text class="success" x="0" y="400">Saved Graph_1 (20 nodes) → .codegraph/graphs/graph1.json</text>
+    <text class="info" x="0" y="420">Static edges: 12, unresolved calls: 22</text>
+    <text class="info" x="0" y="440">Filters: 12 → 12 edges (removed 0)</text>
+    <text class="success" x="0" y="460">Saved workflow (12 edges) → .codegraph/workflow/workflow.json</text>
+    <text class="info" x="0" y="480">CAS: 20 changed nodes → 20 affected nodes</text>
+  </g>
+  
+  <!-- Right panel: status command -->
+  <g transform="translate(480, 55)">
+    <text class="prompt" x="0" y="0">$</text>
+    <text class="command" x="15" y="0">codegraph status</text>
+    
+    <text class="header" x="0" y="30">Layer distribution:</text>
+    <text class="key" x="20" y="50">0 (STDLIB):</text>
+    <text class="val" x="120" y="50">0  (0.0%)</text>
+    <text class="key" x="20" y="70">1 (EXTERNAL):</text>
+    <text class="val" x="120" y="70">0  (0.0%)</text>
+    <text class="key" x="20" y="90">2 (INTERNAL):</text>
+    <text class="val" x="120" y="90">0  (0.0%)</text>
+    <text class="key" x="20" y="110">3 (PROJECT):</text>
+    <text class="val" x="120" y="110">16  (80.0%)</text>
+    <text class="key" x="20" y="130">4 (TEST):</text>
+    <text class="val" x="120" y="130">4  (20.0%)</text>
+    <text class="key" x="20" y="150">Total:</text>
+    <text class="val" x="120" y="150">20</text>
+    
+    <text class="header" x="0" y="185">Annotation statistics:</text>
+    <text class="key" x="20" y="205">Total nodes:</text>
+    <text class="val" x="140" y="205">20</text>
+    <text class="key" x="20" y="225">With intent:</text>
+    <text class="val" x="140" y="225">9  (45.0%)</text>
+    <text class="key" x="20" y="245">Missing intent:</text>
+    <text class="val" x="140" y="245">11</text>
+    <text class="key" x="20" y="265">Avg intent length:</text>
+    <text class="val" x="140" y="265">47 chars</text>
+    <text class="key" x="20" y="285">With tags:</text>
+    <text class="val" x="140" y="285">9</text>
+    <text class="key" x="20" y="305">Stale intents:</text>
+    <text class="val" x="140" y="305">0</text>
+    
+    <text class="header" x="0" y="340">Workflow: 12 edges (call=12)</text>
+    <text class="info" x="0" y="365">Index: 72.0 KB  callees: 12 rows</text>
+  </g>
+</svg>

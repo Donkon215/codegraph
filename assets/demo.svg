@@ -1,0 +1,85 @@
+<svg width="900" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bg { fill: #1e1e1e; }
+      .titlebar { fill: #3c3c3c; }
+      .dot { fill: #ff5f57; }
+      .dot2 { fill: #ffbd2e; }
+      .dot3 { fill: #28ca42; }
+      .prompt { fill: #00ff88; font-family: 'Fira Code', 'Monospace'; font-size: 13px; }
+      .command { fill: #ffffff; font-family: 'Fira Code', 'Monospace'; font-size: 13px; }
+      .output { fill: #cccccc; font-family: 'Fira Code', 'Monospace'; font-size: 12px; }
+      .success { fill: #4ec9b0; font-family: 'Fira Code', 'Monospace'; font-size: 12px; }
+      .info { fill: #569cd6; font-family: 'Fira Code', 'Monospace'; font-size: 12px; }
+      .header { fill: #9cdcfe; font-family: 'Fira Code', 'Monospace'; font-size: 13px; font-weight: bold; }
+      .key { fill: #d4d4d4; font-family: 'Fira Code', 'Monospace'; font-size: 12px; }
+      .val { fill: #ce9178; font-family: 'Fira Code', 'Monospace'; font-size: 12px; }
+      .highlight { fill: #ffd700; font-family: 'Fira Code', 'Monospace'; font-size: 12px; }
+      .blink { animation: blink 1s infinite; }
+      @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+    </style>
+  </defs>
+  
+  <rect class="bg" width="900" height="400" rx="8"/>
+  <rect class="titlebar" width="900" height="36" rx="8" ry="0"/>
+  <circle class="dot" cx="18" cy="18" r="7"/>
+  <circle class="dot2" cx="42" cy="18" r="7"/>
+  <circle class="dot3" cx="66" cy="18" r="7"/>
+  <text x="90" y="24" font-family="Monospace" font-size="12" fill="#cccccc">codegraph  •  demo  •  bash</text>
+  
+  <g transform="translate(20, 55)">
+    <text class="prompt" x="0" y="0">$</text>
+    <text class="command" x="15" y="0">codegraph tasks</text>
+    
+    <text class="info" x="0" y="30">Tasks: 3</text>
+    <text class="output" x="0" y="50">  By type:</text>
+    <text class="output" x="20" y="70">    intent_missing: 1</text>
+    <text class="output" x="20" y="90">    missing_test_coverage: 1</text>
+    <text class="output" x="20" y="110">    orphan_nodes: 1</text>
+    <text class="output" x="0" y="135">  By priority:</text>
+    <text class="output" x="20" y="155">    P3: 1</text>
+    <text class="output" x="20" y="175">    P5: 2</text>
+    <text class="output" x="0" y="200">  Total affected nodes: 31</text>
+    
+    <text class="header" x="0" y="230">Tasks (3):</text>
+    <text class="warn" x="0" y="255">  [orphan_nodes]         P3 — 1 node(s)</text>
+    <text class="output" x="0" y="275">  [missing_test_coverage] P5 — 10 node(s)</text>
+    <text class="output" x="0" y="295">  [intent_missing]       P5 — 20 node(s)</text>
+    
+    <text class="success" x="0" y="325">Tasks written to .codegraph/tasks/tasks.json</text>
+    
+    <!-- Arrow pointing to next command -->
+    <text class="highlight blink" x="0" y="355">▼</text>
+    <text class="highlight blink" x="0" y="370">▼</text>
+    <text class="highlight blink" x="0" y="385">▼</text>
+    
+    <!-- Next command preview -->
+    <text class="prompt" x="0" y="410">$</text>
+    <text class="command" x="15" y="410">codegraph explain src/trading/signal.py::generate_signal</text>
+  </g>
+  
+  <!-- Second panel -->
+  <g transform="translate(480, 55)">
+    <text class="prompt" x="0" y="0">$</text>
+    <text class="command" x="15" y="0">codegraph explain src/trading/signal.py::generate_signal</text>
+    
+    <text class="output" x="0" y="30">Node:       src/trading/signal.py::generate_signal</text>
+    <text class="output" x="0" y="50">Body hash:  8f1c2  (unchanged)</text>
+    <text class="output" x="0" y="70">Line:       34</text>
+    <text class="success" x="0" y="90">Intent:     generate trading signal from price indicators</text>
+    <text class="output" x="0" y="110">Layer:      3</text>
+    <text class="output" x="0" y="130">Called by:</text>
+    <text class="val" x="20" y="150">  src/execution/trade.py::run_trading_pipeline</text>
+    <text class="output" x="0" y="175">Calls:</text>
+    <text class="val" x="20" y="195">  src/data/market.py::fetch_recent_klines</text>
+    <text class="val" x="20" y="215">  src/trading/signal.py::compute_rsi</text>
+    <text class="val" x="20" y="235">  src/trading/signal.py::compute_macd</text>
+    <text class="output" x="0" y="260">Dynamic edges:</text>
+    <text class="output" x="20" y="280">  (none)</text>
+    <text class="output" x="0" y="305">Tests covering this node:</text>
+    <text class="val" x="20" y="325">  tests/test_signal.py::test_generate_signal</text>
+  </g>
+  
+  <!-- GIF indicator -->
+  <text x="450" y="390" font-family="Monospace" font-size="11" fill="#666666" text-anchor="middle">🎬 This is a GIF - replace with actual screen recording</text>
+</svg>
