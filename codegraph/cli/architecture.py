@@ -511,25 +511,54 @@ def arch_search_cmd(ctx: click.Context, max_candidates: int,
 
 # ── Architecture Simulator ────────────────────────────────────────────
 @click.command("arch-simulate")
-@click.argument("subsystem_name")
+@click.argument("subsystem_name", required=False)
 @click.option("--depends-on", "deps", multiple=True,
               help="Dependencies for the new subsystem (repeatable).")
+@click.option("--plan", "plan_path", type=click.Path(exists=True, dir_okay=False), default=None,
+              help="JSON list of {change, node, target} to simulate together, with a verdict.")
 @click.option("--json", "json_output", is_flag=True, help="JSON output.")
 @click.option("--save", is_flag=True,
               help="Save simulation result.")
 @click.pass_context
-def arch_simulate_cmd(ctx: click.Context, subsystem_name: str,
-                      deps: tuple, json_output: bool, save: bool) -> None:
-    """Simulate adding a subsystem and predict impact."""
+def arch_simulate_cmd(ctx: click.Context, subsystem_name: str, deps: tuple,
+                      plan_path: str | None, json_output: bool, save: bool) -> None:
+    """Simulate adding a subsystem and predict impact, or simulate a --plan."""
     import json as _json
     from codegraph.arch_schema import SystemArchitecture
-    from codegraph.architecture_simulator import simulate_subsystem_addition
+    from codegraph.architecture_simulator import simulate_changes, simulate_subsystem_addition
+
+    if bool(subsystem_name) == bool(plan_path):
+        click.echo("Give either a subsystem name or --plan, not both or neither.", err=True)
+        sys.exit(EXIT_ERROR)
 
     try:
         root = find_project_root()
     except FileNotFoundError as exc:
         handle_error(exc, ctx.obj.get("verbose", False))
         sys.exit(EXIT_ERROR)
+
+    if plan_path:
+        if save:
+            # Plan mode writes no .codegraph state; print the JSON instead.
+            click.echo("--save is not supported with --plan (plan mode writes no state). Use --json.", err=True)
+            sys.exit(EXIT_ERROR)
+        try:
+            plan = _json.loads(Path(plan_path).read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            click.echo(f"Could not read plan: {exc}", err=True)
+            sys.exit(EXIT_ERROR)
+        if not isinstance(plan, list) or not all(isinstance(item, dict) for item in plan):
+            click.echo("Plan must be a JSON list of {change, node, target} objects.", err=True)
+            sys.exit(EXIT_ERROR)
+
+        result = simulate_changes(root, plan)
+        if json_output:
+            click.echo(_json.dumps(result, indent=2, ensure_ascii=False))
+        else:
+            click.echo(f"Verdict: {result['verdict']}")
+            for reason in result["reasons"]:
+                click.echo(f"  - {reason}")
+        return
 
     arch = SystemArchitecture.load(root)
     if not arch:

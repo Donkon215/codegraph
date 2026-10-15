@@ -45,28 +45,12 @@ def _mean_fan(metrics: Dict[str, Any]) -> float:
     return (float(metrics.get("fan_in_avg", 0.0)) + float(metrics.get("fan_out_avg", 0.0))) / 2.0
 
 
-def simulate_change(project_root: Any, node: str, change: str, target: str = "") -> Dict[str, Any]:
-    """Simulate a graph mutation without changing source files.
+_SUPPORTED_CHANGES = ("add_edge", "remove_edge", "rewire_edge")
 
-    API requested by phase-II evolution task.
 
-    Scores come only from the sandbox partition. Baseline and predicted are both
-    computed by score_from_metrics on the sandbox before and after the mutation,
-    so score_delta isolates the mutation. The disk-based inputs of the full
-    architecture index (health report, smells, pattern consistency) are not used.
-    """
-    from codegraph.architecture_graph import ArchitectureGraph
-    from codegraph.subsystem_sandbox import build_partition_sandbox, score_from_metrics
-
-    if not hasattr(project_root, "__truediv__"):
-        raise ValueError("project_root must be a Path")
-
-    graph = ArchitectureGraph.load(project_root)
-
-    sandbox = build_partition_sandbox(project_root, graph, node)
-    before_metrics = sandbox.get_metrics()
-
-    if change == "add_edge" and target:
+def _apply_change(sandbox: Any, node: str, change: str, target: str) -> None:
+    """Apply one mutation to the sandbox's subsystem graph, in place."""
+    if change == "add_edge":
         sandbox.subsystem_graph.edges.append({
             "source": node,
             "target": target,
@@ -74,37 +58,142 @@ def simulate_change(project_root: Any, node: str, change: str, target: str = "")
             "confidence": "ai_inferred",
             "source_detail": "simulated",
         })
-    elif change == "remove_edge" and target:
+    elif change == "remove_edge":
         sandbox.subsystem_graph.edges = [
             edge for edge in sandbox.subsystem_graph.edges
             if not (str(edge.get("source", "")) == node and str(edge.get("target", "")) == target)
         ]
-    elif change == "rewire_edge" and target:
+    elif change == "rewire_edge":
         for edge in sandbox.subsystem_graph.edges:
             if str(edge.get("source", "")) == node:
                 edge["target"] = target
                 edge["source_detail"] = "simulated_rewire"
 
-    after_metrics = sandbox.get_metrics()
+
+def _verdict(score_delta: float, cycle_delta: int, layer_delta: int) -> Tuple[str, List[str]]:
+    """Map simulated deltas to ACCEPT / REJECT / REVIEW, with the reasons for the decision."""
+    reject_reasons: List[str] = []
+    if cycle_delta > 0:
+        reject_reasons.append(f"adds {cycle_delta} new cycle(s)")
+    if layer_delta > 0:
+        reject_reasons.append(f"increases layer violations by {layer_delta}")
+    if score_delta < 0:
+        reject_reasons.append(f"score drops by {abs(score_delta):.4f}")
+    if reject_reasons:
+        return "REJECT", reject_reasons
+    if score_delta > 0:
+        return "ACCEPT", [
+            f"score improves by {score_delta:.4f}",
+            "no new cycles",
+            "no new layer violations",
+        ]
+    return "REVIEW", ["score unchanged"]
+
+
+def _review(reason: str, changes: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Result for a plan that was empty, unsupported, or could not be simulated.
+
+    simulated is False, so a crash or an empty plan can never be read as a neutral verdict.
+    """
+    return {
+        "status": "simulation_unavailable",
+        "simulated": False,
+        "changes": changes,
+        "verdict": "REVIEW",
+        "reasons": [reason],
+        "cycle_risk": 0,
+        "coupling_delta": 0.0,
+        "layer_violations_delta": 0,
+        "score_delta": 0.0,
+    }
+
+
+def simulate_changes(project_root: Any, changes: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Apply a list of graph mutations together in one sandbox and return a verdict.
+
+    Each change is {"change": add_edge | remove_edge | rewire_edge, "node": ..., "target": ...}.
+    The sandbox partition is built around the first change's node. Nothing is written
+    to the source graph or to disk.
+
+    Scores come only from the sandbox partition. Baseline and predicted are both
+    computed by score_from_metrics on the sandbox before and after the mutations,
+    so score_delta isolates them. The disk-based inputs of the full architecture
+    index (health report, smells, pattern consistency) are not used.
+    """
+    from codegraph.architecture_graph import ArchitectureGraph
+    from codegraph.subsystem_sandbox import build_partition_sandbox, score_from_metrics
+
+    if not hasattr(project_root, "__truediv__"):
+        raise ValueError("project_root must be a Path")
+
+    if not changes:
+        return _review("empty plan: nothing to simulate", changes)
+
+    for item in changes:
+        if item.get("change") not in _SUPPORTED_CHANGES:
+            return _review(f"unsupported change: {item.get('change')!r}", changes)
+        if not item.get("node"):
+            return _review("change has no node", changes)
+        if not item.get("target"):
+            return _review(f"{item['change']} has no target", changes)
+
+    try:
+        graph = ArchitectureGraph.load(project_root)
+        sandbox = build_partition_sandbox(project_root, graph, changes[0]["node"])
+        before_metrics = sandbox.get_metrics()
+        partition_ids = {str(n.get("id", "")) for n in sandbox.subsystem_graph.nodes}
+        outside_reasons: List[str] = []
+        for item in changes:
+            for nid in (item["node"], item["target"]):
+                reason = f"{item['change']} references {nid}, which is outside the sandbox partition"
+                if str(nid) not in partition_ids and reason not in outside_reasons:
+                    outside_reasons.append(reason)
+        for item in changes:
+            _apply_change(sandbox, item["node"], item["change"], item["target"])
+        after_metrics = sandbox.get_metrics()
+    except Exception as exc:
+        logger.warning("Architecture simulation failed: %s", exc)
+        return _review(f"could not simulate: {type(exc).__name__}: {exc}", changes)
+
     baseline_subsystem = score_from_metrics(before_metrics)
     predicted_subsystem = score_from_metrics(after_metrics)
+    score_delta = round(predicted_subsystem - baseline_subsystem, 4)
+    cycle_delta = int(after_metrics.get("cycle_count", 0)) - int(before_metrics.get("cycle_count", 0))
+    layer_delta = int(after_metrics.get("layer_violations", 0)) - int(before_metrics.get("layer_violations", 0))
+    verdict, reasons = _verdict(score_delta, cycle_delta, layer_delta)
+    if outside_reasons:
+        # A score over nodes outside the partition does not describe the plan.
+        verdict = "REVIEW"
+        reasons = outside_reasons + [
+            "REVIEW: the score is not meaningful when changes fall outside the partition",
+        ] + reasons
 
     return {
         "status": "simulated",
-        "node": node,
-        "change": change,
-        "target": target,
-        "cycle_risk": int(after_metrics.get("cycle_count", 0)) - int(before_metrics.get("cycle_count", 0)),
+        "simulated": True,
+        "partition_limited": bool(outside_reasons),
+        "changes": changes,
+        "verdict": verdict,
+        "reasons": reasons,
+        "cycle_risk": cycle_delta,
         # Positive means coupling went up (reactive_server warns above 0.05).
         "coupling_delta": round(_mean_fan(after_metrics) - _mean_fan(before_metrics), 4),
         "layer_violations": int(after_metrics.get("layer_violations", 0)),
+        "layer_violations_delta": layer_delta,
         "predicted_subsystem_score": round(predicted_subsystem, 4),
         "baseline_subsystem_score": round(baseline_subsystem, 4),
-        "score_delta": round(predicted_subsystem - baseline_subsystem, 4),
+        "score_delta": score_delta,
         "partition": sandbox.subsystem_graph.metadata.get("simulation_partition_id", ""),
         "partition_nodes": sandbox.subsystem_graph.metadata.get("simulation_partition_nodes", 0),
         "partition_boundary_nodes": sandbox.subsystem_graph.metadata.get("simulation_boundary_nodes", 0),
     }
+
+
+def simulate_change(project_root: Any, node: str, change: str, target: str = "") -> Dict[str, Any]:
+    """Single-mutation form of simulate_changes, kept for existing callers."""
+    result = simulate_changes(project_root, [{"change": change, "node": node, "target": target}])
+    result.update({"node": node, "change": change, "target": target})
+    return result
 
 
 # ── Simulated Architecture Change ──────────────────────────────────────
