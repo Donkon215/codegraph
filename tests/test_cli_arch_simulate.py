@@ -39,7 +39,11 @@ def test_plan_mode_prints_verdict(monkeypatch, tmp_path):
     monkeypatch.setattr(
         architecture_simulator,
         "simulate_changes",
-        lambda root, changes: {"verdict": "REJECT", "reasons": ["adds 1 new cycle(s)"]},
+        lambda root, changes: {
+            "verdict": "REJECT",
+            "reasons": ["adds 1 new cycle(s)"],
+            "graph_note": "stub note",
+        },
     )
 
     result = CliRunner().invoke(
@@ -49,6 +53,7 @@ def test_plan_mode_prints_verdict(monkeypatch, tmp_path):
     assert result.exit_code == 0, result.output
     assert "Verdict: REJECT" in result.output
     assert "adds 1 new cycle(s)" in result.output
+    assert "Note: stub note" in result.output
 
 
 def test_plan_mode_refuses_save_and_writes_nothing(monkeypatch, tmp_path):

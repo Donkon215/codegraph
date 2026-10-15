@@ -558,6 +558,7 @@ def arch_simulate_cmd(ctx: click.Context, subsystem_name: str, deps: tuple,
             click.echo(f"Verdict: {result['verdict']}")
             for reason in result["reasons"]:
                 click.echo(f"  - {reason}")
+            click.echo(f"Note: {result['graph_note']}")
         return
 
     arch = SystemArchitecture.load(root)

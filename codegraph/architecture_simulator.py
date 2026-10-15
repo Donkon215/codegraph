@@ -98,6 +98,7 @@ def _review(reason: str, changes: List[Dict[str, Any]]) -> Dict[str, Any]:
     return {
         "status": "simulation_unavailable",
         "simulated": False,
+        "graph_note": GRAPH_NOTE,
         "changes": changes,
         "verdict": "REVIEW",
         "reasons": [reason],
@@ -107,6 +108,13 @@ def _review(reason: str, changes: List[Dict[str, Any]]) -> Dict[str, Any]:
         "score_delta": 0.0,
     }
 
+
+# A limitation, stated wherever a verdict is shown: the score comes from the subsystem graph,
+# but the function-level checks run on the function graph. A shared id string is not a shared graph.
+GRAPH_NOTE = (
+    "the score comes from the subsystem graph; the cycle, layer and constraint checks run on "
+    "the function-level graph. Same id, different graph."
+)
 
 # Violation types whose inputs are project-derived (the index and system.json), so they may reject.
 # Layer violations come from generic DEFAULT_LAYER_RULES and are advisory only.
@@ -142,6 +150,11 @@ def _fuller_checks(
     radius, via simulator.simulate_changes on the function-level index. The index is
     opened read-only. A rewire_edge cannot be expressed as function-level changes
     without knowing the node's current targets, so such a plan is reported as not checked.
+
+    LIMITATION: this runs on the function-level graph (IndexStore), while the score in
+    simulate_changes comes from the subsystem sandbox. Resolving an id on both sides shows
+    the string exists in both spaces; it does not make the two graphs the same. A REJECT here
+    is a finding about the function-level graph, not about the graph that was scored.
 
     Gate 1: every id must resolve in the index and in the sandbox before any check runs.
     Gate 2: a violation is blocking only if its type is in _BLOCKING_TYPES; others are advisory.
@@ -283,6 +296,7 @@ def simulate_changes(project_root: Any, changes: List[Dict[str, Any]]) -> Dict[s
         "status": "simulated" if fuller["available"] else "partially_simulated",
         "simulated": fuller["available"],
         "function_checks_available": fuller["available"],
+        "graph_note": GRAPH_NOTE,
         "partition_limited": bool(outside_reasons),
         "changes": changes,
         "verdict": verdict,
