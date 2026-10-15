@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Set, Tuple
 
@@ -23,7 +24,8 @@ class SubsystemGraph:
         root_node: str,
     ) -> "SubsystemGraph":
         node_map = {str(node.get("id", "")): node for node in architecture_graph.nodes}
-        selected_nodes = [node_map[node_id] for node_id in sorted(node_ids) if node_id in node_map]
+        # Deep-copy so sandbox edits cannot reach the caller's architecture graph.
+        selected_nodes = [copy.deepcopy(node_map[node_id]) for node_id in sorted(node_ids) if node_id in node_map]
 
         boundary: Set[str] = set()
         for edge in external_edges:

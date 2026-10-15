@@ -40,19 +40,27 @@ class GraphMutation:
     target: str = ""
 
 
+def _mean_fan(metrics: Dict[str, Any]) -> float:
+    """Mean of average fan-in and average fan-out: a simple coupling level."""
+    return (float(metrics.get("fan_in_avg", 0.0)) + float(metrics.get("fan_out_avg", 0.0))) / 2.0
+
+
 def simulate_change(project_root: Any, node: str, change: str, target: str = "") -> Dict[str, Any]:
     """Simulate a graph mutation without changing source files.
 
     API requested by phase-II evolution task.
+
+    Scores come only from the sandbox partition. Baseline and predicted are both
+    computed by score_from_metrics on the sandbox before and after the mutation,
+    so score_delta isolates the mutation. The disk-based inputs of the full
+    architecture index (health report, smells, pattern consistency) are not used.
     """
     from codegraph.architecture_graph import ArchitectureGraph
-    from codegraph.architecture_scoring import compute_architecture_index
-    from codegraph.subsystem_sandbox import build_partition_sandbox
+    from codegraph.subsystem_sandbox import build_partition_sandbox, score_from_metrics
 
     if not hasattr(project_root, "__truediv__"):
         raise ValueError("project_root must be a Path")
 
-    baseline_score = compute_architecture_index(project_root)
     graph = ArchitectureGraph.load(project_root)
 
     sandbox = build_partition_sandbox(project_root, graph, node)
@@ -78,22 +86,21 @@ def simulate_change(project_root: Any, node: str, change: str, target: str = "")
                 edge["source_detail"] = "simulated_rewire"
 
     after_metrics = sandbox.get_metrics()
-    predicted_score = compute_architecture_index(project_root)
+    baseline_subsystem = score_from_metrics(before_metrics)
+    predicted_subsystem = score_from_metrics(after_metrics)
 
     return {
+        "status": "simulated",
         "node": node,
         "change": change,
         "target": target,
         "cycle_risk": int(after_metrics.get("cycle_count", 0)) - int(before_metrics.get("cycle_count", 0)),
-        "coupling_delta": round(
-            predicted_score.dimensions.get("coupling_score", 0.0)
-            - baseline_score.dimensions.get("coupling_score", 0.0),
-            4,
-        ),
+        # Positive means coupling went up (reactive_server warns above 0.05).
+        "coupling_delta": round(_mean_fan(after_metrics) - _mean_fan(before_metrics), 4),
         "layer_violations": int(after_metrics.get("layer_violations", 0)),
-        "predicted_architecture_score": round(predicted_score.score, 4),
-        "baseline_architecture_score": round(baseline_score.score, 4),
-        "score_delta": round(predicted_score.score - baseline_score.score, 4),
+        "predicted_subsystem_score": round(predicted_subsystem, 4),
+        "baseline_subsystem_score": round(baseline_subsystem, 4),
+        "score_delta": round(predicted_subsystem - baseline_subsystem, 4),
         "partition": sandbox.subsystem_graph.metadata.get("simulation_partition_id", ""),
         "partition_nodes": sandbox.subsystem_graph.metadata.get("simulation_partition_nodes", 0),
         "partition_boundary_nodes": sandbox.subsystem_graph.metadata.get("simulation_boundary_nodes", 0),
