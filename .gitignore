@@ -31,3 +31,8 @@ agent_response.json
 # stray clones / fixture repos
 temp_clone/
 sample_project/
+
+# tool output and review holding folder
+.kiro/
+graphify-out/
+deleter/
