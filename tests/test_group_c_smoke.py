@@ -19,7 +19,7 @@ from codegraph.extractor import (
 )
 from codegraph.models.graph0 import Graph0, Graph0Node
 
-root = Path(r"D:\codegraph")
+root = Path(__file__).resolve().parents[1]  # the repo root, wherever it is checked out
 
 # === C-001: parse_file ===
 tree = parse_file(root / "codegraph" / "config.py")
