@@ -108,6 +108,106 @@ def _review(reason: str, changes: List[Dict[str, Any]]) -> Dict[str, Any]:
     }
 
 
+# Violation types whose inputs are project-derived (the index and system.json), so they may reject.
+# Layer violations come from generic DEFAULT_LAYER_RULES and are advisory only.
+_BLOCKING_TYPES = frozenset({"new_cycle", "subsystem_constraint", "forbidden_path", "transitive_forbidden"})
+
+
+def _id_reasons(index_missing: List[str], sandbox_missing: List[str], graph_ids: Set[str]) -> List[str]:
+    """Name the ids that do not resolve, and the id space they belong to.
+
+    graph_ids is the full subsystem graph, not the partition: an id can be real in the
+    subsystem graph and still lie outside the sandbox partition.
+    """
+    reasons: List[str] = []
+    if index_missing:
+        note = ""
+        if set(index_missing) & graph_ids:
+            note = " (subsystem-graph ids; the function-level index needs function ids)"
+        reasons.append(f"ids not in the function-level index: {', '.join(index_missing)}{note}")
+    if sandbox_missing:
+        reasons.append(f"ids not in the subsystem sandbox: {', '.join(sandbox_missing)}")
+    return reasons
+
+
+def _fuller_checks(
+    project_root: Any,
+    changes: List[Dict[str, Any]],
+    sandbox_ids: Set[str],
+    graph_ids: Set[str],
+) -> Dict[str, Any]:
+    """Run the function-level checks on the plan, as the proof gate does.
+
+    Covers new cycles, forbidden paths, layer rules, subsystem constraints and blast
+    radius, via simulator.simulate_changes on the function-level index. The index is
+    opened read-only. A rewire_edge cannot be expressed as function-level changes
+    without knowing the node's current targets, so such a plan is reported as not checked.
+
+    Gate 1: every id must resolve in the index and in the sandbox before any check runs.
+    Gate 2: a violation is blocking only if its type is in _BLOCKING_TYPES; others are advisory.
+
+    Returns {"available", "blocking", "advisory", "reasons", "blast_radius"}.
+    """
+    from pathlib import Path
+
+    from codegraph.index import IndexStore
+    from codegraph.simulator import DEFAULT_LAYER_RULES, SimulatedChange
+    from codegraph.simulator import simulate_changes as function_level_simulate
+
+    unavailable: Dict[str, Any] = {
+        "available": False, "blocking": False, "advisory": False, "reasons": [], "blast_radius": 0,
+    }
+
+    if any(item["change"] == "rewire_edge" for item in changes):
+        return {**unavailable, "reasons": ["rewire_edge is not covered by the function-level checks"]}
+
+    function_changes = [
+        SimulatedChange(action=item["change"], source=item["node"], target=item["target"], reason="plan")
+        for item in changes
+    ]
+    ids = sorted({value for item in changes for value in (item["node"], item["target"]) if value})
+    root = Path(project_root)
+    system_path = root / ".codegraph" / "architecture" / "system.json"
+    try:
+        with IndexStore(root) as index:
+            # Gate 1: an unknown id would be invented as a phantom node by the simulator.
+            index_missing = [i for i in ids if index.get_node(i) is None]
+            sandbox_missing = [i for i in ids if i not in sandbox_ids]
+            if index_missing or sandbox_missing:
+                return {**unavailable, "reasons": _id_reasons(index_missing, sandbox_missing, graph_ids)}
+            result = function_level_simulate(
+                function_changes,
+                index,
+                layer_rules=DEFAULT_LAYER_RULES,
+                system_json_path=system_path if system_path.exists() else None,
+            )
+    except FileNotFoundError as exc:
+        return {**unavailable, "reasons": [f"function-level checks unavailable: {exc}"]}
+    except Exception as exc:
+        logger.warning("Function-level checks failed: %s", exc)
+        return {**unavailable, "reasons": [f"function-level checks failed: {type(exc).__name__}: {exc}"]}
+
+    # Gate 2: severity follows the input each violation type is derived from.
+    reasons: List[str] = []
+    blocking = False
+    advisory = False
+    for v in result.violations:
+        if v.violation_type in _BLOCKING_TYPES:
+            blocking = True
+            reasons.append(f"REJECT {v.violation_type}: {v.description}")
+        else:
+            advisory = True
+            reasons.append(f"advisory {v.violation_type}: {v.description}")
+    reasons.append(f"blast radius: {result.blast_radius} node(s)")
+    return {
+        "available": True,
+        "blocking": blocking,
+        "advisory": advisory,
+        "reasons": reasons,
+        "blast_radius": result.blast_radius,
+    }
+
+
 def simulate_changes(project_root: Any, changes: List[Dict[str, Any]]) -> Dict[str, Any]:
     """Apply a list of graph mutations together in one sandbox and return a verdict.
 
@@ -139,6 +239,7 @@ def simulate_changes(project_root: Any, changes: List[Dict[str, Any]]) -> Dict[s
 
     try:
         graph = ArchitectureGraph.load(project_root)
+        graph_ids = {str(n.get("id", "")) for n in graph.nodes}
         sandbox = build_partition_sandbox(project_root, graph, changes[0]["node"])
         before_metrics = sandbox.get_metrics()
         partition_ids = {str(n.get("id", "")) for n in sandbox.subsystem_graph.nodes}
@@ -160,17 +261,28 @@ def simulate_changes(project_root: Any, changes: List[Dict[str, Any]]) -> Dict[s
     score_delta = round(predicted_subsystem - baseline_subsystem, 4)
     cycle_delta = int(after_metrics.get("cycle_count", 0)) - int(before_metrics.get("cycle_count", 0))
     layer_delta = int(after_metrics.get("layer_violations", 0)) - int(before_metrics.get("layer_violations", 0))
+    fuller = _fuller_checks(project_root, changes, partition_ids, graph_ids)
     verdict, reasons = _verdict(score_delta, cycle_delta, layer_delta)
+    review_notes: List[str] = []
     if outside_reasons:
         # A score over nodes outside the partition does not describe the plan.
+        review_notes.append("the score is not meaningful when changes fall outside the partition")
+    if not fuller["available"]:
+        review_notes.append("the function-level checks did not run")
+    if fuller["advisory"]:
+        review_notes.append("generic advisory checks flagged the plan (layer rules are not project-specific)")
+    if fuller["blocking"]:
+        verdict = "REJECT"
+    elif verdict != "REJECT" and review_notes:
+        # A REJECT is never softened to REVIEW; only an ACCEPT is held back.
         verdict = "REVIEW"
-        reasons = outside_reasons + [
-            "REVIEW: the score is not meaningful when changes fall outside the partition",
-        ] + reasons
+        reasons = [f"REVIEW: {note}" for note in review_notes] + reasons
+    reasons = outside_reasons + fuller["reasons"] + reasons
 
     return {
-        "status": "simulated",
-        "simulated": True,
+        "status": "simulated" if fuller["available"] else "partially_simulated",
+        "simulated": fuller["available"],
+        "function_checks_available": fuller["available"],
         "partition_limited": bool(outside_reasons),
         "changes": changes,
         "verdict": verdict,
