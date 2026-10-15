@@ -896,9 +896,18 @@ def copilot_loop(
         else:
             # No prediction: keep score_before. The 0.0 default would read as a drop of the whole score.
             report.score_after = report.score_before
-        if sim_result.get("status") != "simulated":
-            reason = sim_result.get("reason") or "; ".join(sim_result.get("reasons", []))
-            report.next_steps.insert(0, f"Simulation did not run: {reason}")
+        # Explain in the simulation record, not in next_steps (which is displayed as actions).
+        # Each non-simulated status gets its own wording, so none reads as a generic failure.
+        status = sim_result.get("status")
+        if status != "simulated":
+            detail = sim_result.get("reason") or "; ".join(sim_result.get("reasons", []))
+            if status == "not_simulated":
+                wording = "Simulation skipped: no function-level node id for this target"
+            elif status == "partially_simulated":
+                wording = "Function-level checks did not run; the verdict rests on the sandbox score alone"
+            else:
+                wording = "Simulation failed; no score was predicted"
+            sim_result["note"] = f"{wording} ({detail})" if detail else wording
 
         # Step 4b: Deep simulation — data flow + failure propagation
         deep_sim = _deep_simulate(project_root, target, focus)

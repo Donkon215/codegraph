@@ -46,3 +46,27 @@ def test_real_function_id_is_simulated_with_that_id(monkeypatch, tmp_path):
 
     assert calls == [{"node": "src/foo.py::foo", "change": "add_edge", "target": "src/bar.py::bar"}]
     assert result["status"] == "simulated"
+
+
+def test_copilot_loop_skipped_simulation_is_a_warning_not_a_drop(tmp_path, monkeypatch):
+    # End to end through copilot_loop, not just _try_simulate.
+    from codegraph.copilot_intelligence import copilot_loop
+    from tests.test_copilot_intelligence import _setup_minimal_graph
+
+    root = _setup_minimal_graph(tmp_path)
+    calls = []
+    monkeypatch.setattr(
+        "codegraph.architecture_simulator.simulate_change",
+        lambda *args, **kwargs: calls.append(kwargs) or {},
+    )
+
+    report = copilot_loop(root, "svc/order.py", simulate=True)
+
+    sim_iterations = [it for it in report.iterations if it.step == "simulate"]
+    assert len(sim_iterations) == 1
+    assert sim_iterations[0].status == "warning"                    # not "ok"
+    assert sim_iterations[0].result["status"] == "not_simulated"
+    assert calls == []                                              # no fabricated node id
+    assert report.score_after == report.score_before                # no whole-score drop
+    assert "Simulation skipped" in report.simulation["note"]        # the skip is recorded
+    assert not any("Simulation" in step for step in report.next_steps)  # not an action item
