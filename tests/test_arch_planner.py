@@ -241,6 +241,37 @@ class TestPlanArchitecture:
         assert len(plan.missing_connections) == 1
         assert any(t.task_type == "connect_call" for t in plan.tasks)
 
+    def test_rejected_proposal_feedback_deprioritizes_risky_task_type(self, tmp_path):
+        from codegraph.architecture_memory import record_proposal_outcome
+
+        graph0 = _make_graph0([
+            ("core/main.py::main", "core/main.py", "function"),
+            ("core/db.py::query", "core/db.py", "function"),
+        ])
+        arch = SystemArchitecture(
+            name="test",
+            subsystems=[SubsystemDef(
+                name="core",
+                components=[
+                    ArchComponent(name="main_mod", module="core/main.py"),
+                    ArchComponent(name="db_mod", module="core/db.py"),
+                ],
+                edges=[ArchEdge(source="main_mod", target="db_mod")],
+            )],
+        )
+        record_proposal_outcome(tmp_path, "p1", "rejected", 1, ["connect_call"])
+        record_proposal_outcome(tmp_path, "p2", "rejected", 1, ["connect_call"])
+        index = _make_index()
+        index._root = tmp_path
+
+        plan = plan_architecture(arch, graph0, index)
+
+        task = next(task for task in plan.tasks if task.task_type == "connect_call")
+        assert task.priority == 5  # baseline 4, raised due repeated rejected proposals
+        assert plan.feedback_adjustments == 1
+        assert plan.proposal_feedback["by_task_type"]["connect_call"]["rejected"] == 2
+        assert plan.to_dict()["feedback_adjustments"] == 1
+
     def test_tasks_sorted_by_priority(self):
         """Tasks should be sorted by priority (lowest number first)."""
         graph0 = _make_graph0([

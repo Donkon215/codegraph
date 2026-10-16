@@ -21,11 +21,32 @@ from codegraph.architecture_memory import (
     get_experiment_success_rate,
     load_memory,
     save_memory,
+    record_proposal_outcome,
+    load_proposal_outcomes,
+    proposal_feedback,
 )
 
 
 def _mem_dir(root: Path) -> Path:
     return root / ".codegraph" / "memory"
+
+
+def test_proposal_outcomes_measure_acceptance_violations_and_task_rates(tmp_path: Path) -> None:
+    record_proposal_outcome(tmp_path, "p1", "rejected", 2, ["connect_call"])
+    record_proposal_outcome(tmp_path, "p2", "accepted", 0, ["connect_call"])
+    # Re-recording the same proposal updates its result rather than double-counting.
+    record_proposal_outcome(tmp_path, "p2", "rejected", 1, ["connect_call"])
+
+    metrics = proposal_feedback(tmp_path)
+
+    assert metrics["proposals"] == 2
+    assert metrics["accepted"] == 0
+    assert metrics["rejected"] == 2
+    assert metrics["with_violations"] == 2
+    assert metrics["acceptance_rate"] == 0
+    assert metrics["violation_rate"] == 1
+    assert metrics["by_task_type"]["connect_call"]["proposals"] == 2
+    assert len(load_proposal_outcomes(tmp_path)) == 2
 
 
 class TestDecisionRoundTrip:

@@ -9,7 +9,6 @@ import json
 import time
 from collections import deque
 from dataclasses import dataclass, field
-from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 from codegraph.index import IndexStore
@@ -55,6 +54,10 @@ class TestImpactResult:
     coverage_gaps: List[CoverageGap] = field(default_factory=list)
     total_tests_affected: int = 0
     elapsed_ms: float = 0.0
+    affected_nodes: List[str] = field(default_factory=list)
+    new_dependencies: List[Tuple[str, str, str]] = field(default_factory=list)
+    removed_dependencies: List[Tuple[str, str, str]] = field(default_factory=list)
+    potential_violations: List[Dict[str, str]] = field(default_factory=list)
 
     @property
     def direct_tests(self) -> List[AffectedTest]:
@@ -179,6 +182,69 @@ def analyze_test_impact(
     return result
 
 
+def analyze_predicted_test_impact(
+    changed_nodes: Set[str], architecture_graph: Any, *, current_graph: Any = None,
+    max_depth: int = _DEFAULT_MAX_DEPTH,
+) -> TestImpactResult:
+    """Trace affected tests using only an injected/predicted architecture graph."""
+    t0 = time.perf_counter()
+    result = TestImpactResult(changed_nodes=sorted(changed_nodes))
+    node_by_id = {str(node.get("id", "")): node for node in architecture_graph.nodes}
+    reverse: Dict[str, Set[str]] = {}
+    for edge in architecture_graph.edges:
+        reverse.setdefault(str(edge.get("target", "")), set()).add(str(edge.get("source", "")))
+    found: Dict[str, AffectedTest] = {}
+    affected_nodes: Set[str] = set()
+    for start in changed_nodes:
+        queue: deque[Tuple[str, int]] = deque([(start, 0)])
+        seen: Set[str] = set()
+        while queue:
+            node_id, depth = queue.popleft()
+            if node_id in seen or depth > max_depth:
+                continue
+            seen.add(node_id)
+            affected_nodes.add(node_id)
+            node = node_by_id.get(node_id, {})
+            file_name = str(node.get("file", node_id.split("::", 1)[0])).replace("\\", "/").lower()
+            is_test = ("/test" in file_name or file_name.startswith("test")
+                       or node.get("type") == "test")
+            if depth > 0 and is_test:
+                at = found.setdefault(node_id, AffectedTest(test_id=node_id, distance=depth))
+                at.impact_score += 1
+                at.distance = min(at.distance, depth)
+                at.triggering_nodes.append(start)
+                kind = "direct" if depth == 1 else "transitive"
+                if kind not in at.change_types:
+                    at.change_types.append(kind)
+                continue
+            for caller in reverse.get(node_id, ()):
+                if caller not in seen:
+                    queue.append((caller, depth + 1))
+    result.affected_tests = sorted(found.values(), key=lambda item: (
+        0 if "direct" in item.change_types else 1, -item.impact_score, item.distance,
+    ))
+    result.affected_nodes = sorted(affected_nodes)
+    if current_graph is not None:
+        def dependencies(graph: Any) -> Set[Tuple[str, str, str]]:
+            return {(str(edge.get("source", "")), str(edge.get("target", "")),
+                     str(edge.get("edge_type", "call"))) for edge in graph.edges}
+
+        result.new_dependencies = sorted(dependencies(architecture_graph) - dependencies(current_graph))
+        result.removed_dependencies = sorted(dependencies(current_graph) - dependencies(architecture_graph))
+    try:
+        from codegraph.architecture_detection import detect_layered_architecture
+
+        report = detect_layered_architecture(
+            architecture_graph.structure_graph, architecture_graph=architecture_graph,
+        )
+        result.potential_violations = report.get("violations", [])
+    except (AttributeError, TypeError, ValueError):
+        result.potential_violations = []
+    result.total_tests_affected = len(result.affected_tests)
+    result.elapsed_ms = (time.perf_counter() - t0) * 1000
+    return result
+
+
 # ═══════════════════════════════════════════════════════════════════════
 # M-010 — test_change_type Classification
 # ═══════════════════════════════════════════════════════════════════════
@@ -282,6 +348,10 @@ def format_test_impact(
         return json.dumps({
             "total_affected": result.total_tests_affected,
             "changed_nodes": result.changed_nodes,
+            "affected_nodes": result.affected_nodes,
+            "new_dependencies": [list(edge) for edge in result.new_dependencies],
+            "removed_dependencies": [list(edge) for edge in result.removed_dependencies],
+            "potential_violations": result.potential_violations,
             "elapsed_ms": round(result.elapsed_ms, 2),
             "affected_tests": [{
                 "test_id": t.test_id,

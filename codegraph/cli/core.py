@@ -81,6 +81,19 @@ def timed_command(fn: Callable[..., Any]) -> Callable[..., Any]:
     return wrapper
 
 
+def _force_utf8_streams() -> None:
+    """Write UTF-8 to stdout/stderr so non-ASCII output (e.g. '→') cannot crash.
+
+    On Windows consoles the default codepage is often cp1252, which cannot encode
+    characters used in codegraph's messages (#61). ``errors="replace"`` keeps a
+    stray character from aborting a command.
+    """
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is not None:
+            reconfigure(encoding="utf-8", errors="replace")
+
+
 @click.group()
 @click.version_option(version=__version__, prog_name="codegraph")
 @click.option("--verbose", "-v", is_flag=True, help="Enable verbose output.")
@@ -89,6 +102,7 @@ def timed_command(fn: Callable[..., Any]) -> Callable[..., Any]:
 @click.pass_context
 def main(ctx: click.Context, verbose: bool, quiet: bool, json_log: bool) -> None:
     """codegraph — A CLI-driven graph system for AI agents."""
+    _force_utf8_streams()
     ctx.ensure_object(dict)
     level = "DEBUG" if verbose else ("WARNING" if quiet else "INFO")
     configure_logging(level=level, json_format=json_log)
@@ -232,20 +246,37 @@ def build(ctx: click.Context, no_cache: bool, parallel: bool, layer_overrides: t
     config = _build_init(root)
     quiet = ctx.obj.get("quiet", False)
 
+    # Keep the previous source graph in memory so stale overlay entries can be
+    # classified and archived before the new Graph_0 replaces it.
+    from codegraph.extractor import load_graph0, save_graph0
+    previous_graph0 = load_graph0(root)
+
     click.echo(f"Building graphs for {root} …")
 
     graph0, report, overrides = _build_extract(root, config, no_cache, parallel, quiet, layer_overrides)
+    if not graph0.nodes and previous_graph0.nodes:
+        click.echo(
+            "Graph_0 extraction is empty; preserving the previous graph and all "
+            "annotations. Run `codegraph prune` to review stale entries."
+        )
+        return
     layers = _build_layers(root, graph0, config, overrides, quiet)
     _build_store_config(root)
     click.echo(report.summary())
-    g1 = _build_annotate(root, graph0, layers, quiet)
-    _build_workflow_and_index(root, config, graph0, g1, quiet)
+    g1, reconciled = _build_annotate(root, graph0, layers, quiet, previous_graph0)
+    save_graph0(graph0, root)
+    from codegraph.annotator import save_graph1
+    save_graph1(g1, root)
+    _build_workflow_and_index(
+        root, config, graph0, g1, quiet,
+        graph1_removed=reconciled.removed_count,
+    )
     _build_track_commit(root)
 
 
 def _build_extract(root, config, no_cache, parallel, quiet, layer_overrides):
-    """Extract graph0 and save it."""
-    from codegraph.extractor import extract_project, save_graph0
+    """Extract Graph_0 without replacing the persisted snapshot yet."""
+    from codegraph.extractor import extract_project
 
     overrides: dict[str, int] = {}
     if layer_overrides:
@@ -259,7 +290,6 @@ def _build_extract(root, config, no_cache, parallel, quiet, layer_overrides):
     graph0, report = extract_project(
         root, config, use_cache=not no_cache, parallel=parallel, progress=not quiet,
     )
-    save_graph0(graph0, root)
     return graph0, report, overrides
 
 
@@ -281,10 +311,10 @@ def _build_store_config(root):
     store_config_hash(root, compute_config_hash(root))
 
 
-def _build_annotate(root, graph0, layers, quiet):
+def _build_annotate(root, graph0, layers, quiet, previous_graph0=None):
     """Initialize or merge Graph_1, check for stale intents."""
     from codegraph.annotator import (
-        load_graph1, save_graph1, initialize_graph1, merge_graph1,
+        load_graph1, initialize_graph1, merge_graph1, reconcile_graph1,
         detect_stale_intents, format_stale_warnings,
     )
     from codegraph.models.graph1 import Graph1
@@ -295,6 +325,13 @@ def _build_annotate(root, graph0, layers, quiet):
     else:
         g1 = merge_graph1(existing_g1, graph0, layers)
 
+    reconciled = reconcile_graph1(graph0, g1, root, previous_graph0)
+    if reconciled.removed_count and not quiet:
+        click.echo(
+            f"Graph_1 reconciled: removed {reconciled.removed_count} stale nodes; "
+            f"archived {reconciled.archived_count} annotation records."
+        )
+
     stale = detect_stale_intents(graph0, g1)
     g0_ids = frozenset(n.id for n in graph0.nodes)
     ghosts = g1.get_stale_nodes(g0_ids)
@@ -302,11 +339,10 @@ def _build_annotate(root, graph0, layers, quiet):
     if warning_text:
         click.echo(warning_text)
 
-    save_graph1(g1, root)
-    return g1
+    return g1, reconciled
 
 
-def _build_workflow_and_index(root, config, graph0, g1, quiet):
+def _build_workflow_and_index(root, config, graph0, g1, quiet, *, graph1_removed=0):
     """Build workflow edges and search indexes."""
     from codegraph.workflow import build_workflow, workflow_summary, write_workflow
     from codegraph.index import build_all_indexes
@@ -315,6 +351,33 @@ def _build_workflow_and_index(root, config, graph0, g1, quiet):
     from codegraph.graph_module import build_module_graph
     from codegraph.graph_build import build_graph_build
     from codegraph.system_architecture_layer import build_system_layer_mapping
+
+    import json
+
+    graphs_dir = root / ".codegraph" / "graphs"
+    old_runtime_sources: set[str] = set()
+    old_module_nodes: set[str] = set()
+    old_system_nodes: set[str] = set()
+    old_runtime_path = graphs_dir / "graph3_runtime.json"
+    old_module_path = graphs_dir / "graph_module.json"
+    old_system_path = root / ".codegraph" / "architecture" / "system_layers.json"
+    if old_runtime_path.exists():
+        old_runtime_data = json.loads(old_runtime_path.read_text(encoding="utf-8"))
+        old_runtime_sources = {
+            str(edge.get("source_file", "")) for edge in old_runtime_data.get("edges", [])
+        }
+    if old_module_path.exists():
+        old_module_data = json.loads(old_module_path.read_text(encoding="utf-8"))
+        old_module_nodes = {
+            str(node.get("id", "")) for node in old_module_data.get("nodes", [])
+        }
+    if old_system_path.exists():
+        old_system_data = json.loads(old_system_path.read_text(encoding="utf-8"))
+        old_system_nodes = {
+            node_id
+            for ids in old_system_data.get("layers", {}).values()
+            for node_id in ids
+        }
 
     wf = build_workflow(root, config, trace=False, level="function")
     wf = enrich_workflow_with_context_flows(root, wf)
@@ -337,16 +400,21 @@ def _build_workflow_and_index(root, config, graph0, g1, quiet):
 
     # Graph3 runtime interactions (cross-language aware)
     runtime_graph = extract_runtime_edges(root)
+    new_runtime_sources = {edge.source_file for edge in runtime_graph.edges}
     runtime_path = save_runtime_graph(root, runtime_graph)
     if not quiet:
         click.echo(f"Runtime graph saved: {runtime_path} ({len(runtime_graph.edges)} edges)")
 
     # GraphModule and GraphBuild layers
     module_graph = build_module_graph(root)
+    new_module_nodes = {node.id for node in module_graph.nodes}
     module_path = module_graph.save(root)
     build_graph = build_graph_build(root)
     build_path = build_graph.save(root)
     layer_mapping = build_system_layer_mapping(root)
+    new_system_nodes = {
+        node_id for ids in layer_mapping.layers.values() for node_id in ids
+    }
     layer_path = layer_mapping.save(root)
     if not quiet:
         click.echo(f"Module graph saved: {module_path}")
@@ -357,6 +425,15 @@ def _build_workflow_and_index(root, config, graph0, g1, quiet):
     if not quiet:
         total = sum(idx_result.values())
         click.echo(f"Index built: {total} rows across {len(idx_result)} tables")
+
+    if not quiet:
+        click.echo(
+            "Stale derived references removed: "
+            f"Graph_1={graph1_removed}, "
+            f"runtime source files={len(old_runtime_sources - new_runtime_sources)}, "
+            f"module nodes={len(old_module_nodes - new_module_nodes)}, "
+            f"system-layer nodes={len(old_system_nodes - new_system_nodes)}."
+        )
 
     # Architecture pattern detection after indexes are available
     try:
@@ -403,8 +480,8 @@ def _build_track_commit(root):
 @main.command()
 @click.pass_context
 def prune(ctx: click.Context) -> None:
-    """Remove stale Graph_1 entries that no longer exist in Graph_0."""
-    from codegraph.annotator import load_graph1, save_graph1, prune_graph1
+    """Report stale Graph_1/orphan entries without deleting user data."""
+    from codegraph.annotator import load_graph1, prune_graph1
     from codegraph.extractor import load_graph0
 
     try:
@@ -415,12 +492,33 @@ def prune(ctx: click.Context) -> None:
 
     graph0 = load_graph0(root)
     graph1 = load_graph1(root)
-    report = prune_graph1(graph0, graph1)
-    if report.removed_count:
-        save_graph1(graph1, root)
-        click.echo(f"Pruned {report.removed_count} stale entries.")
+    report = prune_graph1(graph0, graph1, root)
+    if report.stale_count:
+        for entry in report.entries:
+            click.echo(
+                f"{entry['id']} -> {entry['reason']} "
+                f"(file: {entry['file']}; last seen in Graph_0: "
+                f"{entry['last_seen_graph0']})"
+            )
+        click.echo(f"Stale entries: {report.stale_count} (report only; nothing deleted).")
     else:
         click.echo("No stale entries to prune.")
+
+
+@main.command("orphan-restore")
+@click.argument("orphan_id")
+@click.pass_context
+def orphan_restore(ctx: click.Context, orphan_id: str) -> None:
+    """Restore archived intent metadata after its exact source node returns."""
+    from codegraph.annotator import load_graph1, restore_orphan, save_graph1
+    from codegraph.extractor import load_graph0
+
+    root = find_project_root()
+    graph0 = load_graph0(root)
+    graph1 = load_graph1(root)
+    restored = restore_orphan(root, orphan_id, graph0, graph1)
+    save_graph1(graph1, root)
+    click.echo(f"Restored archived metadata for {restored.id}.")
 
 
 # ── intent-missing ─────────────────────────────────────────────────────
@@ -593,6 +691,7 @@ def query(ctx: click.Context, expression: tuple, depth: int | None,
         sys.exit(1)
 
     # L-020 — Batch: multiple expressions
+    had_error = False
     for expr in expression:
         try:
             output = run_query(
@@ -605,7 +704,9 @@ def query(ctx: click.Context, expression: tuple, depth: int | None,
                 click.echo("")  # separator between queries
         except ValueError as exc:
             click.echo(f"Error: {exc}", err=True)
-            sys.exit(1)
+            had_error = True
+    if had_error:
+        sys.exit(1)
 
 
 @main.command("explain")

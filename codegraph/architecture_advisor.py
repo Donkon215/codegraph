@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 from codegraph.index import IndexStore
+from codegraph.architecture_graph import ArchitectureGraph
 from codegraph.logging_config import get_logger
 from codegraph.models.graph0 import Graph0
 from codegraph.models.graph1 import Graph1
@@ -415,8 +416,9 @@ def _analyze_node_risks(advice, risk, fan_in_threshold, fan_out_threshold):
 
 def advise_architecture(
     graph0: Graph0,
-    index: IndexStore,
+    index: Optional[IndexStore] = None,
     *,
+    architecture_graph: Optional[ArchitectureGraph] = None,
     project_root: Optional[Path] = None,
     god_module_threshold: int = 30,
     fan_in_threshold: int = 20,
@@ -439,6 +441,14 @@ def advise_architecture(
     - Cross-subsystem hidden coupling
     - Past architecture decisions (when *project_root* is given)
     """
+    if architecture_graph is not None:
+        if project_root is None:
+            raise ValueError("project_root is required when advising an injected architecture graph")
+        graph0 = architecture_graph.structure_graph
+        index = _in_memory_graph_index(project_root, architecture_graph)
+    if index is None:
+        raise ValueError("index is required unless architecture_graph is provided")
+
     advice = ArchAdvice()
     advice.total_nodes = len(graph0.nodes)
     advice.total_files = len(set(n.file for n in graph0.nodes))
@@ -488,7 +498,9 @@ def advise_architecture(
         )
         from codegraph.subsystem_extractor import generate_subsystem_extraction_report
 
-        pattern_report = detect_architecture_patterns(graph0, index)
+        pattern_report = detect_architecture_patterns(
+            graph0, index, architecture_graph=architecture_graph,
+        )
         advice.architecture_type = pattern_report.get("architecture_type", "unknown")
         advice.architecture_confidence = float(pattern_report.get("confidence", 0.0))
         advice.architecture_detection = pattern_report
@@ -598,7 +610,7 @@ def advise_architecture(
                 )
             )
 
-        if project_root is not None:
+        if project_root is not None and architecture_graph is None:
             hidden_coupling_count = len(
                 [smell for smell in advice.smells if smell.smell_type == "hidden_coupling"]
             )
@@ -634,7 +646,34 @@ def advise_architecture(
         advice.grade, f"{advice.score:.0%}",
         len(advice.smells), len(advice.suggestions),
     )
+    if architecture_graph is not None:
+        index.close()
     return advice
+
+
+def _in_memory_graph_index(project_root: Path, graph: ArchitectureGraph) -> IndexStore:
+    """Build a read-only-consumer-compatible IndexStore facade from predicted data."""
+    import sqlite3
+
+    from codegraph.index import (
+        build_callers_index, build_callees_index, build_dependency_hash_index,
+        build_layers_index, build_nodes_index, build_tests_index,
+    )
+
+    graph0 = graph.structure_graph
+    graph1 = graph.intent_graph
+    workflow = graph.workflow_graph
+    conn = sqlite3.connect(":memory:")
+    conn.row_factory = sqlite3.Row
+    build_nodes_index(conn, graph0.nodes, {node.id: node for node in graph1.nodes})
+    build_callers_index(conn, workflow.edges)
+    build_callees_index(conn, workflow.edges)
+    build_layers_index(conn, graph1.nodes)
+    build_tests_index(conn, workflow.edges, graph0.nodes)
+    build_dependency_hash_index(conn, graph0.nodes)
+    index = IndexStore(project_root)
+    index._conn = conn
+    return index
 
 
 # ── Architecture memory enrichment ────────────────────────────────────

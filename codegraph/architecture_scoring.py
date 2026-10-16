@@ -5,11 +5,11 @@ import hashlib
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from codegraph.architecture_graph import ArchitectureGraph
 from codegraph.architecture_drift import compute_architecture_drift
-from codegraph.architecture_health import build_health_report
+from codegraph.architecture_health import compute_architecture_health
 from codegraph.architecture_intent import load_architecture_intent
 from codegraph.architecture_patterns import detect_patterns
 from codegraph.architecture_smells import detect_architecture_smells
@@ -128,17 +128,23 @@ def _load_objective_targets(project_root: Path) -> Dict[str, Any]:
     return _load_json(project_root / ".codegraph" / "architecture" / "architecture_objectives.json", {})
 
 
-def compute_architecture_index(project_root: Path) -> MultiAxisArchitectureScore:
-    graph = ArchitectureGraph.load(project_root)
-    health = build_health_report(project_root)
+def compute_architecture_index(project_root: Path, *,
+                               architecture_graph: Optional[ArchitectureGraph] = None) -> MultiAxisArchitectureScore:
+    graph = architecture_graph or ArchitectureGraph.load(project_root)
+    health = compute_architecture_health(graph)
     smell_index = detect_architecture_smells(graph, project_root)
 
     # Pattern consistency influence
     try:
-        from codegraph.index import IndexStore
+        if architecture_graph is not None:
+            pattern_report = detect_patterns(
+                project_root, graph.structure_graph, None, architecture_graph=graph,
+            )
+        else:
+            from codegraph.index import IndexStore
 
-        with IndexStore(project_root) as index:
-            pattern_report = detect_patterns(project_root, graph.structure_graph, index)
+            with IndexStore(project_root) as index:
+                pattern_report = detect_patterns(project_root, graph.structure_graph, index)
         pattern_consistency = sum(p.consistency for p in pattern_report.patterns) / max(1, len(pattern_report.patterns))
     except Exception:
         pattern_consistency = 0.5
@@ -177,7 +183,10 @@ def compute_architecture_index(project_root: Path) -> MultiAxisArchitectureScore
     ) / 5.0
 
     # Dependency Correctness
-    subsystem_map = _load_subsystem_mapping(project_root)
+    subsystem_map = (_load_subsystem_mapping(project_root) if architecture_graph is None else {
+        _module_of(str(node.get("id", ""))): str(node.get("subsystem", ""))
+        for node in graph.nodes if node.get("subsystem")
+    })
     classified = 0
     cross_subsystem = 0
     inversion_classified = 0

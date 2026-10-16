@@ -102,14 +102,34 @@ def test_double_star_pattern_excludes_everything_below(tmp_path):
     assert found == {"code.py"}
 
 
-def test_negated_pattern_is_dropped_so_the_file_stays_excluded(tmp_path):
-    # Negation is not supported. The exclusion stands rather than being
-    # silently re-included, which is the conservative failure.
+def test_later_negated_pattern_reincludes_a_file(tmp_path):
     _write(tmp_path / "keep.py")
+    _write(tmp_path / "other.py")
     (tmp_path / ".gitignore").write_text("*.py\n!keep.py\n", encoding="utf-8")
 
-    assert load_gitignore_patterns(tmp_path) == ["*.py"]
+    assert load_gitignore_patterns(tmp_path) == ["*.py", "!keep.py"]
+    assert _names(discover_source_files(tmp_path), tmp_path) == {"keep.py"}
+
+
+def test_negation_cannot_reinclude_file_under_ignored_directory(tmp_path):
+    _write(tmp_path / "ignored" / "keep.py")
+    (tmp_path / ".gitignore").write_text(
+        "ignored/\n!ignored/keep.py\n", encoding="utf-8"
+    )
+
     assert discover_source_files(tmp_path) == []
+
+
+def test_directory_must_be_reincluded_before_its_file(tmp_path):
+    _write(tmp_path / "ignored" / "keep.py")
+    _write(tmp_path / "ignored" / "other.py")
+    (tmp_path / ".gitignore").write_text(
+        "ignored/\n!ignored/\n!ignored/keep.py\n", encoding="utf-8"
+    )
+
+    assert _names(discover_source_files(tmp_path), tmp_path) == {
+        "ignored/keep.py", "ignored/other.py"
+    }
 
 
 def test_comments_and_blank_lines_are_ignored(tmp_path):

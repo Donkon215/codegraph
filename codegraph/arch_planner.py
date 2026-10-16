@@ -144,6 +144,8 @@ class ArchPlan:
     missing_connections: List[Dict[str, str]] = field(default_factory=list)
     constraint_violations: List[Dict[str, Any]] = field(default_factory=list)
     tasks: List[PlannedTask] = field(default_factory=list)
+    proposal_feedback: Dict[str, Any] = field(default_factory=dict)
+    feedback_adjustments: int = 0
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -155,6 +157,8 @@ class ArchPlan:
             "constraint_violations": self.constraint_violations,
             "tasks": [t.to_dict() for t in self.tasks],
             "task_count": len(self.tasks),
+            "proposal_feedback": self.proposal_feedback,
+            "feedback_adjustments": self.feedback_adjustments,
         }
 
     def format(self) -> str:
@@ -291,6 +295,7 @@ def plan_architecture(
             ))
 
     # Sort tasks by priority
+    _apply_proposal_feedback(plan, index)
     plan.tasks.sort(key=lambda t: t.priority)
 
     logger.info(
@@ -299,6 +304,34 @@ def plan_architecture(
         plan.coverage.overall_coverage * 100,
     )
     return plan
+
+
+def _apply_proposal_feedback(plan: ArchPlan, index: IndexStore) -> None:
+    """Adjust task priority when recorded proof outcomes show task-type risk."""
+    project_root = getattr(index, "_root", None)
+    if not isinstance(project_root, Path):
+        return
+    try:
+        from codegraph.architecture_memory import proposal_feedback
+
+        feedback = proposal_feedback(project_root)
+    except (OSError, ValueError, KeyError, TypeError):
+        logger.warning("Could not load architecture proposal feedback", exc_info=True)
+        return
+    plan.proposal_feedback = feedback
+    for task in plan.tasks:
+        counts = feedback["by_task_type"].get(task.task_type)
+        if not counts or counts["proposals"] < 2:
+            continue
+        total = counts["proposals"]
+        adverse_rate = (counts["rejected"] + counts["review"]) / total
+        violation_rate = counts["with_violations"] / total
+        if adverse_rate >= 0.5 or violation_rate >= 0.5:
+            task.priority = min(10, task.priority + 1)
+            plan.feedback_adjustments += 1
+        elif counts["accepted"] == total and counts["with_violations"] == 0 and total >= 3:
+            task.priority = max(1, task.priority - 1)
+            plan.feedback_adjustments += 1
 
 
 def _module_exists(module_path: str, existing_files: Set[str]) -> bool:

@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import csv
 import fnmatch
+import hashlib
 import io
 import json
 import re
@@ -76,6 +77,7 @@ def initialize_graph1(
             ex = existing.get_node(node.id)
             if ex is not None:
                 ex.layer = layer_assignments.get(node.id, ex.layer)
+                ex.last_seen_graph0 = graph0.extracted_at
         else:
             existing.upsert_node(
                 Graph1Node(
@@ -83,6 +85,7 @@ def initialize_graph1(
                     intent="",
                     layer=layer_assignments.get(node.id, 3),
                     intent_version=0,
+                    last_seen_graph0=graph0.extracted_at,
                 )
             )
 
@@ -296,29 +299,226 @@ def detect_stale_intents(graph0: Graph0, graph1: Graph1) -> list[str]:
 
 @dataclass
 class PruneReport:
+    entries: list[dict[str, str]] = field(default_factory=list)
+
+    @property
+    def stale_count(self) -> int:
+        return len(self.entries)
+
+    # Compatibility with callers of the old destructive API.
+    @property
+    def removed_count(self) -> int:
+        return 0
+
+    @property
+    def removed_ids(self) -> list[str]:
+        return []
+
+
+def orphan_store_path(project_root: Path) -> Path:
+    """Return the durable archive path for Graph_1 nodes removed from source."""
+    return resolve_path(project_root, GRAPHS_DIR, "graph1_orphans.json")
+
+
+def _load_orphan_records(project_root: Path) -> list[dict[str, Any]]:
+    path = orphan_store_path(project_root)
+    if not path.exists():
+        return []
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict) or not isinstance(data.get("records"), list):
+        raise ValueError(f"Invalid Graph_1 orphan archive: {path}")
+    if any(not isinstance(record, dict) for record in data["records"]):
+        raise ValueError(f"Invalid Graph_1 orphan record in {path}")
+    return data["records"]
+
+
+def list_orphans(project_root: Path) -> list[dict[str, Any]]:
+    """Return archived Graph_1 records without modifying the archive."""
+    return _load_orphan_records(project_root)
+
+
+def restore_orphan(
+    project_root: Path,
+    orphan_id: str,
+    graph0: Graph0,
+    graph1: Graph1,
+) -> Graph1Node:
+    """Restore one archived annotation only after its exact source node returns."""
+    for record in _load_orphan_records(project_root):
+        if record.get("orphan_id") != orphan_id:
+            continue
+        node_data = record.get("node")
+        if not isinstance(node_data, dict) or not node_data.get("id"):
+            raise ValueError(f"Invalid orphan record: {orphan_id}")
+        node_id = str(node_data["id"])
+        if not graph0.has_node(node_id):
+            raise ValueError(
+                f"Cannot restore {node_id}: that exact node is not present in Graph_0"
+            )
+        if graph1.has_node(node_id):
+            raise IntentConflictError(node_id)
+        restored = Graph1Node.from_dict(node_data)
+        graph1.upsert_node(restored)
+        return restored
+    raise ValueError(f"Unknown Graph_1 orphan id: {orphan_id}")
+
+
+def _save_orphan_records(project_root: Path, records: list[dict[str, Any]]) -> None:
+    atomic_write(orphan_store_path(project_root), {
+        "format_version": 1,
+        "records": records,
+    })
+
+
+def _node_file(node_id: str) -> str:
+    return node_id.split("::", 1)[0].replace("\\", "/")
+
+
+def _stale_reason(
+    node_id: str,
+    graph0: Graph0,
+    previous_graph0: Graph0 | None,
+    project_root: Path | None,
+    last_seen_graph0: str = "",
+) -> tuple[str, str]:
+    rel = _node_file(node_id)
+    current_files = set(graph0.source_files)
+    was_valid = previous_graph0 is not None and previous_graph0.has_node(node_id)
+    was_valid = was_valid or bool(last_seen_graph0)
+    if project_root is None:
+        if was_valid:
+            return "deleted_from_source", rel
+        return "unknown", rel
+
+    root = project_root.resolve()
+    file_path = (root / Path(rel)).resolve()
+    try:
+        file_path.relative_to(root)
+    except ValueError:
+        return "unknown", rel
+    exists = file_path.is_file()
+    if not exists:
+        return ("deleted_from_source" if was_valid else "unknown"), rel
+    if rel in current_files:
+        return ("deleted_from_source" if was_valid else "never_valid"), rel
+
+    from codegraph.utils.file_discovery import IgnoreRules, load_gitignore_patterns
+
+    if IgnoreRules(load_gitignore_patterns(project_root)).is_ignored(rel, is_dir=False):
+        return "excluded_by_discovery", rel
+    return "excluded_by_discovery", rel
+
+
+@dataclass
+class ReconcileReport:
     removed_count: int = 0
     removed_ids: list[str] = field(default_factory=list)
+    archived_count: int = 0
 
 
-def prune_graph1(graph0: Graph0, graph1: Graph1) -> PruneReport:
-    """Remove Graph_1 entries whose IDs no longer exist in *graph0*."""
+def reconcile_graph1(
+    graph0: Graph0,
+    graph1: Graph1,
+    project_root: Path,
+    previous_graph0: Graph0 | None = None,
+) -> ReconcileReport:
+    """Archive and remove stale Graph_1 nodes before saving a full build/delta.
+
+    The archive is validated and persisted before the in-memory overlay is
+    changed, so archive failures leave the original Graph_1 intact.
+    """
     g0_ids = frozenset(n.id for n in graph0.nodes)
     stale_ids = graph1.get_stale_nodes(g0_ids)
-    report = PruneReport()
+    report = ReconcileReport()
 
     if not stale_ids:
         return report
 
-    if not graph0.nodes:
-        logger.warning("Graph_0 is empty — pruning all Graph_1 entries")
+    if not graph0.nodes and previous_graph0 is not None and previous_graph0.nodes:
+        logger.warning(
+            "New Graph_0 is empty; preserving %d stale Graph_1 entries for review",
+            len(stale_ids),
+        )
+        return report
+
+    records = _load_orphan_records(project_root)
+    known = {record.get("orphan_id") for record in records}
+    additions: list[dict[str, Any]] = []
+    for node_id in stale_ids:
+        node = graph1.get_node(node_id)
+        if node is None:
+            continue
+        reason, original_path = _stale_reason(
+            node_id, graph0, previous_graph0, project_root,
+            node.last_seen_graph0,
+        )
+        last_seen = node.last_seen_graph0
+        if not last_seen and previous_graph0 is not None and previous_graph0.has_node(node_id):
+            last_seen = previous_graph0.extracted_at
+        last_seen = last_seen or "unknown"
+        identity = f"{node.id}\0{node.intent_version}\0{node.intent_timestamp}"
+        orphan_id = hashlib.sha256(identity.encode("utf-8")).hexdigest()[:16]
+        if orphan_id in known:
+            continue
+        additions.append({
+            "orphan_id": orphan_id,
+            "node": node.to_dict(),
+            "original_path": original_path,
+            "reason": reason,
+            "detected_at": iso_now(),
+            "last_seen_graph0": last_seen,
+            "status": "unresolved",
+        })
+        known.add(orphan_id)
+
+    if additions:
+        # Validate and save before removing any source overlay entries.
+        _save_orphan_records(project_root, records + additions)
+    report.archived_count = len(additions)
 
     for nid in stale_ids:
         graph1.remove_intent_node(nid)
         report.removed_ids.append(nid)
-        logger.warning("Pruned stale Graph_1 node: %s", nid)
         report.removed_count += 1
 
     return report
+
+
+def prune_graph1(
+    graph0: Graph0,
+    graph1: Graph1,
+    project_root: Path | None = None,
+) -> PruneReport:
+    """Report stale Graph_1/archive entries without deleting or rewriting data."""
+    g0_ids = frozenset(n.id for n in graph0.nodes)
+    entries: dict[str, dict[str, str]] = {}
+    for node in graph1.nodes:
+        if node.id in g0_ids:
+            continue
+        reason, path = _stale_reason(
+            node.id, graph0, None, project_root, node.last_seen_graph0,
+        )
+        entries[node.id] = {
+            "id": node.id,
+            "file": path,
+            "reason": reason,
+            "last_seen_graph0": node.last_seen_graph0 or "unknown",
+        }
+
+    if project_root is not None:
+        for record in _load_orphan_records(project_root):
+            if record.get("status", "unresolved") != "unresolved":
+                continue
+            node = record.get("node", {})
+            node_id = str(node.get("id", ""))
+            if node_id and node_id not in g0_ids and node_id not in entries:
+                entries[node_id] = {
+                    "id": node_id,
+                    "file": str(record.get("original_path", _node_file(node_id))),
+                    "reason": str(record.get("reason", "unknown")),
+                    "last_seen_graph0": str(record.get("last_seen_graph0", "unknown")),
+                }
+    return PruneReport(entries=[entries[key] for key in sorted(entries)])
 
 
 # ── E-008  Missing Intent Reporter ─────────────────────────────────────
@@ -402,6 +602,7 @@ def merge_graph1(
             ex = existing_graph1.get_node(node.id)
             if ex is not None:
                 ex.layer = layers.get(node.id, ex.layer)
+                ex.last_seen_graph0 = new_graph0.extracted_at
         else:
             existing_graph1.upsert_node(
                 Graph1Node(
@@ -409,6 +610,7 @@ def merge_graph1(
                     intent="",
                     layer=layers.get(node.id, 3),
                     intent_version=0,
+                    last_seen_graph0=new_graph0.extracted_at,
                 )
             )
 

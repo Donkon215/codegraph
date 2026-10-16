@@ -961,7 +961,7 @@ def _delta_update_graphs(project_root, changed, updates, graph0, new_graph0, res
         initialize_graph1,
         load_graph1,
         merge_graph1,
-        prune_graph1,
+        reconcile_graph1,
     )
 
     workflow = load_workflow(project_root)
@@ -1028,13 +1028,14 @@ def _delta_update_graphs(project_root, changed, updates, graph0, new_graph0, res
     else:
         graph1 = initialize_graph1(new_graph0, layers)
 
-    # Drop Graph_1 nodes deleted in this delta so graph1.json stays in lock-step
-    # with graph0 (and the SQLite index); otherwise consistency checks still see
-    # stale layers for removed files (Issue #10).
-    prune_graph1(new_graph0, graph1)
-
+    # Rename migrations must run before stale reconciliation so annotations
+    # follow a known rename instead of being archived as a deleted node.
     if changed.renamed:
         _migrate_renames(changed.renamed, graph1)
+
+    # Archive stale metadata before removing its structural overlay node, then
+    # keep Graph_1 and the layers index aligned with Graph_0 (#58/#59).
+    reconcile_graph1(new_graph0, graph1, project_root, graph0)
 
     stale = flag_stale_intents(updates.logic_changes, graph1)
     result.stale_intents = stale

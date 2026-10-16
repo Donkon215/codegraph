@@ -7,6 +7,7 @@ Action handlers extracted to codegraph.apply_handlers.
 from __future__ import annotations
 
 import ast
+import hashlib
 import json
 import os
 import shutil
@@ -15,6 +16,13 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
+from codegraph.apply_handlers import (
+    ActionResult,
+    handle_add_import,
+    handle_connect_call,
+    handle_flag_for_review,
+    handle_remove_dead_code,
+)
 from codegraph.constants import CODEGRAPH_DIR
 from codegraph.exceptions import CodegraphError, VersionMismatchError
 from codegraph.logging_config import get_logger
@@ -29,13 +37,6 @@ from codegraph.models.workflow import Workflow
 from codegraph.services import GraphStore, IndexService
 from codegraph.storage import resolve_path
 from codegraph.utils.formatting import iso_now
-from codegraph.apply_handlers import (
-    ActionResult,
-    handle_connect_call,
-    handle_add_import,
-    handle_remove_dead_code,
-    handle_flag_for_review,
-)
 
 logger = get_logger("apply")
 
@@ -105,28 +106,33 @@ def _lock_path(project_root: Path) -> Path:
 
 def _acquire_lock(project_root: Path) -> None:
     lp = _lock_path(project_root)
+    lp.parent.mkdir(parents=True, exist_ok=True)
     if lp.exists():
         try:
             info = json.loads(lp.read_text(encoding="utf-8"))
             pid = info.get("pid", 0)
-            # Stale lock detection
-            try:
-                os.kill(pid, 0)
-                raise CodegraphError(
-                    f"Another apply is running (PID {pid}, started {info.get('started', '?')}). "
-                    f"Delete {lp} if the process is dead."
-                )
-            except OSError:
-                logger.warning("Removing stale lock (PID %d no longer running)", pid)
-                lp.unlink(missing_ok=True)
-        except json.JSONDecodeError:
-            lp.unlink(missing_ok=True)
+            raise CodegraphError(
+                f"An apply lock exists (PID {pid}, started {info.get('started', '?')}). "
+                f"Delete {lp} only after confirming that process is no longer running."
+            )
+        except (json.JSONDecodeError, OSError, AttributeError, TypeError):
+            raise CodegraphError(
+                f"Apply lock at {lp} is unreadable; inspect it before retrying."
+            )
 
-    lp.parent.mkdir(parents=True, exist_ok=True)
-    lp.write_text(
-        json.dumps({"pid": os.getpid(), "started": iso_now()}),
-        encoding="utf-8",
-    )
+    payload = json.dumps({"pid": os.getpid(), "started": iso_now()}).encode("utf-8")
+    try:
+        fd = os.open(lp, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+    except FileExistsError as exc:
+        raise CodegraphError(f"Another apply acquired the lock at {lp}.") from exc
+    try:
+        with os.fdopen(fd, "wb") as lock_file:
+            lock_file.write(payload)
+            lock_file.flush()
+            os.fsync(lock_file.fileno())
+    except BaseException:
+        lp.unlink(missing_ok=True)
+        raise
 
 
 def _release_lock(project_root: Path) -> None:
@@ -149,7 +155,12 @@ def _create_backups(files: Set[Path], project_root: Path) -> Dict[Path, Path]:
     mapping: Dict[Path, Path] = {}
     for f in files:
         if f.exists():
-            backup = bd / f.name
+            try:
+                relative = f.resolve().relative_to(project_root.resolve()).as_posix()
+            except ValueError as exc:
+                raise CodegraphError(f"Refusing to back up a file outside the project: {f}") from exc
+            digest = hashlib.sha256(relative.encode("utf-8")).hexdigest()[:16]
+            backup = bd / f"{digest}-{f.name}"
             shutil.copy2(f, backup)
             mapping[f] = backup
     return mapping
@@ -179,14 +190,23 @@ def _save_undo(
 ) -> None:
     undo_dir = resolve_path(project_root, "undo")
     undo_dir.mkdir(parents=True, exist_ok=True)
+    root = project_root.resolve()
+    undo_files: Dict[str, str] = {}
+    for original, backup in backups.items():
+        try:
+            relative = original.resolve().relative_to(root).as_posix()
+        except (ValueError, OSError) as exc:
+            raise CodegraphError(f"Refusing to save undo data outside the project: {original}") from exc
+        undo_files[relative] = backup.name
     undo_info = {
         "timestamp": iso_now(),
-        "files": {str(k): str(v) for k, v in backups.items()},
+        "files": undo_files,
         "actions": len(result.actions),
     }
-    (undo_dir / "last_apply.json").write_text(
-        json.dumps(undo_info, indent=2), encoding="utf-8",
-    )
+    info_path = undo_dir / "last_apply.json"
+    temp_path = undo_dir / f".last_apply.{os.getpid()}.tmp"
+    temp_path.write_text(json.dumps(undo_info, indent=2), encoding="utf-8")
+    os.replace(temp_path, info_path)
     # Copy backups to undo dir
     for orig, bak in backups.items():
         if bak.exists():
@@ -202,15 +222,42 @@ def undo_last_apply(project_root: Path) -> bool:
         logger.warning("No undo information found")
         return False
 
-    info = json.loads(info_path.read_text(encoding="utf-8"))
-    for orig_str, _bak_str in info.get("files", {}).items():
-        orig = Path(orig_str)
-        bak = undo_dir / Path(_bak_str).name
-        if bak.exists():
-            shutil.copy2(bak, orig)
-            logger.info("Restored %s", orig)
+    try:
+        info = json.loads(info_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError, UnicodeDecodeError):
+        logger.warning("Corrupt undo metadata at %s; refusing to restore", info_path)
+        return False
+    if not isinstance(info, dict) or not isinstance(info.get("files"), dict):
+        logger.warning("Invalid undo metadata at %s; refusing to restore", info_path)
+        return False
 
-    # Cleanup
+    root = project_root.resolve()
+    undo_root = undo_dir.resolve()
+    restored = 0
+    for orig_str, backup_name in info["files"].items():
+        if not isinstance(orig_str, str) or not isinstance(backup_name, str):
+            logger.warning("Skipping invalid undo record in %s", info_path)
+            continue
+        raw_target = Path(orig_str)
+        orig = (raw_target if raw_target.is_absolute() else root / raw_target).resolve()
+        if not orig.is_relative_to(root):
+            logger.warning("Skipping undo target outside project root: %s", orig_str)
+            continue
+        bak = (undo_root / Path(backup_name).name).resolve()
+        if not bak.is_relative_to(undo_root) or not bak.is_file():
+            logger.warning("Skipping missing or invalid undo backup: %s", backup_name)
+            continue
+        try:
+            orig.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(bak, orig)
+            restored += 1
+            logger.info("Restored %s", orig)
+        except OSError as exc:
+            logger.warning("Failed to restore %s: %s", orig, exc)
+
+    if restored == 0:
+        logger.warning("No undo targets were restored; keeping undo metadata")
+        return False
     info_path.unlink(missing_ok=True)
     return True
 
@@ -466,30 +513,33 @@ def _prepare_apply(
     skip_plan_check: bool = False,
 ) -> Tuple[Set[Path], Dict[Path, Path]]:
     """Validate version, acquire lock, collect files, check conflicts, create backups."""
-
     if not dry_run:
         _acquire_lock(project_root)
+    try:
+        files_to_modify: Set[Path] = set()
+        for repair in response.repairs:
+            action_type = RepairActionType(repair.action)
+            if action_type.modifies_code():
+                g0_node = graph0.get_node(repair.node)
+                if g0_node:
+                    files_to_modify.add(project_root / g0_node.file)
 
-    files_to_modify: Set[Path] = set()
-    for repair in response.repairs:
-        action_type = RepairActionType(repair.action)
-        if action_type.modifies_code():
-            g0_node = graph0.get_node(repair.node)
-            if g0_node:
-                files_to_modify.add(project_root / g0_node.file)
+        if not dry_run and files_to_modify:
+            conflicts = _check_conflicts(files_to_modify, project_root)
+            if conflicts:
+                logger.warning(
+                    "Uncommitted changes in: %s", ", ".join(conflicts),
+                )
 
-    if not dry_run and files_to_modify:
-        conflicts = _check_conflicts(files_to_modify, project_root)
-        if conflicts:
-            logger.warning(
-                "Uncommitted changes in: %s", ", ".join(conflicts),
-            )
+        backups: Dict[Path, Path] = {}
+        if not dry_run and files_to_modify:
+            backups = _create_backups(files_to_modify, project_root)
 
-    backups: Dict[Path, Path] = {}
-    if not dry_run and files_to_modify:
-        backups = _create_backups(files_to_modify, project_root)
-
-    return files_to_modify, backups
+        return files_to_modify, backups
+    except BaseException:
+        if not dry_run:
+            _release_lock(project_root)
+        raise
 
 
 def _dispatch_repairs(

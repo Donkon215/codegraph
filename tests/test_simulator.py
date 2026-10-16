@@ -119,6 +119,58 @@ class TestSimulateChanges:
         assert not result.safe
         assert any(v.violation_type == "forbidden_path" for v in result.violations)
 
+    def test_system_forbidden_constraint_supplies_direct_patterns(self, tmp_path):
+        import json
+
+        system = tmp_path / "system.json"
+        system.write_text(json.dumps({
+            "subsystems": [
+                {"name": "frontend", "components": [{"name": "ui", "module": "src/ui.py"}]},
+                {"name": "database", "components": [{"name": "db", "module": "src/db.py"}]},
+            ],
+            "constraints": [{"type": "forbidden", "source": "frontend", "target": "database"}],
+        }), encoding="utf-8")
+        index = _make_index([])
+
+        result = simulate_changes(
+            [SimulatedChange(action="add_edge", source="src/ui.py::render",
+                             target="src/db.py::query")],
+            index,
+            check_cycles=False,
+            check_layers=False,
+            check_subsystems=False,
+            system_json_path=system,
+        )
+
+        assert not result.safe
+        assert any(v.violation_type == "forbidden_path" for v in result.violations)
+
+    def test_system_forbidden_constraint_supplies_transitive_patterns(self, tmp_path):
+        import json
+
+        system = tmp_path / "system.json"
+        system.write_text(json.dumps({
+            "subsystems": [
+                {"name": "frontend", "components": [{"name": "ui", "module": "src/ui.py"}]},
+                {"name": "database", "components": [{"name": "db", "module": "src/db.py"}]},
+            ],
+            "constraints": [{"type": "forbidden", "source": "frontend", "target": "database"}],
+        }), encoding="utf-8")
+        index = _make_index([("src/ui.py::render", "src/service.py::load")])
+
+        result = simulate_changes(
+            [SimulatedChange(action="add_edge", source="src/service.py::load",
+                             target="src/db.py::query")],
+            index,
+            check_cycles=False,
+            check_layers=False,
+            check_subsystems=False,
+            system_json_path=system,
+        )
+
+        assert not result.safe
+        assert any(v.violation_type == "transitive_forbidden" for v in result.violations)
+
 
 class TestSimulateAgentResponse:
     def test_empty_response(self):

@@ -1,0 +1,29 @@
+name: Scaling benchmarks
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * 1"
+
+jobs:
+  synthetic-index-scaling:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Measure 1k, 10k, and 100k node indexes
+        run: python benchmarks/index_benchmark.py --report benchmark-report.json
+
+      - name: Upload benchmark report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scaling-benchmarks-${{ github.run_number }}
+          path: benchmark-report.json
+          if-no-files-found: error

@@ -30,6 +30,7 @@ DECISIONS_FILE = "decisions.json"
 SIMULATIONS_FILE = "simulations.json"
 ADVICE_FILE = "advice.json"
 PATTERNS_FILE = "patterns.json"
+PROPOSAL_OUTCOMES_FILE = "proposal_outcomes.json"
 
 
 # ── Data structures ───────────────────────────────────────────────────
@@ -154,6 +155,36 @@ class AdviceRecord:
             suggestion_count=d.get("suggestion_count", 0),
             timestamp=d.get("timestamp", ""),
             top_smells=d.get("top_smells", []),
+        )
+
+
+@dataclass
+class ProposalOutcomeRecord:
+    """Measured result of an architecture proposal proof gate."""
+
+    proposal_id: str
+    outcome: str  # accepted, rejected, review, untested
+    violation_count: int = 0
+    task_types: List[str] = field(default_factory=list)
+    timestamp: str = ""
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "proposal_id": self.proposal_id,
+            "outcome": self.outcome,
+            "violation_count": self.violation_count,
+            "task_types": sorted(set(self.task_types)),
+            "timestamp": self.timestamp,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "ProposalOutcomeRecord":
+        return cls(
+            proposal_id=data["proposal_id"],
+            outcome=data.get("outcome", "untested"),
+            violation_count=int(data.get("violation_count", 0)),
+            task_types=list(data.get("task_types", [])),
+            timestamp=data.get("timestamp", ""),
         )
 
 
@@ -503,6 +534,70 @@ def load_simulations(project_root: Path) -> List[Dict[str, Any]]:
     """Load recorded simulation results (as dicts, newest last)."""
     path = project_root / ".codegraph" / MEMORY_DIR / SIMULATIONS_FILE
     return _load_json_list(path, "simulations")
+
+
+def record_proposal_outcome(
+    project_root: Path,
+    proposal_id: str,
+    outcome: str,
+    violation_count: int,
+    task_types: List[str],
+) -> ProposalOutcomeRecord:
+    """Persist a proof-gate result for later quality metrics and planner feedback."""
+    allowed = {"accepted", "rejected", "review", "untested"}
+    if outcome not in allowed:
+        raise ValueError(f"Invalid proposal outcome {outcome!r}; expected one of {sorted(allowed)}")
+    path = project_root / ".codegraph" / MEMORY_DIR / PROPOSAL_OUTCOMES_FILE
+    records = [
+        ProposalOutcomeRecord.from_dict(item)
+        for item in _load_json_list(path, "proposals")
+    ]
+    record = ProposalOutcomeRecord(
+        proposal_id=proposal_id,
+        outcome=outcome,
+        violation_count=max(0, int(violation_count)),
+        task_types=task_types,
+        timestamp=datetime.now(timezone.utc).isoformat(),
+    )
+    # Re-running the same proposal updates its measurement instead of inflating
+    # rates with duplicate executions.
+    records = [item for item in records if item.proposal_id != proposal_id]
+    records.append(record)
+    _save_json_list(path, "proposals", [item.to_dict() for item in records])
+    return record
+
+
+def load_proposal_outcomes(project_root: Path) -> List[ProposalOutcomeRecord]:
+    path = project_root / ".codegraph" / MEMORY_DIR / PROPOSAL_OUTCOMES_FILE
+    return [ProposalOutcomeRecord.from_dict(item)
+            for item in _load_json_list(path, "proposals")]
+
+
+def proposal_feedback(project_root: Path) -> Dict[str, Any]:
+    """Return overall proposal quality and per-task-type feedback metrics."""
+    records = [record for record in load_proposal_outcomes(project_root)
+               if record.outcome != "untested"]
+    total = len(records)
+    by_task: Dict[str, Dict[str, int]] = {}
+    for record in records:
+        for task_type in record.task_types:
+            counts = by_task.setdefault(task_type, {
+                "proposals": 0, "accepted": 0, "rejected": 0,
+                "review": 0, "with_violations": 0,
+            })
+            counts["proposals"] += 1
+            counts[record.outcome] += 1
+            if record.violation_count > 0:
+                counts["with_violations"] += 1
+    return {
+        "proposals": total,
+        "accepted": sum(record.outcome == "accepted" for record in records),
+        "rejected": sum(record.outcome == "rejected" for record in records),
+        "with_violations": sum(record.violation_count > 0 for record in records),
+        "acceptance_rate": (sum(record.outcome == "accepted" for record in records) / total) if total else 0.0,
+        "violation_rate": (sum(record.violation_count > 0 for record in records) / total) if total else 0.0,
+        "by_task_type": by_task,
+    }
 
 
 def get_experiment_success_rate(project_root: Path) -> float:

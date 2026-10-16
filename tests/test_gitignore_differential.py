@@ -1,10 +1,11 @@
-"""Differential test: IgnoreRules against ``git check-ignore`` (issue #54 / #56).
+"""Differential test: IgnoreRules against ``git check-ignore`` (issues #54/#56).
 
 ``git check-ignore`` is the reference implementation. For a curated set of
 patterns and paths, the project's matcher must agree with git on every path.
 
-The path list is curated, not generated. It covers the awkward cases on purpose
-and deliberately omits negation (``!``), which is not supported until #56.
+The path list is curated, not generated. It covers awkward matching cases on
+purpose, including ordered negation and re-inclusion of a previously ignored
+directory.
 
 Two known divergences from git are pinned as documented behaviour rather than
 left to fail:
@@ -167,3 +168,46 @@ def test_documented_divergence_matching_is_case_sensitive():
 
     assert rules.is_ignored("cache", is_dir=False) is False
     assert rules.is_ignored("Cache", is_dir=False) is True
+
+
+@pytest.mark.skipif(GIT is None, reason="git is not installed; reference unavailable")
+def test_negation_and_ignored_parent_rules_agree_with_git(tmp_path):
+    patterns = [
+        "*.py",
+        "!src/keep.py",
+        "blocked/",
+        "!blocked/keep.py",
+        "reopened/",
+        "!reopened/",
+        "!reopened/keep.py",
+    ]
+    paths = [
+        ("src", True),
+        ("src/keep.py", False),
+        ("src/other.py", False),
+        ("blocked", True),
+        ("blocked/keep.py", False),
+        ("reopened", True),
+        ("reopened/keep.py", False),
+        ("plain.py", False),
+    ]
+    _build_fixture(tmp_path, patterns)
+    # _build_fixture covers PATTERNS' paths; add the paths specific to this case.
+    for rel, is_dir in paths:
+        target = tmp_path / rel
+        if is_dir:
+            target.mkdir(parents=True, exist_ok=True)
+        else:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text("x\n", encoding="utf-8")
+    _git_init(tmp_path)
+    rules = IgnoreRules(load_gitignore_patterns(tmp_path))
+
+    mismatches = []
+    for rel, is_dir in paths:
+        ours = rules.is_ignored(rel, is_dir=is_dir)
+        theirs = _git_ignored(tmp_path, rel)
+        if ours != theirs:
+            mismatches.append(f"{rel}: matcher={ours} git={theirs}")
+
+    assert not mismatches, "matcher disagrees with git:\n" + "\n".join(mismatches)

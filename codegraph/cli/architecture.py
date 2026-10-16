@@ -24,6 +24,23 @@ def _resolve_root(ctx: click.Context) -> Path:
         sys.exit(EXIT_ERROR)
 
 
+def _canonical_change_simulation_plan(payload: object) -> list[dict[str, str]]:
+    """Translate edge-only canonical changes to the simulator's plan input."""
+    from codegraph.architecture_change import ArchitectureChange, OpType
+
+    if not isinstance(payload, dict):
+        raise ValueError("canonical change must be a JSON object")
+    change = ArchitectureChange.from_dict(payload)
+    change.validate()
+    plan: list[dict[str, str]] = []
+    for operation in change.operations:
+        if operation.op not in (OpType.ADD_EDGE, OpType.REMOVE_EDGE):
+            continue
+        plan.append({"change": "add_edge" if operation.op == OpType.ADD_EDGE else "remove_edge",
+                     "node": operation.source, "target": operation.target})
+    return plan
+
+
 # ── Architecture Advisor ──────────────────────────────────────────────
 @click.command("architect")
 @click.option("--json", "json_output", is_flag=True,
@@ -153,10 +170,12 @@ def architecture_cmd(ctx: click.Context, do_init: bool, do_validate: bool,
               help="Save generated tasks to a file.")
 @click.option("--agent-response", "agent_response", is_flag=True,
               help="Output as agent_response.json format.")
+@click.option("--change", "canonical_change", is_flag=True,
+              help="Output as canonical ArchitectureChange JSON.")
 @click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
 @click.pass_context
 def arch_plan_cmd(ctx: click.Context, output_file: str | None,
-                  agent_response: bool, json_output: bool) -> None:
+                  agent_response: bool, canonical_change: bool, json_output: bool) -> None:
     """Generate tasks from architecture definition."""
     import json as _json
 
@@ -188,6 +207,17 @@ def arch_plan_cmd(ctx: click.Context, output_file: str | None,
         if output_file:
             Path(output_file).write_text(output, encoding="utf-8")
             click.echo(f"Agent response written to {output_file}")
+        else:
+            click.echo(output)
+        return
+
+    if canonical_change:
+        from codegraph.architecture_change_adapters import from_arch_plan
+
+        output = from_arch_plan(plan).to_json()
+        if output_file:
+            Path(output_file).write_text(output, encoding="utf-8")
+            click.echo(f"ArchitectureChange written to {output_file}")
         else:
             click.echo(output)
         return
@@ -276,10 +306,15 @@ def arch_health_cmd(ctx: click.Context, save: bool, json_output: bool) -> None:
 @click.option("--apply", "do_apply", is_flag=True,
               help="Apply plan to architecture (modify system.json).")
 @click.option("--save", is_flag=True, help="Save plan to disk.")
+@click.option("--change", "canonical_change", is_flag=True,
+              help="Emit a canonical ArchitectureChange plan.")
+@click.option("--output", "output_file", default=None,
+              help="Write the plan JSON to this file.")
 @click.option("--json", "json_output", is_flag=True, help="JSON output.")
 @click.pass_context
 def compile_cmd(ctx: click.Context, intent: str, do_apply: bool,
-                save: bool, json_output: bool) -> None:
+                save: bool, canonical_change: bool, output_file: str | None,
+                json_output: bool) -> None:
     """Compile an architecture intent into a concrete plan."""
     import json as _json
     from codegraph.arch_schema import SystemArchitecture
@@ -300,6 +335,19 @@ def compile_cmd(ctx: click.Context, intent: str, do_apply: bool,
         sys.exit(EXIT_ERROR)
 
     plan = compile_intent(intent, arch)
+    if canonical_change:
+        if do_apply:
+            click.echo("--change cannot be combined with --apply.", err=True)
+            sys.exit(EXIT_ERROR)
+        from codegraph.architecture_change_adapters import from_compiled_plan
+
+        change_json = from_compiled_plan(plan).to_json()
+        if output_file:
+            Path(output_file).write_text(change_json, encoding="utf-8")
+            click.echo(f"ArchitectureChange written to {output_file}")
+        else:
+            click.echo(change_json)
+        return
     if json_output:
         click.echo(_json.dumps(plan.to_dict(), indent=2))
     else:
@@ -519,16 +567,38 @@ def arch_search_cmd(ctx: click.Context, max_candidates: int,
 @click.option("--json", "json_output", is_flag=True, help="JSON output.")
 @click.option("--save", is_flag=True,
               help="Save simulation result.")
+@click.option("--proof", "record_proof", is_flag=True,
+              help="Run the architecture proof gate and record its proof artifact (plan mode).")
+@click.option("--revise-rejected", is_flag=True,
+              help="Use per-change simulation feedback to remove individually rejected changes; review the returned revised_plan before implementation.")
+@click.option("--save-prediction", is_flag=True,
+              help="Save the isolated predicted graph as .codegraph/predicted_graph.json.")
 @click.pass_context
 def arch_simulate_cmd(ctx: click.Context, subsystem_name: str, deps: tuple,
-                      plan_path: str | None, json_output: bool, save: bool) -> None:
+                      plan_path: str | None, json_output: bool, save: bool,
+                      record_proof: bool, revise_rejected: bool,
+                      save_prediction: bool) -> None:
     """Simulate adding a subsystem and predict impact, or simulate a --plan."""
     import json as _json
     from codegraph.arch_schema import SystemArchitecture
     from codegraph.architecture_simulator import simulate_changes, simulate_subsystem_addition
 
+    # Preserve the historical subsystem-name form while accepting the natural
+    # `arch-simulate plan.json` spelling for JSON plan files.
+    if plan_path is None and subsystem_name and Path(subsystem_name).suffix.lower() == ".json":
+        plan_path, subsystem_name = subsystem_name, None
+
     if bool(subsystem_name) == bool(plan_path):
         click.echo("Give either a subsystem name or --plan, not both or neither.", err=True)
+        sys.exit(EXIT_ERROR)
+    if record_proof and not plan_path:
+        click.echo("--proof is only supported with a JSON plan.", err=True)
+        sys.exit(EXIT_ERROR)
+    if save_prediction and not plan_path:
+        click.echo("--save-prediction requires a JSON plan.", err=True)
+        sys.exit(EXIT_ERROR)
+    if revise_rejected and not plan_path:
+        click.echo("--revise-rejected requires a JSON plan.", err=True)
         sys.exit(EXIT_ERROR)
 
     try:
@@ -547,11 +617,184 @@ def arch_simulate_cmd(ctx: click.Context, subsystem_name: str, deps: tuple,
         except (OSError, ValueError) as exc:
             click.echo(f"Could not read plan: {exc}", err=True)
             sys.exit(EXIT_ERROR)
+        canonical_change = None
+        unscored_operations: list[str] = []
+        if isinstance(plan, dict):
+            try:
+                from codegraph.architecture_change import (
+                    ArchitectureChange, ArchitectureChangeValidationError, OpType,
+                )
+
+                canonical_change = ArchitectureChange.from_dict(plan)
+                canonical_change.validate()
+                plan = _canonical_change_simulation_plan(plan)
+                unscored_operations = [
+                    operation.op.value for operation in canonical_change.operations
+                    if operation.op not in (OpType.ADD_EDGE, OpType.REMOVE_EDGE)
+                ]
+            except (ArchitectureChangeValidationError, ValueError, TypeError, KeyError) as exc:
+                click.echo(f"Invalid ArchitectureChange plan: {exc}", err=True)
+                sys.exit(EXIT_ERROR)
         if not isinstance(plan, list) or not all(isinstance(item, dict) for item in plan):
-            click.echo("Plan must be a JSON list of {change, node, target} objects.", err=True)
+            click.echo("Plan must be a JSON list of {change, node, target} objects or a canonical ArchitectureChange object.", err=True)
             sys.exit(EXIT_ERROR)
 
-        result = simulate_changes(root, plan)
+        if revise_rejected:
+            if canonical_change is not None or unscored_operations:
+                click.echo("--revise-rejected currently supports edge-operation plan lists only.", err=True)
+                sys.exit(EXIT_ERROR)
+            from codegraph.architecture_simulator import revise_rejected_changes
+
+            original_result = simulate_changes(root, plan)
+            revised_plan, dropped_changes, revised_result = revise_rejected_changes(root, plan)
+            result = dict(revised_result)
+            result["revision"] = {
+                "original_verdict": original_result.get("verdict"),
+                "original_reasons": original_result.get("reasons", []),
+                "dropped_changes": dropped_changes,
+                "remaining_count": len(revised_plan),
+            }
+            result["revised_plan"] = revised_plan
+            plan = revised_plan
+            if result.get("unattributed_reject"):
+                result["reasons"] = list(result.get("reasons", [])) + [
+                    "The rejection could not be attributed to an individual change; no changes were removed."
+                ]
+        else:
+            result = simulate_changes(root, plan)
+        if unscored_operations:
+            result["canonical_operations"] = unscored_operations
+            result["status"] = "partially_simulated"
+            result["simulated"] = False
+            result["function_checks_available"] = False
+            if result.get("verdict") != "REJECT":
+                result["verdict"] = "REVIEW"
+            result["reasons"].append(
+                "ArchitectureChange contains operations outside the edge sandbox: "
+                + ", ".join(unscored_operations)
+            )
+        if save_prediction:
+            from codegraph.architecture_change import ArchitectureChange, ArchitectureOperation, OpType
+            from codegraph.architecture_graph import ArchitectureGraph
+
+            current = ArchitectureGraph.load(root)
+            if canonical_change is not None:
+                change = canonical_change
+            else:
+                operations = []
+                for item in plan:
+                    action, source, target = item["change"], item["node"], item["target"]
+                    if action == "remove_edge":
+                        operations.append(ArchitectureOperation(OpType.REMOVE_EDGE, source=source,
+                                                                target=target, edge_type="call"))
+                    elif action == "add_edge":
+                        operations.append(ArchitectureOperation(OpType.ADD_EDGE, source=source,
+                                                                target=target, edge_type="call"))
+                    elif action == "rewire_edge":
+                        for edge in current.edges:
+                            if edge.get("source") == source and edge.get("edge_type", "call") == "call":
+                                operations.append(ArchitectureOperation(
+                                    OpType.REMOVE_EDGE, source=source, target=edge.get("target", ""), edge_type="call"))
+                        operations.append(ArchitectureOperation(OpType.ADD_EDGE, source=source,
+                                                                target=target, edge_type="call"))
+                change = ArchitectureChange(operations=operations)
+            predicted = ArchitectureGraph.from_planned(current, change)
+            artifact_path = predicted.save_predicted(root)
+            result["predicted_graph"] = str(artifact_path)
+            from codegraph.architecture_detection import detect_layered_architecture
+            from codegraph.architecture_health import compute_architecture_health
+            from codegraph.architecture_scoring import compute_architecture_index
+
+            layer_report = detect_layered_architecture(
+                predicted.structure_graph, architecture_graph=predicted,
+            )
+            health_report = compute_architecture_health(predicted)
+            score_report = compute_architecture_index(root, architecture_graph=predicted)
+            result["predicted_checks"] = {
+                "layer": layer_report,
+                "health": health_report.to_dict(),
+                "score": score_report.to_dict(),
+            }
+            baseline_layer_report = detect_layered_architecture(
+                current.structure_graph, architecture_graph=current,
+            )
+            baseline_violations = {
+                (item.get("source"), item.get("target"))
+                for item in baseline_layer_report.get("violations", [])
+            }
+            new_layer_violations = [
+                item for item in layer_report.get("violations", [])
+                if (item.get("source"), item.get("target")) not in baseline_violations
+            ]
+            result["predicted_checks"]["new_layer_violations"] = new_layer_violations
+            if new_layer_violations:
+                result["verdict"] = "REJECT"
+                result["reasons"].append(
+                    f"Predicted graph introduces {len(new_layer_violations)} layer violation(s)"
+                )
+        if record_proof:
+            from codegraph.architecture_proof import generate_proof
+            from codegraph.architecture_memory import proposal_feedback, record_proposal_outcome
+
+            delta = {
+                "added_edges": [
+                    {"source": item["node"], "target": item["target"]}
+                    for item in plan if item["change"] == "add_edge"
+                ],
+                "removed_edges": [
+                    {"source": item["node"], "target": item["target"]}
+                    for item in plan if item["change"] == "remove_edge"
+                ],
+                "removed_nodes": [],
+                "constraint_violations": [],
+                "risk_estimate": "LOW",
+                "total_changes": len(plan) + len(unscored_operations),
+            }
+            proof = generate_proof(root, delta=delta)
+            proof.save(root)
+            result["proof"] = proof.to_dict()
+            if result.get("verdict") == "REJECT":
+                proof_outcome = "rejected"
+            elif result.get("verdict") != "ACCEPT":
+                proof_outcome = "review"
+            else:
+                proof_outcome = {
+                    "PROVEN_SAFE": "accepted",
+                    "PROVEN_WARNING": "review",
+                    "REJECTED": "rejected",
+                }.get(proof.status, "untested")
+            task_types = {
+                "connect_call" if item["change"] in {"add_edge", "rewire_edge"}
+                else "flag_violation"
+                for item in plan
+            }
+            if canonical_change is not None:
+                from codegraph.architecture_change import OpType
+
+                for operation in canonical_change.operations:
+                    if operation.op in (OpType.ADD_COMPONENT, OpType.ADD_SUBSYSTEM):
+                        task_types.add("create_module")
+                    elif operation.op == OpType.ADD_CONSTRAINT:
+                        task_types.add("add_constraint")
+            task_types = sorted(task_types)
+            record_proposal_outcome(
+                root,
+                proposal_id=proof.proposal_id,
+                outcome=proof_outcome,
+                violation_count=len(proof.violations),
+                task_types=task_types,
+            )
+            result["proposal_feedback"] = proposal_feedback(root)
+            if proof.status == "REJECTED":
+                result["verdict"] = "REJECT"
+                result["reasons"].append("Architecture proof gate rejected the plan")
+            elif proof.status == "PROVEN_WARNING":
+                if result["verdict"] != "REJECT":
+                    result["verdict"] = "REVIEW"
+                result["reasons"].append("Architecture proof gate returned PROVEN_WARNING")
+            elif proof.status != "PROVEN_SAFE":
+                result["verdict"] = "REVIEW"
+                result["reasons"].append(f"Architecture proof gate status: {proof.status}")
         if json_output:
             click.echo(_json.dumps(result, indent=2, ensure_ascii=False))
         else:
@@ -583,6 +826,31 @@ def arch_simulate_cmd(ctx: click.Context, subsystem_name: str, deps: tuple,
             encoding="utf-8",
         )
         click.echo(f"Simulation saved to {out_path}")
+
+
+@click.command("arch-reconcile")
+@click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
+@click.pass_context
+def arch_reconcile_cmd(ctx: click.Context, json_output: bool) -> None:
+    """Compare .codegraph/predicted_graph.json with the current rebuilt graph."""
+    import json as _json
+    from codegraph.architecture_reconcile import reconcile_project
+
+    root = _resolve_root(ctx)
+    try:
+        report = reconcile_project(root)
+    except (OSError, ValueError, _json.JSONDecodeError) as exc:
+        click.echo(f"Could not reconcile predicted graph: {exc}", err=True)
+        sys.exit(EXIT_ERROR)
+    if json_output:
+        click.echo(_json.dumps(report, indent=2, ensure_ascii=False))
+    else:
+        status = "MATCH" if report["matches"] else "DRIFT"
+        click.echo(f"Predicted vs actual: {status}")
+        for key in ("predicted_only_nodes", "actual_only_nodes", "predicted_only_edges",
+                    "actual_only_edges", "predicted_only_constraints", "actual_only_constraints"):
+            if report[key]:
+                click.echo(f"{key}: {len(report[key])}")
 
 
 # ── Architecture Versioning ───────────────────────────────────────────
@@ -771,6 +1039,7 @@ COMMANDS = [
     enrich_cmd,
     arch_search_cmd,
     arch_simulate_cmd,
+    arch_reconcile_cmd,
     arch_version_cmd,
     partitions_cmd,
     subsystem_cache_cmd,

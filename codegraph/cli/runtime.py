@@ -7,6 +7,7 @@ Groups: branch, lifecycle, cas.
 
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -77,10 +78,11 @@ def archi_test_cmd(ctx: click.Context, generate: bool, run_tests: bool,
 @click.command("test-impact")
 @click.option("--from-delta", is_flag=True, help="Analyze impact from last delta.")
 @click.option("--nodes", multiple=True, help="Specific node IDs to analyze.")
+@click.option("--predicted", is_flag=True, help="Use .codegraph/predicted_graph.json instead of the real index.")
 @click.option("--json", "json_output", is_flag=True, help="Emit JSON output.")
 @click.option("--gaps", is_flag=True, help="Show coverage gaps.")
 @click.pass_context
-def test_impact_cmd(ctx: click.Context, from_delta: bool, nodes: tuple,
+def test_impact_cmd(ctx: click.Context, from_delta: bool, nodes: tuple, predicted: bool,
                     json_output: bool, gaps: bool) -> None:
     """Analyze test impact from code changes."""
     from codegraph.test_impact import (
@@ -94,6 +96,30 @@ def test_impact_cmd(ctx: click.Context, from_delta: bool, nodes: tuple,
     except FileNotFoundError as exc:
         click.echo(str(exc), err=True)
         sys.exit(1)
+
+    if predicted:
+        if from_delta or gaps:
+            click.echo("--predicted can be combined only with --nodes", err=True)
+            sys.exit(1)
+        if not nodes:
+            click.echo("Specify --nodes NODE_ID with --predicted", err=True)
+            sys.exit(1)
+        from codegraph.architecture_graph import ArchitectureGraph
+        from codegraph.test_impact import analyze_predicted_test_impact
+
+        artifact = root / ".codegraph" / "predicted_graph.json"
+        if not artifact.is_file():
+            click.echo("No predicted graph found — run 'codegraph arch-simulate --plan ...' first", err=True)
+            sys.exit(1)
+        try:
+            graph = ArchitectureGraph.load_predicted(artifact)
+        except (OSError, ValueError, json.JSONDecodeError) as exc:
+            click.echo(f"Could not load predicted graph: {exc}", err=True)
+            sys.exit(1)
+        current_graph = ArchitectureGraph.load(root)
+        result = analyze_predicted_test_impact(set(nodes), graph, current_graph=current_graph)
+        click.echo(format_test_impact(result, as_json=json_output))
+        return
 
     with IndexStore(root) as index:
         if gaps:
