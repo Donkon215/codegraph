@@ -71,6 +71,29 @@ CASES = [
 ]
 
 
+# What git must ignore for PATTERNS, worked out by hand from the patterns.
+# Note what is NOT here: "docs" (docs/** does not match docs itself),
+# "sub/root_only.txt" (the rule is anchored to root), "gen/deep/z.py" and
+# "src/deep/x.tmp" (* does not cross a directory), and the near-miss names.
+EXPECTED_IGNORED = {
+    "app.log",
+    "sub/app.log",
+    "build",
+    "build/out.py",
+    "root_only.txt",
+    "docs/readme.md",
+    "docs/deep",
+    "docs/deep/x.py",
+    "x/gen/y.py",
+    "gen/z.py",
+    "a/b.py",
+    "a/x/y/b.py",
+    "a/b/b.py",
+    "cache",
+    "src/x.tmp",
+}
+
+
 def _build_fixture(root: Path, patterns: list[str]) -> None:
     (root / ".gitignore").write_text("\n".join(patterns) + "\n", encoding="utf-8")
     for rel, is_dir in CASES:
@@ -104,10 +127,21 @@ def test_matcher_agrees_with_git_check_ignore_on_every_curated_path(tmp_path):
     _git_init(tmp_path)
     rules = IgnoreRules(load_gitignore_patterns(tmp_path))
 
+    git_ignored = {rel for rel, _ in CASES if _git_ignored(tmp_path, rel)}
+
+    # Guard against a vacuous pass: if git and the matcher both said "not
+    # ignored" for everything, the comparison below would still succeed.
+    # Pin git's answer explicitly, so a broken reference fails the test.
+    assert git_ignored == EXPECTED_IGNORED, (
+        "git check-ignore disagrees with the expected set; "
+        f"extra={sorted(git_ignored - EXPECTED_IGNORED)} "
+        f"missing={sorted(EXPECTED_IGNORED - git_ignored)}"
+    )
+
     disagreements = []
     for rel, is_dir in CASES:
         ours = rules.is_ignored(rel, is_dir=is_dir)
-        theirs = _git_ignored(tmp_path, rel)
+        theirs = rel in git_ignored
         if ours != theirs:
             disagreements.append(f"{rel}: matcher={ours} git={theirs}")
 
