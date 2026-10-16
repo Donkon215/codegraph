@@ -948,10 +948,11 @@ def copilot_loop(
     # Step 5b: when simulation was requested, its outcome limits the verdict. A skipped
     # simulation cannot support "proceed"; a predicted drop must not be waved through.
     if simulate:
-        sim_step = next((it for it in report.iterations if it.step == "simulate"), None)
-        if sim_step is not None and sim_step.status == "warning":
+        # simulate_status comes straight from step 4's sim_result, not from a search of the
+        # iterations, so a renamed or filtered step cannot silently disable this rule.
+        if simulate_status == "warning":
             report.verdict = "block"
-        elif sim_step is not None and sim_step.status == "skipped" and report.verdict == "proceed":
+        elif simulate_status == "skipped" and report.verdict == "proceed":
             report.verdict = "caution"
             report.next_steps.insert(
                 0,
