@@ -11,6 +11,9 @@ trailing ``/`` for directories, and a leading or inner ``/`` to anchor a
 pattern at the project root. Negated patterns (``!pattern``) are not supported:
 they are skipped with a log message, so a re-included path stays excluded.
 Character classes (``[...]``) are matched literally.
+
+This implements a documented subset of gitignore semantics, not full
+compatibility with git. It does not match ``git check-ignore`` in every case.
 """
 
 from __future__ import annotations
