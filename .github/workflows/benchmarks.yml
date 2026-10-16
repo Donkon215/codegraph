@@ -8,7 +8,7 @@ on:
 jobs:
   synthetic-index-scaling:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
@@ -17,7 +17,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Measure 1k, 10k, and 100k node indexes
+      - name: Install CodeGraph runtime dependencies
+        run: python -m pip install -e .
+
+      - name: Measure synthetic index and real CodeGraph scaling
         run: python benchmarks/index_benchmark.py --report benchmark-report.json
 
       - name: Upload benchmark report
