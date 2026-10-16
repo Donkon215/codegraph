@@ -881,13 +881,33 @@ def copilot_loop(
     if simulate:
         sim_result = _try_simulate(project_root, target, decision)
         report.simulation = sim_result
+        # Only a completed simulation can read as ok. Skipped or failed runs are warnings.
+        simulated_ok = (
+            sim_result.get("status") == "simulated"
+            and sim_result.get("score_delta", 0) >= 0
+        )
         report.iterations.append(LoopIteration(
             step="simulate",
             result=sim_result,
-            status="ok" if sim_result.get("score_delta", 0) >= 0 else "warning",
+            status="ok" if simulated_ok else "warning",
         ))
         if "predicted_subsystem_score" in sim_result:
             report.score_after = sim_result["predicted_subsystem_score"]
+        else:
+            # No prediction: keep score_before. The 0.0 default would read as a drop of the whole score.
+            report.score_after = report.score_before
+        # Explain in the simulation record, not in next_steps (which is displayed as actions).
+        # Each non-simulated status gets its own wording, so none reads as a generic failure.
+        status = sim_result.get("status")
+        if status != "simulated":
+            detail = sim_result.get("reason") or "; ".join(sim_result.get("reasons", []))
+            if status == "not_simulated":
+                wording = "Simulation skipped: no function-level node id for this target"
+            elif status == "partially_simulated":
+                wording = "Function-level checks did not run; the verdict rests on the sandbox score alone"
+            else:
+                wording = "Simulation failed; no score was predicted"
+            sim_result["note"] = f"{wording} ({detail})" if detail else wording
 
         # Step 4b: Deep simulation — data flow + failure propagation
         deep_sim = _deep_simulate(project_root, target, focus)
@@ -983,9 +1003,16 @@ def _try_simulate(
         if not sim_target and decision.target:
             sim_target = decision.target
 
+        # Simulation needs a real function-level node id. Inventing "<target>::*" would never
+        # resolve in the index, so skip instead of fabricating one.
+        if "::" not in target:
+            return {
+                "status": "not_simulated",
+                "reason": f"'{target}' is not a function-level node id (no '::'), so it cannot be simulated",
+            }
         result = simulate_change(
             project_root,
-            node=target if "::" in target else f"{target}::*",
+            node=target,
             change=change,
             target=sim_target,
         )

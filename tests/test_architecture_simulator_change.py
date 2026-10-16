@@ -31,9 +31,24 @@ def _use_graph(monkeypatch, graph):
     monkeypatch.setattr(ArchitectureGraph, "load", staticmethod(lambda root: graph))
 
 
+def _use_fuller(monkeypatch, *, available=True, blocking=False, advisory=False, reasons=()):
+    result = {
+        "available": available,
+        "blocking": blocking,
+        "advisory": advisory,
+        "reasons": list(reasons),
+        "blast_radius": 0,
+    }
+    monkeypatch.setattr(
+        "codegraph.architecture_simulator._fuller_checks",
+        lambda root, changes, sandbox_ids, graph_ids: dict(result),
+    )
+
+
 def test_score_delta_reflects_mutation(monkeypatch, tmp_path):
     graph = _FakeGraph(_NODES, _EDGES)
     _use_graph(monkeypatch, graph)
+    _use_fuller(monkeypatch)
 
     result = simulate_change(tmp_path, node="ring.py::A", change="remove_edge", target="ring.py::B")
 
@@ -59,6 +74,7 @@ def test_noop_change_has_zero_deltas(monkeypatch, tmp_path):
     # Removing an edge that does not exist changes nothing.
     graph = _FakeGraph(_NODES, _EDGES)
     _use_graph(monkeypatch, graph)
+    _use_fuller(monkeypatch)
 
     result = simulate_change(tmp_path, node="ring.py::A", change="remove_edge", target="ring.py::Z")
 
@@ -107,6 +123,7 @@ def test_plan_adding_cycle_is_rejected_with_reason(monkeypatch, tmp_path):
 
 def test_plan_breaking_cycle_is_accepted(monkeypatch, tmp_path):
     _use_graph(monkeypatch, _FakeGraph(_NODES, _EDGES))
+    _use_fuller(monkeypatch)
 
     result = simulate_changes(
         tmp_path,
@@ -154,3 +171,68 @@ def test_crash_is_reported_as_not_simulated(monkeypatch, tmp_path):
     assert result["simulated"] is False
     assert result["verdict"] == "REVIEW"
     assert any("could not simulate" in reason for reason in result["reasons"])
+
+
+def test_no_index_holds_accept_back_to_review(monkeypatch, tmp_path):
+    # Sandbox says ACCEPT, but the function-level checks cannot run without an index.
+    _use_graph(monkeypatch, _FakeGraph(_NODES, _EDGES))
+
+    result = simulate_changes(
+        tmp_path,
+        [{"change": "remove_edge", "node": "ring.py::A", "target": "ring.py::B"}],
+    )
+
+    assert result["verdict"] == "REVIEW"
+    assert result["simulated"] is False
+    assert any("function-level checks did not run" in r for r in result["reasons"])
+
+
+def test_cycle_reject_is_not_softened_without_index(monkeypatch, tmp_path):
+    _use_graph(monkeypatch, _FakeGraph(_CHAIN_NODES, _CHAIN_EDGES))
+
+    result = simulate_changes(
+        tmp_path,
+        [{"change": "add_edge", "node": "chain.py::D", "target": "chain.py::A"}],
+    )
+
+    assert result["verdict"] == "REJECT"
+
+
+def test_blocking_function_level_violation_is_reject(monkeypatch, tmp_path):
+    _use_graph(monkeypatch, _FakeGraph(_NODES, _EDGES))
+    _use_fuller(monkeypatch, blocking=True, reasons=["forbidden_path: A -> B"])
+
+    result = simulate_changes(
+        tmp_path,
+        [{"change": "remove_edge", "node": "ring.py::A", "target": "ring.py::B"}],
+    )
+
+    assert result["verdict"] == "REJECT"
+    assert "forbidden_path: A -> B" in result["reasons"]
+
+
+def test_rewire_is_held_for_review(monkeypatch, tmp_path):
+    _use_graph(monkeypatch, _FakeGraph(_NODES, _EDGES))
+
+    result = simulate_changes(
+        tmp_path,
+        [{"change": "rewire_edge", "node": "ring.py::A", "target": "ring.py::C"}],
+    )
+
+    assert result["verdict"] == "REVIEW"
+    assert result["simulated"] is False
+    assert any("rewire_edge is not covered" in r for r in result["reasons"])
+
+
+def test_advisory_violation_holds_accept_to_review(monkeypatch, tmp_path):
+    # A generic layer rule flags the plan: advisory, so an ACCEPT is held to REVIEW, not REJECT.
+    _use_graph(monkeypatch, _FakeGraph(_NODES, _EDGES))
+    _use_fuller(monkeypatch, advisory=True, reasons=["advisory layer_violation: ui -> db"])
+
+    result = simulate_changes(
+        tmp_path,
+        [{"change": "remove_edge", "node": "ring.py::A", "target": "ring.py::B"}],
+    )
+
+    assert result["verdict"] == "REVIEW"
+    assert any("generic advisory checks" in r for r in result["reasons"])
