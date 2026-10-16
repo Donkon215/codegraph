@@ -64,6 +64,9 @@ _TASK_PRIORITY: Dict[TaskID, int] = {
 class TestChangeType(str, enum.Enum):
     """How an affected test must be updated."""
 
+    # A production enum, not a test class: keep pytest from collecting it.
+    __test__ = False
+
     UPDATE_EXECUTION_PATH = "update_execution_path"
     UPDATE_MOCK = "update_mock"
     UPDATE_ASSERTION = "update_assertion"
