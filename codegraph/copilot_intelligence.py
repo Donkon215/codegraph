@@ -781,7 +781,7 @@ class CopilotLoopReport:
         )
 
         for it in self.iterations:
-            indicator = "✓" if it.status == "ok" else "⚠" if it.status == "warning" else "✗"
+            indicator = {"ok": "✓", "warning": "⚠", "skipped": "○"}.get(it.status, "✗")
             lines.append(f"  {indicator} {it.step}")
 
         if self.decision:
@@ -881,15 +881,18 @@ def copilot_loop(
     if simulate:
         sim_result = _try_simulate(project_root, target, decision)
         report.simulation = sim_result
-        # Only a completed simulation can read as ok. Skipped or failed runs are warnings.
-        simulated_ok = (
-            sim_result.get("status") == "simulated"
-            and sim_result.get("score_delta", 0) >= 0
-        )
+        # ok: ran, no predicted drop. warning: ran and predicts a drop. skipped: never produced
+        # a complete verdict (no node id, no index, unsupported change, or an exception).
+        if sim_result.get("status") != "simulated":
+            simulate_status = "skipped"
+        elif sim_result.get("score_delta", 0) < 0:
+            simulate_status = "warning"
+        else:
+            simulate_status = "ok"
         report.iterations.append(LoopIteration(
             step="simulate",
             result=sim_result,
-            status="ok" if simulated_ok else "warning",
+            status=simulate_status,
         ))
         if "predicted_subsystem_score" in sim_result:
             report.score_after = sim_result["predicted_subsystem_score"]
@@ -941,6 +944,19 @@ def copilot_loop(
         report.verdict = "caution"
     else:
         report.verdict = "proceed"
+
+    # Step 5b: when simulation was requested, its outcome limits the verdict. A skipped
+    # simulation cannot support "proceed"; a predicted drop must not be waved through.
+    if simulate:
+        sim_step = next((it for it in report.iterations if it.step == "simulate"), None)
+        if sim_step is not None and sim_step.status == "warning":
+            report.verdict = "block"
+        elif sim_step is not None and sim_step.status == "skipped" and report.verdict == "proceed":
+            report.verdict = "caution"
+            report.next_steps.insert(
+                0,
+                "Rerun with --simulate once the cause in the simulation note is fixed, before applying.",
+            )
 
     # Step 6: Next steps
     if report.verdict == "block":
