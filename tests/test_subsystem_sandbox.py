@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from codegraph.subsystem_graph import SubsystemGraph
-from codegraph.subsystem_sandbox import SubsystemSandbox
+from codegraph.subsystem_sandbox import SubsystemSandbox, build_partition_sandbox
 
 
 def _base_subsystem() -> SubsystemGraph:
@@ -53,3 +53,59 @@ def test_sandbox_insert_service_layer():
     )
     metrics = sandbox.get_metrics()
     assert metrics["nodes"] == 4
+
+
+class _FakeGraph:
+    """Minimal stand-in for ArchitectureGraph: only the fields build_partitions reads."""
+
+    def __init__(self, node_ids, edges):
+        self.nodes = [{"id": nid} for nid in node_ids]
+        self.edges = [dict(e) for e in edges]
+        self.adj_out = {}
+        for e in edges:
+            self.adj_out.setdefault(e["source"], set()).add(e["target"])
+
+
+_RING_NODES = ["ring.py::A", "ring.py::B", "ring.py::C", "ring.py::D"]
+_RING_EDGES = [
+    {"source": "ring.py::A", "target": "ring.py::B", "edge_type": "call"},
+    {"source": "ring.py::B", "target": "ring.py::C", "edge_type": "call"},
+    {"source": "ring.py::C", "target": "ring.py::D", "edge_type": "call"},
+    {"source": "ring.py::D", "target": "ring.py::A", "edge_type": "call"},
+]
+
+
+def test_build_partition_sandbox_partitioned_path(tmp_path):
+    # No saved partitions on disk, so partitions are built from the graph.
+    graph = _FakeGraph(_RING_NODES, _RING_EDGES)
+    sandbox = build_partition_sandbox(tmp_path, graph, "ring.py::A")
+
+    sub = sandbox.subsystem_graph
+    node_ids = {n["id"] for n in sub.nodes}
+    assert "ring.py::A" in node_ids
+    assert "simulation_partition_id" in sub.metadata
+    assert sub.edges, "sandbox should carry the partition's internal edges"
+    for edge in sub.edges:
+        assert edge["source"] in node_ids
+        assert edge["target"] in node_ids
+
+
+def test_build_partition_sandbox_no_partition_path(tmp_path):
+    # Root node is not in any partition, so the sandbox falls back to the whole graph.
+    graph = _FakeGraph(_RING_NODES, _RING_EDGES)
+    sandbox = build_partition_sandbox(tmp_path, graph, "missing.py::X")
+
+    sub = sandbox.subsystem_graph
+    assert {n["id"] for n in sub.nodes} == set(_RING_NODES)
+    assert len(sub.edges) == len(_RING_EDGES)
+
+
+def test_build_partition_sandbox_does_not_mutate_source_graph(tmp_path):
+    graph = _FakeGraph(_RING_NODES, _RING_EDGES)
+    graph.nodes[0]["layer"] = 1
+    sandbox = build_partition_sandbox(tmp_path, graph, "missing.py::X")
+
+    for node in sandbox.subsystem_graph.nodes:
+        node["layer"] = 99
+
+    assert all(node["layer"] == 1 for node in graph.nodes[:1])

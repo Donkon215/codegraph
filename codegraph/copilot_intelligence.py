@@ -886,8 +886,8 @@ def copilot_loop(
             result=sim_result,
             status="ok" if sim_result.get("score_delta", 0) >= 0 else "warning",
         ))
-        if "predicted_architecture_score" in sim_result:
-            report.score_after = sim_result["predicted_architecture_score"]
+        if "predicted_subsystem_score" in sim_result:
+            report.score_after = sim_result["predicted_subsystem_score"]
 
         # Step 4b: Deep simulation — data flow + failure propagation
         deep_sim = _deep_simulate(project_root, target, focus)

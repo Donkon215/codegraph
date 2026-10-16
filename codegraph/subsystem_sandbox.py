@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any, Dict, List
 
 from codegraph.architecture_graph import ArchitectureGraph
-from codegraph.graph_partitioning import load_or_build_partitions
+from codegraph.graph_partitioning import build_partitions, load_partitions
 from codegraph.subsystem_graph import SubsystemGraph
 
 
@@ -42,8 +42,8 @@ class SubsystemSandbox:
         if after["layer_violations"] > before["layer_violations"]:
             violations.append("new_layer_violations")
 
-        score_before = _score_from_metrics(before)
-        score_after = _score_from_metrics(after)
+        score_before = score_from_metrics(before)
+        score_after = score_from_metrics(after)
 
         return {
             "score_before": round(score_before, 3),
@@ -150,7 +150,7 @@ class SubsystemSandbox:
         self.subsystem_graph.edges.append({"source": service_node, "target": target, "edge_type": "call", "confidence": "ai_inferred"})
 
 
-def _score_from_metrics(metrics: Dict[str, Any]) -> float:
+def score_from_metrics(metrics: Dict[str, Any]) -> float:
     cycle_penalty = min(1.0, metrics.get("cycle_count", 0) / 5.0)
     layer_penalty = min(1.0, metrics.get("layer_violations", 0) / max(1, metrics.get("edges", 1)))
     fanout_penalty = min(1.0, metrics.get("fan_out_max", 0) / 25.0)
@@ -163,14 +163,16 @@ def build_partition_sandbox(
     root_node: str,
 ) -> SubsystemSandbox:
     """Create a sandbox scoped to the root node's partition + boundary nodes."""
-    partitions = load_or_build_partitions(project_root, graph)
+    # Read saved partitions if present, but never save: simulation must not write to disk.
+    saved = load_partitions(project_root)
+    partitions = saved if saved is not None and saved.partitions else build_partitions(graph)
     partition = partitions.partition_for_node(root_node)
     if partition is None:
         return SubsystemSandbox(
             SubsystemGraph.from_architecture_graph(
                 graph,
                 node_ids={str(node.get("id", "")) for node in graph.nodes if str(node.get("id", ""))},
-                internal_edges=[dict(edge) for edge in graph.edges],
+                edges=[dict(edge) for edge in graph.edges],
                 external_edges=[],
                 root_node=root_node,
             )
@@ -190,7 +192,7 @@ def build_partition_sandbox(
     subsystem = SubsystemGraph.from_architecture_graph(
         graph,
         node_ids=selected_nodes,
-        internal_edges=internal_edges,
+        edges=internal_edges,
         external_edges=external_edges,
         root_node=root_node,
     )

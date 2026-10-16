@@ -59,6 +59,9 @@ class ArchCandidate:
     risk_level: str = "low"  # low, medium, high
 
     # Scores filled after simulation
+    # No longer written: it used to hold a coupling value, which is not a score.
+    # Kept so existing readers (arch_evolution, architecture_objectives, copilot_context)
+    # still get a default. Follow-up issue: remove or rename it.
     predicted_score: float = 0.0
     predicted_modularity: float = 0.0
     predicted_coupling: float = 0.0
@@ -68,6 +71,8 @@ class ArchCandidate:
     has_violations: bool = False
     simulation_safe: bool = True
     simulation_recommendation: str = ""
+    # True only when the candidate's changes were actually simulated.
+    simulated: bool = False
 
     # Ranking
     rank: int = 0
@@ -453,12 +458,13 @@ def simulate_candidates(
             # No simulatable changes — mark as safe but with no score improvement
             candidate.simulation_safe = True
             candidate.simulation_recommendation = "review"
-            candidate.predicted_score = baseline.get("coupling", 0.5)
+            candidate.simulated = False  # not simulated: scoring treats it as neutral
             continue
 
         result = simulate_architecture_changes(changes, arch)
         candidate.simulation_safe = result.safe
         candidate.simulation_recommendation = result.recommendation
+        candidate.simulated = True
 
         # Extract predicted metrics from simulation
         for pred in result.predictions:
@@ -584,12 +590,9 @@ def score_candidates(
 
         score = 0.0
 
-        # 1. Predicted architecture improvement (40% weight)
-        if candidate.predicted_score > 0:
-            score_improvement = candidate.predicted_score - baseline_score
-            score += 0.4 * max(0, min(1.0, 0.5 + score_improvement * 5))
-        else:
-            score += 0.2  # neutral if no prediction
+        # The former 40% term subtracted a coupling value from a score value, so it was
+        # never meaningful and has been removed. Its weight is left unallocated: the
+        # remaining terms are not renormalized, so composite scores shift.
 
         # 2. Coupling reduction (25% weight)
         if candidate.predicted_coupling > 0:
