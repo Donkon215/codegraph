@@ -202,9 +202,19 @@ def undo_last_apply(project_root: Path) -> bool:
         logger.warning("No undo information found")
         return False
 
-    info = json.loads(info_path.read_text(encoding="utf-8"))
+    try:
+        info = json.loads(info_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        logger.warning("Corrupt undo metadata at %s; refusing to restore", info_path)
+        return False
+    root = project_root.resolve()
     for orig_str, _bak_str in info.get("files", {}).items():
-        orig = Path(orig_str)
+        # Undo metadata is untrusted input: never write outside the project.
+        # Relative entries resolve against the project root, not the CWD.
+        orig = (root / orig_str).resolve()
+        if not orig.is_relative_to(root):
+            logger.warning("Skipping undo target outside project root: %s", orig_str)
+            continue
         bak = undo_dir / Path(_bak_str).name
         if bak.exists():
             shutil.copy2(bak, orig)
