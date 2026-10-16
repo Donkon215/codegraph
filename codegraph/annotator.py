@@ -40,15 +40,14 @@ _MAX_HISTORY = 10  # E-025: cap intent history entries
 def normalize_intent(intent: str) -> str:
     """Normalize an intent string for consistency.
 
-    - Strip whitespace
-    - Collapse runs of spaces
-    - Lowercase first character
-    - Remove trailing period
+    - Strip leading and trailing whitespace
+    - Collapse runs of whitespace to one space
+    - Remove one trailing period
+
+    The letter case of the text is kept exactly as the author typed it.
     """
     s = intent.strip()
     s = re.sub(r"\s+", " ", s)
-    if s:
-        s = s[0].lower() + s[1:]
     if s.endswith("."):
         s = s[:-1]
     return s
