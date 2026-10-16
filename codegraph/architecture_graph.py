@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import time
+import copy
 from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -307,11 +308,170 @@ class ArchitectureGraph:
             except json.JSONDecodeError:
                 semantics = {}
 
-        return cls.from_views(
+        architecture_path = resolve_path(project_root, "architecture", "system.json")
+        system_metadata: Dict[str, Any] = {}
+        if architecture_path.exists():
+            try:
+                system_data = json.loads(architecture_path.read_text(encoding="utf-8"))
+                if isinstance(system_data, dict):
+                    system_metadata = {
+                        "subsystems": [str(item.get("name", "")) for item in system_data.get("subsystems", [])
+                                       if isinstance(item, dict) and item.get("name")],
+                        "constraints": [
+                            {**dict(item), "constraint_type": item.get("constraint_type", item.get("type", "forbidden"))}
+                            for item in system_data.get("constraints", []) if isinstance(item, dict)
+                        ],
+                    }
+            except (OSError, json.JSONDecodeError):
+                system_metadata = {}
+
+        graph = cls.from_views(
             structure_graph=graph0,
             intent_graph=graph1,
             semantic_graph=semantics,
             workflow_graph=workflow,
+        )
+        graph.metadata.update(system_metadata)
+        if system_metadata:
+            component_owners = {
+                str(component.get("module", "")): str(subsystem.get("name", ""))
+                for subsystem in system_data.get("subsystems", []) if isinstance(subsystem, dict)
+                for component in subsystem.get("components", []) if isinstance(component, dict)
+                if component.get("module") and subsystem.get("name")
+            }
+            for node in graph.nodes:
+                module = str(node.get("file") or node.get("id", "").split("::", 1)[0])
+                if module in component_owners:
+                    node["subsystem"] = component_owners[module]
+        return graph
+
+    @classmethod
+    def from_planned(cls, current_graph: "ArchitectureGraph", change: Any) -> "ArchitectureGraph":
+        """Return an isolated graph with a canonical ArchitectureChange applied.
+
+        This is an in-memory projection only. It never writes source files or the
+        real graph views, so callers can safely inspect a hypothetical state.
+        """
+        from codegraph.architecture_change import ArchitectureChange, OpType
+
+        if not isinstance(current_graph, cls):
+            raise TypeError("current_graph must be an ArchitectureGraph")
+        if not isinstance(change, ArchitectureChange):
+            raise TypeError("change must be an ArchitectureChange")
+        change.validate()
+        predicted = copy.deepcopy(current_graph)
+        predicted._structure_graph_cache = None
+        predicted._intent_graph_cache = None
+        predicted._workflow_graph_cache = None
+        metadata = copy.deepcopy(predicted.metadata)
+        subsystems = set(metadata.get("subsystems", []))
+        constraints = [dict(item) for item in metadata.get("constraints", []) if isinstance(item, dict)]
+
+        for operation in change.operations:
+            if operation.op == OpType.ADD_SUBSYSTEM:
+                subsystems.add(operation.subsystem)
+            elif operation.op == OpType.REMOVE_SUBSYSTEM:
+                subsystems.discard(operation.subsystem)
+                for node in list(predicted.nodes):
+                    if node.get("subsystem") == operation.subsystem:
+                        predicted.remove_node(str(node.get("id", "")))
+                constraints = [item for item in constraints
+                               if item.get("source") != operation.subsystem
+                               and item.get("target") != operation.subsystem]
+            elif operation.op == OpType.ADD_COMPONENT:
+                node_id = operation.component
+                if not any(str(node.get("id", "")) == node_id for node in predicted.nodes):
+                    predicted.nodes.append({
+                        "id": node_id,
+                        "file": node_id,
+                        "line": 1,
+                        "body_hash": "",
+                        "type": "module",
+                        "subsystem": operation.component_subsystem,
+                        **({"name": operation.component_name} if operation.component_name else {}),
+                    })
+                    predicted.node_types[node_id] = "module"
+            elif operation.op == OpType.REMOVE_COMPONENT:
+                predicted.remove_node(operation.component)
+            elif operation.op == OpType.ADD_EDGE:
+                edge = {
+                    "source": operation.source,
+                    "target": operation.target,
+                    "edge_type": operation.edge_type or "call",
+                    "confidence": 1.0,
+                    "source_detail": operation.reason,
+                    "conditional": False,
+                }
+                if edge not in predicted.edges:
+                    predicted.edges.append(edge)
+            elif operation.op == OpType.REMOVE_EDGE:
+                edge_type = operation.edge_type or "call"
+                predicted.edges = [
+                    edge for edge in predicted.edges
+                    if not (str(edge.get("source", "")) == operation.source
+                            and str(edge.get("target", "")) == operation.target
+                            and str(edge.get("edge_type", "call")) == edge_type)
+                ]
+            elif operation.op in (OpType.ADD_CONSTRAINT, OpType.REMOVE_CONSTRAINT):
+                constraint = {
+                    "constraint_type": operation.constraint_type,
+                    "source": operation.source,
+                    "target": operation.target,
+                }
+                if operation.op == OpType.ADD_CONSTRAINT:
+                    if constraint not in constraints:
+                        constraints.append(constraint)
+                else:
+                    constraints = [item for item in constraints if item != constraint]
+
+        metadata["subsystems"] = sorted(subsystems)
+        metadata["constraints"] = constraints
+        metadata["predicted"] = True
+        predicted.metadata = metadata
+        predicted.edge_types = {}
+        predicted.rebuild_indexes()
+        predicted.metadata["node_count"] = len(predicted.nodes)
+        predicted.metadata["edge_count"] = len(predicted.edges)
+        return predicted
+
+    def save_predicted(self, project_root: Path, artifact_path: Optional[Path] = None) -> Path:
+        """Persist this prediction artifact without writing any real graph view."""
+        from codegraph.storage import atomic_write
+
+        path = artifact_path or resolve_path(project_root, "predicted_graph.json")
+        payload = {
+            "schema_version": 1,
+            "predicted": True,
+            "nodes": self.nodes,
+            "edges": self.edges,
+            "metadata": self.metadata,
+        }
+        atomic_write(path, payload)
+        # Validate the persisted artifact through its public loader before handing
+        # it to downstream checks or reconciliation.
+        round_trip = self.load_predicted(path)
+        if (round_trip.nodes != self.nodes or round_trip.edges != self.edges
+                or round_trip.metadata != self.metadata):
+            raise ValueError("predicted graph artifact failed round-trip validation")
+        return path
+
+    @classmethod
+    def load_predicted(cls, artifact_path: Path) -> "ArchitectureGraph":
+        """Load the standalone artifact emitted by :meth:`save_predicted`."""
+        payload = json.loads(artifact_path.read_text(encoding="utf-8"))
+        if not isinstance(payload, dict) or payload.get("predicted") is not True:
+            raise ValueError(f"not a predicted architecture graph: {artifact_path}")
+        nodes = payload.get("nodes")
+        edges = payload.get("edges")
+        metadata = payload.get("metadata", {})
+        if (not isinstance(nodes, list) or not all(isinstance(node, dict) for node in nodes)
+                or not isinstance(edges, list) or not all(isinstance(edge, dict) for edge in edges)
+                or not isinstance(metadata, dict)):
+            raise ValueError(f"malformed predicted architecture graph: {artifact_path}")
+        return cls(
+            nodes=nodes,
+            edges=edges,
+            metadata=metadata,
         )
 
     def to_views(self) -> Dict[str, Any]:

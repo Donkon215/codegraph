@@ -11,17 +11,27 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 
 from codegraph.index import IndexStore
 from codegraph.models.graph0 import Graph0
+from codegraph.architecture_graph import ArchitectureGraph
 
 
 def _module_of(node_id: str) -> str:
     return node_id.split("::")[0] if "::" in node_id else node_id
 
 
-def _module_graph(graph: Graph0, index: Optional[IndexStore]) -> Dict[str, Set[str]]:
+def _module_graph(graph: Graph0, index: Optional[IndexStore],
+                  architecture_graph: Optional[ArchitectureGraph] = None) -> Dict[str, Set[str]]:
     adj: Dict[str, Set[str]] = defaultdict(set)
     files = {node.file for node in graph.nodes if node.file}
     for module in files:
         adj[module]
+
+    if architecture_graph is not None:
+        for edge in architecture_graph.edges:
+            source_module = _module_of(str(edge.get("source", "")))
+            target_module = _module_of(str(edge.get("target", "")))
+            if source_module and target_module and source_module != target_module:
+                adj.setdefault(source_module, set()).add(target_module)
+        return adj
 
     if index is None:
         return adj
@@ -38,9 +48,10 @@ def _module_graph(graph: Graph0, index: Optional[IndexStore]) -> Dict[str, Set[s
 def detect_layered_architecture(
     graph: Graph0,
     index: Optional[IndexStore] = None,
+    *, architecture_graph: Optional[ArchitectureGraph] = None,
 ) -> Dict[str, Any]:
     """Detect layered architecture signals from module dependency directions."""
-    adj = _module_graph(graph, index)
+    adj = _module_graph(graph, index, architecture_graph)
     if not adj:
         return {
             "architecture_type": "layered",
@@ -88,9 +99,10 @@ def detect_layered_architecture(
 def detect_event_driven_architecture(
     graph: Graph0,
     index: Optional[IndexStore] = None,
+    *, architecture_graph: Optional[ArchitectureGraph] = None,
 ) -> Dict[str, Any]:
     """Detect event-driven signals: publisher-like fan-out and event naming."""
-    adj = _module_graph(graph, index)
+    adj = _module_graph(graph, index, architecture_graph)
     if not adj:
         return {
             "architecture_type": "event_driven",
@@ -123,9 +135,10 @@ def detect_event_driven_architecture(
 def detect_pipeline_architecture(
     graph: Graph0,
     index: Optional[IndexStore] = None,
+    *, architecture_graph: Optional[ArchitectureGraph] = None,
 ) -> Dict[str, Any]:
     """Detect pipeline-like linear flows in module dependencies."""
-    adj = _module_graph(graph, index)
+    adj = _module_graph(graph, index, architecture_graph)
     if not adj:
         return {
             "architecture_type": "pipeline",
@@ -167,9 +180,10 @@ def detect_pipeline_architecture(
 def detect_bidirectional_clusters(
     graph: Graph0,
     index: Optional[IndexStore] = None,
+    *, architecture_graph: Optional[ArchitectureGraph] = None,
 ) -> Dict[str, Any]:
     """Detect bidirectional module pairs/clusters indicating tight coupling."""
-    adj = _module_graph(graph, index)
+    adj = _module_graph(graph, index, architecture_graph)
     pairs: List[Tuple[str, str]] = []
     seen: Set[Tuple[str, str]] = set()
     for source, targets in adj.items():
@@ -193,12 +207,13 @@ def detect_bidirectional_clusters(
 def detect_architecture_patterns(
     graph: Graph0,
     index: Optional[IndexStore] = None,
+    *, architecture_graph: Optional[ArchitectureGraph] = None,
 ) -> Dict[str, Any]:
     """Run all architecture detectors and select dominant architecture type."""
-    layered = detect_layered_architecture(graph, index)
-    event_driven = detect_event_driven_architecture(graph, index)
-    pipeline = detect_pipeline_architecture(graph, index)
-    bidirectional = detect_bidirectional_clusters(graph, index)
+    layered = detect_layered_architecture(graph, index, architecture_graph=architecture_graph)
+    event_driven = detect_event_driven_architecture(graph, index, architecture_graph=architecture_graph)
+    pipeline = detect_pipeline_architecture(graph, index, architecture_graph=architecture_graph)
+    bidirectional = detect_bidirectional_clusters(graph, index, architecture_graph=architecture_graph)
 
     reports = [layered, event_driven, pipeline, bidirectional]
     dominant = max(reports, key=lambda report: report.get("confidence", 0.0))

@@ -9,6 +9,7 @@ import json
 import re
 import time
 from collections import deque
+from copy import deepcopy
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
@@ -622,7 +623,7 @@ def format_explain(result: ExplainResult, as_json: bool = False) -> str:
 class QueryCache:
     """LRU cache for query results (L-017)."""
 
-    def __init__(self, max_size: int = 256, graph_version: int = 0) -> None:
+    def __init__(self, max_size: int = 256, graph_version: Any = 0) -> None:
         self._cache: Dict[str, QueryResult] = {}
         self._order: List[str] = []
         self._max_size = max_size
@@ -633,7 +634,8 @@ class QueryCache:
 
     def get(self, func: str, args: Tuple, depth: Any, limit: Any) -> Optional[QueryResult]:
         key = self._key(func, args, depth, limit)
-        return self._cache.get(key)
+        cached = self._cache.get(key)
+        return deepcopy(cached) if cached is not None else None
 
     def put(self, func: str, args: Tuple, depth: Any, limit: Any, result: QueryResult) -> None:
         key = self._key(func, args, depth, limit)
@@ -642,10 +644,10 @@ class QueryCache:
         elif len(self._cache) >= self._max_size:
             oldest = self._order.pop(0)
             del self._cache[oldest]
-        self._cache[key] = result
+        self._cache[key] = deepcopy(result)
         self._order.append(key)
 
-    def invalidate(self, new_version: int) -> None:
+    def invalidate(self, new_version: Any) -> None:
         if new_version != self._graph_version:
             self._cache.clear()
             self._order.clear()
@@ -856,7 +858,17 @@ def _cache_namespace(project_root: Optional[Path]) -> str:
         graph_version = version_data.get("graph_version", version_data.get("version", 0))
     except (json.JSONDecodeError, OSError):
         graph_version = 0
-    return f"{project_root}:{graph_version}"
+    graph1_path = project_root / ".codegraph" / "graphs" / "graph1.json"
+    try:
+        graph1_state = (graph1_path.stat().st_mtime_ns, graph1_path.stat().st_size)
+    except OSError:
+        graph1_state = (0, 0)
+    index_path = project_root / ".codegraph" / "index" / "codegraph.db"
+    try:
+        index_state = (index_path.stat().st_mtime_ns, index_path.stat().st_size)
+    except OSError:
+        index_state = (0, 0)
+    return f"{project_root}:{graph_version}:g1={graph1_state}:index={index_state}"
 
 
 def _cache_get(cache_name: str, key: str) -> Any:
@@ -1027,8 +1039,8 @@ def _execute_aql(
     elif subject == "nodes" and filter_key == "drift":
         if project_root is None:
             raise ValueError("AQL drift query requires project_root")
-        from codegraph.architecture_graph import ArchitectureGraph
         from codegraph.architecture_drift import compute_architecture_drift
+        from codegraph.architecture_graph import ArchitectureGraph
         from codegraph.architecture_intent import load_architecture_intent
         from codegraph.intent_validator import validate_architecture_intent
 
@@ -1336,6 +1348,12 @@ def execute_query(
     cache: Optional[QueryCache] = None,
 ) -> QueryResult:
     """Dispatch parsed query to the correct handler (L-013)."""
+    if cache is None:
+        cache = getattr(index, "_codegraph_query_cache", None)
+        if cache is None:
+            cache = QueryCache(graph_version=_cache_namespace(project_root))
+            setattr(index, "_codegraph_query_cache", cache)
+    cache.invalidate(_cache_namespace(project_root))
     depth = query.options.get("depth", options.depth)
     limit = query.options.get("limit", options.limit)
     args_tuple = tuple(query.args)
@@ -1558,11 +1576,19 @@ def execute_batch(
     cache = QueryCache()
     results: List[QueryResult] = []
     for q in queries:
-        if " AND " in q.upper() or " OR " in q.upper() or " NOT " in q.upper():
-            r = execute_boolean_query(q, index, options, cache=cache, **kwargs)
-        else:
-            parsed = parse_query(q)
-            r = execute_query(parsed, index, options, cache=cache, **kwargs)
+        try:
+            if " AND " in q.upper() or " OR " in q.upper() or " NOT " in q.upper():
+                r = execute_boolean_query(q, index, options, cache=cache, **kwargs)
+            else:
+                parsed = parse_query(q)
+                r = execute_query(parsed, index, options, cache=cache, **kwargs)
+        except ValueError as exc:
+            # Keep one malformed expression from discarding other batch results.
+            r = QueryResult(
+                query=q,
+                message=str(exc),
+                metadata={"error": True},
+            )
         results.append(r)
     return results
 
@@ -1582,8 +1608,8 @@ def run_query(
     verbose: bool = False,
 ) -> str:
     """Execute a query and return formatted output (CLI entry point)."""
-    from codegraph.extractor import load_graph0
     from codegraph.annotator import load_graph1
+    from codegraph.extractor import load_graph0
 
     options = QueryOptions(
         depth=depth,

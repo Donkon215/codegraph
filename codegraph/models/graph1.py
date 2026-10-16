@@ -98,6 +98,7 @@ class Graph1Node:
     tags: List[str] = field(default_factory=list)
     intent_body_hash: str = ""  # E-006: body_hash at time of intent
     intent_history: List[Dict[str, Any]] = field(default_factory=list)  # E-025
+    last_seen_graph0: str = ""  # Last Graph_0 extraction that contained this node.
 
     def __post_init__(self) -> None:
         if not self.intent_timestamp:
@@ -137,6 +138,8 @@ class Graph1Node:
             d["intent_body_hash"] = self.intent_body_hash
         if self.intent_history:
             d["intent_history"] = self.intent_history
+        if self.last_seen_graph0:
+            d["last_seen_graph0"] = self.last_seen_graph0
         return d
 
     @classmethod
@@ -152,6 +155,7 @@ class Graph1Node:
             tags=d.get("tags", []),
             intent_body_hash=d.get("intent_body_hash", ""),
             intent_history=d.get("intent_history", []),
+            last_seen_graph0=d.get("last_seen_graph0", ""),
         )
 
 

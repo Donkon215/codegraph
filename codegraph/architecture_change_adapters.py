@@ -35,6 +35,7 @@ from .architecture_change import (
     OpType,
     canonical_edge_type,
 )
+from .architecture_compiler import ArchitecturePlan as CompiledArchitecturePlan
 from .models.agent_response import AgentResponse, RepairAction
 from .arch_planner import ArchPlan, PlannedTask, plan_architecture
 from .architecture_simulator import ArchChange
@@ -56,6 +57,7 @@ __all__ = [
     "from_agent_response",
     "from_planned_task",
     "from_arch_plan",
+    "from_compiled_plan",
     "from_arch_change",
     "from_simulated_change",
     "target_workflow_to_change",
@@ -237,6 +239,40 @@ def from_arch_plan(plan: ArchPlan) -> ArchitectureChange:
     result = ArchitectureChange(
         operations=operations, metadata={"skipped": skipped} if skipped else {}
     )
+    result.validate()
+    return result
+
+
+def from_compiled_plan(plan: CompiledArchitecturePlan) -> ArchitectureChange:
+    """Translate a human-intent compiler plan into the canonical change IR."""
+    operations: List[ArchitectureOperation] = []
+    for change in plan.changes:
+        if change.change_type == "add_subsystem":
+            operations.append(ArchitectureOperation(
+                OpType.ADD_SUBSYSTEM, subsystem=change.subsystem, reason=change.reason or change.description,
+            ))
+        elif change.change_type in {"add_component", "add_module"}:
+            operations.append(ArchitectureOperation(
+                OpType.ADD_COMPONENT, component=change.module_path,
+                component_subsystem=change.subsystem, component_name=change.component_name,
+                reason=change.reason or change.description,
+            ))
+        elif change.change_type == "add_edge":
+            operations.append(ArchitectureOperation(
+                OpType.ADD_EDGE, source=change.subsystem, target=change.target_subsystem,
+                edge_type="dependency", reason=change.reason or change.description,
+            ))
+        elif change.change_type == "add_constraint":
+            operations.append(ArchitectureOperation(
+                OpType.ADD_CONSTRAINT, constraint_type=change.constraint_type,
+                source=change.subsystem, target=change.target_subsystem,
+                reason=change.reason or change.description,
+            ))
+        else:
+            raise ArchitectureChangeValidationError(
+                f"unsupported compiled architecture change: {change.change_type!r}"
+            )
+    result = ArchitectureChange(reason=plan.intent, operations=operations)
     result.validate()
     return result
 

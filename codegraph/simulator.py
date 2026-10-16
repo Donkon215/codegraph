@@ -17,13 +17,12 @@ Supports comparing multiple architecture candidates.
 
 from __future__ import annotations
 
-from collections import defaultdict
-from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Set, Tuple
-
 import fnmatch
 import json
+from collections import defaultdict
+from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 from codegraph.index import IndexStore
 from codegraph.logging_config import get_logger
@@ -152,6 +151,11 @@ def simulate_changes(
         system_json_path: Path to system.json for subsystem constraint checks.
     """
     result = SimulationResult(changes=changes)
+
+    if check_forbidden and forbidden_patterns is None and system_json_path is not None:
+        forbidden_patterns = _forbidden_node_patterns_from_system(
+            _load_system_json(system_json_path)
+        )
 
     # Build current adjacency from index
     conn = index._get_conn()
@@ -490,9 +494,52 @@ def _build_forbidden_subsystem_deps(
     """Extract forbidden subsystem dependencies from constraints."""
     forbidden: Set[Tuple[str, str]] = set()
     for constraint in system.get("constraints", []):
-        if constraint.get("type") == "forbidden_dependency":
+        if constraint.get("type") in {"forbidden", "forbidden_dependency"}:
             forbidden.add((constraint["source"], constraint["target"]))
     return forbidden
+
+
+def _forbidden_node_patterns_from_system(
+    system: Dict[str, Any],
+) -> List[Tuple[str, str]]:
+    """Translate system.json forbidden subsystem constraints to node patterns.
+
+    Constraints name subsystems; the function-level simulator operates on node
+    IDs. Each declared module is expanded to all nodes in that module. A
+    constraint endpoint that is not a declared subsystem is treated as an
+    explicit fnmatch node/module pattern, allowing precise overrides.
+    """
+    modules_by_subsystem: Dict[str, List[str]] = {}
+    for subsystem in system.get("subsystems", []):
+        name = subsystem.get("name")
+        if not name:
+            continue
+        modules_by_subsystem[name] = [
+            str(component["module"]).replace("\\", "/")
+            for component in subsystem.get("components", [])
+            if component.get("module")
+        ]
+
+    patterns: Set[Tuple[str, str]] = set()
+    for constraint in system.get("constraints", []):
+        if constraint.get("type") not in {"forbidden", "forbidden_dependency"}:
+            continue
+        source = constraint.get("source")
+        target = constraint.get("target")
+        if not isinstance(source, str) or not isinstance(target, str):
+            continue
+        sources = modules_by_subsystem.get(source, [source])
+        targets = modules_by_subsystem.get(target, [target])
+        for source_pattern in sources:
+            for target_pattern in targets:
+                # Module paths expand to Graph node IDs. Explicit glob or node
+                # patterns remain untouched.
+                src_is_pattern = "::" in source_pattern or any(c in source_pattern for c in "*?[")
+                tgt_is_pattern = "::" in target_pattern or any(c in target_pattern for c in "*?[")
+                src = source_pattern if src_is_pattern else f"{source_pattern}::*"
+                tgt = target_pattern if tgt_is_pattern else f"{target_pattern}::*"
+                patterns.add((src, tgt))
+    return sorted(patterns)
 
 
 def _check_subsystem_constraints(
@@ -569,11 +616,12 @@ def _check_transitive_forbidden(
             reachable = _bfs_limited(adj, src, max_depth=5)
             violations = reachable & targets
             if violations:
+                result.safe = False
                 tgt_sample = next(iter(violations))
                 result.violations.append(
                     SimViolation(
                         violation_type="transitive_forbidden",
-                        severity="warning",
+                        severity="error",
                         description=(
                             f"Transitive forbidden path: {src} can reach "
                             f"{tgt_sample} (via {src_pat} -> {tgt_pat})"

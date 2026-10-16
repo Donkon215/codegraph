@@ -315,6 +315,42 @@ def simulate_changes(project_root: Any, changes: List[Dict[str, Any]]) -> Dict[s
     }
 
 
+def revise_rejected_changes(
+    project_root: Any, changes: List[Dict[str, Any]], *, max_rounds: int = 3,
+) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]], Dict[str, Any]]:
+    """Drop the changes the simulation gate rejects and keep the rest (#37).
+
+    Attribution is done by re-simulation, never by parsing reason text: each
+    change is simulated on its own.  A REJECT that no single change reproduces
+    is a combination failure and is left in place — cutting a specific edge
+    would be a guess.  The returned result carries ``unattributed_reject``
+    when that happens, so a caller can surface it instead of proceeding.
+
+    Returns ``(remaining_changes, dropped, final_result)``.
+    """
+    remaining = [dict(change) for change in changes]
+    dropped: List[Dict[str, Any]] = []
+    result = simulate_changes(project_root, remaining)
+
+    for _ in range(max_rounds):
+        if result.get("verdict") != "REJECT" or not remaining:
+            break
+        offenders: List[Tuple[Dict[str, Any], List[str]]] = []
+        for change in remaining:
+            single = simulate_changes(project_root, [change])
+            if single.get("verdict") == "REJECT":
+                offenders.append((change, list(single.get("reasons", []))))
+        if not offenders:
+            result = {**result, "unattributed_reject": True}
+            break
+        for change, reasons in offenders:
+            dropped.append({"change": change, "reasons": reasons})
+            remaining.remove(change)
+        result = simulate_changes(project_root, remaining)
+
+    return remaining, dropped, result
+
+
 def simulate_change(project_root: Any, node: str, change: str, target: str = "") -> Dict[str, Any]:
     """Single-mutation form of simulate_changes, kept for existing callers."""
     result = simulate_changes(project_root, [{"change": change, "node": node, "target": target}])

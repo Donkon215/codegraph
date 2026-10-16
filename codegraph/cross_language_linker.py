@@ -45,15 +45,15 @@ class CrossLanguageLinkReport:
 def _cached_backend_routes(root: str) -> Dict[str, str]:
     project_root = Path(root)
     routes: Dict[str, str] = {}
+    from codegraph.utils.file_discovery import discover_source_files
+
     route_pattern = re.compile(
         r"@\w+\.(?:get|post|put|patch|delete)\((['\"])(/[^'\"]*)\1\)",
         re.IGNORECASE,
     )
 
-    for py_file in project_root.rglob("*.py"):
+    for py_file in discover_source_files(project_root, extensions=[".py"]):
         rel = py_file.relative_to(project_root).as_posix()
-        if any(skip in rel for skip in (".codegraph", "__pycache__", ".venv", "venv")):
-            continue
         try:
             source = py_file.read_text(encoding="utf-8", errors="replace")
         except OSError:
@@ -67,6 +67,7 @@ def _cached_backend_routes(root: str) -> Dict[str, str]:
 def _cached_frontend_api_calls(root: str) -> List[Tuple[str, str, str]]:
     project_root = Path(root)
     calls: List[Tuple[str, str, str]] = []
+    from codegraph.utils.file_discovery import discover_source_files
 
     patterns = [
         ("fetch", re.compile(r"fetch\((['\"])(/api/[^'\"]*)\1")),
@@ -77,19 +78,18 @@ def _cached_frontend_api_calls(root: str) -> List[Tuple[str, str, str]]:
         ("axios", re.compile(r"axios\((['\"])(/api/[^'\"]*)\1")),
     ]
 
-    for ext in ("*.js", "*.jsx", "*.ts", "*.tsx"):
-        for src_file in project_root.rglob(ext):
-            rel = src_file.relative_to(project_root).as_posix()
-            if any(skip in rel for skip in (".codegraph", "node_modules", ".git", ".venv", "venv")):
-                continue
-            try:
-                content = src_file.read_text(encoding="utf-8", errors="replace")
-            except OSError:
-                continue
+    for src_file in discover_source_files(
+        project_root, extensions=[".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs"],
+    ):
+        rel = src_file.relative_to(project_root).as_posix()
+        try:
+            content = src_file.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
 
-            for detector, pattern in patterns:
-                for match in pattern.finditer(content):
-                    calls.append((rel, detector, match.group(2)))
+        for detector, pattern in patterns:
+            for match in pattern.finditer(content):
+                calls.append((rel, detector, match.group(2)))
 
     return calls
 
@@ -97,6 +97,7 @@ def _cached_frontend_api_calls(root: str) -> List[Tuple[str, str, str]]:
 @lru_cache(maxsize=32)
 def _cached_type_maps(root: str) -> Tuple[Dict[str, List[str]], Dict[str, List[str]]]:
     project_root = Path(root)
+    from codegraph.utils.file_discovery import discover_source_files
 
     frontend_types: Dict[str, List[str]] = {}
     backend_models: Dict[str, List[str]] = {}
@@ -104,24 +105,19 @@ def _cached_type_maps(root: str) -> Tuple[Dict[str, List[str]], Dict[str, List[s
     ts_pattern = re.compile(r"\b(?:interface|type)\s+([A-Za-z_][A-Za-z0-9_]*)")
     py_pattern = re.compile(r"\bclass\s+([A-Za-z_][A-Za-z0-9_]*)")
 
-    for ext in ("*.ts", "*.tsx"):
-        for ts_file in project_root.rglob(ext):
-            rel = ts_file.relative_to(project_root).as_posix()
-            if any(skip in rel for skip in (".codegraph", "node_modules", ".git")):
-                continue
-            try:
-                content = ts_file.read_text(encoding="utf-8", errors="replace")
-            except OSError:
-                continue
-            for match in ts_pattern.finditer(content):
-                name = match.group(1)
-                base = _normalize_contract_name(name)
-                frontend_types.setdefault(base, []).append(f"{rel}::{name}")
-
-    for py_file in project_root.rglob("*.py"):
-        rel = py_file.relative_to(project_root).as_posix()
-        if any(skip in rel for skip in (".codegraph", "__pycache__", ".venv", "venv")):
+    for ts_file in discover_source_files(project_root, extensions=[".ts", ".tsx"]):
+        rel = ts_file.relative_to(project_root).as_posix()
+        try:
+            content = ts_file.read_text(encoding="utf-8", errors="replace")
+        except OSError:
             continue
+        for match in ts_pattern.finditer(content):
+            name = match.group(1)
+            base = _normalize_contract_name(name)
+            frontend_types.setdefault(base, []).append(f"{rel}::{name}")
+
+    for py_file in discover_source_files(project_root, extensions=[".py"]):
+        rel = py_file.relative_to(project_root).as_posix()
         try:
             content = py_file.read_text(encoding="utf-8", errors="replace")
         except OSError:
@@ -150,12 +146,13 @@ def _detect_service_boundaries(project_root: Path) -> List[Dict[str, Any]]:
         "gateway": set(),
     }
 
-    for src_file in project_root.rglob("*"):
-        if not src_file.is_file() or src_file.suffix.lower() not in {".py", ".js", ".jsx", ".ts", ".tsx"}:
-            continue
+    from codegraph.utils.file_discovery import discover_source_files
+
+    for src_file in discover_source_files(
+        project_root,
+        extensions=[".py", ".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs"],
+    ):
         rel = src_file.relative_to(project_root).as_posix().lower()
-        if any(skip in rel for skip in (".codegraph", "node_modules", "__pycache__", ".git", ".venv", "venv")):
-            continue
 
         if "frontend" in rel or "/src/components/" in rel:
             boundaries["frontend"].add(rel)
@@ -186,6 +183,12 @@ def _detect_service_boundaries(project_root: Path) -> List[Dict[str, Any]]:
 
 def build_cross_language_links(project_root: Path) -> CrossLanguageLinkReport:
     report = CrossLanguageLinkReport()
+
+    # The caches are keyed by root for convenience, but discovery/config/source
+    # can change between builds at that same root. Refresh before each build.
+    _cached_backend_routes.cache_clear()
+    _cached_frontend_api_calls.cache_clear()
+    _cached_type_maps.cache_clear()
 
     routes = _cached_backend_routes(str(project_root.resolve()))
     frontend_calls = _cached_frontend_api_calls(str(project_root.resolve()))

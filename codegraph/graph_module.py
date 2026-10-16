@@ -107,8 +107,9 @@ def _classify_module_type(module_path: str) -> str:
     return "module"
 
 
-def build_module_graph(project_root: Path) -> GraphModule:
-    arch = ArchitectureGraph.load(project_root)
+def build_module_graph(project_root: Path, *,
+                       architecture_graph: ArchitectureGraph | None = None) -> GraphModule:
+    arch = architecture_graph or ArchitectureGraph.load(project_root)
 
     modules: Dict[str, ModuleNode] = {}
     edge_keys: Set[Tuple[str, str, str]] = set()

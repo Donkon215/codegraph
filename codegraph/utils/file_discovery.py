@@ -7,10 +7,12 @@ Which files count as project source is decided by the project's own
 ``.gitignore`` are pruned during the walk, so their contents are never read.
 
 Supported ``.gitignore`` syntax: plain names and globs (``*``, ``?``, ``**``),
-trailing ``/`` for directories, and a leading or inner ``/`` to anchor a
-pattern at the project root. Negated patterns (``!pattern``) are not supported:
-they are skipped with a log message, so a re-included path stays excluded.
-Character classes (``[...]``) are matched literally.
+trailing ``/`` for directories, a leading or inner ``/`` to anchor a pattern at
+the project root, and ordered negation (``!pattern``). As in Git, a child of an
+excluded directory cannot be re-included unless the directory is re-included
+first. Character classes (``[...]``) are matched literally; nested
+``.gitignore`` files, escaped trailing spaces, and Git's platform-specific
+case-folding are not implemented.
 
 This implements a documented subset of gitignore semantics, not full
 compatibility with git. It does not match ``git check-ignore`` in every case.
@@ -24,10 +26,6 @@ from pathlib import Path
 from typing import List, Optional, Sequence
 
 from codegraph.constants import CODEGRAPH_DIR
-from codegraph.logging_config import get_logger
-
-logger = get_logger("file_discovery")
-
 # Conventional dependency and environment folders that are not source code.
 # Kept deliberately short: anything a project lists in .gitignore is handled by
 # the ignore rules, so these two names are the only exceptions.
@@ -38,11 +36,11 @@ _ALWAYS_EXCLUDE = {
 
 
 def load_gitignore_patterns(project_root: Path) -> List[str]:
-    """Return the active patterns from ``project_root/.gitignore``.
+    """Return ordered patterns from ``project_root/.gitignore``.
 
-    Blank lines and comments are dropped. Negated patterns are dropped with a
-    log message because they cannot be honoured safely by this matcher.
-    Returns an empty list when there is no ``.gitignore``.
+    Blank lines and comments are dropped. Negated patterns are retained in
+    order; :class:`IgnoreRules` applies the last matching rule. Returns an
+    empty list when there is no ``.gitignore``.
     """
     path = Path(project_root) / ".gitignore"
     try:
@@ -51,20 +49,11 @@ def load_gitignore_patterns(project_root: Path) -> List[str]:
         return []
 
     patterns: List[str] = []
-    negated = 0
     for raw in text.splitlines():
         line = raw.strip()
         if not line or line.startswith("#"):
             continue
-        if line.startswith("!"):
-            negated += 1
-            continue
         patterns.append(line)
-    if negated:
-        logger.warning(
-            "Ignored %d negated .gitignore pattern(s); negation is not supported",
-            negated,
-        )
     return patterns
 
 
@@ -98,14 +87,16 @@ class IgnoreRules:
     def __init__(self, patterns: Sequence[str]) -> None:
         self._rules: List[tuple] = []
         for pattern in patterns:
-            dir_only = pattern.endswith("/")
-            body = pattern.rstrip("/")
+            negated = pattern.startswith("!")
+            body = pattern[1:] if negated else pattern
+            dir_only = body.endswith("/")
+            body = body.rstrip("/")
             # A slash before the last character anchors the pattern to the root.
             anchored = "/" in body
             body = body.lstrip("/")
             if not body:
                 continue
-            self._rules.append((_glob_to_regex(body), dir_only, anchored))
+            self._rules.append((_glob_to_regex(body), dir_only, anchored, negated))
 
     def is_ignored(self, rel_path: str, is_dir: bool) -> bool:
         """True if *rel_path* (POSIX, relative to the root) or any ancestor matches."""
@@ -114,13 +105,17 @@ class IgnoreRules:
             sub = "/".join(parts[:depth])
             name = parts[depth - 1]
             sub_is_dir = is_dir if depth == len(parts) else True
-            for regex, dir_only, anchored in self._rules:
+            ignored = False
+            for regex, dir_only, anchored, negated in self._rules:
                 if dir_only and not sub_is_dir:
                     continue
                 target = sub if anchored else name
                 if regex.fullmatch(target):
-                    return True
-        return False
+                    ignored = not negated
+            # Git cannot re-include a child while an ancestor remains excluded.
+            if depth < len(parts) and ignored:
+                return True
+        return ignored
 
 
 def _is_always_excluded(dirname: str) -> bool:

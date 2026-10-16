@@ -12,6 +12,8 @@ from codegraph.index import IndexStore
 from codegraph.query import (
     ParsedQuery,
     QueryOptions,
+    QueryResult,
+    execute_batch,
     execute_query,
     parse_query,
     query_dependencies,
@@ -52,6 +54,61 @@ class TestQueryParser:
         q = parse_query('path("a", "b")')
         assert q.function == "path"
         assert len(q.args) == 2
+
+
+def test_batch_query_reports_per_expression_errors_and_keeps_going(monkeypatch) -> None:
+    import codegraph.query as query_module
+
+    monkeypatch.setattr(
+        query_module,
+        "execute_query",
+        lambda parsed, *_args, **_kwargs: QueryResult(
+            query=parsed.function, nodes=["ok"], total=1
+        ),
+    )
+    results = execute_batch(
+        ["not valid syntax", "orphans()"],
+        index=object(),
+        options=QueryOptions(),
+    )
+
+    assert len(results) == 2
+    assert results[0].metadata["error"] is True
+    assert "Invalid query syntax" in results[0].message
+    assert results[1].nodes == ["ok"]
+
+
+def test_repeated_query_uses_index_scoped_cache_without_sharing_mutable_results() -> None:
+    index = _InstrumentedIndex({"entry": ["entry::child"]})
+    query = parse_query('callees("entry")')
+    options = QueryOptions()
+
+    first = execute_query(query, index, options)
+    first.nodes.clear()
+    second = execute_query(query, index, options)
+
+    assert index.callee_calls == 1
+    assert second.nodes == ["entry::child"]
+    assert second.metadata["cached"] is True
+
+
+def test_query_cache_invalidates_when_graph_version_changes(tmp_path) -> None:
+    from codegraph.storage import ensure_codegraph_dir, resolve_path
+
+    ensure_codegraph_dir(tmp_path)
+    version_path = resolve_path(tmp_path, "graphs", "version.json")
+    version_path.write_text('{"graph_version": 1}', encoding="utf-8")
+    index = _InstrumentedIndex({"entry": ["entry::child"]})
+    query = parse_query('callees("entry")')
+
+    execute_query(query, index, QueryOptions(), project_root=tmp_path)
+    execute_query(query, index, QueryOptions(), project_root=tmp_path)
+    assert index.callee_calls == 1
+
+    version_path.write_text('{"graph_version": 2}', encoding="utf-8")
+    refreshed = execute_query(query, index, QueryOptions(), project_root=tmp_path)
+    assert index.callee_calls == 2
+    assert "cached" not in refreshed.metadata
 
     def test_with_options(self) -> None:
         q = parse_query('dependencies("a", depth=3)')

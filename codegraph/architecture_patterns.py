@@ -43,9 +43,12 @@ class ArchitecturePatternReport:
         return out
 
 
-def detect_patterns(project_root: Path, graph0, index) -> ArchitecturePatternReport:
-    base = detect_architecture_patterns(graph0, index)
-    module_graph = build_module_graph(project_root)
+def detect_patterns(project_root: Path, graph0, index,
+                    *, architecture_graph=None) -> ArchitecturePatternReport:
+    base = detect_architecture_patterns(
+        graph0, index, architecture_graph=architecture_graph,
+    )
+    module_graph = build_module_graph(project_root, architecture_graph=architecture_graph)
 
     patterns: List[PatternFinding] = []
     reports = base.get("reports", {})

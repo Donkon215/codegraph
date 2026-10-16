@@ -345,3 +345,84 @@ class TestEvaluatePolicies:
     def test_valid_policy_types_updated(self):
         assert "layer_isolation" in VALID_POLICY_TYPES
         assert "forbidden_subsystem_dep" in VALID_POLICY_TYPES
+
+    def test_frontend_backend_boundary_reports_cross_boundary_dependency(self, tmp_path: Path):
+        _setup_codegraph(tmp_path)
+        add_policy(tmp_path, "boundary", "frontend_backend_boundary",
+                   "frontend must not import backend", "block")
+        graph = {
+            "nodes": [
+                {"id": "ui::render", "file": "web/src/app.ts"},
+                {"id": "api::handler", "file": "server/api.py"},
+            ],
+            "edges": [{"source": "ui::render", "target": "api::handler", "type": "imports"}],
+        }
+        report = evaluate_policies(tmp_path, graph_data=graph)
+        assert not report.passed
+        assert report.violations[0].details == {
+            "source_file": "web/src/app.ts", "target_file": "server/api.py",
+            "edge_type": "imports",
+        }
+
+    def test_frontend_backend_policy_reads_persisted_import_graph(self, tmp_path: Path):
+        _setup_codegraph(tmp_path)
+        add_policy(tmp_path, "boundary", "frontend_backend_boundary",
+                   "frontend must not import backend", "block")
+        imports_path = tmp_path / ".codegraph" / "workflow" / "imports.json"
+        imports_path.parent.mkdir(parents=True, exist_ok=True)
+        imports_path.write_text(json.dumps({
+            "edges": [{"source": "web/app.ts", "target": "server.api"}]
+        }), encoding="utf-8")
+
+        report = evaluate_policies(tmp_path)
+
+        assert not report.passed
+        assert report.violations[0].details["source_file"] == "web/app.ts"
+        assert report.violations[0].details["target_file"] == "server/api.py"
+
+    def test_no_apply_without_plan_requires_apply_context(self, tmp_path: Path):
+        _setup_codegraph(tmp_path)
+        add_policy(tmp_path, "plan_gate", "no_apply_without_plan",
+                   "apply requires a plan", "block")
+        assert evaluate_policies(tmp_path).passed
+        report = evaluate_policies(tmp_path, health_data={"operation": "apply", "plan_exists": False})
+        assert not report.passed
+        assert report.violations[0].details["operation"] == "apply"
+        assert evaluate_policies(
+            tmp_path, health_data={"operation": "apply", "plan_exists": True}
+        ).passed
+
+    def test_allowed_dependencies_reports_edges_outside_allowlist(self, tmp_path: Path):
+        _setup_codegraph(tmp_path)
+        add_policy(tmp_path, "allowlist", "allowed_subsystem_deps",
+                   "Only declared subsystem dependencies are permitted", "block",
+                   target="frontend->service")
+        architecture = {"subsystems": [
+            {"name": "frontend", "components": [{"name": "ui", "module": "web/ui.ts"}]},
+            {"name": "service", "components": [{"name": "api", "module": "server/api.py"}]},
+            {"name": "database", "components": [{"name": "db", "module": "data/db.py"}]},
+        ]}
+        report = evaluate_policies(tmp_path, graph_data={"nodes": [], "edges": [
+            {"source_file": "web/ui.ts", "target_file": "server/api.py"},
+            {"source_file": "server/api.py", "target_file": "data/db.py"},
+        ]}, architecture_data=architecture)
+
+        assert not report.passed
+        assert len(report.violations) == 1
+        assert report.violations[0].details["source_subsystem"] == "service"
+        assert report.violations[0].details["target_subsystem"] == "database"
+
+    def test_forbidden_subsystem_cycle_is_detected(self, tmp_path: Path):
+        _setup_codegraph(tmp_path)
+        add_policy(tmp_path, "no_cycle", "forbidden_subsystem_cycle",
+                   "Subsystem dependency cycle is forbidden", "block",
+                   target="frontend->service->frontend")
+        architecture = {"subsystems": [], "edges": [
+            {"from": "frontend", "to": "service"},
+            {"from": "service", "to": "frontend"},
+        ]}
+
+        report = evaluate_policies(tmp_path, architecture_data=architecture)
+
+        assert not report.passed
+        assert report.violations[0].details["cycle"] == ["frontend", "service", "frontend"]

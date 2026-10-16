@@ -45,6 +45,8 @@ VALID_POLICY_TYPES = {
     "coupling_limit",
     "layer_isolation",
     "forbidden_subsystem_dep",
+    "allowed_subsystem_deps",
+    "forbidden_subsystem_cycle",
     "custom",
 }
 
@@ -272,6 +274,26 @@ def evaluate_policies(
         graph_data = _load_json(
             project_root / ".codegraph" / "graphs" / "graph0.json"
         )
+    # Graph_0 stores definitions but no dependencies. Include the persisted
+    # module import graph so policy --check evaluates real current imports.
+    if isinstance(graph_data, dict):
+        graph_data = dict(graph_data)
+        graph_data["edges"] = list(graph_data.get("edges", []))
+        workflow = _load_json(project_root / ".codegraph" / "workflow" / "workflow.json")
+        graph_data["edges"].extend(workflow.get("edges", []))
+        imports = _load_json(project_root / ".codegraph" / "workflow" / "imports.json")
+        for edge in imports.get("edges", []):
+            source = str(edge.get("source", "")).replace("\\", "/")
+            target = str(edge.get("target", "")).replace("\\", "/")
+            if target and "." in target and "/" not in target:
+                target = target.replace(".", "/")
+            if target and not Path(target).suffix:
+                target += ".py"
+            graph_data["edges"].append({
+                "source_file": source,
+                "target_file": target,
+                "type": "import",
+            })
     if architecture_data is None:
         architecture_data = _load_json(
             project_root / ".codegraph" / "architecture" / "system.json"
@@ -421,22 +443,32 @@ def _check_frontend_backend_boundary(
     violations: List[PolicyViolation] = []
 
     # Identify frontend/backend files by extension or path convention
-    nodes_by_file: Dict[str, List[str]] = {}
-    for node in graph_data.get("nodes", []):
-        fp = node.get("file", "")
-        node_id = node.get("id", "")
-        if fp:
-            nodes_by_file.setdefault(fp, []).append(node_id)
-
-    frontend_files = {f for f in nodes_by_file
-                      if f.endswith((".js", ".jsx", ".ts", ".tsx"))}
-    backend_files = {f for f in nodes_by_file if f.endswith(".py")}
-
-    # Check edges for cross-boundary imports
-    # (This is a simplified check; full implementation would check workflow edges)
-    if frontend_files and backend_files:
-        # No violations by default — actual import checking requires workflow data
-        pass
+    # Graph_0 contains definitions, not edges. Callers may supply dependency
+    # edges in graph_data (the workflow/export format uses source/target ids).
+    file_by_id = {
+        node.get("id"): node.get("file", "")
+        for node in graph_data.get("nodes", [])
+        if node.get("id") and node.get("file")
+    }
+    for edge in graph_data.get("edges", []):
+        edge_type = str(edge.get("type", edge.get("edge_type", ""))).lower()
+        if edge_type and edge_type not in {"import", "imports", "dependency", "call", "calls"}:
+            continue
+        source = edge.get("source_file") or file_by_id.get(edge.get("source"), edge.get("source", ""))
+        target = edge.get("target_file") or file_by_id.get(edge.get("target"), edge.get("target", ""))
+        source = str(source).replace("\\", "/")
+        target = str(target).replace("\\", "/")
+        source_is_frontend = source.lower().endswith((".js", ".jsx", ".ts", ".tsx"))
+        target_is_backend = target.lower().endswith(".py")
+        if source_is_frontend and target_is_backend:
+            violations.append(PolicyViolation(
+                policy_id=policy.policy_id,
+                policy_name=policy.name,
+                description=f"Frontend file {source} depends on backend file {target}",
+                action=policy.action,
+                details={"source_file": source, "target_file": target,
+                         "edge_type": edge_type or "dependency"},
+            ))
 
     return violations
 
@@ -447,11 +479,22 @@ def _check_no_apply_without_plan(
     architecture_data: Dict[str, Any],
     health_data: Dict[str, Any],
 ) -> List[PolicyViolation]:
-    """Check that a plan exists before apply operations.
+    """Require an explicit operation context to evaluate the apply gate.
 
-    This is enforced at runtime — here we just verify plan artifacts exist.
+    Static ``policy --check`` is not an apply operation and therefore passes.
+    Apply callers pass ``health_data={"operation": "apply",
+    "plan_exists": bool}``; the apply pipeline also enforces its existing
+    planning gate before any writes.
     """
-    return []  # Enforcement is in the CLI pipeline, not in static analysis
+    if health_data.get("operation") != "apply" or health_data.get("plan_exists", False):
+        return []
+    return [PolicyViolation(
+        policy_id=policy.policy_id,
+        policy_name=policy.name,
+        description="Apply operation has no architecture plan",
+        action=policy.action,
+        details={"operation": "apply", "plan_exists": False},
+    )]
 
 
 def _check_layer_isolation(
@@ -491,24 +534,37 @@ def _check_layer_isolation(
         for c in tgt_sub.get("components", [])
     }
 
-    # Check edges in architecture
+    detected = False
+    # Check declared architecture edges.
     for edge in architecture_data.get("edges", []):
         if edge.get("from") == src_layer and edge.get("to") == tgt_layer:
-            violations.append(PolicyViolation(
-                policy_id=policy.policy_id,
-                policy_name=policy.name,
-                description=(
-                    f"Layer isolation violated: {src_layer} -> {tgt_layer} "
-                    f"edge exists in architecture"
-                ),
-                action=policy.action,
-                details={
-                    "source_layer": src_layer,
-                    "target_layer": tgt_layer,
-                    "source_modules": sorted(src_modules)[:5],
-                    "target_modules": sorted(tgt_modules)[:5],
-                },
-            ))
+            detected = True
+
+    # Also inspect concrete dependency edges (imports and workflow calls).
+    modules = _component_subsystems(architecture_data)
+    file_by_id = {
+        str(node.get("id")): str(node.get("file", "")).replace("\\", "/")
+        for node in graph_data.get("nodes", []) if node.get("id")
+    }
+    for edge in graph_data.get("edges", []):
+        source = str(edge.get("source_file") or file_by_id.get(edge.get("source"), edge.get("source", ""))).replace("\\", "/")
+        target = str(edge.get("target_file") or file_by_id.get(edge.get("target"), edge.get("target", ""))).replace("\\", "/")
+        if modules.get(source) == src_layer and modules.get(target) == tgt_layer:
+            detected = True
+
+    if detected:
+        violations.append(PolicyViolation(
+            policy_id=policy.policy_id,
+            policy_name=policy.name,
+            description=f"Layer isolation violated: {src_layer} -> {tgt_layer} dependency exists",
+            action=policy.action,
+            details={
+                "source_layer": src_layer,
+                "target_layer": tgt_layer,
+                "source_modules": sorted(src_modules)[:5],
+                "target_modules": sorted(tgt_modules)[:5],
+            },
+        ))
 
     return violations
 
@@ -552,6 +608,88 @@ def _check_forbidden_subsystem_dep(
     return violations
 
 
+def _component_subsystems(architecture_data: Dict[str, Any]) -> Dict[str, str]:
+    modules: Dict[str, str] = {}
+    for subsystem in architecture_data.get("subsystems", []):
+        name = subsystem.get("name", "")
+        for component in subsystem.get("components", []):
+            module = str(component.get("module", "")).replace("\\", "/")
+            if module and name:
+                modules[module] = name
+    return modules
+
+
+def _check_allowed_subsystem_deps(
+    policy: ArchPolicy,
+    graph_data: Dict[str, Any],
+    architecture_data: Dict[str, Any],
+    health_data: Dict[str, Any],
+) -> List[PolicyViolation]:
+    """Treat ``target`` as a semicolon-separated subsystem dependency allowlist."""
+    allowed: set[tuple[str, str]] = set()
+    for item in (policy.target or "").split(";"):
+        if "->" in item:
+            source, target = item.split("->", 1)
+            allowed.add((source.strip(), target.strip()))
+
+    module_to_subsystem = _component_subsystems(architecture_data)
+    file_by_id = {
+        str(node.get("id")): str(node.get("file", "")).replace("\\", "/")
+        for node in graph_data.get("nodes", []) if node.get("id")
+    }
+    violations: List[PolicyViolation] = []
+    seen: set[tuple[str, str, str, str]] = set()
+    for edge in graph_data.get("edges", []):
+        source_file = str(edge.get("source_file") or file_by_id.get(edge.get("source"), edge.get("source", "")))
+        target_file = str(edge.get("target_file") or file_by_id.get(edge.get("target"), edge.get("target", "")))
+        source_file = source_file.replace("\\", "/")
+        target_file = target_file.replace("\\", "/")
+        source_sub = module_to_subsystem.get(source_file, "")
+        target_sub = module_to_subsystem.get(target_file, "")
+        if not source_sub or not target_sub or source_sub == target_sub:
+            continue
+        if (source_sub, target_sub) in allowed:
+            continue
+        identity = (source_sub, target_sub, source_file, target_file)
+        if identity in seen:
+            continue
+        seen.add(identity)
+        violations.append(PolicyViolation(
+            policy_id=policy.policy_id,
+            policy_name=policy.name,
+            description=f"Dependency {source_sub} -> {target_sub} is not in the allowed dependency list",
+            action=policy.action,
+            details={"source_subsystem": source_sub, "target_subsystem": target_sub,
+                     "source_file": source_file, "target_file": target_file},
+        ))
+    return violations
+
+
+def _check_forbidden_subsystem_cycle(
+    policy: ArchPolicy,
+    graph_data: Dict[str, Any],
+    architecture_data: Dict[str, Any],
+    health_data: Dict[str, Any],
+) -> List[PolicyViolation]:
+    """Reject a declared subsystem cycle such as ``ui->service->ui``."""
+    path = [part.strip() for part in (policy.target or "").split("->") if part.strip()]
+    if len(path) < 3 or path[0] != path[-1]:
+        return []
+    declared = {
+        (str(edge.get("from", "")), str(edge.get("to", "")))
+        for edge in architecture_data.get("edges", [])
+    }
+    if not all(pair in declared for pair in zip(path, path[1:])):
+        return []
+    return [PolicyViolation(
+        policy_id=policy.policy_id,
+        policy_name=policy.name,
+        description=f"Forbidden subsystem cycle exists: {' -> '.join(path)}",
+        action=policy.action,
+        details={"cycle": path},
+    )]
+
+
 _POLICY_HANDLERS = {
     "no_large_modules": _check_no_large_modules,
     "max_subsystem_size": _check_max_subsystem_size,
@@ -561,6 +699,8 @@ _POLICY_HANDLERS = {
     "no_apply_without_plan": _check_no_apply_without_plan,
     "layer_isolation": _check_layer_isolation,
     "forbidden_subsystem_dep": _check_forbidden_subsystem_dep,
+    "allowed_subsystem_deps": _check_allowed_subsystem_deps,
+    "forbidden_subsystem_cycle": _check_forbidden_subsystem_cycle,
 }
 
 

@@ -418,9 +418,18 @@ def extract_runtime_edges(
     """
     graph = RuntimeGraph()
 
-    py_files = sorted(project_root.rglob("*.py"))
-    js_files = sorted(project_root.rglob("*.js")) + sorted(project_root.rglob("*.jsx"))
-    ts_files = sorted(project_root.rglob("*.ts")) + sorted(project_root.rglob("*.tsx"))
+    from codegraph.utils.file_discovery import discover_source_files
+
+    source_files = discover_source_files(
+        project_root,
+        extensions=[".py", ".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs"],
+    )
+    py_files = [path for path in source_files if path.suffix.lower() == ".py"]
+    js_files = [
+        path for path in source_files
+        if path.suffix.lower() in {".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs"}
+    ]
+    ts_files = [path for path in source_files if path.suffix.lower() in {".ts", ".tsx"}]
     if exclude_patterns is None:
         exclude_patterns = ["__pycache__", ".codegraph", "node_modules",
                            ".git", ".venv", "venv"]
