@@ -61,7 +61,7 @@ def load_gitignore_patterns(project_root: Path) -> List[str]:
             continue
         patterns.append(line)
     if negated:
-        logger.info(
+        logger.warning(
             "Ignored %d negated .gitignore pattern(s); negation is not supported",
             negated,
         )
