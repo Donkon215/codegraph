@@ -64,9 +64,63 @@ def test_copilot_loop_skipped_simulation_is_a_warning_not_a_drop(tmp_path, monke
 
     sim_iterations = [it for it in report.iterations if it.step == "simulate"]
     assert len(sim_iterations) == 1
-    assert sim_iterations[0].status == "warning"                    # not "ok"
+    assert sim_iterations[0].status == "skipped"                   # never ran: not ok, not a failure
+    assert report.verdict != "proceed"                              # a skip cannot support proceed
     assert sim_iterations[0].result["status"] == "not_simulated"
     assert calls == []                                              # no fabricated node id
     assert report.score_after == report.score_before                # no whole-score drop
     assert "Simulation skipped" in report.simulation["note"]        # the skip is recorded
-    assert not any("Simulation" in step for step in report.next_steps)  # not an action item
+    assert not any("did not run" in step for step in report.next_steps)  # reason stays in the note
+
+
+def _loop(tmp_path, monkeypatch, sim_return, simulate):
+    from codegraph.copilot_intelligence import copilot_loop
+    from tests.test_copilot_intelligence import _setup_minimal_graph
+
+    root = _setup_minimal_graph(tmp_path)
+    if sim_return is not None:
+        monkeypatch.setattr(
+            "codegraph.architecture_simulator.simulate_change",
+            lambda *args, **kwargs: dict(sim_return),
+        )
+    return copilot_loop(root, "svc/order.py::OrderService", simulate=simulate)
+
+
+def test_predicted_drop_blocks_the_verdict(tmp_path, monkeypatch):
+    report = _loop(tmp_path, monkeypatch, {
+        "status": "simulated",
+        "score_delta": -0.2,
+        "predicted_subsystem_score": 0.1,
+        "baseline_subsystem_score": 0.3,
+    }, simulate=True)
+
+    step = next(it for it in report.iterations if it.step == "simulate")
+    assert step.status == "warning"
+    assert report.verdict == "block"
+
+
+def test_clean_simulation_leaves_verdict_unchanged(tmp_path, monkeypatch):
+    without_sim = _loop(tmp_path / "base", monkeypatch, None, simulate=False)
+    with_sim = _loop(tmp_path / "sim", monkeypatch, {
+        "status": "simulated",
+        "score_delta": 0.0,
+        "predicted_subsystem_score": 0.3,
+        "baseline_subsystem_score": 0.3,
+    }, simulate=True)
+
+    step = next(it for it in with_sim.iterations if it.step == "simulate")
+    assert step.status == "ok"
+    assert with_sim.verdict == without_sim.verdict
+
+
+def test_skipped_simulation_caps_proceed_at_caution(tmp_path, monkeypatch):
+    without_sim = _loop(tmp_path / "base", monkeypatch, None, simulate=False)
+    skipped = _loop(tmp_path / "skip", monkeypatch, {
+        "status": "not_simulated",
+        "reason": "no function-level node id",
+    }, simulate=True)
+
+    step = next(it for it in skipped.iterations if it.step == "simulate")
+    assert step.status == "skipped"
+    assert without_sim.verdict == "proceed"  # premise: this fixture is the case being tested
+    assert skipped.verdict == "caution"
