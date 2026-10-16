@@ -67,7 +67,7 @@ from codegraph.storage import (
     increment_graph_version,
     resolve_path,
 )
-from codegraph.utils.file_discovery import discover_source_files
+from codegraph.utils.file_discovery import discover_source_files, load_gitignore_patterns
 from codegraph.utils.formatting import iso_now
 from codegraph.utils.hashing import hash_file
 from codegraph.utils.ids import normalize_path
@@ -1096,7 +1096,10 @@ def extract_project(
     # Discover source files (multi-language: use extractor registry)
     from codegraph.extractors import setup as _setup_extractors
     _setup_extractors(project_root)
-    source_files = discover_source_files(project_root)
+    source_files = discover_source_files(
+        project_root,
+        gitignore_patterns=load_gitignore_patterns(project_root),
+    )
     if not source_files:
         logger.info("No source files found in %s", project_root)
         report = ExtractionReport()
