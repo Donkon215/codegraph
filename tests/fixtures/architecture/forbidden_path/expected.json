@@ -1,0 +1,138 @@
+{
+  "graph": {
+    "node_count": 2,
+    "edge_count": 1
+  },
+  "forbidden_path": [
+    {
+      "source": "ui.py::UI",
+      "target": "api.py::API",
+      "source_layer": 1,
+      "target_layer": 3
+    }
+  ],
+  "communities": [
+    {
+      "community_id": "api_py_bc32052c",
+      "size": 2,
+      "node_ids": [
+        "api.py::API",
+        "ui.py::UI"
+      ],
+      "internal_edge_count": 1,
+      "boundary_nodes": [],
+      "declared_subsystem": null,
+      "node_type_counts": {
+        "function": 2
+      },
+      "files": [
+        "api.py",
+        "ui.py"
+      ],
+      "directories": [
+        "."
+      ],
+      "boundary_edges": [],
+      "analysis": "Detected community 'api_py_bc32052c': 2 node(s), 1 internal edge(s), 0 boundary node(s); no single declared subsystem (mixed or undeclared)."
+    }
+  ],
+  "cross_community_links": [],
+  "metrics": {
+    "coupling": [
+      {
+        "module": "api.py",
+        "node_count": 1,
+        "crossing_edges": 1,
+        "coupling": 1.0,
+        "edges": [
+          {
+            "source": "ui.py::UI",
+            "target": "api.py::API",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "ui.py",
+        "node_count": 1,
+        "crossing_edges": 1,
+        "coupling": 1.0,
+        "edges": [
+          {
+            "source": "ui.py::UI",
+            "target": "api.py::API",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      }
+    ],
+    "cycles": [],
+    "hubs": [
+      {
+        "node_id": "ui.py::UI",
+        "score": 2.0,
+        "in_degree": 0,
+        "out_degree": 1,
+        "reach": 1,
+        "callers": []
+      }
+    ],
+    "bridges": [
+      {
+        "source": "ui.py::UI",
+        "target": "api.py::API",
+        "component_a": [
+          "ui.py::UI"
+        ],
+        "component_b": [
+          "api.py::API"
+        ],
+        "edge": {
+          "source": "ui.py::UI",
+          "target": "api.py::API",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      }
+    ]
+  },
+  "coverage_map": {
+    "evidence": "missing",
+    "boundaries": [
+      {
+        "boundary_id": "api_py_bc32052c",
+        "node_count": 2,
+        "node_ids": [
+          "api.py::API",
+          "ui.py::UI"
+        ],
+        "covering_tests": [],
+        "test_count": 0,
+        "coverage_status": "missing_evidence"
+      }
+    ],
+    "flows": [],
+    "orphan_tests": [],
+    "ambiguous_tests": [],
+    "totals": {
+      "boundary_count": 1,
+      "test_count": 0,
+      "covered_boundary_count": 0,
+      "zero_coverage_boundary_count": 0,
+      "flow_count": 0,
+      "covered_flow_count": 0,
+      "one_sided_flow_count": 0,
+      "untested_flow_count": 0,
+      "orphan_test_count": 0,
+      "ambiguous_test_count": 0
+    }
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "graph": {
+    "node_count": 4,
+    "edge_count": 2
+  },
+  "forbidden_path": [],
+  "communities": [
+    {
+      "community_id": "checked_py_3b1505f9",
+      "size": 2,
+      "node_ids": [
+        "checked.py::Checker",
+        "tests.py::test_db"
+      ],
+      "internal_edge_count": 1,
+      "boundary_nodes": [],
+      "declared_subsystem": null,
+      "node_type_counts": {
+        "function": 2
+      },
+      "files": [
+        "checked.py",
+        "tests.py"
+      ],
+      "directories": [
+        "."
+      ],
+      "boundary_edges": [],
+      "analysis": "Detected community 'checked_py_3b1505f9': 2 node(s), 1 internal edge(s), 0 boundary node(s); no single declared subsystem (mixed or undeclared)."
+    },
+    {
+      "community_id": "unt_py_88c87fd4",
+      "size": 2,
+      "node_ids": [
+        "unt.py::DB",
+        "unt.py::Gateway"
+      ],
+      "internal_edge_count": 1,
+      "boundary_nodes": [],
+      "declared_subsystem": null,
+      "node_type_counts": {
+        "class": 1,
+        "function": 1
+      },
+      "files": [
+        "unt.py"
+      ],
+      "directories": [
+        "."
+      ],
+      "boundary_edges": [],
+      "analysis": "Detected community 'unt_py_88c87fd4': 2 node(s), 1 internal edge(s), 0 boundary node(s); no single declared subsystem (mixed or undeclared)."
+    }
+  ],
+  "cross_community_links": [],
+  "metrics": {
+    "coupling": [
+      {
+        "module": "checked.py",
+        "node_count": 1,
+        "crossing_edges": 1,
+        "coupling": 1.0,
+        "edges": [
+          {
+            "source": "tests.py::test_db",
+            "target": "checked.py::Checker",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "tests.py",
+        "node_count": 1,
+        "crossing_edges": 1,
+        "coupling": 1.0,
+        "edges": [
+          {
+            "source": "tests.py::test_db",
+            "target": "checked.py::Checker",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "unt.py",
+        "node_count": 2,
+        "crossing_edges": 0,
+        "coupling": 0.0,
+        "edges": []
+      }
+    ],
+    "cycles": [],
+    "hubs": [
+      {
+        "node_id": "tests.py::test_db",
+        "score": 2.0,
+        "in_degree": 0,
+        "out_degree": 1,
+        "reach": 1,
+        "callers": []
+      },
+      {
+        "node_id": "unt.py::Gateway",
+        "score": 2.0,
+        "in_degree": 0,
+        "out_degree": 1,
+        "reach": 1,
+        "callers": []
+      }
+    ],
+    "bridges": [
+      {
+        "source": "tests.py::test_db",
+        "target": "checked.py::Checker",
+        "component_a": [
+          "tests.py::test_db"
+        ],
+        "component_b": [
+          "checked.py::Checker"
+        ],
+        "edge": {
+          "source": "tests.py::test_db",
+          "target": "checked.py::Checker",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      },
+      {
+        "source": "unt.py::Gateway",
+        "target": "unt.py::DB",
+        "component_a": [
+          "unt.py::Gateway"
+        ],
+        "component_b": [
+          "unt.py::DB"
+        ],
+        "edge": {
+          "source": "unt.py::Gateway",
+          "target": "unt.py::DB",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      }
+    ]
+  },
+  "coverage_map": {
+    "evidence": "present",
+    "boundaries": [
+      {
+        "boundary_id": "checked_py_3b1505f9",
+        "node_count": 2,
+        "node_ids": [
+          "checked.py::Checker",
+          "tests.py::test_db"
+        ],
+        "covering_tests": [
+          "tests.py::test_db"
+        ],
+        "test_count": 1,
+        "coverage_status": "covered"
+      },
+      {
+        "boundary_id": "unt_py_88c87fd4",
+        "node_count": 2,
+        "node_ids": [
+          "unt.py::DB",
+          "unt.py::Gateway"
+        ],
+        "covering_tests": [],
+        "test_count": 0,
+        "coverage_status": "zero_coverage"
+      }
+    ],
+    "flows": [],
+    "orphan_tests": [],
+    "ambiguous_tests": [],
+    "totals": {
+      "boundary_count": 2,
+      "test_count": 1,
+      "covered_boundary_count": 1,
+      "zero_coverage_boundary_count": 1,
+      "flow_count": 0,
+      "covered_flow_count": 0,
+      "one_sided_flow_count": 0,
+      "untested_flow_count": 0,
+      "orphan_test_count": 0,
+      "ambiguous_test_count": 0
+    }
+  }
+}

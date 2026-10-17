@@ -1,0 +1,8 @@
+{
+  "name": "cross_subdirectory",
+  "metric_kind": "communities",
+  "description": "A detected community spans subdirectories (src/payments and src/shared) with distinct file/directory sets, plus boundary-edge evidence from a report module outside the community.",
+  "hostile_features": [],
+  "node_count": 4,
+  "edge_count": 4
+}

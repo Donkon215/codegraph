@@ -1,0 +1,17 @@
+{
+  "nodes": [
+    {"id": "a.py::A", "file": "a.py", "type": "function", "line": 1, "body_hash": "s01"},
+    {"id": "b.py::B", "file": "b.py", "type": "function", "line": 1, "body_hash": "s02"},
+    {"id": "c.py::C", "file": "c.py", "type": "function", "line": 1, "body_hash": "s03"}
+  ],
+  "edges": [
+    {"source": "a.py::A", "target": "b.py::B", "edge_type": "call"},
+    {"source": "b.py::B", "target": "c.py::C", "edge_type": "call"}
+  ],
+  "intent": [],
+  "simulation": {
+    "changes": [
+      {"change": "add_edge", "node": "c.py::C", "target": "a.py::A"}
+    ]
+  }
+}

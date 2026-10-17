@@ -1,0 +1,244 @@
+{
+  "graph": {
+    "node_count": 4,
+    "edge_count": 4
+  },
+  "forbidden_path": [],
+  "communities": [
+    {
+      "community_id": "src_payments_repo_py_e195fd44",
+      "size": 4,
+      "node_ids": [
+        "src/payments/repo.py::PaymentRepo",
+        "src/payments/service.py::PaymentService",
+        "src/reports/report.py::Report",
+        "src/shared/util.py::Util"
+      ],
+      "internal_edge_count": 4,
+      "boundary_nodes": [],
+      "declared_subsystem": null,
+      "node_type_counts": {
+        "class": 2,
+        "function": 2
+      },
+      "files": [
+        "src/payments/repo.py",
+        "src/payments/service.py",
+        "src/reports/report.py",
+        "src/shared/util.py"
+      ],
+      "directories": [
+        "src/payments",
+        "src/reports",
+        "src/shared"
+      ],
+      "boundary_edges": [],
+      "analysis": "Detected community 'src_payments_repo_py_e195fd44': 4 node(s), 4 internal edge(s), 0 boundary node(s); no single declared subsystem (mixed or undeclared)."
+    }
+  ],
+  "cross_community_links": [],
+  "metrics": {
+    "coupling": [
+      {
+        "module": "src/payments/repo.py",
+        "node_count": 1,
+        "crossing_edges": 2,
+        "coupling": 2.0,
+        "edges": [
+          {
+            "source": "src/payments/repo.py::PaymentRepo",
+            "target": "src/shared/util.py::Util",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/payments/service.py::PaymentService",
+            "target": "src/payments/repo.py::PaymentRepo",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "src/payments/service.py",
+        "node_count": 1,
+        "crossing_edges": 3,
+        "coupling": 3.0,
+        "edges": [
+          {
+            "source": "src/payments/service.py::PaymentService",
+            "target": "src/payments/repo.py::PaymentRepo",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/reports/report.py::Report",
+            "target": "src/payments/service.py::PaymentService",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/shared/util.py::Util",
+            "target": "src/payments/service.py::PaymentService",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "src/reports/report.py",
+        "node_count": 1,
+        "crossing_edges": 1,
+        "coupling": 1.0,
+        "edges": [
+          {
+            "source": "src/reports/report.py::Report",
+            "target": "src/payments/service.py::PaymentService",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "src/shared/util.py",
+        "node_count": 1,
+        "crossing_edges": 2,
+        "coupling": 2.0,
+        "edges": [
+          {
+            "source": "src/payments/repo.py::PaymentRepo",
+            "target": "src/shared/util.py::Util",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/shared/util.py::Util",
+            "target": "src/payments/service.py::PaymentService",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      }
+    ],
+    "cycles": [
+      {
+        "nodes": [
+          "src/payments/repo.py::PaymentRepo",
+          "src/payments/service.py::PaymentService",
+          "src/shared/util.py::Util"
+        ],
+        "size": 3,
+        "edges": [
+          {
+            "source": "src/payments/repo.py::PaymentRepo",
+            "target": "src/shared/util.py::Util",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/payments/service.py::PaymentService",
+            "target": "src/payments/repo.py::PaymentRepo",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/shared/util.py::Util",
+            "target": "src/payments/service.py::PaymentService",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      }
+    ],
+    "hubs": [
+      {
+        "node_id": "src/payments/service.py::PaymentService",
+        "score": 5.0,
+        "in_degree": 2,
+        "out_degree": 1,
+        "reach": 2,
+        "callers": [
+          "src/reports/report.py::Report",
+          "src/shared/util.py::Util"
+        ]
+      }
+    ],
+    "bridges": [
+      {
+        "source": "src/reports/report.py::Report",
+        "target": "src/payments/service.py::PaymentService",
+        "component_a": [
+          "src/reports/report.py::Report"
+        ],
+        "component_b": [
+          "src/payments/repo.py::PaymentRepo",
+          "src/payments/service.py::PaymentService",
+          "src/shared/util.py::Util"
+        ],
+        "edge": {
+          "source": "src/reports/report.py::Report",
+          "target": "src/payments/service.py::PaymentService",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      }
+    ]
+  },
+  "coverage_map": {
+    "evidence": "missing",
+    "boundaries": [
+      {
+        "boundary_id": "src_payments_repo_py_e195fd44",
+        "node_count": 4,
+        "node_ids": [
+          "src/payments/repo.py::PaymentRepo",
+          "src/payments/service.py::PaymentService",
+          "src/reports/report.py::Report",
+          "src/shared/util.py::Util"
+        ],
+        "covering_tests": [],
+        "test_count": 0,
+        "coverage_status": "missing_evidence"
+      }
+    ],
+    "flows": [],
+    "orphan_tests": [],
+    "ambiguous_tests": [],
+    "totals": {
+      "boundary_count": 1,
+      "test_count": 0,
+      "covered_boundary_count": 0,
+      "zero_coverage_boundary_count": 0,
+      "flow_count": 0,
+      "covered_flow_count": 0,
+      "one_sided_flow_count": 0,
+      "untested_flow_count": 0,
+      "orphan_test_count": 0,
+      "ambiguous_test_count": 0
+    }
+  }
+}

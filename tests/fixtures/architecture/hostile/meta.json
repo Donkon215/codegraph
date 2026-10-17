@@ -1,0 +1,8 @@
+{
+  "name": "hostile",
+  "metric_kind": "all",
+  "description": "Deliberately hostile graph combining a cycle, a hub, a bridge, an untested boundary, and a forbidden-path violation in one fixture.",
+  "hostile_features": ["cycle", "hub", "bridge", "untested_boundary", "forbidden_path"],
+  "node_count": 21,
+  "edge_count": 21
+}

@@ -1,0 +1,8 @@
+{
+  "name": "three_community",
+  "metric_kind": "communities",
+  "description": "Three detected communities: two tightly coupled subdirectory groups (src/payments, src/orders) joined by one cross-community link, plus one unrelated group (src/reports).",
+  "hostile_features": [],
+  "node_count": 7,
+  "edge_count": 13
+}

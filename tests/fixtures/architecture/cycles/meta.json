@@ -1,0 +1,8 @@
+{
+  "name": "cycles",
+  "metric_kind": "cycles",
+  "description": "A single three-node dependency cycle with no other structure.",
+  "hostile_features": ["cycle"],
+  "node_count": 3,
+  "edge_count": 3
+}

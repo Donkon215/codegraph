@@ -271,6 +271,15 @@ def build(ctx: click.Context, no_cache: bool, parallel: bool, layer_overrides: t
         root, config, graph0, g1, quiet,
         graph1_removed=reconciled.removed_count,
     )
+    # Emit the stable community/overview artifact during build (advisory; never
+    # fails the build). Partitions are computed once and reused for both the
+    # partition files and the overview, avoiding duplicate costly work.
+    try:
+        from codegraph.architecture_overview import emit_build_artifacts
+        emit_build_artifacts(root)
+    except Exception as exc:  # noqa: BLE001 - advisory output must not break a build
+        if not quiet:
+            click.echo(f"Community artifact warning: {exc}")
     _build_track_commit(root)
 
 

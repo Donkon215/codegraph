@@ -1,0 +1,8 @@
+{
+  "name": "forbidden_path",
+  "metric_kind": "forbidden_path",
+  "description": "A layer violation: the UI layer calls the API layer, an upward dependency against the declared layering.",
+  "hostile_features": ["forbidden_path"],
+  "node_count": 2,
+  "edge_count": 1
+}

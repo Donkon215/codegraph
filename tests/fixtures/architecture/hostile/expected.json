@@ -1,0 +1,956 @@
+{
+  "graph": {
+    "node_count": 20,
+    "edge_count": 20
+  },
+  "forbidden_path": [
+    {
+      "source": "ui.py::UI",
+      "target": "api.py::API",
+      "source_layer": 1,
+      "target_layer": 3
+    }
+  ],
+  "communities": [
+    {
+      "community_id": "a_py_9b145c23",
+      "size": 5,
+      "node_ids": [
+        "a.py::Alpha",
+        "b.py::Beta",
+        "c.py::Gamma",
+        "d.py::Delta",
+        "hub.py::Hub"
+      ],
+      "internal_edge_count": 4,
+      "boundary_nodes": [],
+      "declared_subsystem": null,
+      "node_type_counts": {
+        "function": 4,
+        "class": 1
+      },
+      "files": [
+        "a.py",
+        "b.py",
+        "c.py",
+        "d.py",
+        "hub.py"
+      ],
+      "directories": [
+        "."
+      ],
+      "boundary_edges": [],
+      "analysis": "Detected community 'a_py_9b145c23': 5 node(s), 4 internal edge(s), 0 boundary node(s); no single declared subsystem (mixed or undeclared)."
+    },
+    {
+      "community_id": "api_py_bc32052c",
+      "size": 2,
+      "node_ids": [
+        "api.py::API",
+        "ui.py::UI"
+      ],
+      "internal_edge_count": 1,
+      "boundary_nodes": [],
+      "declared_subsystem": null,
+      "node_type_counts": {
+        "function": 2
+      },
+      "files": [
+        "api.py",
+        "ui.py"
+      ],
+      "directories": [
+        "."
+      ],
+      "boundary_edges": [],
+      "analysis": "Detected community 'api_py_bc32052c': 2 node(s), 1 internal edge(s), 0 boundary node(s); no single declared subsystem (mixed or undeclared)."
+    },
+    {
+      "community_id": "boundary_py_482f137a",
+      "size": 2,
+      "node_ids": [
+        "boundary.py::Gateway",
+        "db.py::DB"
+      ],
+      "internal_edge_count": 1,
+      "boundary_nodes": [],
+      "declared_subsystem": null,
+      "node_type_counts": {
+        "function": 1,
+        "class": 1
+      },
+      "files": [
+        "boundary.py",
+        "db.py"
+      ],
+      "directories": [
+        "."
+      ],
+      "boundary_edges": [],
+      "analysis": "Detected community 'boundary_py_482f137a': 2 node(s), 1 internal edge(s), 0 boundary node(s); no single declared subsystem (mixed or undeclared)."
+    },
+    {
+      "community_id": "bridge_py_ed565a16",
+      "size": 3,
+      "node_ids": [
+        "bridge.py::Bridge",
+        "right.py::R1",
+        "right.py::R2"
+      ],
+      "internal_edge_count": 3,
+      "boundary_nodes": [
+        "bridge.py::Bridge"
+      ],
+      "declared_subsystem": null,
+      "node_type_counts": {
+        "function": 3
+      },
+      "files": [
+        "bridge.py",
+        "right.py"
+      ],
+      "directories": [
+        "."
+      ],
+      "boundary_edges": [
+        {
+          "source": "left.py::L2",
+          "target": "bridge.py::Bridge",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      ],
+      "analysis": "Detected community 'bridge_py_ed565a16': 3 node(s), 3 internal edge(s), 1 boundary node(s); no single declared subsystem (mixed or undeclared)."
+    },
+    {
+      "community_id": "checked_py_3b1505f9",
+      "size": 2,
+      "node_ids": [
+        "checked.py::Checker",
+        "tests.py::test_db"
+      ],
+      "internal_edge_count": 1,
+      "boundary_nodes": [],
+      "declared_subsystem": null,
+      "node_type_counts": {
+        "function": 2
+      },
+      "files": [
+        "checked.py",
+        "tests.py"
+      ],
+      "directories": [
+        "."
+      ],
+      "boundary_edges": [],
+      "analysis": "Detected community 'checked_py_3b1505f9': 2 node(s), 1 internal edge(s), 0 boundary node(s); no single declared subsystem (mixed or undeclared)."
+    },
+    {
+      "community_id": "left_py_952e898c",
+      "size": 3,
+      "node_ids": [
+        "left.py::L1",
+        "left.py::L2",
+        "left.py::L3"
+      ],
+      "internal_edge_count": 6,
+      "boundary_nodes": [
+        "left.py::L2"
+      ],
+      "declared_subsystem": null,
+      "node_type_counts": {
+        "function": 3
+      },
+      "files": [
+        "left.py"
+      ],
+      "directories": [
+        "."
+      ],
+      "boundary_edges": [
+        {
+          "source": "left.py::L2",
+          "target": "bridge.py::Bridge",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      ],
+      "analysis": "Detected community 'left_py_952e898c': 3 node(s), 6 internal edge(s), 1 boundary node(s); no single declared subsystem (mixed or undeclared)."
+    },
+    {
+      "community_id": "loop_py_854ea1b8",
+      "size": 3,
+      "node_ids": [
+        "loop.py::A",
+        "loop.py::B",
+        "loop.py::C"
+      ],
+      "internal_edge_count": 3,
+      "boundary_nodes": [],
+      "declared_subsystem": null,
+      "node_type_counts": {
+        "function": 3
+      },
+      "files": [
+        "loop.py"
+      ],
+      "directories": [
+        "."
+      ],
+      "boundary_edges": [],
+      "analysis": "Detected community 'loop_py_854ea1b8': 3 node(s), 3 internal edge(s), 0 boundary node(s); no single declared subsystem (mixed or undeclared)."
+    }
+  ],
+  "cross_community_links": [
+    {
+      "source_community": "left_py_952e898c",
+      "target_community": "bridge_py_ed565a16",
+      "edge_count": 1,
+      "edges": [
+        {
+          "source": "left.py::L2",
+          "target": "bridge.py::Bridge",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      ],
+      "source_nodes": [
+        "left.py::L2"
+      ],
+      "target_nodes": [
+        "bridge.py::Bridge"
+      ],
+      "coupling_score": 0.1,
+      "evidence": "1 edge(s) cross from 'left_py_952e898c' to 'bridge_py_ed565a16' involving 1 source and 1 target boundary node(s); heuristic coupling 0.10."
+    }
+  ],
+  "metrics": {
+    "coupling": [
+      {
+        "module": "a.py",
+        "node_count": 1,
+        "crossing_edges": 1,
+        "coupling": 1.0,
+        "edges": [
+          {
+            "source": "a.py::Alpha",
+            "target": "hub.py::Hub",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "api.py",
+        "node_count": 1,
+        "crossing_edges": 1,
+        "coupling": 1.0,
+        "edges": [
+          {
+            "source": "ui.py::UI",
+            "target": "api.py::API",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "b.py",
+        "node_count": 1,
+        "crossing_edges": 1,
+        "coupling": 1.0,
+        "edges": [
+          {
+            "source": "b.py::Beta",
+            "target": "hub.py::Hub",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "boundary.py",
+        "node_count": 1,
+        "crossing_edges": 1,
+        "coupling": 1.0,
+        "edges": [
+          {
+            "source": "boundary.py::Gateway",
+            "target": "db.py::DB",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "bridge.py",
+        "node_count": 1,
+        "crossing_edges": 2,
+        "coupling": 2.0,
+        "edges": [
+          {
+            "source": "bridge.py::Bridge",
+            "target": "right.py::R1",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "left.py::L2",
+            "target": "bridge.py::Bridge",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "c.py",
+        "node_count": 1,
+        "crossing_edges": 1,
+        "coupling": 1.0,
+        "edges": [
+          {
+            "source": "c.py::Gamma",
+            "target": "hub.py::Hub",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "checked.py",
+        "node_count": 1,
+        "crossing_edges": 1,
+        "coupling": 1.0,
+        "edges": [
+          {
+            "source": "tests.py::test_db",
+            "target": "checked.py::Checker",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "d.py",
+        "node_count": 1,
+        "crossing_edges": 1,
+        "coupling": 1.0,
+        "edges": [
+          {
+            "source": "d.py::Delta",
+            "target": "hub.py::Hub",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "db.py",
+        "node_count": 1,
+        "crossing_edges": 1,
+        "coupling": 1.0,
+        "edges": [
+          {
+            "source": "boundary.py::Gateway",
+            "target": "db.py::DB",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "hub.py",
+        "node_count": 1,
+        "crossing_edges": 4,
+        "coupling": 4.0,
+        "edges": [
+          {
+            "source": "a.py::Alpha",
+            "target": "hub.py::Hub",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "b.py::Beta",
+            "target": "hub.py::Hub",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "c.py::Gamma",
+            "target": "hub.py::Hub",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "d.py::Delta",
+            "target": "hub.py::Hub",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "left.py",
+        "node_count": 3,
+        "crossing_edges": 1,
+        "coupling": 0.333333,
+        "edges": [
+          {
+            "source": "left.py::L2",
+            "target": "bridge.py::Bridge",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "loop.py",
+        "node_count": 3,
+        "crossing_edges": 0,
+        "coupling": 0.0,
+        "edges": []
+      },
+      {
+        "module": "right.py",
+        "node_count": 2,
+        "crossing_edges": 1,
+        "coupling": 0.5,
+        "edges": [
+          {
+            "source": "bridge.py::Bridge",
+            "target": "right.py::R1",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "tests.py",
+        "node_count": 1,
+        "crossing_edges": 1,
+        "coupling": 1.0,
+        "edges": [
+          {
+            "source": "tests.py::test_db",
+            "target": "checked.py::Checker",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "ui.py",
+        "node_count": 1,
+        "crossing_edges": 1,
+        "coupling": 1.0,
+        "edges": [
+          {
+            "source": "ui.py::UI",
+            "target": "api.py::API",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      }
+    ],
+    "cycles": [
+      {
+        "nodes": [
+          "left.py::L1",
+          "left.py::L2",
+          "left.py::L3"
+        ],
+        "size": 3,
+        "edges": [
+          {
+            "source": "left.py::L1",
+            "target": "left.py::L2",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "left.py::L1",
+            "target": "left.py::L3",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "left.py::L2",
+            "target": "left.py::L1",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "left.py::L2",
+            "target": "left.py::L3",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "left.py::L3",
+            "target": "left.py::L1",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "left.py::L3",
+            "target": "left.py::L2",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "nodes": [
+          "loop.py::A",
+          "loop.py::B",
+          "loop.py::C"
+        ],
+        "size": 3,
+        "edges": [
+          {
+            "source": "loop.py::A",
+            "target": "loop.py::B",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "loop.py::B",
+            "target": "loop.py::C",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "loop.py::C",
+            "target": "loop.py::A",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "nodes": [
+          "right.py::R1",
+          "right.py::R2"
+        ],
+        "size": 2,
+        "edges": [
+          {
+            "source": "right.py::R1",
+            "target": "right.py::R2",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "right.py::R2",
+            "target": "right.py::R1",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      }
+    ],
+    "hubs": [
+      {
+        "node_id": "left.py::L2",
+        "score": 10.0,
+        "in_degree": 2,
+        "out_degree": 3,
+        "reach": 5,
+        "callers": [
+          "left.py::L1",
+          "left.py::L3"
+        ]
+      },
+      {
+        "node_id": "left.py::L1",
+        "score": 8.0,
+        "in_degree": 2,
+        "out_degree": 2,
+        "reach": 4,
+        "callers": [
+          "left.py::L2",
+          "left.py::L3"
+        ]
+      },
+      {
+        "node_id": "left.py::L3",
+        "score": 8.0,
+        "in_degree": 2,
+        "out_degree": 2,
+        "reach": 4,
+        "callers": [
+          "left.py::L1",
+          "left.py::L2"
+        ]
+      }
+    ],
+    "bridges": [
+      {
+        "source": "a.py::Alpha",
+        "target": "hub.py::Hub",
+        "component_a": [
+          "a.py::Alpha"
+        ],
+        "component_b": [
+          "b.py::Beta",
+          "c.py::Gamma",
+          "d.py::Delta",
+          "hub.py::Hub"
+        ],
+        "edge": {
+          "source": "a.py::Alpha",
+          "target": "hub.py::Hub",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      },
+      {
+        "source": "b.py::Beta",
+        "target": "hub.py::Hub",
+        "component_a": [
+          "b.py::Beta"
+        ],
+        "component_b": [
+          "a.py::Alpha",
+          "c.py::Gamma",
+          "d.py::Delta",
+          "hub.py::Hub"
+        ],
+        "edge": {
+          "source": "b.py::Beta",
+          "target": "hub.py::Hub",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      },
+      {
+        "source": "boundary.py::Gateway",
+        "target": "db.py::DB",
+        "component_a": [
+          "boundary.py::Gateway"
+        ],
+        "component_b": [
+          "db.py::DB"
+        ],
+        "edge": {
+          "source": "boundary.py::Gateway",
+          "target": "db.py::DB",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      },
+      {
+        "source": "bridge.py::Bridge",
+        "target": "right.py::R1",
+        "component_a": [
+          "bridge.py::Bridge",
+          "left.py::L1",
+          "left.py::L2",
+          "left.py::L3"
+        ],
+        "component_b": [
+          "right.py::R1",
+          "right.py::R2"
+        ],
+        "edge": {
+          "source": "bridge.py::Bridge",
+          "target": "right.py::R1",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      },
+      {
+        "source": "c.py::Gamma",
+        "target": "hub.py::Hub",
+        "component_a": [
+          "c.py::Gamma"
+        ],
+        "component_b": [
+          "a.py::Alpha",
+          "b.py::Beta",
+          "d.py::Delta",
+          "hub.py::Hub"
+        ],
+        "edge": {
+          "source": "c.py::Gamma",
+          "target": "hub.py::Hub",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      },
+      {
+        "source": "d.py::Delta",
+        "target": "hub.py::Hub",
+        "component_a": [
+          "d.py::Delta"
+        ],
+        "component_b": [
+          "a.py::Alpha",
+          "b.py::Beta",
+          "c.py::Gamma",
+          "hub.py::Hub"
+        ],
+        "edge": {
+          "source": "d.py::Delta",
+          "target": "hub.py::Hub",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      },
+      {
+        "source": "left.py::L2",
+        "target": "bridge.py::Bridge",
+        "component_a": [
+          "left.py::L1",
+          "left.py::L2",
+          "left.py::L3"
+        ],
+        "component_b": [
+          "bridge.py::Bridge",
+          "right.py::R1",
+          "right.py::R2"
+        ],
+        "edge": {
+          "source": "left.py::L2",
+          "target": "bridge.py::Bridge",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      },
+      {
+        "source": "tests.py::test_db",
+        "target": "checked.py::Checker",
+        "component_a": [
+          "tests.py::test_db"
+        ],
+        "component_b": [
+          "checked.py::Checker"
+        ],
+        "edge": {
+          "source": "tests.py::test_db",
+          "target": "checked.py::Checker",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      },
+      {
+        "source": "ui.py::UI",
+        "target": "api.py::API",
+        "component_a": [
+          "ui.py::UI"
+        ],
+        "component_b": [
+          "api.py::API"
+        ],
+        "edge": {
+          "source": "ui.py::UI",
+          "target": "api.py::API",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      }
+    ]
+  },
+  "coverage_map": {
+    "evidence": "present",
+    "boundaries": [
+      {
+        "boundary_id": "a_py_9b145c23",
+        "node_count": 5,
+        "node_ids": [
+          "a.py::Alpha",
+          "b.py::Beta",
+          "c.py::Gamma",
+          "d.py::Delta",
+          "hub.py::Hub"
+        ],
+        "covering_tests": [],
+        "test_count": 0,
+        "coverage_status": "zero_coverage"
+      },
+      {
+        "boundary_id": "api_py_bc32052c",
+        "node_count": 2,
+        "node_ids": [
+          "api.py::API",
+          "ui.py::UI"
+        ],
+        "covering_tests": [],
+        "test_count": 0,
+        "coverage_status": "zero_coverage"
+      },
+      {
+        "boundary_id": "boundary_py_482f137a",
+        "node_count": 2,
+        "node_ids": [
+          "boundary.py::Gateway",
+          "db.py::DB"
+        ],
+        "covering_tests": [],
+        "test_count": 0,
+        "coverage_status": "zero_coverage"
+      },
+      {
+        "boundary_id": "bridge_py_ed565a16",
+        "node_count": 3,
+        "node_ids": [
+          "bridge.py::Bridge",
+          "right.py::R1",
+          "right.py::R2"
+        ],
+        "covering_tests": [],
+        "test_count": 0,
+        "coverage_status": "zero_coverage"
+      },
+      {
+        "boundary_id": "checked_py_3b1505f9",
+        "node_count": 2,
+        "node_ids": [
+          "checked.py::Checker",
+          "tests.py::test_db"
+        ],
+        "covering_tests": [
+          "tests.py::test_db"
+        ],
+        "test_count": 1,
+        "coverage_status": "covered"
+      },
+      {
+        "boundary_id": "left_py_952e898c",
+        "node_count": 3,
+        "node_ids": [
+          "left.py::L1",
+          "left.py::L2",
+          "left.py::L3"
+        ],
+        "covering_tests": [],
+        "test_count": 0,
+        "coverage_status": "zero_coverage"
+      },
+      {
+        "boundary_id": "loop_py_854ea1b8",
+        "node_count": 3,
+        "node_ids": [
+          "loop.py::A",
+          "loop.py::B",
+          "loop.py::C"
+        ],
+        "covering_tests": [],
+        "test_count": 0,
+        "coverage_status": "zero_coverage"
+      }
+    ],
+    "flows": [
+      {
+        "flow_id": "left.py::L2->bridge.py::Bridge",
+        "source_node": "left.py::L2",
+        "target_node": "bridge.py::Bridge",
+        "boundary_path": [
+          "left_py_952e898c",
+          "bridge_py_ed565a16"
+        ],
+        "tests_covering_source": [],
+        "tests_covering_target": [],
+        "coverage_status": "untested"
+      }
+    ],
+    "orphan_tests": [],
+    "ambiguous_tests": [],
+    "totals": {
+      "boundary_count": 7,
+      "test_count": 1,
+      "covered_boundary_count": 1,
+      "zero_coverage_boundary_count": 6,
+      "flow_count": 1,
+      "covered_flow_count": 0,
+      "one_sided_flow_count": 0,
+      "untested_flow_count": 1,
+      "orphan_test_count": 0,
+      "ambiguous_test_count": 0
+    }
+  }
+}

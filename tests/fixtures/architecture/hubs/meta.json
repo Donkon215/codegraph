@@ -1,0 +1,8 @@
+{
+  "name": "hubs",
+  "metric_kind": "hubs",
+  "description": "One hub node with four callers and no other structure.",
+  "hostile_features": ["hub"],
+  "node_count": 5,
+  "edge_count": 4
+}

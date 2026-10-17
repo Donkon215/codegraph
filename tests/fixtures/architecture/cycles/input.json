@@ -1,0 +1,13 @@
+{
+  "nodes": [
+    {"id": "loop.py::A", "file": "loop.py", "type": "function", "line": 1, "body_hash": "cyc001"},
+    {"id": "loop.py::B", "file": "loop.py", "type": "function", "line": 2, "body_hash": "cyc002"},
+    {"id": "loop.py::C", "file": "loop.py", "type": "function", "line": 3, "body_hash": "cyc003"}
+  ],
+  "edges": [
+    {"source": "loop.py::A", "target": "loop.py::B", "edge_type": "call"},
+    {"source": "loop.py::B", "target": "loop.py::C", "edge_type": "call"},
+    {"source": "loop.py::C", "target": "loop.py::A", "edge_type": "call"}
+  ],
+  "intent": []
+}

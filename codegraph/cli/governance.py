@@ -378,7 +378,10 @@ def policy_cmd(ctx: click.Context, do_init: bool, do_check: bool,
         return
 
     if do_check:
-        report = evaluate_policies(root)
+        from codegraph.architecture_score import compute_score
+
+        score = compute_score(root).score
+        report = evaluate_policies(root, health_data={"overall_score": score})
         if json_output:
             click.echo(_json.dumps(report.to_dict(), indent=2))
         else:

@@ -1,0 +1,8 @@
+{
+  "name": "bridges",
+  "metric_kind": "bridges",
+  "description": "A three-node left clique joined to a right clique only through ``bridge.py::Bridge`` (``left.py::L2 -> bridge.py::Bridge`` is the only cross-community edge).",
+  "hostile_features": ["bridge"],
+  "node_count": 6,
+  "edge_count": 10
+}

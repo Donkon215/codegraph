@@ -1,0 +1,13 @@
+{
+  "nodes": [
+    {"id": "ui.py::UI", "file": "ui.py", "type": "function", "line": 1, "body_hash": "fpb001"},
+    {"id": "api.py::API", "file": "api.py", "type": "function", "line": 1, "body_hash": "fpb002"}
+  ],
+  "edges": [
+    {"source": "ui.py::UI", "target": "api.py::API", "edge_type": "call"}
+  ],
+  "intent": [
+    {"id": "ui.py::UI", "layer": 1, "intent": "render the user interface"},
+    {"id": "api.py::API", "layer": 3, "intent": "expose business operations"}
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "nodes": [
+    {"id": "src/payments/service.py::PaymentService", "file": "src/payments/service.py", "type": "class", "line": 1, "body_hash": "cs01"},
+    {"id": "src/payments/repo.py::PaymentRepo", "file": "src/payments/repo.py", "type": "class", "line": 2, "body_hash": "cs02"},
+    {"id": "src/shared/util.py::Util", "file": "src/shared/util.py", "type": "function", "line": 1, "body_hash": "cs03"},
+    {"id": "src/reports/report.py::Report", "file": "src/reports/report.py", "type": "function", "line": 1, "body_hash": "cs04"}
+  ],
+  "edges": [
+    {"source": "src/payments/service.py::PaymentService", "target": "src/payments/repo.py::PaymentRepo", "edge_type": "call"},
+    {"source": "src/payments/repo.py::PaymentRepo", "target": "src/shared/util.py::Util", "edge_type": "call"},
+    {"source": "src/shared/util.py::Util", "target": "src/payments/service.py::PaymentService", "edge_type": "call"},
+    {"source": "src/reports/report.py::Report", "target": "src/payments/service.py::PaymentService", "edge_type": "call"}
+  ],
+  "intent": []
+}
