@@ -1,0 +1,8 @@
+{
+  "name": "untested_boundary",
+  "metric_kind": "untested_boundary",
+  "description": "An untested boundary source node (``boundary.py::Gateway``) calling into a tested module.",
+  "hostile_features": ["untested_boundary"],
+  "node_count": 4,
+  "edge_count": 2
+}

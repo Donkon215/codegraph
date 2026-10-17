@@ -1,0 +1,27 @@
+{
+  "nodes": [
+    {"id": "src/payments/payments.py::PaymentService", "file": "src/payments/payments.py", "type": "class", "line": 1, "body_hash": "tc01"},
+    {"id": "src/payments/payments.py::PaymentRepo", "file": "src/payments/payments.py", "type": "class", "line": 2, "body_hash": "tc02"},
+    {"id": "src/payments/payments.py::PaymentGateway", "file": "src/payments/payments.py", "type": "class", "line": 3, "body_hash": "tc03"},
+    {"id": "src/orders/orders.py::OrderService", "file": "src/orders/orders.py", "type": "class", "line": 1, "body_hash": "tc04"},
+    {"id": "src/orders/orders.py::OrderRepo", "file": "src/orders/orders.py", "type": "class", "line": 2, "body_hash": "tc05"},
+    {"id": "src/orders/orders.py::OrderGateway", "file": "src/orders/orders.py", "type": "class", "line": 3, "body_hash": "tc06"},
+    {"id": "src/reports/reports.py::Report", "file": "src/reports/reports.py", "type": "function", "line": 1, "body_hash": "tc07"}
+  ],
+  "edges": [
+    {"source": "src/payments/payments.py::PaymentService", "target": "src/payments/payments.py::PaymentRepo", "edge_type": "call"},
+    {"source": "src/payments/payments.py::PaymentRepo", "target": "src/payments/payments.py::PaymentService", "edge_type": "call"},
+    {"source": "src/payments/payments.py::PaymentService", "target": "src/payments/payments.py::PaymentGateway", "edge_type": "call"},
+    {"source": "src/payments/payments.py::PaymentGateway", "target": "src/payments/payments.py::PaymentService", "edge_type": "call"},
+    {"source": "src/payments/payments.py::PaymentRepo", "target": "src/payments/payments.py::PaymentGateway", "edge_type": "call"},
+    {"source": "src/payments/payments.py::PaymentGateway", "target": "src/payments/payments.py::PaymentRepo", "edge_type": "call"},
+    {"source": "src/orders/orders.py::OrderService", "target": "src/orders/orders.py::OrderRepo", "edge_type": "call"},
+    {"source": "src/orders/orders.py::OrderRepo", "target": "src/orders/orders.py::OrderService", "edge_type": "call"},
+    {"source": "src/orders/orders.py::OrderService", "target": "src/orders/orders.py::OrderGateway", "edge_type": "call"},
+    {"source": "src/orders/orders.py::OrderGateway", "target": "src/orders/orders.py::OrderService", "edge_type": "call"},
+    {"source": "src/orders/orders.py::OrderRepo", "target": "src/orders/orders.py::OrderGateway", "edge_type": "call"},
+    {"source": "src/orders/orders.py::OrderGateway", "target": "src/orders/orders.py::OrderRepo", "edge_type": "call"},
+    {"source": "src/payments/payments.py::PaymentService", "target": "src/orders/orders.py::OrderService", "edge_type": "call"}
+  ],
+  "intent": []
+}

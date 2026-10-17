@@ -1,0 +1,145 @@
+{
+  "graph": {
+    "node_count": 3,
+    "edge_count": 3
+  },
+  "forbidden_path": [],
+  "communities": [
+    {
+      "community_id": "loop_py_854ea1b8",
+      "size": 3,
+      "node_ids": [
+        "loop.py::A",
+        "loop.py::B",
+        "loop.py::C"
+      ],
+      "internal_edge_count": 3,
+      "boundary_nodes": [],
+      "declared_subsystem": null,
+      "node_type_counts": {
+        "function": 3
+      },
+      "files": [
+        "loop.py"
+      ],
+      "directories": [
+        "."
+      ],
+      "boundary_edges": [],
+      "analysis": "Detected community 'loop_py_854ea1b8': 3 node(s), 3 internal edge(s), 0 boundary node(s); no single declared subsystem (mixed or undeclared)."
+    }
+  ],
+  "cross_community_links": [],
+  "metrics": {
+    "coupling": [
+      {
+        "module": "loop.py",
+        "node_count": 3,
+        "crossing_edges": 0,
+        "coupling": 0.0,
+        "edges": []
+      }
+    ],
+    "cycles": [
+      {
+        "nodes": [
+          "loop.py::A",
+          "loop.py::B",
+          "loop.py::C"
+        ],
+        "size": 3,
+        "edges": [
+          {
+            "source": "loop.py::A",
+            "target": "loop.py::B",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "loop.py::B",
+            "target": "loop.py::C",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "loop.py::C",
+            "target": "loop.py::A",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      }
+    ],
+    "hubs": [
+      {
+        "node_id": "loop.py::A",
+        "score": 4.0,
+        "in_degree": 1,
+        "out_degree": 1,
+        "reach": 2,
+        "callers": [
+          "loop.py::C"
+        ]
+      },
+      {
+        "node_id": "loop.py::B",
+        "score": 4.0,
+        "in_degree": 1,
+        "out_degree": 1,
+        "reach": 2,
+        "callers": [
+          "loop.py::A"
+        ]
+      },
+      {
+        "node_id": "loop.py::C",
+        "score": 4.0,
+        "in_degree": 1,
+        "out_degree": 1,
+        "reach": 2,
+        "callers": [
+          "loop.py::B"
+        ]
+      }
+    ],
+    "bridges": []
+  },
+  "coverage_map": {
+    "evidence": "missing",
+    "boundaries": [
+      {
+        "boundary_id": "loop_py_854ea1b8",
+        "node_count": 3,
+        "node_ids": [
+          "loop.py::A",
+          "loop.py::B",
+          "loop.py::C"
+        ],
+        "covering_tests": [],
+        "test_count": 0,
+        "coverage_status": "missing_evidence"
+      }
+    ],
+    "flows": [],
+    "orphan_tests": [],
+    "ambiguous_tests": [],
+    "totals": {
+      "boundary_count": 1,
+      "test_count": 0,
+      "covered_boundary_count": 0,
+      "zero_coverage_boundary_count": 0,
+      "flow_count": 0,
+      "covered_flow_count": 0,
+      "one_sided_flow_count": 0,
+      "untested_flow_count": 0,
+      "orphan_test_count": 0,
+      "ambiguous_test_count": 0
+    }
+  }
+}

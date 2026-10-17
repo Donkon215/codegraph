@@ -1,0 +1,15 @@
+{
+  "nodes": [
+    {"id": "lib/payments/pay.py::PayService", "file": "lib/payments/pay.py", "type": "class", "line": 1, "body_hash": "cd01"},
+    {"id": "lib/billing/bill.py::BillService", "file": "lib/billing/bill.py", "type": "class", "line": 1, "body_hash": "cd02"},
+    {"id": "lib/billing/bill.py::BillRepo", "file": "lib/billing/bill.py", "type": "class", "line": 2, "body_hash": "cd03"}
+  ],
+  "edges": [
+    {"source": "lib/payments/pay.py::PayService", "target": "lib/billing/bill.py::BillService", "edge_type": "call"},
+    {"source": "lib/billing/bill.py::BillService", "target": "lib/payments/pay.py::PayService", "edge_type": "call"},
+    {"source": "lib/billing/bill.py::BillService", "target": "lib/billing/bill.py::BillRepo", "edge_type": "call"},
+    {"source": "lib/billing/bill.py::BillRepo", "target": "lib/billing/bill.py::BillService", "edge_type": "call"},
+    {"source": "lib/payments/pay.py::PayService", "target": "lib/payments/pay.py::PayService", "edge_type": "call"}
+  ],
+  "intent": []
+}

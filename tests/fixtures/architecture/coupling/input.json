@@ -1,0 +1,26 @@
+{
+  "nodes": [
+    {"id": "payments.py::PaymentService", "file": "payments.py", "type": "class", "line": 1, "body_hash": "pay001"},
+    {"id": "payments.py::PaymentRepo", "file": "payments.py", "type": "class", "line": 2, "body_hash": "pay002"},
+    {"id": "payments.py::PaymentGateway", "file": "payments.py", "type": "class", "line": 3, "body_hash": "pay003"},
+    {"id": "orders.py::OrderService", "file": "orders.py", "type": "class", "line": 1, "body_hash": "ord001"},
+    {"id": "orders.py::OrderRepo", "file": "orders.py", "type": "class", "line": 2, "body_hash": "ord002"},
+    {"id": "orders.py::OrderGateway", "file": "orders.py", "type": "class", "line": 3, "body_hash": "ord003"}
+  ],
+  "edges": [
+    {"source": "payments.py::PaymentService", "target": "payments.py::PaymentRepo", "edge_type": "call"},
+    {"source": "payments.py::PaymentRepo", "target": "payments.py::PaymentService", "edge_type": "call"},
+    {"source": "payments.py::PaymentService", "target": "payments.py::PaymentGateway", "edge_type": "call"},
+    {"source": "payments.py::PaymentGateway", "target": "payments.py::PaymentService", "edge_type": "call"},
+    {"source": "payments.py::PaymentRepo", "target": "payments.py::PaymentGateway", "edge_type": "call"},
+    {"source": "payments.py::PaymentGateway", "target": "payments.py::PaymentRepo", "edge_type": "call"},
+    {"source": "orders.py::OrderService", "target": "orders.py::OrderRepo", "edge_type": "call"},
+    {"source": "orders.py::OrderRepo", "target": "orders.py::OrderService", "edge_type": "call"},
+    {"source": "orders.py::OrderService", "target": "orders.py::OrderGateway", "edge_type": "call"},
+    {"source": "orders.py::OrderGateway", "target": "orders.py::OrderService", "edge_type": "call"},
+    {"source": "orders.py::OrderRepo", "target": "orders.py::OrderGateway", "edge_type": "call"},
+    {"source": "orders.py::OrderGateway", "target": "orders.py::OrderRepo", "edge_type": "call"},
+    {"source": "orders.py::OrderService", "target": "payments.py::PaymentService", "edge_type": "call"}
+  ],
+  "intent": []
+}

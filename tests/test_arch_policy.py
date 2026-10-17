@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 import pytest
+from click.testing import CliRunner
 
 from codegraph.arch_policy import (
     ArchPolicy,
@@ -20,6 +21,8 @@ from codegraph.arch_policy import (
     VALID_POLICY_TYPES,
     VALID_ACTIONS,
 )
+from codegraph.cli import main
+from codegraph.cli.core import EXIT_VALIDATION_FAIL
 
 
 # ── Helpers ────────────────────────────────────────────────────────────
@@ -426,3 +429,58 @@ class TestEvaluatePolicies:
 
         assert not report.passed
         assert report.violations[0].details["cycle"] == ["frontend", "service", "frontend"]
+
+
+# ── CLI: policy --check supplies the computed architecture score ──────
+
+
+class _FakeScore:
+    """Stand-in for ArchitectureScore exposing only the overall score."""
+
+    def __init__(self, score: float) -> None:
+        self.score = score
+
+
+class TestPolicyCheckScoreGate:
+    """policy --check must compute the real score and feed it to evaluate_policies.
+
+    Before the fix, ``policy --check`` called ``evaluate_policies(root)`` with
+    no ``health_data``, so ``score_gate`` read ``overall_score`` defaulting to
+    1.0 and always passed. These tests verify the computed score now drives the
+    gate: below threshold blocks, above threshold passes.
+    """
+
+    def _add_score_gate(self, tmp_path: Path, threshold: float = 0.5) -> None:
+        _setup_codegraph(tmp_path)
+        add_policy(tmp_path, "gate", "score_gate",
+                   f"Architecture score must stay above {threshold}",
+                   "block", threshold)
+
+    def test_policy_check_blocks_below_threshold(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        self._add_score_gate(tmp_path, 0.5)
+        monkeypatch.chdir(tmp_path)
+        monkeypatch.setattr(
+            "codegraph.architecture_score.compute_score",
+            lambda root: _FakeScore(0.3),
+        )
+        result = CliRunner().invoke(main, ["policy", "--check"],
+                                    catch_exceptions=False)
+        assert result.exit_code == EXIT_VALIDATION_FAIL
+        assert "BLOCKED" in result.output
+        assert "below minimum" in result.output
+
+    def test_policy_check_passes_above_threshold(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        self._add_score_gate(tmp_path, 0.5)
+        monkeypatch.chdir(tmp_path)
+        monkeypatch.setattr(
+            "codegraph.architecture_score.compute_score",
+            lambda root: _FakeScore(0.8),
+        )
+        result = CliRunner().invoke(main, ["policy", "--check"],
+                                    catch_exceptions=False)
+        assert result.exit_code == 0
+        assert "PASSED" in result.output

@@ -1,0 +1,23 @@
+{
+  "nodes": [
+    {"id": "left.py::L1", "file": "left.py", "type": "function", "line": 1, "body_hash": "bri001"},
+    {"id": "left.py::L2", "file": "left.py", "type": "function", "line": 2, "body_hash": "bri002"},
+    {"id": "left.py::L3", "file": "left.py", "type": "function", "line": 3, "body_hash": "bri006"},
+    {"id": "right.py::R1", "file": "right.py", "type": "function", "line": 1, "body_hash": "bri003"},
+    {"id": "right.py::R2", "file": "right.py", "type": "function", "line": 2, "body_hash": "bri004"},
+    {"id": "bridge.py::Bridge", "file": "bridge.py", "type": "function", "line": 1, "body_hash": "bri005"}
+  ],
+  "edges": [
+    {"source": "left.py::L1", "target": "left.py::L2", "edge_type": "call"},
+    {"source": "left.py::L2", "target": "left.py::L1", "edge_type": "call"},
+    {"source": "left.py::L1", "target": "left.py::L3", "edge_type": "call"},
+    {"source": "left.py::L3", "target": "left.py::L1", "edge_type": "call"},
+    {"source": "left.py::L2", "target": "left.py::L3", "edge_type": "call"},
+    {"source": "left.py::L3", "target": "left.py::L2", "edge_type": "call"},
+    {"source": "right.py::R1", "target": "right.py::R2", "edge_type": "call"},
+    {"source": "right.py::R2", "target": "right.py::R1", "edge_type": "call"},
+    {"source": "left.py::L2", "target": "bridge.py::Bridge", "edge_type": "call"},
+    {"source": "bridge.py::Bridge", "target": "right.py::R1", "edge_type": "call"}
+  ],
+  "intent": []
+}

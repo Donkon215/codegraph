@@ -1,0 +1,8 @@
+{
+  "name": "cross_dir_single_community",
+  "metric_kind": "communities",
+  "description": "One logical directory (lib) split across two subdirectories (lib/payments, lib/billing) with heavy reciprocal internal references, producing exactly one community spanning both dirs.",
+  "hostile_features": [],
+  "node_count": 3,
+  "edge_count": 5
+}

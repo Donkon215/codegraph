@@ -1,0 +1,15 @@
+{
+  "nodes": [
+    {"id": "unt.py::Gateway", "file": "unt.py", "type": "function", "line": 1, "body_hash": "unt001"},
+    {"id": "unt.py::DB", "file": "unt.py", "type": "class", "line": 1, "body_hash": "unt002"},
+    {"id": "checked.py::Checker", "file": "checked.py", "type": "function", "line": 1, "body_hash": "unt003"},
+    {"id": "tests.py::test_db", "file": "tests.py", "type": "function", "line": 1, "body_hash": "unt004"}
+  ],
+  "edges": [
+    {"source": "unt.py::Gateway", "target": "unt.py::DB", "edge_type": "call"},
+    {"source": "tests.py::test_db", "target": "checked.py::Checker", "edge_type": "call"}
+  ],
+  "intent": [
+    {"id": "tests.py::test_db", "layer": 4, "intent": "test the checked module"}
+  ]
+}

@@ -1,0 +1,388 @@
+{
+  "graph": {
+    "node_count": 7,
+    "edge_count": 13
+  },
+  "forbidden_path": [],
+  "communities": [
+    {
+      "community_id": "src_orders_orders_py_d778e0fe",
+      "size": 3,
+      "node_ids": [
+        "src/orders/orders.py::OrderGateway",
+        "src/orders/orders.py::OrderRepo",
+        "src/orders/orders.py::OrderService"
+      ],
+      "internal_edge_count": 6,
+      "boundary_nodes": [
+        "src/orders/orders.py::OrderService"
+      ],
+      "declared_subsystem": null,
+      "node_type_counts": {
+        "class": 3
+      },
+      "files": [
+        "src/orders/orders.py"
+      ],
+      "directories": [
+        "src/orders"
+      ],
+      "boundary_edges": [
+        {
+          "source": "src/payments/payments.py::PaymentService",
+          "target": "src/orders/orders.py::OrderService",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      ],
+      "analysis": "Detected community 'src_orders_orders_py_d778e0fe': 3 node(s), 6 internal edge(s), 1 boundary node(s); no single declared subsystem (mixed or undeclared)."
+    },
+    {
+      "community_id": "src_payments_payments_py_4a1f559d",
+      "size": 3,
+      "node_ids": [
+        "src/payments/payments.py::PaymentGateway",
+        "src/payments/payments.py::PaymentRepo",
+        "src/payments/payments.py::PaymentService"
+      ],
+      "internal_edge_count": 6,
+      "boundary_nodes": [
+        "src/payments/payments.py::PaymentService"
+      ],
+      "declared_subsystem": null,
+      "node_type_counts": {
+        "class": 3
+      },
+      "files": [
+        "src/payments/payments.py"
+      ],
+      "directories": [
+        "src/payments"
+      ],
+      "boundary_edges": [
+        {
+          "source": "src/payments/payments.py::PaymentService",
+          "target": "src/orders/orders.py::OrderService",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      ],
+      "analysis": "Detected community 'src_payments_payments_py_4a1f559d': 3 node(s), 6 internal edge(s), 1 boundary node(s); no single declared subsystem (mixed or undeclared)."
+    },
+    {
+      "community_id": "src_reports_reports_py_5771c37c",
+      "size": 1,
+      "node_ids": [
+        "src/reports/reports.py::Report"
+      ],
+      "internal_edge_count": 0,
+      "boundary_nodes": [],
+      "declared_subsystem": null,
+      "node_type_counts": {
+        "function": 1
+      },
+      "files": [
+        "src/reports/reports.py"
+      ],
+      "directories": [
+        "src/reports"
+      ],
+      "boundary_edges": [],
+      "analysis": "Detected community 'src_reports_reports_py_5771c37c': 1 node(s), 0 internal edge(s), 0 boundary node(s); no single declared subsystem (mixed or undeclared)."
+    }
+  ],
+  "cross_community_links": [
+    {
+      "source_community": "src_payments_payments_py_4a1f559d",
+      "target_community": "src_orders_orders_py_d778e0fe",
+      "edge_count": 1,
+      "edges": [
+        {
+          "source": "src/payments/payments.py::PaymentService",
+          "target": "src/orders/orders.py::OrderService",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      ],
+      "source_nodes": [
+        "src/payments/payments.py::PaymentService"
+      ],
+      "target_nodes": [
+        "src/orders/orders.py::OrderService"
+      ],
+      "coupling_score": 0.0769,
+      "evidence": "1 edge(s) cross from 'src_payments_payments_py_4a1f559d' to 'src_orders_orders_py_d778e0fe' involving 1 source and 1 target boundary node(s); heuristic coupling 0.08."
+    }
+  ],
+  "metrics": {
+    "coupling": [
+      {
+        "module": "src/orders/orders.py",
+        "node_count": 3,
+        "crossing_edges": 1,
+        "coupling": 0.333333,
+        "edges": [
+          {
+            "source": "src/payments/payments.py::PaymentService",
+            "target": "src/orders/orders.py::OrderService",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "src/payments/payments.py",
+        "node_count": 3,
+        "crossing_edges": 1,
+        "coupling": 0.333333,
+        "edges": [
+          {
+            "source": "src/payments/payments.py::PaymentService",
+            "target": "src/orders/orders.py::OrderService",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "module": "src/reports/reports.py",
+        "node_count": 1,
+        "crossing_edges": 0,
+        "coupling": 0.0,
+        "edges": []
+      }
+    ],
+    "cycles": [
+      {
+        "nodes": [
+          "src/orders/orders.py::OrderGateway",
+          "src/orders/orders.py::OrderRepo",
+          "src/orders/orders.py::OrderService"
+        ],
+        "size": 3,
+        "edges": [
+          {
+            "source": "src/orders/orders.py::OrderGateway",
+            "target": "src/orders/orders.py::OrderRepo",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/orders/orders.py::OrderGateway",
+            "target": "src/orders/orders.py::OrderService",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/orders/orders.py::OrderRepo",
+            "target": "src/orders/orders.py::OrderGateway",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/orders/orders.py::OrderRepo",
+            "target": "src/orders/orders.py::OrderService",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/orders/orders.py::OrderService",
+            "target": "src/orders/orders.py::OrderGateway",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/orders/orders.py::OrderService",
+            "target": "src/orders/orders.py::OrderRepo",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      },
+      {
+        "nodes": [
+          "src/payments/payments.py::PaymentGateway",
+          "src/payments/payments.py::PaymentRepo",
+          "src/payments/payments.py::PaymentService"
+        ],
+        "size": 3,
+        "edges": [
+          {
+            "source": "src/payments/payments.py::PaymentGateway",
+            "target": "src/payments/payments.py::PaymentRepo",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/payments/payments.py::PaymentGateway",
+            "target": "src/payments/payments.py::PaymentService",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/payments/payments.py::PaymentRepo",
+            "target": "src/payments/payments.py::PaymentGateway",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/payments/payments.py::PaymentRepo",
+            "target": "src/payments/payments.py::PaymentService",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/payments/payments.py::PaymentService",
+            "target": "src/payments/payments.py::PaymentGateway",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          },
+          {
+            "source": "src/payments/payments.py::PaymentService",
+            "target": "src/payments/payments.py::PaymentRepo",
+            "edge_type": "call",
+            "confidence": "static",
+            "source_detail": "",
+            "conditional": false
+          }
+        ]
+      }
+    ],
+    "hubs": [
+      {
+        "node_id": "src/payments/payments.py::PaymentService",
+        "score": 10.0,
+        "in_degree": 2,
+        "out_degree": 3,
+        "reach": 5,
+        "callers": [
+          "src/payments/payments.py::PaymentGateway",
+          "src/payments/payments.py::PaymentRepo"
+        ]
+      }
+    ],
+    "bridges": [
+      {
+        "source": "src/payments/payments.py::PaymentService",
+        "target": "src/orders/orders.py::OrderService",
+        "component_a": [
+          "src/payments/payments.py::PaymentGateway",
+          "src/payments/payments.py::PaymentRepo",
+          "src/payments/payments.py::PaymentService"
+        ],
+        "component_b": [
+          "src/orders/orders.py::OrderGateway",
+          "src/orders/orders.py::OrderRepo",
+          "src/orders/orders.py::OrderService"
+        ],
+        "edge": {
+          "source": "src/payments/payments.py::PaymentService",
+          "target": "src/orders/orders.py::OrderService",
+          "edge_type": "call",
+          "confidence": "static",
+          "source_detail": "",
+          "conditional": false
+        }
+      }
+    ]
+  },
+  "coverage_map": {
+    "evidence": "missing",
+    "boundaries": [
+      {
+        "boundary_id": "src_orders_orders_py_d778e0fe",
+        "node_count": 3,
+        "node_ids": [
+          "src/orders/orders.py::OrderGateway",
+          "src/orders/orders.py::OrderRepo",
+          "src/orders/orders.py::OrderService"
+        ],
+        "covering_tests": [],
+        "test_count": 0,
+        "coverage_status": "missing_evidence"
+      },
+      {
+        "boundary_id": "src_payments_payments_py_4a1f559d",
+        "node_count": 3,
+        "node_ids": [
+          "src/payments/payments.py::PaymentGateway",
+          "src/payments/payments.py::PaymentRepo",
+          "src/payments/payments.py::PaymentService"
+        ],
+        "covering_tests": [],
+        "test_count": 0,
+        "coverage_status": "missing_evidence"
+      },
+      {
+        "boundary_id": "src_reports_reports_py_5771c37c",
+        "node_count": 1,
+        "node_ids": [
+          "src/reports/reports.py::Report"
+        ],
+        "covering_tests": [],
+        "test_count": 0,
+        "coverage_status": "missing_evidence"
+      }
+    ],
+    "flows": [
+      {
+        "flow_id": "src/payments/payments.py::PaymentService->src/orders/orders.py::OrderService",
+        "source_node": "src/payments/payments.py::PaymentService",
+        "target_node": "src/orders/orders.py::OrderService",
+        "boundary_path": [
+          "src_payments_payments_py_4a1f559d",
+          "src_orders_orders_py_d778e0fe"
+        ],
+        "tests_covering_source": [],
+        "tests_covering_target": [],
+        "coverage_status": "missing_evidence"
+      }
+    ],
+    "orphan_tests": [],
+    "ambiguous_tests": [],
+    "totals": {
+      "boundary_count": 3,
+      "test_count": 0,
+      "covered_boundary_count": 0,
+      "zero_coverage_boundary_count": 0,
+      "flow_count": 1,
+      "covered_flow_count": 0,
+      "one_sided_flow_count": 0,
+      "untested_flow_count": 0,
+      "orphan_test_count": 0,
+      "ambiguous_test_count": 0
+    }
+  }
+}

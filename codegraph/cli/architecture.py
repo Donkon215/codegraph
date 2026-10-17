@@ -799,6 +799,42 @@ def arch_simulate_cmd(ctx: click.Context, subsystem_name: str, deps: tuple,
             click.echo(_json.dumps(result, indent=2, ensure_ascii=False))
         else:
             click.echo(f"Verdict: {result['verdict']}")
+
+            policy_findings = result.get("policy_findings") or []
+            if policy_findings:
+                click.echo("Policy findings (may block):")
+                for finding in policy_findings:
+                    click.echo(f"  ✗ [{finding['rule']}] {finding['description']}")
+
+            heuristic_signals = result.get("heuristic_signals") or []
+            if heuristic_signals:
+                click.echo("Heuristic signals (informational only, never block):")
+                for signal in heuristic_signals:
+                    click.echo(f"  - {signal['signal']}: {signal['description']}")
+
+            structural_effect = result.get("structural_effect") or []
+            if structural_effect:
+                click.echo("Structural effect:")
+                for consequence in structural_effect:
+                    text = f"  - {consequence['kind']}: {consequence['description']}"
+                    if consequence.get("nodes"):
+                        text += f" | nodes: {', '.join(consequence['nodes'])}"
+                    if consequence.get("edges"):
+                        edges = ", ".join(
+                            f"{edge['source']} -> {edge['target']}" for edge in consequence["edges"]
+                        )
+                        text += f" | edges: {edges}"
+                    click.echo(text)
+
+            checks = result.get("checks") or []
+            if checks:
+                click.echo("Checks:")
+                for check in checks:
+                    text = f"  - {check['name']}: {check['status']}"
+                    if check.get("reason"):
+                        text += f" — {check['reason']}"
+                    click.echo(text)
+
             for reason in result["reasons"]:
                 click.echo(f"  - {reason}")
             click.echo(f"Note: {result['graph_note']}")
@@ -927,9 +963,22 @@ def arch_version_cmd(ctx: click.Context, do_save: bool, do_list: bool,
 @click.command("partitions")
 @click.option("--list", "do_list", is_flag=True, help="List known partition files.")
 @click.option("--rebuild", is_flag=True, help="Rebuild partitions from current ArchitectureGraph.")
+@click.option(
+    "--overview", is_flag=True,
+    help="Emit an explainable architecture overview (detected communities plus "
+         "cross-community coupling evidence) as JSON.",
+)
+@click.option(
+    "--save", is_flag=True,
+    help="Persist the overview artifact to .codegraph/architecture/community_overview.json "
+         "(requires --overview).",
+)
 @click.option("--json", "json_output", is_flag=True, help="JSON output.")
 @click.pass_context
-def partitions_cmd(ctx: click.Context, do_list: bool, rebuild: bool, json_output: bool) -> None:
+def partitions_cmd(
+    ctx: click.Context, do_list: bool, rebuild: bool, overview: bool, save: bool,
+    json_output: bool
+) -> None:
     """Inspect or rebuild graph partitions used for large-scale acceleration."""
     import json as _json
     from codegraph.architecture_graph import ArchitectureGraph
@@ -941,6 +990,32 @@ def partitions_cmd(ctx: click.Context, do_list: bool, rebuild: bool, json_output
     )
 
     root = _resolve_root(ctx)
+
+    if save and not overview:
+        click.echo("--save is only supported with --overview.", err=True)
+        sys.exit(EXIT_ERROR)
+
+    if overview:
+        graph = ArchitectureGraph.load(root)
+        partitions = build_partitions(graph) if rebuild else load_partitions(root)
+        if partitions is None:
+            click.echo(
+                "No partitions found. Run: codegraph partitions --rebuild --overview",
+                err=True,
+            )
+            sys.exit(EXIT_ERROR)
+        if rebuild:
+            save_partitions(root, partitions)
+        from codegraph.architecture_overview import build_architecture_overview, save_overview
+
+        overview_obj = build_architecture_overview(graph, partitions=partitions)
+        overview_data = overview_obj.to_dict()
+        if save:
+            path = save_overview(root, overview_obj)
+            if not json_output:
+                click.echo(f"Community overview saved: {path}")
+        click.echo(_json.dumps(overview_data, indent=2))
+        return
 
     if rebuild:
         graph = ArchitectureGraph.load(root)

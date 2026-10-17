@@ -147,13 +147,16 @@ def test_agent_loop_revises_rejected_plan_then_verifies_prediction() -> None:
         (repo / "app" / "c.py").write_text("def fc():\n    return 2\n", encoding="utf-8")
         _cg(repo, "build")
 
-        # fb -> fa reverses the existing fa <- fb edge, so the gate rejects it.
+        # A->B creates a cycle A->B->A against the existing B->A edge: a hard
+        # policy rejection (issue #70 — heuristics alone never block). C->B is
+        # clean on its own, so revise drops the offending change and keeps it.
         plan = [
-            {"change": "add_edge", "node": APP_B, "target": APP_A},
-            {"change": "add_edge", "node": APP_C, "target": APP_A},
+            {"change": "add_edge", "node": APP_A, "target": APP_B},
+            {"change": "add_edge", "node": APP_C, "target": APP_B},
         ]
         rejected = simulate_changes(repo, plan)
         assert rejected["verdict"] == "REJECT", rejected["reasons"]
+        assert any("new cycle" in reason for reason in rejected["reasons"]), rejected["reasons"]
         plan_path = repo / "plan.json"
         plan_path.write_text(json.dumps(plan, indent=2), encoding="utf-8")
 
@@ -164,7 +167,7 @@ def test_agent_loop_revises_rejected_plan_then_verifies_prediction() -> None:
             "--save-prediction", "--proof", "--json",
         ))
         assert output["revision"]["original_verdict"] == "REJECT"
-        assert [entry["change"]["node"] for entry in output["revision"]["dropped_changes"]] == [APP_B]
+        assert [entry["change"]["node"] for entry in output["revision"]["dropped_changes"]] == [APP_A]
         assert output["revision"]["dropped_changes"][0]["reasons"]
         remaining = output["revised_plan"]
         assert [change["node"] for change in remaining] == [APP_C]
@@ -173,7 +176,7 @@ def test_agent_loop_revises_rejected_plan_then_verifies_prediction() -> None:
 
         # Implement the approved change, then rebuild.
         (repo / "app" / "c.py").write_text(
-            "from app.a import fa\n\n\ndef fc():\n    return fa()\n", encoding="utf-8",
+            "from app.b import fb\n\ndef fc():\n    return fb()\n", encoding="utf-8",
         )
         _cg(repo, "build")
 

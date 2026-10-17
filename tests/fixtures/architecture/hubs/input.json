@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    {"id": "hub.py::Hub", "file": "hub.py", "type": "class", "line": 1, "body_hash": "hub001"},
+    {"id": "a.py::Alpha", "file": "a.py", "type": "function", "line": 1, "body_hash": "a001"},
+    {"id": "b.py::Beta", "file": "b.py", "type": "function", "line": 1, "body_hash": "b001"},
+    {"id": "c.py::Gamma", "file": "c.py", "type": "function", "line": 1, "body_hash": "c001"},
+    {"id": "d.py::Delta", "file": "d.py", "type": "function", "line": 1, "body_hash": "d001"}
+  ],
+  "edges": [
+    {"source": "a.py::Alpha", "target": "hub.py::Hub", "edge_type": "call"},
+    {"source": "b.py::Beta", "target": "hub.py::Hub", "edge_type": "call"},
+    {"source": "c.py::Gamma", "target": "hub.py::Hub", "edge_type": "call"},
+    {"source": "d.py::Delta", "target": "hub.py::Hub", "edge_type": "call"}
+  ],
+  "intent": []
+}

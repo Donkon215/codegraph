@@ -1,0 +1,14 @@
+{
+  "name": "structural_effect",
+  "metric_kind": "simulation_effect",
+  "description": "Issue #70 structural_effect for a proposed add_edge that creates a cycle and touches hubs, recorded verbatim as expected output.",
+  "hostile_features": ["cycle", "hub"],
+  "simulation": {
+    "change": "add_edge c.py::C -> a.py::A",
+    "effect_kinds": ["connection_added", "cycle_created", "hub_touched", "affected_nodes"],
+    "verdict": "REJECT",
+    "cycle_risk": 1
+  },
+  "node_count": 3,
+  "edge_count": 2
+}

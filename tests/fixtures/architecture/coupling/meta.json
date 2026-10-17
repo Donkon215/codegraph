@@ -1,0 +1,8 @@
+{
+  "name": "coupling",
+  "metric_kind": "coupling",
+  "description": "Two tightly-knit communities (payments, orders) joined by a single cross-community call.",
+  "hostile_features": [],
+  "node_count": 6,
+  "edge_count": 13
+}
