@@ -132,6 +132,10 @@ def test_exact_coverage_map_matches_fixture() -> None:
     ]
     # Both tests reach both sides (transitively), so covered.
     assert flows["payments.py::PaymentService->orders.py::OrderService"].coverage_status == "covered"
+    assert flows["payments.py::PaymentService->orders.py::OrderService"].tests_covering_flow == [
+        "tests/test_orders.py::test_order",
+        "tests/test_payments.py::test_pay",
+    ]
     assert flows["orders.py::OrderRepo->payments.py::PaymentRepo"].coverage_status == "covered"
     # Tests on only one side of the boundary crossing -> one_sided (reported
     # separately from a flow with no tests at all).
@@ -220,6 +224,41 @@ def test_ambiguous_multi_boundary_test_is_recorded() -> None:
     by_id = {b.boundary_id: b for b in result.boundaries}
     assert by_id["boundary_payments"].covering_tests == ["tests/test_payments.py::test_pay"]
     assert by_id["boundary_orders"].covering_tests == ["tests/test_payments.py::test_pay"]
+
+
+def test_unrelated_tests_on_both_boundaries_do_not_cover_crossing() -> None:
+    """Boundary coverage on both sides does not prove a test reaches the crossing."""
+    source = "payments.py::Gateway"
+    source_helper = "payments.py::Helper"
+    target = "orders.py::Store"
+    test_source = "tests/test_source.py::test_source"
+    test_target = "tests/test_target.py::test_target"
+    graph = ArchitectureGraph(
+        nodes=[{"id": nid, "file": nid.split("::")[0], "type": "function", "line": 1}
+               for nid in (source, source_helper, target, test_source, test_target)],
+        edges=[
+            {"source": test_source, "target": source_helper, "edge_type": "call"},
+            {"source": test_target, "target": target, "edge_type": "call"},
+            {"source": source, "target": target, "edge_type": "call"},
+        ],
+    )
+    partitions = _parts(
+        payments=[source, source_helper],
+        orders=[target],
+        tests=[test_source, test_target],
+    )
+    result = map_execution_coverage(
+        graph, _index({test_source, test_target}), partitions=partitions
+    )
+
+    flow = next(f for f in result.flows if f.flow_id == f"{source}->{target}")
+    by_boundary = {b.boundary_id: b for b in result.boundaries}
+    assert by_boundary["payments"].covering_tests == [test_source]
+    assert by_boundary["orders"].covering_tests == [test_target]
+    assert flow.tests_covering_source == []
+    assert flow.tests_covering_target == [test_target]
+    assert flow.tests_covering_flow == []
+    assert flow.coverage_status == "one_sided"
 
 
 def test_empty_graph_produces_empty_map() -> None:

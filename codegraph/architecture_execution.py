@@ -69,6 +69,7 @@ class FlowCoverage:
     boundary_path: List[str] = field(default_factory=list)  # [source, target] in order
     tests_covering_source: List[str] = field(default_factory=list)
     tests_covering_target: List[str] = field(default_factory=list)
+    tests_covering_flow: List[str] = field(default_factory=list)
     coverage_status: str = "untested"  # covered | one_sided | untested | missing_evidence
 
     def to_dict(self) -> Dict[str, Any]:
@@ -79,6 +80,7 @@ class FlowCoverage:
             "boundary_path": list(self.boundary_path),
             "tests_covering_source": list(self.tests_covering_source),
             "tests_covering_target": list(self.tests_covering_target),
+            "tests_covering_flow": list(self.tests_covering_flow),
             "coverage_status": self.coverage_status,
         }
 
@@ -121,7 +123,12 @@ def _reachable_boundaries(
     Attribution is derived from graph edges and layer-4 test-ness only: file
     names and human-authored intent are never consulted.
     """
-    boundaries: Set[str] = set()
+    reachable = _reachable_nodes(test, graph)
+    return {node_to_boundary[node] for node in reachable if node in node_to_boundary}
+
+
+def _reachable_nodes(test: str, graph: ArchitectureGraph) -> Set[str]:
+    """Return nodes reachable from a test through directed graph edges."""
     visited: Set[str] = {test}
     queue: deque[str] = deque(sorted(graph.adj_out.get(test, set())))
     while queue:
@@ -129,13 +136,10 @@ def _reachable_boundaries(
         if node in visited:
             continue
         visited.add(node)
-        boundary = node_to_boundary.get(node)
-        if boundary is not None:
-            boundaries.add(boundary)
         for nxt in sorted(graph.adj_out.get(node, set())):
             if nxt not in visited:
                 queue.append(nxt)
-    return boundaries
+    return visited - {test}
 
 
 def map_execution_coverage(
@@ -190,7 +194,9 @@ def map_execution_coverage(
     # attribution -- never file names or intent. Deterministic BFS with cycle
     # protection (see _reachable_boundaries).
     boundary_tests: Dict[str, Set[str]] = {pid: set() for pid in partitions.partitions}
+    reachable_by_test: Dict[str, Set[str]] = {}
     for test in sorted(test_nodes):
+        reachable_by_test[test] = _reachable_nodes(test, graph)
         for boundary in _reachable_boundaries(test, graph, node_to_boundary):
             boundary_tests.setdefault(boundary, set()).add(test)
 
@@ -245,11 +251,20 @@ def map_execution_coverage(
             if flow_id in seen_flows:
                 continue
             seen_flows.add(flow_id)
-            tests_source = sorted(boundary_tests.get(src_boundary, set()))
-            tests_target = sorted(boundary_tests.get(tgt_boundary, set()))
+            # A test covers this flow only if it reaches this exact edge's
+            # source node. The edge then takes it across the boundary. Merely
+            # having unrelated tests somewhere on both boundary sides is not
+            # evidence that the crossing is exercised.
+            tests_source = sorted(
+                test for test, reachable in reachable_by_test.items() if source in reachable
+            )
+            tests_target = sorted(
+                test for test, reachable in reachable_by_test.items() if target in reachable
+            )
+            tests_flow = list(tests_source)
             if evidence == "missing":
                 status = "missing_evidence"
-            elif tests_source and tests_target:
+            elif tests_flow:
                 status = "covered"
             elif tests_source or tests_target:
                 status = "one_sided"
@@ -263,6 +278,7 @@ def map_execution_coverage(
                     boundary_path=[src_boundary, tgt_boundary],
                     tests_covering_source=tests_source,
                     tests_covering_target=tests_target,
+                    tests_covering_flow=tests_flow,
                     coverage_status=status,
                 )
             )

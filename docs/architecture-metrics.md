@@ -402,12 +402,13 @@ traversal order, `flow_id = "source -> target"`, de-duplicated by that string):
 
 | Status | Meaning |
 |--------|---------|
-| `covered` | both sides have covering tests |
-| `one_sided` | exactly one side has covering tests |
+| `covered` | at least one test reaches the source node of this exact directed edge, so the graph path can traverse the boundary crossing |
+| `one_sided` | tests reach one or both endpoint nodes, but no test reaches the source node of this exact crossing |
 | `untested` | neither side has covering tests (tests exist) |
 | `missing_evidence` | no layer-4 test nodes in the graph |
 
-**Additional fields:** `orphan_tests` (graph test nodes reaching no boundary,
+**Additional fields:** `tests_covering_flow` lists tests that reach the exact
+source node of the crossing; `orphan_tests` (graph test nodes reaching no boundary,
 only when evidence is present), `ambiguous_tests` (tests attributable to more
 than one boundary — recorded, not resolved silently), and advisory `totals`
 (boundary/flow/test counts). Totals are advisory metrics only, never a gate.

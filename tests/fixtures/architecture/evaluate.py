@@ -42,6 +42,12 @@ from pathlib import Path
 from types import SimpleNamespace
 from typing import Any, Dict, List, Optional, Set
 
+# Direct execution puts this file's directory on sys.path, not the repository
+# root. Add the root so the documented command works from any working folder.
+_REPO_ROOT = Path(__file__).resolve().parents[3]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
 from codegraph.architecture_execution import map_execution_coverage
 from codegraph.architecture_graph import ArchitectureGraph
 from codegraph.architecture_metrics import compute_architecture_metrics
