@@ -27,6 +27,8 @@ import copy
 import importlib.util
 import json
 import shutil
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -292,3 +294,17 @@ def test_evaluation_command_is_covered():
     criterion: the evaluation command is covered by a test)."""
     report = evaluate_all(FIXTURES_DIR)
     assert report["ok"]
+
+
+def test_documented_evaluator_command_runs_from_outside_repository(tmp_path: Path):
+    """The documented script command imports the package from another cwd."""
+    script = FIXTURES_DIR / "evaluate.py"
+    completed = subprocess.run(
+        [sys.executable, str(script)],
+        cwd=tmp_path,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode == 0, completed.stdout + completed.stderr
+    assert "OK: all fixtures match their recorded expected output" in completed.stdout
