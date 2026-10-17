@@ -1,196 +1,200 @@
 {
-  "graph": {
-    "node_count": 3,
-    "edge_count": 5
-  },
-  "forbidden_path": [],
   "communities": [
     {
+      "analysis": "Detected community 'lib_billing_bill_py_f879842d': 3 node(s), 5 internal edge(s), 0 boundary node(s); no single declared subsystem (mixed or undeclared).",
+      "boundary_edges": [],
+      "boundary_nodes": [],
       "community_id": "lib_billing_bill_py_f879842d",
-      "size": 3,
+      "declared_subsystem": null,
+      "directories": [
+        "lib/billing",
+        "lib/payments"
+      ],
+      "files": [
+        "lib/billing/bill.py",
+        "lib/payments/pay.py"
+      ],
+      "internal_edge_count": 5,
       "node_ids": [
         "lib/billing/bill.py::BillRepo",
         "lib/billing/bill.py::BillService",
         "lib/payments/pay.py::PayService"
       ],
-      "internal_edge_count": 5,
-      "boundary_nodes": [],
-      "declared_subsystem": null,
       "node_type_counts": {
         "class": 3
       },
-      "files": [
-        "lib/billing/bill.py",
-        "lib/payments/pay.py"
-      ],
-      "directories": [
-        "lib/billing",
-        "lib/payments"
-      ],
-      "boundary_edges": [],
-      "analysis": "Detected community 'lib_billing_bill_py_f879842d': 3 node(s), 5 internal edge(s), 0 boundary node(s); no single declared subsystem (mixed or undeclared)."
+      "size": 3
     }
   ],
-  "cross_community_links": [],
-  "metrics": {
-    "coupling": [
-      {
-        "module": "lib/billing/bill.py",
-        "node_count": 2,
-        "crossing_edges": 2,
-        "coupling": 1.0,
-        "edges": [
-          {
-            "source": "lib/billing/bill.py::BillService",
-            "target": "lib/payments/pay.py::PayService",
-            "edge_type": "call",
-            "confidence": "static",
-            "source_detail": "",
-            "conditional": false
-          },
-          {
-            "source": "lib/payments/pay.py::PayService",
-            "target": "lib/billing/bill.py::BillService",
-            "edge_type": "call",
-            "confidence": "static",
-            "source_detail": "",
-            "conditional": false
-          }
-        ]
-      },
-      {
-        "module": "lib/payments/pay.py",
-        "node_count": 1,
-        "crossing_edges": 2,
-        "coupling": 2.0,
-        "edges": [
-          {
-            "source": "lib/billing/bill.py::BillService",
-            "target": "lib/payments/pay.py::PayService",
-            "edge_type": "call",
-            "confidence": "static",
-            "source_detail": "",
-            "conditional": false
-          },
-          {
-            "source": "lib/payments/pay.py::PayService",
-            "target": "lib/billing/bill.py::BillService",
-            "edge_type": "call",
-            "confidence": "static",
-            "source_detail": "",
-            "conditional": false
-          }
-        ]
-      }
-    ],
-    "cycles": [
-      {
-        "nodes": [
-          "lib/billing/bill.py::BillRepo",
-          "lib/billing/bill.py::BillService",
-          "lib/payments/pay.py::PayService"
-        ],
-        "size": 3,
-        "edges": [
-          {
-            "source": "lib/billing/bill.py::BillRepo",
-            "target": "lib/billing/bill.py::BillService",
-            "edge_type": "call",
-            "confidence": "static",
-            "source_detail": "",
-            "conditional": false
-          },
-          {
-            "source": "lib/billing/bill.py::BillService",
-            "target": "lib/billing/bill.py::BillRepo",
-            "edge_type": "call",
-            "confidence": "static",
-            "source_detail": "",
-            "conditional": false
-          },
-          {
-            "source": "lib/billing/bill.py::BillService",
-            "target": "lib/payments/pay.py::PayService",
-            "edge_type": "call",
-            "confidence": "static",
-            "source_detail": "",
-            "conditional": false
-          },
-          {
-            "source": "lib/payments/pay.py::PayService",
-            "target": "lib/billing/bill.py::BillService",
-            "edge_type": "call",
-            "confidence": "static",
-            "source_detail": "",
-            "conditional": false
-          },
-          {
-            "source": "lib/payments/pay.py::PayService",
-            "target": "lib/payments/pay.py::PayService",
-            "edge_type": "call",
-            "confidence": "static",
-            "source_detail": "",
-            "conditional": false
-          }
-        ]
-      }
-    ],
-    "hubs": [
-      {
-        "node_id": "lib/billing/bill.py::BillService",
-        "score": 6.0,
-        "in_degree": 2,
-        "out_degree": 2,
-        "reach": 2,
-        "callers": [
-          "lib/billing/bill.py::BillRepo",
-          "lib/payments/pay.py::PayService"
-        ]
-      },
-      {
-        "node_id": "lib/payments/pay.py::PayService",
-        "score": 6.0,
-        "in_degree": 2,
-        "out_degree": 2,
-        "reach": 2,
-        "callers": [
-          "lib/billing/bill.py::BillService",
-          "lib/payments/pay.py::PayService"
-        ]
-      }
-    ],
-    "bridges": []
-  },
   "coverage_map": {
-    "evidence": "missing",
+    "ambiguous_tests": [],
     "boundaries": [
       {
         "boundary_id": "lib_billing_bill_py_f879842d",
+        "coverage_status": "missing_evidence",
+        "covering_tests": [],
+        "nearest_reach": null,
         "node_count": 3,
         "node_ids": [
           "lib/billing/bill.py::BillRepo",
           "lib/billing/bill.py::BillService",
           "lib/payments/pay.py::PayService"
         ],
-        "covering_tests": [],
-        "test_count": 0,
-        "coverage_status": "missing_evidence"
+        "test_count": 0
       }
     ],
+    "evidence": "missing",
     "flows": [],
     "orphan_tests": [],
-    "ambiguous_tests": [],
+    "reach_depth": 3,
     "totals": {
+      "ambiguous_test_count": 0,
       "boundary_count": 1,
-      "test_count": 0,
       "covered_boundary_count": 0,
-      "zero_coverage_boundary_count": 0,
-      "flow_count": 0,
       "covered_flow_count": 0,
+      "flow_count": 0,
       "one_sided_flow_count": 0,
-      "untested_flow_count": 0,
       "orphan_test_count": 0,
-      "ambiguous_test_count": 0
+      "test_count": 0,
+      "untested_flow_count": 0,
+      "zero_coverage_boundary_count": 0
     }
+  },
+  "cross_community_links": [],
+  "forbidden_path": [],
+  "graph": {
+    "edge_count": 5,
+    "node_count": 3
+  },
+  "metrics": {
+    "bridges": [],
+    "coupling": [
+      {
+        "coupling": 0.5,
+        "crossing_edges": 2,
+        "edges": [
+          {
+            "conditional": false,
+            "confidence": "static",
+            "edge_type": "call",
+            "source": "lib/billing/bill.py::BillService",
+            "source_detail": "",
+            "target": "lib/payments/pay.py::PayService"
+          },
+          {
+            "conditional": false,
+            "confidence": "static",
+            "edge_type": "call",
+            "source": "lib/payments/pay.py::PayService",
+            "source_detail": "",
+            "target": "lib/billing/bill.py::BillService"
+          }
+        ],
+        "internal_edges": 2,
+        "module": "lib/billing/bill.py",
+        "node_count": 2
+      },
+      {
+        "coupling": 0.666667,
+        "crossing_edges": 2,
+        "edges": [
+          {
+            "conditional": false,
+            "confidence": "static",
+            "edge_type": "call",
+            "source": "lib/billing/bill.py::BillService",
+            "source_detail": "",
+            "target": "lib/payments/pay.py::PayService"
+          },
+          {
+            "conditional": false,
+            "confidence": "static",
+            "edge_type": "call",
+            "source": "lib/payments/pay.py::PayService",
+            "source_detail": "",
+            "target": "lib/billing/bill.py::BillService"
+          }
+        ],
+        "internal_edges": 1,
+        "module": "lib/payments/pay.py",
+        "node_count": 1
+      }
+    ],
+    "cycles": [
+      {
+        "edges": [
+          {
+            "conditional": false,
+            "confidence": "static",
+            "edge_type": "call",
+            "source": "lib/billing/bill.py::BillRepo",
+            "source_detail": "",
+            "target": "lib/billing/bill.py::BillService"
+          },
+          {
+            "conditional": false,
+            "confidence": "static",
+            "edge_type": "call",
+            "source": "lib/billing/bill.py::BillService",
+            "source_detail": "",
+            "target": "lib/billing/bill.py::BillRepo"
+          },
+          {
+            "conditional": false,
+            "confidence": "static",
+            "edge_type": "call",
+            "source": "lib/billing/bill.py::BillService",
+            "source_detail": "",
+            "target": "lib/payments/pay.py::PayService"
+          },
+          {
+            "conditional": false,
+            "confidence": "static",
+            "edge_type": "call",
+            "source": "lib/payments/pay.py::PayService",
+            "source_detail": "",
+            "target": "lib/billing/bill.py::BillService"
+          },
+          {
+            "conditional": false,
+            "confidence": "static",
+            "edge_type": "call",
+            "source": "lib/payments/pay.py::PayService",
+            "source_detail": "",
+            "target": "lib/payments/pay.py::PayService"
+          }
+        ],
+        "nodes": [
+          "lib/billing/bill.py::BillRepo",
+          "lib/billing/bill.py::BillService",
+          "lib/payments/pay.py::PayService"
+        ],
+        "size": 3
+      }
+    ],
+    "hubs": [
+      {
+        "callers": [
+          "lib/billing/bill.py::BillRepo",
+          "lib/payments/pay.py::PayService"
+        ],
+        "in_degree": 2,
+        "node_id": "lib/billing/bill.py::BillService",
+        "out_degree": 2,
+        "reach": 2,
+        "score": 6.0
+      },
+      {
+        "callers": [
+          "lib/billing/bill.py::BillService",
+          "lib/payments/pay.py::PayService"
+        ],
+        "in_degree": 2,
+        "node_id": "lib/payments/pay.py::PayService",
+        "out_degree": 2,
+        "reach": 2,
+        "score": 6.0
+      }
+    ]
   }
 }

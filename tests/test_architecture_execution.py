@@ -12,9 +12,12 @@ from types import SimpleNamespace
 
 from codegraph.architecture_execution import (
     ExecutionCoverageMap,
+    load_execution_coverage,
     map_execution_coverage,
+    save_execution_coverage,
 )
 from codegraph.architecture_graph import ArchitectureGraph
+from codegraph.architecture_metrics import REACH_DEPTH
 from codegraph.graph_partitioning import GraphPartitions, Partition
 from codegraph.graph_partitioning import GraphPartitions, Partition
 
@@ -130,10 +133,11 @@ def test_exact_coverage_map_matches_fixture() -> None:
         "boundary_payments",
         "boundary_orders",
     ]
-    # Both tests reach both sides (transitively), so covered.
+    # test_pay calls PaymentService directly (1 hop), so it covers the flow.
+    # test_order only reaches PaymentService through a 4-hop cycle, which is
+    # past the reach bound -- inference, not evidence.
     assert flows["payments.py::PaymentService->orders.py::OrderService"].coverage_status == "covered"
     assert flows["payments.py::PaymentService->orders.py::OrderService"].tests_covering_flow == [
-        "tests/test_orders.py::test_order",
         "tests/test_payments.py::test_pay",
     ]
     assert flows["orders.py::OrderRepo->payments.py::PaymentRepo"].coverage_status == "covered"
@@ -166,8 +170,15 @@ def test_exact_coverage_map_matches_fixture() -> None:
     data = result.to_dict()
     assert data["evidence"] == "present"
     assert set(data) == {
-        "evidence", "boundaries", "flows", "orphan_tests", "ambiguous_tests", "totals",
+        "evidence", "reach_depth", "boundaries", "flows", "orphan_tests",
+        "ambiguous_tests", "totals",
     }
+    # The hop bound is recorded so a reader knows how far "covered" inferred.
+    assert data["reach_depth"] == REACH_DEPTH
+    # Direct coverage is distinguishable from inferred coverage.
+    reaches = {b["boundary_id"]: b["nearest_reach"] for b in data["boundaries"]}
+    assert reaches["boundary_payments"] == 1
+    assert reaches["boundary_tests"] is None
 
 
 def test_coverage_map_is_deterministic() -> None:
@@ -183,6 +194,33 @@ def test_coverage_map_is_deterministic() -> None:
     first = map_execution_coverage(graph, index, partitions=_partitions()).to_dict()
     second = map_execution_coverage(graph, index, partitions=_partitions()).to_dict()
     assert first == second
+
+
+def test_coverage_map_roundtrips_through_disk(tmp_path) -> None:
+    """Two builds must be comparable as files, not just as console output."""
+    graph = _graph()
+    index = _index(
+        {
+            "tests/test_payments.py::test_pay",
+            "tests/test_orders.py::test_order",
+            "tests/test_orphan.py::test_orphan",
+        }
+    )
+    result = map_execution_coverage(graph, index, partitions=_partitions())
+    path = save_execution_coverage(tmp_path, result)
+    assert path.exists()
+
+    loaded = load_execution_coverage(tmp_path)
+    assert loaded is not None
+    assert loaded.to_dict() == result.to_dict()
+    assert loaded.reach_depth == REACH_DEPTH
+    # Nearest-reach survives the round trip, so direct vs inferred stays visible.
+    reaches = {b.boundary_id: b.nearest_reach for b in loaded.boundaries}
+    assert reaches["boundary_payments"] == 1
+
+
+def test_load_execution_coverage_returns_none_when_absent(tmp_path) -> None:
+    assert load_execution_coverage(tmp_path) is None
 
 
 def test_missing_evidence_distinguished_from_zero_coverage() -> None:

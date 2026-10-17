@@ -1129,6 +1129,7 @@ def extract_project(
 
     # Phase 2 — Extract API routes (polyglot support)
     # API extraction links frontend components to backend services via HTTP endpoints
+    api_route_failed: Optional[str] = None
     try:
         from codegraph.extractors.api_routes import APIRouteExtractor
         api_extractor = APIRouteExtractor(project_root)
@@ -1138,6 +1139,7 @@ def extract_project(
             node_counts["api_endpoint"] = len([n for n in api_result.nodes if n.type == "api_endpoint"])
             logger.info("Extracted %d API endpoints", len(api_result.nodes))
     except Exception as exc:
+        api_route_failed = str(exc)
         logger.warning("API route extraction failed: %s", exc)
 
     # Finalize and assemble Graph_0
@@ -1145,6 +1147,24 @@ def extract_project(
         project_root, report, source_files, all_nodes, node_counts, resolver, t0
     )
     report.duration_seconds = duration
+
+    # Record extraction defects where a later analysis can read them (#79).
+    # A collision means edges naming the original id now attach to the first
+    # definition, so the affected ids travel with the count.
+    from codegraph.build_quality import record_build_quality
+
+    record_build_quality(
+        project_root,
+        files_processed=report.files_processed,
+        files_skipped=report.files_skipped,
+        extracted_nodes=report.total_nodes,
+        collision_ids=[str(note) for note in report.collisions],
+        collision_count=len(report.collisions),
+        warnings=[
+            str(getattr(w, "message", None) or w) for w in report.warnings
+        ],
+        api_route_extraction_failed=api_route_failed,
+    )
     return graph0, report
 
 

@@ -395,7 +395,9 @@ def _stale_reason(
     try:
         file_path.relative_to(root)
     except ValueError:
-        return "unknown", rel
+        # Names its own reason instead of "unknown": a node id pointing
+        # outside the project root is a distinct, actionable finding.
+        return "path_escapes_root", rel
     exists = file_path.is_file()
     if not exists:
         return ("deleted_from_source" if was_valid else "unknown"), rel
@@ -409,10 +411,72 @@ def _stale_reason(
     return "excluded_by_discovery", rel
 
 
+def _reverify_orphan_records(
+    records: list[dict[str, Any]],
+    graph0: Graph0,
+    project_root: Path,
+) -> tuple[list[dict[str, Any]], int, int]:
+    """Re-check archived orphans against the current graph.
+
+    Each record is moved out of ``unresolved`` into a state that says what is
+    actually true of it now:
+
+    * ``resolved``  -- the node is back in Graph_0, so its intent can be
+      restored;
+    * ``vanished``  -- the defining file no longer exists, so the orphan is
+      not a missing test for code that is still there.
+
+    Records are never deleted: the archive is the only copy of that intent, and
+    the file may come back. Returns ``(records, resolved_count, vanished_count)``.
+    """
+    if not records:
+        return records, 0, 0
+
+    root = project_root.resolve()
+    live_files = set(graph0.source_files)
+    resolved = 0
+    vanished = 0
+    for record in records:
+        node = record.get("node")
+        if not isinstance(node, dict) or not node.get("id"):
+            continue
+        node_id = str(node["id"])
+        # last_seen_graph0 is left alone: it records the last Graph_0 that
+        # actually contained this node. Stamping the current build onto it
+        # would claim a build saw a node it has no record of.
+        if graph0.has_node(node_id):
+            if record.get("status") != "resolved":
+                resolved += 1
+            record["status"] = "resolved"
+            continue
+        rel = _node_file(node_id)
+        exists = False
+        if rel in live_files:
+            exists = True
+        else:
+            candidate = (root / Path(rel)).resolve()
+            try:
+                candidate.relative_to(root)
+            except ValueError:
+                exists = False
+            else:
+                exists = candidate.is_file()
+        if not exists:
+            if record.get("status") != "vanished":
+                vanished += 1
+            record["status"] = "vanished"
+        elif record.get("status") != "unresolved":
+            record["status"] = "unresolved"
+    return records, resolved, vanished
+
+
 @dataclass
 class ReconcileReport:
     removed_count: int = 0
     removed_ids: list[str] = field(default_factory=list)
+    # Counts from re-verifying the existing archive against the current graph.
+    resolved_count: int = 0
+    vanished_count: int = 0
     archived_count: int = 0
 
 
@@ -431,10 +495,12 @@ def reconcile_graph1(
     stale_ids = graph1.get_stale_nodes(g0_ids)
     report = ReconcileReport()
 
-    if not stale_ids:
-        return report
-
-    if not graph0.nodes and previous_graph0 is not None and previous_graph0.nodes:
+    # Re-verify the existing archive first, so an old record stops reading as
+    # "unresolved" even on a build where nothing new went stale (#80).
+    # Guarded: an empty Graph_0 would mark every record vanished, so the
+    # archive is left untouched when the new build is empty but the old was not.
+    empty_graph0 = not graph0.nodes and previous_graph0 is not None and previous_graph0.nodes
+    if empty_graph0:
         logger.warning(
             "New Graph_0 is empty; preserving %d stale Graph_1 entries for review",
             len(stale_ids),
@@ -442,6 +508,19 @@ def reconcile_graph1(
         return report
 
     records = _load_orphan_records(project_root)
+    records, resolved, vanished = _reverify_orphan_records(
+        records, graph0, project_root
+    )
+    report.resolved_count = resolved
+    report.vanished_count = vanished
+    if resolved or vanished:
+        # Persist the refreshed statuses so the archive stops reporting
+        # months-old "unresolved" rows for code that is long gone (#80).
+        _save_orphan_records(project_root, records)
+
+    if not stale_ids:
+        return report
+
     known = {record.get("orphan_id") for record in records}
     additions: list[dict[str, Any]] = []
     for node_id in stale_ids:
@@ -467,7 +546,9 @@ def reconcile_graph1(
             "reason": reason,
             "detected_at": iso_now(),
             "last_seen_graph0": last_seen,
-            "status": "unresolved",
+            # Classified at creation so a record never sits at "unresolved"
+            # for a file that is already gone.
+            "status": "vanished" if reason == "deleted_from_source" else "unresolved",
         })
         known.add(orphan_id)
 
@@ -506,9 +587,10 @@ def prune_graph1(
         }
 
     if project_root is not None:
+        # Every archived record is reported, including resolved/vanished ones:
+        # a vanished record is still the only copy of that intent and still
+        # needs review. ``status`` on the record distinguishes them.
         for record in _load_orphan_records(project_root):
-            if record.get("status", "unresolved") != "unresolved":
-                continue
             node = record.get("node", {})
             node_id = str(node.get("id", ""))
             if node_id and node_id not in g0_ids and node_id not in entries:
