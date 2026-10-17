@@ -1154,12 +1154,14 @@ def _build_all_edge_sources(
     List[WorkflowEdge],
     str,
     Optional[List[WorkflowEdge]],
+    int,
 ]:
     """Build all edge sources: static, dynamic, traced, imported.
 
     Returns
     -------
-    (static_edges, dynamic_edges, trace_edges, test_edges, trace_mode, import_edges)
+    (static_edges, dynamic_edges, trace_edges, test_edges, trace_mode,
+     import_edges, unresolved_call_count)
     """
     # Build static edges (F-001)
     static_edges, unresolved = build_static_edges(graph0, call_sites, imports_data)
@@ -1197,7 +1199,15 @@ def _build_all_edge_sources(
     if include_imports:
         import_edges = build_import_edges(imports_data, graph0)
 
-    return static_edges, dynamic_edges, trace_edges, test_edges, trace_mode, import_edges
+    return (
+        static_edges,
+        dynamic_edges,
+        trace_edges,
+        test_edges,
+        trace_mode,
+        import_edges,
+        len(unresolved),
+    )
 
 
 def _finalize_and_save_workflow(
@@ -1305,6 +1315,7 @@ def build_workflow(
         test_edges,
         trace_mode,
         import_edges,
+        unresolved_calls,
     ) = _build_all_edge_sources(
         project_root, graph0, call_sites, imports_data,
         trace=trace, archi=archi, trace_all=trace_all,
@@ -1327,4 +1338,14 @@ def build_workflow(
     )
 
     logger.info("Workflow built in %.2fs: %d edges", elapsed, len(workflow.edges))
+
+    # An unresolved call becomes an absent edge, which no downstream metric can
+    # tell apart from a call that does not exist. Record it (#79).
+    from codegraph.build_quality import record_build_quality
+
+    record_build_quality(
+        project_root,
+        unresolved_calls=unresolved_calls,
+        workflow_edges=len(workflow.edges),
+    )
     return workflow

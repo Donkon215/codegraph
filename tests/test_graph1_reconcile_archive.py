@@ -126,6 +126,52 @@ def test_reconcile_is_idempotent_and_restore_requires_exact_live_node(tmp_path: 
     assert len(list_orphans(tmp_path)) == 1  # restore keeps the audit record
 
 
+def test_orphan_records_are_reverified_against_the_current_graph(tmp_path: Path) -> None:
+    """A record must stop reading "unresolved" once its file is gone (#80)."""
+    gone = tmp_path / "gone.py"
+    gone.write_text("def task(): pass\n", encoding="utf-8")
+    node = _node("gone.py::task", "gone.py")
+    previous = _g0(node)
+    gone.unlink()
+
+    graph1 = Graph1(nodes=[Graph1Node(id=node.id, intent="keep me")])
+    current = _g0(_node("keep.py::keep", "keep.py"))
+    reconcile_graph1(current, graph1, tmp_path, previous)
+
+    [record] = list_orphans(tmp_path)
+    # Classified at creation, not left sitting at "unresolved".
+    assert record["status"] == "vanished"
+    assert record["reason"] == "deleted_from_source"
+    # last_seen_graph0 still names the build that actually contained the node.
+    assert record["last_seen_graph0"] == previous.extracted_at
+
+    # A rebuild that finds the node again marks it resolved.
+    back = tmp_path / "gone.py"
+    back.write_text("def task(): pass\n", encoding="utf-8")
+    revived = _g0(node, _node("keep.py::keep", "keep.py"), extracted_at="2026-10-18T12:00:00Z")
+    report = reconcile_graph1(revived, Graph1(), tmp_path, previous)
+    assert report.resolved_count == 1
+    [record] = list_orphans(tmp_path)
+    assert record["status"] == "resolved"
+
+
+def test_reverify_does_not_run_against_an_empty_graph0(tmp_path: Path) -> None:
+    """An empty build must not mark the whole archive vanished (#80 data loss)."""
+    gone = tmp_path / "gone.py"
+    gone.write_text("def task(): pass\n", encoding="utf-8")
+    node = _node("gone.py::task", "gone.py")
+    previous = _g0(node)
+    gone.unlink()
+
+    graph1 = Graph1(nodes=[Graph1Node(id=node.id, intent="keep me")])
+    reconcile_graph1(_g0(_node("keep.py::keep", "keep.py")), graph1, tmp_path, previous)
+    before = list_orphans(tmp_path)
+
+    reconcile_graph1(_g0(extracted_at="2026-10-19T12:00:00Z"), graph1, tmp_path, previous)
+    # The archive is byte-identical: no record was reclassified by an empty build.
+    assert list_orphans(tmp_path) == before
+
+
 def test_empty_graph0_and_malformed_archive_do_not_remove_annotations(tmp_path: Path) -> None:
     path = tmp_path / "module.py"
     path.write_text("def f(): pass\n", encoding="utf-8")

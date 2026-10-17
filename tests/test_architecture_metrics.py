@@ -111,10 +111,11 @@ def test_coupling_matches_definition_and_stores_evidence():
         ],
     )
     couplings = {c.module: c for c in compute_coupling(graph)}
-    # m has 2 members and 1 crossing edge -> coupling 1/2 = 0.5
+    # m: 1 crossing edge, 1 internal edge -> 1/2 = 0.5
     m = couplings["m"]
     assert m.node_count == 2
     assert m.crossing_edges == 1
+    assert m.internal_edges == 1
     assert abs(m.coupling - 0.5) < 1e-9
     assert m.edges == [{"source": "m::x2", "target": "n::y1", "edge_type": "call"}]
     # n has 2 members and 1 crossing edge -> 0.5
@@ -123,32 +124,85 @@ def test_coupling_matches_definition_and_stores_evidence():
     assert n.edges == [{"source": "m::x2", "target": "n::y1", "edge_type": "call"}]
 
 
-def test_coupling_normalises_by_size():
-    # small module with few crossings vs large module: crossing / size.
+def test_coupling_does_not_invert_with_module_size():
+    # crossing / (crossing + internal): bounded, and independent of node count.
+    # A 1-node all-crossing module ties with a 4-node all-crossing module --
+    # size must not decide the ranking.
     graph = _graph(
         _nodes("small::s", "big::b1", "big::b2", "big::b3", "big::b4", "out::o"),
         [
-            {"source": "small::s", "target": "out::o", "edge_type": "call"},  # 1 crossing / 1 node
+            {"source": "small::s", "target": "out::o", "edge_type": "call"},
             {"source": "big::b1", "target": "out::o", "edge_type": "call"},
             {"source": "big::b2", "target": "out::o", "edge_type": "call"},
             {"source": "big::b3", "target": "out::o", "edge_type": "call"},
-            {"source": "big::b4", "target": "out::o", "edge_type": "call"},  # 4 crossing / 4 nodes
+            {"source": "big::b4", "target": "out::o", "edge_type": "call"},
         ],
     )
     couplings = {c.module: c for c in compute_coupling(graph)}
     assert abs(couplings["small"].coupling - 1.0) < 1e-9
     assert abs(couplings["big"].coupling - 1.0) < 1e-9
-    # a large loosely coupled module: many crossings but big size stays lower than 1 per node
-    graph2 = _graph(
-        _nodes("big::b1", "big::b2", "big::b3", "out::o"),
+    # Magnitude stays available separately from the ratio.
+    assert couplings["big"].crossing_edges == 4
+    assert couplings["small"].crossing_edges == 1
+
+
+def test_coupling_stays_within_unit_range():
+    # A module with more crossing than internal edges used to emit values
+    # like 12.33; the ratio must never leave 0..1.
+    graph = _graph(
+        _nodes("m::x", "out::o"),
+        [{"source": "m::x", "target": "out::o", "edge_type": "call"}] * 5,
+    )
+    for c in compute_coupling(graph):
+        assert 0.0 <= c.coupling <= 1.0
+
+
+def test_internal_edges_lower_coupling_regardless_of_size():
+    # 5 internal edges + 1 crossing = 1/6, on a module larger than the
+    # all-crossing one. Size must not push it up.
+    graph = _graph(
+        _nodes("m::a", "m::b", "m::c", "out::o"),
         [
-            {"source": "big::b1", "target": "out::o", "edge_type": "call"},
-            {"source": "big::b2", "target": "out::o", "edge_type": "call"},
-            {"source": "big::b3", "target": "out::o", "edge_type": "call"},
+            {"source": "m::a", "target": "m::b", "edge_type": "call"},
+            {"source": "m::b", "target": "m::c", "edge_type": "call"},
+            {"source": "m::c", "target": "m::a", "edge_type": "call"},
+            {"source": "m::a", "target": "out::o", "edge_type": "call"},
         ],
     )
-    couplings2 = {c.module: c for c in compute_coupling(graph2)}
-    assert abs(couplings2["big"].coupling - (3 / 3)) < 1e-9
+    couplings = {c.module: c for c in compute_coupling(graph)}
+    assert couplings["m"].internal_edges == 3
+    assert abs(couplings["m"].coupling - 0.25) < 1e-9
+
+
+def test_hubs_exclude_nodes_with_no_callers():
+    # An entry point with huge reach but in_degree 0 is not a hub.
+    graph = _graph(
+        _nodes("cli::main", "cli::helper", "lib::used"),
+        [
+            {"source": "cli::main", "target": "cli::helper", "edge_type": "call"},
+            {"source": "cli::main", "target": "lib::used", "edge_type": "call"},
+            {"source": "lib::used", "target": "cli::helper", "edge_type": "call"},
+        ],
+    )
+    hub_ids = {h.node_id for h in compute_hubs(graph, hub_band=1.0)}
+    assert "cli::main" not in hub_ids, "entry point with no callers is not a hub"
+    assert hub_ids == {"cli::helper", "lib::used"}
+
+
+def test_hub_band_is_drawn_from_called_nodes_only():
+    # A high-scoring entry point must not consume the whole band and leave
+    # an empty hub list.
+    graph = _graph(
+        _nodes("cli::main", "cli::helper", "lib::used"),
+        [
+            {"source": "cli::main", "target": "cli::helper", "edge_type": "call"},
+            {"source": "cli::main", "target": "lib::used", "edge_type": "call"},
+            {"source": "lib::used", "target": "cli::helper", "edge_type": "call"},
+        ],
+    )
+    hubs = compute_hubs(graph, hub_band=HUB_BAND)
+    assert hubs, "band must be filled from nodes that have callers"
+    assert all(h.in_degree > 0 for h in hubs)
 
 
 def test_hub_tie_breaking_is_stable_and_sorted():
@@ -230,7 +284,8 @@ def test_coupling_counts_parallel_edge_records():
     m = couplings["m"]
     assert m.node_count == 1
     assert m.crossing_edges == 2
-    assert abs(m.coupling - 2.0) < 1e-9
+    assert m.internal_edges == 0
+    assert abs(m.coupling - 1.0) < 1e-9
     assert len(m.edges) == 2
     assert all(e["source"] == "m::x1" and e["target"] == "n::y1" for e in m.edges)
 
@@ -247,7 +302,7 @@ def test_coupling_counts_reverse_direction_records():
     couplings = {c.module: c for c in compute_coupling(graph)}
     m = couplings["m"]
     assert m.crossing_edges == 2
-    assert abs(m.coupling - 2.0) < 1e-9
+    assert abs(m.coupling - 1.0) < 1e-9
     assert len(m.edges) == 2
 
 

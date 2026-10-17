@@ -121,6 +121,7 @@ class ModuleCoupling:
     node_count: int
     crossing_edges: int
     coupling: float
+    internal_edges: int = 0
     edges: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -128,6 +129,7 @@ class ModuleCoupling:
             "module": self.module,
             "node_count": self.node_count,
             "crossing_edges": self.crossing_edges,
+            "internal_edges": self.internal_edges,
             "coupling": round(self.coupling, 6),
             "edges": self.edges,
         }
@@ -136,10 +138,21 @@ class ModuleCoupling:
 def compute_coupling(graph: ArchitectureGraph) -> List[ModuleCoupling]:
     """Per-module boundary coupling.
 
-    ``coupling(module) = |edges crossing the module boundary| /
-    max(1, |nodes in module|). An edge crosses the boundary when exactly one
-    endpoint belongs to the module. Returns modules sorted by module id with
-    edges sorted for deterministic output.
+    ``coupling(module) = crossing / (crossing + internal)`` -- the share of the
+    module's edges that leave it. An edge crosses the boundary when exactly one
+    endpoint belongs to the module. This is bounded to ``0..1`` and does not
+    shrink as a module grows, so unlike a per-node fan-out density it does not
+    rank 2-node modules above 27-node ones.
+
+    Magnitude is separate: ``crossing_edges`` is the raw boundary-edge count.
+    Rank by ``crossing_edges`` for "how much depends on this module", by
+    ``coupling`` for "what share of this module is boundary work". A module with
+    2 crossing edges and 0 internal edges scores ``coupling == 1.0`` but is
+    trivially small -- the two fields exist so neither reading is guessed at.
+
+    Test modules are included: the graph decides module boundaries, not file
+    naming, and a test module with high coupling is a real finding.
+    Returns modules sorted by module id with edges sorted for deterministic output.
     """
     modules: Dict[str, Set[str]] = defaultdict(set)
     for node in graph.nodes:
@@ -158,6 +171,7 @@ def compute_coupling(graph: ArchitectureGraph) -> List[ModuleCoupling]:
     for module in sorted(modules):
         members = modules[module]
         crossing: List[Dict[str, Any]] = []
+        internal = 0
         for edge in graph.edges:
             source = str(edge.get("source", "")).strip()
             target = str(edge.get("target", "")).strip()
@@ -167,7 +181,9 @@ def compute_coupling(graph: ArchitectureGraph) -> List[ModuleCoupling]:
             source_in = source in members
             target_in = target in members
             if source_in == target_in:
-                continue  # both inside or both outside: does not cross boundary
+                # both inside: internal edge, no boundary crossing
+                internal += 1 if source_in else 0
+                continue
             # Preserve the actual original edge record (including source_detail
             # and any other distinguishing attrs) so the count is manually
             # reproducible from graph.edges. Parallel and reverse-direction
@@ -178,13 +194,15 @@ def compute_coupling(graph: ArchitectureGraph) -> List[ModuleCoupling]:
             record.setdefault("edge_type", edge_type)
             crossing.append(record)
         crossing.sort(key=lambda e: (e["source"], e["target"], e.get("edge_type", "")))
-        coupling = len(crossing) / max(1, len(members))
+        total = len(crossing) + internal
+        coupling = len(crossing) / total if total else 0.0
         result.append(
             ModuleCoupling(
                 module=module,
                 node_count=len(members),
                 crossing_edges=len(crossing),
                 coupling=coupling,
+                internal_edges=internal,
                 edges=crossing,
             )
         )
@@ -358,6 +376,13 @@ def compute_hubs(
     band is the top ``hub_band`` fraction of nodes, ties at the cutoff included,
     ordered by descending score then ascending node id. Each hub reports its
     direct callers (in-neighbors) as evidence.
+
+    A hub is a node other nodes *depend on*, so nodes with ``in_degree == 0``
+    are excluded: CLI entry points and other externally-invoked roots reach far
+    but are called by nobody, and ranking them above genuinely depended-upon
+    nodes inverts the metric (62% of hubs on the CodeGraph self-run). Such nodes
+    are entry points or dead code -- opposite findings that must not share a
+    ranking.
     """
     nodes = _all_node_ids(graph)
     adj_out = {nid: set(graph.adj_out.get(nid, set())) for nid in nodes}
@@ -380,9 +405,13 @@ def compute_hubs(
         nid: in_degree[nid] + out_degree[nid] + reach[nid] for nid in nodes
     }
 
-    ranked = sorted(nodes, key=lambda nid: (-score[nid], nid))
-    count = len(nodes)
-    band_size = max(1, math.ceil(hub_band * count)) if count else 0
+    # The band is drawn from nodes that can BE hubs -- those something calls.
+    # Ranking first and filtering after would let entry points (in_degree 0)
+    # consume the whole band and leave an empty hub list.
+    eligible = [nid for nid in nodes if score[nid] > 0 and in_degree[nid] > 0]
+    ranked = sorted(eligible, key=lambda nid: (-score[nid], nid))
+    count = len(ranked)
+    band_size = min(count, max(1, math.ceil(hub_band * count))) if count else 0
     if band_size >= count:
         cutoff_score = None
     else:
@@ -390,8 +419,6 @@ def compute_hubs(
 
     hubs: List[HubMetric] = []
     for nid in ranked:
-        if score[nid] <= 0:
-            continue  # isolated nodes are never hubs
         if cutoff_score is not None and score[nid] < cutoff_score:
             continue
         hubs.append(
@@ -651,10 +678,20 @@ def save_report(
 
     Written with ``sort_keys=True`` and no timestamps so output is byte-identical
     across builds of an unchanged repository.
+
+    The saved report carries a ``build_quality`` block stating how many calls
+    failed to resolve during the build. Without it a reader cannot tell a clean
+    structural finding from one produced on a graph with missing edges (#79).
     """
+    from codegraph.build_quality import load_build_quality, unresolved_call_summary
+
     path = project_root / REPORT_PATH
     path.parent.mkdir(parents=True, exist_ok=True)
-    payload = json.dumps(report.to_dict(), indent=2, sort_keys=True, ensure_ascii=False)
+    payload_dict = report.to_dict()
+    payload_dict["metadata"]["build_quality"] = unresolved_call_summary(
+        load_build_quality(project_root)
+    )
+    payload = json.dumps(payload_dict, indent=2, sort_keys=True, ensure_ascii=False)
     path.write_text(payload + "\n", encoding="utf-8")
     logger.info("Saved architecture metrics report -> %s", path)
     return path

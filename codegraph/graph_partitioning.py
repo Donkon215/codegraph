@@ -54,6 +54,11 @@ def _module_of(node_id: str) -> str:
     return node_id.split("::", 1)[0] if "::" in node_id else node_id
 
 
+# The algorithm this module actually runs. Recorded in metadata so a saved
+# partition set can never claim a method that was never executed.
+_EXECUTED_METHOD = "label_propagation"
+
+
 def _partition_id(seed: str) -> str:
     module = _module_of(seed).replace("/", "_").replace(".", "_")
     if not module:
@@ -111,8 +116,13 @@ def build_partitions(
             adjacency[source].add(target)
             adjacency.setdefault(target, set()).add(source)
 
-    if method not in {"label_propagation", "louvain"}:
-        raise ValueError("method must be 'label_propagation' or 'louvain'")
+    # Only label propagation is implemented. Rejecting the others keeps
+    # metadata["method"] honest instead of recording an algorithm never run.
+    if method != "label_propagation":
+        raise ValueError(
+            f"unsupported partitioning method {method!r}; "
+            "only 'label_propagation' is implemented"
+        )
 
     labels = _label_propagation_communities(node_ids, adjacency)
 
@@ -167,7 +177,7 @@ def build_partitions(
             partitions.partitions[tgt_pid].boundary_nodes.add(target)
 
     partitions.metadata = {
-        "method": method,
+        "method": _EXECUTED_METHOD,
         "partition_count": len(partitions.partitions),
         "node_count": len(node_ids),
         "edge_count": len(graph.edges),

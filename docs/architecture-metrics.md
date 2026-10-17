@@ -228,30 +228,46 @@ rounded to 4 decimals.
 `members(m)` is the set of node ids in module `m`, built from graph nodes and
 from every edge endpoint (so endpoints that have no node record still join
 their module). `crossing(m)` is the set of *edge records* `(s -> t)` where
-exactly one of `s`, `t` is in `members(m)`.
+exactly one of `s`, `t` is in `members(m)`. `internal(m)` is the count of edge
+records where both endpoints are in `members(m)`.
 
 **Formula / normalisation.** No de-duplication: every original edge record is
 kept, so parallel and reverse-direction records between the same pair count
 separately and nothing is merged or lost.
 
 ```
-coupling(m) = |crossing(m)| / max(1, |members(m)|)
+coupling(m) = |crossing(m)| / (|crossing(m)| + |internal(m)|)
 ```
+
+This is the share of the module's edges that leave it, bounded to `0.0..1.0`.
+It does **not** divide by module size: a per-node fan-out density rises as a
+module shrinks, which ranked 2-node modules above 27-node ones with far more
+boundary traffic (#75).
+
+**Ranking.** The two fields answer different questions and neither is
+substitutable for the other:
+
+| Field | Question |
+|---|---|
+| `crossing_edges` | how much depends on this module (magnitude) |
+| `coupling` | what share of this module is boundary work (ratio) |
+
+A module with 2 crossing edges and 0 internal edges scores `coupling: 1.0` but
+is trivially small — read `crossing_edges` alongside it. Test modules are
+included: the graph decides module boundaries, not file naming.
 
 The crossing edge records themselves are stored as `edges` evidence (each
 record's `source`/`target` normalised, `edge_type` defaulted to `"call"`),
 sorted by `(source, target, edge_type)`. `coupling` is rounded to 6 decimals.
-Normalising by module size keeps a small, tightly boundaried module from being
-confused with a large, loosely coupled one.
 
 **Tie-break:** modules emitted sorted by module id.
 
-**Worked example.** `tests/fixtures/architecture/hubs`: module `hub.py` has
-members `{hub.py::Hub}` plus its four in-boundary callers are in other modules,
-so `hub.py::Hub`'s own module `hub.py` reports `node_count: 1`,
-`crossing_edges: 4`, `coupling: 4.0`. Module `a.py` reports
-`node_count: 1`, `crossing_edges: 1` (`a.py::Alpha -> hub.py::Hub`),
-`coupling: 1.0`.
+**Worked example.** `tests/fixtures/architecture/hubs`: `hub.py::Hub`'s own
+module `hub.py` reports `node_count: 1`, `crossing_edges: 4` (its four callers
+live in other modules), `internal_edges: 0`, `coupling: 1.0`. Module `a.py`
+reports `node_count: 1`, `crossing_edges: 1`
+(`a.py::Alpha -> hub.py::Hub`), `coupling: 1.0` — equal ratio, one quarter
+the magnitude.
 
 **Advisory / may block:** Advisory. Standing structural picture only; does not
 replace simulator sandbox checks.
@@ -305,13 +321,20 @@ graphs.
 
 **Formula / normalisation / tie-break.**
 
-* Rank nodes by descending `score`, then ascending node id.
-* The top band is the top `HUB_BAND` fraction of nodes
+* A hub is a node other nodes *depend on*, so only nodes with
+  `in_degree > 0` are eligible. Nodes nobody calls are CLI entry points or
+  dead code — opposite findings that must not share a ranking — and excluding
+  them was the difference between 62% and 0% of hubs on the CodeGraph self-run
+  (#74).
+* Rank eligible nodes by descending `score`, then ascending node id.
+* The top band is the top `HUB_BAND` fraction of *eligible* nodes
   (`ceil(0.10 * count)`, at least 1); every node tied at the cutoff score is
-  included.
+  included. Eligibility is applied before banding, so entry points cannot
+  consume the whole band and leave an empty hub list.
 * Isolated nodes (score 0) are never hubs.
 * Each hub reports `callers` (its direct in-neighbors, sorted) as evidence;
-  every listed caller has a direct edge to the hub.
+  every listed caller has a direct edge to the hub. Because every hub has at
+  least one caller by construction, `callers` is never empty.
 * Hub fields: `score` (6 decimals), `in_degree`, `out_degree`, `reach`,
   `callers`.
 
@@ -389,12 +412,21 @@ re-reached through a cycle — coverage is about calling *into* a boundary, not
 residing in one. Every boundary is listed explicitly, including zero-coverage
 ones.
 
+**Reach is bounded.** Traversal stops at `reach_depth` out-edge hops
+(`REACH_DEPTH = 3`, shared with §6 hubs and overridable per call). An unbounded
+transitive closure lets a test that merely imports one widely-connected helper
+mark every downstream boundary covered, which is inference rather than evidence
+(#76). The bound in force is recorded as `reach_depth` on the map, and each
+boundary reports `nearest_reach`: the shortest hop count at which any test
+reaches it, or `null` when none does. `nearest_reach: 1` is a direct call;
+higher values are inferred through helpers and should be read as such.
+
 **Boundary coverage statuses:**
 
 | Status | Meaning |
 |--------|---------|
-| `covered` | at least one test reaches a node in the boundary |
-| `zero_coverage` | tests exist but none reaches this boundary |
+| `covered` | at least one test reaches a node in the boundary within `reach_depth` hops |
+| `zero_coverage` | tests exist but none reaches this boundary within `reach_depth` hops |
 | `missing_evidence` | no layer-4 test nodes in the graph at all |
 
 **Flow coverage statuses** (one per boundary-crossing workflow edge, in
@@ -412,6 +444,10 @@ source node of the crossing; `orphan_tests` (graph test nodes reaching no bounda
 only when evidence is present), `ambiguous_tests` (tests attributable to more
 than one boundary — recorded, not resolved silently), and advisory `totals`
 (boundary/flow/test counts). Totals are advisory metrics only, never a gate.
+
+**Persistence.** `save_execution_coverage` / `load_execution_coverage` write and
+read `.codegraph/architecture/execution_coverage.json`, so two builds can be
+compared by diffing a file instead of reading two console dumps (#81).
 
 **Tie-break:** boundaries emitted sorted by boundary id; flows in traversal
 order (sorted source, then sorted target); test lists sorted; orphan/ambiguous
@@ -438,6 +474,32 @@ In `architecture_execution`, "missing evidence" (no layer-4 test nodes) is
 distinguished from "zero coverage" (tests exist but reach no boundary), and
 tests attributable to multiple boundaries are recorded as ambiguous rather than
 resolved silently. Nothing here treats a missing coverage map as a failure.
+
+**Build quality.** Every number above is computed on a graph, and a graph built
+from real source has gaps: a call that fails to resolve becomes an *absent*
+edge, indistinguishable from a call that does not exist. `save_report`
+therefore writes a `metadata.build_quality` block alongside the metrics:
+
+```json
+"build_quality": {
+  "build_quality": "recorded",
+  "unresolved_calls": 17392,
+  "collisions": 1,
+  "warnings": 1
+}
+```
+
+The underlying record is `.codegraph/build_quality.json`, written by the stages
+that know about defects (`codegraph.build_quality.record_build_quality`): the
+extractor records node-id collisions, per-file warnings and API-route failures;
+the workflow builder records `unresolved_calls`. When no record exists the block
+reports `"build_quality": "unknown"` with `null` counts rather than `0`, so a
+report never implies a clean build it cannot prove (#79).
+
+A node-id collision is recorded with its affected ids because a collision means
+edges naming the original id attach to the *first* definition, so the
+neighbouring edges are affected too — check `collisions` before trusting
+in-degree figures.
 
 ## 10. Simulator structural effect (issue #70)
 

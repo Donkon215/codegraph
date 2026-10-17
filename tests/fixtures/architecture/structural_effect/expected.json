@@ -1,121 +1,74 @@
 {
-  "graph": {
-    "node_count": 3,
-    "edge_count": 2
-  },
-  "forbidden_path": [],
   "communities": [
     {
-      "community_id": "a_py_78f87a75",
-      "size": 3,
-      "node_ids": [
-        "a.py::A",
-        "b.py::B",
-        "c.py::C"
-      ],
-      "internal_edge_count": 2,
+      "analysis": "Detected community 'a_py_78f87a75': 3 node(s), 2 internal edge(s), 0 boundary node(s); no single declared subsystem (mixed or undeclared).",
+      "boundary_edges": [],
       "boundary_nodes": [],
+      "community_id": "a_py_78f87a75",
       "declared_subsystem": null,
-      "node_type_counts": {
-        "function": 3
-      },
+      "directories": [
+        "."
+      ],
       "files": [
         "a.py",
         "b.py",
         "c.py"
       ],
-      "directories": [
-        "."
+      "internal_edge_count": 2,
+      "node_ids": [
+        "a.py::A",
+        "b.py::B",
+        "c.py::C"
       ],
-      "boundary_edges": [],
-      "analysis": "Detected community 'a_py_78f87a75': 3 node(s), 2 internal edge(s), 0 boundary node(s); no single declared subsystem (mixed or undeclared)."
+      "node_type_counts": {
+        "function": 3
+      },
+      "size": 3
     }
   ],
+  "coverage_map": {
+    "ambiguous_tests": [],
+    "boundaries": [
+      {
+        "boundary_id": "a_py_78f87a75",
+        "coverage_status": "missing_evidence",
+        "covering_tests": [],
+        "nearest_reach": null,
+        "node_count": 3,
+        "node_ids": [
+          "a.py::A",
+          "b.py::B",
+          "c.py::C"
+        ],
+        "test_count": 0
+      }
+    ],
+    "evidence": "missing",
+    "flows": [],
+    "orphan_tests": [],
+    "reach_depth": 3,
+    "totals": {
+      "ambiguous_test_count": 0,
+      "boundary_count": 1,
+      "covered_boundary_count": 0,
+      "covered_flow_count": 0,
+      "flow_count": 0,
+      "one_sided_flow_count": 0,
+      "orphan_test_count": 0,
+      "test_count": 0,
+      "untested_flow_count": 0,
+      "zero_coverage_boundary_count": 0
+    }
+  },
   "cross_community_links": [],
+  "forbidden_path": [],
+  "graph": {
+    "edge_count": 2,
+    "node_count": 3
+  },
   "metrics": {
-    "coupling": [
-      {
-        "module": "a.py",
-        "node_count": 1,
-        "crossing_edges": 1,
-        "coupling": 1.0,
-        "edges": [
-          {
-            "source": "a.py::A",
-            "target": "b.py::B",
-            "edge_type": "call",
-            "confidence": "static",
-            "source_detail": "",
-            "conditional": false
-          }
-        ]
-      },
-      {
-        "module": "b.py",
-        "node_count": 1,
-        "crossing_edges": 2,
-        "coupling": 2.0,
-        "edges": [
-          {
-            "source": "a.py::A",
-            "target": "b.py::B",
-            "edge_type": "call",
-            "confidence": "static",
-            "source_detail": "",
-            "conditional": false
-          },
-          {
-            "source": "b.py::B",
-            "target": "c.py::C",
-            "edge_type": "call",
-            "confidence": "static",
-            "source_detail": "",
-            "conditional": false
-          }
-        ]
-      },
-      {
-        "module": "c.py",
-        "node_count": 1,
-        "crossing_edges": 1,
-        "coupling": 1.0,
-        "edges": [
-          {
-            "source": "b.py::B",
-            "target": "c.py::C",
-            "edge_type": "call",
-            "confidence": "static",
-            "source_detail": "",
-            "conditional": false
-          }
-        ]
-      }
-    ],
-    "cycles": [],
-    "hubs": [
-      {
-        "node_id": "a.py::A",
-        "score": 3.0,
-        "in_degree": 0,
-        "out_degree": 1,
-        "reach": 2,
-        "callers": []
-      },
-      {
-        "node_id": "b.py::B",
-        "score": 3.0,
-        "in_degree": 1,
-        "out_degree": 1,
-        "reach": 1,
-        "callers": [
-          "a.py::A"
-        ]
-      }
-    ],
     "bridges": [
       {
-        "source": "a.py::A",
-        "target": "b.py::B",
         "component_a": [
           "a.py::A"
         ],
@@ -124,17 +77,17 @@
           "c.py::C"
         ],
         "edge": {
-          "source": "a.py::A",
-          "target": "b.py::B",
-          "edge_type": "call",
+          "conditional": false,
           "confidence": "static",
+          "edge_type": "call",
+          "source": "a.py::A",
           "source_detail": "",
-          "conditional": false
-        }
+          "target": "b.py::B"
+        },
+        "source": "a.py::A",
+        "target": "b.py::B"
       },
       {
-        "source": "b.py::B",
-        "target": "c.py::C",
         "component_a": [
           "a.py::A",
           "b.py::B"
@@ -143,94 +96,133 @@
           "c.py::C"
         ],
         "edge": {
-          "source": "b.py::B",
-          "target": "c.py::C",
-          "edge_type": "call",
+          "conditional": false,
           "confidence": "static",
+          "edge_type": "call",
+          "source": "b.py::B",
           "source_detail": "",
-          "conditional": false
-        }
+          "target": "c.py::C"
+        },
+        "source": "b.py::B",
+        "target": "c.py::C"
+      }
+    ],
+    "coupling": [
+      {
+        "coupling": 1.0,
+        "crossing_edges": 1,
+        "edges": [
+          {
+            "conditional": false,
+            "confidence": "static",
+            "edge_type": "call",
+            "source": "a.py::A",
+            "source_detail": "",
+            "target": "b.py::B"
+          }
+        ],
+        "internal_edges": 0,
+        "module": "a.py",
+        "node_count": 1
+      },
+      {
+        "coupling": 1.0,
+        "crossing_edges": 2,
+        "edges": [
+          {
+            "conditional": false,
+            "confidence": "static",
+            "edge_type": "call",
+            "source": "a.py::A",
+            "source_detail": "",
+            "target": "b.py::B"
+          },
+          {
+            "conditional": false,
+            "confidence": "static",
+            "edge_type": "call",
+            "source": "b.py::B",
+            "source_detail": "",
+            "target": "c.py::C"
+          }
+        ],
+        "internal_edges": 0,
+        "module": "b.py",
+        "node_count": 1
+      },
+      {
+        "coupling": 1.0,
+        "crossing_edges": 1,
+        "edges": [
+          {
+            "conditional": false,
+            "confidence": "static",
+            "edge_type": "call",
+            "source": "b.py::B",
+            "source_detail": "",
+            "target": "c.py::C"
+          }
+        ],
+        "internal_edges": 0,
+        "module": "c.py",
+        "node_count": 1
+      }
+    ],
+    "cycles": [],
+    "hubs": [
+      {
+        "callers": [
+          "a.py::A"
+        ],
+        "in_degree": 1,
+        "node_id": "b.py::B",
+        "out_degree": 1,
+        "reach": 1,
+        "score": 3.0
       }
     ]
   },
-  "coverage_map": {
-    "evidence": "missing",
-    "boundaries": [
-      {
-        "boundary_id": "a_py_78f87a75",
-        "node_count": 3,
-        "node_ids": [
-          "a.py::A",
-          "b.py::B",
-          "c.py::C"
-        ],
-        "covering_tests": [],
-        "test_count": 0,
-        "coverage_status": "missing_evidence"
-      }
-    ],
-    "flows": [],
-    "orphan_tests": [],
-    "ambiguous_tests": [],
-    "totals": {
-      "boundary_count": 1,
-      "test_count": 0,
-      "covered_boundary_count": 0,
-      "zero_coverage_boundary_count": 0,
-      "flow_count": 0,
-      "covered_flow_count": 0,
-      "one_sided_flow_count": 0,
-      "untested_flow_count": 0,
-      "orphan_test_count": 0,
-      "ambiguous_test_count": 0
-    }
-  },
   "simulation": {
-    "status": "partially_simulated",
-    "simulated": false,
-    "verdict": "REJECT",
-    "cycle_risk": 1,
     "coupling_delta": 0.3333,
+    "cycle_risk": 1,
     "layer_violations_delta": 0,
     "score_delta": -0.09,
+    "simulated": false,
+    "status": "partially_simulated",
     "structural_effect": [
       {
-        "kind": "connection_added",
         "description": "new connection c.py::C -> a.py::A",
+        "edges": [
+          {
+            "confidence": "ai_inferred",
+            "edge_type": "call",
+            "source": "c.py::C",
+            "source_detail": "simulated",
+            "target": "a.py::A"
+          }
+        ],
+        "kind": "connection_added",
         "nodes": [
           "c.py::C",
           "a.py::A"
-        ],
-        "edges": [
-          {
-            "source": "c.py::C",
-            "target": "a.py::A",
-            "edge_type": "call",
-            "confidence": "ai_inferred",
-            "source_detail": "simulated"
-          }
         ]
       },
       {
-        "kind": "cycle_created",
         "description": "new cycle via c.py::C -> a.py::A",
-        "nodes": [
-          "c.py::C",
-          "a.py::A"
-        ],
         "edges": [
           {
             "source": "c.py::C",
             "target": "a.py::A"
           }
+        ],
+        "kind": "cycle_created",
+        "nodes": [
+          "c.py::C",
+          "a.py::A"
         ]
       },
       {
-        "kind": "hub_touched",
         "description": "hub touched: a.py::A (score 4.000000, callers c.py::C)",
-        "nodes": [
-          "a.py::A"
-        ],
         "edges": [
           {
             "source": "c.py::C",
@@ -238,32 +230,25 @@
           }
         ],
         "evidence": {
-          "before": {
-            "node_id": "a.py::A",
-            "score": 3.0,
-            "in_degree": 0,
-            "out_degree": 1,
-            "reach": 2,
-            "callers": []
-          },
           "after": {
-            "node_id": "a.py::A",
-            "score": 4.0,
-            "in_degree": 1,
-            "out_degree": 1,
-            "reach": 2,
             "callers": [
               "c.py::C"
-            ]
-          }
-        }
+            ],
+            "in_degree": 1,
+            "node_id": "a.py::A",
+            "out_degree": 1,
+            "reach": 2,
+            "score": 4.0
+          },
+          "before": null
+        },
+        "kind": "hub_touched",
+        "nodes": [
+          "a.py::A"
+        ]
       },
       {
-        "kind": "hub_touched",
         "description": "hub touched: c.py::C (score 4.000000, callers b.py::B)",
-        "nodes": [
-          "c.py::C"
-        ],
         "edges": [
           {
             "source": "b.py::B",
@@ -271,28 +256,33 @@
           }
         ],
         "evidence": {
-          "before": null,
           "after": {
-            "node_id": "c.py::C",
-            "score": 4.0,
-            "in_degree": 1,
-            "out_degree": 1,
-            "reach": 2,
             "callers": [
               "b.py::B"
-            ]
-          }
-        }
+            ],
+            "in_degree": 1,
+            "node_id": "c.py::C",
+            "out_degree": 1,
+            "reach": 2,
+            "score": 4.0
+          },
+          "before": null
+        },
+        "kind": "hub_touched",
+        "nodes": [
+          "c.py::C"
+        ]
       },
       {
-        "kind": "affected_nodes",
         "description": "3 node(s) transitively affected by the change",
+        "kind": "affected_nodes",
         "nodes": [
           "a.py::A",
           "b.py::B",
           "c.py::C"
         ]
       }
-    ]
+    ],
+    "verdict": "REJECT"
   }
 }
